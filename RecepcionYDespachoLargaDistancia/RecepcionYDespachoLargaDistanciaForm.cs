@@ -8,21 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TUTASAPrototipo.ConsultarEstado
+namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
 {
-    public partial class ConsultarEstadoForm : Form
+    public partial class RecepcionYDespachoLargaDistanciaForm : Form
     {
-        public ConsultarEstadoForm()
+        public RecepcionYDespachoLargaDistanciaForm()
         {
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void NroGuiaBusquedaTextBox_TextChanged(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

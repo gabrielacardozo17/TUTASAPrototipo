@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TUTASAPrototipo.RendirHojaDeRuta
+namespace TUTASAPrototipo.MonitoreoResultados
 {
-    public partial class RendirHojaDeRutaForm : Form
+    public partial class MonitoreoResultadosForm : Form
     {
-        public RendirHojaDeRutaForm()
+        public MonitoreoResultadosForm()
         {
             InitializeComponent();
-        }
-
-        private void ResumenGroupBox_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

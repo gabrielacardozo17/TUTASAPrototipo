@@ -8,21 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TUTASAPrototipo.ConsultarEstado
+namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
 {
-    public partial class ConsultarEstadoForm : Form
+    public partial class ImponerEncomiendaCallCenterForm : Form
     {
-        public ConsultarEstadoForm()
+        public ImponerEncomiendaCallCenterForm()
         {
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void NroGuiaBusquedaTextBox_TextChanged(object sender, EventArgs e)
+        private void TipoEntregaLabel_Click(object sender, EventArgs e)
         {
 
         }
