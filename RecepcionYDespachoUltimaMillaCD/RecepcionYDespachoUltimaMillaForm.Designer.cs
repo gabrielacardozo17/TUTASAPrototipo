@@ -57,6 +57,8 @@
             BuscarButton = new Button();
             NumHojaRutaTextBox = new TextBox();
             DNILabel = new Label();
+            UsuarioLabel = new Label();
+            CDLabel = new Label();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             GuiasGroupBox.SuspendLayout();
@@ -334,11 +336,31 @@
             DNILabel.TabIndex = 0;
             DNILabel.Text = "Ingrese el número de DNI :";
             // 
+            // UsuarioLabel
+            // 
+            UsuarioLabel.AutoSize = true;
+            UsuarioLabel.Location = new Point(67, 9);
+            UsuarioLabel.Name = "UsuarioLabel";
+            UsuarioLabel.Size = new Size(50, 15);
+            UsuarioLabel.TabIndex = 13;
+            UsuarioLabel.Text = "Usuario:";
+            // 
+            // CDLabel
+            // 
+            CDLabel.AutoSize = true;
+            CDLabel.Location = new Point(549, 9);
+            CDLabel.Name = "CDLabel";
+            CDLabel.Size = new Size(26, 15);
+            CDLabel.TabIndex = 14;
+            CDLabel.Text = "CD:";
+            // 
             // RecepcionYDespachoUltimaMillaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 741);
+            Controls.Add(CDLabel);
+            Controls.Add(UsuarioLabel);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(SalirButton);
@@ -357,6 +379,7 @@
             BusquedaGroupBox.ResumeLayout(false);
             BusquedaGroupBox.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -390,5 +413,7 @@
         private Button BuscarButton;
         private TextBox NumHojaRutaTextBox;
         private Label DNILabel;
+        private Label UsuarioLabel;
+        private Label CDLabel;
     }
 }

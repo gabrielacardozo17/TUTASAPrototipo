@@ -40,11 +40,10 @@
             GuiasADespacharServicioListView = new GroupBox();
             ConfirmarRecepcionYDespachoButton = new Button();
             SalirButton = new Button();
-            GenerarHDRTransporteButton = new Button();
-            label1 = new Label();
+            CDLabel = new Label();
+            UsuarioLabel = new Label();
             BusquedaGroupBox.SuspendLayout();
             GuiasGroupBox.SuspendLayout();
-            GuiasADespacharServicioListView.SuspendLayout();
             SuspendLayout();
             // 
             // BusquedaGroupBox
@@ -121,18 +120,16 @@
             // 
             // GuiasADespacharServicioListView
             // 
-            GuiasADespacharServicioListView.Controls.Add(label1);
-            GuiasADespacharServicioListView.Controls.Add(GenerarHDRTransporteButton);
             GuiasADespacharServicioListView.Location = new Point(49, 318);
             GuiasADespacharServicioListView.Name = "GuiasADespacharServicioListView";
-            GuiasADespacharServicioListView.Size = new Size(658, 91);
+            GuiasADespacharServicioListView.Size = new Size(658, 227);
             GuiasADespacharServicioListView.TabIndex = 3;
             GuiasADespacharServicioListView.TabStop = false;
             GuiasADespacharServicioListView.Text = "Crear nueva hoja de ruta:";
             // 
             // ConfirmarRecepcionYDespachoButton
             // 
-            ConfirmarRecepcionYDespachoButton.Location = new Point(669, 434);
+            ConfirmarRecepcionYDespachoButton.Location = new Point(662, 563);
             ConfirmarRecepcionYDespachoButton.Name = "ConfirmarRecepcionYDespachoButton";
             ConfirmarRecepcionYDespachoButton.Size = new Size(83, 26);
             ConfirmarRecepcionYDespachoButton.TabIndex = 4;
@@ -141,37 +138,38 @@
             // 
             // SalirButton
             // 
-            SalirButton.Location = new Point(579, 434);
+            SalirButton.Location = new Point(572, 564);
             SalirButton.Name = "SalirButton";
             SalirButton.Size = new Size(84, 25);
             SalirButton.TabIndex = 5;
             SalirButton.Text = "Salir";
             SalirButton.UseVisualStyleBackColor = true;
             // 
-            // GenerarHDRTransporteButton
+            // CDLabel
             // 
-            GenerarHDRTransporteButton.Location = new Point(381, 37);
-            GenerarHDRTransporteButton.Name = "GenerarHDRTransporteButton";
-            GenerarHDRTransporteButton.Size = new Size(156, 23);
-            GenerarHDRTransporteButton.TabIndex = 9;
-            GenerarHDRTransporteButton.Text = "Generar Hoja de Ruta";
-            GenerarHDRTransporteButton.UseVisualStyleBackColor = true;
+            CDLabel.AutoSize = true;
+            CDLabel.Location = new Point(537, 9);
+            CDLabel.Name = "CDLabel";
+            CDLabel.Size = new Size(26, 15);
+            CDLabel.TabIndex = 16;
+            CDLabel.Text = "CD:";
             // 
-            // label1
+            // UsuarioLabel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(6, 41);
-            label1.Name = "label1";
-            label1.Size = new Size(369, 15);
-            label1.TabIndex = 10;
-            label1.Text = "Recuerde generar una nueva hoja de ruta para asignar a este servicio:";
-            label1.Click += label1_Click;
+            UsuarioLabel.AutoSize = true;
+            UsuarioLabel.Location = new Point(55, 9);
+            UsuarioLabel.Name = "UsuarioLabel";
+            UsuarioLabel.Size = new Size(50, 15);
+            UsuarioLabel.TabIndex = 15;
+            UsuarioLabel.Text = "Usuario:";
             // 
             // RecepcionYDespachoLargaDistanciaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(776, 474);
+            ClientSize = new Size(776, 601);
+            Controls.Add(CDLabel);
+            Controls.Add(UsuarioLabel);
             Controls.Add(SalirButton);
             Controls.Add(ConfirmarRecepcionYDespachoButton);
             Controls.Add(GuiasADespacharServicioListView);
@@ -182,9 +180,8 @@
             BusquedaGroupBox.ResumeLayout(false);
             BusquedaGroupBox.PerformLayout();
             GuiasGroupBox.ResumeLayout(false);
-            GuiasADespacharServicioListView.ResumeLayout(false);
-            GuiasADespacharServicioListView.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -207,7 +204,7 @@
         private GroupBox GuiasADespacharServicioListView;
         private Button ConfirmarRecepcionYDespachoButton;
         private Button SalirButton;
-        private Button GenerarHDRTransporteButton;
-        private Label label1;
+        private Label CDLabel;
+        private Label UsuarioLabel;
     }
 }

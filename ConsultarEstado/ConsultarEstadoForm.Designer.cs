@@ -38,7 +38,7 @@
             label6 = new Label();
             label4 = new Label();
             label3 = new Label();
-            listView1 = new ListView();
+            HistorialGuiaListView = new ListView();
             FechaColumn = new ColumnHeader();
             EstadoColumn = new ColumnHeader();
             UbicacionColumn = new ColumnHeader();
@@ -109,7 +109,7 @@
             ResultadoComboBox.Controls.Add(label6);
             ResultadoComboBox.Controls.Add(label4);
             ResultadoComboBox.Controls.Add(label3);
-            ResultadoComboBox.Controls.Add(listView1);
+            ResultadoComboBox.Controls.Add(HistorialGuiaListView);
             ResultadoComboBox.Location = new Point(69, 188);
             ResultadoComboBox.Name = "ResultadoComboBox";
             ResultadoComboBox.Size = new Size(426, 170);
@@ -147,15 +147,15 @@
             label3.TabIndex = 3;
             label3.Text = "09/09/2025";
             // 
-            // listView1
+            // HistorialGuiaListView
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { FechaColumn, EstadoColumn, UbicacionColumn });
-            listView1.Location = new Point(19, 37);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(387, 97);
-            listView1.TabIndex = 0;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            HistorialGuiaListView.Columns.AddRange(new ColumnHeader[] { FechaColumn, EstadoColumn, UbicacionColumn });
+            HistorialGuiaListView.Location = new Point(19, 37);
+            HistorialGuiaListView.Name = "HistorialGuiaListView";
+            HistorialGuiaListView.Size = new Size(387, 97);
+            HistorialGuiaListView.TabIndex = 0;
+            HistorialGuiaListView.UseCompatibleStateImageBehavior = false;
+            HistorialGuiaListView.View = View.Details;
             // 
             // FechaColumn
             // 
@@ -206,7 +206,7 @@
         private GroupBox groupBox1;
         private TextBox NroGuiaBusquedaTextBox;
         private GroupBox ResultadoComboBox;
-        private ListView listView1;
+        private ListView HistorialGuiaListView;
         private ColumnHeader FechaColumn;
         private ColumnHeader EstadoColumn;
         private Button SalirButton;

@@ -33,15 +33,17 @@
             NroGuiaColumn = new ColumnHeader();
             TamanioColumn = new ColumnHeader();
             BusquedaAgenciaGroupBox = new GroupBox();
+            ApellidoResultLabel = new Label();
+            NombreResultLabel = new Label();
             ApellidoDestinatario = new Label();
             NombreDestinatario = new Label();
             BuscarDestinararioButton = new Button();
             DNIDestinatarioTextBox = new TextBox();
             DNILabel = new Label();
-            label1 = new Label();
-            label2 = new Label();
             SalirButton = new Button();
             ConfirmarEntregaButton = new Button();
+            CDLabel = new Label();
+            UsuarioLabel = new Label();
             EntregaGuiasGroupBox.SuspendLayout();
             BusquedaAgenciaGroupBox.SuspendLayout();
             SuspendLayout();
@@ -49,7 +51,7 @@
             // EntregaGuiasGroupBox
             // 
             EntregaGuiasGroupBox.Controls.Add(GuiasAEntregarCDListView);
-            EntregaGuiasGroupBox.Location = new Point(70, 204);
+            EntregaGuiasGroupBox.Location = new Point(70, 231);
             EntregaGuiasGroupBox.Name = "EntregaGuiasGroupBox";
             EntregaGuiasGroupBox.Size = new Size(660, 140);
             EntregaGuiasGroupBox.TabIndex = 7;
@@ -78,19 +80,37 @@
             // 
             // BusquedaAgenciaGroupBox
             // 
-            BusquedaAgenciaGroupBox.Controls.Add(label2);
-            BusquedaAgenciaGroupBox.Controls.Add(label1);
+            BusquedaAgenciaGroupBox.Controls.Add(ApellidoResultLabel);
+            BusquedaAgenciaGroupBox.Controls.Add(NombreResultLabel);
             BusquedaAgenciaGroupBox.Controls.Add(ApellidoDestinatario);
             BusquedaAgenciaGroupBox.Controls.Add(NombreDestinatario);
             BusquedaAgenciaGroupBox.Controls.Add(BuscarDestinararioButton);
             BusquedaAgenciaGroupBox.Controls.Add(DNIDestinatarioTextBox);
             BusquedaAgenciaGroupBox.Controls.Add(DNILabel);
-            BusquedaAgenciaGroupBox.Location = new Point(70, 32);
+            BusquedaAgenciaGroupBox.Location = new Point(70, 65);
             BusquedaAgenciaGroupBox.Name = "BusquedaAgenciaGroupBox";
             BusquedaAgenciaGroupBox.Size = new Size(660, 151);
             BusquedaAgenciaGroupBox.TabIndex = 6;
             BusquedaAgenciaGroupBox.TabStop = false;
             BusquedaAgenciaGroupBox.Text = "Búsqueda del destinatario";
+            // 
+            // ApellidoResultLabel
+            // 
+            ApellidoResultLabel.AutoSize = true;
+            ApellidoResultLabel.Location = new Point(92, 111);
+            ApellidoResultLabel.Name = "ApellidoResultLabel";
+            ApellidoResultLabel.Size = new Size(35, 15);
+            ApellidoResultLabel.TabIndex = 6;
+            ApellidoResultLabel.Text = "Perez";
+            // 
+            // NombreResultLabel
+            // 
+            NombreResultLabel.AutoSize = true;
+            NombreResultLabel.Location = new Point(92, 84);
+            NombreResultLabel.Name = "NombreResultLabel";
+            NombreResultLabel.Size = new Size(31, 15);
+            NombreResultLabel.TabIndex = 5;
+            NombreResultLabel.Text = "Juan";
             // 
             // ApellidoDestinatario
             // 
@@ -112,7 +132,7 @@
             // 
             // BuscarDestinararioButton
             // 
-            BuscarDestinararioButton.Location = new Point(434, 44);
+            BuscarDestinararioButton.Location = new Point(425, 44);
             BuscarDestinararioButton.Name = "BuscarDestinararioButton";
             BuscarDestinararioButton.Size = new Size(75, 23);
             BuscarDestinararioButton.TabIndex = 2;
@@ -135,24 +155,6 @@
             DNILabel.TabIndex = 0;
             DNILabel.Text = "Ingrese el número de DNI :";
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(92, 84);
-            label1.Name = "label1";
-            label1.Size = new Size(31, 15);
-            label1.TabIndex = 5;
-            label1.Text = "Juan";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(92, 111);
-            label2.Name = "label2";
-            label2.Size = new Size(35, 15);
-            label2.TabIndex = 6;
-            label2.Text = "Perez";
-            // 
             // SalirButton
             // 
             SalirButton.Location = new Point(570, 408);
@@ -171,11 +173,33 @@
             ConfirmarEntregaButton.Text = "Confirmar";
             ConfirmarEntregaButton.UseVisualStyleBackColor = true;
             // 
+            // CDLabel
+            // 
+            CDLabel.AutoSize = true;
+            CDLabel.Location = new Point(550, 22);
+            CDLabel.Name = "CDLabel";
+            CDLabel.Size = new Size(26, 15);
+            CDLabel.TabIndex = 25;
+            CDLabel.Text = "CD:";
+            CDLabel.Click += this.AgenciaLabel_Click;
+            // 
+            // UsuarioLabel
+            // 
+            UsuarioLabel.AutoSize = true;
+            UsuarioLabel.Location = new Point(70, 22);
+            UsuarioLabel.Name = "UsuarioLabel";
+            UsuarioLabel.Size = new Size(50, 15);
+            UsuarioLabel.TabIndex = 24;
+            UsuarioLabel.Text = "Usuario:";
+            UsuarioLabel.Click += UsuarioLabel_Click;
+            // 
             // EntregarEncomiendaCDForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(775, 450);
+            Controls.Add(CDLabel);
+            Controls.Add(UsuarioLabel);
             Controls.Add(SalirButton);
             Controls.Add(ConfirmarEntregaButton);
             Controls.Add(EntregaGuiasGroupBox);
@@ -186,6 +210,7 @@
             BusquedaAgenciaGroupBox.ResumeLayout(false);
             BusquedaAgenciaGroupBox.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -195,8 +220,8 @@
         private ColumnHeader NroGuiaColumn;
         private ColumnHeader TamanioColumn;
         private GroupBox BusquedaAgenciaGroupBox;
-        private Label label2;
-        private Label label1;
+        private Label ApellidoResultLabel;
+        private Label NombreResultLabel;
         private Label ApellidoDestinatario;
         private Label NombreDestinatario;
         private Button BuscarDestinararioButton;
@@ -204,5 +229,7 @@
         private Label DNILabel;
         private Button SalirButton;
         private Button ConfirmarEntregaButton;
+        private Label CDLabel;
+        private Label UsuarioLabel;
     }
 }

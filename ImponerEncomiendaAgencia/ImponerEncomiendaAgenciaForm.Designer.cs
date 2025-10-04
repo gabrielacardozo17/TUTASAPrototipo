@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             SalirButton = new Button();
-            ConfirmarButton = new Button();
+            ConfirmarImposicionButton = new Button();
             EncomiendasGroupBox = new GroupBox();
             tipoXLNumericUpDown = new NumericUpDown();
             tipoXLLabel = new Label();
@@ -41,6 +41,7 @@
             TipoSLabel = new Label();
             EncomiendasLabel = new Label();
             DestinatarioGroupBox = new GroupBox();
+            LocalidadxProvinciaComboBox = new ComboBox();
             CodigoPostalTextBox = new TextBox();
             CodigoPostalLabel = new Label();
             TipoEntregaLabel = new Label();
@@ -54,14 +55,14 @@
             label2 = new Label();
             DNIDestinatarioTextBox = new TextBox();
             DNILabel = new Label();
-            textBox1 = new TextBox();
+            ApellidoDestinatarioResult = new TextBox();
             ApellidoDestinatarioLabel = new Label();
             NombreDestinatarioTextBox = new TextBox();
             NombreDestinatarioLabel = new Label();
             RemitenteGroupBox = new GroupBox();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
+            DireccionClienteResult = new Label();
+            TelefonoClienteResult = new Label();
+            NombreClienteResult = new Label();
             DireccionClienteLabel = new Label();
             TelefonoClienteLabel = new Label();
             NombreClienteLabel = new Label();
@@ -69,9 +70,12 @@
             CUITRemitenteMaskedText = new MaskedTextBox();
             CuitLabel = new Label();
             ImposicionAgenciaLabel = new Label();
-            comboBox1 = new ComboBox();
+            AgenciaLabel = new Label();
+            UsuarioLabel = new Label();
+            CentroDistribucionComboBox = new ComboBox();
+            CentroLabel = new Label();
+            AgenciaComboBox = new ComboBox();
             label1 = new Label();
-            comboBox2 = new ComboBox();
             EncomiendasGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tipoXLNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tipoLNumericUpDown).BeginInit();
@@ -90,14 +94,14 @@
             SalirButton.Text = "Salir";
             SalirButton.UseVisualStyleBackColor = true;
             // 
-            // ConfirmarButton
+            // ConfirmarImposicionButton
             // 
-            ConfirmarButton.Location = new Point(663, 730);
-            ConfirmarButton.Name = "ConfirmarButton";
-            ConfirmarButton.Size = new Size(87, 29);
-            ConfirmarButton.TabIndex = 20;
-            ConfirmarButton.Text = "Confirmar";
-            ConfirmarButton.UseVisualStyleBackColor = true;
+            ConfirmarImposicionButton.Location = new Point(663, 730);
+            ConfirmarImposicionButton.Name = "ConfirmarImposicionButton";
+            ConfirmarImposicionButton.Size = new Size(87, 29);
+            ConfirmarImposicionButton.TabIndex = 20;
+            ConfirmarImposicionButton.Text = "Confirmar";
+            ConfirmarImposicionButton.UseVisualStyleBackColor = true;
             // 
             // EncomiendasGroupBox
             // 
@@ -201,9 +205,11 @@
             // 
             // DestinatarioGroupBox
             // 
-            DestinatarioGroupBox.Controls.Add(comboBox2);
+            DestinatarioGroupBox.Controls.Add(CentroDistribucionComboBox);
+            DestinatarioGroupBox.Controls.Add(CentroLabel);
+            DestinatarioGroupBox.Controls.Add(AgenciaComboBox);
             DestinatarioGroupBox.Controls.Add(label1);
-            DestinatarioGroupBox.Controls.Add(comboBox1);
+            DestinatarioGroupBox.Controls.Add(LocalidadxProvinciaComboBox);
             DestinatarioGroupBox.Controls.Add(CodigoPostalTextBox);
             DestinatarioGroupBox.Controls.Add(CodigoPostalLabel);
             DestinatarioGroupBox.Controls.Add(TipoEntregaLabel);
@@ -217,7 +223,7 @@
             DestinatarioGroupBox.Controls.Add(label2);
             DestinatarioGroupBox.Controls.Add(DNIDestinatarioTextBox);
             DestinatarioGroupBox.Controls.Add(DNILabel);
-            DestinatarioGroupBox.Controls.Add(textBox1);
+            DestinatarioGroupBox.Controls.Add(ApellidoDestinatarioResult);
             DestinatarioGroupBox.Controls.Add(ApellidoDestinatarioLabel);
             DestinatarioGroupBox.Controls.Add(NombreDestinatarioTextBox);
             DestinatarioGroupBox.Controls.Add(NombreDestinatarioLabel);
@@ -227,6 +233,15 @@
             DestinatarioGroupBox.TabIndex = 18;
             DestinatarioGroupBox.TabStop = false;
             DestinatarioGroupBox.Text = "Datos del destinatario";
+            // 
+            // LocalidadxProvinciaComboBox
+            // 
+            LocalidadxProvinciaComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            LocalidadxProvinciaComboBox.FormattingEnabled = true;
+            LocalidadxProvinciaComboBox.Location = new Point(80, 152);
+            LocalidadxProvinciaComboBox.Name = "LocalidadxProvinciaComboBox";
+            LocalidadxProvinciaComboBox.Size = new Size(198, 23);
+            LocalidadxProvinciaComboBox.TabIndex = 17;
             // 
             // CodigoPostalTextBox
             // 
@@ -342,12 +357,12 @@
             DNILabel.TabIndex = 4;
             DNILabel.Text = "DNI:";
             // 
-            // textBox1
+            // ApellidoDestinatarioResult
             // 
-            textBox1.Location = new Point(291, 31);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(137, 23);
-            textBox1.TabIndex = 3;
+            ApellidoDestinatarioResult.Location = new Point(291, 31);
+            ApellidoDestinatarioResult.Name = "ApellidoDestinatarioResult";
+            ApellidoDestinatarioResult.Size = new Size(137, 23);
+            ApellidoDestinatarioResult.TabIndex = 3;
             // 
             // ApellidoDestinatarioLabel
             // 
@@ -376,9 +391,9 @@
             // 
             // RemitenteGroupBox
             // 
-            RemitenteGroupBox.Controls.Add(label6);
-            RemitenteGroupBox.Controls.Add(label5);
-            RemitenteGroupBox.Controls.Add(label4);
+            RemitenteGroupBox.Controls.Add(DireccionClienteResult);
+            RemitenteGroupBox.Controls.Add(TelefonoClienteResult);
+            RemitenteGroupBox.Controls.Add(NombreClienteResult);
             RemitenteGroupBox.Controls.Add(DireccionClienteLabel);
             RemitenteGroupBox.Controls.Add(TelefonoClienteLabel);
             RemitenteGroupBox.Controls.Add(NombreClienteLabel);
@@ -392,32 +407,32 @@
             RemitenteGroupBox.TabStop = false;
             RemitenteGroupBox.Text = "Datos del remitente";
             // 
-            // label6
+            // DireccionClienteResult
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(193, 110);
-            label6.Name = "label6";
-            label6.Size = new Size(187, 15);
-            label6.TabIndex = 8;
-            label6.Text = "Lorem Ipsum 123, Almagro, CABA";
+            DireccionClienteResult.AutoSize = true;
+            DireccionClienteResult.Location = new Point(193, 110);
+            DireccionClienteResult.Name = "DireccionClienteResult";
+            DireccionClienteResult.Size = new Size(187, 15);
+            DireccionClienteResult.TabIndex = 8;
+            DireccionClienteResult.Text = "Lorem Ipsum 123, Almagro, CABA";
             // 
-            // label5
+            // TelefonoClienteResult
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(193, 85);
-            label5.Name = "label5";
-            label5.Size = new Size(67, 15);
-            label5.TabIndex = 7;
-            label5.Text = "1122334455";
+            TelefonoClienteResult.AutoSize = true;
+            TelefonoClienteResult.Location = new Point(193, 85);
+            TelefonoClienteResult.Name = "TelefonoClienteResult";
+            TelefonoClienteResult.Size = new Size(67, 15);
+            TelefonoClienteResult.TabIndex = 7;
+            TelefonoClienteResult.Text = "1122334455";
             // 
-            // label4
+            // NombreClienteResult
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(193, 60);
-            label4.Name = "label4";
-            label4.Size = new Size(98, 15);
-            label4.TabIndex = 6;
-            label4.Text = "Distribuidora Sur ";
+            NombreClienteResult.AutoSize = true;
+            NombreClienteResult.Location = new Point(193, 60);
+            NombreClienteResult.Name = "NombreClienteResult";
+            NombreClienteResult.Size = new Size(98, 15);
+            NombreClienteResult.TabIndex = 6;
+            NombreClienteResult.Text = "Distribuidora Sur ";
             // 
             // DireccionClienteLabel
             // 
@@ -477,46 +492,75 @@
             // 
             ImposicionAgenciaLabel.AutoSize = true;
             ImposicionAgenciaLabel.Font = new Font("Segoe UI", 14F);
-            ImposicionAgenciaLabel.Location = new Point(232, 32);
+            ImposicionAgenciaLabel.Location = new Point(230, 44);
             ImposicionAgenciaLabel.Name = "ImposicionAgenciaLabel";
             ImposicionAgenciaLabel.Size = new Size(282, 25);
             ImposicionAgenciaLabel.TabIndex = 16;
             ImposicionAgenciaLabel.Text = "IMPOSICIÓN DE ENCOMIENDAS";
             // 
-            // comboBox1
+            // AgenciaLabel
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(80, 152);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(198, 23);
-            comboBox1.TabIndex = 17;
+            AgenciaLabel.AutoSize = true;
+            AgenciaLabel.Location = new Point(543, 9);
+            AgenciaLabel.Name = "AgenciaLabel";
+            AgenciaLabel.Size = new Size(53, 15);
+            AgenciaLabel.TabIndex = 23;
+            AgenciaLabel.Text = "Agencia:";
+            // 
+            // UsuarioLabel
+            // 
+            UsuarioLabel.AutoSize = true;
+            UsuarioLabel.Location = new Point(63, 9);
+            UsuarioLabel.Name = "UsuarioLabel";
+            UsuarioLabel.Size = new Size(50, 15);
+            UsuarioLabel.TabIndex = 22;
+            UsuarioLabel.Text = "Usuario:";
+            // 
+            // CentroDistribucionComboBox
+            // 
+            CentroDistribucionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            CentroDistribucionComboBox.FormattingEnabled = true;
+            CentroDistribucionComboBox.Location = new Point(367, 322);
+            CentroDistribucionComboBox.Name = "CentroDistribucionComboBox";
+            CentroDistribucionComboBox.Size = new Size(204, 23);
+            CentroDistribucionComboBox.TabIndex = 51;
+            // 
+            // CentroLabel
+            // 
+            CentroLabel.AutoSize = true;
+            CentroLabel.Location = new Point(335, 325);
+            CentroLabel.Name = "CentroLabel";
+            CentroLabel.Size = new Size(26, 15);
+            CentroLabel.TabIndex = 50;
+            CentroLabel.Text = "CD:";
+            // 
+            // AgenciaComboBox
+            // 
+            AgenciaComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            AgenciaComboBox.FormattingEnabled = true;
+            AgenciaComboBox.Location = new Point(86, 322);
+            AgenciaComboBox.Name = "AgenciaComboBox";
+            AgenciaComboBox.Size = new Size(192, 23);
+            AgenciaComboBox.TabIndex = 49;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(9, 323);
+            label1.Location = new Point(15, 325);
             label1.Name = "label1";
-            label1.Size = new Size(94, 15);
-            label1.TabIndex = 18;
-            label1.Text = "Establecimiento:";
-            // 
-            // comboBox2
-            // 
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(115, 320);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(192, 23);
-            comboBox2.TabIndex = 19;
+            label1.Size = new Size(53, 15);
+            label1.TabIndex = 48;
+            label1.Text = "Agencia:";
             // 
             // ImponerEncomiendaAgenciaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(781, 771);
+            Controls.Add(AgenciaLabel);
+            Controls.Add(UsuarioLabel);
             Controls.Add(SalirButton);
-            Controls.Add(ConfirmarButton);
+            Controls.Add(ConfirmarImposicionButton);
             Controls.Add(EncomiendasGroupBox);
             Controls.Add(DestinatarioGroupBox);
             Controls.Add(RemitenteGroupBox);
@@ -540,7 +584,7 @@
         #endregion
 
         private Button SalirButton;
-        private Button ConfirmarButton;
+        private Button ConfirmarImposicionButton;
         private GroupBox EncomiendasGroupBox;
         private NumericUpDown tipoXLNumericUpDown;
         private Label tipoXLLabel;
@@ -565,14 +609,14 @@
         private Label label2;
         private TextBox DNIDestinatarioTextBox;
         private Label DNILabel;
-        private TextBox textBox1;
+        private TextBox ApellidoDestinatarioResult;
         private Label ApellidoDestinatarioLabel;
         private TextBox NombreDestinatarioTextBox;
         private Label NombreDestinatarioLabel;
         private GroupBox RemitenteGroupBox;
-        private Label label6;
-        private Label label5;
-        private Label label4;
+        private Label DireccionClienteResult;
+        private Label TelefonoClienteResult;
+        private Label NombreClienteResult;
         private Label DireccionClienteLabel;
         private Label TelefonoClienteLabel;
         private Label NombreClienteLabel;
@@ -580,8 +624,12 @@
         private MaskedTextBox CUITRemitenteMaskedText;
         private Label CuitLabel;
         private Label ImposicionAgenciaLabel;
-        private ComboBox comboBox2;
+        private ComboBox LocalidadxProvinciaComboBox;
+        private Label AgenciaLabel;
+        private Label UsuarioLabel;
+        private ComboBox CentroDistribucionComboBox;
+        private Label CentroLabel;
+        private ComboBox AgenciaComboBox;
         private Label label1;
-        private ComboBox comboBox1;
     }
 }

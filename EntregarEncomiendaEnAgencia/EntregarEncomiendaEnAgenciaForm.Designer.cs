@@ -1,4 +1,4 @@
-﻿namespace TUTASAPrototipo.EntregarEncomiendaAgencia
+﻿namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 {
     partial class EntregarEncomiendaEnAgenciaForm
     {
@@ -33,13 +33,17 @@
             NroGuiaColumn = new ColumnHeader();
             TamanioColumn = new ColumnHeader();
             BusquedaAgenciaGroupBox = new GroupBox();
+            ApellidoDestinatarioResult = new Label();
+            NombreDestinatarioResult = new Label();
+            ApellidoDestinatario = new Label();
+            NombreDestinatario = new Label();
             BuscarDestinararioButton = new Button();
             DNIDestinatarioTextBox = new TextBox();
             DNILabel = new Label();
-            NombreDestinatario = new Label();
-            ApellidoDestinatario = new Label();
             ConfirmarEntregaButton = new Button();
             SalirButton = new Button();
+            AgenciaLabel = new Label();
+            UsuarioLabel = new Label();
             EntregaGuiasGroupBox.SuspendLayout();
             BusquedaAgenciaGroupBox.SuspendLayout();
             SuspendLayout();
@@ -47,7 +51,7 @@
             // EntregaGuiasGroupBox
             // 
             EntregaGuiasGroupBox.Controls.Add(GuiasARecepcionarAgenciaListView);
-            EntregaGuiasGroupBox.Location = new Point(70, 208);
+            EntregaGuiasGroupBox.Location = new Point(70, 222);
             EntregaGuiasGroupBox.Name = "EntregaGuiasGroupBox";
             EntregaGuiasGroupBox.Size = new Size(660, 140);
             EntregaGuiasGroupBox.TabIndex = 5;
@@ -76,17 +80,55 @@
             // 
             // BusquedaAgenciaGroupBox
             // 
+            BusquedaAgenciaGroupBox.Controls.Add(ApellidoDestinatarioResult);
+            BusquedaAgenciaGroupBox.Controls.Add(NombreDestinatarioResult);
             BusquedaAgenciaGroupBox.Controls.Add(ApellidoDestinatario);
             BusquedaAgenciaGroupBox.Controls.Add(NombreDestinatario);
             BusquedaAgenciaGroupBox.Controls.Add(BuscarDestinararioButton);
             BusquedaAgenciaGroupBox.Controls.Add(DNIDestinatarioTextBox);
             BusquedaAgenciaGroupBox.Controls.Add(DNILabel);
-            BusquedaAgenciaGroupBox.Location = new Point(70, 36);
+            BusquedaAgenciaGroupBox.Location = new Point(70, 65);
             BusquedaAgenciaGroupBox.Name = "BusquedaAgenciaGroupBox";
             BusquedaAgenciaGroupBox.Size = new Size(660, 151);
             BusquedaAgenciaGroupBox.TabIndex = 4;
             BusquedaAgenciaGroupBox.TabStop = false;
             BusquedaAgenciaGroupBox.Text = "Búsqueda del destinatario";
+            // 
+            // ApellidoDestinatarioResult
+            // 
+            ApellidoDestinatarioResult.AutoSize = true;
+            ApellidoDestinatarioResult.Location = new Point(81, 111);
+            ApellidoDestinatarioResult.Name = "ApellidoDestinatarioResult";
+            ApellidoDestinatarioResult.Size = new Size(38, 15);
+            ApellidoDestinatarioResult.TabIndex = 6;
+            ApellidoDestinatarioResult.Text = "label1";
+            // 
+            // NombreDestinatarioResult
+            // 
+            NombreDestinatarioResult.AutoSize = true;
+            NombreDestinatarioResult.Location = new Point(81, 84);
+            NombreDestinatarioResult.Name = "NombreDestinatarioResult";
+            NombreDestinatarioResult.Size = new Size(38, 15);
+            NombreDestinatarioResult.TabIndex = 5;
+            NombreDestinatarioResult.Text = "label1";
+            // 
+            // ApellidoDestinatario
+            // 
+            ApellidoDestinatario.AutoSize = true;
+            ApellidoDestinatario.Location = new Point(21, 111);
+            ApellidoDestinatario.Name = "ApellidoDestinatario";
+            ApellidoDestinatario.Size = new Size(54, 15);
+            ApellidoDestinatario.TabIndex = 4;
+            ApellidoDestinatario.Text = "Apellido:";
+            // 
+            // NombreDestinatario
+            // 
+            NombreDestinatario.AutoSize = true;
+            NombreDestinatario.Location = new Point(21, 84);
+            NombreDestinatario.Name = "NombreDestinatario";
+            NombreDestinatario.Size = new Size(54, 15);
+            NombreDestinatario.TabIndex = 3;
+            NombreDestinatario.Text = "Nombre:";
             // 
             // BuscarDestinararioButton
             // 
@@ -113,24 +155,6 @@
             DNILabel.TabIndex = 0;
             DNILabel.Text = "Ingrese el número de DNI :";
             // 
-            // NombreDestinatario
-            // 
-            NombreDestinatario.AutoSize = true;
-            NombreDestinatario.Location = new Point(21, 84);
-            NombreDestinatario.Name = "NombreDestinatario";
-            NombreDestinatario.Size = new Size(54, 15);
-            NombreDestinatario.TabIndex = 3;
-            NombreDestinatario.Text = "Nombre:";
-            // 
-            // ApellidoDestinatario
-            // 
-            ApellidoDestinatario.AutoSize = true;
-            ApellidoDestinatario.Location = new Point(21, 111);
-            ApellidoDestinatario.Name = "ApellidoDestinatario";
-            ApellidoDestinatario.Size = new Size(54, 15);
-            ApellidoDestinatario.TabIndex = 4;
-            ApellidoDestinatario.Text = "Apellido:";
-            // 
             // ConfirmarEntregaButton
             // 
             ConfirmarEntregaButton.Location = new Point(655, 402);
@@ -149,11 +173,31 @@
             SalirButton.Text = "Salir";
             SalirButton.UseVisualStyleBackColor = true;
             // 
+            // AgenciaLabel
+            // 
+            AgenciaLabel.AutoSize = true;
+            AgenciaLabel.Location = new Point(550, 22);
+            AgenciaLabel.Name = "AgenciaLabel";
+            AgenciaLabel.Size = new Size(53, 15);
+            AgenciaLabel.TabIndex = 25;
+            AgenciaLabel.Text = "Agencia:";
+            // 
+            // UsuarioLabel
+            // 
+            UsuarioLabel.AutoSize = true;
+            UsuarioLabel.Location = new Point(70, 22);
+            UsuarioLabel.Name = "UsuarioLabel";
+            UsuarioLabel.Size = new Size(50, 15);
+            UsuarioLabel.TabIndex = 24;
+            UsuarioLabel.Text = "Usuario:";
+            // 
             // EntregarEncomiendaEnAgenciaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 445);
+            Controls.Add(AgenciaLabel);
+            Controls.Add(UsuarioLabel);
             Controls.Add(SalirButton);
             Controls.Add(ConfirmarEntregaButton);
             Controls.Add(EntregaGuiasGroupBox);
@@ -164,6 +208,7 @@
             BusquedaAgenciaGroupBox.ResumeLayout(false);
             BusquedaAgenciaGroupBox.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -180,5 +225,9 @@
         private Label DNILabel;
         private Button ConfirmarEntregaButton;
         private Button SalirButton;
+        private Label ApellidoDestinatarioResult;
+        private Label NombreDestinatarioResult;
+        private Label AgenciaLabel;
+        private Label UsuarioLabel;
     }
 }
