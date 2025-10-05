@@ -28,20 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem5 = new ListViewItem(new string[] { "", "LNS23546" }, -1);
-            ListViewItem listViewItem6 = new ListViewItem(new string[] { "LNS54654", "XL", "Retiro", "Av. Lorem Ipsum 102" }, -1);
-            ListViewItem listViewItem7 = new ListViewItem(new string[] { "LNS56987", "S", "Distribución", "Av. Lorem Ipsum 56" }, -1);
-            ListViewItem listViewItem8 = new ListViewItem(new string[] { "", "LNS23332" }, -1);
+            ListViewItem listViewItem1 = new ListViewItem(new string[] { "", "LNS23546" }, -1);
+            ListViewItem listViewItem2 = new ListViewItem(new string[] { "LNS54654", "XL", "Av. Lorem Ipsum 102" }, -1);
+            ListViewItem listViewItem3 = new ListViewItem(new string[] { "LNS56987", "S", "Distribución", "Av. Lorem Ipsum 56" }, -1);
+            ListViewItem listViewItem4 = new ListViewItem("356254");
+            ListViewItem listViewItem5 = new ListViewItem("");
+            ListViewItem listViewItem6 = new ListViewItem("564524165");
+            ListViewItem listViewItem7 = new ListViewItem("45545461");
+            ListViewItem listViewItem8 = new ListViewItem("");
+            ListViewItem listViewItem9 = new ListViewItem(new string[] { "", "LNS23332" }, -1);
+            ListViewItem listViewItem10 = new ListViewItem(new string[] { "LNS54654", "XL", "Av. Lorem Ipsum 102" }, -1);
+            ListViewItem listViewItem11 = new ListViewItem(new string[] { "LNS56987", "S", "Distribución", "Av. Lorem Ipsum 56" }, -1);
             groupBox2 = new GroupBox();
             label3 = new Label();
             GuiasRetiroxFleteroListView = new ListView();
             cumplidaRetiroColumn = new ColumnHeader();
             NroGuia = new ColumnHeader();
-            groupBox1 = new GroupBox();
-            NuevasGuiasFleteroListView = new ListView();
+            GuiasDistribucionProximas = new GroupBox();
+            NuevasGuiasDistribucionxFleteroListView = new ListView();
             guiaColumn = new ColumnHeader();
             tamañoADespachar = new ColumnHeader();
-            accionARealizar = new ColumnHeader();
             DestinoDespachar = new ColumnHeader();
             label1 = new Label();
             SalirButton = new Button();
@@ -56,19 +62,26 @@
             DNILabel = new Label();
             UsuarioLabel = new Label();
             CDLabel = new Label();
+            groupBox1 = new GroupBox();
+            NuevasGuiasRetiroxFleteroListView = new ListView();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            label2 = new Label();
             groupBox2.SuspendLayout();
-            groupBox1.SuspendLayout();
+            GuiasDistribucionProximas.SuspendLayout();
             GuiasGroupBox.SuspendLayout();
             BusquedaGroupBox.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox2
             // 
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(GuiasRetiroxFleteroListView);
-            groupBox2.Location = new Point(69, 335);
+            groupBox2.Location = new Point(70, 302);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(658, 160);
+            groupBox2.Size = new Size(658, 148);
             groupBox2.TabIndex = 12;
             groupBox2.TabStop = false;
             groupBox2.Text = "Detalle de guías de retiro asignadas:";
@@ -87,9 +100,9 @@
             GuiasRetiroxFleteroListView.CheckBoxes = true;
             GuiasRetiroxFleteroListView.Columns.AddRange(new ColumnHeader[] { cumplidaRetiroColumn, NroGuia });
             GuiasRetiroxFleteroListView.FullRowSelect = true;
-            listViewItem5.StateImageIndex = 0;
-            GuiasRetiroxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem5 });
-            GuiasRetiroxFleteroListView.Location = new Point(112, 39);
+            listViewItem1.StateImageIndex = 0;
+            GuiasRetiroxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem1 });
+            GuiasRetiroxFleteroListView.Location = new Point(101, 22);
             GuiasRetiroxFleteroListView.Name = "GuiasRetiroxFleteroListView";
             GuiasRetiroxFleteroListView.Size = new Size(404, 97);
             GuiasRetiroxFleteroListView.TabIndex = 0;
@@ -107,27 +120,27 @@
             NroGuia.Text = "Nro de Guía";
             NroGuia.Width = 300;
             // 
-            // groupBox1
+            // GuiasDistribucionProximas
             // 
-            groupBox1.Controls.Add(NuevasGuiasFleteroListView);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(69, 514);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(658, 161);
-            groupBox1.TabIndex = 11;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Guías a entregar a este fletero:";
+            GuiasDistribucionProximas.Controls.Add(NuevasGuiasDistribucionxFleteroListView);
+            GuiasDistribucionProximas.Controls.Add(label1);
+            GuiasDistribucionProximas.Location = new Point(73, 467);
+            GuiasDistribucionProximas.Name = "GuiasDistribucionProximas";
+            GuiasDistribucionProximas.Size = new Size(658, 161);
+            GuiasDistribucionProximas.TabIndex = 11;
+            GuiasDistribucionProximas.TabStop = false;
+            GuiasDistribucionProximas.Text = "La nueva hoja de ruta de distribución asignada a este fletero contiene las siguientes guías:";
             // 
-            // NuevasGuiasFleteroListView
+            // NuevasGuiasDistribucionxFleteroListView
             // 
-            NuevasGuiasFleteroListView.Columns.AddRange(new ColumnHeader[] { guiaColumn, tamañoADespachar, accionARealizar, DestinoDespachar });
-            NuevasGuiasFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem6, listViewItem7 });
-            NuevasGuiasFleteroListView.Location = new Point(13, 39);
-            NuevasGuiasFleteroListView.Name = "NuevasGuiasFleteroListView";
-            NuevasGuiasFleteroListView.Size = new Size(604, 97);
-            NuevasGuiasFleteroListView.TabIndex = 1;
-            NuevasGuiasFleteroListView.UseCompatibleStateImageBehavior = false;
-            NuevasGuiasFleteroListView.View = View.Details;
+            NuevasGuiasDistribucionxFleteroListView.Columns.AddRange(new ColumnHeader[] { guiaColumn, tamañoADespachar, DestinoDespachar });
+            NuevasGuiasDistribucionxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem2, listViewItem3, listViewItem4, listViewItem5, listViewItem6, listViewItem7, listViewItem8 });
+            NuevasGuiasDistribucionxFleteroListView.Location = new Point(55, 37);
+            NuevasGuiasDistribucionxFleteroListView.Name = "NuevasGuiasDistribucionxFleteroListView";
+            NuevasGuiasDistribucionxFleteroListView.Size = new Size(524, 97);
+            NuevasGuiasDistribucionxFleteroListView.TabIndex = 1;
+            NuevasGuiasDistribucionxFleteroListView.UseCompatibleStateImageBehavior = false;
+            NuevasGuiasDistribucionxFleteroListView.View = View.Details;
             // 
             // guiaColumn
             // 
@@ -138,11 +151,6 @@
             // 
             tamañoADespachar.Text = "Tamaño";
             tamañoADespachar.Width = 100;
-            // 
-            // accionARealizar
-            // 
-            accionARealizar.Text = "Acción";
-            accionARealizar.Width = 100;
             // 
             // DestinoDespachar
             // 
@@ -159,7 +167,7 @@
             // 
             // SalirButton
             // 
-            SalirButton.Location = new Point(582, 691);
+            SalirButton.Location = new Point(572, 833);
             SalirButton.Name = "SalirButton";
             SalirButton.Size = new Size(75, 23);
             SalirButton.TabIndex = 10;
@@ -168,7 +176,7 @@
             // 
             // ConfirmarButton
             // 
-            ConfirmarButton.Location = new Point(663, 691);
+            ConfirmarButton.Location = new Point(653, 833);
             ConfirmarButton.Name = "ConfirmarButton";
             ConfirmarButton.Size = new Size(75, 23);
             ConfirmarButton.TabIndex = 9;
@@ -179,9 +187,9 @@
             // GuiasGroupBox
             // 
             GuiasGroupBox.Controls.Add(GuiasDistribucionxFleteroListView);
-            GuiasGroupBox.Location = new Point(69, 145);
+            GuiasGroupBox.Location = new Point(70, 128);
             GuiasGroupBox.Name = "GuiasGroupBox";
-            GuiasGroupBox.Size = new Size(658, 171);
+            GuiasGroupBox.Size = new Size(658, 158);
             GuiasGroupBox.TabIndex = 8;
             GuiasGroupBox.TabStop = false;
             GuiasGroupBox.Text = "Detalle de guías de distribución asignadas:";
@@ -191,9 +199,9 @@
             GuiasDistribucionxFleteroListView.CheckBoxes = true;
             GuiasDistribucionxFleteroListView.Columns.AddRange(new ColumnHeader[] { CumplidaDistribucionColumn, columnHeader1 });
             GuiasDistribucionxFleteroListView.FullRowSelect = true;
-            listViewItem8.StateImageIndex = 0;
-            GuiasDistribucionxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem8 });
-            GuiasDistribucionxFleteroListView.Location = new Point(112, 32);
+            listViewItem9.StateImageIndex = 0;
+            GuiasDistribucionxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem9 });
+            GuiasDistribucionxFleteroListView.Location = new Point(101, 32);
             GuiasDistribucionxFleteroListView.Name = "GuiasDistribucionxFleteroListView";
             GuiasDistribucionxFleteroListView.Size = new Size(404, 97);
             GuiasDistribucionxFleteroListView.TabIndex = 1;
@@ -217,14 +225,14 @@
             BusquedaGroupBox.Controls.Add(DNILabel);
             BusquedaGroupBox.Location = new Point(67, 39);
             BusquedaGroupBox.Name = "BusquedaGroupBox";
-            BusquedaGroupBox.Size = new Size(660, 100);
+            BusquedaGroupBox.Size = new Size(660, 83);
             BusquedaGroupBox.TabIndex = 7;
             BusquedaGroupBox.TabStop = false;
             BusquedaGroupBox.Text = "Búsqueda";
             // 
             // BuscarButton
             // 
-            BuscarButton.Location = new Point(434, 44);
+            BuscarButton.Location = new Point(421, 29);
             BuscarButton.Name = "BuscarButton";
             BuscarButton.Size = new Size(75, 23);
             BuscarButton.TabIndex = 2;
@@ -233,7 +241,7 @@
             // 
             // DNIFleteroTextBox
             // 
-            DNIFleteroTextBox.Location = new Point(174, 44);
+            DNIFleteroTextBox.Location = new Point(174, 30);
             DNIFleteroTextBox.Name = "DNIFleteroTextBox";
             DNIFleteroTextBox.Size = new Size(228, 23);
             DNIFleteroTextBox.TabIndex = 1;
@@ -241,7 +249,7 @@
             // DNILabel
             // 
             DNILabel.AutoSize = true;
-            DNILabel.Location = new Point(21, 47);
+            DNILabel.Location = new Point(21, 33);
             DNILabel.Name = "DNILabel";
             DNILabel.Size = new Size(147, 15);
             DNILabel.TabIndex = 0;
@@ -265,15 +273,61 @@
             CDLabel.TabIndex = 14;
             CDLabel.Text = "CD:";
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(NuevasGuiasRetiroxFleteroListView);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Location = new Point(67, 646);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(658, 161);
+            groupBox1.TabIndex = 15;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "La nueva hoja de ruta de retiro asignada a este fletero contiene las siguientes guías:";
+            // 
+            // NuevasGuiasRetiroxFleteroListView
+            // 
+            NuevasGuiasRetiroxFleteroListView.Columns.AddRange(new ColumnHeader[] { columnHeader2, columnHeader3, columnHeader4 });
+            NuevasGuiasRetiroxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem10, listViewItem11 });
+            NuevasGuiasRetiroxFleteroListView.Location = new Point(61, 28);
+            NuevasGuiasRetiroxFleteroListView.Name = "NuevasGuiasRetiroxFleteroListView";
+            NuevasGuiasRetiroxFleteroListView.Size = new Size(506, 97);
+            NuevasGuiasRetiroxFleteroListView.TabIndex = 2;
+            NuevasGuiasRetiroxFleteroListView.UseCompatibleStateImageBehavior = false;
+            NuevasGuiasRetiroxFleteroListView.View = View.Details;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Nro de Guía";
+            columnHeader2.Width = 200;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Tamaño";
+            columnHeader3.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Destino";
+            columnHeader4.Width = 200;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(6, 28);
+            label2.Name = "label2";
+            label2.Size = new Size(0, 15);
+            label2.TabIndex = 0;
+            // 
             // RecepcionYDespachoUltimaMillaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 725);
+            ClientSize = new Size(779, 868);
+            Controls.Add(groupBox1);
             Controls.Add(CDLabel);
             Controls.Add(UsuarioLabel);
             Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
+            Controls.Add(GuiasDistribucionProximas);
             Controls.Add(SalirButton);
             Controls.Add(ConfirmarButton);
             Controls.Add(GuiasGroupBox);
@@ -282,11 +336,13 @@
             Text = "Recepcion y despacho ultima milla";
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            GuiasDistribucionProximas.ResumeLayout(false);
+            GuiasDistribucionProximas.PerformLayout();
             GuiasGroupBox.ResumeLayout(false);
             BusquedaGroupBox.ResumeLayout(false);
             BusquedaGroupBox.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -298,7 +354,7 @@
         private ListView GuiasRetiroxFleteroListView;
         private ColumnHeader NroGuia;
         private ColumnHeader destinoColumn;
-        private GroupBox groupBox1;
+        private GroupBox GuiasDistribucionProximas;
         private Label label1;
         private Button SalirButton;
         private Button ConfirmarButton;
@@ -309,18 +365,20 @@
         private Label DNILabel;
         private Label UsuarioLabel;
         private Label CDLabel;
-        private ListView NuevasGuiasFleteroListView;
+        private ListView NuevasGuiasDistribucionxFleteroListView;
         private ColumnHeader guiaColumn;
         private ColumnHeader tamañoADespachar;
         private ColumnHeader DestinoDespachar;
         private ListView GuiasDistribucionxFleteroListView;
         private ColumnHeader columnHeader1;
-        private ColumnHeader accionARealizar;
         private ColumnHeader CumplidaDistribucionColumn;
         private ColumnHeader cumplidaRetiroColumn;
-        private ListView listView1;
-        private ColumnHeader columnHeader4;
-        private ColumnHeader columnHeader5;
         private ColumnHeader columnHeader6;
+        private GroupBox groupBox1;
+        private Label label2;
+        private ListView NuevasGuiasRetiroxFleteroListView;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
     }
 }

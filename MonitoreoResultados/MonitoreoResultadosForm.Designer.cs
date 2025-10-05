@@ -28,79 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            CriteriosBusquedaGroupBox = new GroupBox();
-            IngresoLabel = new Label();
-            EmpresasTransporteComboBox = new ComboBox();
-            BuscarEmpresaButton = new Button();
             ResultadoGroupBox = new GroupBox();
-            listView1 = new ListView();
+            ResultadosxEmpresaListView = new ListView();
             CostoMensualColumn = new ColumnHeader();
             VentasMensualesColumn = new ColumnHeader();
             ResultadoColumn = new ColumnHeader();
             SalirButton = new Button();
-            CriteriosBusquedaGroupBox.SuspendLayout();
+            empresaTransporteColumn = new ColumnHeader();
+            PeriodoLabel = new Label();
+            comboBox1 = new ComboBox();
             ResultadoGroupBox.SuspendLayout();
             SuspendLayout();
             // 
-            // CriteriosBusquedaGroupBox
-            // 
-            CriteriosBusquedaGroupBox.Controls.Add(BuscarEmpresaButton);
-            CriteriosBusquedaGroupBox.Controls.Add(EmpresasTransporteComboBox);
-            CriteriosBusquedaGroupBox.Controls.Add(IngresoLabel);
-            CriteriosBusquedaGroupBox.Location = new Point(26, 29);
-            CriteriosBusquedaGroupBox.Name = "CriteriosBusquedaGroupBox";
-            CriteriosBusquedaGroupBox.Size = new Size(718, 100);
-            CriteriosBusquedaGroupBox.TabIndex = 0;
-            CriteriosBusquedaGroupBox.TabStop = false;
-            CriteriosBusquedaGroupBox.Text = "Criterio de búsqueda";
-            // 
-            // IngresoLabel
-            // 
-            IngresoLabel.AutoSize = true;
-            IngresoLabel.Location = new Point(6, 40);
-            IngresoLabel.Name = "IngresoLabel";
-            IngresoLabel.Size = new Size(199, 15);
-            IngresoLabel.TabIndex = 0;
-            IngresoLabel.Text = "Seleccione la empresa de transporte:";
-            // 
-            // EmpresasTransporteComboBox
-            // 
-            EmpresasTransporteComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            EmpresasTransporteComboBox.FormattingEnabled = true;
-            EmpresasTransporteComboBox.Items.AddRange(new object[] { "Plusmar", "FlechaBus", "Chevallier" });
-            EmpresasTransporteComboBox.Location = new Point(211, 37);
-            EmpresasTransporteComboBox.Name = "EmpresasTransporteComboBox";
-            EmpresasTransporteComboBox.Size = new Size(245, 23);
-            EmpresasTransporteComboBox.TabIndex = 1;
-            // 
-            // BuscarEmpresaButton
-            // 
-            BuscarEmpresaButton.Location = new Point(476, 37);
-            BuscarEmpresaButton.Name = "BuscarEmpresaButton";
-            BuscarEmpresaButton.Size = new Size(75, 23);
-            BuscarEmpresaButton.TabIndex = 2;
-            BuscarEmpresaButton.Text = "Buscar";
-            BuscarEmpresaButton.UseVisualStyleBackColor = true;
-            // 
             // ResultadoGroupBox
             // 
-            ResultadoGroupBox.Controls.Add(listView1);
-            ResultadoGroupBox.Location = new Point(32, 159);
+            ResultadoGroupBox.Controls.Add(comboBox1);
+            ResultadoGroupBox.Controls.Add(PeriodoLabel);
+            ResultadoGroupBox.Controls.Add(ResultadosxEmpresaListView);
+            ResultadoGroupBox.Location = new Point(12, 39);
             ResultadoGroupBox.Name = "ResultadoGroupBox";
-            ResultadoGroupBox.Size = new Size(710, 177);
+            ResultadoGroupBox.Size = new Size(710, 276);
             ResultadoGroupBox.TabIndex = 1;
             ResultadoGroupBox.TabStop = false;
-            ResultadoGroupBox.Text = "Resultado de búsqueda";
+            ResultadoGroupBox.Text = "Resultados por empresa";
             // 
-            // listView1
+            // ResultadosxEmpresaListView
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { CostoMensualColumn, VentasMensualesColumn, ResultadoColumn });
-            listView1.Location = new Point(91, 22);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(454, 97);
-            listView1.TabIndex = 0;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            ResultadosxEmpresaListView.Columns.AddRange(new ColumnHeader[] { empresaTransporteColumn, CostoMensualColumn, VentasMensualesColumn, ResultadoColumn });
+            ResultadosxEmpresaListView.Location = new Point(41, 112);
+            ResultadosxEmpresaListView.Name = "ResultadosxEmpresaListView";
+            ResultadosxEmpresaListView.Size = new Size(608, 97);
+            ResultadosxEmpresaListView.TabIndex = 0;
+            ResultadosxEmpresaListView.UseCompatibleStateImageBehavior = false;
+            ResultadosxEmpresaListView.View = View.Details;
             // 
             // CostoMensualColumn
             // 
@@ -126,6 +86,29 @@
             SalirButton.Text = "Salir";
             SalirButton.UseVisualStyleBackColor = true;
             // 
+            // empresaTransporteColumn
+            // 
+            empresaTransporteColumn.Text = "Empresa de Transporte";
+            empresaTransporteColumn.Width = 150;
+            // 
+            // PeriodoLabel
+            // 
+            PeriodoLabel.AutoSize = true;
+            PeriodoLabel.Location = new Point(6, 36);
+            PeriodoLabel.Name = "PeriodoLabel";
+            PeriodoLabel.Size = new Size(163, 15);
+            PeriodoLabel.TabIndex = 1;
+            PeriodoLabel.Text = "Indique el periodo a visualizar";
+            // 
+            // comboBox1
+            // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(175, 33);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 2;
+            // 
             // MonitoreoResultadosForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -133,26 +116,22 @@
             ClientSize = new Size(754, 402);
             Controls.Add(SalirButton);
             Controls.Add(ResultadoGroupBox);
-            Controls.Add(CriteriosBusquedaGroupBox);
             Name = "MonitoreoResultadosForm";
             Text = "Monitoreo de resultados";
-            CriteriosBusquedaGroupBox.ResumeLayout(false);
-            CriteriosBusquedaGroupBox.PerformLayout();
             ResultadoGroupBox.ResumeLayout(false);
+            ResultadoGroupBox.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private GroupBox CriteriosBusquedaGroupBox;
-        private ComboBox EmpresasTransporteComboBox;
-        private Label IngresoLabel;
-        private Button BuscarEmpresaButton;
         private GroupBox ResultadoGroupBox;
-        private ListView listView1;
+        private ListView ResultadosxEmpresaListView;
         private ColumnHeader CostoMensualColumn;
         private ColumnHeader VentasMensualesColumn;
         private ColumnHeader ResultadoColumn;
         private Button SalirButton;
+        private ColumnHeader empresaTransporteColumn;
+        private ComboBox comboBox1;
+        private Label PeriodoLabel;
     }
 }
