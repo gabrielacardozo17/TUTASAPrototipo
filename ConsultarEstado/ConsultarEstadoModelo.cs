@@ -8,6 +8,6 @@ namespace TUTASAPrototipo.ConsultarEstado
 {
     internal class ConsultarEstadoModelo
     {
-
+        //
     }
 }
