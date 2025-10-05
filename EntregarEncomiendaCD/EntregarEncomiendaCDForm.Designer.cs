@@ -40,7 +40,7 @@
             BuscarDestinararioButton = new Button();
             DNIDestinatarioTextBox = new TextBox();
             DNILabel = new Label();
-            SalirButton = new Button();
+            CancelarButton = new Button();
             ConfirmarEntregaButton = new Button();
             CDLabel = new Label();
             UsuarioLabel = new Label();
@@ -155,14 +155,14 @@
             DNILabel.TabIndex = 0;
             DNILabel.Text = "Ingrese el número de DNI :";
             // 
-            // SalirButton
+            // CancelarButton
             // 
-            SalirButton.Location = new Point(570, 408);
-            SalirButton.Name = "SalirButton";
-            SalirButton.Size = new Size(75, 30);
-            SalirButton.TabIndex = 9;
-            SalirButton.Text = "Salir";
-            SalirButton.UseVisualStyleBackColor = true;
+            CancelarButton.Location = new Point(570, 408);
+            CancelarButton.Name = "CancelarButton";
+            CancelarButton.Size = new Size(75, 30);
+            CancelarButton.TabIndex = 9;
+            CancelarButton.Text = "Cancelar";
+            CancelarButton.UseVisualStyleBackColor = true;
             // 
             // ConfirmarEntregaButton
             // 
@@ -181,7 +181,6 @@
             CDLabel.Size = new Size(26, 15);
             CDLabel.TabIndex = 25;
             CDLabel.Text = "CD:";
-            
             // 
             // UsuarioLabel
             // 
@@ -200,7 +199,7 @@
             ClientSize = new Size(775, 450);
             Controls.Add(CDLabel);
             Controls.Add(UsuarioLabel);
-            Controls.Add(SalirButton);
+            Controls.Add(CancelarButton);
             Controls.Add(ConfirmarEntregaButton);
             Controls.Add(EntregaGuiasGroupBox);
             Controls.Add(BusquedaAgenciaGroupBox);
@@ -227,7 +226,7 @@
         private Button BuscarDestinararioButton;
         private TextBox DNIDestinatarioTextBox;
         private Label DNILabel;
-        private Button SalirButton;
+        private Button CancelarButton;
         private Button ConfirmarEntregaButton;
         private Label CDLabel;
         private Label UsuarioLabel;

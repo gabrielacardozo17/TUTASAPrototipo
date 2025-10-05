@@ -13,7 +13,7 @@ namespace TUTASAPrototipo
             ApplicationConfiguration.Initialize();
             //Application.Run(new EmitirFactura.EmitirFacturaForm());
             //Application.Run(new ConsultarEstado.ConsultarEstadoForm()); 
-            Application.Run(new ImponerEncomiendaCallCenter.ImponerEncomiendaCallCenterForm());
+            //Application.Run(new ImponerEncomiendaCallCenter.ImponerEncomiendaCallCenterForm());
             //Application.Run(new ImponerEncomiendaAgencia.ImponerEncomiendaAgenciaForm());
             //Application.Run(new ImponerEncomiendaCD.ImponerEncomiendaCentroDistribucionForm());
             //Application.Run(new EntregarEncomiendaEnAgencia.EntregarEncomiendaEnAgenciaForm());

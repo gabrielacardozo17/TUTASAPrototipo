@@ -51,7 +51,7 @@
             ImporteColumn = new ColumnHeader();
             IndicacionMontosLabel = new Label();
             EmitirFacturaButton = new Button();
-            SalirButton = new Button();
+            CancelarButton = new Button();
             SeleccionGroupBox.SuspendLayout();
             ResultadosGroupBox.SuspendLayout();
             SuspendLayout();
@@ -262,21 +262,21 @@
             EmitirFacturaButton.UseVisualStyleBackColor = true;
             EmitirFacturaButton.Click += EmitirFacturaButton_Click;
             // 
-            // SalirButton
+            // CancelarButton
             // 
-            SalirButton.Location = new Point(685, 407);
-            SalirButton.Name = "SalirButton";
-            SalirButton.Size = new Size(96, 30);
-            SalirButton.TabIndex = 3;
-            SalirButton.Text = "Salir";
-            SalirButton.UseVisualStyleBackColor = true;
+            CancelarButton.Location = new Point(685, 407);
+            CancelarButton.Name = "CancelarButton";
+            CancelarButton.Size = new Size(96, 30);
+            CancelarButton.TabIndex = 3;
+            CancelarButton.Text = "Cancelar";
+            CancelarButton.UseVisualStyleBackColor = true;
             // 
             // EmitirFacturaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(907, 458);
-            Controls.Add(SalirButton);
+            Controls.Add(CancelarButton);
             Controls.Add(EmitirFacturaButton);
             Controls.Add(ResultadosGroupBox);
             Controls.Add(SeleccionGroupBox);
@@ -307,7 +307,7 @@
         private Label IndicacionMontosLabel;
         private Label IndicacionTotalLabel;
         private Button EmitirFacturaButton;
-        private Button SalirButton;
+        private Button CancelarButton;
         private Label MontoTotalLabel;
         private Label label8;
         private Label label7;

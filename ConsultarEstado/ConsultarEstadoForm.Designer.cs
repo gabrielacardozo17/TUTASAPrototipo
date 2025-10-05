@@ -42,7 +42,7 @@
             FechaColumn = new ColumnHeader();
             EstadoColumn = new ColumnHeader();
             UbicacionColumn = new ColumnHeader();
-            SalirButton = new Button();
+            CancelarButton = new Button();
             groupBox1.SuspendLayout();
             ResultadoComboBox.SuspendLayout();
             SuspendLayout();
@@ -172,21 +172,21 @@
             UbicacionColumn.Text = "Ubicación";
             UbicacionColumn.Width = 160;
             // 
-            // SalirButton
+            // CancelarButton
             // 
-            SalirButton.Location = new Point(464, 391);
-            SalirButton.Name = "SalirButton";
-            SalirButton.Size = new Size(75, 28);
-            SalirButton.TabIndex = 3;
-            SalirButton.Text = "Salir";
-            SalirButton.UseVisualStyleBackColor = true;
+            CancelarButton.Location = new Point(464, 391);
+            CancelarButton.Name = "CancelarButton";
+            CancelarButton.Size = new Size(75, 28);
+            CancelarButton.TabIndex = 3;
+            CancelarButton.Text = "Cancelar";
+            CancelarButton.UseVisualStyleBackColor = true;
             // 
             // ConsultarEstadoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(595, 431);
-            Controls.Add(SalirButton);
+            Controls.Add(CancelarButton);
             Controls.Add(ResultadoComboBox);
             Controls.Add(groupBox1);
             Controls.Add(label1);
@@ -209,7 +209,7 @@
         private ListView HistorialGuiaListView;
         private ColumnHeader FechaColumn;
         private ColumnHeader EstadoColumn;
-        private Button SalirButton;
+        private Button CancelarButton;
         private Label NroGuiaLabel;
         private Label label4;
         private Label label3;

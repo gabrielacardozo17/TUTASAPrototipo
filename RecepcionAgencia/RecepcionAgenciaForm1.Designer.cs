@@ -37,7 +37,7 @@
             NroGuiaColumn = new ColumnHeader();
             TamanioColumn = new ColumnHeader();
             ConfirmarButton = new Button();
-            SalirButton = new Button();
+            CancelarButton = new Button();
             GuiasAEntregarGroupBox = new GroupBox();
             GuiasAEntregarListView = new ListView();
             columnHeader1 = new ColumnHeader();
@@ -71,6 +71,7 @@
             BuscarxDNIFleteroButton.TabIndex = 2;
             BuscarxDNIFleteroButton.Text = "Buscar";
             BuscarxDNIFleteroButton.UseVisualStyleBackColor = true;
+            BuscarxDNIFleteroButton.Click += BuscarxDNIFleteroButton_Click;
             // 
             // DNIFleteroTextBox
             // 
@@ -126,15 +127,16 @@
             ConfirmarButton.TabIndex = 4;
             ConfirmarButton.Text = "Confirmar";
             ConfirmarButton.UseVisualStyleBackColor = true;
+            ConfirmarButton.Click += ConfirmarButton_Click;
             // 
-            // SalirButton
+            // CancelarButton
             // 
-            SalirButton.Location = new Point(602, 485);
-            SalirButton.Name = "SalirButton";
-            SalirButton.Size = new Size(75, 23);
-            SalirButton.TabIndex = 5;
-            SalirButton.Text = "Salir";
-            SalirButton.UseVisualStyleBackColor = true;
+            CancelarButton.Location = new Point(602, 485);
+            CancelarButton.Name = "CancelarButton";
+            CancelarButton.Size = new Size(75, 23);
+            CancelarButton.TabIndex = 5;
+            CancelarButton.Text = "Cancelar";
+            CancelarButton.UseVisualStyleBackColor = true;
             // 
             // GuiasAEntregarGroupBox
             // 
@@ -213,7 +215,7 @@
             Controls.Add(AgenciaLabel);
             Controls.Add(UsuarioLabel);
             Controls.Add(GuiasAEntregarGroupBox);
-            Controls.Add(SalirButton);
+            Controls.Add(CancelarButton);
             Controls.Add(ConfirmarButton);
             Controls.Add(GuiasARecepcionarGroupBox);
             Controls.Add(BusquedaAgenciaGroupBox);
@@ -238,7 +240,7 @@
         private ColumnHeader NroGuiaColumn;
         private ColumnHeader TamanioColumn;
         private Button ConfirmarButton;
-        private Button SalirButton;
+        private Button CancelarButton;
         private GroupBox GuiasAEntregarGroupBox;
         private ListView GuiasAEntregarListView;
         private ColumnHeader columnHeader1;

@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             ResultadoGroupBox = new GroupBox();
+            comboBox1 = new ComboBox();
+            PeriodoLabel = new Label();
             ResultadosxEmpresaListView = new ListView();
+            empresaTransporteColumn = new ColumnHeader();
             CostoMensualColumn = new ColumnHeader();
             VentasMensualesColumn = new ColumnHeader();
             ResultadoColumn = new ColumnHeader();
-            SalirButton = new Button();
-            empresaTransporteColumn = new ColumnHeader();
-            PeriodoLabel = new Label();
-            comboBox1 = new ComboBox();
+            CancelarButton = new Button();
             ResultadoGroupBox.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,6 +52,24 @@
             ResultadoGroupBox.TabStop = false;
             ResultadoGroupBox.Text = "Resultados por empresa";
             // 
+            // comboBox1
+            // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(175, 33);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 2;
+            // 
+            // PeriodoLabel
+            // 
+            PeriodoLabel.AutoSize = true;
+            PeriodoLabel.Location = new Point(6, 36);
+            PeriodoLabel.Name = "PeriodoLabel";
+            PeriodoLabel.Size = new Size(163, 15);
+            PeriodoLabel.TabIndex = 1;
+            PeriodoLabel.Text = "Indique el periodo a visualizar";
+            // 
             // ResultadosxEmpresaListView
             // 
             ResultadosxEmpresaListView.Columns.AddRange(new ColumnHeader[] { empresaTransporteColumn, CostoMensualColumn, VentasMensualesColumn, ResultadoColumn });
@@ -61,6 +79,11 @@
             ResultadosxEmpresaListView.TabIndex = 0;
             ResultadosxEmpresaListView.UseCompatibleStateImageBehavior = false;
             ResultadosxEmpresaListView.View = View.Details;
+            // 
+            // empresaTransporteColumn
+            // 
+            empresaTransporteColumn.Text = "Empresa de Transporte";
+            empresaTransporteColumn.Width = 150;
             // 
             // CostoMensualColumn
             // 
@@ -77,44 +100,21 @@
             ResultadoColumn.Text = "Resultado";
             ResultadoColumn.Width = 150;
             // 
-            // SalirButton
+            // CancelarButton
             // 
-            SalirButton.Location = new Point(636, 369);
-            SalirButton.Name = "SalirButton";
-            SalirButton.Size = new Size(75, 23);
-            SalirButton.TabIndex = 2;
-            SalirButton.Text = "Salir";
-            SalirButton.UseVisualStyleBackColor = true;
-            // 
-            // empresaTransporteColumn
-            // 
-            empresaTransporteColumn.Text = "Empresa de Transporte";
-            empresaTransporteColumn.Width = 150;
-            // 
-            // PeriodoLabel
-            // 
-            PeriodoLabel.AutoSize = true;
-            PeriodoLabel.Location = new Point(6, 36);
-            PeriodoLabel.Name = "PeriodoLabel";
-            PeriodoLabel.Size = new Size(163, 15);
-            PeriodoLabel.TabIndex = 1;
-            PeriodoLabel.Text = "Indique el periodo a visualizar";
-            // 
-            // comboBox1
-            // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(175, 33);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 2;
+            CancelarButton.Location = new Point(636, 369);
+            CancelarButton.Name = "CancelarButton";
+            CancelarButton.Size = new Size(75, 23);
+            CancelarButton.TabIndex = 2;
+            CancelarButton.Text = "Cancelar";
+            CancelarButton.UseVisualStyleBackColor = true;
             // 
             // MonitoreoResultadosForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(754, 402);
-            Controls.Add(SalirButton);
+            Controls.Add(CancelarButton);
             Controls.Add(ResultadoGroupBox);
             Name = "MonitoreoResultadosForm";
             Text = "Monitoreo de resultados";
@@ -129,7 +129,7 @@
         private ColumnHeader CostoMensualColumn;
         private ColumnHeader VentasMensualesColumn;
         private ColumnHeader ResultadoColumn;
-        private Button SalirButton;
+        private Button CancelarButton;
         private ColumnHeader empresaTransporteColumn;
         private ComboBox comboBox1;
         private Label PeriodoLabel;

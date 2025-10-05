@@ -42,7 +42,7 @@
             DestinoColumn = new ColumnHeader();
             GuiasADespacharServicioListView = new GroupBox();
             ConfirmarRecepcionYDespachoButton = new Button();
-            SalirButton = new Button();
+            CancelarButton = new Button();
             CDLabel = new Label();
             UsuarioLabel = new Label();
             BusquedaGroupBox.SuspendLayout();
@@ -161,14 +161,14 @@
             ConfirmarRecepcionYDespachoButton.Text = "Confirmar";
             ConfirmarRecepcionYDespachoButton.UseVisualStyleBackColor = true;
             // 
-            // SalirButton
+            // CancelarButton
             // 
-            SalirButton.Location = new Point(506, 534);
-            SalirButton.Name = "SalirButton";
-            SalirButton.Size = new Size(84, 25);
-            SalirButton.TabIndex = 5;
-            SalirButton.Text = "Salir";
-            SalirButton.UseVisualStyleBackColor = true;
+            CancelarButton.Location = new Point(518, 534);
+            CancelarButton.Name = "CancelarButton";
+            CancelarButton.Size = new Size(84, 25);
+            CancelarButton.TabIndex = 5;
+            CancelarButton.Text = "Cancelar";
+            CancelarButton.UseVisualStyleBackColor = true;
             // 
             // CDLabel
             // 
@@ -195,7 +195,7 @@
             ClientSize = new Size(740, 578);
             Controls.Add(CDLabel);
             Controls.Add(UsuarioLabel);
-            Controls.Add(SalirButton);
+            Controls.Add(CancelarButton);
             Controls.Add(ConfirmarRecepcionYDespachoButton);
             Controls.Add(GuiasADespacharServicioListView);
             Controls.Add(GuiasGroupBox);
@@ -229,7 +229,7 @@
         private ColumnHeader DestinoColumn;
         private GroupBox GuiasADespacharServicioListView;
         private Button ConfirmarRecepcionYDespachoButton;
-        private Button SalirButton;
+        private Button CancelarButton;
         private Label CDLabel;
         private Label UsuarioLabel;
         private ListView GuiaxServicioRecibidaListView;

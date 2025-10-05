@@ -40,9 +40,13 @@
             CuitLabel = new Label();
             label1 = new Label();
             DestinatarioGroupBox = new GroupBox();
+            CentroDistribucionComboBox = new ComboBox();
             DNIDestinatarioTextBox = new TextBox();
+            CentroLabel = new Label();
             DNILabel = new Label();
+            AgenciaComboBox = new ComboBox();
             comboBox1 = new ComboBox();
+            label2 = new Label();
             textBox1 = new TextBox();
             CodigoPostalTextBox = new TextBox();
             ApellidoDestinatarioLabel = new Label();
@@ -67,12 +71,8 @@
             tipoSNumericUpDown = new NumericUpDown();
             TipoSLabel = new Label();
             EncomiendasLabel = new Label();
-            SalirButton = new Button();
+            CancelarButton = new Button();
             ConfirmarButton = new Button();
-            CentroDistribucionComboBox = new ComboBox();
-            CentroLabel = new Label();
-            AgenciaComboBox = new ComboBox();
-            label2 = new Label();
             RemitenteGroupBox.SuspendLayout();
             DestinatarioGroupBox.SuspendLayout();
             EncomiendasGroupBox.SuspendLayout();
@@ -221,12 +221,30 @@
             DestinatarioGroupBox.TabStop = false;
             DestinatarioGroupBox.Text = "Datos del destinatario";
             // 
+            // CentroDistribucionComboBox
+            // 
+            CentroDistribucionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            CentroDistribucionComboBox.FormattingEnabled = true;
+            CentroDistribucionComboBox.Location = new Point(374, 330);
+            CentroDistribucionComboBox.Name = "CentroDistribucionComboBox";
+            CentroDistribucionComboBox.Size = new Size(204, 23);
+            CentroDistribucionComboBox.TabIndex = 55;
+            // 
             // DNIDestinatarioTextBox
             // 
             DNIDestinatarioTextBox.Location = new Point(491, 31);
             DNIDestinatarioTextBox.Name = "DNIDestinatarioTextBox";
             DNIDestinatarioTextBox.Size = new Size(100, 23);
             DNIDestinatarioTextBox.TabIndex = 5;
+            // 
+            // CentroLabel
+            // 
+            CentroLabel.AutoSize = true;
+            CentroLabel.Location = new Point(342, 333);
+            CentroLabel.Name = "CentroLabel";
+            CentroLabel.Size = new Size(26, 15);
+            CentroLabel.TabIndex = 54;
+            CentroLabel.Text = "CD:";
             // 
             // DNILabel
             // 
@@ -237,6 +255,15 @@
             DNILabel.TabIndex = 4;
             DNILabel.Text = "DNI:";
             // 
+            // AgenciaComboBox
+            // 
+            AgenciaComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            AgenciaComboBox.FormattingEnabled = true;
+            AgenciaComboBox.Location = new Point(93, 330);
+            AgenciaComboBox.Name = "AgenciaComboBox";
+            AgenciaComboBox.Size = new Size(192, 23);
+            AgenciaComboBox.TabIndex = 53;
+            // 
             // comboBox1
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -245,6 +272,15 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(198, 23);
             comboBox1.TabIndex = 30;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(22, 333);
+            label2.Name = "label2";
+            label2.Size = new Size(53, 15);
+            label2.TabIndex = 52;
+            label2.Text = "Agencia:";
             // 
             // textBox1
             // 
@@ -468,14 +504,14 @@
             EncomiendasLabel.TabIndex = 0;
             EncomiendasLabel.Text = "Indique la cantidad de encomiendas de cada tipo a imponer:";
             // 
-            // SalirButton
+            // CancelarButton
             // 
-            SalirButton.Location = new Point(573, 765);
-            SalirButton.Name = "SalirButton";
-            SalirButton.Size = new Size(84, 29);
-            SalirButton.TabIndex = 13;
-            SalirButton.Text = "Salir";
-            SalirButton.UseVisualStyleBackColor = true;
+            CancelarButton.Location = new Point(573, 765);
+            CancelarButton.Name = "CancelarButton";
+            CancelarButton.Size = new Size(84, 29);
+            CancelarButton.TabIndex = 13;
+            CancelarButton.Text = "Cancelar";
+            CancelarButton.UseVisualStyleBackColor = true;
             // 
             // ConfirmarButton
             // 
@@ -486,48 +522,12 @@
             ConfirmarButton.Text = "Confirmar";
             ConfirmarButton.UseVisualStyleBackColor = true;
             // 
-            // CentroDistribucionComboBox
-            // 
-            CentroDistribucionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            CentroDistribucionComboBox.FormattingEnabled = true;
-            CentroDistribucionComboBox.Location = new Point(374, 330);
-            CentroDistribucionComboBox.Name = "CentroDistribucionComboBox";
-            CentroDistribucionComboBox.Size = new Size(204, 23);
-            CentroDistribucionComboBox.TabIndex = 55;
-            // 
-            // CentroLabel
-            // 
-            CentroLabel.AutoSize = true;
-            CentroLabel.Location = new Point(342, 333);
-            CentroLabel.Name = "CentroLabel";
-            CentroLabel.Size = new Size(26, 15);
-            CentroLabel.TabIndex = 54;
-            CentroLabel.Text = "CD:";
-            // 
-            // AgenciaComboBox
-            // 
-            AgenciaComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            AgenciaComboBox.FormattingEnabled = true;
-            AgenciaComboBox.Location = new Point(93, 330);
-            AgenciaComboBox.Name = "AgenciaComboBox";
-            AgenciaComboBox.Size = new Size(192, 23);
-            AgenciaComboBox.TabIndex = 53;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(22, 333);
-            label2.Name = "label2";
-            label2.Size = new Size(53, 15);
-            label2.TabIndex = 52;
-            label2.Text = "Agencia:";
-            // 
             // ImponerEncomiendaCallCenterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 801);
-            Controls.Add(SalirButton);
+            Controls.Add(CancelarButton);
             Controls.Add(ConfirmarButton);
             Controls.Add(EncomiendasGroupBox);
             Controls.Add(DestinatarioGroupBox);
@@ -579,7 +579,7 @@
         private NumericUpDown tipoSNumericUpDown;
         private Label TipoSLabel;
         private Label EncomiendasLabel;
-        private Button SalirButton;
+        private Button CancelarButton;
         private Button ConfirmarButton;
         private ComboBox comboBox1;
         private TextBox CodigoPostalTextBox;

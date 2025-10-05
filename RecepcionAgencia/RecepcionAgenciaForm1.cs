@@ -21,5 +21,15 @@ namespace TUTASAPrototipo.RecepcionAgencia
         {
 
         }
+
+        private void BuscarxDNIFleteroButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConfirmarButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

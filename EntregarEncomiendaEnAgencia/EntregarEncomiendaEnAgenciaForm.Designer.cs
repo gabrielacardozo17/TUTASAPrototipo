@@ -41,7 +41,7 @@
             DNIDestinatarioTextBox = new TextBox();
             DNILabel = new Label();
             ConfirmarEntregaButton = new Button();
-            SalirButton = new Button();
+            CancelarButton = new Button();
             AgenciaLabel = new Label();
             UsuarioLabel = new Label();
             EntregaGuiasGroupBox.SuspendLayout();
@@ -164,14 +164,14 @@
             ConfirmarEntregaButton.Text = "Confirmar";
             ConfirmarEntregaButton.UseVisualStyleBackColor = true;
             // 
-            // SalirButton
+            // CancelarButton
             // 
-            SalirButton.Location = new Point(570, 402);
-            SalirButton.Name = "SalirButton";
-            SalirButton.Size = new Size(75, 30);
-            SalirButton.TabIndex = 7;
-            SalirButton.Text = "Salir";
-            SalirButton.UseVisualStyleBackColor = true;
+            CancelarButton.Location = new Point(570, 402);
+            CancelarButton.Name = "CancelarButton";
+            CancelarButton.Size = new Size(75, 30);
+            CancelarButton.TabIndex = 7;
+            CancelarButton.Text = "Cancelar";
+            CancelarButton.UseVisualStyleBackColor = true;
             // 
             // AgenciaLabel
             // 
@@ -198,7 +198,7 @@
             ClientSize = new Size(784, 445);
             Controls.Add(AgenciaLabel);
             Controls.Add(UsuarioLabel);
-            Controls.Add(SalirButton);
+            Controls.Add(CancelarButton);
             Controls.Add(ConfirmarEntregaButton);
             Controls.Add(EntregaGuiasGroupBox);
             Controls.Add(BusquedaAgenciaGroupBox);
@@ -224,7 +224,7 @@
         private TextBox DNIDestinatarioTextBox;
         private Label DNILabel;
         private Button ConfirmarEntregaButton;
-        private Button SalirButton;
+        private Button CancelarButton;
         private Label ApellidoDestinatarioResult;
         private Label NombreDestinatarioResult;
         private Label AgenciaLabel;

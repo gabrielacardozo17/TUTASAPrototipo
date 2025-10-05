@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SalirButton = new Button();
+            CancelarButton = new Button();
             ConfirmarImposicionButton = new Button();
             EncomiendasGroupBox = new GroupBox();
             tipoXLNumericUpDown = new NumericUpDown();
@@ -41,6 +41,10 @@
             TipoSLabel = new Label();
             EncomiendasLabel = new Label();
             DestinatarioGroupBox = new GroupBox();
+            CentroDistribucionComboBox = new ComboBox();
+            CentroLabel = new Label();
+            AgenciaComboBox = new ComboBox();
+            label1 = new Label();
             LocalidadxProvinciaComboBox = new ComboBox();
             CodigoPostalTextBox = new TextBox();
             CodigoPostalLabel = new Label();
@@ -72,10 +76,6 @@
             ImposicionAgenciaLabel = new Label();
             AgenciaLabel = new Label();
             UsuarioLabel = new Label();
-            CentroDistribucionComboBox = new ComboBox();
-            CentroLabel = new Label();
-            AgenciaComboBox = new ComboBox();
-            label1 = new Label();
             EncomiendasGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tipoXLNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tipoLNumericUpDown).BeginInit();
@@ -85,14 +85,14 @@
             RemitenteGroupBox.SuspendLayout();
             SuspendLayout();
             // 
-            // SalirButton
+            // CancelarButton
             // 
-            SalirButton.Location = new Point(570, 730);
-            SalirButton.Name = "SalirButton";
-            SalirButton.Size = new Size(84, 29);
-            SalirButton.TabIndex = 21;
-            SalirButton.Text = "Salir";
-            SalirButton.UseVisualStyleBackColor = true;
+            CancelarButton.Location = new Point(570, 730);
+            CancelarButton.Name = "CancelarButton";
+            CancelarButton.Size = new Size(84, 29);
+            CancelarButton.TabIndex = 21;
+            CancelarButton.Text = "Cancelar";
+            CancelarButton.UseVisualStyleBackColor = true;
             // 
             // ConfirmarImposicionButton
             // 
@@ -233,6 +233,42 @@
             DestinatarioGroupBox.TabIndex = 18;
             DestinatarioGroupBox.TabStop = false;
             DestinatarioGroupBox.Text = "Datos del destinatario";
+            // 
+            // CentroDistribucionComboBox
+            // 
+            CentroDistribucionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            CentroDistribucionComboBox.FormattingEnabled = true;
+            CentroDistribucionComboBox.Location = new Point(367, 322);
+            CentroDistribucionComboBox.Name = "CentroDistribucionComboBox";
+            CentroDistribucionComboBox.Size = new Size(204, 23);
+            CentroDistribucionComboBox.TabIndex = 51;
+            // 
+            // CentroLabel
+            // 
+            CentroLabel.AutoSize = true;
+            CentroLabel.Location = new Point(335, 325);
+            CentroLabel.Name = "CentroLabel";
+            CentroLabel.Size = new Size(26, 15);
+            CentroLabel.TabIndex = 50;
+            CentroLabel.Text = "CD:";
+            // 
+            // AgenciaComboBox
+            // 
+            AgenciaComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            AgenciaComboBox.FormattingEnabled = true;
+            AgenciaComboBox.Location = new Point(86, 322);
+            AgenciaComboBox.Name = "AgenciaComboBox";
+            AgenciaComboBox.Size = new Size(192, 23);
+            AgenciaComboBox.TabIndex = 49;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(15, 325);
+            label1.Name = "label1";
+            label1.Size = new Size(53, 15);
+            label1.TabIndex = 48;
+            label1.Text = "Agencia:";
             // 
             // LocalidadxProvinciaComboBox
             // 
@@ -516,42 +552,6 @@
             UsuarioLabel.TabIndex = 22;
             UsuarioLabel.Text = "Usuario:";
             // 
-            // CentroDistribucionComboBox
-            // 
-            CentroDistribucionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            CentroDistribucionComboBox.FormattingEnabled = true;
-            CentroDistribucionComboBox.Location = new Point(367, 322);
-            CentroDistribucionComboBox.Name = "CentroDistribucionComboBox";
-            CentroDistribucionComboBox.Size = new Size(204, 23);
-            CentroDistribucionComboBox.TabIndex = 51;
-            // 
-            // CentroLabel
-            // 
-            CentroLabel.AutoSize = true;
-            CentroLabel.Location = new Point(335, 325);
-            CentroLabel.Name = "CentroLabel";
-            CentroLabel.Size = new Size(26, 15);
-            CentroLabel.TabIndex = 50;
-            CentroLabel.Text = "CD:";
-            // 
-            // AgenciaComboBox
-            // 
-            AgenciaComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            AgenciaComboBox.FormattingEnabled = true;
-            AgenciaComboBox.Location = new Point(86, 322);
-            AgenciaComboBox.Name = "AgenciaComboBox";
-            AgenciaComboBox.Size = new Size(192, 23);
-            AgenciaComboBox.TabIndex = 49;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(15, 325);
-            label1.Name = "label1";
-            label1.Size = new Size(53, 15);
-            label1.TabIndex = 48;
-            label1.Text = "Agencia:";
-            // 
             // ImponerEncomiendaAgenciaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -559,7 +559,7 @@
             ClientSize = new Size(781, 771);
             Controls.Add(AgenciaLabel);
             Controls.Add(UsuarioLabel);
-            Controls.Add(SalirButton);
+            Controls.Add(CancelarButton);
             Controls.Add(ConfirmarImposicionButton);
             Controls.Add(EncomiendasGroupBox);
             Controls.Add(DestinatarioGroupBox);
@@ -583,7 +583,7 @@
 
         #endregion
 
-        private Button SalirButton;
+        private Button CancelarButton;
         private Button ConfirmarImposicionButton;
         private GroupBox EncomiendasGroupBox;
         private NumericUpDown tipoXLNumericUpDown;

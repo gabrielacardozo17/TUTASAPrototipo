@@ -44,7 +44,7 @@
             FechaHastaLabel = new Label();
             DesdeDateTimePicker = new DateTimePicker();
             HastaDateTimePicker = new DateTimePicker();
-            salirButton = new Button();
+            CancelarButton = new Button();
             label1 = new Label();
             SeleccionClienteGroupBox.SuspendLayout();
             MovimientosClienteGroupBox.SuspendLayout();
@@ -186,14 +186,14 @@
             HastaDateTimePicker.Size = new Size(121, 23);
             HastaDateTimePicker.TabIndex = 12;
             // 
-            // salirButton
+            // CancelarButton
             // 
-            salirButton.Location = new Point(701, 416);
-            salirButton.Name = "salirButton";
-            salirButton.Size = new Size(75, 23);
-            salirButton.TabIndex = 3;
-            salirButton.Text = "Salir";
-            salirButton.UseVisualStyleBackColor = true;
+            CancelarButton.Location = new Point(701, 416);
+            CancelarButton.Name = "CancelarButton";
+            CancelarButton.Size = new Size(75, 23);
+            CancelarButton.TabIndex = 3;
+            CancelarButton.Text = "Cancelar";
+            CancelarButton.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -209,7 +209,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(salirButton);
+            Controls.Add(CancelarButton);
             Controls.Add(MovimientosClienteGroupBox);
             Controls.Add(SeleccionClienteGroupBox);
             Name = "EstadoCuentaCorrienteClienteForm";
@@ -239,7 +239,7 @@
         private Label FechaDesdeLabel;
         private DateTimePicker HastaDateTimePicker;
         private DateTimePicker DesdeDateTimePicker;
-        private Button salirButton;
+        private Button CancelarButton;
         private Label label1;
     }
 }
