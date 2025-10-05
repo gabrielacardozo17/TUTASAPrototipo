@@ -34,14 +34,14 @@
             CuitClienteMaskedText = new MaskedTextBox();
             DatosLabel = new Label();
             ResultadosGroupBox = new GroupBox();
-            label9 = new Label();
+            MontoTotalLabel = new Label();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
-            label2 = new Label();
+            IndicacionTotalLabel = new Label();
             DetalleFacturaciónListView = new ListView();
             GuiaColumn = new ColumnHeader();
             FechaAdmisionColumn = new ColumnHeader();
@@ -107,14 +107,14 @@
             // 
             // ResultadosGroupBox
             // 
-            ResultadosGroupBox.Controls.Add(label9);
+            ResultadosGroupBox.Controls.Add(MontoTotalLabel);
             ResultadosGroupBox.Controls.Add(label8);
             ResultadosGroupBox.Controls.Add(label7);
             ResultadosGroupBox.Controls.Add(label6);
             ResultadosGroupBox.Controls.Add(label5);
             ResultadosGroupBox.Controls.Add(label4);
             ResultadosGroupBox.Controls.Add(label3);
-            ResultadosGroupBox.Controls.Add(label2);
+            ResultadosGroupBox.Controls.Add(IndicacionTotalLabel);
             ResultadosGroupBox.Controls.Add(DetalleFacturaciónListView);
             ResultadosGroupBox.Controls.Add(IndicacionMontosLabel);
             ResultadosGroupBox.Location = new Point(28, 159);
@@ -124,15 +124,15 @@
             ResultadosGroupBox.TabStop = false;
             ResultadosGroupBox.Text = "Detalle de envíos a facturar";
             // 
-            // label9
+            // MontoTotalLabel
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 10F);
-            label9.Location = new Point(125, 188);
-            label9.Name = "label9";
-            label9.Size = new Size(49, 19);
-            label9.TabIndex = 6;
-            label9.Text = "$2000";
+            MontoTotalLabel.AutoSize = true;
+            MontoTotalLabel.Font = new Font("Segoe UI", 10F);
+            MontoTotalLabel.Location = new Point(125, 188);
+            MontoTotalLabel.Name = "MontoTotalLabel";
+            MontoTotalLabel.Size = new Size(49, 19);
+            MontoTotalLabel.TabIndex = 6;
+            MontoTotalLabel.Text = "$2000";
             // 
             // label8
             // 
@@ -194,14 +194,14 @@
             label3.TabIndex = 3;
             label3.Text = "LN02365845";
             // 
-            // label2
+            // IndicacionTotalLabel
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(6, 190);
-            label2.Name = "label2";
-            label2.Size = new Size(113, 15);
-            label2.TabIndex = 2;
-            label2.Text = "TOTAL A FACTURAR:";
+            IndicacionTotalLabel.AutoSize = true;
+            IndicacionTotalLabel.Location = new Point(6, 190);
+            IndicacionTotalLabel.Name = "IndicacionTotalLabel";
+            IndicacionTotalLabel.Size = new Size(113, 15);
+            IndicacionTotalLabel.TabIndex = 2;
+            IndicacionTotalLabel.Text = "TOTAL A FACTURAR:";
             // 
             // DetalleFacturaciónListView
             // 
@@ -305,10 +305,10 @@
         private ColumnHeader TamanioColumn;
         private ColumnHeader ImporteColumn;
         private Label IndicacionMontosLabel;
-        private Label label2;
+        private Label IndicacionTotalLabel;
         private Button EmitirFacturaButton;
         private Button SalirButton;
-        private Label label9;
+        private Label MontoTotalLabel;
         private Label label8;
         private Label label7;
         private Label label6;

@@ -16,5 +16,10 @@ namespace TUTASAPrototipo.RecepcionAgencia
         {
             InitializeComponent();
         }
+
+        private void UsuarioLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

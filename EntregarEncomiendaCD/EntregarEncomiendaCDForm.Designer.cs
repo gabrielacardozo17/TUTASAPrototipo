@@ -181,7 +181,7 @@
             CDLabel.Size = new Size(26, 15);
             CDLabel.TabIndex = 25;
             CDLabel.Text = "CD:";
-            CDLabel.Click += this.AgenciaLabel_Click;
+            
             // 
             // UsuarioLabel
             // 

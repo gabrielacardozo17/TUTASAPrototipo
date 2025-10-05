@@ -31,7 +31,7 @@
             label1 = new Label();
             groupBox1 = new GroupBox();
             BuscarEstadoGuiaButton = new Button();
-            label5 = new Label();
+            NumGuiaLabel = new Label();
             NroGuiaLabel = new Label();
             NroGuiaBusquedaTextBox = new TextBox();
             ResultadoComboBox = new GroupBox();
@@ -58,7 +58,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(BuscarEstadoGuiaButton);
-            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(NumGuiaLabel);
             groupBox1.Controls.Add(NroGuiaLabel);
             groupBox1.Controls.Add(NroGuiaBusquedaTextBox);
             groupBox1.Location = new Point(61, 36);
@@ -77,14 +77,14 @@
             BuscarEstadoGuiaButton.Text = "Buscar";
             BuscarEstadoGuiaButton.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // NumGuiaLabel
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(6, 62);
-            label5.Name = "label5";
-            label5.Size = new Size(96, 15);
-            label5.TabIndex = 5;
-            label5.Text = "Número de guía:";
+            NumGuiaLabel.AutoSize = true;
+            NumGuiaLabel.Location = new Point(6, 62);
+            NumGuiaLabel.Name = "NumGuiaLabel";
+            NumGuiaLabel.Size = new Size(96, 15);
+            NumGuiaLabel.TabIndex = 5;
+            NumGuiaLabel.Text = "Número de guía:";
             // 
             // NroGuiaLabel
             // 
@@ -214,7 +214,7 @@
         private Label label4;
         private Label label3;
         private Button BuscarEstadoGuiaButton;
-        private Label label5;
+        private Label NumGuiaLabel;
         private ColumnHeader UbicacionColumn;
         private Label label6;
     }

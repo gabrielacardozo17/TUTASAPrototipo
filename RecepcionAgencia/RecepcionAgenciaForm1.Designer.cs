@@ -29,29 +29,31 @@
         private void InitializeComponent()
         {
             BusquedaAgenciaGroupBox = new GroupBox();
-            BuscarFleteroButton = new Button();
+            BuscarxDNIFleteroButton = new Button();
             DNIFleteroTextBox = new TextBox();
             DNILabel = new Label();
-            GuiasGroupBox = new GroupBox();
+            GuiasARecepcionarGroupBox = new GroupBox();
             GuiasARecepcionarAgenciaListView = new ListView();
             NroGuiaColumn = new ColumnHeader();
             TamanioColumn = new ColumnHeader();
-            RecibidaColumn = new ColumnHeader();
             ConfirmarButton = new Button();
             SalirButton = new Button();
-            groupBox1 = new GroupBox();
-            listView1 = new ListView();
+            GuiasAEntregarGroupBox = new GroupBox();
+            GuiasAEntregarListView = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
-            columnHeader3 = new ColumnHeader();
+            AgenciaLabel = new Label();
+            UsuarioLabel = new Label();
+            NombreUsuarioLabel = new Label();
+            NombreAgenciaLabel = new Label();
             BusquedaAgenciaGroupBox.SuspendLayout();
-            GuiasGroupBox.SuspendLayout();
-            groupBox1.SuspendLayout();
+            GuiasARecepcionarGroupBox.SuspendLayout();
+            GuiasAEntregarGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // BusquedaAgenciaGroupBox
             // 
-            BusquedaAgenciaGroupBox.Controls.Add(BuscarFleteroButton);
+            BusquedaAgenciaGroupBox.Controls.Add(BuscarxDNIFleteroButton);
             BusquedaAgenciaGroupBox.Controls.Add(DNIFleteroTextBox);
             BusquedaAgenciaGroupBox.Controls.Add(DNILabel);
             BusquedaAgenciaGroupBox.Location = new Point(56, 30);
@@ -61,14 +63,14 @@
             BusquedaAgenciaGroupBox.TabStop = false;
             BusquedaAgenciaGroupBox.Text = "Búsqueda";
             // 
-            // BuscarFleteroButton
+            // BuscarxDNIFleteroButton
             // 
-            BuscarFleteroButton.Location = new Point(434, 44);
-            BuscarFleteroButton.Name = "BuscarFleteroButton";
-            BuscarFleteroButton.Size = new Size(75, 23);
-            BuscarFleteroButton.TabIndex = 2;
-            BuscarFleteroButton.Text = "Buscar";
-            BuscarFleteroButton.UseVisualStyleBackColor = true;
+            BuscarxDNIFleteroButton.Location = new Point(434, 44);
+            BuscarxDNIFleteroButton.Name = "BuscarxDNIFleteroButton";
+            BuscarxDNIFleteroButton.Size = new Size(75, 23);
+            BuscarxDNIFleteroButton.TabIndex = 2;
+            BuscarxDNIFleteroButton.Text = "Buscar";
+            BuscarxDNIFleteroButton.UseVisualStyleBackColor = true;
             // 
             // DNIFleteroTextBox
             // 
@@ -86,22 +88,22 @@
             DNILabel.TabIndex = 0;
             DNILabel.Text = "Ingrese el número de DNI :";
             // 
-            // GuiasGroupBox
+            // GuiasARecepcionarGroupBox
             // 
-            GuiasGroupBox.Controls.Add(GuiasARecepcionarAgenciaListView);
-            GuiasGroupBox.Location = new Point(56, 136);
-            GuiasGroupBox.Name = "GuiasGroupBox";
-            GuiasGroupBox.Size = new Size(660, 140);
-            GuiasGroupBox.TabIndex = 3;
-            GuiasGroupBox.TabStop = false;
-            GuiasGroupBox.Text = "Guías a recibir:";
+            GuiasARecepcionarGroupBox.Controls.Add(GuiasARecepcionarAgenciaListView);
+            GuiasARecepcionarGroupBox.Location = new Point(56, 136);
+            GuiasARecepcionarGroupBox.Name = "GuiasARecepcionarGroupBox";
+            GuiasARecepcionarGroupBox.Size = new Size(660, 140);
+            GuiasARecepcionarGroupBox.TabIndex = 3;
+            GuiasARecepcionarGroupBox.TabStop = false;
+            GuiasARecepcionarGroupBox.Text = "Guías a recibir:";
             // 
             // GuiasARecepcionarAgenciaListView
             // 
-            GuiasARecepcionarAgenciaListView.Columns.AddRange(new ColumnHeader[] { NroGuiaColumn, TamanioColumn, RecibidaColumn });
-            GuiasARecepcionarAgenciaListView.Location = new Point(71, 22);
+            GuiasARecepcionarAgenciaListView.Columns.AddRange(new ColumnHeader[] { NroGuiaColumn, TamanioColumn });
+            GuiasARecepcionarAgenciaListView.Location = new Point(174, 22);
             GuiasARecepcionarAgenciaListView.Name = "GuiasARecepcionarAgenciaListView";
-            GuiasARecepcionarAgenciaListView.Size = new Size(506, 97);
+            GuiasARecepcionarAgenciaListView.Size = new Size(305, 97);
             GuiasARecepcionarAgenciaListView.TabIndex = 7;
             GuiasARecepcionarAgenciaListView.UseCompatibleStateImageBehavior = false;
             GuiasARecepcionarAgenciaListView.View = View.Details;
@@ -115,11 +117,6 @@
             // 
             TamanioColumn.Text = "Tamaño";
             TamanioColumn.Width = 100;
-            // 
-            // RecibidaColumn
-            // 
-            RecibidaColumn.Text = "¿Recibida?";
-            RecibidaColumn.Width = 200;
             // 
             // ConfirmarButton
             // 
@@ -139,25 +136,25 @@
             SalirButton.Text = "Salir";
             SalirButton.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // GuiasAEntregarGroupBox
             // 
-            groupBox1.Controls.Add(listView1);
-            groupBox1.Location = new Point(56, 301);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(660, 140);
-            groupBox1.TabIndex = 6;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Guías a entregar al fletero:";
+            GuiasAEntregarGroupBox.Controls.Add(GuiasAEntregarListView);
+            GuiasAEntregarGroupBox.Location = new Point(56, 301);
+            GuiasAEntregarGroupBox.Name = "GuiasAEntregarGroupBox";
+            GuiasAEntregarGroupBox.Size = new Size(660, 140);
+            GuiasAEntregarGroupBox.TabIndex = 6;
+            GuiasAEntregarGroupBox.TabStop = false;
+            GuiasAEntregarGroupBox.Text = "Guías a entregar al fletero:";
             // 
-            // listView1
+            // GuiasAEntregarListView
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
-            listView1.Location = new Point(71, 22);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(506, 97);
-            listView1.TabIndex = 7;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            GuiasAEntregarListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
+            GuiasAEntregarListView.Location = new Point(174, 22);
+            GuiasAEntregarListView.Name = "GuiasAEntregarListView";
+            GuiasAEntregarListView.Size = new Size(309, 97);
+            GuiasAEntregarListView.TabIndex = 7;
+            GuiasAEntregarListView.UseCompatibleStateImageBehavior = false;
+            GuiasAEntregarListView.View = View.Details;
             // 
             // columnHeader1
             // 
@@ -169,47 +166,86 @@
             columnHeader2.Text = "Tamaño";
             columnHeader2.Width = 100;
             // 
-            // columnHeader3
+            // AgenciaLabel
             // 
-            columnHeader3.Text = "¿Entregada?";
-            columnHeader3.Width = 200;
+            AgenciaLabel.AutoSize = true;
+            AgenciaLabel.Location = new Point(490, 12);
+            AgenciaLabel.Name = "AgenciaLabel";
+            AgenciaLabel.Size = new Size(53, 15);
+            AgenciaLabel.TabIndex = 25;
+            AgenciaLabel.Text = "Agencia:";
+            // 
+            // UsuarioLabel
+            // 
+            UsuarioLabel.AutoSize = true;
+            UsuarioLabel.Location = new Point(56, 9);
+            UsuarioLabel.Name = "UsuarioLabel";
+            UsuarioLabel.Size = new Size(50, 15);
+            UsuarioLabel.TabIndex = 24;
+            UsuarioLabel.Text = "Usuario:";
+            UsuarioLabel.Click += UsuarioLabel_Click;
+            // 
+            // NombreUsuarioLabel
+            // 
+            NombreUsuarioLabel.AutoSize = true;
+            NombreUsuarioLabel.Location = new Point(112, 9);
+            NombreUsuarioLabel.Name = "NombreUsuarioLabel";
+            NombreUsuarioLabel.Size = new Size(62, 15);
+            NombreUsuarioLabel.TabIndex = 26;
+            NombreUsuarioLabel.Text = "Juan Perez";
+            // 
+            // NombreAgenciaLabel
+            // 
+            NombreAgenciaLabel.AutoSize = true;
+            NombreAgenciaLabel.Location = new Point(549, 12);
+            NombreAgenciaLabel.Name = "NombreAgenciaLabel";
+            NombreAgenciaLabel.Size = new Size(77, 15);
+            NombreAgenciaLabel.TabIndex = 27;
+            NombreAgenciaLabel.Text = "Lorem Ipsum";
             // 
             // RecepcionAgenciaForm1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 520);
-            Controls.Add(groupBox1);
+            Controls.Add(NombreAgenciaLabel);
+            Controls.Add(NombreUsuarioLabel);
+            Controls.Add(AgenciaLabel);
+            Controls.Add(UsuarioLabel);
+            Controls.Add(GuiasAEntregarGroupBox);
             Controls.Add(SalirButton);
             Controls.Add(ConfirmarButton);
-            Controls.Add(GuiasGroupBox);
+            Controls.Add(GuiasARecepcionarGroupBox);
             Controls.Add(BusquedaAgenciaGroupBox);
             Name = "RecepcionAgenciaForm1";
             Text = "Recepcion en Agencia";
             BusquedaAgenciaGroupBox.ResumeLayout(false);
             BusquedaAgenciaGroupBox.PerformLayout();
-            GuiasGroupBox.ResumeLayout(false);
-            groupBox1.ResumeLayout(false);
+            GuiasARecepcionarGroupBox.ResumeLayout(false);
+            GuiasAEntregarGroupBox.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private GroupBox BusquedaAgenciaGroupBox;
-        private Button BuscarFleteroButton;
+        private Button BuscarxDNIFleteroButton;
         private TextBox DNIFleteroTextBox;
         private Label DNILabel;
-        private GroupBox GuiasGroupBox;
+        private GroupBox GuiasARecepcionarGroupBox;
         private ListView GuiasARecepcionarAgenciaListView;
         private ColumnHeader NroGuiaColumn;
         private ColumnHeader TamanioColumn;
-        private ColumnHeader RecibidaColumn;
         private Button ConfirmarButton;
         private Button SalirButton;
-        private GroupBox groupBox1;
-        private ListView listView1;
+        private GroupBox GuiasAEntregarGroupBox;
+        private ListView GuiasAEntregarListView;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
-        private ColumnHeader columnHeader3;
+        private Label AgenciaLabel;
+        private Label UsuarioLabel;
+        private Label NombreUsuarioLabel;
+        private Label NombreAgenciaLabel;
     }
 }

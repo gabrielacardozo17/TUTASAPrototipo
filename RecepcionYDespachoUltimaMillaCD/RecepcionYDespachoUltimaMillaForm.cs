@@ -16,5 +16,20 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
         {
             InitializeComponent();
         }
+
+        private void GuiasDistribucionxFleteroListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GuiasRetiroxFleteroListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConfirmarButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

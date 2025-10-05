@@ -33,7 +33,10 @@
             NumServicioTextBox = new TextBox();
             ServicioLabel = new Label();
             GuiasGroupBox = new GroupBox();
-            GuiasRecibidasServicioListView = new ListView();
+            GuiaxServicioRecibidaListView = new ListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            GuiasADespacharxServicioListView = new ListView();
             NroGuiaColumn = new ColumnHeader();
             TamanioColumn = new ColumnHeader();
             DestinoColumn = new ColumnHeader();
@@ -44,6 +47,7 @@
             UsuarioLabel = new Label();
             BusquedaGroupBox.SuspendLayout();
             GuiasGroupBox.SuspendLayout();
+            GuiasADespacharServicioListView.SuspendLayout();
             SuspendLayout();
             // 
             // BusquedaGroupBox
@@ -53,7 +57,7 @@
             BusquedaGroupBox.Controls.Add(ServicioLabel);
             BusquedaGroupBox.Location = new Point(47, 37);
             BusquedaGroupBox.Name = "BusquedaGroupBox";
-            BusquedaGroupBox.Size = new Size(660, 100);
+            BusquedaGroupBox.Size = new Size(609, 100);
             BusquedaGroupBox.TabIndex = 1;
             BusquedaGroupBox.TabStop = false;
             BusquedaGroupBox.Text = "Búsqueda";
@@ -85,23 +89,43 @@
             // 
             // GuiasGroupBox
             // 
-            GuiasGroupBox.Controls.Add(GuiasRecibidasServicioListView);
+            GuiasGroupBox.Controls.Add(GuiaxServicioRecibidaListView);
             GuiasGroupBox.Location = new Point(49, 153);
             GuiasGroupBox.Name = "GuiasGroupBox";
-            GuiasGroupBox.Size = new Size(658, 140);
+            GuiasGroupBox.Size = new Size(607, 140);
             GuiasGroupBox.TabIndex = 2;
             GuiasGroupBox.TabStop = false;
             GuiasGroupBox.Text = "Guías a recibir de este servicio:";
             // 
-            // GuiasRecibidasServicioListView
+            // GuiaxServicioRecibidaListView
             // 
-            GuiasRecibidasServicioListView.Columns.AddRange(new ColumnHeader[] { NroGuiaColumn, TamanioColumn, DestinoColumn });
-            GuiasRecibidasServicioListView.Location = new Point(59, 22);
-            GuiasRecibidasServicioListView.Name = "GuiasRecibidasServicioListView";
-            GuiasRecibidasServicioListView.Size = new Size(513, 97);
-            GuiasRecibidasServicioListView.TabIndex = 7;
-            GuiasRecibidasServicioListView.UseCompatibleStateImageBehavior = false;
-            GuiasRecibidasServicioListView.View = View.Details;
+            GuiaxServicioRecibidaListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
+            GuiaxServicioRecibidaListView.Location = new Point(96, 22);
+            GuiaxServicioRecibidaListView.Name = "GuiaxServicioRecibidaListView";
+            GuiaxServicioRecibidaListView.Size = new Size(407, 97);
+            GuiaxServicioRecibidaListView.TabIndex = 8;
+            GuiaxServicioRecibidaListView.UseCompatibleStateImageBehavior = false;
+            GuiaxServicioRecibidaListView.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Nro de Guía";
+            columnHeader1.Width = 200;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Tamaño";
+            columnHeader2.Width = 200;
+            // 
+            // GuiasADespacharxServicioListView
+            // 
+            GuiasADespacharxServicioListView.Columns.AddRange(new ColumnHeader[] { NroGuiaColumn, TamanioColumn, DestinoColumn });
+            GuiasADespacharxServicioListView.Location = new Point(42, 39);
+            GuiasADespacharxServicioListView.Name = "GuiasADespacharxServicioListView";
+            GuiasADespacharxServicioListView.Size = new Size(513, 97);
+            GuiasADespacharxServicioListView.TabIndex = 7;
+            GuiasADespacharxServicioListView.UseCompatibleStateImageBehavior = false;
+            GuiasADespacharxServicioListView.View = View.Details;
             // 
             // NroGuiaColumn
             // 
@@ -120,16 +144,17 @@
             // 
             // GuiasADespacharServicioListView
             // 
+            GuiasADespacharServicioListView.Controls.Add(GuiasADespacharxServicioListView);
             GuiasADespacharServicioListView.Location = new Point(49, 318);
             GuiasADespacharServicioListView.Name = "GuiasADespacharServicioListView";
-            GuiasADespacharServicioListView.Size = new Size(658, 227);
+            GuiasADespacharServicioListView.Size = new Size(607, 179);
             GuiasADespacharServicioListView.TabIndex = 3;
             GuiasADespacharServicioListView.TabStop = false;
-            GuiasADespacharServicioListView.Text = "Crear nueva hoja de ruta:";
+            GuiasADespacharServicioListView.Text = "Guías a despachar en este servicio";
             // 
             // ConfirmarRecepcionYDespachoButton
             // 
-            ConfirmarRecepcionYDespachoButton.Location = new Point(662, 563);
+            ConfirmarRecepcionYDespachoButton.Location = new Point(608, 534);
             ConfirmarRecepcionYDespachoButton.Name = "ConfirmarRecepcionYDespachoButton";
             ConfirmarRecepcionYDespachoButton.Size = new Size(83, 26);
             ConfirmarRecepcionYDespachoButton.TabIndex = 4;
@@ -138,7 +163,7 @@
             // 
             // SalirButton
             // 
-            SalirButton.Location = new Point(572, 564);
+            SalirButton.Location = new Point(506, 534);
             SalirButton.Name = "SalirButton";
             SalirButton.Size = new Size(84, 25);
             SalirButton.TabIndex = 5;
@@ -148,7 +173,7 @@
             // CDLabel
             // 
             CDLabel.AutoSize = true;
-            CDLabel.Location = new Point(537, 9);
+            CDLabel.Location = new Point(506, 9);
             CDLabel.Name = "CDLabel";
             CDLabel.Size = new Size(26, 15);
             CDLabel.TabIndex = 16;
@@ -167,7 +192,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(776, 601);
+            ClientSize = new Size(740, 578);
             Controls.Add(CDLabel);
             Controls.Add(UsuarioLabel);
             Controls.Add(SalirButton);
@@ -180,6 +205,7 @@
             BusquedaGroupBox.ResumeLayout(false);
             BusquedaGroupBox.PerformLayout();
             GuiasGroupBox.ResumeLayout(false);
+            GuiasADespacharServicioListView.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -197,7 +223,7 @@
         private Label label6;
         private Label label5;
         private Label label4;
-        private ListView GuiasRecibidasServicioListView;
+        private ListView GuiasADespacharxServicioListView;
         private ColumnHeader NroGuiaColumn;
         private ColumnHeader TamanioColumn;
         private ColumnHeader DestinoColumn;
@@ -206,5 +232,8 @@
         private Button SalirButton;
         private Label CDLabel;
         private Label UsuarioLabel;
+        private ListView GuiaxServicioRecibidaListView;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
     }
 }
