@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem12 = new ListViewItem(new string[] { "", "LNS23546" }, -1);
-            ListViewItem listViewItem13 = new ListViewItem(new string[] { "LNS54654", "XL", "Av. Lorem Ipsum 102" }, -1);
-            ListViewItem listViewItem14 = new ListViewItem(new string[] { "LNS56987", "S", "Distribución", "Av. Lorem Ipsum 56" }, -1);
-            ListViewItem listViewItem15 = new ListViewItem("356254");
-            ListViewItem listViewItem16 = new ListViewItem("");
-            ListViewItem listViewItem17 = new ListViewItem("564524165");
-            ListViewItem listViewItem18 = new ListViewItem("45545461");
-            ListViewItem listViewItem19 = new ListViewItem("");
-            ListViewItem listViewItem20 = new ListViewItem(new string[] { "", "LNS23332" }, -1);
-            ListViewItem listViewItem21 = new ListViewItem(new string[] { "LNS54654", "XL", "Av. Lorem Ipsum 102" }, -1);
-            ListViewItem listViewItem22 = new ListViewItem(new string[] { "LNS56987", "S", "Distribución", "Av. Lorem Ipsum 56" }, -1);
+            ListViewItem listViewItem23 = new ListViewItem(new string[] { "", "LNS23546" }, -1);
+            ListViewItem listViewItem24 = new ListViewItem(new string[] { "LNS54654", "XL", "Av. Lorem Ipsum 102" }, -1);
+            ListViewItem listViewItem25 = new ListViewItem(new string[] { "LNS56987", "S", "Distribución", "Av. Lorem Ipsum 56" }, -1);
+            ListViewItem listViewItem26 = new ListViewItem("356254");
+            ListViewItem listViewItem27 = new ListViewItem("");
+            ListViewItem listViewItem28 = new ListViewItem("564524165");
+            ListViewItem listViewItem29 = new ListViewItem("45545461");
+            ListViewItem listViewItem30 = new ListViewItem("");
+            ListViewItem listViewItem31 = new ListViewItem(new string[] { "", "LNS23332" }, -1);
+            ListViewItem listViewItem32 = new ListViewItem(new string[] { "LNS54654", "XL", "Av. Lorem Ipsum 102" }, -1);
+            ListViewItem listViewItem33 = new ListViewItem(new string[] { "LNS56987", "S", "Distribución", "Av. Lorem Ipsum 56" }, -1);
             groupBox2 = new GroupBox();
             label3 = new Label();
             GuiasRetiroxFleteroListView = new ListView();
@@ -68,6 +68,8 @@
             columnHeader3 = new ColumnHeader();
             columnHeader4 = new ColumnHeader();
             label2 = new Label();
+            UsuarioResult = new Label();
+            CDResult = new Label();
             groupBox2.SuspendLayout();
             GuiasDistribucionProximas.SuspendLayout();
             GuiasGroupBox.SuspendLayout();
@@ -100,8 +102,8 @@
             GuiasRetiroxFleteroListView.CheckBoxes = true;
             GuiasRetiroxFleteroListView.Columns.AddRange(new ColumnHeader[] { cumplidaRetiroColumn, NroGuia });
             GuiasRetiroxFleteroListView.FullRowSelect = true;
-            listViewItem12.StateImageIndex = 0;
-            GuiasRetiroxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem12 });
+            listViewItem23.StateImageIndex = 0;
+            GuiasRetiroxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem23 });
             GuiasRetiroxFleteroListView.Location = new Point(101, 22);
             GuiasRetiroxFleteroListView.Name = "GuiasRetiroxFleteroListView";
             GuiasRetiroxFleteroListView.Size = new Size(404, 97);
@@ -134,7 +136,7 @@
             // NuevasGuiasDistribucionxFleteroListView
             // 
             NuevasGuiasDistribucionxFleteroListView.Columns.AddRange(new ColumnHeader[] { guiaColumn, tamañoADespachar, DestinoDespachar });
-            NuevasGuiasDistribucionxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem13, listViewItem14, listViewItem15, listViewItem16, listViewItem17, listViewItem18, listViewItem19 });
+            NuevasGuiasDistribucionxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem24, listViewItem25, listViewItem26, listViewItem27, listViewItem28, listViewItem29, listViewItem30 });
             NuevasGuiasDistribucionxFleteroListView.Location = new Point(55, 37);
             NuevasGuiasDistribucionxFleteroListView.Name = "NuevasGuiasDistribucionxFleteroListView";
             NuevasGuiasDistribucionxFleteroListView.Size = new Size(524, 97);
@@ -199,8 +201,8 @@
             GuiasDistribucionxFleteroListView.CheckBoxes = true;
             GuiasDistribucionxFleteroListView.Columns.AddRange(new ColumnHeader[] { CumplidaDistribucionColumn, columnHeader1 });
             GuiasDistribucionxFleteroListView.FullRowSelect = true;
-            listViewItem20.StateImageIndex = 0;
-            GuiasDistribucionxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem20 });
+            listViewItem31.StateImageIndex = 0;
+            GuiasDistribucionxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem31 });
             GuiasDistribucionxFleteroListView.Location = new Point(101, 32);
             GuiasDistribucionxFleteroListView.Name = "GuiasDistribucionxFleteroListView";
             GuiasDistribucionxFleteroListView.Size = new Size(404, 97);
@@ -287,7 +289,7 @@
             // NuevasGuiasRetiroxFleteroListView
             // 
             NuevasGuiasRetiroxFleteroListView.Columns.AddRange(new ColumnHeader[] { columnHeader2, columnHeader3, columnHeader4 });
-            NuevasGuiasRetiroxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem21, listViewItem22 });
+            NuevasGuiasRetiroxFleteroListView.Items.AddRange(new ListViewItem[] { listViewItem32, listViewItem33 });
             NuevasGuiasRetiroxFleteroListView.Location = new Point(61, 28);
             NuevasGuiasRetiroxFleteroListView.Name = "NuevasGuiasRetiroxFleteroListView";
             NuevasGuiasRetiroxFleteroListView.Size = new Size(506, 97);
@@ -318,11 +320,31 @@
             label2.Size = new Size(0, 15);
             label2.TabIndex = 0;
             // 
+            // UsuarioResult
+            // 
+            UsuarioResult.AutoSize = true;
+            UsuarioResult.Location = new Point(121, 10);
+            UsuarioResult.Name = "UsuarioResult";
+            UsuarioResult.Size = new Size(62, 15);
+            UsuarioResult.TabIndex = 16;
+            UsuarioResult.Text = "Juan Perez";
+            // 
+            // CDResult
+            // 
+            CDResult.AutoSize = true;
+            CDResult.Location = new Point(581, 9);
+            CDResult.Name = "CDResult";
+            CDResult.Size = new Size(73, 15);
+            CDResult.TabIndex = 17;
+            CDResult.Text = "Loren Ipsum";
+            // 
             // RecepcionYDespachoUltimaMillaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(779, 868);
+            Controls.Add(CDResult);
+            Controls.Add(UsuarioResult);
             Controls.Add(groupBox1);
             Controls.Add(CDLabel);
             Controls.Add(UsuarioLabel);
@@ -380,5 +402,7 @@
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
+        private Label UsuarioResult;
+        private Label CDResult;
     }
 }

@@ -45,6 +45,8 @@
             CancelarButton = new Button();
             CDLabel = new Label();
             UsuarioLabel = new Label();
+            UsuarioResult = new Label();
+            CDResult = new Label();
             BusquedaGroupBox.SuspendLayout();
             GuiasGroupBox.SuspendLayout();
             GuiasADespacharServicioListView.SuspendLayout();
@@ -188,11 +190,31 @@
             UsuarioLabel.TabIndex = 15;
             UsuarioLabel.Text = "Usuario:";
             // 
+            // UsuarioResult
+            // 
+            UsuarioResult.AutoSize = true;
+            UsuarioResult.Location = new Point(111, 9);
+            UsuarioResult.Name = "UsuarioResult";
+            UsuarioResult.Size = new Size(62, 15);
+            UsuarioResult.TabIndex = 17;
+            UsuarioResult.Text = "Juan Perez";
+            // 
+            // CDResult
+            // 
+            CDResult.AutoSize = true;
+            CDResult.Location = new Point(538, 9);
+            CDResult.Name = "CDResult";
+            CDResult.Size = new Size(73, 15);
+            CDResult.TabIndex = 18;
+            CDResult.Text = "Loren Ipsum";
+            // 
             // RecepcionYDespachoLargaDistanciaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(740, 578);
+            Controls.Add(CDResult);
+            Controls.Add(UsuarioResult);
             Controls.Add(CDLabel);
             Controls.Add(UsuarioLabel);
             Controls.Add(CancelarButton);
@@ -235,5 +257,7 @@
         private ListView GuiaxServicioRecibidaListView;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
+        private Label UsuarioResult;
+        private Label CDResult;
     }
 }

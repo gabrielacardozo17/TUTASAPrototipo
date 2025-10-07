@@ -75,6 +75,8 @@
             ConfirmarImposicionButton = new Button();
             CDLabel = new Label();
             UsuarioLabel = new Label();
+            UsuarioResult = new Label();
+            CDResult = new Label();
             RemitenteGroupBox.SuspendLayout();
             DestinatarioGroupBox.SuspendLayout();
             EncomiendasGroupBox.SuspendLayout();
@@ -542,11 +544,31 @@
             UsuarioLabel.TabIndex = 16;
             UsuarioLabel.Text = "Usuario:";
             // 
+            // UsuarioResult
+            // 
+            UsuarioResult.AutoSize = true;
+            UsuarioResult.Location = new Point(136, 23);
+            UsuarioResult.Name = "UsuarioResult";
+            UsuarioResult.Size = new Size(62, 15);
+            UsuarioResult.TabIndex = 18;
+            UsuarioResult.Text = "Juan Perez";
+            // 
+            // CDResult
+            // 
+            CDResult.AutoSize = true;
+            CDResult.Location = new Point(594, 23);
+            CDResult.Name = "CDResult";
+            CDResult.Size = new Size(73, 15);
+            CDResult.TabIndex = 19;
+            CDResult.Text = "Loren Ipsum";
+            // 
             // ImponerEncomiendaCentroDistribucionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 762);
+            Controls.Add(CDResult);
+            Controls.Add(UsuarioResult);
             Controls.Add(CDLabel);
             Controls.Add(UsuarioLabel);
             Controls.Add(CancelarButton);
@@ -620,5 +642,7 @@
         private Label UsuarioLabel;
         private ComboBox CDComboBox;
         private Label CentroLabel;
+        private Label UsuarioResult;
+        private Label CDResult;
     }
 }

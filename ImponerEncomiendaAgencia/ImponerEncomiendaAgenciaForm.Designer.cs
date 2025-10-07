@@ -76,6 +76,8 @@
             ImposicionAgenciaLabel = new Label();
             AgenciaLabel = new Label();
             UsuarioLabel = new Label();
+            UsuarioResult = new Label();
+            AgenciaResult = new Label();
             EncomiendasGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tipoXLNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tipoLNumericUpDown).BeginInit();
@@ -383,6 +385,7 @@
             DNIDestinatarioTextBox.Name = "DNIDestinatarioTextBox";
             DNIDestinatarioTextBox.Size = new Size(100, 23);
             DNIDestinatarioTextBox.TabIndex = 5;
+            DNIDestinatarioTextBox.TextChanged += DNIDestinatarioTextBox_TextChanged;
             // 
             // DNILabel
             // 
@@ -505,6 +508,7 @@
             BuscarCuitButton.TabIndex = 2;
             BuscarCuitButton.Text = "Buscar";
             BuscarCuitButton.UseVisualStyleBackColor = true;
+            BuscarCuitButton.Click += BuscarCuitButton_Click;
             // 
             // CUITRemitenteMaskedText
             // 
@@ -552,11 +556,31 @@
             UsuarioLabel.TabIndex = 22;
             UsuarioLabel.Text = "Usuario:";
             // 
+            // UsuarioResult
+            // 
+            UsuarioResult.AutoSize = true;
+            UsuarioResult.Location = new Point(119, 9);
+            UsuarioResult.Name = "UsuarioResult";
+            UsuarioResult.Size = new Size(62, 15);
+            UsuarioResult.TabIndex = 24;
+            UsuarioResult.Text = "Juan Perez";
+            // 
+            // AgenciaResult
+            // 
+            AgenciaResult.AutoSize = true;
+            AgenciaResult.Location = new Point(602, 9);
+            AgenciaResult.Name = "AgenciaResult";
+            AgenciaResult.Size = new Size(73, 15);
+            AgenciaResult.TabIndex = 25;
+            AgenciaResult.Text = "Loren Ipsum";
+            // 
             // ImponerEncomiendaAgenciaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(781, 771);
+            Controls.Add(AgenciaResult);
+            Controls.Add(UsuarioResult);
             Controls.Add(AgenciaLabel);
             Controls.Add(UsuarioLabel);
             Controls.Add(CancelarButton);
@@ -631,5 +655,7 @@
         private Label CentroLabel;
         private ComboBox AgenciaComboBox;
         private Label label1;
+        private Label UsuarioResult;
+        private Label AgenciaResult;
     }
 }

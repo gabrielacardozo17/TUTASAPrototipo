@@ -21,5 +21,25 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
         {
 
         }
+
+        private void CodigoPostalTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ApellidoDestinatarioLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tipoXLNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tipoSNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

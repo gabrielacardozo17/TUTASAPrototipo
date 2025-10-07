@@ -44,6 +44,8 @@
             ConfirmarEntregaButton = new Button();
             CDLabel = new Label();
             UsuarioLabel = new Label();
+            UsuarioResult = new Label();
+            CDResult = new Label();
             EntregaGuiasGroupBox.SuspendLayout();
             BusquedaAgenciaGroupBox.SuspendLayout();
             SuspendLayout();
@@ -192,11 +194,31 @@
             UsuarioLabel.Text = "Usuario:";
             UsuarioLabel.Click += UsuarioLabel_Click;
             // 
+            // UsuarioResult
+            // 
+            UsuarioResult.AutoSize = true;
+            UsuarioResult.Location = new Point(126, 22);
+            UsuarioResult.Name = "UsuarioResult";
+            UsuarioResult.Size = new Size(62, 15);
+            UsuarioResult.TabIndex = 26;
+            UsuarioResult.Text = "Juan Perez";
+            // 
+            // CDResult
+            // 
+            CDResult.AutoSize = true;
+            CDResult.Location = new Point(582, 22);
+            CDResult.Name = "CDResult";
+            CDResult.Size = new Size(73, 15);
+            CDResult.TabIndex = 27;
+            CDResult.Text = "Loren Ipsum";
+            // 
             // EntregarEncomiendaCDForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(775, 450);
+            Controls.Add(CDResult);
+            Controls.Add(UsuarioResult);
             Controls.Add(CDLabel);
             Controls.Add(UsuarioLabel);
             Controls.Add(CancelarButton);
@@ -230,5 +252,7 @@
         private Button ConfirmarEntregaButton;
         private Label CDLabel;
         private Label UsuarioLabel;
+        private Label UsuarioResult;
+        private Label CDResult;
     }
 }

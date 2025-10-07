@@ -44,6 +44,8 @@
             CancelarButton = new Button();
             AgenciaLabel = new Label();
             UsuarioLabel = new Label();
+            UsuarioResult = new Label();
+            AgenciaResult = new Label();
             EntregaGuiasGroupBox.SuspendLayout();
             BusquedaAgenciaGroupBox.SuspendLayout();
             SuspendLayout();
@@ -191,11 +193,31 @@
             UsuarioLabel.TabIndex = 24;
             UsuarioLabel.Text = "Usuario:";
             // 
+            // UsuarioResult
+            // 
+            UsuarioResult.AutoSize = true;
+            UsuarioResult.Location = new Point(126, 22);
+            UsuarioResult.Name = "UsuarioResult";
+            UsuarioResult.Size = new Size(62, 15);
+            UsuarioResult.TabIndex = 26;
+            UsuarioResult.Text = "Juan Perez";
+            // 
+            // AgenciaResult
+            // 
+            AgenciaResult.AutoSize = true;
+            AgenciaResult.Location = new Point(607, 22);
+            AgenciaResult.Name = "AgenciaResult";
+            AgenciaResult.Size = new Size(73, 15);
+            AgenciaResult.TabIndex = 27;
+            AgenciaResult.Text = "Loren Ipsum";
+            // 
             // EntregarEncomiendaEnAgenciaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 445);
+            Controls.Add(AgenciaResult);
+            Controls.Add(UsuarioResult);
             Controls.Add(AgenciaLabel);
             Controls.Add(UsuarioLabel);
             Controls.Add(CancelarButton);
@@ -229,5 +251,7 @@
         private Label NombreDestinatarioResult;
         private Label AgenciaLabel;
         private Label UsuarioLabel;
+        private Label UsuarioResult;
+        private Label AgenciaResult;
     }
 }

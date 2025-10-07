@@ -16,5 +16,15 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
         {
             InitializeComponent();
         }
+
+        private void BuscarCuitButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DNIDestinatarioTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
