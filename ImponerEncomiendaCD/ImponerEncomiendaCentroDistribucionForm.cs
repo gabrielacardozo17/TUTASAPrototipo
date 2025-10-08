@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using TUTASAPrototipo.Domain;
 
 namespace TUTASAPrototipo.ImponerEncomiendaCD
 {
     public partial class ImponerEncomiendaCentroDistribucionForm : Form
     {
         private readonly ImponerEncomiendaCentroDistribucionModelo _modelo = new();
-        private readonly Dictionary<int, bool> _tieneAgenciaPorLocalidad = new();
 
         public ImponerEncomiendaCentroDistribucionForm()
         {
@@ -26,6 +24,15 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
             // Estado inicial de campos dependientes
             HabilitarCamposEntrega(null);
+
+            // Al escribir un CUIT nuevo, limpiá los datos mostrados
+            CUITRemitenteMaskedText.TextChanged += (s, e) =>
+            {
+                NombreClienteResult.Text = "";
+                TelefonoClienteResult.Text = "";
+                DireccionClienteResult.Text = "";
+            };
+
         }
 
         // ----- Satisface el handler que dejó el Designer -----
@@ -38,6 +45,10 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             ProvinciaComboBox.ValueMember = "Key";
             ProvinciaComboBox.DataSource = _modelo.GetProvincias().ToList();
 
+            // ← que arranque vacío
+            ProvinciaComboBox.SelectedIndex = -1;
+            ProvinciaComboBox.Text = ""; // por las dudas
+
             LocalidadxProvinciaComboBox.DataSource = null;
             TipoEntregaComboBox.Items.Clear();
             AgenciaComboBox.DataSource = null;
@@ -47,26 +58,34 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             tipoMNumericUpDown.Minimum = 0;
             tipoLNumericUpDown.Minimum = 0;
             tipoXLNumericUpDown.Minimum = 0;
+
+            // si ya lo usás:
+            LimpiarRemitente();
         }
+
 
         // ---------- BUSCAR CLIENTE ----------
         private void BuscarClienteButton_Click(object? sender, EventArgs e)
         {
             var cuit = CUITRemitenteMaskedText.Text.Trim();
+            // 1) CUIT inválido
             if (!CuitFormatoOk(cuit) || !CuitDvOk(cuit))
             {
+                LimpiarRemitente();
                 MessageBox.Show("Ingresá un CUIT válido (NN-NNNNNNNN-N).", "Validación");
                 CUITRemitenteMaskedText.Focus();
                 return;
             }
 
+            // 2) CUIT inexistente
             var cli = _modelo.BuscarCliente(cuit);
             if (cli is null)
             {
+                LimpiarRemitente();
                 MessageBox.Show("CUIT inexistente.", "Validación");
-                NombreClienteResult.Text = TelefonoClienteResult.Text = DireccionClienteResult.Text = "";
                 return;
             }
+
 
             NombreClienteResult.Text = cli.Nombre;
             TelefonoClienteResult.Text = cli.Telefono;
@@ -86,24 +105,16 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 return;
             }
 
-            // Traigo tuplas (id, nombre, tieneAgencia)
-            var locsTuplas = _modelo.GetLocalidades(provId).ToList();
+            var locsKvp = _modelo.GetLocalidades(provId)
+                                 .Select(l => new KeyValuePair<int, string>(l.id, l.nombre))
+                                 .ToList();
 
-            // Guardo si tiene agencia
-            _tieneAgenciaPorLocalidad.Clear();
-            foreach (var (id, _, tieneAgencia) in locsTuplas)
-                _tieneAgenciaPorLocalidad[id] = tieneAgencia;
-
-            // CONVERSIÓN a KeyValuePair para el ComboBox (evita que muestre "(id, nombre, bool)")
-            var locsKvp = locsTuplas
-                .Select(l => new KeyValuePair<int, string>(l.id, l.nombre))
-                .ToList();
-
-            LocalidadxProvinciaComboBox.DisplayMember = "Value"; // nombre
-            LocalidadxProvinciaComboBox.ValueMember = "Key";     // id
+            LocalidadxProvinciaComboBox.DisplayMember = "Value";
+            LocalidadxProvinciaComboBox.ValueMember = "Key";
             LocalidadxProvinciaComboBox.DataSource = locsKvp;
 
-            // Reset dependientes
+            LocalidadxProvinciaComboBox.SelectedIndex = -1;   // <- esto es el “2”
+
             TipoEntregaComboBox.Items.Clear();
             AgenciaComboBox.DataSource = null;
             CDComboBox.DataSource = null;
@@ -116,30 +127,21 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         {
             TipoEntregaComboBox.Items.Clear();
 
-            if (LocalidadxProvinciaComboBox.SelectedValue is not int locId)
-            {
-                HabilitarCamposEntrega(null);
-                return;
-            }
+            if (ProvinciaComboBox.SelectedItem is not KeyValuePair<int, string> { Key: var provId }) { HabilitarCamposEntrega(null); return; }
+            if (LocalidadxProvinciaComboBox.SelectedValue is not int locId) { HabilitarCamposEntrega(null); return; }
 
-            var esOtras = (locId == -1);
-            var tieneAg = !esOtras && _tieneAgenciaPorLocalidad.TryGetValue(locId, out var t) && t;
-
-            // Provincia ya tiene CD (por diseño). Si "Otras" => Domicilio + CD. Si tiene agencia => Domicilio + Agencia + CD.
-            if (tieneAg)
-                TipoEntregaComboBox.Items.AddRange(new object[] { "A domicilio", "En Agencia", "En CD" });
-            else
-                TipoEntregaComboBox.Items.AddRange(new object[] { "A domicilio", "En CD" });
-
+            // Pregunta al MODELO qué tipos de entrega hay
+            var tipos = _modelo.GetTiposEntregaDisponibles(provId, locId);
+            TipoEntregaComboBox.Items.AddRange(tipos);
             TipoEntregaComboBox.SelectedIndex = -1;
+
             HabilitarCamposEntrega(null);
         }
-
 
         // ---------- TIPO DE ENTREGA ----------
         private void TipoEntregaComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            TipoEntrega? tipo = TipoEntregaComboBox.SelectedItem as string switch
+            TipoEntrega? tipo = (TipoEntregaComboBox.SelectedItem as string) switch
             {
                 "A domicilio" => TipoEntrega.Domicilio,
                 "En Agencia" => TipoEntrega.Agencia,
@@ -175,7 +177,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 CDComboBox.DataSource = null;
             }
         }
-
 
         private void HabilitarCamposEntrega(TipoEntrega? tipo)
         {
@@ -296,6 +297,9 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
         private void LimpiarFormulario()
         {
+            // Remitente
+            LimpiarRemitente();   // <-- borra CUIT + labels
+            
             NombreClienteResult.Text = TelefonoClienteResult.Text = DireccionClienteResult.Text = "";
 
             NombreDestinatarioTextBox.Text = "";
@@ -303,8 +307,11 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             DNIDestinatarioTextBox.Text = "";
 
             ProvinciaComboBox.SelectedIndex = -1;
+            ProvinciaComboBox.Text = ""; // asegura que no quede visible la primera opción
+
             LocalidadxProvinciaComboBox.DataSource = null;
             TipoEntregaComboBox.Items.Clear();
+            TipoEntregaComboBox.SelectedIndex = -1;
             DireccionDestinatarioTextBox.Text = "";
             CodigoPostalTextBox.Text = "";
             AgenciaComboBox.DataSource = null;
@@ -334,8 +341,15 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             int dv = resto == 0 ? 0 : resto == 1 ? 9 : 11 - resto;
             return dv == (d[10] - '0');
         }
-
         private static bool DniOk(string dni) => dni.All(char.IsDigit) && dni.Length is >= 7 and <= 8;
+        private void LimpiarRemitente()
+        {
+            CUITRemitenteMaskedText.Clear();   // borra el CUIT (respeta la máscara)
+            NombreClienteResult.Text = "";
+            TelefonoClienteResult.Text = "";
+            DireccionClienteResult.Text = "";
+        }
+
     }
 }
 

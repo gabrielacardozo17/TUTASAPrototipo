@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TUTASAPrototipo.Domain;
 
 namespace TUTASAPrototipo.ImponerEncomiendaCD
 {
@@ -53,13 +52,18 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         // Secuencia de guías
         private static int _seq = 100000;
 
+        // Genera el próximo número de guía (ej: G-2025-100123)
+        private static string NextGuiaNumber() => $"G-{DateTime.Now:yyyy}-{_seq++:000000}";
+
         // ---------- API DEL MODELO (usada por el Form) ----------
+        private static string Digits(string s) => new string(s.Where(char.IsDigit).ToArray());
 
         public Cliente? BuscarCliente(string cuit)
         {
-            var digits = new string(cuit.Where(char.IsDigit).ToArray());
-            return _clientes.FirstOrDefault(c => new string(c.Cuit.Where(char.IsDigit).ToArray()) == digits);
+            var digits = Digits(cuit);
+            return _clientes.FirstOrDefault(c => Digits(c.Cuit) == digits);
         }
+
 
         public IEnumerable<KeyValuePair<int, string>> GetProvincias()
             => _provincias; // Key=Id, Value=Nombre
@@ -87,27 +91,28 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 : Enumerable.Empty<KeyValuePair<int, string>>());
         }
 
+
         // Confirmar imposición: aplica validaciones N3/N4 y crea la Guía
         public List<Guia> ConfirmarImposicion(
-    // remitente
-    string cuitRemitente,
-    // destinatario
-    string destNombre, string destApellido, string destDni,
-    // ámbito
-    int provinciaId, string provinciaNombre,
-    int? localidadId, string? localidadNombre, bool localidadEsOtras,
-    // entrega
-    TipoEntrega tipoEntrega,
-    string? direccion, string? codigoPostal,
-    int? agenciaId, string? agenciaNombre,
-    int? cdDestinoId, string? cdDestinoNombre,
-    // bultos
-    int cantS, int cantM, int cantL, int cantXL,
-    // CD Origen (opcional)
-    int cdOrigenId = 0, string cdOrigenNombre = ""
-)
+            // remitente
+            string cuitRemitente,
+            // destinatario
+            string destNombre, string destApellido, string destDni,
+            // ámbito
+            int provinciaId, string provinciaNombre,
+            int? localidadId, string? localidadNombre, bool localidadEsOtras,
+            // entrega
+            TipoEntrega tipoEntrega,
+            string? direccion, string? codigoPostal,
+            int? agenciaId, string? agenciaNombre,
+            int? cdDestinoId, string? cdDestinoNombre,
+            // bultos
+            int cantS, int cantM, int cantL, int cantXL,
+            // CD Origen (opcional)
+            int cdOrigenId = 0, string cdOrigenNombre = ""
+        )
         {
-            // ----- Validaciones N3/N4 (idénticas a las que ya tenías) -----
+            // ----- Validaciones N3/N4 -----
             var cli = BuscarCliente(cuitRemitente);
             if (cli is null) throw new InvalidOperationException("CUIT inexistente.");
 
@@ -148,17 +153,17 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                     break;
             }
 
-            // ----- Crear N guías (UNA POR BULT0) -----
+            // ----- Crear N guías (UNA POR BULTO) -----
             var guias = new List<Guia>();
 
             void AgregarGuia(int s, int m, int l, int xl)
             {
-                var numero = $"G-{DateTime.Now:yyyy}-{_seq++:000000}";
+                var numero = NextGuiaNumber(); // ← usamos el helper nuevo
                 guias.Add(new Guia
                 {
                     Numero = numero,
                     Estado = EstadoGuia.AdmitidaEnCDOrigen,
-                    CuitRemitente = new string(cuitRemitente.Where(char.IsDigit).ToArray()),
+                    CuitRemitente = Digits(cuitRemitente), // ← tu helper "Digits" ya creado
                     Destinatario = new Destinatario { Nombre = destNombre, Apellido = destApellido, Dni = destDni },
 
                     CdOrigenId = cdOrigenId,
@@ -192,6 +197,23 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             for (int i = 0; i < cantXL; i++) AgregarGuia(0, 0, 0, 1);
 
             return guias;
+        }
+
+        // ¿La localidad tiene agencia? (según provincia y localidad)
+        public bool LocalidadTieneAgencia(int provinciaId, int localidadId)
+        {
+            if (localidadId == -1) return false; // "Otras"
+            return _localidadesPorProv.TryGetValue(provinciaId, out var locs)
+                   && locs.Any(l => l.id == localidadId && l.tieneAgencia);
+        }
+
+        // Tipos de entrega disponibles para la selección actual
+        public string[] GetTiposEntregaDisponibles(int provinciaId, int localidadId)
+        {
+            var tipos = new List<string> { "A domicilio" };
+            if (LocalidadTieneAgencia(provinciaId, localidadId)) tipos.Add("En Agencia");
+            tipos.Add("En CD");
+            return tipos.ToArray();
         }
 
     }

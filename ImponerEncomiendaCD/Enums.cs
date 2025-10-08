@@ -1,4 +1,4 @@
-﻿namespace TUTASAPrototipo.Domain
+﻿namespace TUTASAPrototipo.ImponerEncomiendaCD
 {
     // Para usar como propiedad en Guía y en otras pantallas
     public enum TipoEntrega

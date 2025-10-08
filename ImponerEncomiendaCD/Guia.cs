@@ -1,4 +1,4 @@
-﻿namespace TUTASAPrototipo.Domain
+﻿namespace TUTASAPrototipo.ImponerEncomiendaCD
 {
     public class Guia
     {
