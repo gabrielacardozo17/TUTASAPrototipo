@@ -29,52 +29,71 @@
         private void InitializeComponent()
         {
             SeleccionClienteGroupBox = new GroupBox();
+            PeriodoDateTimePicker = new DateTimePicker();
+            PeriodoLabel = new Label();
             BuscarClienteButton = new Button();
             DatosClienteLabel = new Label();
             CuitClienteMaskedText = new MaskedTextBox();
             DatosLabel = new Label();
             MovimientosClienteGroupBox = new GroupBox();
-            listView1 = new ListView();
+            SaldoAlCierre = new Label();
+            MovimientosListView = new ListView();
             FechaColumn = new ColumnHeader();
             ConceptoColumn = new ColumnHeader();
             debeColumn = new ColumnHeader();
             haberColumn = new ColumnHeader();
-            saldoHeader = new ColumnHeader();
-            FechaDesdeLabel = new Label();
-            FechaHastaLabel = new Label();
-            DesdeDateTimePicker = new DateTimePicker();
-            HastaDateTimePicker = new DateTimePicker();
             CancelarButton = new Button();
-            label1 = new Label();
             SeleccionClienteGroupBox.SuspendLayout();
             MovimientosClienteGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // SeleccionClienteGroupBox
             // 
-            SeleccionClienteGroupBox.Controls.Add(HastaDateTimePicker);
-            SeleccionClienteGroupBox.Controls.Add(DesdeDateTimePicker);
-            SeleccionClienteGroupBox.Controls.Add(FechaHastaLabel);
-            SeleccionClienteGroupBox.Controls.Add(FechaDesdeLabel);
+            SeleccionClienteGroupBox.Controls.Add(PeriodoDateTimePicker);
+            SeleccionClienteGroupBox.Controls.Add(PeriodoLabel);
             SeleccionClienteGroupBox.Controls.Add(BuscarClienteButton);
             SeleccionClienteGroupBox.Controls.Add(DatosClienteLabel);
             SeleccionClienteGroupBox.Controls.Add(CuitClienteMaskedText);
             SeleccionClienteGroupBox.Controls.Add(DatosLabel);
             SeleccionClienteGroupBox.Location = new Point(12, 22);
             SeleccionClienteGroupBox.Name = "SeleccionClienteGroupBox";
-            SeleccionClienteGroupBox.Size = new Size(776, 123);
+            SeleccionClienteGroupBox.Size = new Size(664, 123);
             SeleccionClienteGroupBox.TabIndex = 1;
             SeleccionClienteGroupBox.TabStop = false;
             SeleccionClienteGroupBox.Text = "Seleccion";
             // 
+            // PeriodoDateTimePicker
+            // 
+            PeriodoDateTimePicker.CustomFormat = "MMMM yyyy";
+            PeriodoDateTimePicker.Format = DateTimePickerFormat.Custom;
+            PeriodoDateTimePicker.Location = new Point(428, 54);
+            PeriodoDateTimePicker.MaxDate = new DateTime(2369, 12, 31, 0, 0, 0, 0);
+            PeriodoDateTimePicker.Name = "PeriodoDateTimePicker";
+            PeriodoDateTimePicker.ShowUpDown = true;
+            PeriodoDateTimePicker.Size = new Size(200, 23);
+            PeriodoDateTimePicker.TabIndex = 10;
+            PeriodoDateTimePicker.Value = new DateTime(2025, 10, 7, 0, 0, 0, 0);
+            PeriodoDateTimePicker.ValueChanged += PeriodoDateTimePicker_ValueChanged;
+            // 
+            // PeriodoLabel
+            // 
+            PeriodoLabel.AutoSize = true;
+            PeriodoLabel.Location = new Point(371, 58);
+            PeriodoLabel.Name = "PeriodoLabel";
+            PeriodoLabel.Size = new Size(51, 15);
+            PeriodoLabel.TabIndex = 9;
+            PeriodoLabel.Text = "Período:";
+            PeriodoLabel.Click += label1_Click;
+            // 
             // BuscarClienteButton
             // 
-            BuscarClienteButton.Location = new Point(335, 94);
+            BuscarClienteButton.Location = new Point(294, 94);
             BuscarClienteButton.Name = "BuscarClienteButton";
             BuscarClienteButton.Size = new Size(75, 23);
             BuscarClienteButton.TabIndex = 8;
             BuscarClienteButton.Text = "Buscar";
             BuscarClienteButton.UseVisualStyleBackColor = true;
+            BuscarClienteButton.Click += BuscarClienteButton_Click;
             // 
             // DatosClienteLabel
             // 
@@ -105,24 +124,33 @@
             // 
             // MovimientosClienteGroupBox
             // 
-            MovimientosClienteGroupBox.Controls.Add(label1);
-            MovimientosClienteGroupBox.Controls.Add(listView1);
+            MovimientosClienteGroupBox.Controls.Add(SaldoAlCierre);
+            MovimientosClienteGroupBox.Controls.Add(MovimientosListView);
             MovimientosClienteGroupBox.Location = new Point(12, 151);
             MovimientosClienteGroupBox.Name = "MovimientosClienteGroupBox";
-            MovimientosClienteGroupBox.Size = new Size(776, 259);
+            MovimientosClienteGroupBox.Size = new Size(664, 259);
             MovimientosClienteGroupBox.TabIndex = 2;
             MovimientosClienteGroupBox.TabStop = false;
             MovimientosClienteGroupBox.Text = "Movimientos de cuenta corriente";
             // 
-            // listView1
+            // SaldoAlCierre
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { FechaColumn, ConceptoColumn, debeColumn, haberColumn, saldoHeader });
-            listView1.Location = new Point(15, 22);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(738, 138);
-            listView1.TabIndex = 0;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            SaldoAlCierre.AutoSize = true;
+            SaldoAlCierre.Location = new Point(6, 203);
+            SaldoAlCierre.Name = "SaldoAlCierre";
+            SaldoAlCierre.Size = new Size(154, 15);
+            SaldoAlCierre.TabIndex = 1;
+            SaldoAlCierre.Text = "Saldo al cierre del periodo: -";
+            // 
+            // MovimientosListView
+            // 
+            MovimientosListView.Columns.AddRange(new ColumnHeader[] { FechaColumn, ConceptoColumn, debeColumn, haberColumn });
+            MovimientosListView.Location = new Point(51, 36);
+            MovimientosListView.Name = "MovimientosListView";
+            MovimientosListView.Size = new Size(555, 138);
+            MovimientosListView.TabIndex = 0;
+            MovimientosListView.UseCompatibleStateImageBehavior = false;
+            MovimientosListView.View = View.Details;
             // 
             // FechaColumn
             // 
@@ -132,7 +160,7 @@
             // ConceptoColumn
             // 
             ConceptoColumn.Text = "Concepto";
-            ConceptoColumn.Width = 120;
+            ConceptoColumn.Width = 150;
             // 
             // debeColumn
             // 
@@ -144,71 +172,21 @@
             haberColumn.Text = "Haber";
             haberColumn.Width = 100;
             // 
-            // saldoHeader
-            // 
-            saldoHeader.Text = "Saldo";
-            saldoHeader.Width = 100;
-            // 
-            // FechaDesdeLabel
-            // 
-            FechaDesdeLabel.AutoSize = true;
-            FechaDesdeLabel.Location = new Point(335, 58);
-            FechaDesdeLabel.Name = "FechaDesdeLabel";
-            FechaDesdeLabel.Size = new Size(42, 15);
-            FechaDesdeLabel.TabIndex = 9;
-            FechaDesdeLabel.Text = "Desde:";
-            FechaDesdeLabel.Click += label1_Click;
-            // 
-            // FechaHastaLabel
-            // 
-            FechaHastaLabel.AutoSize = true;
-            FechaHastaLabel.Location = new Point(528, 58);
-            FechaHastaLabel.Name = "FechaHastaLabel";
-            FechaHastaLabel.Size = new Size(40, 15);
-            FechaHastaLabel.TabIndex = 10;
-            FechaHastaLabel.Text = "Hasta:";
-            // 
-            // DesdeDateTimePicker
-            // 
-            DesdeDateTimePicker.Format = DateTimePickerFormat.Short;
-            DesdeDateTimePicker.Location = new Point(383, 54);
-            DesdeDateTimePicker.MaxDate = new DateTime(2025, 12, 31, 0, 0, 0, 0);
-            DesdeDateTimePicker.Name = "DesdeDateTimePicker";
-            DesdeDateTimePicker.Size = new Size(121, 23);
-            DesdeDateTimePicker.TabIndex = 11;
-            // 
-            // HastaDateTimePicker
-            // 
-            HastaDateTimePicker.Format = DateTimePickerFormat.Short;
-            HastaDateTimePicker.Location = new Point(574, 54);
-            HastaDateTimePicker.MaxDate = new DateTime(2025, 12, 31, 0, 0, 0, 0);
-            HastaDateTimePicker.Name = "HastaDateTimePicker";
-            HastaDateTimePicker.Size = new Size(121, 23);
-            HastaDateTimePicker.TabIndex = 12;
-            // 
             // CancelarButton
             // 
-            CancelarButton.Location = new Point(701, 416);
+            CancelarButton.Location = new Point(601, 415);
             CancelarButton.Name = "CancelarButton";
             CancelarButton.Size = new Size(75, 23);
             CancelarButton.TabIndex = 3;
             CancelarButton.Text = "Cancelar";
             CancelarButton.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(27, 208);
-            label1.Name = "label1";
-            label1.Size = new Size(45, 15);
-            label1.TabIndex = 1;
-            label1.Text = "TOTAL: ";
+            CancelarButton.Click += CancelarButton_Click;
             // 
             // EstadoCuentaCorrienteClienteForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(714, 450);
             Controls.Add(CancelarButton);
             Controls.Add(MovimientosClienteGroupBox);
             Controls.Add(SeleccionClienteGroupBox);
@@ -229,17 +207,14 @@
         private MaskedTextBox CuitClienteMaskedText;
         private Label DatosLabel;
         private GroupBox MovimientosClienteGroupBox;
-        private ListView listView1;
+        private ListView MovimientosListView;
         private ColumnHeader FechaColumn;
         private ColumnHeader ConceptoColumn;
         private ColumnHeader debeColumn;
         private ColumnHeader haberColumn;
-        private ColumnHeader saldoHeader;
-        private Label FechaHastaLabel;
-        private Label FechaDesdeLabel;
-        private DateTimePicker HastaDateTimePicker;
-        private DateTimePicker DesdeDateTimePicker;
         private Button CancelarButton;
-        private Label label1;
+        private Label SaldoAlCierre;
+        private Label PeriodoLabel;
+        private DateTimePicker PeriodoDateTimePicker;
     }
 }

@@ -20,9 +20,10 @@ namespace TUTASAPrototipo
             //Application.Run(new EntregarEncomiendaCD.EntregarEncomiendaCDForm());   
             //Application.Run(new MonitoreoResultados.MonitoreoResultadosForm());
             //Application.Run(new RecepcionAgencia.RecepcionAgenciaForm1());
-            Application.Run(new RecepcionYDespachoLargaDistancia.RecepcionYDespachoLargaDistanciaForm());
+            //Application.Run(new RecepcionYDespachoLargaDistancia.RecepcionYDespachoLargaDistanciaForm());
             //Application.Run(new RecepcionYDespachoUltimaMillaCD.RecepcionYDespachoUltimaMillaForm());
-            
+            //Application.Run(new EstadoCuentaCorrienteCliente.EstadoCuentaCorrienteClienteForm());
+
         }
     }
 }

@@ -29,53 +29,36 @@
         private void InitializeComponent()
         {
             ResultadoGroupBox = new GroupBox();
-            comboBox1 = new ComboBox();
-            PeriodoLabel = new Label();
             ResultadosxEmpresaListView = new ListView();
             empresaTransporteColumn = new ColumnHeader();
             CostoMensualColumn = new ColumnHeader();
             VentasMensualesColumn = new ColumnHeader();
             ResultadoColumn = new ColumnHeader();
+            PeriodoLabel = new Label();
             CancelarButton = new Button();
+            PeriodoDateTimePicker = new DateTimePicker();
+            SeleccionPeriodoGroupBox = new GroupBox();
+            BuscarResultadosxPeriodoButton = new Button();
             ResultadoGroupBox.SuspendLayout();
+            SeleccionPeriodoGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // ResultadoGroupBox
             // 
-            ResultadoGroupBox.Controls.Add(comboBox1);
-            ResultadoGroupBox.Controls.Add(PeriodoLabel);
             ResultadoGroupBox.Controls.Add(ResultadosxEmpresaListView);
-            ResultadoGroupBox.Location = new Point(12, 39);
+            ResultadoGroupBox.Location = new Point(12, 123);
             ResultadoGroupBox.Name = "ResultadoGroupBox";
-            ResultadoGroupBox.Size = new Size(710, 276);
+            ResultadoGroupBox.Size = new Size(649, 254);
             ResultadoGroupBox.TabIndex = 1;
             ResultadoGroupBox.TabStop = false;
-            ResultadoGroupBox.Text = "Resultados por empresa";
-            // 
-            // comboBox1
-            // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(175, 33);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 2;
-            // 
-            // PeriodoLabel
-            // 
-            PeriodoLabel.AutoSize = true;
-            PeriodoLabel.Location = new Point(6, 36);
-            PeriodoLabel.Name = "PeriodoLabel";
-            PeriodoLabel.Size = new Size(163, 15);
-            PeriodoLabel.TabIndex = 1;
-            PeriodoLabel.Text = "Indique el periodo a visualizar";
+            ResultadoGroupBox.Text = "Resultados";
             // 
             // ResultadosxEmpresaListView
             // 
             ResultadosxEmpresaListView.Columns.AddRange(new ColumnHeader[] { empresaTransporteColumn, CostoMensualColumn, VentasMensualesColumn, ResultadoColumn });
-            ResultadosxEmpresaListView.Location = new Point(41, 112);
+            ResultadosxEmpresaListView.Location = new Point(19, 22);
             ResultadosxEmpresaListView.Name = "ResultadosxEmpresaListView";
-            ResultadosxEmpresaListView.Size = new Size(608, 97);
+            ResultadosxEmpresaListView.Size = new Size(608, 218);
             ResultadosxEmpresaListView.TabIndex = 0;
             ResultadosxEmpresaListView.UseCompatibleStateImageBehavior = false;
             ResultadosxEmpresaListView.View = View.Details;
@@ -100,26 +83,74 @@
             ResultadoColumn.Text = "Resultado";
             ResultadoColumn.Width = 150;
             // 
+            // PeriodoLabel
+            // 
+            PeriodoLabel.AutoSize = true;
+            PeriodoLabel.Font = new Font("Segoe UI", 9F);
+            PeriodoLabel.Location = new Point(6, 45);
+            PeriodoLabel.Name = "PeriodoLabel";
+            PeriodoLabel.Size = new Size(281, 15);
+            PeriodoLabel.TabIndex = 1;
+            PeriodoLabel.Text = "Indique el periodo cuyos resultados desea visualizar:";
+            // 
             // CancelarButton
             // 
-            CancelarButton.Location = new Point(636, 369);
+            CancelarButton.Location = new Point(564, 403);
             CancelarButton.Name = "CancelarButton";
             CancelarButton.Size = new Size(75, 23);
             CancelarButton.TabIndex = 2;
             CancelarButton.Text = "Cancelar";
             CancelarButton.UseVisualStyleBackColor = true;
+            CancelarButton.Click += CancelarButton_Click;
+            // 
+            // PeriodoDateTimePicker
+            // 
+            PeriodoDateTimePicker.CustomFormat = "MMMM yyyy";
+            PeriodoDateTimePicker.Format = DateTimePickerFormat.Custom;
+            PeriodoDateTimePicker.Location = new Point(293, 41);
+            PeriodoDateTimePicker.MaxDate = new DateTime(2209, 12, 31, 0, 0, 0, 0);
+            PeriodoDateTimePicker.Name = "PeriodoDateTimePicker";
+            PeriodoDateTimePicker.ShowUpDown = true;
+            PeriodoDateTimePicker.Size = new Size(163, 23);
+            PeriodoDateTimePicker.TabIndex = 11;
+            PeriodoDateTimePicker.Value = new DateTime(2025, 10, 7, 0, 0, 0, 0);
+            // 
+            // SeleccionPeriodoGroupBox
+            // 
+            SeleccionPeriodoGroupBox.Controls.Add(BuscarResultadosxPeriodoButton);
+            SeleccionPeriodoGroupBox.Controls.Add(PeriodoDateTimePicker);
+            SeleccionPeriodoGroupBox.Controls.Add(PeriodoLabel);
+            SeleccionPeriodoGroupBox.Location = new Point(12, 12);
+            SeleccionPeriodoGroupBox.Name = "SeleccionPeriodoGroupBox";
+            SeleccionPeriodoGroupBox.Size = new Size(649, 96);
+            SeleccionPeriodoGroupBox.TabIndex = 3;
+            SeleccionPeriodoGroupBox.TabStop = false;
+            SeleccionPeriodoGroupBox.Text = "Selección";
+            // 
+            // BuscarResultadosxPeriodoButton
+            // 
+            BuscarResultadosxPeriodoButton.Location = new Point(474, 41);
+            BuscarResultadosxPeriodoButton.Name = "BuscarResultadosxPeriodoButton";
+            BuscarResultadosxPeriodoButton.Size = new Size(75, 23);
+            BuscarResultadosxPeriodoButton.TabIndex = 12;
+            BuscarResultadosxPeriodoButton.Text = "Buscar";
+            BuscarResultadosxPeriodoButton.UseVisualStyleBackColor = true;
+            BuscarResultadosxPeriodoButton.Click += BuscarResultadosxPeriodoButton_Click;
             // 
             // MonitoreoResultadosForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(754, 402);
+            ClientSize = new Size(677, 441);
+            Controls.Add(SeleccionPeriodoGroupBox);
             Controls.Add(CancelarButton);
             Controls.Add(ResultadoGroupBox);
             Name = "MonitoreoResultadosForm";
             Text = "Monitoreo de resultados";
+            Load += MonitoreoResultadosForm_Load;
             ResultadoGroupBox.ResumeLayout(false);
-            ResultadoGroupBox.PerformLayout();
+            SeleccionPeriodoGroupBox.ResumeLayout(false);
+            SeleccionPeriodoGroupBox.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -131,7 +162,9 @@
         private ColumnHeader ResultadoColumn;
         private Button CancelarButton;
         private ColumnHeader empresaTransporteColumn;
-        private ComboBox comboBox1;
         private Label PeriodoLabel;
+        private DateTimePicker PeriodoDateTimePicker;
+        private GroupBox SeleccionPeriodoGroupBox;
+        private Button BuscarResultadosxPeriodoButton;
     }
 }
