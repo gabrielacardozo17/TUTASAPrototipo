@@ -33,10 +33,9 @@
             BuscarEstadoGuiaButton = new Button();
             NumGuiaLabel = new Label();
             NroGuiaLabel = new Label();
-            NroGuiaBusquedaTextBox = new TextBox();
-            ResultadoComboBox = new GroupBox();
+            NroGuiaBusquedaGroupBox = new TextBox();
+            ResultadoGroupBox = new GroupBox();
             label6 = new Label();
-            label4 = new Label();
             label3 = new Label();
             HistorialGuiaListView = new ListView();
             FechaColumn = new ColumnHeader();
@@ -44,7 +43,7 @@
             UbicacionColumn = new ColumnHeader();
             CancelarButton = new Button();
             groupBox1.SuspendLayout();
-            ResultadoComboBox.SuspendLayout();
+            ResultadoGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -60,7 +59,7 @@
             groupBox1.Controls.Add(BuscarEstadoGuiaButton);
             groupBox1.Controls.Add(NumGuiaLabel);
             groupBox1.Controls.Add(NroGuiaLabel);
-            groupBox1.Controls.Add(NroGuiaBusquedaTextBox);
+            groupBox1.Controls.Add(NroGuiaBusquedaGroupBox);
             groupBox1.Location = new Point(61, 36);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(434, 125);
@@ -94,28 +93,25 @@
             NroGuiaLabel.Size = new Size(349, 15);
             NroGuiaLabel.TabIndex = 4;
             NroGuiaLabel.Text = "Ingrese el número de guía de la encomienda que desea consultar";
-            NroGuiaLabel.Click += label3_Click;
             // 
-            // NroGuiaBusquedaTextBox
+            // NroGuiaBusquedaGroupBox
             // 
-            NroGuiaBusquedaTextBox.Location = new Point(108, 59);
-            NroGuiaBusquedaTextBox.Name = "NroGuiaBusquedaTextBox";
-            NroGuiaBusquedaTextBox.Size = new Size(233, 23);
-            NroGuiaBusquedaTextBox.TabIndex = 3;
-            NroGuiaBusquedaTextBox.TextChanged += NroGuiaBusquedaTextBox_TextChanged;
+            NroGuiaBusquedaGroupBox.Location = new Point(108, 59);
+            NroGuiaBusquedaGroupBox.Name = "NroGuiaBusquedaGroupBox";
+            NroGuiaBusquedaGroupBox.Size = new Size(233, 23);
+            NroGuiaBusquedaGroupBox.TabIndex = 3;
             // 
-            // ResultadoComboBox
+            // ResultadoGroupBox
             // 
-            ResultadoComboBox.Controls.Add(label6);
-            ResultadoComboBox.Controls.Add(label4);
-            ResultadoComboBox.Controls.Add(label3);
-            ResultadoComboBox.Controls.Add(HistorialGuiaListView);
-            ResultadoComboBox.Location = new Point(69, 188);
-            ResultadoComboBox.Name = "ResultadoComboBox";
-            ResultadoComboBox.Size = new Size(426, 170);
-            ResultadoComboBox.TabIndex = 2;
-            ResultadoComboBox.TabStop = false;
-            ResultadoComboBox.Text = "Resultado de la búsqueda";
+            ResultadoGroupBox.Controls.Add(label6);
+            ResultadoGroupBox.Controls.Add(label3);
+            ResultadoGroupBox.Controls.Add(HistorialGuiaListView);
+            ResultadoGroupBox.Location = new Point(69, 188);
+            ResultadoGroupBox.Name = "ResultadoGroupBox";
+            ResultadoGroupBox.Size = new Size(426, 170);
+            ResultadoGroupBox.TabIndex = 2;
+            ResultadoGroupBox.TabStop = false;
+            ResultadoGroupBox.Text = "Resultado de la búsqueda";
             // 
             // label6
             // 
@@ -123,19 +119,8 @@
             label6.BackColor = SystemColors.ButtonHighlight;
             label6.Location = new Point(246, 60);
             label6.Name = "label6";
-            label6.Size = new Size(65, 15);
+            label6.Size = new Size(0, 15);
             label6.TabIndex = 5;
-            label6.Text = "CD Rosario";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = SystemColors.ButtonHighlight;
-            label4.Location = new Point(126, 60);
-            label4.Name = "label4";
-            label4.Size = new Size(56, 15);
-            label4.TabIndex = 4;
-            label4.Text = "Impuesta";
             // 
             // label3
             // 
@@ -143,9 +128,8 @@
             label3.BackColor = SystemColors.ButtonHighlight;
             label3.Location = new Point(29, 60);
             label3.Name = "label3";
-            label3.Size = new Size(65, 15);
+            label3.Size = new Size(0, 15);
             label3.TabIndex = 3;
-            label3.Text = "09/09/2025";
             // 
             // HistorialGuiaListView
             // 
@@ -187,15 +171,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(595, 431);
             Controls.Add(CancelarButton);
-            Controls.Add(ResultadoComboBox);
+            Controls.Add(ResultadoGroupBox);
             Controls.Add(groupBox1);
             Controls.Add(label1);
             Name = "ConsultarEstadoForm";
             Text = "Consulta de Encomiendas";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ResultadoComboBox.ResumeLayout(false);
-            ResultadoComboBox.PerformLayout();
+            ResultadoGroupBox.ResumeLayout(false);
+            ResultadoGroupBox.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -204,14 +188,13 @@
 
         private Label label1;
         private GroupBox groupBox1;
-        private TextBox NroGuiaBusquedaTextBox;
-        private GroupBox ResultadoComboBox;
+        private TextBox NroGuiaBusquedaGroupBox;
+        private GroupBox ResultadoGroupBox;
         private ListView HistorialGuiaListView;
         private ColumnHeader FechaColumn;
         private ColumnHeader EstadoColumn;
         private Button CancelarButton;
         private Label NroGuiaLabel;
-        private Label label4;
         private Label label3;
         private Button BuscarEstadoGuiaButton;
         private Label NumGuiaLabel;

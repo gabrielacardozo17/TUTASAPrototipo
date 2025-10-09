@@ -35,12 +35,6 @@
             DatosLabel = new Label();
             ResultadosGroupBox = new GroupBox();
             MontoTotalLabel = new Label();
-            label8 = new Label();
-            label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            label3 = new Label();
             IndicacionTotalLabel = new Label();
             DetalleFacturaciónListView = new ListView();
             GuiaColumn = new ColumnHeader();
@@ -101,19 +95,13 @@
             DatosLabel.AutoSize = true;
             DatosLabel.Location = new Point(6, 58);
             DatosLabel.Name = "DatosLabel";
-            DatosLabel.Size = new Size(92, 15);
+            DatosLabel.Size = new Size(93, 15);
             DatosLabel.TabIndex = 0;
             DatosLabel.Text = "CUIT del cliente:";
             // 
             // ResultadosGroupBox
             // 
             ResultadosGroupBox.Controls.Add(MontoTotalLabel);
-            ResultadosGroupBox.Controls.Add(label8);
-            ResultadosGroupBox.Controls.Add(label7);
-            ResultadosGroupBox.Controls.Add(label6);
-            ResultadosGroupBox.Controls.Add(label5);
-            ResultadosGroupBox.Controls.Add(label4);
-            ResultadosGroupBox.Controls.Add(label3);
             ResultadosGroupBox.Controls.Add(IndicacionTotalLabel);
             ResultadosGroupBox.Controls.Add(DetalleFacturaciónListView);
             ResultadosGroupBox.Controls.Add(IndicacionMontosLabel);
@@ -134,72 +122,12 @@
             MontoTotalLabel.TabIndex = 6;
             MontoTotalLabel.Text = "$2000";
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.BackColor = SystemColors.ControlLightLight;
-            label8.Location = new Point(717, 81);
-            label8.Name = "label8";
-            label8.Size = new Size(37, 15);
-            label8.TabIndex = 5;
-            label8.Text = "$2000";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.BackColor = SystemColors.ControlLightLight;
-            label7.Location = new Point(657, 81);
-            label7.Name = "label7";
-            label7.Size = new Size(13, 15);
-            label7.TabIndex = 5;
-            label7.Text = "S";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.BackColor = SystemColors.ControlLightLight;
-            label6.Location = new Point(517, 81);
-            label6.Name = "label6";
-            label6.Size = new Size(56, 15);
-            label6.TabIndex = 4;
-            label6.Text = "Chivilcoy";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = SystemColors.ControlLightLight;
-            label5.Location = new Point(363, 81);
-            label5.Name = "label5";
-            label5.Size = new Size(38, 15);
-            label5.TabIndex = 4;
-            label5.Text = "Lanús";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = SystemColors.ControlLightLight;
-            label4.Location = new Point(213, 81);
-            label4.Name = "label4";
-            label4.Size = new Size(65, 15);
-            label4.TabIndex = 4;
-            label4.Text = "09/09/2025";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = SystemColors.ControlLightLight;
-            label3.Location = new Point(49, 81);
-            label3.Name = "label3";
-            label3.Size = new Size(70, 15);
-            label3.TabIndex = 3;
-            label3.Text = "LN02365845";
-            // 
             // IndicacionTotalLabel
             // 
             IndicacionTotalLabel.AutoSize = true;
             IndicacionTotalLabel.Location = new Point(6, 190);
             IndicacionTotalLabel.Name = "IndicacionTotalLabel";
-            IndicacionTotalLabel.Size = new Size(113, 15);
+            IndicacionTotalLabel.Size = new Size(116, 15);
             IndicacionTotalLabel.TabIndex = 2;
             IndicacionTotalLabel.Text = "TOTAL A FACTURAR:";
             // 
@@ -309,11 +237,5 @@
         private Button EmitirFacturaButton;
         private Button CancelarButton;
         private Label MontoTotalLabel;
-        private Label label8;
-        private Label label7;
-        private Label label6;
-        private Label label5;
-        private Label label4;
-        private Label label3;
     }
 }
