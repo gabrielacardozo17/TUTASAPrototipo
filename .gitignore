@@ -361,5 +361,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/EntregarEncomiendaEnAgencia/EntregarEncomiendaEnAgenciaModelo.cs
-/Program.cs
