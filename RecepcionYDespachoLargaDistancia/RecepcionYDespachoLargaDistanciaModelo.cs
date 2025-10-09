@@ -53,27 +53,27 @@
             {
                 // --- Servicio 10010101 (Mixto Original) ---
                 // A RECIBIR (Estado: En Viaje)
-                new Encomienda { NroGuia = "T0010001", Tamano = "L", Destino = "CD CABA", NroServicioAsignado = "10010101", Estado = "En Viaje"},
-                new Encomienda { NroGuia = "T0010002", Tamano = "M", Destino = "CD CABA", NroServicioAsignado = "10010101", Estado = "En Viaje"},
+                new Encomienda { NroGuia = "0010001", Tamano = "L", Destino = "CD CABA", NroServicioAsignado = "10010101", Estado = "En Viaje"},
+                new Encomienda { NroGuia = "0010002", Tamano = "M", Destino = "CD CABA", NroServicioAsignado = "10010101", Estado = "En Viaje"},
                 // A DESPACHAR (Estado: En CD Origen)
-                new Encomienda { NroGuia = "T0020005", Tamano = "S", Destino = "CD Rosario", NroServicioAsignado = "10010101", Estado = "En CD Origen"},
-                new Encomienda { NroGuia = "T0020006", Tamano = "XL", Destino = "CD Rosario", NroServicioAsignado = "10010101", Estado = "En CD Origen"},
+                new Encomienda { NroGuia = "0020005", Tamano = "S", Destino = "CD Rosario", NroServicioAsignado = "10010101", Estado = "En CD Origen"},
+                new Encomienda { NroGuia = "0020006", Tamano = "XL", Destino = "CD Rosario", NroServicioAsignado = "10010101", Estado = "En CD Origen"},
                 
                 // --- Servicio 10020202 (Mixto Ampliado) ---
                 // A RECIBIR (Estado: En Viaje)
-                new Encomienda { NroGuia = "T0030010", Tamano = "XL", Destino = "CD La Plata", NroServicioAsignado = "10020202", Estado = "En Viaje"},
+                new Encomienda { NroGuia = "0030010", Tamano = "XL", Destino = "CD La Plata", NroServicioAsignado = "10020202", Estado = "En Viaje"},
                 // A DESPACHAR (Estado: En CD Origen)
-                new Encomienda { NroGuia = "T0030011", Tamano = "M", Destino = "CD La Plata", NroServicioAsignado = "10020202", Estado = "En CD Origen"},
+                new Encomienda { NroGuia = "0030011", Tamano = "M", Destino = "CD La Plata", NroServicioAsignado = "10020202", Estado = "En CD Origen"},
                 
                 // --- Servicio 20030303 (Solo Despachar) ---
                 // A DESPACHAR (Estado: En CD Origen)
-                new Encomienda { NroGuia = "T0050015", Tamano = "S", Destino = "CD Tucumán", NroServicioAsignado = "20030303", Estado = "En CD Origen"},
-                new Encomienda { NroGuia = "T0050016", Tamano = "L", Destino = "CD Tucumán", NroServicioAsignado = "20030303", Estado = "En CD Origen"},
+                new Encomienda { NroGuia = "0050015", Tamano = "S", Destino = "CD Tucumán", NroServicioAsignado = "20030303", Estado = "En CD Origen"},
+                new Encomienda { NroGuia = "0050016", Tamano = "L", Destino = "CD Tucumán", NroServicioAsignado = "20030303", Estado = "En CD Origen"},
 
                 // --- Servicio 30040404 (Solo Recibir) ---
                 // A RECIBIR (Estado: En Viaje)
-                new Encomienda { NroGuia = "T0060020", Tamano = "M", Destino = "CD CABA", NroServicioAsignado = "30040404", Estado = "En Viaje"},
-                new Encomienda { NroGuia = "T0060021", Tamano = "XL", Destino = "CD CABA", NroServicioAsignado = "30040404", Estado = "En Viaje"}
+                new Encomienda { NroGuia = "0060020", Tamano = "M", Destino = "CD CABA", NroServicioAsignado = "30040404", Estado = "En Viaje"},
+                new Encomienda { NroGuia = "0060021", Tamano = "XL", Destino = "CD CABA", NroServicioAsignado = "30040404", Estado = "En Viaje"}
                 
                 // NOTA: El Servicio 50000000 no tiene guías asignadas aquí para probar el caso de "cero resultados".
             };
