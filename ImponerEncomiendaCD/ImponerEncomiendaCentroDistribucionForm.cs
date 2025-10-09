@@ -153,14 +153,33 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
             if (tipo is TipoEntrega.Agencia)
             {
+                AgenciaComboBox.DisplayMember = "Value";
+                AgenciaComboBox.ValueMember = "Key";
+
                 if (LocalidadxProvinciaComboBox.SelectedValue is int locId)
                 {
-                    AgenciaComboBox.DisplayMember = "Value";
-                    AgenciaComboBox.ValueMember = "Key";
-                    AgenciaComboBox.DataSource = _modelo.GetAgencias(locId).ToList();
+                    var agencias = _modelo.GetAgencias(locId).ToList();
+                    if (agencias.Count == 0)
+                    {
+                        // No hay agencias para esa localidad: revertimos selección
+                        AgenciaComboBox.DataSource = null;
+                        AgenciaComboBox.Enabled = false;
+                        TipoEntregaComboBox.SelectedIndex = -1;
+                        MessageBox.Show("La localidad seleccionada no tiene agencias. Elegí otro tipo de entrega.", "Validación");
+                        return;
+                    }
+
+                    AgenciaComboBox.DataSource = agencias;
+                    AgenciaComboBox.Enabled = true;
+                    AgenciaComboBox.SelectedIndex = -1;
                 }
-                else AgenciaComboBox.DataSource = null;
+                else
+                {
+                    AgenciaComboBox.DataSource = null;
+                    AgenciaComboBox.Enabled = false;
+                }
             }
+
             else if (tipo is TipoEntrega.CD)
             {
                 if (ProvinciaComboBox.SelectedItem is KeyValuePair<int, string> { Key: var provId })
@@ -254,30 +273,34 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
             try
             {
+                // Tomo el CD de origen desde la etiqueta (ej.: "CD: CD CABA Oeste")
                 var cdOrigenNombre = (CDLabel?.Text ?? "").Replace("CD:", "").Trim();
 
-                var guias = _modelo.ConfirmarImposicion(
-        cuit,
-        NombreDestinatarioTextBox.Text.Trim(),
-        ApellidoDestinatarioTextBox.Text.Trim(),
-        DNIDestinatarioTextBox.Text.Trim(),
-        provId, provNombre,
-        esOtras ? (int?)null : locId,
-        esOtras ? null : locNombre,
-        esOtras,
-        tipo,
-        direccion, cp,
-        agenciaId, agenciaNombre,
-        cdDestinoId, cdDestinoNombre,
-        cantS, cantM, cantL, cantXL,
-        0, cdOrigenNombre
-    );
+                // Usamos el helper del Modelo para obtener el ID real del CD.
+                // Si no se encuentra, queda 0 y tu Modelo aplica el fallback al primer CD de la provincia.
+                var cdOrigenId = _modelo.GetCDIdPorNombre(cdOrigenNombre) ?? 0;
 
-                // Mostrar listado de guías generadas
+                var guias = _modelo.ConfirmarImposicion(
+                    cuit,
+                    NombreDestinatarioTextBox.Text.Trim(),
+                    ApellidoDestinatarioTextBox.Text.Trim(),
+                    DNIDestinatarioTextBox.Text.Trim(),
+                    provId, provNombre,
+                    esOtras ? (int?)null : locId,
+                    esOtras ? null : locNombre,
+                    esOtras,
+                    tipo,
+                    direccion, cp,
+                    agenciaId, agenciaNombre,
+                    cdDestinoId, cdDestinoNombre,
+                    cantS, cantM, cantL, cantXL,
+                    cdOrigenId, cdOrigenNombre   // <<— acá la diferencia
+                );
+
+                // Mostrar listado de guías generadas (ahora en formato 1LLLNNNNN)
                 var numeros = guias.Select(g => g.Numero).ToList();
-                string listado = numeros.Count <= 5
-                    ? string.Join(", ", numeros)
-                    : $"{numeros.First()} … {numeros.Last()}";
+                string listado = numeros.Count <= 5 ? string.Join(", ", numeros)
+                                                    : $"{numeros.First()} … {numeros.Last()}";
 
                 MessageBox.Show(
                     $"Operación finalizada con éxito.\nSe generaron {numeros.Count} guías:\n{listado}",
@@ -287,19 +310,19 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 );
 
                 LimpiarFormulario();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
         }
 
         private void LimpiarFormulario()
         {
             // Remitente
             LimpiarRemitente();   // <-- borra CUIT + labels
-            
+
             NombreClienteResult.Text = TelefonoClienteResult.Text = DireccionClienteResult.Text = "";
 
             NombreDestinatarioTextBox.Text = "";
@@ -350,6 +373,10 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             DireccionClienteResult.Text = "";
         }
 
+        private void CDResult_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
