@@ -69,9 +69,7 @@
             GuiasAEntregarCDListView.TabIndex = 7;
             GuiasAEntregarCDListView.UseCompatibleStateImageBehavior = false;
             GuiasAEntregarCDListView.View = View.Details;
-            // ********************************************************************************
-            // LÍNEA INCORRECTA ELIMINADA DE AQUÍ
-            // ********************************************************************************
+            GuiasAEntregarCDListView.SelectedIndexChanged += EntregarEncomiendaCDForm_Load;
             // 
             // NroGuiaColumn
             // 
@@ -232,7 +230,7 @@
             Controls.Add(BusquedaAgenciaGroupBox);
             Name = "EntregarEncomiendaCDForm";
             Text = "Entrega de encomiendas en centro de distribución";
-            this.Load += new System.EventHandler(this.EntregarEncomiendaCDForm_Load);
+            Load += EntregarEncomiendaCDForm_Load;
             EntregaGuiasGroupBox.ResumeLayout(false);
             BusquedaAgenciaGroupBox.ResumeLayout(false);
             BusquedaAgenciaGroupBox.PerformLayout();

@@ -98,13 +98,9 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
             this.Close();
         }
 
-        // -------------------------------------------------------------------------
-        // MÉTODOS AUXILIARES
-        // -------------------------------------------------------------------------
-
         private void CargarGuiasPendientes(string dni)
         {
-            string cdActual = CDResult.Text; // CORREGIDO: Obteniendo el CD del label correcto
+            string cdActual = CDResult.Text;
             var guias = modelo.BuscarGuiasPendientes(dni, cdActual);
 
             if (guias.Count == 0)

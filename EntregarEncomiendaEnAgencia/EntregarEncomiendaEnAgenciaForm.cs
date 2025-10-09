@@ -13,17 +13,13 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
             InitializeComponent();
             modelo = new EntregarEncomiendaEnAgenciaModelo();
         }
-
         private void EntregarEncomiendaEnAgenciaForm_Load(object sender, EventArgs e)
         {
-            // Simulación de datos de sesión
-            UsuarioResult.Text = "Silvio Caraccia";
-            AgenciaResult.Text = "Florida Locutorio"; // Agencia actual
-            NombreDestinatarioResult.Text = ""; // CORREGIDO
-            ApellidoDestinatarioResult.Text = ""; // CORREGIDO
+            UsuarioResult.Text = "f.martinez";
+            AgenciaResult.Text = "CABA - Flores";
+            NombreDestinatarioResult.Text = "";
+            ApellidoDestinatarioResult.Text = "";
         }
-
-        // MANEJADORES DE EVENTOS...
 
         private void BuscarDestinararioButton_Click(object sender, EventArgs e)
         {

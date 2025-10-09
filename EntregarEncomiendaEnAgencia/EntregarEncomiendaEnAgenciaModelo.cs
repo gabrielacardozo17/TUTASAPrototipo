@@ -1,42 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using TUTASAPrototipo.EntregarEncomiendaCD;
 
 namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 {
-    // -------------------------------------------------------------------------
-    // ENUMS
-    // -------------------------------------------------------------------------
-    public enum Tamanio
-    {
-        S,
-        M,
-        L,
-        XL
-    }
-
-    // -------------------------------------------------------------------------
-    // CLASES DE DOMINIO
-    // -------------------------------------------------------------------------
-    public class Destinatario
-    {
-        public required string DNI { get; set; }
-        public required string Nombre { get; set; }
-        public required string Apellido { get; set; }
-    }
-
-    public class Guia
-    {
-        public string NumeroGuia { get; set; }
-        public Tamanio Tamanio { get; set; }
-        public required string DniDestinatario { get; set; }
-        public required string AgenciaDestino { get; set; } // Campo clave para este caso de uso
-        public bool Entregada { get; set; }
-    }
-
-    // -------------------------------------------------------------------------
-    // MODELO DE LA PANTALLA
-    // -------------------------------------------------------------------------
     public class EntregarEncomiendaEnAgenciaModelo
     {
         public List<Destinatario> Destinatarios { get; set; }
@@ -44,32 +11,27 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 
         public EntregarEncomiendaEnAgenciaModelo()
         {
-            // Carga de datos de prueba
             InicializarDatos();
         }
-
         private void InicializarDatos()
         {
             Destinatarios = new List<Destinatario>
     {
-            new Destinatario { DNI = "22333444", Nombre = "Ana", Apellido = "Lopez" },
-            new Destinatario { DNI = "33444555", Nombre = "Luis", Apellido = "Martinez" },
-            new Destinatario { DNI = "12345678", Nombre = "Juan", Apellido = "Perez" }
+        // Datos de prueba mejorados
+            new Destinatario { DNI = "32987654", Nombre = "Julieta", Apellido = "Gomez" },
+            new Destinatario { DNI = "35432109", Nombre = "Matias", Apellido = "Fernandez" },
+            new Destinatario { DNI = "27123456", Nombre = "Pedro", Apellido = "Rodriguez" }
     };
 
             GuiasPendientes = new List<Guia>
     {
-        // CORREGIDO: Se eliminaron los espacios en blanco de "AgenciaDestino"
-            new Guia { NumeroGuia = "AG-101", Tamanio = Tamanio.S, DniDestinatario = "22333444", AgenciaDestino = "FLORES-01", Entregada = false },
-            new Guia { NumeroGuia = "AG-102", Tamanio = Tamanio.M, DniDestinatario = "22333444", AgenciaDestino = "FLORES-01", Entregada = false },
-            new Guia { NumeroGuia = "AG-103", Tamanio = Tamanio.L, DniDestinatario = "33444555", AgenciaDestino = "BELGRANO-03", Entregada = false },
-            new Guia { NumeroGuia = "CD-001", Tamanio = Tamanio.S, DniDestinatario = "12345678", AgenciaDestino = "FLORES-01", Entregada = true }
+        // CORREGIDO: Nombres de agencias y datos de prueba actualizados
+            new Guia { NumeroGuia = "001100101", Tamanio = Tamanio.S, DniDestinatario = "32987654", AgenciaDestino = "CABA - Flores", Entregada = false },
+            new Guia { NumeroGuia = "001100102", Tamanio = Tamanio.M, DniDestinatario = "32987654", AgenciaDestino = "CABA - Flores", Entregada = false },
+            new Guia { NumeroGuia = "001200103", Tamanio = Tamanio.L, DniDestinatario = "35432109", AgenciaDestino = "CABA - Belgrano", Entregada = false },
+            new Guia { NumeroGuia = "100300001", Tamanio = Tamanio.S, DniDestinatario = "27123456", AgenciaDestino = "Rosario", Entregada = true } // Guía para otro destino y ya entregada
     };
         }
-
-        // -------------------------------------------------------------------------
-        // LÓGICA DE NEGOCIO (VALIDACIONES N3-N4)
-        // -------------------------------------------------------------------------
 
         public Destinatario BuscarDestinatarioPorDNI(string dni)
         {
@@ -78,7 +40,6 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 
         public List<Guia> BuscarGuiasPendientes(string dni, string agenciaActual)
         {
-            // Busca guías pendientes de entrega para un DNI en la agencia actual.
             return GuiasPendientes.Where(g => g.DniDestinatario == dni && g.AgenciaDestino == agenciaActual && !g.Entregada).ToList();
         }
 
@@ -92,7 +53,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
                     guia.Entregada = true;
                 }
             }
-            return true; // Simula éxito en la actualización
+            return true;
         }
     }
 }
