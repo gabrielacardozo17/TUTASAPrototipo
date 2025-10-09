@@ -9,11 +9,4 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
         Cumplida,
         NoCumplida
     }
-
-    // Tipo de guía en última milla
-    public enum TipoGuia
-    {
-        Distribucion,
-        Retiro
-    }
 }

@@ -1,13 +1,5 @@
 ﻿namespace TUTASAPrototipo.ImponerEncomiendaCD
 {
-    // Para usar como propiedad en Guía y en otras pantallas
-    public enum TipoEntrega
-    {
-        Domicilio = 0,
-        Agencia = 1,
-        CD = 2
-    }
-
     // Estados generales (pantalla de admision va a usar el primero)
     public enum EstadoGuia
     {
@@ -21,7 +13,5 @@
         Entregada = 50,
         SeleccionadaParaRuta = 60
     }
-
-    public enum TamanoBulto { S, M, L, XL }
 
 }

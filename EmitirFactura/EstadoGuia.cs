@@ -7,6 +7,4 @@
         IntentoEntrega,
         Facturada
     }
-
-    public enum TamanoGuia { S, M, L, XL }
 }
