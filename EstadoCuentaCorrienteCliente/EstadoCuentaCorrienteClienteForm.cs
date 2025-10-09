@@ -45,8 +45,7 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
-                CuitClienteMaskedText.Clear();
-                CuitClienteMaskedText.Focus();
+                LimpiarFormulario();
                 return;
             }
 
@@ -58,15 +57,14 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
-                CuitClienteMaskedText.Clear();
-                CuitClienteMaskedText.Focus();
+                LimpiarFormulario(); 
                 return;
             }
 
             //Valido si el periodo seleccionado es correcto
             if (PeriodoDateTimePicker.Value > DateTime.Now)
             {
-                SaldoAlCierre.Text = "Saldo al cierre del período: -";
+                LimpiarFormulario();
                 MessageBox.Show("El período seleccionado no es válido (futuro).",
                                 "Error",
                                 MessageBoxButtons.OK,
@@ -78,13 +76,13 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
             //valido que el prefijo corresponda a una persona juridica
             if (!Modelo.ValidarPrefijo(cuit))
             {
+                LimpiarFormulario();
                 MessageBox.Show("El formato de CUIT ingresado es inválido. Verifique los datos.",
                    "Error",
                    MessageBoxButtons.OK,
                    MessageBoxIcon.Error
                 );
-                CuitClienteMaskedText.Clear();
-                CuitClienteMaskedText.Focus();
+            
                 return;
             }
 
@@ -99,8 +97,7 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
                     MessageBoxIcon.Error
                 );
 
-                CuitClienteMaskedText.Clear();
-                CuitClienteMaskedText.Focus();
+                LimpiarFormulario();
                 return;
             }
 
@@ -118,9 +115,7 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
                     MessageBoxIcon.Information
                 );
 
-                CuitClienteMaskedText.Clear();
-                
-                MovimientosListView.Items.Clear();
+                LimpiarFormulario(); 
                 return;
             }
 
@@ -150,6 +145,15 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
         private void PeriodoDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void LimpiarFormulario()
+        {
+            CuitClienteMaskedText.Clear();
+            SaldoAlCierre.Text = "Saldo al cierre del período: -";
+            MovimientosListView.Items.Clear();
+            CuitClienteMaskedText.Focus();
         }
     }
 }
