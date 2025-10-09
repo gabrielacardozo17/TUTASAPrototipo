@@ -140,6 +140,7 @@
             BuscarDestinararioButton.TabIndex = 2;
             BuscarDestinararioButton.Text = "Buscar";
             BuscarDestinararioButton.UseVisualStyleBackColor = true;
+            BuscarDestinararioButton.Click += BuscarDestinararioButton_Click;
             // 
             // DNIDestinatarioTextBox
             // 
@@ -165,6 +166,7 @@
             ConfirmarEntregaButton.TabIndex = 6;
             ConfirmarEntregaButton.Text = "Confirmar";
             ConfirmarEntregaButton.UseVisualStyleBackColor = true;
+            ConfirmarEntregaButton.Click += ConfirmarEntregaButton_Click;
             // 
             // CancelarButton
             // 
@@ -174,6 +176,7 @@
             CancelarButton.TabIndex = 7;
             CancelarButton.Text = "Cancelar";
             CancelarButton.UseVisualStyleBackColor = true;
+            CancelarButton.Click += CancelarButton_Click;
             // 
             // AgenciaLabel
             // 
@@ -226,6 +229,7 @@
             Controls.Add(BusquedaAgenciaGroupBox);
             Name = "EntregarEncomiendaEnAgenciaForm";
             Text = "Entrega de encomiendas en agencia";
+            Load += EntregarEncomiendaEnAgenciaForm_Load;
             EntregaGuiasGroupBox.ResumeLayout(false);
             BusquedaAgenciaGroupBox.ResumeLayout(false);
             BusquedaAgenciaGroupBox.PerformLayout();
