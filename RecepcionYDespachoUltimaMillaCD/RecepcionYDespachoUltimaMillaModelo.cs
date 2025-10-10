@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
+﻿namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 {
     public class RecepcionYDespachoUltimaMillaCDModelo
     {
