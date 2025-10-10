@@ -5,7 +5,7 @@
         public string NumeroGuia { get; set; }
         public Tamanio Tamanio { get; set; }
         public string DniDestinatario { get; set; }
-        public string CDDestino { get; set; }
-        public bool Entregada { get; set; }
+        public string Estado { get; set; }
+        public string Ubicacion { get; set; }
     }
 }

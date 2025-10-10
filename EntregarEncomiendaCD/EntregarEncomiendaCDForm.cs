@@ -14,12 +14,15 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
             modelo = new EntregarEncomiendaCDModelo();
         }
 
+        // Reemplazar este método en EntregarEncomiendaCDForm.cs
+
         private void EntregarEncomiendaCDForm_Load(object sender, EventArgs e)
         {
-            UsuarioResult.Text = "Miguel A. Russo"; 
-            CDResult.Text = "Rosario";         
-            NombreResultLabel.Text = "";          
-            ApellidoResultLabel.Text = "";        
+            // Simulación de datos de sesión con nombres realistas y consistentes con el Modelo
+            UsuarioResult.Text = "p.gonzalez";
+            CDResult.Text = "CD CABA Oeste"; // CORREGIDO: Coincide con los datos de prueba
+            NombreResultLabel.Text = "";
+            ApellidoResultLabel.Text = "";
         }
 
         // -------------------------------------------------------------------------

@@ -2,8 +2,8 @@
 {
     public class Destinatario
     {
-        public required string DNI { get; set; }
-        public required string Nombre { get; set; }
-        public required string Apellido { get; set; }
+        public string DNI { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
     }
 }

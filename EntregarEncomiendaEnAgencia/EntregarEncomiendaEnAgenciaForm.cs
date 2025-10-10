@@ -13,10 +13,12 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
             InitializeComponent();
             modelo = new EntregarEncomiendaEnAgenciaModelo();
         }
+
         private void EntregarEncomiendaEnAgenciaForm_Load(object sender, EventArgs e)
         {
             UsuarioResult.Text = "f.martinez";
-            AgenciaResult.Text = "CABA - Flores";
+            AgenciaResult.Text = "Ag. 1011";
+            // CORREGIDO: Usando los nombres de control que existen en tu diseñador.
             NombreDestinatarioResult.Text = "";
             ApellidoDestinatarioResult.Text = "";
         }
@@ -46,21 +48,24 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
                 return;
             }
 
-            NombreDestinatarioResult.Text = destinatario.Nombre; // CORREGIDO
-            ApellidoDestinatarioResult.Text = destinatario.Apellido; // CORREGIDO
+            // CORRECCIÓN FINAL Y DEFINITIVA: Usando los nombres de control que existen en tu diseñador.
+            NombreDestinatarioResult.Text = destinatario.Nombre;
+            ApellidoDestinatarioResult.Text = destinatario.Apellido;
+
             CargarGuiasPendientes(destinatario.DNI);
         }
 
         private void ConfirmarEntregaButton_Click(object sender, EventArgs e)
         {
-            if (GuiasARecepcionarAgenciaListView.Items.Count == 0) // CORREGIDO
+            // CORREGIDO: Usando el nombre correcto del ListView: GuiasARecepcionarAgenciaListView
+            if (GuiasARecepcionarAgenciaListView.Items.Count == 0)
             {
                 MessageBox.Show("No hay encomiendas seleccionadas para entregar.", "Operación no válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             var guiasParaEntregar = new List<string>();
-            foreach (ListViewItem item in GuiasARecepcionarAgenciaListView.Items) // CORREGIDO
+            foreach (ListViewItem item in GuiasARecepcionarAgenciaListView.Items)
             {
                 guiasParaEntregar.Add(item.SubItems[0].Text);
             }
@@ -83,8 +88,6 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
             this.Close();
         }
 
-        // MÉTODOS AUXILIARES...
-
         private void CargarGuiasPendientes(string dni)
         {
             string agenciaActual = AgenciaResult.Text;
@@ -100,16 +103,18 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
                 {
                     ListViewItem item = new ListViewItem(guia.NumeroGuia);
                     item.SubItems.Add(guia.Tamanio.ToString());
-                    GuiasARecepcionarAgenciaListView.Items.Add(item); // CORREGIDO
+                    // CORREGIDO: Usando el nombre correcto del ListView
+                    GuiasARecepcionarAgenciaListView.Items.Add(item);
                 }
             }
         }
 
         private void LimpiarCampos()
         {
-            NombreDestinatarioResult.Text = ""; // CORREGIDO
-            ApellidoDestinatarioResult.Text = ""; // CORREGIDO
-            GuiasARecepcionarAgenciaListView.Items.Clear(); // CORREGIDO
+            // CORREGIDO: Usando los nombres de control correctos que existen en tu diseñador.
+            NombreDestinatarioResult.Text = "";
+            ApellidoDestinatarioResult.Text = "";
+            GuiasARecepcionarAgenciaListView.Items.Clear();
         }
 
         private void LimpiarFormularioCompleto()
