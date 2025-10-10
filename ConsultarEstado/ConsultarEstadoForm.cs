@@ -35,31 +35,33 @@ namespace TUTASAPrototipo.ConsultarEstado
         private static string Digits(string s) => new string((s ?? "").Where(char.IsDigit).ToArray());
 
         // --- EVENTO: BOTÓN BUSCAR ---
-        private void BuscarEstadoGuiaButton_Click(object sender, EventArgs e)
+        private void BuscarEstadoGuiaButton_Click(object? sender, EventArgs e)
         {
             HistorialGuiaListView.Items.Clear();
 
             var input = NroGuiaBusquedaGroupBox.Text?.Trim() ?? "";
 
-            // Validaciones N0–N2 según caso de uso ----------------------
+            // Validaciones N0–N2 (nuevo formato TLLLNNNNN: 9 dígitos)
             if (string.IsNullOrWhiteSpace(input))
             {
-                MessageBox.Show("Debe seleccionar un número de Guia", "Validación");
+                MessageBox.Show("Debe ingresar el número de guía.", "Validación");
                 NroGuiaBusquedaGroupBox.Focus();
                 return;
             }
 
             var digits = Digits(input);
 
+            // Solo números
             if (!Regex.IsMatch(digits, @"^\d+$"))
             {
                 MessageBox.Show("Debe ingresar un número entero positivo.", "Validación");
                 return;
             }
 
-            if (!Regex.IsMatch(digits, @"^(0|1)\d{8}$"))
+            // Exactamente 9 dígitos: TLLLNNNNN
+            if (!Regex.IsMatch(digits, @"^\d{9}$"))
             {
-                MessageBox.Show("Número de guía inválido, intente nuevamente.", "Validación");
+                MessageBox.Show("Número de guía inválido (debe tener 9 dígitos TLLLNNNNN).", "Validación");
                 return;
             }
 
@@ -93,12 +95,11 @@ namespace TUTASAPrototipo.ConsultarEstado
         }
 
         // --- EVENTO: BOTÓN SALIR / CANCELAR ---
-        private void CancelarButton_Click(object sender, EventArgs e)
+        private void CancelarButton_Click(object? sender, EventArgs e)
         {
             NroGuiaBusquedaGroupBox.Clear();
             HistorialGuiaListView.Items.Clear();
             Close();
         }
-
     }
 }

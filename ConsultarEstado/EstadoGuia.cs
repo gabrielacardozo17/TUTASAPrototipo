@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-// TUTASAPrototipo/ConsultarEstado/Enums.cs
+﻿// TUTASAPrototipo/ConsultarEstado/Enums.cs
 namespace TUTASAPrototipo.ConsultarEstado
 {
-    // Estados locales (copia para esta pantalla / submundo)
     public enum EstadoGuia
     {
-        AdmitidaEnCDOrigen = 0,
-        PendRetiroDomicilio = 10,
-        PendRetiroAgencia = 11,
-        EnCaminoRetiroDomicilio = 20,
-        EnCaminoRetiroAgencia = 21,
-        EnTransito = 30,
-        EnCD = 40,
-        Entregada = 50,
-        SeleccionadaParaRuta = 60
+        // Imposición / espera de retiro
+        ARetirarEnAgencia = 0,                // lugar: una agencia (impuesta)
+        ARetirarPorDomicilio = 1,             // lugar: domicilio del cliente
+        Admitida = 2,                         // lugar: CD origen
+
+        // Tramos logísticos
+        EnRutaACDOrigen = 10,                 // sin lugar
+        EnTransitoACDDestino = 20,            // sin lugar o CD intermedio
+        EnCDDestino = 30,                     // lugar: CD
+        EnRutaAAgenciaDestino = 31,           // sin lugar
+        EnAgenciaDestino = 32,                // lugar: agencia
+        EnRutaAlDomicilio = 33,               // sin lugar
+
+        // Finalización
+        PendienteDeEntrega = 40,              // lugar: CD o Agencia
+        Entregada = 50                        // sin lugar
     }
 }

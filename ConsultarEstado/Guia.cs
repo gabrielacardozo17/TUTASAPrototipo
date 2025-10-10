@@ -6,7 +6,7 @@ namespace TUTASAPrototipo.ConsultarEstado
 {
     public class Guia
     {
-        // Identificación: T LLL NNNNN  (^(0|1)\d{8}$)  T=1 CD, T=0 Agencia
+        // Identificación: TLLLNNNNN  (exactamente 9 dígitos)
         public string Numero { get; set; } = "";
 
         // Estado/Ubicación vigentes

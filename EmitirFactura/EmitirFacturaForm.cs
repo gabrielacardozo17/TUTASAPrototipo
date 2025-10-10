@@ -18,9 +18,17 @@ namespace TUTASAPrototipo.EmitirFactura
         private bool _busyBuscar = false;
         private bool _busyEmitir = false;
 
+        // Texto base del label “Datos del cliente:”
+        private readonly string _datosClienteBaseText;
+
         public EmitirFacturaForm()
         {
             InitializeComponent();
+
+            // Guardamos el texto original del label para restaurarlo cuando haga falta
+            _datosClienteBaseText = string.IsNullOrWhiteSpace(DatosClienteLabel.Text)
+                ? "Datos del cliente:"
+                : DatosClienteLabel.Text;
 
             // Validaciones automáticas desactivadas (hacemos N0–N2 manual)
             this.AutoValidate = AutoValidate.Disable;
@@ -40,6 +48,7 @@ namespace TUTASAPrototipo.EmitirFactura
                 _cuitValidadoDigits = "";
                 DetalleFacturaciónListView.Items.Clear();
                 MontoTotalLabel.Text = "";
+                DatosClienteLabel.Text = _datosClienteBaseText; // ← restaurar
             };
 
             // --- ListView (solo lectura y aspecto) ---
@@ -50,10 +59,11 @@ namespace TUTASAPrototipo.EmitirFactura
             DetalleFacturaciónListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
 
             // --- Botones ---
-            // El Designer YA cablea EmitirFacturaButton.Click → EmitirFacturaButton_Click
-            // Para evitar duplicados, NO volvemos a suscribir acá.
             BuscarFacturasButton.Click -= BuscarFacturasButton_Click;
             BuscarFacturasButton.Click += BuscarFacturasButton_Click;
+
+            EmitirFacturaButton.Click -= EmitirFacturaButton_Click;
+            EmitirFacturaButton.Click += EmitirFacturaButton_Click;
 
             CancelarButton.Click -= CancelarButton_Click;
             CancelarButton.Click += CancelarButton_Click;
@@ -61,8 +71,7 @@ namespace TUTASAPrototipo.EmitirFactura
             // Estado inicial limpio
             LimpiarPantalla();
 
-            // Según caso de uso, Emitir debe poder clickease siempre;
-            // si no hay cliente validado, mostramos el mensaje correspondiente.
+            // Según CU, Emitir debe poder clickease siempre; si no hay cliente validado, avisa.
             EmitirFacturaButton.Enabled = true;
         }
 
@@ -77,6 +86,7 @@ namespace TUTASAPrototipo.EmitirFactura
             CuitClienteMaskedText.Clear();
             DetalleFacturaciónListView.Items.Clear();
             MontoTotalLabel.Text = "";
+            DatosClienteLabel.Text = _datosClienteBaseText; // ← restaurar
         }
 
         private void CargarLineas(System.Collections.Generic.IEnumerable<Guia> guias)
@@ -103,6 +113,7 @@ namespace TUTASAPrototipo.EmitirFactura
             {
                 DetalleFacturaciónListView.Items.Clear();
                 MontoTotalLabel.Text = "";
+                DatosClienteLabel.Text = _datosClienteBaseText;
                 _clienteValidado = false;
                 _cuitValidadoDigits = "";
 
@@ -125,6 +136,9 @@ namespace TUTASAPrototipo.EmitirFactura
                 {
                     var (cli, pendientes) = _modelo.BuscarPorCuit(digits);
 
+                    // Mostrar razón social en el label “Datos del cliente:”
+                    DatosClienteLabel.Text = $"{_datosClienteBaseText} {cli.RazonSocial}";
+
                     CargarLineas(pendientes);
                     var total = pendientes.Sum(g => g.Importe);
                     MontoTotalLabel.Text = $"${total:N2}";
@@ -145,7 +159,6 @@ namespace TUTASAPrototipo.EmitirFactura
         }
 
         // ----------------- Emitir Factura -----------------
-        // ATENCIÓN: este método ya está cableado desde el Designer.
         private void EmitirFacturaButton_Click(object? sender, EventArgs e)
         {
             if (_busyEmitir) return;
@@ -165,11 +178,11 @@ namespace TUTASAPrototipo.EmitirFactura
                     var factura = _modelo.EmitirFactura(_cuitValidadoDigits);
 
                     MessageBox.Show(
-                    $"Operación finalizada con éxito.\nFactura {factura.Numero} emitida y registrada en la cuenta corriente del cliente.",
-                     "Emitir Factura",
-                     MessageBoxButtons.OK,
-                     MessageBoxIcon.Information
- );
+                        $"Operación finalizada con éxito. Factura {factura.Numero} emitida y registrada en la cuenta corriente del cliente",
+                        "Emitir Factura",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
 
                     LimpiarPantalla();
                 }

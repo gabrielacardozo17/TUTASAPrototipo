@@ -7,49 +7,91 @@ namespace TUTASAPrototipo.EmitirFactura
 {
     public class EmitirFacturaModelo
     {
-        // ---------- DATOS DE PRUEBA (clientes locales a esta pantalla) ----------
+        // ---------- DATOS DE PRUEBA ----------
+        // Clientes (agregados algunos más; CUIT con DV válido)
         private readonly List<Cliente> _clientes = new()
         {
-            new Cliente { Cuit="30-12345678-1", RazonSocial="Distribuidora Sur S.A.", Convenio="General" },
-            new Cliente { Cuit="30-87654321-0", RazonSocial="Mayorista Norte S.R.L.", Convenio="Preferencial" },
-            new Cliente { Cuit="33-33445566-7", RazonSocial="Biotec Litoral S.R.L.",   Convenio="General" },
-            new Cliente { Cuit="27-99999999-3", RazonSocial="Transporte Pampeano SRL", Convenio="Corporativo" },
-            new Cliente { Cuit="20-44556677-4", RazonSocial="Servicios del Oeste",     Convenio="General" }
+            new Cliente { Cuit="30-12345678-1", RazonSocial="Distribuidora Sur S.A.",           Convenio="General"      },
+            new Cliente { Cuit="30-87654321-0", RazonSocial="Mayorista Norte S.R.L.",           Convenio="Preferencial" },
+            new Cliente { Cuit="33-33445566-7", RazonSocial="Biotec Litoral S.R.L.",            Convenio="General"      },
+
+            // EXISTENTES (ya agregados anteriormente)
+            new Cliente { Cuit="30-10123456-4", RazonSocial="Tecnología Andina S.A.",           Convenio="General"      },
+            new Cliente { Cuit="30-33445566-8", RazonSocial="Editorial Horizonte S.A.",         Convenio="General"      },
+            new Cliente { Cuit="33-12345678-0", RazonSocial="Farmacorp S.A.",                   Convenio="Preferencial" },
+
+            // NUEVOS (pedidos ahora)
+            new Cliente { Cuit="30-22113456-3", RazonSocial="Alimentos Pampeanos S.A.",         Convenio="General"      },
+            new Cliente { Cuit="30-24681357-0", RazonSocial="Logística Patagónica S.A.",        Convenio="General"      },
+            new Cliente { Cuit="33-22113456-2", RazonSocial="Bodega del Sol S.A.",              Convenio="Preferencial" },
+            new Cliente { Cuit="33-24681357-9", RazonSocial="Casa Central Hogar S.A.",          Convenio="General"      }
         };
 
-        // ---------- DATOS DE PRUEBA (guías) ----------
-        // Formato de Numero: T(0/1) + LLL(3) + NNNNN(5) => 9 dígitos, ej: 104000123
-        // Códigos usados (ejemplos del prototipo):
-        // 001=CD CABA Oeste, 011=CD BA–Mar del Plata, 040=CD Córdoba, 110=CD Bahía Blanca
-        // 010=Agencia CABA Centro
+        // Guías (TLLLNNNNN) con estados aptos para facturación y montos > 0
         private readonly List<Guia> _guias = new()
         {
-            // CLIENTE 1: 30-12345678-1 (tres pendientes facturables: Entregada / Intento / Devuelta)
-            new Guia { Numero="104000101", CuitCliente="30-12345678-1", FechaAdmision=new(2025,09,09), Origen="CD Córdoba",         Destino="Chivilcoy",     Tamano=TamanoGuia.S,  Importe=2000m, Estado=EstadoGuia.Entregada },
-            new Guia { Numero="001000055", CuitCliente="30-12345678-1", FechaAdmision=new(2025,09,10), Origen="CD CABA Oeste",      Destino="Bahía Blanca",  Tamano=TamanoGuia.M,  Importe=3500m, Estado=EstadoGuia.IntentoEntrega },
-            new Guia { Numero="104000102", CuitCliente="30-12345678-1", FechaAdmision=new(2025,09,15), Origen="CD Córdoba",         Destino="Luján",         Tamano=TamanoGuia.L,  Importe=1800m, Estado=EstadoGuia.Devuelta },
+            // -------- EXISTENTES (ajustadas a formato TLLLNNNNN coherente) --------
+            // Cliente 30-12345678-1  — CD Córdoba Capital (0040)
+            new Guia { Numero="004000123", CuitCliente="30-12345678-1", FechaAdmision=new(2025,09,09), Origen="CD Córdoba Capital", Destino="Agencia Rosario Centro", Tamano=TamanoGuia.S,  Importe=2400m, Estado=EstadoGuia.Entregada },
+            new Guia { Numero="004000124", CuitCliente="30-12345678-1", FechaAdmision=new(2025,09,10), Origen="CD Córdoba Capital", Destino="CD Rosario",              Tamano=TamanoGuia.M,  Importe=3700m, Estado=EstadoGuia.IntentoEntrega },
 
-            // CLIENTE 2: 30-87654321-0 (una devuelta facturable)
-            new Guia { Numero="101100781", CuitCliente="30-87654321-0", FechaAdmision=new(2025,09,12), Origen="CD BA - MdP",       Destino="La Plata",      Tamano=TamanoGuia.L,  Importe=5200m, Estado=EstadoGuia.Devuelta },
+            // Cliente 30-87654321-0  — CD Buenos Aires – La Plata (0010)
+            new Guia { Numero="001000781", CuitCliente="30-87654321-0", FechaAdmision=new(2025,09,12), Origen="CD Buenos Aires – La Plata", Destino="CD CABA Sur",     Tamano=TamanoGuia.L,  Importe=5200m, Estado=EstadoGuia.Devuelta },
 
-            // CLIENTE 3: 33-33445566-7 (ya facturada → no debe aparecer en pendientes)
-            new Guia { Numero="105000123", CuitCliente="33-33445566-7", FechaAdmision=new(2025,09,05), Origen="CD Rosario",         Destino="Córdoba",       Tamano=TamanoGuia.XL, Importe=4800m, Estado=EstadoGuia.Facturada },
+            // Cliente 33-33445566-7  — CD Buenos Aires – Mar del Plata (0011)
+            new Guia { Numero="001100045", CuitCliente="33-33445566-7", FechaAdmision=new(2025,09,05), Origen="CD Buenos Aires – Mar del Plata", Destino="CD Bahía Blanca", Tamano=TamanoGuia.XL, Importe=4900m, Estado=EstadoGuia.Entregada },
 
-            // CLIENTE 4: 27-99999999-3 (dos facturables)
-            new Guia { Numero="110000045", CuitCliente="27-99999999-3", FechaAdmision=new(2025,10,01), Origen="CD Bahía Blanca",    Destino="Bahía Blanca",  Tamano=TamanoGuia.M,  Importe=6000m, Estado=EstadoGuia.IntentoEntrega },
-            new Guia { Numero="110000046", CuitCliente="27-99999999-3", FechaAdmision=new(2025,10,02), Origen="CD Bahía Blanca",    Destino="Córdoba",       Tamano=TamanoGuia.L,  Importe=8200m, Estado=EstadoGuia.Entregada },
+            // -------- NUEVAS (anteriores) --------
+            // Cliente 30-12345678-1
+            new Guia { Numero="004000125", CuitCliente="30-12345678-1", FechaAdmision=new(2025,09,11), Origen="CD Córdoba Capital", Destino="Agencia Rosario Centro", Tamano=TamanoGuia.S,  Importe=1800m, Estado=EstadoGuia.Entregada },
+            new Guia { Numero="004000126", CuitCliente="30-12345678-1", FechaAdmision=new(2025,09,12), Origen="CD Córdoba Capital", Destino="CD Rosario",              Tamano=TamanoGuia.M,  Importe=3100m, Estado=EstadoGuia.Devuelta },
 
-            // CLIENTE 5: 20-44556677-4 (importe 0 → para forzar error 6.1 “$0” al emitir)
-            new Guia { Numero="001000099", CuitCliente="20-44556677-4", FechaAdmision=new(2025,10,04), Origen="CD CABA Oeste",      Destino="Ituzaingó",     Tamano=TamanoGuia.S,  Importe=0m,    Estado=EstadoGuia.Entregada }
+            // Cliente 30-87654321-0
+            new Guia { Numero="001000782", CuitCliente="30-87654321-0", FechaAdmision=new(2025,09,13), Origen="CD Buenos Aires – La Plata", Destino="Agencia CABA Centro", Tamano=TamanoGuia.S, Importe=1500m, Estado=EstadoGuia.IntentoEntrega },
+            new Guia { Numero="001000783", CuitCliente="30-87654321-0", FechaAdmision=new(2025,09,14), Origen="CD Buenos Aires – La Plata", Destino="CD CABA Sur",        Tamano=TamanoGuia.L, Importe=5400m, Estado=EstadoGuia.Entregada },
+
+            // Cliente 33-33445566-7
+            new Guia { Numero="001100046", CuitCliente="33-33445566-7", FechaAdmision=new(2025,09,06), Origen="CD Buenos Aires – Mar del Plata", Destino="Agencia Bahía Blanca Centro", Tamano=TamanoGuia.M,  Importe=2600m, Estado=EstadoGuia.IntentoEntrega },
+            new Guia { Numero="001100047", CuitCliente="33-33445566-7", FechaAdmision=new(2025,09,07), Origen="CD Buenos Aires – Mar del Plata", Destino="CD Bahía Blanca",               Tamano=TamanoGuia.S,  Importe=1900m, Estado=EstadoGuia.Devuelta },
+
+            // Cliente 30-10123456-4 — Tecnología Andina
+            new Guia { Numero="004000211", CuitCliente="30-10123456-4", FechaAdmision=new(2025,10,02), Origen="CD Córdoba Capital",           Destino="CD Mendoza Capital",        Tamano=TamanoGuia.L,  Importe=5600m, Estado=EstadoGuia.Entregada },
+            new Guia { Numero="004000212", CuitCliente="30-10123456-4", FechaAdmision=new(2025,10,03), Origen="CD Córdoba Capital",           Destino="Agencia Mendoza Centro",    Tamano=TamanoGuia.M,  Importe=3300m, Estado=EstadoGuia.IntentoEntrega },
+
+            // Cliente 30-33445566-8 — Editorial Horizonte
+            new Guia { Numero="005000301", CuitCliente="30-33445566-8", FechaAdmision=new(2025,10,04), Origen="CD Rosario",                   Destino="CD Córdoba Capital",        Tamano=TamanoGuia.XL, Importe=6200m, Estado=EstadoGuia.Devuelta },
+            new Guia { Numero="005000302", CuitCliente="30-33445566-8", FechaAdmision=new(2025,10,05), Origen="CD Rosario",                   Destino="Agencia Córdoba Norte",     Tamano=TamanoGuia.S,  Importe=1700m, Estado=EstadoGuia.Entregada },
+
+            // Cliente 33-12345678-0 — Farmacorp
+            new Guia { Numero="000100901", CuitCliente="33-12345678-0", FechaAdmision=new(2025,10,06), Origen="CD CABA Oeste",                Destino="CD Buenos Aires – La Plata", Tamano=TamanoGuia.M, Importe=2950m, Estado=EstadoGuia.Entregada },
+            new Guia { Numero="000100902", CuitCliente="33-12345678-0", FechaAdmision=new(2025,10,07), Origen="CD CABA Oeste",                Destino="Agencia La Plata",           Tamano=TamanoGuia.L, Importe=4500m, Estado=EstadoGuia.IntentoEntrega },
+
+            // -------- NUEVAS (pedidas ahora) --------
+
+            // Cliente 30-22113456-3 — Alimentos Pampeanos (Mendoza)
+            new Guia { Numero="010000321", CuitCliente="30-22113456-3", FechaAdmision=new(2025,10,01), Origen="CD Mendoza Capital",           Destino="CD Bahía Blanca",           Tamano=TamanoGuia.M,  Importe=3800m, Estado=EstadoGuia.Entregada },
+            new Guia { Numero="010000322", CuitCliente="30-22113456-3", FechaAdmision=new(2025,10,02), Origen="CD Mendoza Capital",           Destino="Agencia Godoy Cruz",         Tamano=TamanoGuia.S,  Importe=1600m, Estado=EstadoGuia.IntentoEntrega },
+            new Guia { Numero="010000323", CuitCliente="30-22113456-3", FechaAdmision=new(2025,10,03), Origen="CD Mendoza Capital",           Destino="CD Neuquén",                 Tamano=TamanoGuia.L,  Importe=5200m, Estado=EstadoGuia.Devuelta },
+
+            // Cliente 30-24681357-0 — Logística Patagónica (Viedma)
+            new Guia { Numero="009000211", CuitCliente="30-24681357-0", FechaAdmision=new(2025,09,30), Origen="CD Viedma",                    Destino="CD Bahía Blanca",           Tamano=TamanoGuia.S,  Importe=1850m, Estado=EstadoGuia.Entregada },
+            new Guia { Numero="009000212", CuitCliente="30-24681357-0", FechaAdmision=new(2025,10,01), Origen="CD Viedma",                    Destino="Agencia San Antonio Oeste",  Tamano=TamanoGuia.M,  Importe=2300m, Estado=EstadoGuia.IntentoEntrega },
+
+            // Cliente 33-22113456-2 — Bodega del Sol (Cuyo)
+            new Guia { Numero="010000411", CuitCliente="33-22113456-2", FechaAdmision=new(2025,10,04), Origen="CD Mendoza Capital",           Destino="CD San Miguel de Tucumán",   Tamano=TamanoGuia.XL, Importe=6400m, Estado=EstadoGuia.Devuelta },
+            new Guia { Numero="010000412", CuitCliente="33-22113456-2", FechaAdmision=new(2025,10,05), Origen="CD Mendoza Capital",           Destino="Agencia Mendoza Centro",     Tamano=TamanoGuia.S,  Importe=1500m, Estado=EstadoGuia.Entregada },
+
+            // Cliente 33-24681357-9 — Casa Central Hogar (NOA/Patagonia)
+            new Guia { Numero="008000145", CuitCliente="33-24681357-9", FechaAdmision=new(2025,10,05), Origen="CD Neuquén",                    Destino="CD CABA Oeste",             Tamano=TamanoGuia.M,  Importe=4100m, Estado=EstadoGuia.IntentoEntrega },
+            new Guia { Numero="008000146", CuitCliente="33-24681357-9", FechaAdmision=new(2025,10,06), Origen="CD Neuquén",                    Destino="Agencia Plottier",          Tamano=TamanoGuia.S,  Importe=1350m, Estado=EstadoGuia.Entregada }
         };
 
         private static int _seqFactura = 1;
 
-        // ---------- HELPERS (locales a este módulo) ----------
+        // ---------- HELPERS ----------
         private static string Digits(string s) => new string((s ?? "").Where(char.IsDigit).ToArray());
 
-        // ---------- API PARA EL FORM ----------
-        // Devuelve cliente + sus guías pendientes de facturar (Entregada/Devuelta/IntentoEntrega)
+        // ---------- MÉTODOS ----------
         public (Cliente cliente, List<Guia> guias) BuscarPorCuit(string cuitDigits)
         {
             var digits = Digits(cuitDigits);
@@ -58,6 +100,7 @@ namespace TUTASAPrototipo.EmitirFactura
             if (cliente is null)
                 throw new InvalidOperationException("No existe el cliente seleccionado. Vuelva a intentarlo.");
 
+            // “Pendientes” = guías en estados facturables y no facturadas aún
             var pendientes = _guias
                 .Where(g => Digits(g.CuitCliente) == digits)
                 .Where(g => g.Estado == EstadoGuia.Entregada
@@ -72,7 +115,6 @@ namespace TUTASAPrototipo.EmitirFactura
             return (cliente, pendientes);
         }
 
-        // Emite la factura y marca las guías como Facturada
         public Factura EmitirFactura(string cuitDigits)
         {
             var (cliente, pendientes) = BuscarPorCuit(cuitDigits);
@@ -90,6 +132,7 @@ namespace TUTASAPrototipo.EmitirFactura
                 GuiasFacturadas = pendientes
             };
 
+            // Marcar como facturadas las guías incluidas
             foreach (var g in pendientes)
                 g.Estado = EstadoGuia.Facturada;
 
