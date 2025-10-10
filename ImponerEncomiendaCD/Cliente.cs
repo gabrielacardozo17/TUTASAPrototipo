@@ -1,6 +1,6 @@
 ﻿namespace TUTASAPrototipo.ImponerEncomiendaCD
 {
-    public class Cliente   // ¡public!
+    public class Cliente
     {
         public string Cuit { get; set; } = "";
         public string Nombre { get; set; } = "";
