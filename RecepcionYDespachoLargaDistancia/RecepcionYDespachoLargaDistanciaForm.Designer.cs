@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             BusquedaGroupBox = new GroupBox();
-            BuscarServicioButton = new Button();
             NumServicioTextBox = new TextBox();
             ServicioLabel = new Label();
             GuiasGroupBox = new GroupBox();
@@ -47,6 +46,7 @@
             UsuarioLabel = new Label();
             UsuarioResult = new Label();
             CDResult = new Label();
+            BuscarServicioButton = new Button();
             BusquedaGroupBox.SuspendLayout();
             GuiasGroupBox.SuspendLayout();
             GuiasADespacharServicioListView.SuspendLayout();
@@ -64,18 +64,9 @@
             BusquedaGroupBox.TabStop = false;
             BusquedaGroupBox.Text = "Búsqueda";
             // 
-            // BuscarServicioButton
-            // 
-            BuscarServicioButton.Location = new Point(508, 44);
-            BuscarServicioButton.Name = "BuscarServicioButton";
-            BuscarServicioButton.Size = new Size(75, 23);
-            BuscarServicioButton.TabIndex = 2;
-            BuscarServicioButton.Text = "Buscar";
-            BuscarServicioButton.UseVisualStyleBackColor = true;
-            // 
             // NumServicioTextBox
             // 
-            NumServicioTextBox.Location = new Point(265, 44);
+            NumServicioTextBox.Location = new Point(267, 44);
             NumServicioTextBox.Name = "NumServicioTextBox";
             NumServicioTextBox.Size = new Size(228, 23);
             NumServicioTextBox.TabIndex = 1;
@@ -101,6 +92,7 @@
             // 
             // GuiaxServicioRecibidaListView
             // 
+            GuiaxServicioRecibidaListView.CheckBoxes = true;
             GuiaxServicioRecibidaListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
             GuiaxServicioRecibidaListView.Location = new Point(96, 22);
             GuiaxServicioRecibidaListView.Name = "GuiaxServicioRecibidaListView";
@@ -121,6 +113,7 @@
             // 
             // GuiasADespacharxServicioListView
             // 
+            GuiasADespacharxServicioListView.CheckBoxes = true;
             GuiasADespacharxServicioListView.Columns.AddRange(new ColumnHeader[] { NroGuiaColumn, TamanioColumn, DestinoColumn });
             GuiasADespacharxServicioListView.Location = new Point(42, 39);
             GuiasADespacharxServicioListView.Name = "GuiasADespacharxServicioListView";
@@ -162,6 +155,7 @@
             ConfirmarRecepcionYDespachoButton.TabIndex = 4;
             ConfirmarRecepcionYDespachoButton.Text = "Confirmar";
             ConfirmarRecepcionYDespachoButton.UseVisualStyleBackColor = true;
+            ConfirmarRecepcionYDespachoButton.Click += ConfirmarButton_Click;
             // 
             // CancelarButton
             // 
@@ -171,6 +165,7 @@
             CancelarButton.TabIndex = 5;
             CancelarButton.Text = "Cancelar";
             CancelarButton.UseVisualStyleBackColor = true;
+            CancelarButton.Click += SalirButton_Click;
             // 
             // CDLabel
             // 
@@ -208,6 +203,16 @@
             CDResult.TabIndex = 18;
             CDResult.Text = "Loren Ipsum";
             // 
+            // BuscarServicioButton
+            // 
+            BuscarServicioButton.Location = new Point(501, 44);
+            BuscarServicioButton.Name = "BuscarServicioButton";
+            BuscarServicioButton.Size = new Size(75, 23);
+            BuscarServicioButton.TabIndex = 2;
+            BuscarServicioButton.Text = "Buscar";
+            BuscarServicioButton.UseVisualStyleBackColor = true;
+            BuscarServicioButton.Click += BuscarButton_Click;
+            // 
             // RecepcionYDespachoLargaDistanciaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -235,7 +240,6 @@
         #endregion
 
         private GroupBox BusquedaGroupBox;
-        private Button BuscarServicioButton;
         private TextBox NumServicioTextBox;
         private Label ServicioLabel;
         private GroupBox GuiasGroupBox;
@@ -259,5 +263,6 @@
         private ColumnHeader columnHeader2;
         private Label UsuarioResult;
         private Label CDResult;
+        private Button BuscarServicioButton;
     }
 }

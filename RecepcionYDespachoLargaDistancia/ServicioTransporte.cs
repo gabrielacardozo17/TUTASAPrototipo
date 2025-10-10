@@ -2,7 +2,7 @@
 {
     public class ServicioTransporte
     {
-        public string NroServicio { get; set; }
+        public string Numero { get; set; }
         public string Empresa { get; set; }
     }
 }
