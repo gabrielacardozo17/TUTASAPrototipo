@@ -141,7 +141,7 @@
             TelefonoClienteLabel.AutoSize = true;
             TelefonoClienteLabel.Location = new Point(133, 85);
             TelefonoClienteLabel.Name = "TelefonoClienteLabel";
-            TelefonoClienteLabel.Size = new Size(55, 15);
+            TelefonoClienteLabel.Size = new Size(56, 15);
             TelefonoClienteLabel.TabIndex = 4;
             TelefonoClienteLabel.Text = "Teléfono:";
             // 
@@ -162,6 +162,7 @@
             BuscarCuitButton.TabIndex = 2;
             BuscarCuitButton.Text = "Buscar";
             BuscarCuitButton.UseVisualStyleBackColor = true;
+            BuscarCuitButton.Click += BuscarCuitButton_Click;
             // 
             // CUITRemitenteMaskedText
             // 
@@ -177,7 +178,7 @@
             CuitLabel.AutoSize = true;
             CuitLabel.Location = new Point(133, 30);
             CuitLabel.Name = "CuitLabel";
-            CuitLabel.Size = new Size(35, 15);
+            CuitLabel.Size = new Size(36, 15);
             CuitLabel.TabIndex = 0;
             CuitLabel.Text = "CUIT:";
             // 
@@ -272,6 +273,7 @@
             LocalidadxProvinciaComboBox.Name = "LocalidadxProvinciaComboBox";
             LocalidadxProvinciaComboBox.Size = new Size(198, 23);
             LocalidadxProvinciaComboBox.TabIndex = 30;
+            LocalidadxProvinciaComboBox.SelectedIndexChanged += LocalidadxProvinciaComboBox_SelectedIndexChanged;
             // 
             // label2
             // 
@@ -329,7 +331,7 @@
             TipoEntregaLabel.AutoSize = true;
             TipoEntregaLabel.Location = new Point(13, 210);
             TipoEntregaLabel.Name = "TipoEntregaLabel";
-            TipoEntregaLabel.Size = new Size(150, 15);
+            TipoEntregaLabel.Size = new Size(151, 15);
             TipoEntregaLabel.TabIndex = 21;
             TipoEntregaLabel.Text = "Tipo de entrega disponible:";
             // 
@@ -351,6 +353,7 @@
             TipoEntregaComboBox.Name = "TipoEntregaComboBox";
             TipoEntregaComboBox.Size = new Size(172, 23);
             TipoEntregaComboBox.TabIndex = 22;
+            TipoEntregaComboBox.SelectedIndexChanged += TipoEntregaComboBox_SelectedIndexChanged;
             // 
             // IndicacionLabel
             // 
@@ -370,6 +373,7 @@
             ProvinciaComboBox.Name = "ProvinciaComboBox";
             ProvinciaComboBox.Size = new Size(198, 23);
             ProvinciaComboBox.TabIndex = 20;
+            ProvinciaComboBox.SelectedIndexChanged += ProvinciaComboBox_SelectedIndexChanged;
             // 
             // ProvinciaLabel
             // 
@@ -516,6 +520,7 @@
             CancelarButton.TabIndex = 13;
             CancelarButton.Text = "Cancelar";
             CancelarButton.UseVisualStyleBackColor = true;
+            CancelarButton.Click += CancelarButton_Click;
             // 
             // ConfirmarButton
             // 
@@ -525,6 +530,7 @@
             ConfirmarButton.TabIndex = 12;
             ConfirmarButton.Text = "Confirmar";
             ConfirmarButton.UseVisualStyleBackColor = true;
+            ConfirmarButton.Click += ConfirmarButton_Click;
             // 
             // ImponerEncomiendaCallCenterForm
             // 
