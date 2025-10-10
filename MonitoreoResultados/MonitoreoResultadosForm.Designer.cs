@@ -56,9 +56,9 @@
             // ResultadosxEmpresaListView
             // 
             ResultadosxEmpresaListView.Columns.AddRange(new ColumnHeader[] { empresaTransporteColumn, CostoMensualColumn, VentasMensualesColumn, ResultadoColumn });
-            ResultadosxEmpresaListView.Location = new Point(19, 22);
+            ResultadosxEmpresaListView.Location = new Point(9, 22);
             ResultadosxEmpresaListView.Name = "ResultadosxEmpresaListView";
-            ResultadosxEmpresaListView.Size = new Size(608, 218);
+            ResultadosxEmpresaListView.Size = new Size(634, 218);
             ResultadosxEmpresaListView.TabIndex = 0;
             ResultadosxEmpresaListView.UseCompatibleStateImageBehavior = false;
             ResultadosxEmpresaListView.View = View.Details;
@@ -66,7 +66,7 @@
             // empresaTransporteColumn
             // 
             empresaTransporteColumn.Text = "Empresa de Transporte";
-            empresaTransporteColumn.Width = 150;
+            empresaTransporteColumn.Width = 200;
             // 
             // CostoMensualColumn
             // 
@@ -81,7 +81,7 @@
             // ResultadoColumn
             // 
             ResultadoColumn.Text = "Resultado";
-            ResultadoColumn.Width = 150;
+            ResultadoColumn.Width = 130;
             // 
             // PeriodoLabel
             // 

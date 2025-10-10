@@ -45,6 +45,7 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
+                CuitClienteMaskedText.Focus();
                 LimpiarFormulario();
                 return;
             }
@@ -57,6 +58,7 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
+                CuitClienteMaskedText.Focus();
                 LimpiarFormulario(); 
                 return;
             }
@@ -65,6 +67,7 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
             if (PeriodoDateTimePicker.Value > DateTime.Now)
             {
                 LimpiarFormulario();
+                PeriodoDateTimePicker.Focus(); ;
                 MessageBox.Show("El período seleccionado no es válido (futuro).",
                                 "Error",
                                 MessageBoxButtons.OK,
@@ -76,6 +79,7 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
             //valido que el prefijo corresponda a una persona juridica
             if (!Modelo.ValidarPrefijo(cuit))
             {
+                CuitClienteMaskedText.Focus();
                 LimpiarFormulario();
                 MessageBox.Show("El formato de CUIT ingresado es inválido. Verifique los datos.",
                    "Error",
@@ -86,8 +90,6 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
                 return;
             }
 
-
-
             // valido si el cliente existe 
             if (!Modelo.ClienteExiste(cuit))
             {
@@ -96,31 +98,42 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
+                CuitClienteMaskedText.Focus();
+                LimpiarFormulario();
+                return;
+            }
+
+            //obtengo movimientos del modelo
+            var (movimientos, saldo, tieneMovimientos, estaAlDia) = Modelo.ObtenerEstadoCuenta(cuit, año, mes);
+
+            // No hay movimientos en el período consultado y tiene deuda 
+            if (!tieneMovimientos && saldo > 0)
+            {
+                MessageBox.Show($"El cliente no registra movimientos en el período seleccionado.\nSaldo pendiente a {new DateTime(año, mes, 1):MMMM yyyy}: ${saldo:N2}",
+                  "Sin movimientos",
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Information);
+
+                LimpiarFormulario(); 
+                return; 
+            }
+
+            // Si no hay movimientos en el periodo consultado y no tiene deuda
+            if (!tieneMovimientos && saldo <= 0)
+            {
+                MessageBox.Show(
+                    $"El cliente no registra movimientos ni deuda pendiente en {new DateTime(año, mes, 1):MMMM yyyy}.",
+                    "Sin movimientos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
 
                 LimpiarFormulario();
                 return;
             }
 
 
-            //envío los datos al modelo, para obtener los movimientos
-            var movimientos = Modelo.ObtenerMovimientos(cuit, año, mes);
-
-            //Si no hay movimientos en el periodo indicado, muestro mensaje 
-            if (movimientos == null || movimientos.Count == 0)
-            {
-                SaldoAlCierre.Text = "Saldo al cierre del período: -";
-                MessageBox.Show("El cliente no registra movimientos en el período seleccionado",
-                    "Sin movimientos",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
-                LimpiarFormulario(); 
-                return;
-            }
-
-
-            //si hay movimientos
+            // Si hay movimientos, los muestro en la lista
             foreach (var mov in movimientos)
             {
                 var item = new ListViewItem(mov.Fecha.ToShortDateString());
@@ -130,12 +143,11 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
                 MovimientosListView.Items.Add(item);
             }
 
-
-            //obtengo el saldo
-            var saldo = Modelo.CalcularSaldoAlCierre(cuit, año, mes);
+            // actualizo el saldo mostrado
             SaldoAlCierre.Text = $"Saldo al cierre del período: ${saldo:N2}";
+
         }
-           
+
 
         private void CancelarButton_Click(object sender, EventArgs e)
         {
@@ -150,10 +162,8 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
 
         private void LimpiarFormulario()
         {
-            CuitClienteMaskedText.Clear();
             SaldoAlCierre.Text = "Saldo al cierre del período: -";
             MovimientosListView.Items.Clear();
-            CuitClienteMaskedText.Focus();
         }
     }
 }

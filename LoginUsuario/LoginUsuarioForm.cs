@@ -83,6 +83,7 @@ namespace TUTASAPrototipo.LoginUsuario
 
             if(UsuarioValido != null)
             {
+                LimpiarFormulario(); 
                 MessageBox.Show("Usuario autenticado correctamente.",
                                "Acceso concedido",
                                MessageBoxButtons.OK,

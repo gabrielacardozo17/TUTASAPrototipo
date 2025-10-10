@@ -160,7 +160,7 @@
             // ConceptoColumn
             // 
             ConceptoColumn.Text = "Concepto";
-            ConceptoColumn.Width = 150;
+            ConceptoColumn.Width = 250;
             // 
             // debeColumn
             // 
