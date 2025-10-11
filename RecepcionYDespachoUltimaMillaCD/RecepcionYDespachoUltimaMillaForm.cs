@@ -1,171 +1,303 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 {
     public partial class RecepcionYDespachoUltimaMillaForm : Form
     {
-        private readonly RecepcionYDespachoUltimaMillaCDModelo _modelo = new RecepcionYDespachoUltimaMillaCDModelo();
+        private readonly RecepcionYDespachoUltimaMillaCDModelo _modelo = new();
+        private bool _enRevision = false;
+        private int? _dniEnRevision = null;
 
         public RecepcionYDespachoUltimaMillaForm()
         {
             InitializeComponent();
 
-            // Eventos (no duplicamos Confirmar: ya lo engancha el Designer)
-            Load += Form_Load;
+            // Evitar doble cableado si el Designer ya lo tenía
+            Load -= RecepcionYDespachoUltimaMillaForm_Load;
+            Load += RecepcionYDespachoUltimaMillaForm_Load;
+
+            BuscarButton.Click -= BuscarButton_Click;
             BuscarButton.Click += BuscarButton_Click;
 
-            // Si existe Cancelar, solo limpiar la UI (sin cerrar app)
-            try { CancelarButton.Click += (s, e) => LimpiarFormulario(); } catch { }
+            ConfirmarButton.Click -= ConfirmarButton_Click;
+            ConfirmarButton.Click += ConfirmarButton_Click;
 
-            // Asegurar que los botones no queden detrás de los groupboxes
-            try { ConfirmarButton.BringToFront(); CancelarButton.BringToFront(); } catch { }
+            CancelarButton.Click -= CancelarButton_Click;
+            CancelarButton.Click += CancelarButton_Click;
 
-            LimpiarFormulario();
+            UsuarioResult.Text = "Juan Perez";
+            CDResult.Text = "Buenos Aires";
+
+            PrepararListViews();
         }
 
-        // ---------- LOAD ----------
-        private void Form_Load(object sender, EventArgs e)
+        // ====== LOAD ======
+        private void RecepcionYDespachoUltimaMillaForm_Load(object sender, EventArgs e)
         {
-            LimpiarFormulario();
+            _enRevision = false;
+            _dniEnRevision = null;
+            LimpiarPantalla(total: true);
+            MostrarSeccionBusquedaYListasSuperiores(true);
 
-            // Visibilidad/orden y anclado de botones
-            try
+            if (FindLabel("FleteroResult") is Label fle)
             {
-                ConfirmarButton.Visible = true;
-                ConfirmarButton.Enabled = true;
-                ConfirmarButton.BringToFront();
-                ConfirmarButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-
-                CancelarButton.Visible = true;
-                CancelarButton.Enabled = true;
-                CancelarButton.BringToFront();
-                CancelarButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+                fle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                fle.Text = string.Empty;
             }
-            catch { }
         }
 
-        // ---------- BUSCAR ----------
+        // ====== BUSCAR ======
         private void BuscarButton_Click(object sender, EventArgs e)
         {
-            var dniTexto = DNIFleteroTextBox.Text.Trim();
+            _enRevision = false;
+            _dniEnRevision = null;
 
-            // N0–N2: requerido / numérico / longitud
-            if (string.IsNullOrWhiteSpace(dniTexto) || !int.TryParse(dniTexto, out int dni))
+            var dniTxt = (DNIFleteroTextBox.Text ?? string.Empty).Trim();
+
+            if (string.IsNullOrWhiteSpace(dniTxt))
+            { MessageBox.Show("Debe seleccionar un transportista primero", "Validación"); DNIFleteroTextBox.Focus(); return; }
+            if (!dniTxt.All(char.IsDigit))
+            { MessageBox.Show("Debe ingresar un número entero positivo", "Validación"); DNIFleteroTextBox.Clear(); DNIFleteroTextBox.Focus(); return; }
+            if (dniTxt.Length < 7 || dniTxt.Length > 8)
+            { MessageBox.Show("Debe ingresar un número que contenga entre 7 y 8 caracteres", "Validación"); DNIFleteroTextBox.Clear(); DNIFleteroTextBox.Focus(); return; }
+
+            int dni = int.Parse(dniTxt);
+            var fletero = _modelo.BuscarFleteroPorDni(dni);
+            if (fletero is null)
             {
-                MessageBox.Show("Debe ingresar un número entero positivo.", "Validación");
-                DNIFleteroTextBox.Clear();   // ✔ CP4.3: limpiar campo ante no numérico
-                DNIFleteroTextBox.Focus();
+                MessageBox.Show("No existe el fletero. Vuelva a intentarlo", "Validación");
+                DNIFleteroTextBox.Clear(); DNIFleteroTextBox.Focus();
+                LimpiarListas(); PintarNombreFletero(string.Empty);
                 return;
             }
-            if (dniTexto.Length < 7 || dniTexto.Length > 8)
-            {
-                MessageBox.Show("Debe ingresar un número que contenga entre 7 y 8 caracteres.", "Validación");
-                DNIFleteroTextBox.Clear();   // ✔ CP4.4: limpiar campo ante longitud inválida
-                DNIFleteroTextBox.Focus();
-                return;
-            }
 
-            try
-            {
-                var guias = _modelo.GetGuiasPorFletero(dni); // N3–N4 en el Modelo
-                CargarGuiasEnListas(guias);
+            PintarNombreFletero(fletero.Nombre);
+            _modelo.AsegurarHDRsAsignadasParaFletero(dni);
 
-                var f = _modelo.BuscarFleteroPorDni(dni);
-                UsuarioResult.Text = f is null ? "" : $"Usuario: {f.Nombre}";
-
-                // No duplicamos "CD:" (eso lo tiene el label fijo del Designer)
-                CDResult.Text = "Córdoba Capital";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Validación");
-                LimpiarFormulario();
-            }
+            CargarAsignadas(dni);
+            NuevasGuiasRetiroxFleteroListView.Items.Clear();
+            NuevasGuiasDistribucionxFleteroListView.Items.Clear();
+            MostrarSeccionBusquedaYListasSuperiores(true);
         }
 
-        // ---------- CONFIRMAR ----------
+        // ====== CONFIRMAR (2 PASOS) ======
         private void ConfirmarButton_Click(object sender, EventArgs e)
         {
-            var texto = DNIFleteroTextBox.Text.Trim();
-            if (string.IsNullOrWhiteSpace(texto) || !int.TryParse(texto, out int dni))
+            int dni;
+
+            if (!_enRevision)
             {
-                MessageBox.Show("Debe ingresar un DNI válido antes de confirmar.", "Validación");
-                DNIFleteroTextBox.Clear();   // Consistencia con CP4.3/4.4
-                DNIFleteroTextBox.Focus();
+                var dniTxt = (DNIFleteroTextBox.Text ?? string.Empty).Trim();
+                if (!dniTxt.All(char.IsDigit) || dniTxt.Length < 7 || dniTxt.Length > 8)
+                { MessageBox.Show("Debe seleccionar un transportista primero", "Validación"); DNIFleteroTextBox.Focus(); return; }
+                dni = int.Parse(dniTxt);
+            }
+            else
+            {
+                if (_dniEnRevision is null)
+                { MessageBox.Show("No hay fletero en revisión. Busque nuevamente.", "Validación"); return; }
+                dni = _dniEnRevision.Value;
+            }
+
+            if (!_enRevision)
+            {
+                // === PASO 1: aplicar cambios y mostrar resumen ===
+                var marcadasDistrib = GuiasMarcadas(GuiasDistribucionxFleteroListView);
+                var marcadasRetiro = GuiasMarcadas(GuiasRetiroxFleteroListView);
+
+                _modelo.ConfirmarRendicion(dni, marcadasDistrib, marcadasRetiro);
+                _modelo.AsignarHDRsPorDireccion(dni);
+                _modelo.AsegurarHDRsAsignadasParaFletero(dni);
+
+                _dniEnRevision = dni;
+                DNIFleteroTextBox.Clear();
+                PintarNombreFletero(string.Empty);
+                GuiasDistribucionxFleteroListView.Items.Clear();
+                GuiasRetiroxFleteroListView.Items.Clear();
+                MostrarSeccionBusquedaYListasSuperiores(false);
+
+                CargarResumenPosterior(dni);
+                _enRevision = true;
                 return;
             }
-
-            var guiasCumplidas = new List<string>();
-            foreach (ListViewItem it in GuiasDistribucionxFleteroListView.Items)
-                if (it.Checked) guiasCumplidas.Add(it.Text);
-            foreach (ListViewItem it in GuiasRetiroxFleteroListView.Items)
-                if (it.Checked) guiasCumplidas.Add(it.Text);
-
-            try
+            else
             {
-                var nuevas = _modelo.ConfirmarRendicion(dni, guiasCumplidas); // N3–N4
-                CargarNuevasHDR(nuevas);
+                // === PASO 2: popup final + limpiar ===
+                string msg =
+                    "Operación exitosa. Rendición confirmada. HDR asignadas:  \n\n" +
 
-                MessageBox.Show(
-                    "Rendición confirmada. Se generó el comprobante de rendición y nuevas HDR para el fletero seleccionado.",
-                    "Operación exitosa",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                    ConstruirMensajePorHDR(NuevasGuiasRetiroxFleteroListView, NuevasGuiasDistribucionxFleteroListView);
 
-                LimpiarFormulario();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Validación");
+                MessageBox.Show(msg, "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                _enRevision = false;
+                _dniEnRevision = null;
+                LimpiarPantalla(total: true);
+                MostrarSeccionBusquedaYListasSuperiores(true);
             }
         }
 
-        // Hook que dejó el Designer (si está enlazado)
-        private void GuiasRetiroxFleteroListView_SelectedIndexChanged(object sender, EventArgs e) { /* no-op */ }
+        private void CancelarButton_Click(object sender, EventArgs e) => Close();
 
-        // ---------- HELPERS VISUALES ----------
-        private void CargarGuiasEnListas(IEnumerable<Guia> guias)
+        // ====== CARGA DE LISTAS ======
+        private void CargarAsignadas(int dni)
         {
+            AsegurarColumnaHDR(GuiasDistribucionxFleteroListView);
+            AsegurarColumnaHDR(GuiasRetiroxFleteroListView);
+
             GuiasDistribucionxFleteroListView.Items.Clear();
             GuiasRetiroxFleteroListView.Items.Clear();
 
-            foreach (var g in guias)
+            var t = _modelo.GetGuiasPorFletero(dni);
+            foreach (var g in t.distribucion)
             {
-                var item = new ListViewItem(g.Numero);
-                if (g.Tipo == TipoGuia.Distribucion)
-                    GuiasDistribucionxFleteroListView.Items.Add(item);
-                else
-                    GuiasRetiroxFleteroListView.Items.Add(item);
+                var it = new ListViewItem("") { Checked = false };
+                it.SubItems.Add(g.Numero);
+                it.SubItems.Add(g.NroHDR ?? "");
+                GuiasDistribucionxFleteroListView.Items.Add(it);
+            }
+            foreach (var g in t.retiro)
+            {
+                var it = new ListViewItem("") { Checked = false };
+                it.SubItems.Add(g.Numero);
+                it.SubItems.Add(g.NroHDR ?? "");
+                GuiasRetiroxFleteroListView.Items.Add(it);
             }
         }
 
-        private void CargarNuevasHDR(IEnumerable<Guia> nuevas)
+        private void CargarResumenPosterior(int dni)
         {
+            AsegurarColumnasNuevas(NuevasGuiasRetiroxFleteroListView);
+            AsegurarColumnasNuevas(NuevasGuiasDistribucionxFleteroListView);
+
             NuevasGuiasRetiroxFleteroListView.Items.Clear();
-            NuevasGuiasDistribucionxFleteroListView.Items.Clear(); // este prototipo no la usa
+            NuevasGuiasDistribucionxFleteroListView.Items.Clear();
 
-            foreach (var g in nuevas)
+            var t = _modelo.GetGuiasPorFletero(dni);
+            foreach (var g in t.retiro)
             {
-                var item = new ListViewItem(g.Numero);
-                item.SubItems.Add(g.Tamaño);
-                item.SubItems.Add(g.Destino);
-                NuevasGuiasRetiroxFleteroListView.Items.Add(item);
+                var it = new ListViewItem(g.Numero);
+                it.SubItems.Add(g.Tamaño);
+                it.SubItems.Add(g.Destino);
+                it.SubItems.Add(g.NroHDR ?? "");
+                NuevasGuiasRetiroxFleteroListView.Items.Add(it);
+            }
+            foreach (var g in t.distribucion)
+            {
+                var it = new ListViewItem(g.Numero);
+                it.SubItems.Add(g.Tamaño);
+                it.SubItems.Add(g.Destino);
+                it.SubItems.Add(g.NroHDR ?? "");
+                NuevasGuiasDistribucionxFleteroListView.Items.Add(it);
             }
         }
 
-        private void LimpiarFormulario()
+        // ====== HELPERS UI ======
+        private void PrepararListViews()
         {
-            DNIFleteroTextBox.Clear();
-            UsuarioResult.Text = "";
-            CDResult.Text = "";
+            GuiasDistribucionxFleteroListView.CheckBoxes = true;
+            GuiasRetiroxFleteroListView.CheckBoxes = true;
 
+            AsegurarColumnaHDR(GuiasDistribucionxFleteroListView);
+            AsegurarColumnaHDR(GuiasRetiroxFleteroListView);
+
+            AsegurarColumnasNuevas(NuevasGuiasRetiroxFleteroListView);
+            AsegurarColumnasNuevas(NuevasGuiasDistribucionxFleteroListView);
+        }
+
+        private static void AsegurarColumnaHDR(ListView lv)
+        {
+            if (!lv.Columns.Cast<ColumnHeader>().Any(c => c.Text.Equals("HDR", StringComparison.OrdinalIgnoreCase)))
+                lv.Columns.Add(new ColumnHeader { Text = "HDR", Width = 160 });
+        }
+
+        private static void AsegurarColumnasNuevas(ListView lv)
+        {
+            if (lv.Columns.Count < 3)
+            {
+                lv.Columns.Clear();
+                lv.Columns.Add(new ColumnHeader { Text = "Nro de Guía", Width = 200 });
+                lv.Columns.Add(new ColumnHeader { Text = "Tamaño", Width = 80 });
+                lv.Columns.Add(new ColumnHeader { Text = "Destino", Width = 220 });
+            }
+            if (!lv.Columns.Cast<ColumnHeader>().Any(c => c.Text.Equals("HDR", StringComparison.OrdinalIgnoreCase)))
+                lv.Columns.Add(new ColumnHeader { Text = "HDR", Width = 200 });
+        }
+
+        private static List<string> GuiasMarcadas(ListView lv)
+        {
+            var res = new List<string>();
+            foreach (ListViewItem it in lv.Items)
+                if (it.Checked && it.SubItems.Count > 1)
+                    res.Add(it.SubItems[1].Text);
+            return res;
+        }
+
+        private static string ConstruirMensajePorHDR(ListView lvRetiro, ListView lvDist)
+        {
+            string Seccion(string titulo, ListView lv)
+            {
+                var grupos = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+                foreach (ListViewItem it in lv.Items)
+                {
+                    if (it.SubItems.Count < 4) continue;
+                    string guia = it.SubItems[0].Text?.Trim() ?? "";
+                    string hdr = it.SubItems[3].Text?.Trim() ?? "";
+                    if (string.IsNullOrEmpty(hdr)) hdr = "(sin HDR)";
+                    if (!grupos.TryGetValue(hdr, out var lst)) { lst = new List<string>(); grupos[hdr] = lst; }
+                    if (!string.IsNullOrEmpty(guia)) lst.Add(guia);
+                }
+                if (grupos.Count == 0) return $"{titulo}: (sin HDR)\n";
+                var lineas = new List<string> { $"{titulo}:" };
+                foreach (var kv in grupos.OrderBy(k => k.Key))
+                    lineas.Add($"- HDR {kv.Key} con guías {(kv.Value.Count == 0 ? "(sin guías)" : string.Join(", ", kv.Value))}");
+                lineas.Add("");
+                return string.Join("\n", lineas);
+            }
+            return Seccion("HDR de Retiro", lvRetiro) + Seccion("HDR de Distribución", lvDist);
+        }
+
+        private void LimpiarListas()
+        {
             GuiasDistribucionxFleteroListView.Items.Clear();
             GuiasRetiroxFleteroListView.Items.Clear();
             NuevasGuiasRetiroxFleteroListView.Items.Clear();
             NuevasGuiasDistribucionxFleteroListView.Items.Clear();
         }
+
+        private void LimpiarPantalla(bool total)
+        {
+            LimpiarListas();
+            if (total)
+            {
+                DNIFleteroTextBox.Clear();
+                PintarNombreFletero(string.Empty);
+            }
+        }
+
+        private void MostrarSeccionBusquedaYListasSuperiores(bool visible)
+        {
+            BusquedaGroupBox.Visible = visible;
+            GuiasGroupBox.Visible = visible;
+            groupBox2.Visible = visible;
+        }
+
+        private void PintarNombreFletero(string nombre)
+        {
+            var lbl = FindLabel("FleteroResult");
+            if (lbl != null)
+            {
+                lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                lbl.Text = string.IsNullOrWhiteSpace(nombre) ? string.Empty : $"Fletero: {nombre}";
+            }
+        }
+
+        private Label? FindLabel(string name) =>
+            this.Controls.Find(name, true).FirstOrDefault() as Label;
+
+        private void GuiasRetiroxFleteroListView_SelectedIndexChanged(object sender, EventArgs e) { /* no-op */ }
     }
 }

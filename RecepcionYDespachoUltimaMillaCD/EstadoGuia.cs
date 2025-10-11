@@ -1,12 +1,26 @@
-﻿using System;
-
-namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
+﻿namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 {
-    // Estados de una guía en última milla
     public enum EstadoGuia
     {
-        Pendiente,
-        Cumplida,
-        NoCumplida
+        // RETIRO
+        ARetirarEnAgenciaOrigen,
+        ARetirarPorDomicilioCliente,
+        EnEsperaDeRetiroEnAgencia,
+        EnEsperaDeRetiroAlCliente,
+        EnRutaACDOrigen,
+
+        // DISTRIBUCIÓN
+        Admitida,
+        EnTransitoAlCDDestino,
+        EnCDDestino,
+        EnRutaADomicilioEntrega,
+        EnRutaALaAgenciaEntrega,
+        PendienteDeEntrega,
+
+        // FINAL
+        Entregada,
+
+        // Auxiliar
+        PendienteDeAsignar
     }
 }
