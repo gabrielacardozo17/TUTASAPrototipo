@@ -71,7 +71,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
             // Validación N2: Consistencia (debe haber guías para entregar)
             if (GuiasAEntregarCDListView.Items.Count == 0)
             {
-                MessageBox.Show("No hay encomiendas para entregar.", "Operación no válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe ingresar un número de DNI.", "Operación no válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -88,7 +88,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
             if (exito)
             {
                 MessageBox.Show("La entrega se ha registrado correctamente.", "Operación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarFormularioCompleto();
+                LimpiarFormularioCompleto(); // Esto ya limpia DNI, nombre, apellido y el listado
             }
             else
             {
@@ -108,18 +108,27 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
 
             if (guias.Count == 0)
             {
-                MessageBox.Show("El destinatario no tiene encomiendas pendientes de retiro en este CD.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El destinatario no tiene encomiendas pendientes de entrega en este CD.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Limpieza adicional solicitada cuando no hay resultados
+                NombreResultLabel.Text = "";
+                ApellidoResultLabel.Text = "";
+                GuiasAEntregarCDListView.Items.Clear();
+
+                // Dejar el foco en el DNI para que el usuario intente otro
+                DNIDestinatarioTextBox.Select();
+                DNIDestinatarioTextBox.Focus();
+                return;
             }
-            else
+
+            foreach (var guia in guias)
             {
-                foreach (var guia in guias)
-                {
-                    ListViewItem item = new ListViewItem(guia.NumeroGuia);
-                    item.SubItems.Add(guia.Tamanio.ToString());
-                    GuiasAEntregarCDListView.Items.Add(item);
-                }
+                ListViewItem item = new ListViewItem(guia.NumeroGuia);
+                item.SubItems.Add(guia.Tamanio.ToString());
+                GuiasAEntregarCDListView.Items.Add(item);
             }
         }
+
 
         private void LimpiarCampos()
         {

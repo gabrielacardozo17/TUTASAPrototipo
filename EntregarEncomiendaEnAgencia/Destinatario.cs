@@ -1,9 +1,14 @@
-﻿namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
+﻿// ===============================
+// Destinatario.cs
+// ===============================
+
+namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 {
     public class Destinatario
     {
-        public string DNI { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
+        // Inicializados para cumplir no-nullable
+        public string DNI { get; set; } = string.Empty;
+        public string Nombre { get; set; } = string.Empty;
+        public string Apellido { get; set; } = string.Empty;
     }
 }
