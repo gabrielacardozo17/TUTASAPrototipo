@@ -9,9 +9,15 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         // ---------- DATOS DE PRUEBA ----------
         private readonly List<Cliente> _clientes = new()
         {
-            new Cliente { Cuit="30-12345678-1", Nombre="Distribuidora Sur", Telefono="1122334455", Direccion="Av. Siempre Viva 742, CABA" },
-            new Cliente { Cuit="20-11111111-2", Nombre="Mayorista Norte",   Telefono="1144556677", Direccion="San Martín 1200, La Plata" }
+            new Cliente { Cuit = "30-12345678-1", Nombre = "Distribuidora Sur", Telefono = "1122334455", Direccion = "Av. Siempre Viva 742, CABA" },
+            new Cliente { Cuit = "20-11111111-2", Nombre = "Mayorista Norte", Telefono = "1144556677", Direccion = "San Martín 1200, La Plata" },
+            new Cliente { Cuit = "30-22223333-3", Nombre = "Logística Pampeana", Telefono = "1133665599", Direccion = "Ruta 5 km 320, Santa Rosa" },
+            new Cliente { Cuit = "27-44445555-6", Nombre = "Agroexport SRL", Telefono = "1147891234", Direccion = "Av. Mitre 2300, Rosario" },
+            new Cliente { Cuit = "33-55556666-7", Nombre = "Transportes del Litoral", Telefono = "1125873645", Direccion = "Av. Maipú 2700, Corrientes" },
+            new Cliente { Cuit = "20-77778888-9", Nombre = "Comercial Andina", Telefono = "2614567890", Direccion = "San Martín 1800, Mendoza" },
+            new Cliente { Cuit = "23-99990000-1", Nombre = "Depósito Patagónico", Telefono = "2994672301", Direccion = "Anaya 3005, Neuquén" }
         };
+
 
         // Provincias con CD
         private readonly Dictionary<int, string> _provincias = new()
@@ -81,12 +87,23 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         private static readonly Dictionary<string, int> _seqPorUbicacion = new();
         private static string Digits(string s) => new string(s.Where(char.IsDigit).ToArray());
 
+        // === Origen fijo (lo que vas a pasar desde el form): CD Corrientes ===
+        private const int ORIGEN_CD_CORRIENTES_ID = 9501;
+        private const string ORIGEN_CD_CORRIENTES_NOMBRE = "CD Corrientes";
+
+        // Propiedades para que el form pueda pasar SIEMPRE este origen
+        public int OrigenCdFijoId => ORIGEN_CD_CORRIENTES_ID;
+        public string OrigenCdFijoNombre => ORIGEN_CD_CORRIENTES_NOMBRE;
+        // ====================================================================
+
+        // Nuevo formato: TLLLNNNNN → TLLL = 0001–0999 (CD), 1000+ (Agencia)
+        private static readonly Dictionary<int, int> _seqPorOrigen = new();
+
         private static string NextGuiaCode(bool esCD, int codigo3)
         {
-            var t = esCD ? '1' : '0';
-            var key = $"{t}{codigo3:D3}";
-            _seqPorUbicacion[key] = _seqPorUbicacion.TryGetValue(key, out var s) ? s + 1 : 1;
-            return $"{t}{codigo3:D3}{_seqPorUbicacion[key]:D5}";
+            int codigo4 = esCD ? codigo3 : (1000 + codigo3);
+            _seqPorOrigen[codigo4] = _seqPorOrigen.TryGetValue(codigo4, out var s) ? s + 1 : 1;
+            return $"{codigo4:D4}{_seqPorOrigen[codigo4]:D5}";
         }
 
         // ---------- API ----------
@@ -192,22 +209,30 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                     break;
             }
 
+            // --- ACEPTA lo que venga del form, pero si no coincide, fuerza Corrientes ---
+            if (cdOrigenId != ORIGEN_CD_CORRIENTES_ID)
+            {
+                cdOrigenId = ORIGEN_CD_CORRIENTES_ID;
+                cdOrigenNombre = ORIGEN_CD_CORRIENTES_NOMBRE;
+            }
+            if (string.IsNullOrWhiteSpace(cdOrigenNombre))
+                cdOrigenNombre = ORIGEN_CD_CORRIENTES_NOMBRE;
+            // ---------------------------------------------------------------------------
+
             var guias = new List<Guia>();
 
             void AgregarGuia(int s, int m, int l, int xl)
             {
-                int lll = _codigoCD3.TryGetValue(cdOrigenId, out var code3)
-                          ? code3
-                          : (_cdsPorProv.TryGetValue(provinciaId, out var cdsProv) && cdsProv.Count > 0
-                                ? (_codigoCD3.TryGetValue(cdsProv[0].id, out var c3) ? c3 : 1)
-                                : 1);
+                // Tomamos el LLL del CD Corrientes para numeración (mapped a 070)
+                int lll = _codigoCD3.TryGetValue(cdOrigenId, out var code3) ? code3 : 1;
 
-                var numero = NextGuiaCode(esCD: true, codigo3: lll); // impone en CD ⇒ T=1
+                // Numeramos como CD (TLLL en 0001–0999) ⇒ para Corrientes será 0070
+                var numero = NextGuiaCode(esCD: true, codigo3: lll);
 
                 guias.Add(new Guia
                 {
                     Numero = numero,
-                    Estado = EstadoGuia.AdmitidaEnCDOrigen,
+                    Estado = EstadoGuia.PendRetiroDomicilio,
                     CuitRemitente = Digits(cuitRemitente),
 
                     Destinatario = new Destinatario { Nombre = destNombre, Apellido = destApellido, Dni = destDni },

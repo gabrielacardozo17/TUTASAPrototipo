@@ -89,7 +89,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             if (hayDatos)
             {
                 var r = MessageBox.Show(
-                    "Si sale se eliminarán los productos ingresados. ¿Salir?",
+                    "Si sale se eliminarán los datos ingresados. ¿Salir?",
                     "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (r == DialogResult.No) e.Cancel = true;
             }
@@ -375,8 +375,11 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
             try
             {
-                var cdOrigenNombre = (CDLabel?.Text ?? "").Replace("CD:", "").Trim();
-                var cdOrigenId = _modelo.GetCDIdPorNombre(cdOrigenNombre) ?? 0;
+                var cdOrigenId = _modelo.OrigenCdFijoId;            // 9501
+                var cdOrigenNombre = _modelo.OrigenCdFijoNombre;       // "CD Corrientes"
+
+                //var cdOrigenNombre = (CDLabel?.Text ?? "").Replace("CD:", "").Trim();
+                //var cdOrigenId = _modelo.GetCDIdPorNombre(cdOrigenNombre) ?? 0;
 
                 var guias = _modelo.ConfirmarImposicion(
                     cuit,

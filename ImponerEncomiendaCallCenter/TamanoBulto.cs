@@ -1,7 +1,4 @@
 ﻿namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
 {
-    public enum Tamanio
-    {
-        S, M, L, XL
-    }
+    public enum TamanoBulto { S, M, L, XL }
 }

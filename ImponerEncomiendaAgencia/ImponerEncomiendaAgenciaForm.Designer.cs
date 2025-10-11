@@ -17,102 +17,100 @@
 
         private void InitializeComponent()
         {
-            this.CancelarButton = new System.Windows.Forms.Button();
-            this.ConfirmarImposicionButton = new System.Windows.Forms.Button();
-            this.EncomiendasGroupBox = new System.Windows.Forms.GroupBox();
-            this.tipoXLNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.tipoXLLabel = new System.Windows.Forms.Label();
-            this.tipoLNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.tipoLLabel = new System.Windows.Forms.Label();
-            this.tipoMNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.TipoMLabel = new System.Windows.Forms.Label();
-            this.tipoSNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.TipoSLabel = new System.Windows.Forms.Label();
-            this.EncomiendasLabel = new System.Windows.Forms.Label();
-            this.DestinatarioGroupBox = new System.Windows.Forms.GroupBox();
-            this.CentroDistribucionComboBox = new System.Windows.Forms.ComboBox();
-            this.CentroLabel = new System.Windows.Forms.Label();
-            this.AgenciaComboBox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.LocalidadxProvinciaComboBox = new System.Windows.Forms.ComboBox();
-            this.CodigoPostalTextBox = new System.Windows.Forms.TextBox();
-            this.CodigoPostalLabel = new System.Windows.Forms.Label();
-            this.TipoEntregaLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TipoEntregaComboBox = new System.Windows.Forms.ComboBox();
-            this.ProvinciaComboBox = new System.Windows.Forms.ComboBox();
-            this.DireccionDestinatarioTextBox = new System.Windows.Forms.TextBox();
-            this.DireccionLabel = new System.Windows.Forms.Label();
-            this.LocalidadLabel = new System.Windows.Forms.Label();
-            this.ProvinciaLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.DNIDestinatarioTextBox = new System.Windows.Forms.TextBox();
-            this.DNILabel = new System.Windows.Forms.Label();
-            this.ApellidoDestinatarioResult = new System.Windows.Forms.TextBox();
-            this.ApellidoDestinatarioLabel = new System.Windows.Forms.Label();
-            this.NombreDestinatarioTextBox = new System.Windows.Forms.TextBox();
-            this.NombreDestinatarioLabel = new System.Windows.Forms.Label();
-            this.RemitenteGroupBox = new System.Windows.Forms.GroupBox();
-            this.DireccionClienteResult = new System.Windows.Forms.Label();
-            this.TelefonoClienteResult = new System.Windows.Forms.Label();
-            this.NombreClienteResult = new System.Windows.Forms.Label();
-            this.DireccionClienteLabel = new System.Windows.Forms.Label();
-            this.TelefonoClienteLabel = new System.Windows.Forms.Label();
-            this.NombreClienteLabel = new System.Windows.Forms.Label();
-            this.BuscarCuitButton = new System.Windows.Forms.Button();
-            this.CUITRemitenteMaskedText = new System.Windows.Forms.MaskedTextBox();
-            this.CuitLabel = new System.Windows.Forms.Label();
-            this.ImposicionAgenciaLabel = new System.Windows.Forms.Label();
-            this.AgenciaLabel = new System.Windows.Forms.Label();
-            this.UsuarioLabel = new System.Windows.Forms.Label();
-            this.UsuarioResult = new System.Windows.Forms.Label();
-            this.AgenciaResult = new System.Windows.Forms.Label();
-            this.EncomiendasGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoXLNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoLNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoMNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tipoSNumericUpDown)).BeginInit();
-            this.DestinatarioGroupBox.SuspendLayout();
-            this.RemitenteGroupBox.SuspendLayout();
-            this.SuspendLayout();
+            CancelarButton = new Button();
+            ConfirmarImposicionButton = new Button();
+            EncomiendasGroupBox = new GroupBox();
+            tipoXLNumericUpDown = new NumericUpDown();
+            tipoXLLabel = new Label();
+            tipoLNumericUpDown = new NumericUpDown();
+            tipoLLabel = new Label();
+            tipoMNumericUpDown = new NumericUpDown();
+            TipoMLabel = new Label();
+            tipoSNumericUpDown = new NumericUpDown();
+            TipoSLabel = new Label();
+            EncomiendasLabel = new Label();
+            DestinatarioGroupBox = new GroupBox();
+            CentroDistribucionComboBox = new ComboBox();
+            CentroLabel = new Label();
+            AgenciaComboBox = new ComboBox();
+            label1 = new Label();
+            LocalidadxProvinciaComboBox = new ComboBox();
+            CodigoPostalTextBox = new TextBox();
+            CodigoPostalLabel = new Label();
+            TipoEntregaLabel = new Label();
+            label3 = new Label();
+            TipoEntregaComboBox = new ComboBox();
+            ProvinciaComboBox = new ComboBox();
+            DireccionDestinatarioTextBox = new TextBox();
+            DireccionLabel = new Label();
+            LocalidadLabel = new Label();
+            ProvinciaLabel = new Label();
+            label2 = new Label();
+            DNIDestinatarioTextBox = new TextBox();
+            DNILabel = new Label();
+            ApellidoDestinatarioResult = new TextBox();
+            ApellidoDestinatarioLabel = new Label();
+            NombreDestinatarioTextBox = new TextBox();
+            NombreDestinatarioLabel = new Label();
+            RemitenteGroupBox = new GroupBox();
+            DireccionClienteResult = new Label();
+            TelefonoClienteResult = new Label();
+            NombreClienteResult = new Label();
+            DireccionClienteLabel = new Label();
+            TelefonoClienteLabel = new Label();
+            NombreClienteLabel = new Label();
+            BuscarCuitButton = new Button();
+            CUITRemitenteMaskedText = new MaskedTextBox();
+            CuitLabel = new Label();
+            ImposicionAgenciaLabel = new Label();
+            AgenciaLabel = new Label();
+            UsuarioLabel = new Label();
+            UsuarioResult = new Label();
+            AgenciaResult = new Label();
+            EncomiendasGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)tipoXLNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tipoLNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tipoMNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tipoSNumericUpDown).BeginInit();
+            DestinatarioGroupBox.SuspendLayout();
+            RemitenteGroupBox.SuspendLayout();
+            SuspendLayout();
             // 
             // CancelarButton
             // 
-            this.CancelarButton.Location = new System.Drawing.Point(570, 730);
-            this.CancelarButton.Name = "CancelarButton";
-            this.CancelarButton.Size = new System.Drawing.Size(84, 29);
-            this.CancelarButton.TabIndex = 21;
-            this.CancelarButton.Text = "Cancelar";
-            this.CancelarButton.UseVisualStyleBackColor = true;
-            this.CancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
+            CancelarButton.Location = new Point(570, 730);
+            CancelarButton.Name = "CancelarButton";
+            CancelarButton.Size = new Size(84, 29);
+            CancelarButton.TabIndex = 21;
+            CancelarButton.Text = "Cancelar";
+            CancelarButton.UseVisualStyleBackColor = true;
             // 
             // ConfirmarImposicionButton
             // 
-            this.ConfirmarImposicionButton.Location = new System.Drawing.Point(663, 730);
-            this.ConfirmarImposicionButton.Name = "ConfirmarImposicionButton";
-            this.ConfirmarImposicionButton.Size = new System.Drawing.Size(87, 29);
-            this.ConfirmarImposicionButton.TabIndex = 20;
-            this.ConfirmarImposicionButton.Text = "Confirmar";
-            this.ConfirmarImposicionButton.UseVisualStyleBackColor = true;
-            this.ConfirmarImposicionButton.Click += new System.EventHandler(this.ConfirmarImposicionButton_Click);
+            ConfirmarImposicionButton.Location = new Point(663, 730);
+            ConfirmarImposicionButton.Name = "ConfirmarImposicionButton";
+            ConfirmarImposicionButton.Size = new Size(87, 29);
+            ConfirmarImposicionButton.TabIndex = 20;
+            ConfirmarImposicionButton.Text = "Confirmar";
+            ConfirmarImposicionButton.UseVisualStyleBackColor = true;
             // 
             // EncomiendasGroupBox
             // 
-            this.EncomiendasGroupBox.Controls.Add(this.tipoXLNumericUpDown);
-            this.EncomiendasGroupBox.Controls.Add(this.tipoXLLabel);
-            this.EncomiendasGroupBox.Controls.Add(this.tipoLNumericUpDown);
-            this.EncomiendasGroupBox.Controls.Add(this.tipoLLabel);
-            this.EncomiendasGroupBox.Controls.Add(this.tipoMNumericUpDown);
-            this.EncomiendasGroupBox.Controls.Add(this.TipoMLabel);
-            this.EncomiendasGroupBox.Controls.Add(this.tipoSNumericUpDown);
-            this.EncomiendasGroupBox.Controls.Add(this.TipoSLabel);
-            this.EncomiendasGroupBox.Controls.Add(this.EncomiendasLabel);
-            this.EncomiendasGroupBox.Location = new System.Drawing.Point(63, 598);
-            this.EncomiendasGroupBox.Name = "EncomiendasGroupBox";
-            this.EncomiendasGroupBox.Size = new System.Drawing.Size(642, 126);
-            this.EncomiendasGroupBox.TabIndex = 19;
-            this.EncomiendasGroupBox.TabStop = false;
-            this.EncomiendasGroupBox.Text = "Detalle de encomiendas";
+            EncomiendasGroupBox.Controls.Add(tipoXLNumericUpDown);
+            EncomiendasGroupBox.Controls.Add(tipoXLLabel);
+            EncomiendasGroupBox.Controls.Add(tipoLNumericUpDown);
+            EncomiendasGroupBox.Controls.Add(tipoLLabel);
+            EncomiendasGroupBox.Controls.Add(tipoMNumericUpDown);
+            EncomiendasGroupBox.Controls.Add(TipoMLabel);
+            EncomiendasGroupBox.Controls.Add(tipoSNumericUpDown);
+            EncomiendasGroupBox.Controls.Add(TipoSLabel);
+            EncomiendasGroupBox.Controls.Add(EncomiendasLabel);
+            EncomiendasGroupBox.Location = new Point(63, 598);
+            EncomiendasGroupBox.Name = "EncomiendasGroupBox";
+            EncomiendasGroupBox.Size = new Size(642, 126);
+            EncomiendasGroupBox.TabIndex = 19;
+            EncomiendasGroupBox.TabStop = false;
+            EncomiendasGroupBox.Text = "Detalle de encomiendas";
             // 
             // tipoXLNumericUpDown
             // 
@@ -271,8 +269,6 @@
             LocalidadxProvinciaComboBox.Name = "LocalidadxProvinciaComboBox";
             LocalidadxProvinciaComboBox.Size = new Size(198, 23);
             LocalidadxProvinciaComboBox.TabIndex = 17;
-            LocalidadxProvinciaComboBox.SelectedIndexChanged += LocalidadxProvinciaComboBox_SelectedIndexChanged;
-            this.LocalidadxProvinciaComboBox.SelectedIndexChanged += new System.EventHandler(this.LocalidadxProvinciaComboBox_SelectedIndexChanged);
             // 
             // CodigoPostalTextBox
             // 
@@ -296,7 +292,7 @@
             TipoEntregaLabel.AutoSize = true;
             TipoEntregaLabel.Location = new Point(6, 204);
             TipoEntregaLabel.Name = "TipoEntregaLabel";
-            TipoEntregaLabel.Size = new Size(150, 15);
+            TipoEntregaLabel.Size = new Size(151, 15);
             TipoEntregaLabel.TabIndex = 6;
             TipoEntregaLabel.Text = "Tipo de entrega disponible:";
             // 
@@ -318,7 +314,6 @@
             TipoEntregaComboBox.Size = new Size(172, 23);
             TipoEntregaComboBox.TabIndex = 7;
             TipoEntregaComboBox.SelectedIndexChanged += TipoEntregaComboBox_SelectedIndexChanged;
-            this.TipoEntregaComboBox.SelectedIndexChanged += new System.EventHandler(this.TipoEntregaComboBox_SelectedIndexChanged);
             // 
             // ProvinciaComboBox
             // 
@@ -329,7 +324,6 @@
             ProvinciaComboBox.Size = new Size(198, 23);
             ProvinciaComboBox.TabIndex = 4;
             ProvinciaComboBox.SelectedIndexChanged += ProvinciaComboBox_SelectedIndexChanged;
-            this.ProvinciaComboBox.SelectedIndexChanged += new System.EventHandler(this.ProvinciaComboBox_SelectedIndexChanged);
             // 
             // DireccionDestinatarioTextBox
             // 
@@ -381,7 +375,6 @@
             DNIDestinatarioTextBox.Name = "DNIDestinatarioTextBox";
             DNIDestinatarioTextBox.Size = new Size(100, 23);
             DNIDestinatarioTextBox.TabIndex = 5;
-            DNIDestinatarioTextBox.TextChanged += DNIDestinatarioTextBox_TextChanged;
             // 
             // DNILabel
             // 
@@ -483,7 +476,7 @@
             TelefonoClienteLabel.AutoSize = true;
             TelefonoClienteLabel.Location = new Point(133, 85);
             TelefonoClienteLabel.Name = "TelefonoClienteLabel";
-            TelefonoClienteLabel.Size = new Size(55, 15);
+            TelefonoClienteLabel.Size = new Size(56, 15);
             TelefonoClienteLabel.TabIndex = 4;
             TelefonoClienteLabel.Text = "Teléfono:";
             // 
@@ -498,14 +491,13 @@
             // 
             // BuscarCuitButton
             // 
-            this.BuscarCuitButton.Location = new System.Drawing.Point(382, 26);
-            this.BuscarCuitButton.Name = "BuscarCuitButton";
-            this.BuscarCuitButton.Size = new System.Drawing.Size(75, 23);
-            this.BuscarCuitButton.TabIndex = 2;
-            this.BuscarCuitButton.Text = "Buscar";
-            this.BuscarCuitButton.UseVisualStyleBackColor = true;
-            this.BuscarCuitButton.Click += new System.EventHandler(this.BuscarCuitButton_Click);
-            //
+            BuscarCuitButton.Location = new Point(382, 26);
+            BuscarCuitButton.Name = "BuscarCuitButton";
+            BuscarCuitButton.Size = new Size(75, 23);
+            BuscarCuitButton.TabIndex = 2;
+            BuscarCuitButton.Text = "Buscar";
+            BuscarCuitButton.UseVisualStyleBackColor = true;
+            // 
             // CUITRemitenteMaskedText
             // 
             CUITRemitenteMaskedText.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
@@ -520,7 +512,7 @@
             CuitLabel.AutoSize = true;
             CuitLabel.Location = new Point(133, 30);
             CuitLabel.Name = "CuitLabel";
-            CuitLabel.Size = new Size(35, 15);
+            CuitLabel.Size = new Size(36, 15);
             CuitLabel.TabIndex = 0;
             CuitLabel.Text = "CUIT:";
             // 
@@ -539,9 +531,9 @@
             AgenciaLabel.AutoSize = true;
             AgenciaLabel.Location = new Point(543, 9);
             AgenciaLabel.Name = "AgenciaLabel";
-            AgenciaLabel.Size = new Size(53, 15);
+            AgenciaLabel.Size = new Size(172, 15);
             AgenciaLabel.TabIndex = 23;
-            AgenciaLabel.Text = "Agencia:";
+            AgenciaLabel.Text = "Agencia: Agencia CABA Centro";
             // 
             // UsuarioLabel
             // 
@@ -566,9 +558,9 @@
             AgenciaResult.AutoSize = true;
             AgenciaResult.Location = new Point(602, 9);
             AgenciaResult.Name = "AgenciaResult";
-            AgenciaResult.Size = new Size(73, 15);
+            AgenciaResult.Size = new Size(0, 15);
             AgenciaResult.TabIndex = 25;
-            AgenciaResult.Text = "Loren Ipsum";
+            AgenciaResult.Click += AgenciaResult_Click;
             // 
             // ImponerEncomiendaAgenciaForm
             // 
@@ -587,8 +579,6 @@
             Controls.Add(ImposicionAgenciaLabel);
             Name = "ImponerEncomiendaAgenciaForm";
             Text = "Imposición de encomiendas en agencia";
-            Load += ImponerEncomiendaAgenciaForm_Load;
-            this.Load += new System.EventHandler(this.ImponerEncomiendaAgenciaForm_Load);
             EncomiendasGroupBox.ResumeLayout(false);
             EncomiendasGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)tipoXLNumericUpDown).EndInit();

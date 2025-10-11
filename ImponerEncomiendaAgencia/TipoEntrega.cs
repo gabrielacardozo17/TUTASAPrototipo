@@ -1,4 +1,4 @@
-﻿namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
+﻿namespace TUTASAPrototipo.ImponerEncomiendaAgencia
 {
     public enum TipoEntrega
     {

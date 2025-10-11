@@ -162,7 +162,6 @@
             BuscarCuitButton.TabIndex = 2;
             BuscarCuitButton.Text = "Buscar";
             BuscarCuitButton.UseVisualStyleBackColor = true;
-            BuscarCuitButton.Click += BuscarCuitButton_Click;
             // 
             // CUITRemitenteMaskedText
             // 
@@ -273,7 +272,6 @@
             LocalidadxProvinciaComboBox.Name = "LocalidadxProvinciaComboBox";
             LocalidadxProvinciaComboBox.Size = new Size(198, 23);
             LocalidadxProvinciaComboBox.TabIndex = 30;
-            LocalidadxProvinciaComboBox.SelectedIndexChanged += LocalidadxProvinciaComboBox_SelectedIndexChanged;
             // 
             // label2
             // 
@@ -298,7 +296,6 @@
             CodigoPostalTextBox.Name = "CodigoPostalTextBox";
             CodigoPostalTextBox.Size = new Size(100, 23);
             CodigoPostalTextBox.TabIndex = 29;
-            CodigoPostalTextBox.TextChanged += CodigoPostalTextBox_TextChanged;
             // 
             // ApellidoDestinatarioLabel
             // 
@@ -308,7 +305,6 @@
             ApellidoDestinatarioLabel.Size = new Size(54, 15);
             ApellidoDestinatarioLabel.TabIndex = 2;
             ApellidoDestinatarioLabel.Text = "Apellido:";
-            ApellidoDestinatarioLabel.Click += ApellidoDestinatarioLabel_Click;
             // 
             // CodigoPostalLabel
             // 
@@ -435,7 +431,6 @@
             tipoXLNumericUpDown.Name = "tipoXLNumericUpDown";
             tipoXLNumericUpDown.Size = new Size(62, 22);
             tipoXLNumericUpDown.TabIndex = 16;
-            tipoXLNumericUpDown.ValueChanged += tipoXLNumericUpDown_ValueChanged;
             // 
             // tipoXLLabel
             // 
@@ -491,7 +486,6 @@
             tipoSNumericUpDown.Name = "tipoSNumericUpDown";
             tipoSNumericUpDown.Size = new Size(62, 22);
             tipoSNumericUpDown.TabIndex = 10;
-            tipoSNumericUpDown.ValueChanged += tipoSNumericUpDown_ValueChanged;
             // 
             // TipoSLabel
             // 
@@ -520,7 +514,6 @@
             CancelarButton.TabIndex = 13;
             CancelarButton.Text = "Cancelar";
             CancelarButton.UseVisualStyleBackColor = true;
-            CancelarButton.Click += CancelarButton_Click;
             // 
             // ConfirmarButton
             // 
@@ -530,7 +523,6 @@
             ConfirmarButton.TabIndex = 12;
             ConfirmarButton.Text = "Confirmar";
             ConfirmarButton.UseVisualStyleBackColor = true;
-            ConfirmarButton.Click += ConfirmarButton_Click;
             // 
             // ImponerEncomiendaCallCenterForm
             // 

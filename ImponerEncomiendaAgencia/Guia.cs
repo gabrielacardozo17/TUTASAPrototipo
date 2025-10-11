@@ -2,12 +2,36 @@
 {
     public class Guia
     {
-        public string NumeroGuia { get; set; }
-        public Tamanio Tamanio { get; set; }
-        public string DniDestinatario { get; set; }
-        public string DireccionDestino { get; set; }
-        public string CuitRemitente { get; set; }
-        // Nota: Según el caso de uso, el estado inicial es "Impuesto".
-        // En un modelo más complejo, aquí habría una propiedad de estado.
+        public string Numero { get; set; } = "";
+        public EstadoGuia Estado { get; set; } = EstadoGuia.AdmitidaEnCDOrigen;
+
+        public string CuitRemitente { get; set; } = "";
+        public Destinatario Destinatario { get; set; } = new Destinatario();
+
+        public int CdOrigenId { get; set; }
+        public string CdOrigenNombre { get; set; } = "";
+
+        public int ProvinciaId { get; set; }
+        public string ProvinciaNombre { get; set; } = "";
+        public int? LocalidadId { get; set; }
+        public string? LocalidadNombre { get; set; }
+        public bool LocalidadEsOtras { get; set; }
+
+        public TipoEntrega TipoEntrega { get; set; }
+        public string? Direccion { get; set; }
+        public string? CodigoPostal { get; set; }
+        public int? AgenciaId { get; set; }
+        public string? AgenciaNombre { get; set; }
+        public int? CDId { get; set; }
+        public string? CDNombre { get; set; }
+
+        public int CantS { get; set; }
+        public int CantM { get; set; }
+        public int CantL { get; set; }
+        public int CantXL { get; set; }
+
+        public string? UbicacionActualTipo { get; set; }
+        public int? UbicacionActualId { get; set; }
+        public TamanoBulto? Tamano { get; set; }
     }
 }
