@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
 {
-    public partial class dad : Form
+    public partial class RecepcionYDespachoLargaDistanciaForm : Form
     {
         private readonly RecepcionYDespachoLargaDistanciaModelo _modelo = new();
 
