@@ -126,7 +126,7 @@
             RecepcionAgenciaButton.Name = "RecepcionAgenciaButton";
             RecepcionAgenciaButton.Size = new Size(502, 37);
             RecepcionAgenciaButton.TabIndex = 1;
-            RecepcionAgenciaButton.Text = "Recepción de encomiendas";
+            RecepcionAgenciaButton.Text = "Recepción y despacho de encomiendas";
             RecepcionAgenciaButton.UseVisualStyleBackColor = true;
             RecepcionAgenciaButton.Click += RecepcionAgenciaButton_Click;
             // 
