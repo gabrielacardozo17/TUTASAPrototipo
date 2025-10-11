@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             BusquedaGroupBox = new GroupBox();
+            BuscarServicioButton = new Button();
             NumServicioTextBox = new TextBox();
             ServicioLabel = new Label();
             GuiasGroupBox = new GroupBox();
@@ -46,7 +47,6 @@
             UsuarioLabel = new Label();
             UsuarioResult = new Label();
             CDResult = new Label();
-            BuscarServicioButton = new Button();
             BusquedaGroupBox.SuspendLayout();
             GuiasGroupBox.SuspendLayout();
             GuiasADespacharServicioListView.SuspendLayout();
@@ -63,6 +63,17 @@
             BusquedaGroupBox.TabIndex = 1;
             BusquedaGroupBox.TabStop = false;
             BusquedaGroupBox.Text = "Búsqueda";
+            BusquedaGroupBox.Enter += BusquedaGroupBox_Enter;
+            // 
+            // BuscarServicioButton
+            // 
+            BuscarServicioButton.Location = new Point(501, 44);
+            BuscarServicioButton.Name = "BuscarServicioButton";
+            BuscarServicioButton.Size = new Size(75, 23);
+            BuscarServicioButton.TabIndex = 2;
+            BuscarServicioButton.Text = "Buscar";
+            BuscarServicioButton.UseVisualStyleBackColor = true;
+            BuscarServicioButton.Click += BuscarServicioButton_Click;
             // 
             // NumServicioTextBox
             // 
@@ -70,6 +81,7 @@
             NumServicioTextBox.Name = "NumServicioTextBox";
             NumServicioTextBox.Size = new Size(228, 23);
             NumServicioTextBox.TabIndex = 1;
+            NumServicioTextBox.TextChanged += NumServicioTextBox_TextChanged;
             // 
             // ServicioLabel
             // 
@@ -155,7 +167,7 @@
             ConfirmarRecepcionYDespachoButton.TabIndex = 4;
             ConfirmarRecepcionYDespachoButton.Text = "Confirmar";
             ConfirmarRecepcionYDespachoButton.UseVisualStyleBackColor = true;
-            ConfirmarRecepcionYDespachoButton.Click += ConfirmarButton_Click;
+            ConfirmarRecepcionYDespachoButton.Click += ConfirmarRecepcionYDespachoButton_Click;
             // 
             // CancelarButton
             // 
@@ -203,16 +215,6 @@
             CDResult.TabIndex = 18;
             CDResult.Text = "Loren Ipsum";
             // 
-            // BuscarServicioButton
-            // 
-            BuscarServicioButton.Location = new Point(501, 44);
-            BuscarServicioButton.Name = "BuscarServicioButton";
-            BuscarServicioButton.Size = new Size(75, 23);
-            BuscarServicioButton.TabIndex = 2;
-            BuscarServicioButton.Text = "Buscar";
-            BuscarServicioButton.UseVisualStyleBackColor = true;
-            BuscarServicioButton.Click += BuscarButton_Click;
-            // 
             // RecepcionYDespachoLargaDistanciaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -243,12 +245,6 @@
         private TextBox NumServicioTextBox;
         private Label ServicioLabel;
         private GroupBox GuiasGroupBox;
-        private CheckBox checkBox2;
-        private CheckBox checkBox1;
-        private Label label7;
-        private Label label6;
-        private Label label5;
-        private Label label4;
         private ListView GuiasADespacharxServicioListView;
         private ColumnHeader NroGuiaColumn;
         private ColumnHeader TamanioColumn;
@@ -264,5 +260,20 @@
         private Label UsuarioResult;
         private Label CDResult;
         private Button BuscarServicioButton;
+
+        private void SalirButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BusquedaGroupBox_Enter(object sender, EventArgs e)
+        {
+            // Event handler stub for designer. Logic is in main form file.
+        }
+
+        private void NumServicioTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // Event handler stub for designer. Logic is in main form file.
+        }
     }
 }

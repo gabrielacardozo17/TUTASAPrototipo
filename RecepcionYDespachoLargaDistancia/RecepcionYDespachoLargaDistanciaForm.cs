@@ -1,109 +1,128 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 
 namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
 {
     public partial class RecepcionYDespachoLargaDistanciaForm : Form
     {
-        private readonly RecepcionYDespachoLargaDistanciaModelo _modelo = new();
-
-        // Reemplazar el constructor en RecepcionYDespachoLargaDistanciaForm.cs
+        private RecepcionYDespachoLargaDistanciaModelo modelo;
 
         public RecepcionYDespachoLargaDistanciaForm()
         {
             InitializeComponent();
-
-            // NOTA: Eliminamos las asignaciones manuales de eventos aquí.
-            // La conexión debe realizarse ÚNICAMENTE en la ventana de propiedades del Diseñador.
-
-            CDResult.Text = "CD CABA Oeste";
-            UsuarioResult.Text = "p.gonzalez";
-
-            // Configuraciones visuales
-            GuiaxServicioRecibidaListView.CheckBoxes = true;
-            GuiasADespacharxServicioListView.CheckBoxes = true;
+            modelo = new RecepcionYDespachoLargaDistanciaModelo();
+            InicializarFormulario();
         }
 
-        // Reemplazar este método en RecepcionYDespachoLargaDistanciaForm.cs
-
-        private void BuscarButton_Click(object sender, EventArgs e)
+        private void InicializarFormulario()
         {
-            LimpiarPantalla();
-            string nroServicio = NumServicioTextBox.Text.Trim(); // .Trim() para limpiar espacios del input
+            // Establecemos valores fijos para el prototipo
+            UsuarioResult.Text = "J.Perez";
+            CDResult.Text = "CD 0010";
 
-            if (string.IsNullOrWhiteSpace(nroServicio))
+            // Deshabilitamos los controles que dependen de una búsqueda exitosa
+            GuiasGroupBox.Enabled = false;
+            // NOTA: Este control es un GroupBox aunque su nombre sugiera ser una ListView. Lo usamos tal cual está en el Designer.
+            GuiasADespacharServicioListView.Enabled = false;
+            ConfirmarRecepcionYDespachoButton.Enabled = false;
+            NumServicioTextBox.Clear();
+            LimpiarListViews();
+            NumServicioTextBox.Focus();
+        }
+
+        private void BuscarServicioButton_Click(object sender, EventArgs e)
+        {
+            // Validación Nivel 0-2: Entrada del usuario en el Form
+            string numeroServicio = NumServicioTextBox.Text.Trim();
+
+            if (string.IsNullOrEmpty(numeroServicio))
             {
-                MessageBox.Show("Debe ingresar el número de servicio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe ingresar el número de servicio.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // El modelo ahora es tolerante al buscar
-            if (!_modelo.ExisteServicio(nroServicio))
-            {
-                MessageBox.Show("No existe ese servicio. Vuelva a intentarlo.", "Error de Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // Llamamos al modelo para realizar la búsqueda
+            var servicioEncontrado = modelo.BuscarServicio(numeroServicio);
 
-            MostrarResultados(nroServicio);
+            if (servicioEncontrado != null)
+            {
+                PoblarListViews(servicioEncontrado);
+                // Habilitamos controles después de una búsqueda exitosa
+                GuiasGroupBox.Enabled = true;
+                GuiasADespacharServicioListView.Enabled = true; // Habilitamos el GroupBox de "Acciones"
+                ConfirmarRecepcionYDespachoButton.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("No se encontró un servicio con el número ingresado. Vuelva a intentarlo.", "Búsqueda sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Deshabilitamos los controles y limpiamos si la búsqueda falla
+                InicializarFormulario();
+            }
         }
 
-        private void MostrarResultados(string nroServicio)
+        private void PoblarListViews(ServicioTransporte servicio)
         {
-            var resultados = _modelo.BuscarGuiasPorServicio(nroServicio);
+            LimpiarListViews();
 
-            foreach (var guia in resultados.aRecibir)
+            // Llenar ListView de Guías a Recibir (nombre del designer: GuiaxServicioRecibidaListView)
+            foreach (var guia in servicio.GuiasARecibir)
             {
                 var item = new ListViewItem(guia.NroGuia);
-                item.SubItems.Add(guia.Tamano);
+                item.SubItems.Add(guia.Tamanio);
                 GuiaxServicioRecibidaListView.Items.Add(item);
             }
 
-            foreach (var guia in resultados.aDespachar)
+            // Llenar ListView de Guías a Despachar (nombre del designer: GuiasADespacharxServicioListView)
+            foreach (var guia in servicio.GuiasADespachar)
             {
                 var item = new ListViewItem(guia.NroGuia);
-                item.SubItems.Add(guia.Tamano);
+                item.SubItems.Add(guia.Tamanio);
                 item.SubItems.Add(guia.Destino);
                 GuiasADespacharxServicioListView.Items.Add(item);
             }
         }
 
-        private void ConfirmarButton_Click(object sender, EventArgs e)
+        private void LimpiarListViews()
         {
-            if (GuiaxServicioRecibidaListView.Items.Count == 0 && GuiasADespacharxServicioListView.Items.Count == 0)
-            {
-                MessageBox.Show("No hay guías cargadas para procesar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            foreach (ListViewItem item in GuiaxServicioRecibidaListView.Items)
-            {
-                _modelo.ActualizarEstadoGuia(item.Text, item.Checked ? "En CD destino" : "No Recibida");
-            }
-
-            foreach (ListViewItem item in GuiasADespacharxServicioListView.Items)
-            {
-                _modelo.ActualizarEstadoGuia(item.Text, item.Checked ? "En tránsito al CD destino" : "No Despachada");
-            }
-
-            MessageBox.Show("Operación finalizada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LimpiarPantalla();
-        }
-
-        private void SalirButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void LimpiarPantalla()
-        {
-            NumServicioTextBox.Clear();
             GuiaxServicioRecibidaListView.Items.Clear();
             GuiasADespacharxServicioListView.Items.Clear();
         }
 
-        private void NumServicioTextBox_TextChanged(object sender, EventArgs e) { }
+        private void ConfirmarRecepcionYDespachoButton_Click(object sender, EventArgs e)
+        {
+            string numeroServicio = NumServicioTextBox.Text.Trim();
+            var guiasRecibidas = new System.Collections.Generic.List<string>();
+            var guiasDespachadas = new System.Collections.Generic.List<string>();
+
+            // Recopilar guías seleccionadas en ListView de recepción
+            foreach (ListViewItem item in GuiaxServicioRecibidaListView.Items)
+            {
+                if (item.Checked)
+                    guiasRecibidas.Add(item.Text);
+            }
+            // Recopilar guías seleccionadas en ListView de despacho
+            foreach (ListViewItem item in GuiasADespacharxServicioListView.Items)
+            {
+                if (item.Checked)
+                    guiasDespachadas.Add(item.Text);
+            }
+
+            if (guiasRecibidas.Count == 0 && guiasDespachadas.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar al menos una encomienda a recibir o despachar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Marcar guías como procesadas en el modelo
+            modelo.MarcarGuiasProcesadas(numeroServicio, guiasRecibidas, guiasDespachadas);
+
+            MessageBox.Show("Recepción y despacho confirmados con éxito.", "Operación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            InicializarFormulario(); // Reiniciamos el formulario a su estado inicial
+        }
+
+        private void CancelarButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
