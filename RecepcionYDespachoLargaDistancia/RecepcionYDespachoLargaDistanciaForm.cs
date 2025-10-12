@@ -18,7 +18,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
         {
             // Establecemos valores fijos para el prototipo
             UsuarioResult.Text = "J.Perez";
-            CDResult.Text = "CD 0010";
+            CDResult.Text = "CD Cordoba";
 
             // Deshabilitamos los controles que dependen de una búsqueda exitosa
             GuiasGroupBox.Enabled = false;
@@ -28,6 +28,10 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             NumServicioTextBox.Clear();
             LimpiarListViews();
             NumServicioTextBox.Focus();
+
+            // Deshabilitar checkboxes en los ListView
+            GuiaxServicioRecibidaListView.CheckBoxes = false;
+            GuiasADespacharxServicioListView.CheckBoxes = false;
         }
 
         private void BuscarServicioButton_Click(object sender, EventArgs e)
@@ -91,27 +95,15 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
         private void ConfirmarRecepcionYDespachoButton_Click(object sender, EventArgs e)
         {
             string numeroServicio = NumServicioTextBox.Text.Trim();
-            var guiasRecibidas = new System.Collections.Generic.List<string>();
-            var guiasDespachadas = new System.Collections.Generic.List<string>();
 
-            // Recopilar guías seleccionadas en ListView de recepción
-            foreach (ListViewItem item in GuiaxServicioRecibidaListView.Items)
+            if (GuiaxServicioRecibidaListView.Items.Count == 0 && GuiasADespacharxServicioListView.Items.Count == 0)
             {
-                if (item.Checked)
-                    guiasRecibidas.Add(item.Text);
-            }
-            // Recopilar guías seleccionadas en ListView de despacho
-            foreach (ListViewItem item in GuiasADespacharxServicioListView.Items)
-            {
-                if (item.Checked)
-                    guiasDespachadas.Add(item.Text);
-            }
-
-            if (guiasRecibidas.Count == 0 && guiasDespachadas.Count == 0)
-            {
-                MessageBox.Show("Debe seleccionar al menos una encomienda a recibir o despachar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No hay encomiendas para recibir o despachar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            var guiasRecibidas = GuiaxServicioRecibidaListView.Items.Cast<ListViewItem>().Select(item => item.Text).ToList();
+            var guiasDespachadas = GuiasADespacharxServicioListView.Items.Cast<ListViewItem>().Select(item => item.Text).ToList();
 
             // Marcar guías como procesadas en el modelo
             modelo.MarcarGuiasProcesadas(numeroServicio, guiasRecibidas, guiasDespachadas);
@@ -123,6 +115,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
         private void CancelarButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void PrepararListViews()
+        {
+            GuiaxServicioRecibidaListView.CheckBoxes = false;
+            GuiasADespacharxServicioListView.CheckBoxes = false;
         }
     }
 }
