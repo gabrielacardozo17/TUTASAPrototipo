@@ -22,6 +22,10 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             // Fix visual (por si quedan detrás de groupboxes)
             try { ConfirmarButton.BringToFront(); CancelarButton.BringToFront(); } catch { }
 
+            // Labels superiores fijos
+            NombreUsuarioLabel.Text = "Juan Perez";
+            NombreAgenciaLabel.Text = "CABA";
+
             LimpiarFormulario();
         }
 
@@ -64,11 +68,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
                 var (aRecepcionar, aEntregar) = _modelo.GetGuiasPorFletero(dni);
                 CargarListas(aRecepcionar, aEntregar);
 
-                var f = _modelo.BuscarFleteroPorDni(dni);
-                NombreUsuarioLabel.Text = f is null ? "" : f.Nombre;
-
-                // Texto fijo de agencia (solo visual del TP)
-                NombreAgenciaLabel.Text = "Agencia Córdoba Norte";
+                // Los labels superiores son fijos; no los sobreescribimos aquí.
+                // Si necesitás mostrar el nombre del fletero en otra parte, crear un Label adicional.
             }
             catch (Exception ex)
             {
@@ -116,9 +117,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
         // ---------- HELPERS VISUALES ----------
         private void CargarListas(IEnumerable<Guia> aRecepcionar, IEnumerable<Guia> aEntregar)
         {
-            // Asegurar que el usuario pueda "marcar" lo que procesó
-            GuiasARecepcionarAgenciaListView.CheckBoxes = true;
-            GuiasAEntregarListView.CheckBoxes = true;
             GuiasARecepcionarAgenciaListView.FullRowSelect = true;
             GuiasAEntregarListView.FullRowSelect = true;
 
@@ -127,8 +125,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             foreach (var g in aRecepcionar)
             {
-                var li = new ListViewItem(g.Numero); // Col 0: Nro Guía
-                li.SubItems.Add(g.Tamaño);           // Col 1: Tamaño
+                var li = new ListViewItem(g.Numero);
+                li.SubItems.Add(g.Tamaño);
                 GuiasARecepcionarAgenciaListView.Items.Add(li);
             }
 
@@ -136,7 +134,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             {
                 var li = new ListViewItem(g.Numero);
                 li.SubItems.Add(g.Tamaño);
-                // No hay columna Destino en el designer; si querés lo agregamos en Tag:
                 li.Tag = g.Destino;
                 GuiasAEntregarListView.Items.Add(li);
             }
@@ -145,9 +142,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
         private void LimpiarFormulario()
         {
             DNIFleteroTextBox.Clear();
-            NombreUsuarioLabel.Text = "";
-            // Dejá "Agencia:" fijo en AgenciaLabel; NombreAgenciaLabel arranca vacío
-            NombreAgenciaLabel.Text = "";
+            // Labels superiores fijos: no limpiarlos para que muestren siempre los valores configurados en el constructor.
+            // Dejá "Agencia:" fijo en AgenciaLabel; NombreAgenciaLabel arranca con "Agencia: CABA"
 
             GuiasARecepcionarAgenciaListView.Items.Clear();
             GuiasAEntregarListView.Items.Clear();

@@ -16,10 +16,17 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
         // Semilla de guías (mezcla de distribución/retorno)
         private readonly List<Guia> _guias = new List<Guia>
         {
-            new Guia { Numero = "104000301", Tamaño = "S",  Destino = "CABA",    Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.Pendiente },
-            new Guia { Numero = "104000302", Tamaño = "M",  Destino = "Córdoba", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.Pendiente },
-            new Guia { Numero = "104000401", Tamaño = "L",  Destino = "Rosario", Tipo = TipoGuia.Retiro,       Estado = EstadoGuia.Pendiente },
-            new Guia { Numero = "104000402", Tamaño = "XL", Destino = "CABA",    Tipo = TipoGuia.Retiro,       Estado = EstadoGuia.Pendiente }
+            // Guías para Juan Pereyra (DNI: 28765432)
+            new Guia { Numero = "104000301", Tamaño = "S",  Destino = "CABA",    Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.Pendiente, /*Fletero: Juan Pereyra*/ },
+            new Guia { Numero = "104000302", Tamaño = "M",  Destino = "Córdoba", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.Pendiente, /*Fletero: Juan Pereyra*/ },
+            new Guia { Numero = "104000401", Tamaño = "L",  Destino = "Rosario", Tipo = TipoGuia.Retiro,       Estado = EstadoGuia.Pendiente, /*Fletero: Juan Pereyra*/ },
+            new Guia { Numero = "104000402", Tamaño = "XL", Destino = "CABA",    Tipo = TipoGuia.Retiro,       Estado = EstadoGuia.Pendiente, /*Fletero: Juan Pereyra*/ },
+
+            // Guías para María Ledesma (DNI: 32198765)
+            new Guia { Numero = "104000501", Tamaño = "S",  Destino = "CABA",    Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.Pendiente, /*Fletero: María Ledesma*/ },
+            new Guia { Numero = "104000502", Tamaño = "M",  Destino = "Córdoba", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.Pendiente, /*Fletero: María Ledesma*/ },
+            new Guia { Numero = "104000601", Tamaño = "L",  Destino = "Rosario", Tipo = TipoGuia.Retiro,       Estado = EstadoGuia.Pendiente, /*Fletero: María Ledesma*/ },
+            new Guia { Numero = "104000602", Tamaño = "XL", Destino = "CABA",    Tipo = TipoGuia.Retiro,       Estado = EstadoGuia.Pendiente, /*Fletero: María Ledesma*/ }
         };
 
         // ======= API para el Form =======
