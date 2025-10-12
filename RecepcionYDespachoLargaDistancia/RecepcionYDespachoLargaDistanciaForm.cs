@@ -108,6 +108,13 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             // Marcar guías como procesadas en el modelo
             modelo.MarcarGuiasProcesadas(numeroServicio, guiasRecibidas, guiasDespachadas);
 
+            // Asignar automáticamente guías pendientes si hay disponibles
+            int cantidadPendientes = modelo.ObtenerCantidadGuiasPendientes();
+            if (cantidadPendientes > 0)
+            {
+                modelo.AsignarGuiasPendientes(numeroServicio);
+            }
+
             MessageBox.Show("Recepción y despacho confirmados con éxito.", "Operación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
             InicializarFormulario(); // Reiniciamos el formulario a su estado inicial
         }

@@ -6,10 +6,36 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
     public class RecepcionYDespachoLargaDistanciaModelo
     {
         private List<ServicioTransporte> servicios;
+        private List<Guia> guiasPendientesDeAsignacion;
 
         public RecepcionYDespachoLargaDistanciaModelo()
         {
             CargarDatosDePrueba();
+        }
+
+        private static readonly Dictionary<string, string> CdNombres = new()
+        {
+            ["0001"] = "CD CABA Oeste",
+            ["0002"] = "CD CABA Sur",
+            ["0010"] = "CD Buenos Aires – La Plata",
+            ["0011"] = "CD Buenos Aires – Mar del Plata",
+            ["0040"] = "CD Córdoba Capital",
+            ["0050"] = "CD Rosario",
+            ["0060"] = "CD San Miguel de Tucumán",
+            ["0070"] = "CD Corrientes",
+            ["0080"] = "CD Neuquén",
+            ["0090"] = "CD Viedma",
+            ["0100"] = "CD Mendoza Capital",
+            ["0110"] = "CD Bahía Blanca"
+        };
+
+        private string NormalizarDestino(string destino)
+        {
+            if (string.IsNullOrWhiteSpace(destino)) return destino;
+            var cdMatch = System.Text.RegularExpressions.Regex.Match(destino, @"CD (\d{4})");
+            if (cdMatch.Success && CdNombres.TryGetValue(cdMatch.Groups[1].Value, out var nombre))
+                return nombre;
+            return destino;
         }
 
         private void CargarDatosDePrueba()
@@ -26,68 +52,82 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             var todasLasGuias = new List<Guia>
             {
                 new Guia { NroGuia = "101000015", Destino = "CD 0040", Tamanio = "S" },
-                new Guia { NroGuia = "001004567", Destino = "Domicilio", Tamanio = "M" },
-                new Guia { NroGuia = "000200001", Destino = "CD 1010", Tamanio = "L" },
+                new Guia { NroGuia = "001004567", Destino = "CD 0050", Tamanio = "M" },
+                new Guia { NroGuia = "000200001", Destino = "CD 0010", Tamanio = "L" },
                 new Guia { NroGuia = "104000011", Destino = "CD 0040", Tamanio = "XL" },
-                new Guia { NroGuia = "007000150", Destino = "Agencia", Tamanio = "S" },
-                new Guia { NroGuia = "101100005", Destino = "Ag. 1011", Tamanio = "M" },
-                new Guia { NroGuia = "102400007", Destino = "Domicilio", Tamanio = "L" },
-                new Guia { NroGuia = "011000077", Destino = "Domicilio", Tamanio = "XL" },
-                new Guia { NroGuia = "108000023", Destino = "", Tamanio = "S" },
-                new Guia { NroGuia = "101000016", Destino = "CD 0040", Tamanio = "M" },
-                new Guia { NroGuia = "001004568", Destino = "Domicilio", Tamanio = "L" },
-                new Guia { NroGuia = "000200002", Destino = "CD 1010", Tamanio = "XL" },
+                new Guia { NroGuia = "007000150", Destino = "CD 0060", Tamanio = "S" },
+                new Guia { NroGuia = "101100005", Destino = "CD 0070", Tamanio = "M" },
+                new Guia { NroGuia = "102400007", Destino = "CD 0080", Tamanio = "L" },
+                new Guia { NroGuia = "011000077", Destino = "CD 0090", Tamanio = "XL" },
+                new Guia { NroGuia = "108000023", Destino = "CD 0100", Tamanio = "S" },
+                new Guia { NroGuia = "101000016", Destino = "CD 0110", Tamanio = "M" },
+                new Guia { NroGuia = "001004568", Destino = "CD 0001", Tamanio = "L" },
+                new Guia { NroGuia = "000200002", Destino = "CD 0002", Tamanio = "XL" },
                 new Guia { NroGuia = "104000012", Destino = "CD 0040", Tamanio = "S" },
-                new Guia { NroGuia = "007000151", Destino = "Agencia", Tamanio = "M" },
-                new Guia { NroGuia = "101100006", Destino = "Ag. 1011", Tamanio = "L" },
-                new Guia { NroGuia = "102400008", Destino = "Domicilio", Tamanio = "XL" },
-                new Guia { NroGuia = "011000078", Destino = "Domicilio", Tamanio = "S" },
-                new Guia { NroGuia = "108000024", Destino = "", Tamanio = "M" },
+                new Guia { NroGuia = "007000151", Destino = "CD 0050", Tamanio = "M" },
+                new Guia { NroGuia = "101100006", Destino = "CD 0060", Tamanio = "L" },
+                new Guia { NroGuia = "102400008", Destino = "CD 0070", Tamanio = "XL" },
+                new Guia { NroGuia = "011000078", Destino = "CD 0080", Tamanio = "S" },
+                new Guia { NroGuia = "108000024", Destino = "CD 0090", Tamanio = "M" },
                 new Guia { NroGuia = "009000045", Destino = "CD 0090", Tamanio = "L" },
-                new Guia { NroGuia = "105000031", Destino = "Ag. 1050", Tamanio = "XL" },
+                new Guia { NroGuia = "105000031", Destino = "CD 0100", Tamanio = "XL" },
                 new Guia { NroGuia = "004000210", Destino = "CD 0050", Tamanio = "S" },
-                new Guia { NroGuia = "000100101", Destino = "Ag. 1001", Tamanio = "M" },
-                new Guia { NroGuia = "102000029", Destino = "Domicilio", Tamanio = "L" },
-                new Guia { NroGuia = "010000055", Destino = "Domicilio", Tamanio = "XL" },
-                new Guia { NroGuia = "105200042", Destino = "", Tamanio = "S" },
-                new Guia { NroGuia = "006000075", Destino = "CD", Tamanio = "M" },
-                new Guia { NroGuia = "109500017", Destino = "Ag. 1095", Tamanio = "L" },
-                new Guia { NroGuia = "004000089", Destino = "Domicilio", Tamanio = "XL" },
+                new Guia { NroGuia = "000100101", Destino = "CD 0110", Tamanio = "M" },
+                new Guia { NroGuia = "102000029", Destino = "CD 0001", Tamanio = "L" },
+                new Guia { NroGuia = "010000055", Destino = "CD 0002", Tamanio = "XL" },
+                new Guia { NroGuia = "105200042", Destino = "CD 0010", Tamanio = "S" },
+                new Guia { NroGuia = "006000075", Destino = "CD 0011", Tamanio = "M" },
+                new Guia { NroGuia = "109500017", Destino = "CD 0040", Tamanio = "L" },
+                new Guia { NroGuia = "004000089", Destino = "CD 0050", Tamanio = "XL" },
                 new Guia { NroGuia = "002000061", Destino = "CD 0011", Tamanio = "S" },
-                new Guia { NroGuia = "106000022", Destino = "Domicilio", Tamanio = "M" },
-                new Guia { NroGuia = "011000081", Destino = "", Tamanio = "L" },
-                new Guia { NroGuia = "008000065", Destino = "Ag. 1081", Tamanio = "XL" },
+                new Guia { NroGuia = "106000022", Destino = "CD 0060", Tamanio = "M" },
+                new Guia { NroGuia = "011000081", Destino = "CD 0070", Tamanio = "L" },
+                new Guia { NroGuia = "008000065", Destino = "CD 0080", Tamanio = "XL" },
                 new Guia { NroGuia = "010000066", Destino = "CD 0090", Tamanio = "S" },
-                new Guia { NroGuia = "013000088", Destino = "Domicilio", Tamanio = "M" },
-                new Guia { NroGuia = "014000054", Destino = "Ag. 1096", Tamanio = "L" },
-                new Guia { NroGuia = "015000035", Destino = "CD", Tamanio = "XL" },
+                new Guia { NroGuia = "013000088", Destino = "CD 0100", Tamanio = "M" },
+                new Guia { NroGuia = "014000054", Destino = "CD 0110", Tamanio = "L" },
+                new Guia { NroGuia = "015000035", Destino = "CD 0001", Tamanio = "XL" },
                 new Guia { NroGuia = "016000029", Destino = "CD 0050", Tamanio = "S" },
                 new Guia { NroGuia = "017000021", Destino = "CD 0070", Tamanio = "M" },
-                new Guia { NroGuia = "018000010", Destino = "Domicilio", Tamanio = "L" },
-                new Guia { NroGuia = "019000011", Destino = "", Tamanio = "XL" },
-                new Guia { NroGuia = "101200003", Destino = "Ag. 1012", Tamanio = "S" },
-                new Guia { NroGuia = "101300009", Destino = "Domicilio", Tamanio = "M" },
+                new Guia { NroGuia = "018000010", Destino = "CD 0002", Tamanio = "L" },
+                new Guia { NroGuia = "019000011", Destino = "CD 0010", Tamanio = "XL" },
+                new Guia { NroGuia = "101200003", Destino = "CD 0011", Tamanio = "S" },
+                new Guia { NroGuia = "101300009", Destino = "CD 0040", Tamanio = "M" },
                 new Guia { NroGuia = "104100025", Destino = "CD 0040", Tamanio = "L" },
                 new Guia { NroGuia = "104200019", Destino = "CD 0050", Tamanio = "XL" },
                 new Guia { NroGuia = "104400022", Destino = "CD 0040", Tamanio = "S" },
-                new Guia { NroGuia = "105300018", Destino = "Domicilio", Tamanio = "M" },
-                new Guia { NroGuia = "105400014", Destino = "Ag. 1054", Tamanio = "L" },
-                new Guia { NroGuia = "105500013", Destino = "Agencia", Tamanio = "XL" },
-                new Guia { NroGuia = "106300011", Destino = "Ag. 1060", Tamanio = "S" },
-                new Guia { NroGuia = "107200033", Destino = "Ag. 1072", Tamanio = "M" },
+                new Guia { NroGuia = "105300018", Destino = "CD 0060", Tamanio = "M" },
+                new Guia { NroGuia = "105400014", Destino = "CD 0070", Tamanio = "L" },
+                new Guia { NroGuia = "105500013", Destino = "CD 0080", Tamanio = "XL" },
+                new Guia { NroGuia = "106300011", Destino = "CD 0090", Tamanio = "S" },
+                new Guia { NroGuia = "107200033", Destino = "CD 0100", Tamanio = "M" },
                 new Guia { NroGuia = "107300045", Destino = "CD 0070", Tamanio = "L" },
                 new Guia { NroGuia = "107400025", Destino = "CD 0070", Tamanio = "XL" },
-                new Guia { NroGuia = "107500031", Destino = "Domicilio", Tamanio = "S" },
-                new Guia { NroGuia = "107600042", Destino = "Ag. 1076", Tamanio = "M" },
-                new Guia { NroGuia = "107700019", Destino = "", Tamanio = "L" },
+                new Guia { NroGuia = "107500031", Destino = "CD 0110", Tamanio = "S" },
+                new Guia { NroGuia = "107600042", Destino = "CD 0001", Tamanio = "M" },
+                new Guia { NroGuia = "107700019", Destino = "CD 0002", Tamanio = "L" },
                 new Guia { NroGuia = "108200029", Destino = "CD 0090", Tamanio = "XL" },
-                new Guia { NroGuia = "108300037", Destino = "Agencia", Tamanio = "S" },
-                new Guia { NroGuia = "108400048", Destino = "Ag. 1081", Tamanio = "M" },
-                new Guia { NroGuia = "108500059", Destino = "Ag. 1081", Tamanio = "L" },
-                new Guia { NroGuia = "108600067", Destino = "", Tamanio = "XL" }
+                new Guia { NroGuia = "108300037", Destino = "CD 0010", Tamanio = "S" },
+                new Guia { NroGuia = "108400048", Destino = "CD 0011", Tamanio = "M" },
+                new Guia { NroGuia = "108500059", Destino = "CD 0040", Tamanio = "L" },
+                new Guia { NroGuia = "108600067", Destino = "CD 0050", Tamanio = "XL" }
             };
-            // Filtrar guías sin destino
+            // Normalizar nombres de CD en destino
+            foreach (var g in todasLasGuias)
+                g.Destino = NormalizarDestino(g.Destino);
             todasLasGuias = todasLasGuias.Where(g => !string.IsNullOrWhiteSpace(g.Destino)).ToList();
+
+            // Guías extra para pruebas (no asignadas a empresas)
+            var guiasExtra = new List<Guia>
+            {
+                new Guia { NroGuia = "999900001", Destino = "CD 0040", Tamanio = "M" },
+                new Guia { NroGuia = "999900002", Destino = "CD 0050", Tamanio = "L" },
+                new Guia { NroGuia = "999900003", Destino = "CD 0060", Tamanio = "XL" },
+                new Guia { NroGuia = "999900004", Destino = "CD 0080", Tamanio = "S" },
+                new Guia { NroGuia = "999900005", Destino = "CD 0090", Tamanio = "M" }
+            };
+            foreach (var g in guiasExtra)
+                g.Destino = NormalizarDestino(g.Destino);
 
             var servicios = new List<ServicioTransporte>();
             int totalEmpresas = empresas.Length;
@@ -107,7 +147,11 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                     GuiasADespachar = despachar
                 });
             }
+            // Guías extra quedan fuera de los servicios asignados
             this.servicios = servicios;
+            
+            // Inicializar pool de guías pendientes de asignación
+            this.guiasPendientesDeAsignacion = guiasExtra;
         }
 
         // Validación Nivel 3-4: Lógica de búsqueda en la fuente de datos.
@@ -139,6 +183,42 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                 if (guiasDespachadas.Contains(guia.NroGuia))
                     guia.Procesada = true;
             }
+        }
+
+        /// <summary>
+        /// Asigna guías pendientes a un servicio cuando se queda sin guías para despachar.
+        /// Toma hasta 5 guías del pool de guías pendientes.
+        /// </summary>
+        public bool AsignarGuiasPendientes(string numeroServicio)
+        {
+            var servicio = servicios.FirstOrDefault(s => s.NumeroServicio == numeroServicio);
+            if (servicio == null) return false;
+
+            // Verificar si hay guías pendientes disponibles
+            if (guiasPendientesDeAsignacion == null || guiasPendientesDeAsignacion.Count == 0)
+                return false;
+
+            // Tomar hasta 5 guías del pool
+            var guiasAAsignar = guiasPendientesDeAsignacion.Take(5).ToList();
+            
+            // Agregar a la lista de guías a despachar del servicio
+            servicio.GuiasADespachar.AddRange(guiasAAsignar);
+            
+            // Remover del pool de pendientes
+            foreach (var guia in guiasAAsignar)
+            {
+                guiasPendientesDeAsignacion.Remove(guia);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Obtiene la cantidad de guías pendientes de asignación disponibles.
+        /// </summary>
+        public int ObtenerCantidadGuiasPendientes()
+        {
+            return guiasPendientesDeAsignacion?.Count ?? 0;
         }
     }
 }
