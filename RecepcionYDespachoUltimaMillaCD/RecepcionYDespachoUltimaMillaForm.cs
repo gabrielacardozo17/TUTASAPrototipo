@@ -31,6 +31,14 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             UsuarioResult.Text = "Juan Perez";
             CDResult.Text = "Buenos Aires";
 
+            // Renombrar groupboxes según negocio (texto provisto)
+            try
+            {
+                // Textos exactos pedidos
+                GuiasGroupBox.Text = "Detalle de guias de HDR de distribucion asignadas:";
+                groupBox2.Text = "Detalle de guias de HDR de retiro asignadas: ";
+            }
+            catch { }
             PrepararListViews();
         }
 
@@ -75,61 +83,58 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             }
 
             PintarNombreFletero(fletero.Nombre);
+
+            // Asegurar HDRs para que las grillas muestren HDR ya al terminar la búsqueda
             _modelo.AsegurarHDRsAsignadasParaFletero(dni);
 
+            // Cargar guías asignadas (listas superiores) y también las "nuevas" (resumen HDR) para que se vean inmediatamente
             CargarAsignadas(dni);
-            NuevasGuiasRetiroxFleteroListView.Items.Clear();
-            NuevasGuiasDistribucionxFleteroListView.Items.Clear();
+            CargarResumenPosterior(dni);
+
             MostrarSeccionBusquedaYListasSuperiores(true);
         }
 
-        // ====== CONFIRMAR (2 PASOS) ======
+        // ====== CONFIRMAR (ahora 1 paso: aplica y muestra popup) ======
         private void ConfirmarButton_Click(object sender, EventArgs e)
         {
-            int dni;
-
-            if (!_enRevision)
+            var dniTxt = (DNIFleteroTextBox.Text ?? string.Empty).Trim();
+            if (string.IsNullOrWhiteSpace(dniTxt) || !dniTxt.All(char.IsDigit) || dniTxt.Length < 7 || dniTxt.Length > 8)
             {
-                var dniTxt = (DNIFleteroTextBox.Text ?? string.Empty).Trim();
-                if (!dniTxt.All(char.IsDigit) || dniTxt.Length < 7 || dniTxt.Length > 8)
-                { MessageBox.Show("Debe seleccionar un transportista primero", "Validación"); DNIFleteroTextBox.Focus(); return; }
-                dni = int.Parse(dniTxt);
-            }
-            else
-            {
-                if (_dniEnRevision is null)
-                { MessageBox.Show("No hay fletero en revisión. Busque nuevamente.", "Validación"); return; }
-                dni = _dniEnRevision.Value;
+                MessageBox.Show("Debe seleccionar un transportista primero", "Validación"); DNIFleteroTextBox.Focus(); return;
             }
 
-            if (!_enRevision)
-            {
-                // === PASO 1: aplicar cambios y mostrar resumen ===
-                var marcadasDistrib = GuiasMarcadas(GuiasDistribucionxFleteroListView);
-                var marcadasRetiro = GuiasMarcadas(GuiasRetiroxFleteroListView);
+            int dni = int.Parse(dniTxt);
 
+            // Capturar ANTES de modificar el modelo: guías seleccionadas por HDR (para mostrar en el popup)
+            var recibidasDistPorHdr  = SeleccionadasPorHDR(GuiasDistribucionxFleteroListView);
+            var recibidasRetiroPorHdr = SeleccionadasPorHDR(GuiasRetiroxFleteroListView);
+
+            // Listas planas para confirmar en el modelo
+            var marcadasDistrib = recibidasDistPorHdr.SelectMany(kv => kv.Value).ToList();
+            var marcadasRetiro  = recibidasRetiroPorHdr.SelectMany(kv => kv.Value).ToList();
+
+            try
+            {
                 _modelo.ConfirmarRendicion(dni, marcadasDistrib, marcadasRetiro);
                 _modelo.AsignarHDRsPorDireccion(dni);
                 _modelo.AsegurarHDRsAsignadasParaFletero(dni);
 
-                _dniEnRevision = dni;
-                DNIFleteroTextBox.Clear();
-                PintarNombreFletero(string.Empty);
-                GuiasDistribucionxFleteroListView.Items.Clear();
-                GuiasRetiroxFleteroListView.Items.Clear();
-                MostrarSeccionBusquedaYListasSuperiores(false);
-
+                // Recargar para que las secciones de "asignadas" reflejen la situación final
+                CargarAsignadas(dni);
                 CargarResumenPosterior(dni);
-                _enRevision = true;
-                return;
-            }
-            else
-            {
-                // === PASO 2: popup final + limpiar ===
-                string msg =
-                    "Operación exitosa. Rendición confirmada. HDR asignadas:  \n\n" +
 
-                    ConstruirMensajePorHDR(NuevasGuiasRetiroxFleteroListView, NuevasGuiasDistribucionxFleteroListView);
+                // Construir el mensaje EXACTO solicitado
+                string msg =
+                    "Operacion exitosa. Rendicion confirmada." + Environment.NewLine +
+                    Environment.NewLine +
+                    "HDR de distribucion recibidas: " + Environment.NewLine +
+                    FormatearGrupos(recibidasDistPorHdr) + Environment.NewLine + Environment.NewLine +
+                    "HDR de retiro recibidas: " + Environment.NewLine +
+                    FormatearGrupos(recibidasRetiroPorHdr) + Environment.NewLine + Environment.NewLine +
+                    "HDR de distribucion asignadas: " + Environment.NewLine +
+                    ConstruirAsignadasSoloLineas(NuevasGuiasDistribucionxFleteroListView) + Environment.NewLine + Environment.NewLine +
+                    "HDR de retiro asignadas: " + Environment.NewLine +
+                    ConstruirAsignadasSoloLineas(NuevasGuiasRetiroxFleteroListView);
 
                 MessageBox.Show(msg, "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -137,6 +142,10 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 _dniEnRevision = null;
                 LimpiarPantalla(total: true);
                 MostrarSeccionBusquedaYListasSuperiores(true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Validación");
             }
         }
 
@@ -236,28 +245,96 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             return res;
         }
 
-        private static string ConstruirMensajePorHDR(ListView lvRetiro, ListView lvDist)
+        // ====== HELPERS (popup) ======
+
+        // Recibidas: toma SOLO las marcadas en los listviews superiores y agrupa por HDR (columna 2)
+        private static string ConstruirSeccionRecibidasPorHDR(ListView lv, string titulo)
         {
-            string Seccion(string titulo, ListView lv)
+            var grupos = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (ListViewItem it in lv.Items)
             {
-                var grupos = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
-                foreach (ListViewItem it in lv.Items)
-                {
-                    if (it.SubItems.Count < 4) continue;
-                    string guia = it.SubItems[0].Text?.Trim() ?? "";
-                    string hdr = it.SubItems[3].Text?.Trim() ?? "";
-                    if (string.IsNullOrEmpty(hdr)) hdr = "(sin HDR)";
-                    if (!grupos.TryGetValue(hdr, out var lst)) { lst = new List<string>(); grupos[hdr] = lst; }
-                    if (!string.IsNullOrEmpty(guia)) lst.Add(guia);
-                }
-                if (grupos.Count == 0) return $"{titulo}: (sin HDR)\n";
-                var lineas = new List<string> { $"{titulo}:" };
-                foreach (var kv in grupos.OrderBy(k => k.Key))
-                    lineas.Add($"- HDR {kv.Key} con guías {(kv.Value.Count == 0 ? "(sin guías)" : string.Join(", ", kv.Value))}");
-                lineas.Add("");
-                return string.Join("\n", lineas);
+                if (!it.Checked) continue;
+                // superiores: [0]=chk, [1]=Guia, [2]=HDR
+                string guia = it.SubItems.Count > 1 ? it.SubItems[1].Text?.Trim() ?? "" : "";
+                string hdr = it.SubItems.Count > 2 ? it.SubItems[2].Text?.Trim() ?? "" : "";
+                if (string.IsNullOrEmpty(guia)) continue;
+                if (string.IsNullOrWhiteSpace(hdr)) hdr = "(sin HDR)";
+                if (!grupos.TryGetValue(hdr, out var lst)) { lst = new List<string>(); grupos[hdr] = lst; }
+                lst.Add(guia);
             }
-            return Seccion("HDR de Retiro", lvRetiro) + Seccion("HDR de Distribución", lvDist);
+
+            var lineas = new List<string> { titulo };
+            foreach (var kv in grupos.OrderBy(k => k.Key))
+                lineas.Add($"- HDR {kv.Key} con guías {(kv.Value.Count == 0 ? "(sin guías)" : string.Join(", ", kv.Value))}");
+            return string.Join(Environment.NewLine, lineas);
+        }
+
+        // Asignadas: usa los listviews inferiores ya cargados con NroGuia,Tamaño,Destino,HDR (HDR en subíndice 3)
+        private static string ConstruirSeccionAsignadasPorHDR(ListView lv, string titulo)
+        {
+            var grupos = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (ListViewItem it in lv.Items)
+            {
+                // inferiores: [0]=Guia, [1]=Tamaño, [2]=Destino, [3]=HDR
+                if (it.SubItems.Count < 4) continue;
+                string guia = it.SubItems[0].Text?.Trim() ?? "";
+                string hdr = it.SubItems[3].Text?.Trim() ?? "";
+                if (string.IsNullOrEmpty(guia)) continue;
+                if (string.IsNullOrWhiteSpace(hdr)) hdr = "(sin HDR)";
+                if (!grupos.TryGetValue(hdr, out var lst)) { lst = new List<string>(); grupos[hdr] = lst; }
+                lst.Add(guia);
+            }
+
+            var lineas = new List<string> { titulo };
+            foreach (var kv in grupos.OrderBy(k => k.Key))
+                lineas.Add($"- HDR {kv.Key} con guías {(kv.Value.Count == 0 ? "(sin guías)" : string.Join(", ", kv.Value))}");
+            return string.Join(Environment.NewLine, lineas);
+        }
+
+        // Helper: agrupa las guías seleccionadas (checked) por HDR usando las listas superiores.
+        private static Dictionary<string, List<string>> SeleccionadasPorHDR(ListView lv)
+        {
+            var grupos = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+            foreach (ListViewItem it in lv.Items)
+            {
+                if (!it.Checked) continue;                       // solo las marcadas como recibidas
+                string guia = it.SubItems.Count > 1 ? it.SubItems[1].Text?.Trim() ?? "" : "";
+                string hdr  = it.SubItems.Count > 2 ? it.SubItems[2].Text?.Trim() ?? "" : "";
+                if (string.IsNullOrEmpty(guia)) continue;
+                if (string.IsNullOrWhiteSpace(hdr)) hdr = "(sin HDR)";
+                if (!grupos.TryGetValue(hdr, out var lst)) { lst = new List<string>(); grupos[hdr] = lst; }
+                lst.Add(guia);
+            }
+            return grupos;
+        }
+
+        // Helper: formatea grupos HDR -> guías como líneas "- HDR X con guías ..."
+        private static string FormatearGrupos(Dictionary<string, List<string>> grupos)
+        {
+            if (grupos.Count == 0) return "(ninguna)";
+            var lineas = new List<string>();
+            foreach (var kv in grupos.OrderBy(k => k.Key))
+                lineas.Add($"- HDR {kv.Key} con guías {(kv.Value.Count == 0 ? "(sin guías)" : string.Join(", ", kv.Value))}");
+            return string.Join(Environment.NewLine, lineas);
+        }
+
+        // Helper: para las listas inferiores (asignadas) devuelve solo líneas agrupadas por HDR
+        private static string ConstruirAsignadasSoloLineas(ListView lv)
+        {
+            var grupos = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+            foreach (ListViewItem it in lv.Items)
+            {
+                if (it.SubItems.Count < 4) continue;             // [0]=Guía,[1]=Tamaño,[2]=Destino,[3]=HDR
+                string guia = it.SubItems[0].Text?.Trim() ?? "";
+                string hdr  = it.SubItems[3].Text?.Trim() ?? "";
+                if (string.IsNullOrEmpty(guia)) continue;
+                if (string.IsNullOrWhiteSpace(hdr)) hdr = "(sin HDR)";
+                if (!grupos.TryGetValue(hdr, out var lst)) { lst = new List<string>(); grupos[hdr] = lst; }
+                lst.Add(guia);
+            }
+            return FormatearGrupos(grupos);
         }
 
         private void LimpiarListas()

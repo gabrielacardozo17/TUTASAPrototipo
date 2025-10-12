@@ -32,7 +32,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             if (!string.IsNullOrWhiteSpace(BULK_RAW))
                 SeedFromText(BULK_RAW);
 
-            NormalizarTipoPorEstado();
+            // Antes: NormalizarTipoPorEstado();  // Ya no se usa "Tipo" en guía
             MarcarAlgunasSinFleteroParaPruebas();
         }
 
