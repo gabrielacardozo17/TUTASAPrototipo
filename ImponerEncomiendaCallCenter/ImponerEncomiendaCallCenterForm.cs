@@ -402,7 +402,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                 var cuerpo = string.Join(Environment.NewLine, lineas);
 
                 MessageBox.Show(
-                    $"Imposición confirmada. Se generaron {guias.Count} guías (Estado: Admitida):{Environment.NewLine}{cuerpo}",
+                    $"Imposición confirmada. Se generaron {guias.Count} guías (Estado: A retirar por domicilio del cliente):{Environment.NewLine}{cuerpo}",
                     "Operación Exitosa",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information

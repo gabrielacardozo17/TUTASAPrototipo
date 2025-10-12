@@ -214,7 +214,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                 guias.Add(new Guia
                 {
                     Numero = numero,
-                    Estado = EstadoGuia.PendRetiroDomicilio,
+                    Estado = EstadoGuia.PendRetiroAgencia,
                     CuitRemitente = Digits(cuitRemitente),
 
                     Destinatario = new Destinatario { Nombre = destNombre, Apellido = destApellido, Dni = destDni },

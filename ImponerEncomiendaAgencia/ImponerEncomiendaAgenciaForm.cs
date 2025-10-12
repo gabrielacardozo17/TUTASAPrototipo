@@ -405,7 +405,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                 var cuerpo = string.Join(Environment.NewLine, lineas);
 
                 MessageBox.Show(
-                    $"Imposición confirmada. Se generaron {guias.Count} guías (Estado: Admitida):{Environment.NewLine}{cuerpo}",
+                    $"Imposición confirmada. Se generaron {guias.Count} guías (Estado: A retirar en agencia de origen):{Environment.NewLine}{cuerpo}",
                     "Operación Exitosa",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information

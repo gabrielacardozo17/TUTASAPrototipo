@@ -209,7 +209,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                 guias.Add(new Guia
                 {
                     Numero = numero,
-                    Estado = EstadoGuia.AdmitidaEnCDOrigen,
+                    Estado = EstadoGuia.PendRetiroDomicilio,
                     CuitRemitente = new string(cuitRemitente.Where(char.IsDigit).ToArray()),
 
                     Destinatario = new Destinatario { Nombre = destNombre, Apellido = destApellido, Dni = destDni },
