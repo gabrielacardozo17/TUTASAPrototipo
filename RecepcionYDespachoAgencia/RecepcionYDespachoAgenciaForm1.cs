@@ -154,12 +154,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
                 GuiasARecepcionarAgenciaListView.Items.Add(li);
             }
 
-            // DESPACHO: número, tamaño y ubicación actual (donde está físicamente la guía)
+            // DESPACHO: solo número y tamaño (ubicación se mantiene como dato interno pero no se muestra)
             foreach (var g in aEntregar)
             {
                 var li = new ListViewItem(g.Numero);
                 li.SubItems.Add(g.Tamaño);
-                li.SubItems.Add(g.UbicacionActual); // Agrega columna de ubicación
+                // UbicacionActual sigue existiendo en el objeto Guia pero no se muestra en la UI
                 GuiasAEntregarListView.Items.Add(li);
             }
         }
