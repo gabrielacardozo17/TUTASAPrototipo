@@ -9,24 +9,106 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
         // ======= Datos de prueba =======
         private readonly List<Fletero> _fleteros = new List<Fletero>
         {
-            new Fletero { Dni = 28765432, Nombre = "Juan Pereyra" },
-            new Fletero { Dni = 32198765, Nombre = "María Ledesma" }
+            new Fletero { Dni = 28765432, Nombre = "Juan", Apellido = "Pereyra" },
+            new Fletero { Dni = 32198765, Nombre = "María", Apellido = "Ledesma" },
+            new Fletero { Dni = 30456789, Nombre = "Luis", Apellido = "Ferreyra" },
+            new Fletero { Dni = 29876543, Nombre = "Sofía", Apellido = "Bustos" },
+            new Fletero { Dni = 30987654, Nombre = "Carlos", Apellido = "Maidana" },
+            new Fletero { Dni = 27654321, Nombre = "Valeria", Apellido = "Ríos" },
+            new Fletero { Dni = 31234567, Nombre = "Gustavo", Apellido = "Acuña" },
+            new Fletero { Dni = 29811223, Nombre = "Paula", Apellido = "Benítez" },
+            new Fletero { Dni = 30123456, Nombre = "Nicolás", Apellido = "Godoy" },
+            new Fletero { Dni = 28456712, Nombre = "Carla", Apellido = "Mansilla" }
         };
 
-        // Semilla de guías (mezcla de distribución/retorno)
+        // Semilla de guías (mezcla de recepción y despacho)
         private readonly List<Guia> _guias = new List<Guia>
         {
-            // Guías para Juan Pereyra (DNI: 28765432)
-            new Guia { Numero = "104000301", Tamaño = "S",  Destino = "CABA",    Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.Pendiente, /*Fletero: Juan Pereyra*/ },
-            new Guia { Numero = "104000302", Tamaño = "M",  Destino = "Córdoba", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.Pendiente, /*Fletero: Juan Pereyra*/ },
-            new Guia { Numero = "104000401", Tamaño = "L",  Destino = "Rosario", Tipo = TipoGuia.Retiro,       Estado = EstadoGuia.Pendiente, /*Fletero: Juan Pereyra*/ },
-            new Guia { Numero = "104000402", Tamaño = "XL", Destino = "CABA",    Tipo = TipoGuia.Retiro,       Estado = EstadoGuia.Pendiente, /*Fletero: Juan Pereyra*/ },
-
-            // Guías para María Ledesma (DNI: 32198765)
-            new Guia { Numero = "104000501", Tamaño = "S",  Destino = "CABA",    Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.Pendiente, /*Fletero: María Ledesma*/ },
-            new Guia { Numero = "104000502", Tamaño = "M",  Destino = "Córdoba", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.Pendiente, /*Fletero: María Ledesma*/ },
-            new Guia { Numero = "104000601", Tamaño = "L",  Destino = "Rosario", Tipo = TipoGuia.Retiro,       Estado = EstadoGuia.Pendiente, /*Fletero: María Ledesma*/ },
-            new Guia { Numero = "104000602", Tamaño = "XL", Destino = "CABA",    Tipo = TipoGuia.Retiro,       Estado = EstadoGuia.Pendiente, /*Fletero: María Ledesma*/ }
+            // ========== GUÍAS PARA RECEPCIONAR (En ruta a agencia destino) ==========
+            
+            // Juan Pereyra (DNI: 28765432) - CD CABA Oeste
+            new Guia { Numero = "101000101", Tamaño = "S",  Destino = "Agencia CABA Centro", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 28765432, UbicacionActual = "" },
+            new Guia { Numero = "101000102", Tamaño = "M",  Destino = "Agencia CABA Oeste", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 28765432, UbicacionActual = "" },
+            new Guia { Numero = "101000103", Tamaño = "L",  Destino = "Agencia CABA Sur", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 28765432, UbicacionActual = "" },
+            new Guia { Numero = "101000104", Tamaño = "XL", Destino = "Agencia CABA Centro", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 28765432, UbicacionActual = "" },
+            
+            // María Ledesma (DNI: 32198765) - CD CABA Sur
+            new Guia { Numero = "102000201", Tamaño = "S",  Destino = "Agencia CABA Flores", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 32198765, UbicacionActual = "" },
+            new Guia { Numero = "102000202", Tamaño = "M",  Destino = "Agencia CABA Sur", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 32198765, UbicacionActual = "" },
+            new Guia { Numero = "102000203", Tamaño = "L",  Destino = "Agencia La Plata", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 32198765, UbicacionActual = "" },
+            new Guia { Numero = "102000204", Tamaño = "S",  Destino = "Agencia CABA Flores", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 32198765, UbicacionActual = "" },
+            
+            // Luis Ferreyra (DNI: 30456789) - CD La Plata
+            new Guia { Numero = "102000301", Tamaño = "M",  Destino = "Agencia La Plata", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 30456789, UbicacionActual = "" },
+            new Guia { Numero = "102000302", Tamaño = "XL", Destino = "Agencia Mar del Plata", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 30456789, UbicacionActual = "" },
+            new Guia { Numero = "102000303", Tamaño = "S",  Destino = "Agencia Quilmes", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 30456789, UbicacionActual = "" },
+            new Guia { Numero = "102000304", Tamaño = "L",  Destino = "Agencia La Plata", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 30456789, UbicacionActual = "" },
+            
+            // Sofía Bustos (DNI: 29876543) - CD MdP
+            new Guia { Numero = "102100401", Tamaño = "M",  Destino = "Agencia Mar del Plata", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 29876543, UbicacionActual = "" },
+            new Guia { Numero = "102100402", Tamaño = "S",  Destino = "Agencia Bahía Blanca Centro", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 29876543, UbicacionActual = "" },
+            new Guia { Numero = "102100403", Tamaño = "L",  Destino = "Agencia Mar del Plata", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 29876543, UbicacionActual = "" },
+            
+            // Carlos Maidana (DNI: 30987654) - CD Córdoba
+            new Guia { Numero = "104000501", Tamaño = "XL", Destino = "Agencia Nueva Córdoba", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 30987654, UbicacionActual = "" },
+            new Guia { Numero = "104000502", Tamaño = "S",  Destino = "Agencia Córdoba Norte", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 30987654, UbicacionActual = "" },
+            new Guia { Numero = "104000503", Tamaño = "M",  Destino = "Agencia Villa Allende", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 30987654, UbicacionActual = "" },
+            new Guia { Numero = "104000504", Tamaño = "L",  Destino = "Agencia Nueva Córdoba", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 30987654, UbicacionActual = "" },
+            
+            // Valeria Ríos (DNI: 27654321) - CD Rosario
+            new Guia { Numero = "105000601", Tamaño = "S",  Destino = "Agencia Rosario Centro", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 27654321, UbicacionActual = "" },
+            new Guia { Numero = "105000602", Tamaño = "M",  Destino = "Agencia Rosario Norte", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 27654321, UbicacionActual = "" },
+            new Guia { Numero = "105000603", Tamaño = "L",  Destino = "Agencia Funes", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 27654321, UbicacionActual = "" },
+            
+            // Gustavo Acuña (DNI: 31234567) - CD Tucumán
+            new Guia { Numero = "106000701", Tamaño = "XL", Destino = "Agencia Tucumán Centro", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 31234567, UbicacionActual = "" },
+            new Guia { Numero = "106000702", Tamaño = "S",  Destino = "Agencia Yerba Buena", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 31234567, UbicacionActual = "" },
+            
+            // Paula Benítez (DNI: 29811223) - CD Corrientes
+            new Guia { Numero = "107000801", Tamaño = "M",  Destino = "Agencia Corrientes Centro", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 29811223, UbicacionActual = "" },
+            new Guia { Numero = "107000802", Tamaño = "L",  Destino = "Agencia Goya", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 29811223, UbicacionActual = "" },
+            
+            // Nicolás Godoy (DNI: 30123456) - CD Neuquén
+            new Guia { Numero = "108000901", Tamaño = "S",  Destino = "Agencia Neuquén Centro", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 30123456, UbicacionActual = "" },
+            new Guia { Numero = "108000902", Tamaño = "M",  Destino = "Agencia Plottier", Tipo = TipoGuia.Distribucion, Estado = EstadoGuia.EnRutaAAgenciaDestino, FleteroDni = 30123456, UbicacionActual = "" },
+            
+            // ========== GUÍAS PARA DESPACHAR (A retirar en agencia origen) ==========
+            
+            // Juan Pereyra - retira de Agencia CABA Centro
+            new Guia { Numero = "101001001", Tamaño = "L",  Destino = "CD CABA Oeste", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 28765432, UbicacionActual = "Agencia CABA Centro" },
+            new Guia { Numero = "101001002", Tamaño = "S",  Destino = "CD CABA Oeste", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 28765432, UbicacionActual = "Agencia CABA Centro" },
+            new Guia { Numero = "101001003", Tamaño = "M",  Destino = "CD CABA Oeste", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 28765432, UbicacionActual = "Agencia CABA Centro" },
+            
+            // María Ledesma - retira de Agencia CABA Flores
+            new Guia { Numero = "102001101", Tamaño = "XL", Destino = "CD CABA Sur", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 32198765, UbicacionActual = "Agencia CABA Flores" },
+            new Guia { Numero = "102001102", Tamaño = "M",  Destino = "CD CABA Sur", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 32198765, UbicacionActual = "Agencia CABA Flores" },
+            new Guia { Numero = "102001103", Tamaño = "S",  Destino = "CD CABA Sur", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 32198765, UbicacionActual = "Agencia La Plata" },
+            
+            // Luis Ferreyra - retira de Agencia La Plata
+            new Guia { Numero = "102001201", Tamaño = "L",  Destino = "CD La Plata", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 30456789, UbicacionActual = "Agencia La Plata" },
+            new Guia { Numero = "102001202", Tamaño = "S",  Destino = "CD La Plata", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 30456789, UbicacionActual = "Agencia Quilmes" },
+            new Guia { Numero = "102001203", Tamaño = "M",  Destino = "CD La Plata", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 30456789, UbicacionActual = "Agencia Mar del Plata" },
+            
+            // Sofía Bustos - retira de Agencia Mar del Plata
+            new Guia { Numero = "102101301", Tamaño = "XL", Destino = "CD MdP", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 29876543, UbicacionActual = "Agencia Mar del Plata" },
+            new Guia { Numero = "102101302", Tamaño = "S",  Destino = "CD MdP", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 29876543, UbicacionActual = "Agencia Bahía Blanca Centro" },
+            
+            // Carlos Maidana - retira de Agencia Córdoba
+            new Guia { Numero = "104001401", Tamaño = "M",  Destino = "CD Córdoba", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 30987654, UbicacionActual = "Agencia Nueva Córdoba" },
+            new Guia { Numero = "104001402", Tamaño = "L",  Destino = "CD Córdoba", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 30987654, UbicacionActual = "Agencia Córdoba Norte" },
+            new Guia { Numero = "104001403", Tamaño = "S",  Destino = "CD Córdoba", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 30987654, UbicacionActual = "Agencia Villa Allende" },
+            
+            // Valeria Ríos - retira de Agencia Rosario
+            new Guia { Numero = "105001501", Tamaño = "XL", Destino = "CD Rosario", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 27654321, UbicacionActual = "Agencia Rosario Centro" },
+            new Guia { Numero = "105001502", Tamaño = "M",  Destino = "CD Rosario", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 27654321, UbicacionActual = "Agencia Rosario Norte" },
+            
+            // Gustavo Acuña - retira de Agencia Tucumán
+            new Guia { Numero = "106001601", Tamaño = "L",  Destino = "CD Tucumán", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 31234567, UbicacionActual = "Agencia Tucumán Centro" },
+            new Guia { Numero = "106001602", Tamaño = "S",  Destino = "CD Tucumán", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 31234567, UbicacionActual = "Agencia Yerba Buena" },
+            
+            // Paula Benítez - retira de Agencia Corrientes
+            new Guia { Numero = "107001701", Tamaño = "M",  Destino = "CD Corrientes", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 29811223, UbicacionActual = "Agencia Corrientes Centro" },
+            new Guia { Numero = "107001702", Tamaño = "XL", Destino = "CD Corrientes", Tipo = TipoGuia.Retiro, Estado = EstadoGuia.ARetirarEnAgenciaOrigen, FleteroDni = 29811223, UbicacionActual = "Agencia Goya" }
         };
 
         // ======= API para el Form =======
@@ -38,9 +120,16 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             if (BuscarFleteroPorDni(dni) is null)
                 throw new InvalidOperationException("No existe el fletero. Vuelva a intentarlo.");
 
-            // N4: que tenga alguna guía en cualquiera de las listas
-            var aRecepcionar = _guias.Where(g => g.Tipo == TipoGuia.Distribucion && g.Estado == EstadoGuia.Pendiente).ToList();
-            var aEntregar = _guias.Where(g => g.Tipo == TipoGuia.Retiro && g.Estado == EstadoGuia.Pendiente).ToList();
+            // N4: Filtrar guías por fletero y estado
+            // RECEPCIÓN: Guías en ruta a agencia destino (para recepcionar)
+            var aRecepcionar = _guias.Where(g => g.FleteroDni == dni 
+                                                && g.Tipo == TipoGuia.Distribucion 
+                                                && g.Estado == EstadoGuia.EnRutaAAgenciaDestino).ToList();
+            
+            // DESPACHO: Guías a retirar en agencia origen (para entregar al fletero)
+            var aEntregar = _guias.Where(g => g.FleteroDni == dni 
+                                            && g.Tipo == TipoGuia.Retiro 
+                                            && g.Estado == EstadoGuia.ARetirarEnAgenciaOrigen).ToList();
 
             if (aRecepcionar.Count == 0 && aEntregar.Count == 0)
                 throw new InvalidOperationException("El fletero seleccionado no tiene guías a recibir ni entregar");

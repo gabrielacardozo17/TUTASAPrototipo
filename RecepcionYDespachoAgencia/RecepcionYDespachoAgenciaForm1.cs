@@ -15,9 +15,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             // No duplicamos eventos que ya cablea el Designer:
             // BuscarxDNIFleteroButton.Click += BuscarxDNIFleteroButton_Click;
             // ConfirmarButton.Click += ConfirmarButton_Click;
-
-            // Solo agregamos Cancelar si existe:
-            try { CancelarButton.Click += (s, e) => LimpiarFormulario(); } catch { }
+            // CancelarButton.Click += CancelarButton_Click; (el Designer ya lo conecta)
 
             // Fix visual (por si quedan detrás de groupboxes)
             try { ConfirmarButton.BringToFront(); CancelarButton.BringToFront(); } catch { }
@@ -25,6 +23,10 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             // Labels superiores fijos
             NombreUsuarioLabel.Text = "Juan Perez";
             NombreAgenciaLabel.Text = "CABA";
+
+            // Inicializar labels de búsqueda como vacíos
+            NombreResultLabel.Text = "";
+            ApellidoResultLabel.Text = "";
 
             LimpiarFormulario();
         }
@@ -64,12 +66,25 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             try
             {
-                // N3–N4 en el Modelo
+                // N3: Buscar fletero
+                var fletero = _modelo.BuscarFleteroPorDni(dni);
+                if (fletero == null)
+                {
+                    MessageBox.Show("No existe el fletero. Vuelva a intentarlo.", "Validación");
+                    DNIFleteroTextBox.Clear();
+                    DNIFleteroTextBox.Focus();
+                    NombreResultLabel.Text = "label1";
+                    ApellidoResultLabel.Text = "label1";
+                    return;
+                }
+
+                // Mostrar nombre y apellido del fletero en los labels
+                NombreResultLabel.Text = fletero.Nombre;
+                ApellidoResultLabel.Text = fletero.Apellido;
+
+                // N4: Obtener guías del fletero
                 var (aRecepcionar, aEntregar) = _modelo.GetGuiasPorFletero(dni);
                 CargarListas(aRecepcionar, aEntregar);
-
-                // Los labels superiores son fijos; no los sobreescribimos aquí.
-                // Si necesitás mostrar el nombre del fletero en otra parte, crear un Label adicional.
             }
             catch (Exception ex)
             {
@@ -123,6 +138,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             GuiasARecepcionarAgenciaListView.Items.Clear();
             GuiasAEntregarListView.Items.Clear();
 
+            // RECEPCIÓN: solo número y tamaño (ubicación actual está vacía porque están en ruta)
             foreach (var g in aRecepcionar)
             {
                 var li = new ListViewItem(g.Numero);
@@ -130,11 +146,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
                 GuiasARecepcionarAgenciaListView.Items.Add(li);
             }
 
+            // DESPACHO: número, tamaño y ubicación actual (donde está físicamente la guía)
             foreach (var g in aEntregar)
             {
                 var li = new ListViewItem(g.Numero);
                 li.SubItems.Add(g.Tamaño);
-                li.Tag = g.Destino;
+                li.SubItems.Add(g.UbicacionActual); // Agrega columna de ubicación
                 GuiasAEntregarListView.Items.Add(li);
             }
         }
@@ -142,6 +159,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
         private void LimpiarFormulario()
         {
             DNIFleteroTextBox.Clear();
+            NombreResultLabel.Text = "";
+            ApellidoResultLabel.Text = "";
+
             // Labels superiores fijos: no limpiarlos para que muestren siempre los valores configurados en el constructor.
             // Dejá "Agencia:" fijo en AgenciaLabel; NombreAgenciaLabel arranca con "Agencia: CABA"
 
@@ -163,6 +183,11 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
         private void RecepcionYDespachoAgenciaForm1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void CancelarButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
