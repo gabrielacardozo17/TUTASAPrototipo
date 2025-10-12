@@ -19,8 +19,8 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
         private void EntregarEncomiendaCDForm_Load(object sender, EventArgs e)
         {
             // Simulación de datos de sesión con nombres realistas y consistentes con el Modelo
-            UsuarioResult.Text = "p.gonzalez";
-            CDResult.Text = "CD CABA Oeste"; // CORREGIDO: Coincide con los datos de prueba
+            UsuarioResult.Text = "Juan Perez";
+            CDResult.Text = "CABA Oeste"; // CORREGIDO: Coincide con los datos de prueba
             NombreResultLabel.Text = "";
             ApellidoResultLabel.Text = "";
         }

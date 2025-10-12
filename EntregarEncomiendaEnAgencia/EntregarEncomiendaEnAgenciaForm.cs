@@ -23,8 +23,8 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
         // Reemplazar este método en EntregarEncomiendaEnAgenciaForm.cs
         private void EntregarEncomiendaEnAgenciaForm_Load(object sender, EventArgs e)
         {
-            UsuarioResult.Text = "f.martinez";
-            AgenciaResult.Text = "Ag. CABA Flores"; // antes: "Ag. 1011"
+            UsuarioResult.Text = "Juan Perez";
+            AgenciaResult.Text = "CABA Flores"; // antes: "Ag. 1011"
             NombreDestinatarioResult.Text = "";
             ApellidoDestinatarioResult.Text = "";
         }

@@ -17,8 +17,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
         private void InicializarFormulario()
         {
             // Establecemos valores fijos para el prototipo
-            UsuarioResult.Text = "J.Perez";
-            CDResult.Text = "CD Cordoba";
+            UsuarioResult.Text = "Juan Perez";
+            CDResult.Text = "Cordoba";
 
             // Deshabilitamos los controles que dependen de una búsqueda exitosa
             GuiasGroupBox.Enabled = false;
