@@ -16,7 +16,7 @@ using TUTASAPrototipo.ImponerEncomiendaAgencia;
 using TUTASAPrototipo.ImponerEncomiendaCallCenter;
 using TUTASAPrototipo.ImponerEncomiendaCD;
 using TUTASAPrototipo.MonitoreoResultados;
-using TUTASAPrototipo.RecepcionAgencia;
+using TUTASAPrototipo.RecepcionYDespachoAgencia;
 using TUTASAPrototipo.RecepcionYDespachoLargaDistancia;
 using TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD;
 
@@ -78,7 +78,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void RecepcionAgenciaButton_Click(object sender, EventArgs e)
         {
-            using (var RecepcionAgencia = new RecepcionAgenciaForm1())
+            using (var RecepcionAgencia = new RecepcionYDespachoAgenciaForm1())
             {
                 RecepcionAgencia.ShowDialog();
             }

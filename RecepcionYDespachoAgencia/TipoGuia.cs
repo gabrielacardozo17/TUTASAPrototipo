@@ -1,4 +1,4 @@
-﻿namespace TUTASAPrototipo.RecepcionAgencia
+﻿namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 {
     public enum TipoGuia
     {

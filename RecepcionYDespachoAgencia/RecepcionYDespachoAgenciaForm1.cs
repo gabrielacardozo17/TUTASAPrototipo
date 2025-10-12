@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace TUTASAPrototipo.RecepcionAgencia
+namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 {
-    public partial class RecepcionAgenciaForm1 : Form
+    public partial class RecepcionYDespachoAgenciaForm1 : Form
     {
-        private readonly RecepcionAgenciaModelo _modelo = new RecepcionAgenciaModelo();
+        private readonly RecepcionYDespachoAgenciaModelo _modelo = new RecepcionYDespachoAgenciaModelo();
 
-        public RecepcionAgenciaForm1()
+        public RecepcionYDespachoAgenciaForm1()
         {
             InitializeComponent();
 
@@ -162,6 +162,11 @@ namespace TUTASAPrototipo.RecepcionAgencia
                 CancelarButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             }
             catch { }
+        }
+
+        private void RecepcionYDespachoAgenciaForm1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

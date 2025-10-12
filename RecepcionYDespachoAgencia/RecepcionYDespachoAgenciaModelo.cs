@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TUTASAPrototipo.RecepcionAgencia
+namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 {
-    public class RecepcionAgenciaModelo
+    public class RecepcionYDespachoAgenciaModelo
     {
         // ======= Datos de prueba =======
         private readonly List<Fletero> _fleteros = new List<Fletero>
