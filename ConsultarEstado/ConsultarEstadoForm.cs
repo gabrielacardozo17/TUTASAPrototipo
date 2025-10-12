@@ -44,7 +44,7 @@ namespace TUTASAPrototipo.ConsultarEstado
             // Validaciones N0–N2 (nuevo formato TLLLNNNNN: 9 dígitos)
             if (string.IsNullOrWhiteSpace(input))
             {
-                MessageBox.Show("Debe ingresar el número de guía.", "Validación");
+                MessageBox.Show("Debe ingresar un número de guía.", "Validación");
                 NroGuiaBusquedaGroupBox.Focus();
                 return;
             }
@@ -61,7 +61,7 @@ namespace TUTASAPrototipo.ConsultarEstado
             // Exactamente 9 dígitos: TLLLNNNNN
             if (!Regex.IsMatch(digits, @"^\d{9}$"))
             {
-                MessageBox.Show("Número de guía inválido (debe tener 9 dígitos TLLLNNNNN).", "Validación");
+                MessageBox.Show("Número de guía inválido (debe tener 9 dígitos).", "Validación");
                 return;
             }
 
