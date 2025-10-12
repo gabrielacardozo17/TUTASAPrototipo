@@ -77,9 +77,8 @@
             ApellidoResultLabel.AutoSize = true;
             ApellidoResultLabel.Location = new Point(92, 94);
             ApellidoResultLabel.Name = "ApellidoResultLabel";
-            ApellidoResultLabel.Size = new Size(38, 15);
+            ApellidoResultLabel.Size = new Size(0, 15);
             ApellidoResultLabel.TabIndex = 7;
-            ApellidoResultLabel.Text = "label1";
             // 
             // ApellidoLabel
             // 
@@ -95,9 +94,8 @@
             NombreResultLabel.AutoSize = true;
             NombreResultLabel.Location = new Point(92, 71);
             NombreResultLabel.Name = "NombreResultLabel";
-            NombreResultLabel.Size = new Size(38, 15);
+            NombreResultLabel.Size = new Size(0, 15);
             NombreResultLabel.TabIndex = 5;
-            NombreResultLabel.Text = "label1";
             // 
             // NombreLabel
             // 

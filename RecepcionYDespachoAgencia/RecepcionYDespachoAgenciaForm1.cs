@@ -22,7 +22,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             // Labels superiores fijos
             NombreUsuarioLabel.Text = "Juan Perez";
-            NombreAgenciaLabel.Text = "CABA";
+            NombreAgenciaLabel.Text = "CABA Centro";
 
             // Inicializar labels de búsqueda como vacíos
             NombreResultLabel.Text = "";
@@ -49,7 +49,15 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             var dniTexto = DNIFleteroTextBox.Text.Trim();
 
             // N0–N2: requerido, numérico, longitud (7–8)
-            if (string.IsNullOrWhiteSpace(dniTexto) || !int.TryParse(dniTexto, out int dni))
+            if (string.IsNullOrWhiteSpace(dniTexto))
+            {
+                MessageBox.Show("Debe ingresar un número de DNI", "Validación");
+                DNIFleteroTextBox.Clear();
+                DNIFleteroTextBox.Focus();
+                return;
+            }
+
+            if (!int.TryParse(dniTexto, out int dni))
             {
                 MessageBox.Show("Debe ingresar un número entero positivo", "Validación");
                 DNIFleteroTextBox.Clear();
@@ -73,8 +81,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
                     MessageBox.Show("No existe el fletero. Vuelva a intentarlo.", "Validación");
                     DNIFleteroTextBox.Clear();
                     DNIFleteroTextBox.Focus();
-                    NombreResultLabel.Text = "label1";
-                    ApellidoResultLabel.Text = "label1";
+                    NombreResultLabel.Text = "";
+                    ApellidoResultLabel.Text = "";
                     return;
                 }
 
@@ -188,6 +196,11 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
         private void CancelarButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void GuiasAEntregarListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
