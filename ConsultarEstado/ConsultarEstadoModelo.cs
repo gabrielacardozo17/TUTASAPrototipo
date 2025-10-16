@@ -21,13 +21,13 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "101000111",
-                EstadoActual = EstadoGuia.Admitida,
+                EstadoActual = "Admitida",
                 UbicacionActual = "CD CABA Oeste",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,09,01), EstadoGuia.ARetirarEnAgencia, "Agencia CABA Centro"),
-                    new Guia.Movimiento(new DateTime(2025,09,01), EstadoGuia.EnRutaACDOrigen,   ""), // sin lugar actual
-                    new Guia.Movimiento(new DateTime(2025,09,01), EstadoGuia.Admitida,          "CD CABA Oeste"),
+                    new Guia.Movimiento(new DateTime(2025,09,01), "A retirar en agencia", "Agencia CABA Centro"),
+                    new Guia.Movimiento(new DateTime(2025,09,01), "En ruta a CD de origen",   ""), // sin lugar actual
+                    new Guia.Movimiento(new DateTime(2025,09,01), "Admitida",                 "CD CABA Oeste"),
                 }
             },
 
@@ -35,13 +35,13 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "000200222",
-                EstadoActual = EstadoGuia.EnCDDestino,
+                EstadoActual = "En CD destino",
                 UbicacionActual = "CD Rosario",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,09,02), EstadoGuia.Admitida,             "CD CABA Sur"),
-                    new Guia.Movimiento(new DateTime(2025,09,03), EstadoGuia.EnTransitoACDDestino, ""),
-                    new Guia.Movimiento(new DateTime(2025,09,04), EstadoGuia.EnCDDestino,          "CD Rosario"),
+                    new Guia.Movimiento(new DateTime(2025,09,02), "Admitida",                 "CD CABA Sur"),
+                    new Guia.Movimiento(new DateTime(2025,09,03), "En tránsito a CD destino", ""),
+                    new Guia.Movimiento(new DateTime(2025,09,04), "En CD destino",            "CD Rosario"),
                 }
             },
 
@@ -49,13 +49,13 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "004000333",
-                EstadoActual = EstadoGuia.EnAgenciaDestino,
+                EstadoActual = "En agencia destino",
                 UbicacionActual = "Agencia Córdoba Norte",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,09,05), EstadoGuia.EnCDDestino,           "CD Córdoba Capital"),
-                    new Guia.Movimiento(new DateTime(2025,09,06), EstadoGuia.EnRutaAAgenciaDestino, ""),
-                    new Guia.Movimiento(new DateTime(2025,09,06), EstadoGuia.EnAgenciaDestino,       "Agencia Córdoba Norte"),
+                    new Guia.Movimiento(new DateTime(2025,09,05), "En CD destino",             "CD Córdoba Capital"),
+                    new Guia.Movimiento(new DateTime(2025,09,06), "En ruta a agencia destino", ""),
+                    new Guia.Movimiento(new DateTime(2025,09,06), "En agencia destino",        "Agencia Córdoba Norte"),
                 }
             },
 
@@ -63,14 +63,14 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "105000444",
-                EstadoActual = EstadoGuia.Entregada,
+                EstadoActual = "Entregada",
                 UbicacionActual = "",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,09,07), EstadoGuia.EnAgenciaDestino,   "Agencia Rosario Centro"),
-                    new Guia.Movimiento(new DateTime(2025,09,07), EstadoGuia.EnRutaAlDomicilio,  ""),
-                    new Guia.Movimiento(new DateTime(2025,09,07), EstadoGuia.PendienteDeEntrega, ""),
-                    new Guia.Movimiento(new DateTime(2025,09,07), EstadoGuia.Entregada,          ""),
+                    new Guia.Movimiento(new DateTime(2025,09,07), "En agencia destino",   "Agencia Rosario Centro"),
+                    new Guia.Movimiento(new DateTime(2025,09,07), "En ruta al domicilio",  ""),
+                    new Guia.Movimiento(new DateTime(2025,09,07), "Pendiente de entrega", ""),
+                    new Guia.Movimiento(new DateTime(2025,09,07), "Entregada",             ""),
                 }
             },
 
@@ -78,13 +78,13 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "004000555",
-                EstadoActual = EstadoGuia.Admitida,
+                EstadoActual = "Admitida",
                 UbicacionActual = "CD Córdoba Capital",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,09,08), EstadoGuia.ARetirarPorDomicilio, "Domicilio del cliente (Córdoba)"),
-                    new Guia.Movimiento(new DateTime(2025,09,08), EstadoGuia.EnRutaACDOrigen,      ""),
-                    new Guia.Movimiento(new DateTime(2025,09,08), EstadoGuia.Admitida,             "CD Córdoba Capital"),
+                    new Guia.Movimiento(new DateTime(2025,09,08), "A retirar por domicilio", "Domicilio del cliente (Córdoba)"),
+                    new Guia.Movimiento(new DateTime(2025,09,08), "En ruta a CD de origen",  ""),
+                    new Guia.Movimiento(new DateTime(2025,09,08), "Admitida",                 "CD Córdoba Capital"),
                 }
             },
 
@@ -92,12 +92,12 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "000100666",
-                EstadoActual = EstadoGuia.EnTransitoACDDestino,
+                EstadoActual = "En tránsito a CD destino",
                 UbicacionActual = "",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,09,09), EstadoGuia.Admitida,             "CD CABA Oeste"),
-                    new Guia.Movimiento(new DateTime(2025,09,10), EstadoGuia.EnTransitoACDDestino, ""),
+                    new Guia.Movimiento(new DateTime(2025,09,09), "Admitida",                 "CD CABA Oeste"),
+                    new Guia.Movimiento(new DateTime(2025,09,10), "En tránsito a CD destino", ""),
                 }
             },
 
@@ -105,11 +105,11 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "000200777",
-                EstadoActual = EstadoGuia.Admitida,
+                EstadoActual = "Admitida",
                 UbicacionActual = "CD CABA Sur",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,09,10), EstadoGuia.Admitida, "CD CABA Sur"),
+                    new Guia.Movimiento(new DateTime(2025,09,10), "Admitida", "CD CABA Sur"),
                 }
             },
 
@@ -117,14 +117,14 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "001000888",
-                EstadoActual = EstadoGuia.ARetirarEnAgencia,
+                EstadoActual = "A retirar en agencia",
                 UbicacionActual = "Agencia La Plata",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,09,11), EstadoGuia.EnCDDestino,           "CD Buenos Aires – La Plata"),
-                    new Guia.Movimiento(new DateTime(2025,09,11), EstadoGuia.EnRutaAAgenciaDestino, ""),
-                    new Guia.Movimiento(new DateTime(2025,09,11), EstadoGuia.EnAgenciaDestino,       "Agencia La Plata"),
-                    new Guia.Movimiento(new DateTime(2025,09,12), EstadoGuia.ARetirarEnAgencia,     "Agencia La Plata"),
+                    new Guia.Movimiento(new DateTime(2025,09,11), "En CD destino",             "CD Buenos Aires – La Plata"),
+                    new Guia.Movimiento(new DateTime(2025,09,11), "En ruta a agencia destino", ""),
+                    new Guia.Movimiento(new DateTime(2025,09,11), "En agencia destino",        "Agencia La Plata"),
+                    new Guia.Movimiento(new DateTime(2025,09,12), "A retirar en agencia",     "Agencia La Plata"),
                 }
             },
 
@@ -134,13 +134,13 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "101000015",
-                EstadoActual = EstadoGuia.Admitida,
+                EstadoActual = "Admitida",
                 UbicacionActual = "CD Córdoba Capital",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,10,02), EstadoGuia.ARetirarEnAgencia, "Agencia CABA Centro"),
-                    new Guia.Movimiento(new DateTime(2025,10,02), EstadoGuia.EnRutaACDOrigen,   ""),
-                    new Guia.Movimiento(new DateTime(2025,10,02), EstadoGuia.Admitida,          "CD Córdoba Capital"), // 0040
+                    new Guia.Movimiento(new DateTime(2025,10,02), "A retirar en agencia",   "Agencia CABA Centro"),
+                    new Guia.Movimiento(new DateTime(2025,10,02), "En ruta a CD de origen", ""),
+                    new Guia.Movimiento(new DateTime(2025,10,02), "Admitida",                 "CD Córdoba Capital"), // 0040
                 }
             },
 
@@ -148,12 +148,12 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "001004567",
-                EstadoActual = EstadoGuia.EnRutaAlDomicilio,
+                EstadoActual = "En ruta al domicilio",
                 UbicacionActual = "",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,09,29), EstadoGuia.Admitida,          "CD Buenos Aires – La Plata"),
-                    new Guia.Movimiento(new DateTime(2025,09,29), EstadoGuia.EnRutaAlDomicilio, ""),
+                    new Guia.Movimiento(new DateTime(2025,09,29), "Admitida",             "CD Buenos Aires – La Plata"),
+                    new Guia.Movimiento(new DateTime(2025,09,29), "En ruta al domicilio", ""),
                 }
             },
 
@@ -161,12 +161,12 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "000200001",
-                EstadoActual = EstadoGuia.EnTransitoACDDestino,
+                EstadoActual = "En tránsito a CD destino",
                 UbicacionActual = "CD intermedio 0050",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,10,01), EstadoGuia.Admitida,             "CD CABA Sur"),
-                    new Guia.Movimiento(new DateTime(2025,10,01), EstadoGuia.EnTransitoACDDestino, "CD intermedio 0050"),
+                    new Guia.Movimiento(new DateTime(2025,10,01), "Admitida",                 "CD CABA Sur"),
+                    new Guia.Movimiento(new DateTime(2025,10,01), "En tránsito a CD destino", "CD intermedio 0050"),
                 }
             },
 
@@ -174,12 +174,12 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "104000011",
-                EstadoActual = EstadoGuia.Admitida,
+                EstadoActual = "Admitida",
                 UbicacionActual = "CD Córdoba Capital",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,10,08), EstadoGuia.EnRutaACDOrigen, ""), // viene de agencia 1040
-                    new Guia.Movimiento(new DateTime(2025,10,08), EstadoGuia.Admitida,        "CD Córdoba Capital"),
+                    new Guia.Movimiento(new DateTime(2025,10,08), "En ruta a CD de origen", ""), // viene de agencia 1040
+                    new Guia.Movimiento(new DateTime(2025,10,08), "Admitida",                 "CD Córdoba Capital"),
                 }
             },
 
@@ -187,12 +187,12 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "007000150",
-                EstadoActual = EstadoGuia.EnRutaAAgenciaDestino,
+                EstadoActual = "En ruta a agencia destino",
                 UbicacionActual = "",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,09,18), EstadoGuia.EnCDDestino,           "CD Corrientes"),
-                    new Guia.Movimiento(new DateTime(2025,09,18), EstadoGuia.EnRutaAAgenciaDestino, ""),
+                    new Guia.Movimiento(new DateTime(2025,09,18), "En CD destino",             "CD Corrientes"),
+                    new Guia.Movimiento(new DateTime(2025,09,18), "En ruta a agencia destino", ""),
                 }
             },
 
@@ -200,11 +200,11 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "101100005",
-                EstadoActual = EstadoGuia.ARetirarEnAgencia,
+                EstadoActual = "A retirar en agencia",
                 UbicacionActual = "Agencia CABA Flores",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,10,03), EstadoGuia.ARetirarEnAgencia, "Agencia CABA Flores"),
+                    new Guia.Movimiento(new DateTime(2025,10,03), "A retirar en agencia", "Agencia CABA Flores"),
                 }
             },
 
@@ -212,11 +212,11 @@ namespace TUTASAPrototipo.ConsultarEstado
             new Guia
             {
                 Numero = "102400007",
-                EstadoActual = EstadoGuia.ARetirarPorDomicilio,
+                EstadoActual = "A retirar por domicilio",
                 UbicacionActual = "Domicilio del cliente (Pilar)",
                 Historial = new()
                 {
-                    new Guia.Movimiento(new DateTime(2025,10,07), EstadoGuia.ARetirarPorDomicilio, "Domicilio del cliente (Pilar)"),
+                    new Guia.Movimiento(new DateTime(2025,10,07), "A retirar por domicilio", "Domicilio del cliente (Pilar)"),
                 }
             },
         };

@@ -10,13 +10,13 @@ namespace TUTASAPrototipo.ConsultarEstado
         public string Numero { get; set; } = "";
 
         // Estado/Ubicación vigentes
-        public EstadoGuia EstadoActual { get; set; }
+        public string EstadoActual { get; set; } = "";
         public string UbicacionActual { get; set; } = "";
 
         // Historial mostrado en la grilla (Fecha, Estado, Ubicación)
         public List<Movimiento> Historial { get; set; } = new();
 
         // Tipo anidado para no crear otro archivo
-        public record Movimiento(DateTime Fecha, EstadoGuia Estado, string Ubicacion);
+        public record Movimiento(DateTime Fecha, string Estado, string Ubicacion);
     }
 }

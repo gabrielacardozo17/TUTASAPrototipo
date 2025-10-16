@@ -176,17 +176,10 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             // Siempre que cambia el tipo, limpiamos Dirección/CP y selecciones de Agencia/CD
             LimpiarCamposEntrega();
 
-            TipoEntrega? tipo = (TipoEntregaComboBox.SelectedItem as string) switch
-            {
-                "A domicilio" => TipoEntrega.Domicilio,
-                "En Agencia" => TipoEntrega.Agencia,
-                "En CD" => TipoEntrega.CD,
-                _ => (TipoEntrega?)null
-            };
+            var tipoStr = TipoEntregaComboBox.SelectedItem as string;
+            HabilitarCamposEntrega(tipoStr);
 
-            HabilitarCamposEntrega(tipo);
-
-            if (tipo is TipoEntrega.Agencia)
+            if (string.Equals(tipoStr, "En Agencia", StringComparison.OrdinalIgnoreCase))
             {
                 AgenciaComboBox.DisplayMember = "Value";
                 AgenciaComboBox.ValueMember = "Key";
@@ -213,7 +206,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                     AgenciaComboBox.Enabled = false;
                 }
             }
-            else if (tipo is TipoEntrega.CD)
+            else if (string.Equals(tipoStr, "En CD", StringComparison.OrdinalIgnoreCase))
             {
                 if (ProvinciaComboBox.SelectedItem is KeyValuePair<int, string> { Key: var provId })
                 {
@@ -237,11 +230,11 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         }
 
         // Habilita/Deshabilita campos según tipo de entrega y “grisado” visual
-        private void HabilitarCamposEntrega(TipoEntrega? tipo)
+        private void HabilitarCamposEntrega(string? tipo)
         {
-            var esDom = tipo is TipoEntrega.Domicilio;
-            var esAge = tipo is TipoEntrega.Agencia;
-            var esCd = tipo is TipoEntrega.CD;
+            var esDom = string.Equals(tipo, "A domicilio", StringComparison.OrdinalIgnoreCase);
+            var esAge = string.Equals(tipo, "En Agencia", StringComparison.OrdinalIgnoreCase);
+            var esCd = string.Equals(tipo, "En CD", StringComparison.OrdinalIgnoreCase);
 
             // Dirección / CP
             DireccionDestinatarioTextBox.Enabled = esDom;
@@ -331,18 +324,12 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             var locNombre = LocalidadxProvinciaComboBox.Text;
             var esOtras = (locId == -1);
 
-            var tipo = tipoSel switch
-            {
-                "A domicilio" => TipoEntrega.Domicilio,
-                "En Agencia" => TipoEntrega.Agencia,
-                "En CD" => TipoEntrega.CD,
-                _ => TipoEntrega.Domicilio
-            };
+            var tipo = tipoSel; // seguimos usando string
 
             string? direccion = null, cp = null, agenciaNombre = null, cdDestinoNombre = null;
             int? agenciaId = null, cdDestinoId = null;
 
-            if (tipo is TipoEntrega.Domicilio)
+            if (string.Equals(tipo, "A domicilio", StringComparison.OrdinalIgnoreCase))
             {
                 direccion = (DireccionDestinatarioTextBox.Text ?? "").Trim();
                 cp = (CodigoPostalTextBox.Text ?? "").Trim();
@@ -357,12 +344,12 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 if (!cpOk)
                 { MessageBox.Show("El Código Postal debe tener 4 dígitos numéricos.", "Validación"); return; }
             }
-            else if (tipo is TipoEntrega.Agencia
+            else if (string.Equals(tipo, "En Agencia", StringComparison.OrdinalIgnoreCase)
                   && AgenciaComboBox.SelectedItem is KeyValuePair<int, string> { Key: var agId, Value: var agNom })
             {
                 agenciaId = agId; agenciaNombre = agNom;
             }
-            else if (tipo is TipoEntrega.CD
+            else if (string.Equals(tipo, "En CD", StringComparison.OrdinalIgnoreCase)
                   && CDComboBox.SelectedItem is KeyValuePair<int, string> { Key: var cdId, Value: var cdNom })
             {
                 cdDestinoId = cdId; cdDestinoNombre = cdNom;

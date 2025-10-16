@@ -161,7 +161,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             string destNombre, string destApellido, string destDni,
             int provinciaId, string provinciaNombre,
             int? localidadId, string? localidadNombre, bool localidadEsOtras,
-            TipoEntrega tipoEntrega,
+            string tipoEntrega,
             string? direccion, string? codigoPostal,
             int? agenciaId, string? agenciaNombre,
             int? cdDestinoId, string? cdDestinoNombre,
@@ -186,12 +186,12 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
             switch (tipoEntrega)
             {
-                case TipoEntrega.Domicilio:
+                case "A domicilio":
                     if (string.IsNullOrWhiteSpace(direccion) || string.IsNullOrWhiteSpace(codigoPostal))
                         throw new InvalidOperationException("Para entrega a Domicilio debe completar Dirección y Código Postal.");
                     break;
 
-                case TipoEntrega.Agencia:
+                case "En Agencia":
                     if (!agenciaId.HasValue)
                         throw new InvalidOperationException("Debe seleccionar una Agencia.");
                     var agOk = localidadId.HasValue
@@ -200,13 +200,15 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                     if (!agOk) throw new InvalidOperationException("La agencia no pertenece a la localidad seleccionada.");
                     break;
 
-                case TipoEntrega.CD:
+                case "En CD":
                     if (!cdDestinoId.HasValue)
                         throw new InvalidOperationException("Debe seleccionar un Centro de Distribución (destino).");
                     var cdOk = _cdsPorProv.TryGetValue(provinciaId, out var cds)
                                && cds.Any(c => c.id == cdDestinoId.Value);
                     if (!cdOk) throw new InvalidOperationException("El CD seleccionado no pertenece a la provincia.");
                     break;
+                default:
+                    throw new InvalidOperationException("Tipo de entrega inválido.");
             }
 
             // --- ACEPTA lo que venga del form, pero si no coincide, fuerza Corrientes ---
@@ -232,7 +234,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 guias.Add(new Guia
                 {
                     Numero = numero,
-                    Estado = EstadoGuia.PendRetiroDomicilio,
+                    Estado = "Pendiente de retiro en domicilio",
                     CuitRemitente = Digits(cuitRemitente),
 
                     Destinatario = new Destinatario { Nombre = destNombre, Apellido = destApellido, Dni = destDni },

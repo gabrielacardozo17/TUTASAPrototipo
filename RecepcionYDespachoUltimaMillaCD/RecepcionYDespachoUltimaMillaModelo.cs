@@ -43,28 +43,28 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
         public (IEnumerable<Guia> distribucion, IEnumerable<Guia> retiro) GetGuiasPorFletero(int dni)
         {
-            var estadosDistribucion = new HashSet<EstadoGuia>
+            var estadosDistribucion = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
-                EstadoGuia.Admitida,
-                EstadoGuia.EnTransitoAlCDDestino,
-                EstadoGuia.EnCDDestino,
-                EstadoGuia.EnRutaADomicilioEntrega,
-                EstadoGuia.EnRutaALaAgenciaEntrega,
-                EstadoGuia.PendienteDeEntrega
+                "Admitida",
+                "En tránsito al CD destino",
+                "En CD destino",
+                "En ruta al domicilio de entrega",
+                "En ruta a la agencia de entrega",
+                "Pendiente de entrega"
             };
 
             var dist = _guias.Where(g => g.FleteroDni == dni
-                                      && g.Estado != EstadoGuia.Entregada
+                                      && !string.Equals(g.Estado, "Entregada", StringComparison.OrdinalIgnoreCase)
                                       && estadosDistribucion.Contains(g.Estado))
                              .OrderBy(g => g.NroHDR).ThenBy(g => g.Numero)
                              .ToList();
 
             var retiro = _guias.Where(g => g.FleteroDni == dni
-                                        && (g.Estado == EstadoGuia.ARetirarPorDomicilioCliente
-                                         || g.Estado == EstadoGuia.ARetirarEnAgenciaOrigen
-                                         || g.Estado == EstadoGuia.EnEsperaDeRetiroAlCliente
-                                         || g.Estado == EstadoGuia.EnEsperaDeRetiroEnAgencia
-                                         || g.Estado == EstadoGuia.EnRutaACDOrigen))
+                                        && (string.Equals(g.Estado, "A retirar por domicilio del cliente", StringComparison.OrdinalIgnoreCase)
+                                         || string.Equals(g.Estado, "A retirar en agencia de origen", StringComparison.OrdinalIgnoreCase)
+                                         || string.Equals(g.Estado, "En espera de retiro al cliente", StringComparison.OrdinalIgnoreCase)
+                                         || string.Equals(g.Estado, "En espera de retiro en agencia", StringComparison.OrdinalIgnoreCase)
+                                         || string.Equals(g.Estado, "En ruta a CD de origen", StringComparison.OrdinalIgnoreCase)))
                                .OrderBy(g => g.NroHDR).ThenBy(g => g.Numero)
                                .ToList();
 
@@ -84,26 +84,26 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             _ultimosRetirosMarcados = new List<Guia>();
 
             // Entregas (distribución) marcadas → Entregada
-            foreach (var g in _guias.Where(x => x.FleteroDni == dni && x.Estado != EstadoGuia.Entregada))
+            foreach (var g in _guias.Where(x => x.FleteroDni == dni && !string.Equals(x.Estado, "Entregada", StringComparison.OrdinalIgnoreCase)))
             {
                 if (entregasDistribucionMarcadas.Contains(g.Numero))
                 {
-                    g.Estado = EstadoGuia.Entregada;
+                    g.Estado = "Entregada";
                     g.NroHDR = null; // deja de pertenecer a HDR activa
                 }
             }
 
             // Retiros marcados → En ruta a CD de origen
             foreach (var g in _guias.Where(x => x.FleteroDni == dni &&
-                                               (x.Estado == EstadoGuia.ARetirarPorDomicilioCliente
-                                             || x.Estado == EstadoGuia.ARetirarEnAgenciaOrigen
-                                             || x.Estado == EstadoGuia.EnEsperaDeRetiroAlCliente
-                                             || x.Estado == EstadoGuia.EnEsperaDeRetiroEnAgencia)))
+                                               (string.Equals(x.Estado, "A retirar por domicilio del cliente", StringComparison.OrdinalIgnoreCase)
+                                             || string.Equals(x.Estado, "A retirar en agencia de origen", StringComparison.OrdinalIgnoreCase)
+                                             || string.Equals(x.Estado, "En espera de retiro al cliente", StringComparison.OrdinalIgnoreCase)
+                                             || string.Equals(x.Estado, "En espera de retiro en agencia", StringComparison.OrdinalIgnoreCase))))
             {
                 if (retirosMarcados.Contains(g.Numero))
                 {
-                    g.Estado = EstadoGuia.EnRutaACDOrigen;
-                    g.Tipo = TipoGuia.Retiro;
+                    g.Estado = "En ruta a CD de origen";
+                    g.Tipo = "Retiro";
                     _ultimosRetirosMarcados.Add(g);
                 }
             }
@@ -126,11 +126,11 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                     nuevas.Add(new Guia
                     {
                         Numero = NextGuiaNumber(),
-                        Tipo = TipoGuia.Distribucion,
+                        Tipo = "Distribución",
                         Tamaño = ret.Tamaño,
                         Origen = $"CD {ORIGEN_COD}",
                         Destino = "Domicilio",
-                        Estado = EstadoGuia.PendienteDeEntrega,
+                        Estado = "Pendiente de entrega",
                         FleteroDni = null,   // queda libre para que otro la adopte
                         NroHDR = null
                     });
@@ -140,7 +140,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
             // 3) Asignar HDR por destino (máximo 5 guías por HDR)
             var fecha = DateTime.Now.ToString("yyyyMMdd", CultureInfo.InvariantCulture);
-            var activas = _guias.Where(g => g.FleteroDni == dni && g.Estado != EstadoGuia.Entregada).ToList();
+            var activas = _guias.Where(g => g.FleteroDni == dni && !string.Equals(g.Estado, "Entregada", StringComparison.OrdinalIgnoreCase)).ToList();
 
             foreach (var grp in activas.GroupBy(g => NormalizarDestino(g.Destino)))
             {
@@ -175,7 +175,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
         {
             var fecha = DateTime.Now.ToString("yyyyMMdd", CultureInfo.InvariantCulture);
 
-            var activasSinHdr = _guias.Where(g => g.FleteroDni == dni && g.Estado != EstadoGuia.Entregada && string.IsNullOrEmpty(g.NroHDR))
+            var activasSinHdr = _guias.Where(g => g.FleteroDni == dni && !string.Equals(g.Estado, "Entregada", StringComparison.OrdinalIgnoreCase) && string.IsNullOrEmpty(g.NroHDR))
                                       .ToList();
             if (activasSinHdr.Count == 0) return;
 
@@ -203,16 +203,16 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
         // ================= Helpers de negocio =================
 
         private static bool EsRetiro(Guia g) =>
-            g.Estado is EstadoGuia.ARetirarEnAgenciaOrigen
-                     or EstadoGuia.ARetirarPorDomicilioCliente
-                     or EstadoGuia.EnEsperaDeRetiroEnAgencia
-                     or EstadoGuia.EnEsperaDeRetiroAlCliente
-                     or EstadoGuia.EnRutaACDOrigen;
+            string.Equals(g.Estado, "A retirar en agencia de origen", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(g.Estado, "A retirar por domicilio del cliente", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(g.Estado, "En espera de retiro en agencia", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(g.Estado, "En espera de retiro al cliente", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(g.Estado, "En ruta a CD de origen", StringComparison.OrdinalIgnoreCase);
 
         private void NormalizarTipoPorEstado()
         {
             foreach (var g in _guias)
-                g.Tipo = EsRetiro(g) ? TipoGuia.Retiro : TipoGuia.Distribucion;
+                g.Tipo = EsRetiro(g) ? "Retiro" : "Distribución";
         }
 
         private void MarcarAlgunasSinFleteroParaPruebas()
@@ -220,7 +220,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             int i = 0;
             foreach (var g in _guias)
             {
-                if (g.Tipo == TipoGuia.Retiro)
+                if (string.Equals(g.Tipo, "Retiro", StringComparison.OrdinalIgnoreCase))
                 {
                     if ((++i) % 3 == 0) g.FleteroDni = null;
                 }
@@ -233,17 +233,17 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
         private void AdoptarGuiasSinFletero(int dni)
         {
-            var estadosDistribucion = new HashSet<EstadoGuia>
+            var estadosDistribucion = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
-                EstadoGuia.Admitida, EstadoGuia.PendienteDeEntrega,
-                EstadoGuia.EnCDDestino, EstadoGuia.EnTransitoAlCDDestino,
-                EstadoGuia.EnRutaALaAgenciaEntrega, EstadoGuia.EnRutaADomicilioEntrega
+                "Admitida", "Pendiente de entrega",
+                "En CD destino", "En tránsito al CD destino",
+                "En ruta a la agencia de entrega", "En ruta al domicilio de entrega"
             };
 
             // Adopta SOLO las que corresponden y aún no tienen fletero
             foreach (var g in _guias.Where(x => x.FleteroDni == null))
             {
-                if (EsRetiro(g) || (g.Estado != EstadoGuia.Entregada && estadosDistribucion.Contains(g.Estado)))
+                if (EsRetiro(g) || (!string.Equals(g.Estado, "Entregada", StringComparison.OrdinalIgnoreCase) && estadosDistribucion.Contains(g.Estado)))
                     g.FleteroDni = dni;
             }
         }
@@ -285,25 +285,25 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
         // --------- Mapeo / importación desde tu documento ---------
 
-        private static EstadoGuia MapEstado(string texto)
+        private static string MapEstado(string texto)
         {
             var t = (texto ?? "").Trim().ToLowerInvariant();
 
             if (t == "en espera de retiro al cliente" || t.Contains("retiro al cliente"))
-                return EstadoGuia.EnEsperaDeRetiroAlCliente;
+                return "En espera de retiro al cliente";
             if (t == "en espera de retiro en agencia" || t == "a retirar en agencia de origen" || t.Contains("retiro en agencia"))
-                return EstadoGuia.EnEsperaDeRetiroEnAgencia;
+                return "En espera de retiro en agencia";
 
-            if (t == "en ruta a cd de origen" || t.Contains("cd de origen")) return EstadoGuia.EnRutaACDOrigen;
-            if (t == "admitida") return EstadoGuia.Admitida;
-            if (t == "en tránsito al cd destino" || (t.Contains("tránsito") && t.Contains("destino"))) return EstadoGuia.EnTransitoAlCDDestino;
-            if (t == "en cd destino" || t.Contains("cd destino")) return EstadoGuia.EnCDDestino;
-            if (t == "en ruta al domicilio de entrega" || t.Contains("domicilio")) return EstadoGuia.EnRutaADomicilioEntrega;
-            if (t == "en ruta a la agencia de entrega" || t.Contains("agencia de entrega")) return EstadoGuia.EnRutaALaAgenciaEntrega;
-            if (t == "pendiente de entrega" || t.Contains("pendiente")) return EstadoGuia.PendienteDeEntrega;
-            if (t == "entregada" || t.Contains("entregad")) return EstadoGuia.Entregada;
+            if (t == "en ruta a cd de origen" || t.Contains("cd de origen")) return "En ruta a CD de origen";
+            if (t == "admitida") return "Admitida";
+            if (t == "en tránsito al cd destino" || (t.Contains("tránsito") && t.Contains("destino"))) return "En tránsito al CD destino";
+            if (t == "en cd destino" || t.Contains("cd destino")) return "En CD destino";
+            if (t == "en ruta al domicilio de entrega" || t.Contains("domicilio")) return "En ruta al domicilio de entrega";
+            if (t == "en ruta a la agencia de entrega" || t.Contains("agencia de entrega")) return "En ruta a la agencia de entrega";
+            if (t == "pendiente de entrega" || t.Contains("pendiente")) return "Pendiente de entrega";
+            if (t == "entregada" || t.Contains("entregad")) return "Entregada";
 
-            return EstadoGuia.PendienteDeEntrega;
+            return "Pendiente de entrega";
         }
 
         private static string InferirDestino(string lugar, string estadoTxt)
@@ -362,7 +362,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                     Origen = "—",
                     Destino = destino,
                     Estado = estado,
-                    Tipo = EsRetiro(new Guia { Estado = estado }) ? TipoGuia.Retiro : TipoGuia.Distribucion,
+                    Tipo = EsRetiro(new Guia { Estado = estado }) ? "Retiro" : "Distribución",
                     FleteroDni = fleteroDni,
                     NroHDR = null
                 });

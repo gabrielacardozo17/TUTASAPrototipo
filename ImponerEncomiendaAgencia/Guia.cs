@@ -3,7 +3,7 @@
     public class Guia
     {
         public string Numero { get; set; } = "";
-        public EstadoGuia Estado { get; set; } = EstadoGuia.AdmitidaEnCDOrigen;
+        public string Estado { get; set; } = string.Empty;
 
         public string CuitRemitente { get; set; } = "";
         public Destinatario Destinatario { get; set; } = new Destinatario();
@@ -17,7 +17,7 @@
         public string? LocalidadNombre { get; set; }
         public bool LocalidadEsOtras { get; set; }
 
-        public TipoEntrega TipoEntrega { get; set; }
+        public string TipoEntrega { get; set; } = string.Empty;
         public string? Direccion { get; set; }
         public string? CodigoPostal { get; set; }
         public int? AgenciaId { get; set; }
@@ -32,6 +32,6 @@
 
         public string? UbicacionActualTipo { get; set; }
         public int? UbicacionActualId { get; set; }
-        public TamanoBulto? Tamano { get; set; }
+        public string? Tamano { get; set; }
     }
 }

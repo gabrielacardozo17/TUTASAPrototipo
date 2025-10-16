@@ -46,6 +46,7 @@
             GuiasAEntregarListView = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
             AgenciaLabel = new Label();
             UsuarioLabel = new Label();
             NombreUsuarioLabel = new Label();
@@ -193,10 +194,10 @@
             // 
             // GuiasAEntregarListView
             // 
-            GuiasAEntregarListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
+            GuiasAEntregarListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
             GuiasAEntregarListView.Location = new Point(174, 22);
             GuiasAEntregarListView.Name = "GuiasAEntregarListView";
-            GuiasAEntregarListView.Size = new Size(305, 97);
+            GuiasAEntregarListView.Size = new Size(456, 97);
             GuiasAEntregarListView.TabIndex = 7;
             GuiasAEntregarListView.UseCompatibleStateImageBehavior = false;
             GuiasAEntregarListView.View = View.Details;
@@ -204,12 +205,17 @@
             // columnHeader1
             // 
             columnHeader1.Text = "Nro de Guía";
-            columnHeader1.Width = 200;
+            columnHeader1.Width = 180;
             // 
             // columnHeader2
             // 
             columnHeader2.Text = "Tamaño";
-            columnHeader2.Width = 100;
+            columnHeader2.Width = 80;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Ubicación";
+            columnHeader3.Width = 240;
             // 
             // AgenciaLabel
             // 
@@ -289,6 +295,7 @@
         private ListView GuiasAEntregarListView;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
         private Label AgenciaLabel;
         private Label UsuarioLabel;
         private Label NombreUsuarioLabel;

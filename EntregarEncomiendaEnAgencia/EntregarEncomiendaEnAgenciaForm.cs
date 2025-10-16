@@ -24,7 +24,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
         private void EntregarEncomiendaEnAgenciaForm_Load(object sender, EventArgs e)
         {
             UsuarioResult.Text = "Juan Perez";
-            AgenciaResult.Text = "CABA Flores"; // antes: "Ag. 1011"
+            AgenciaResult.Text = "Ag. CABA Flores"; // Debe coincidir EXACTAMENTE con la Ubicacion en los datos
             NombreDestinatarioResult.Text = "";
             ApellidoDestinatarioResult.Text = "";
         }

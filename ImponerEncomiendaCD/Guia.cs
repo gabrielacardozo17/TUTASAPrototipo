@@ -6,7 +6,7 @@
         public string Numero { get; set; } = "";
 
         // Estado
-        public EstadoGuia Estado { get; set; } = EstadoGuia.AdmitidaEnCDOrigen;
+        public string Estado { get; set; } = "Admitida en CD de origen";
 
         // Remitente
         public string CuitRemitente { get; set; } = "";
@@ -26,7 +26,7 @@
         public bool LocalidadEsOtras { get; set; }
 
         // Tipo de entrega
-        public TipoEntrega TipoEntrega { get; set; }
+        public string TipoEntrega { get; set; } = string.Empty;
 
         // Campos según tipo de entrega
         public string? Direccion { get; set; }       // solo si Domicilio
@@ -46,6 +46,6 @@
         public string? UbicacionActualTipo { get; set; } // "CD"/"Agencia"/"Fletero"/"Omnibus"
         public int? UbicacionActualId { get; set; }
 
-        public TamanoBulto? Tamano { get; set; }
+        public string? Tamano { get; set; }
     }
 }
