@@ -56,7 +56,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             var dist = _guias.Where(g => g.FleteroDni == dni
                                       && !string.Equals(g.Estado, "Entregada", StringComparison.OrdinalIgnoreCase)
                                       && estadosDistribucion.Contains(g.Estado))
-                             .OrderBy(g => g.NroHDR).ThenBy(g => g.Numero)
+                             .OrderBy(g => g.NroHDR).ThenBy(g => g.NumeroGuia)
                              .ToList();
 
             var retiro = _guias.Where(g => g.FleteroDni == dni
@@ -65,7 +65,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                                          || string.Equals(g.Estado, "En espera de retiro al cliente", StringComparison.OrdinalIgnoreCase)
                                          || string.Equals(g.Estado, "En espera de retiro en agencia", StringComparison.OrdinalIgnoreCase)
                                          || string.Equals(g.Estado, "En ruta a CD de origen", StringComparison.OrdinalIgnoreCase)))
-                               .OrderBy(g => g.NroHDR).ThenBy(g => g.Numero)
+                               .OrderBy(g => g.NroHDR).ThenBy(g => g.NumeroGuia)
                                .ToList();
 
             return (dist, retiro);
@@ -86,7 +86,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             // Entregas (distribución) marcadas → Entregada
             foreach (var g in _guias.Where(x => x.FleteroDni == dni && !string.Equals(x.Estado, "Entregada", StringComparison.OrdinalIgnoreCase)))
             {
-                if (entregasDistribucionMarcadas.Contains(g.Numero))
+                if (entregasDistribucionMarcadas.Contains(g.NumeroGuia))
                 {
                     g.Estado = "Entregada";
                     g.NroHDR = null; // deja de pertenecer a HDR activa
@@ -100,10 +100,10 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                                              || string.Equals(x.Estado, "En espera de retiro al cliente", StringComparison.OrdinalIgnoreCase)
                                              || string.Equals(x.Estado, "En espera de retiro en agencia", StringComparison.OrdinalIgnoreCase))))
             {
-                if (retirosMarcados.Contains(g.Numero))
+                if (retirosMarcados.Contains(g.NumeroGuia))
                 {
                     g.Estado = "En ruta a CD de origen";
-                    g.Tipo = "Retiro";
+                    g.TipoEntrega = "Retiro";
                     _ultimosRetirosMarcados.Add(g);
                 }
             }
@@ -125,9 +125,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 {
                     nuevas.Add(new Guia
                     {
-                        Numero = NextGuiaNumber(),
-                        Tipo = "Distribución",
-                        Tamaño = ret.Tamaño,
+                        NumeroGuia = NextGuiaNumber(),
+                        TipoEntrega = "Distribución",
+                        Tamanio = ret.Tamanio,
                         Origen = $"CD {ORIGEN_COD}",
                         Destino = "Domicilio",
                         Estado = "Pendiente de entrega",
@@ -155,7 +155,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                         Numero = nroHdr,
                         Direccion = grp.Key,
                         Tipo = paquete.Any(p => EsRetiro(p)) ? "Retiro" : "Distribución",
-                        Guias = paquete.Select(p => p.Numero).ToList()
+                        Guias = paquete.Select(p => p.NumeroGuia).ToList()
                     };
                     _hdrs.Add(hdr);
 
@@ -191,7 +191,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                         Numero = nroHdr,
                         Direccion = grp.Key,
                         Tipo = chunk.Any(EsRetiro) ? "Retiro" : "Distribución",
-                        Guias = chunk.Select(c => c.Numero).ToList()
+                        Guias = chunk.Select(c => c.NumeroGuia).ToList()
                     };
                     _hdrs.Add(hdr);
 
@@ -200,7 +200,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             }
         }
 
-        // ================= Helpers de negocio =================
+        // Helpers de negocio 
 
         private static bool EsRetiro(Guia g) =>
             string.Equals(g.Estado, "A retirar en agencia de origen", StringComparison.OrdinalIgnoreCase)
@@ -212,7 +212,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
         private void NormalizarTipoPorEstado()
         {
             foreach (var g in _guias)
-                g.Tipo = EsRetiro(g) ? "Retiro" : "Distribución";
+                g.TipoEntrega = EsRetiro(g) ? "Retiro" : "Distribución";
         }
 
         private void MarcarAlgunasSinFleteroParaPruebas()
@@ -220,13 +220,13 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             int i = 0;
             foreach (var g in _guias)
             {
-                if (string.Equals(g.Tipo, "Retiro", StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(g.TipoEntrega, "Retiro", StringComparison.OrdinalIgnoreCase))
                 {
                     if ((++i) % 3 == 0) g.FleteroDni = null;
                 }
                 else
                 {
-                    if (g.Numero.EndsWith('5')) g.FleteroDni = null;
+                    if (g.NumeroGuia.EndsWith('5')) g.FleteroDni = null;
                 }
             }
         }
@@ -357,12 +357,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
                 _guias.Add(new Guia
                 {
-                    Numero = numero,
-                    Tamaño = tam,
+                    NumeroGuia = numero,
+                    Tamanio = tam,
                     Origen = "—",
                     Destino = destino,
                     Estado = estado,
-                    Tipo = EsRetiro(new Guia { Estado = estado }) ? "Retiro" : "Distribución",
+                    TipoEntrega = EsRetiro(new Guia { Estado = estado }) ? "Retiro" : "Distribución",
                     FleteroDni = fleteroDni,
                     NroHDR = null
                 });

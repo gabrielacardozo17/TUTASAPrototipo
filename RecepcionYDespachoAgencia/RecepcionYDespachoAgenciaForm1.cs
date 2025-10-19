@@ -149,17 +149,17 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             // RECEPCIÓN: solo número y tamaño (ubicación actual está vacía porque están en ruta)
             foreach (var g in aRecepcionar)
             {
-                var li = new ListViewItem(g.Numero);
-                li.SubItems.Add(g.Tamaño);
+                var li = new ListViewItem(g.NumeroGuia);
+                li.SubItems.Add(g.Tamanio);
                 GuiasARecepcionarAgenciaListView.Items.Add(li);
             }
 
             // DESPACHO: número, tamaño y ubicación actual (donde está físicamente la guía)
             foreach (var g in aEntregar)
             {
-                var li = new ListViewItem(g.Numero);
-                li.SubItems.Add(g.Tamaño);
-                li.SubItems.Add(g.UbicacionActual); // Agrega columna de ubicación
+                var li = new ListViewItem(g.NumeroGuia);
+                li.SubItems.Add(g.Tamanio);
+                li.SubItems.Add(g.Ubicacion); // Agrega columna de ubicación
                 GuiasAEntregarListView.Items.Add(li);
             }
         }

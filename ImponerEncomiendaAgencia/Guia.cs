@@ -2,10 +2,10 @@
 {
     public class Guia
     {
-        public string Numero { get; set; } = "";
+        public string NumeroGuia { get; set; } = "";
         public string Estado { get; set; } = string.Empty;
 
-        public string CuitRemitente { get; set; } = "";
+        public string CUIT { get; set; } = "";
         public Destinatario Destinatario { get; set; } = new Destinatario();
 
         public int CdOrigenId { get; set; }
@@ -20,18 +20,12 @@
         public string TipoEntrega { get; set; } = string.Empty;
         public string? Direccion { get; set; }
         public string? CodigoPostal { get; set; }
-        public int? AgenciaId { get; set; }
-        public string? AgenciaNombre { get; set; }
-        public int? CDId { get; set; }
-        public string? CDNombre { get; set; }
+        public string? NombreAgencia { get; set; }
+        public string? NombreCD { get; set; }
 
-        public int CantS { get; set; }
-        public int CantM { get; set; }
-        public int CantL { get; set; }
-        public int CantXL { get; set; }
+        public int CantPorTamanio { get; set; }
+        public string? Tamanio { get; set; }
 
-        public string? UbicacionActualTipo { get; set; }
-        public int? UbicacionActualId { get; set; }
-        public string? Tamano { get; set; }
+        public string? Ubicacion { get; set; }
     }
 }

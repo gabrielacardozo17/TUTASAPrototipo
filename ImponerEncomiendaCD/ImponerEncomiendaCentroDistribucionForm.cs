@@ -116,7 +116,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 return;
             }
 
-            NombreClienteResult.Text = cli.Nombre;
+            NombreClienteResult.Text = cli.RazonSocial;
             TelefonoClienteResult.Text = cli.Telefono;
             DireccionClienteResult.Text = cli.Direccion;
         }
@@ -386,15 +386,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 );
 
 
-                var lineas = guias.Select(g =>
-                {
-                    string tam = g.CantS == 1 ? "S"
-                               : g.CantM == 1 ? "M"
-                               : g.CantL == 1 ? "L"
-                               : g.CantXL == 1 ? "XL"
-                               : "?";
-                    return $"- {g.Numero} (Tamaño: {tam})";
-                });
+                var lineas = guias.Select(g => $"- {g.NumeroGuia} (Tamaño: {g.Tamanio})");
 
                 var cuerpo = string.Join(Environment.NewLine, lineas);
 

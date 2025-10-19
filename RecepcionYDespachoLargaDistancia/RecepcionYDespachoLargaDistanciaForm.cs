@@ -71,7 +71,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             // Llenar ListView de Guías a Recibir (nombre del designer: GuiaxServicioRecibidaListView)
             foreach (var guia in servicio.GuiasARecibir)
             {
-                var item = new ListViewItem(guia.NroGuia);
+                var item = new ListViewItem(guia.NumeroGuia);
                 item.SubItems.Add(guia.Tamanio);
                 GuiaxServicioRecibidaListView.Items.Add(item);
             }
@@ -79,7 +79,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             // Llenar ListView de Guías a Despachar (nombre del designer: GuiasADespacharxServicioListView)
             foreach (var guia in servicio.GuiasADespachar)
             {
-                var item = new ListViewItem(guia.NroGuia);
+                var item = new ListViewItem(guia.NumeroGuia);
                 item.SubItems.Add(guia.Tamanio);
                 item.SubItems.Add(guia.Destino);
                 GuiasADespacharxServicioListView.Items.Add(item);

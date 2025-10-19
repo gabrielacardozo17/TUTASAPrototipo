@@ -12,13 +12,13 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
         // ---------- DATOS DE PRUEBA ----------
         private readonly List<Cliente> _clientes = new()
         {
-            new Cliente { Cuit = "30-12345678-1", Nombre = "Distribuidora Sur", Telefono = "1122334455", Direccion = "Av. Siempre Viva 742, CABA" },
-            new Cliente { Cuit = "20-11111111-2", Nombre = "Mayorista Norte", Telefono = "1144556677", Direccion = "San Martín 1200, La Plata" },
-            new Cliente { Cuit = "30-22223333-3", Nombre = "Logística Pampeana", Telefono = "1133665599", Direccion = "Ruta 5 km 320, Santa Rosa" },
-            new Cliente { Cuit = "27-44445555-6", Nombre = "Agroexport SRL", Telefono = "1147891234", Direccion = "Av. Mitre 2300, Rosario" },
-            new Cliente { Cuit = "33-55556666-7", Nombre = "Transportes del Litoral", Telefono = "1125873645", Direccion = "Av. Maipú 2700, Corrientes" },
-            new Cliente { Cuit = "20-77778888-9", Nombre = "Comercial Andina", Telefono = "2614567890", Direccion = "San Martín 1800, Mendoza" },
-            new Cliente { Cuit = "23-99990000-1", Nombre = "Depósito Patagónico", Telefono = "2994672301", Direccion = "Anaya 3005, Neuquén" }
+            new Cliente { CUIT = "30-12345678-1", RazonSocial = "Distribuidora Sur", Telefono = "1122334455", Direccion = "Av. Siempre Viva 742, CABA" },
+            new Cliente { CUIT = "20-11111111-2", RazonSocial = "Mayorista Norte", Telefono = "1144556677", Direccion = "San Martín 1200, La Plata" },
+            new Cliente { CUIT = "30-22223333-3", RazonSocial = "Logística Pampeana", Telefono = "1133665599", Direccion = "Ruta 5 km 320, Santa Rosa" },
+            new Cliente { CUIT = "27-44445555-6", RazonSocial = "Agroexport SRL", Telefono = "1147891234", Direccion = "Av. Mitre 2300, Rosario" },
+            new Cliente { CUIT = "33-55556666-7", RazonSocial = "Transportes del Litoral", Telefono = "1125873645", Direccion = "Av. Maipú 2700, Corrientes" },
+            new Cliente { CUIT = "20-77778888-9", RazonSocial = "Comercial Andina", Telefono = "2614567890", Direccion = "San Martín 1800, Mendoza" },
+            new Cliente { CUIT = "23-99990000-1", RazonSocial = "Depósito Patagónico", Telefono = "2994672301", Direccion = "Anaya 3005, Neuquén" }
         };
 
         private readonly Dictionary<int, string> _provincias = new()
@@ -95,7 +95,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
         public Cliente? BuscarCliente(string cuit)
         {
             var digits = Digits(cuit);
-            return _clientes.FirstOrDefault(c => Digits(c.Cuit) == digits);
+            return _clientes.FirstOrDefault(c => Digits(c.CUIT) == digits);
         }
 
         public IEnumerable<KeyValuePair<int, string>> GetProvincias() => _provincias;
@@ -210,11 +210,11 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
 
                 guias.Add(new Guia
                 {
-                    Numero = numero,
+                    NumeroGuia = numero,
                     Estado = "Pendiente de retiro en domicilio",
-                    CuitRemitente = new string(cuitRemitente.Where(char.IsDigit).ToArray()),
+                    CUIT = new string(cuitRemitente.Where(char.IsDigit).ToArray()),
 
-                    Destinatario = new Destinatario { Nombre = destNombre, Apellido = destApellido, Dni = destDni },
+                    Destinatario = new Destinatario { Nombre = destNombre, Apellido = destApellido, DNI = destDni },
 
                     CdOrigenId = cdOrigenId,
                     CdOrigenNombre = cdOrigenNombre,
@@ -228,15 +228,11 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                     TipoEntrega = tipoEntrega,
                     Direccion = direccion,
                     CodigoPostal = codigoPostal,
-                    AgenciaId = agenciaId,
-                    AgenciaNombre = agenciaNombre,
-                    CDId = cdDestinoId,
-                    CDNombre = cdDestinoNombre,
+                    NombreAgencia = agenciaNombre,
+                    NombreCD = cdDestinoNombre,
 
-                    CantS = s,
-                    CantM = m,
-                    CantL = l,
-                    CantXL = xl
+                    CantPorTamanio = 1,
+                    Tamanio = s == 1 ? "S" : m == 1 ? "M" : l == 1 ? "L" : xl == 1 ? "XL" : null
                 });
             }
 

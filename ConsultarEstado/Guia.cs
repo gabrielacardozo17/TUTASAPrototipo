@@ -7,11 +7,11 @@ namespace TUTASAPrototipo.ConsultarEstado
     public class Guia
     {
         // Identificación: TLLLNNNNN  (exactamente 9 dígitos)
-        public string Numero { get; set; } = "";
+        public string NumeroGuia { get; set; } = "";
 
         // Estado/Ubicación vigentes
-        public string EstadoActual { get; set; } = "";
-        public string UbicacionActual { get; set; } = "";
+        public string Estado { get; set; } = "";
+        public string Ubicacion { get; set; } = "";
 
         // Historial mostrado en la grilla (Fecha, Estado, Ubicación)
         public List<Movimiento> Historial { get; set; } = new();

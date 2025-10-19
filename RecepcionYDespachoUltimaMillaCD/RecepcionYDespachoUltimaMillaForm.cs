@@ -164,14 +164,14 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             foreach (var g in t.distribucion)
             {
                 var it = new ListViewItem("") { Checked = false };
-                it.SubItems.Add(g.Numero);
+                it.SubItems.Add(g.NumeroGuia);
                 it.SubItems.Add(g.NroHDR ?? "");
                 GuiasDistribucionxFleteroListView.Items.Add(it);
             }
             foreach (var g in t.retiro)
             {
                 var it = new ListViewItem("") { Checked = false };
-                it.SubItems.Add(g.Numero);
+                it.SubItems.Add(g.NumeroGuia);
                 it.SubItems.Add(g.NroHDR ?? "");
                 GuiasRetiroxFleteroListView.Items.Add(it);
             }
@@ -188,16 +188,16 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             var t = _modelo.GetGuiasPorFletero(dni);
             foreach (var g in t.retiro)
             {
-                var it = new ListViewItem(g.Numero);
-                it.SubItems.Add(g.Tamaño);
+                var it = new ListViewItem(g.NumeroGuia);
+                it.SubItems.Add(g.Tamanio);
                 it.SubItems.Add(g.Destino);
                 it.SubItems.Add(g.NroHDR ?? "");
                 NuevasGuiasRetiroxFleteroListView.Items.Add(it);
             }
             foreach (var g in t.distribucion)
             {
-                var it = new ListViewItem(g.Numero);
-                it.SubItems.Add(g.Tamaño);
+                var it = new ListViewItem(g.NumeroGuia);
+                it.SubItems.Add(g.Tamanio);
                 it.SubItems.Add(g.Destino);
                 it.SubItems.Add(g.NroHDR ?? "");
                 NuevasGuiasDistribucionxFleteroListView.Items.Add(it);

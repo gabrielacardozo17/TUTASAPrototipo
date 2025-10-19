@@ -84,12 +84,12 @@ namespace TUTASAPrototipo.ConsultarEstado
 
             // Si el último movimiento no coincide con el estado actual, lo agrega
             if (guia.Historial.Count == 0
-                || guia.Historial.Last().Estado != guia.EstadoActual
-                || guia.Historial.Last().Ubicacion != guia.UbicacionActual)
+                || guia.Historial.Last().Estado != guia.Estado
+                || guia.Historial.Last().Ubicacion != guia.Ubicacion)
             {
                 var actual = new ListViewItem(DateTime.Now.ToString("dd/MM/yyyy"));
-                actual.SubItems.Add(guia.EstadoActual.ToString());
-                actual.SubItems.Add(guia.UbicacionActual);
+                actual.SubItems.Add(guia.Estado.ToString());
+                actual.SubItems.Add(guia.Ubicacion);
                 HistorialGuiaListView.Items.Add(actual);
             }
         }

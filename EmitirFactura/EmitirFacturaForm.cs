@@ -94,11 +94,11 @@ namespace TUTASAPrototipo.EmitirFactura
             DetalleFacturaciónListView.Items.Clear();
             foreach (var g in guias)
             {
-                var it = new ListViewItem(g.Numero);
-                it.SubItems.Add(g.FechaAdmision.ToString("dd/MM/yyyy"));
+                var it = new ListViewItem(g.NumeroGuia);
+                it.SubItems.Add(g.Fecha.ToString("dd/MM/yyyy"));
                 it.SubItems.Add(g.Origen);
                 it.SubItems.Add(g.Destino);
-                it.SubItems.Add(g.Tamano.ToString());
+                it.SubItems.Add(g.Tamanio.ToString());
                 it.SubItems.Add($"${g.Importe:N2}");
                 DetalleFacturaciónListView.Items.Add(it);
             }

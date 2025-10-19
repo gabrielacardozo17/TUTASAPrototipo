@@ -8,7 +8,7 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
 {
     internal class Cliente
     {
-        public string Nombre { get; set; }
+        public string RazonSocial { get; set; }
         public string CUIT { get; set; }
         public List<MovimientoCuenta> Movimientos { get; set; } = new();
     }
