@@ -4,31 +4,31 @@ using System.Text.Json;
 
 namespace TUTASAPrototipo.Almacenes
 {
-    public static class AlmacenHDRs
+    public static class AgenciaAlmacen
     {
-        private const string Archivo = "HDRs.json";
+        private const string Archivo = "Agencias.json";
 
-        public static List<HDREntidad> HDRs { get; private set; } = new();
+        public static List<AgenciaEntidad> Agencias { get; private set; } = new();
 
-        static AlmacenHDRs()
+        static AgenciaAlmacen()
         {
             try
             {
                 if (File.Exists(Archivo))
                 {
                     var json = File.ReadAllText(Archivo);
-                    HDRs = JsonSerializer.Deserialize<List<HDREntidad>>(json) ?? new();
+                    Agencias = JsonSerializer.Deserialize<List<AgenciaEntidad>>(json) ?? new();
                 }
             }
             catch
             {
-                HDRs = new();
+                Agencias = new();
             }
         }
 
         public static void Grabar()
         {
-            var json = JsonSerializer.Serialize(HDRs, new JsonSerializerOptions { WriteIndented = true });
+            var json = JsonSerializer.Serialize(Agencias, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(Archivo, json);
         }
     }

@@ -2,9 +2,9 @@ namespace TUTASAPrototipo.Almacenes
 {
     public class HDREntidad
     {
-        public string IdHDR { get; set; } = string.Empty;
+        public string IDHDR { get; set; } = string.Empty;
         public string TipoHDR { get; set; } = string.Empty;
-        public int DniFletero { get; set; }
-        public int IdServicioTransporte { get; set; }
+        public int DNIFletero { get; set; }
+        public int IDServicioTransporte { get; set; }
     }
 }

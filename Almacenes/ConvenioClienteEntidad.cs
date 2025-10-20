@@ -2,7 +2,7 @@ namespace TUTASAPrototipo.Almacenes
 {
     public class ConvenioClienteEntidad
     {
-        public int IdConvenio { get; set; }
-        public string Descripcion { get; set; } = string.Empty;
+        public int IDConvenio { get; set; }
+        public string DescripcionConvenio { get; set; } = string.Empty;
     }
 }

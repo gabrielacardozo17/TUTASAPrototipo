@@ -4,13 +4,13 @@ using System.Text.Json;
 
 namespace TUTASAPrototipo.Almacenes
 {
-    public static class AlmacenCuentaCorriente
+    public static class CuentaCorrienteAlmacen
     {
         private const string Archivo = "CuentasCorrientes.json";
 
         public static List<CuentaCorrienteEntidad> CuentasCorrientes { get; private set; } = new();
 
-        static AlmacenCuentaCorriente()
+        static CuentaCorrienteAlmacen()
         {
             try
             {

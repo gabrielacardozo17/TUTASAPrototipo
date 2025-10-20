@@ -5,13 +5,13 @@ using System.Text.Json;
 namespace TUTASAPrototipo.Almacenes
 {
     // Almacén de clientes persistido en JSON
-    public static class AlmacenClientes
+    public static class ClienteAlmacen
     {
         private const string Archivo = "Clientes.json";
 
         public static List<ClienteEntidad> Clientes { get; private set; } = new();
 
-        static AlmacenClientes()
+        static ClienteAlmacen()
         {
             try
             {

@@ -4,13 +4,13 @@ using System.Text.Json;
 
 namespace TUTASAPrototipo.Almacenes
 {
-    public static class AlmacenServicioTransporte
+    public static class ServicioTransporteAlmacen
     {
         private const string Archivo = "ServiciosTransporte.json";
 
         public static List<ServicioTransporteEntidad> ServiciosTransporte { get; private set; } = new();
 
-        static AlmacenServicioTransporte()
+        static ServicioTransporteAlmacen()
         {
             try
             {

@@ -5,13 +5,13 @@ using System.Text.Json;
 namespace TUTASAPrototipo.EmitirFactura
 {
     // Almacén básico de facturas persistido en JSON
-    public static class AlmacenFacturas
+    public static class FacturaAlmacen
     {
         private const string Archivo = "Facturas.json";
 
         public static List<Factura> Facturas { get; private set; } = new();
 
-        static AlmacenFacturas()
+        static FacturaAlmacen()
         {
             try
             {

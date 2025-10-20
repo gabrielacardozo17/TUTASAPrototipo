@@ -2,10 +2,10 @@ namespace TUTASAPrototipo.Almacenes
 {
     public class ClienteEntidad
     {
-        public string Cuit { get; set; } = string.Empty;
-        public string RazonSocial { get; set; } = string.Empty;
-        public string Telefono { get; set; } = string.Empty;
-        public string Direccion { get; set; } = string.Empty;
-        public int IdConvenio { get; set; }
+        public string CUITCliente { get; set; } = string.Empty;
+        public string RazonSocialCliente { get; set; } = string.Empty;
+        public string TelefonoCliente { get; set; } = string.Empty;
+        public string DireccionCliente { get; set; } = string.Empty;
+        public int IDConvenio { get; set; }
     }
 }

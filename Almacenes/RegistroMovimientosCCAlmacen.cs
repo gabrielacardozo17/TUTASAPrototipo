@@ -1,18 +1,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.Almacenes
 {
-    // Almacén básico de movimientos de cuenta corriente (CC) persistido en JSON
-    public static class AlmacenMovimientosCC
+    public static class RegistroMovimientosCCAlmacen
     {
-        private const string Archivo = "MovimientosCuenta.json"; // conservamos el nombre del archivo
+        private const string Archivo = "MovimientosCuenta.json";
 
         public static List<MovimientoCCEntidad> Movimientos { get; private set; } = new();
 
-        static AlmacenMovimientosCC()
+        static RegistroMovimientosCCAlmacen()
         {
             try
             {

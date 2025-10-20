@@ -4,31 +4,32 @@ using System.Text.Json;
 
 namespace TUTASAPrototipo.Almacenes
 {
-    public static class AlmacenCDs
+    // Almacén básico de guías persistido en JSON
+    public static class GuiaAlmacen
     {
-        private const string Archivo = "CDs.json";
+        private const string Archivo = "Guias.json";
 
-        public static List<CentroDeDistribucionEntidad> CDs { get; private set; } = new();
+        public static List<GuiaEntidad> Guias { get; private set; } = new();
 
-        static AlmacenCDs()
+        static GuiaAlmacen()
         {
             try
             {
                 if (File.Exists(Archivo))
                 {
                     var json = File.ReadAllText(Archivo);
-                    CDs = JsonSerializer.Deserialize<List<CentroDeDistribucionEntidad>>(json) ?? new();
+                    Guias = JsonSerializer.Deserialize<List<GuiaEntidad>>(json) ?? new();
                 }
             }
             catch
             {
-                CDs = new();
+                Guias = new();
             }
         }
 
         public static void Grabar()
         {
-            var json = JsonSerializer.Serialize(CDs, new JsonSerializerOptions { WriteIndented = true });
+            var json = JsonSerializer.Serialize(Guias, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(Archivo, json);
         }
     }
