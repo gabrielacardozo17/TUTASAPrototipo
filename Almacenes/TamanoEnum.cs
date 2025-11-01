@@ -1,6 +1,6 @@
 namespace TUTASAPrototipo.Almacenes
 {
-    public enum TamanoEnumeracion
+    public enum TamanoEnum
     {
         S,
         M,

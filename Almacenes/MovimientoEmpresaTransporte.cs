@@ -4,7 +4,6 @@ namespace TUTASAPrototipo.Almacenes
 {
     public class MovimientoEmpresaTransporte
     {
-        // Según diagrama
         public string NumeroFactura { get; set; }
         public DateTime Fecha { get; set; }
         public string Concepto { get; set; }

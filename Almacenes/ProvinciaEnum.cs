@@ -1,6 +1,6 @@
 namespace TUTASAPrototipo.Almacenes
 {
-    public enum ProvinciaEnumeracion
+    public enum ProvinciaEnum
     {
         BuenosAires,
         Catamarca,
@@ -18,8 +18,13 @@ namespace TUTASAPrototipo.Almacenes
         Misiones,
         Neuquen,
         RioNegro,
+        Salta,
+        SanJuan,
+        SanLuis,
+        SantaCruz,
         SantaFe,
-        Tucuman,
+        SantiagoDelEstero,
         TierraDelFuego,
+        Tucuman,
     }
 }

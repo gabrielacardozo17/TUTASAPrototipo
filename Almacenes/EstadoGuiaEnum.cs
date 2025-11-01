@@ -10,13 +10,13 @@ namespace TUTASAPrototipo.Almacenes
 
         EnCaminoARetirarPorAgencia,
 
-        EnRutaACdDeOrigenDesdeAgencia,
+        EnRutaACDDeOrigenDesdeAgencia,
 
         Admitida,
     
         EnTransitoAlCDDestino,
 
-        EnCdDestino,
+        EnCDDestino,
 
         EnRutaAlDomicilioDeEntrega,
 
