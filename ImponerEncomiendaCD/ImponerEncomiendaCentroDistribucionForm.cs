@@ -2,6 +2,7 @@
 using System.Drawing;           // ← para SystemColors
 using System.Linq;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.ImponerEncomiendaCD
 {
@@ -80,6 +81,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 !string.IsNullOrWhiteSpace(NombreDestinatarioTextBox.Text) ||
                 !string.IsNullOrWhiteSpace(ApellidoDestinatarioTextBox.Text) ||
                 !string.IsNullOrWhiteSpace(DNIDestinatarioTextBox.Text) ||
+                !string.IsNullOrWhiteSpace(TelefonoDestinatarioTextBox.Text) ||
                 ProvinciaComboBox.SelectedIndex >= 0 ||
                 LocalidadxProvinciaComboBox.SelectedIndex >= 0 ||
                 TipoEntregaComboBox.SelectedIndex >= 0 ||
@@ -304,6 +306,10 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             if (string.IsNullOrWhiteSpace(dni) || !DniOk(dni))
             { MessageBox.Show("Ingresá un DNI válido (7–8 dígitos).", "Validación"); return; }
 
+            var telefonoDest = (TelefonoDestinatarioTextBox.Text ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(telefonoDest))
+            { MessageBox.Show("Ingresá un teléfono para el destinatario.", "Validación"); return; }
+
             if (ProvinciaComboBox.SelectedItem is not KeyValuePair<int, string> { Key: var provId, Value: var provNombre })
             { MessageBox.Show("Seleccioná una Provincia.", "Validación"); return; }
 
@@ -373,6 +379,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                     nombre,
                     apellido,
                     dni,
+                    telefonoDest,
                     provId, provNombre,
                     esOtras ? (int?)null : locId,
                     esOtras ? null : locNombre,
@@ -386,7 +393,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 );
 
 
-                var lineas = guias.Select(g => $"- {g.NumeroGuia} (Tamaño: {g.Tamanio})");
+                var lineas = guias.Select(g => $"- {g.Numero} (Tamaño: {g.Tamano})");
 
                 var cuerpo = string.Join(Environment.NewLine, lineas);
 
@@ -414,6 +421,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             NombreDestinatarioTextBox.Text = "";
             ApellidoDestinatarioTextBox.Text = "";
             DNIDestinatarioTextBox.Text = "";
+            TelefonoDestinatarioTextBox.Text = "";
 
             ProvinciaComboBox.SelectedIndex = -1;
             ProvinciaComboBox.Text = "";

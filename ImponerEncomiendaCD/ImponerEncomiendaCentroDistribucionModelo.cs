@@ -1,24 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.ImponerEncomiendaCD
 {
     public class ImponerEncomiendaCentroDistribucionModelo
     {
         // ---------- DATOS DE PRUEBA ----------
-        private readonly List<Cliente> _clientes = new()
-        {
-            new Cliente { CUIT = "30-12345678-1", RazonSocial = "Distribuidora Sur", Telefono = "1122334455", Direccion = "Av. Siempre Viva 742, CABA" },
-            new Cliente { CUIT = "20-11111111-2", RazonSocial = "Mayorista Norte", Telefono = "1144556677", Direccion = "San Martín 1200, La Plata" },
-            new Cliente { CUIT = "30-22223333-3", RazonSocial = "Logística Pampeana", Telefono = "1133665599", Direccion = "Ruta 5 km 320, Santa Rosa" },
-            new Cliente { CUIT = "27-44445555-6", RazonSocial = "Agroexport SRL", Telefono = "1147891234", Direccion = "Av. Mitre 2300, Rosario" },
-            new Cliente { CUIT = "33-55556666-7", RazonSocial = "Transportes del Litoral", Telefono = "1125873645", Direccion = "Av. Maipú 2700, Corrientes" },
-            new Cliente { CUIT = "20-77778888-9", RazonSocial = "Comercial Andina", Telefono = "2614567890", Direccion = "San Martín 1800, Mendoza" },
-            new Cliente { CUIT = "23-99990000-1", RazonSocial = "Depósito Patagónico", Telefono = "2994672301", Direccion = "Anaya 3005, Neuquén" }
-        };
-
-
         // Provincias con CD
         private readonly Dictionary<int, string> _provincias = new()
         {
@@ -99,18 +88,18 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         // Nuevo formato: TLLLNNNNN → TLLL = 0001–0999 (CD), 1000+ (Agencia)
         private static readonly Dictionary<int, int> _seqPorOrigen = new();
 
-        private static string NextGuiaCode(bool esCD, int codigo3)
+        private static int NextGuiaCode(bool esCD, int codigo3)
         {
             int codigo4 = esCD ? codigo3 : (1000 + codigo3);
             _seqPorOrigen[codigo4] = _seqPorOrigen.TryGetValue(codigo4, out var s) ? s + 1 : 1;
-            return $"{codigo4:D4}{_seqPorOrigen[codigo4]:D5}";
+            return _seqPorOrigen[codigo4];
         }
 
         // ---------- API ----------
-        public Cliente? BuscarCliente(string cuit)
+        public ClienteEntidad? BuscarCliente(string cuit)
         {
             var digits = Digits(cuit);
-            return _clientes.FirstOrDefault(c => Digits(c.CUIT) == digits);
+            return ClienteAlmacen.Clientes.FirstOrDefault(c => Digits(c.CUIT) == digits);
         }
 
         public IEnumerable<KeyValuePair<int, string>> GetProvincias() => _provincias;
@@ -156,9 +145,9 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         }
 
         // Confirmar: valida y crea UNA guía por cada bulto
-        public List<Guia> ConfirmarImposicion(
+        public List<GuiaEntidad> ConfirmarImposicion(
             string cuitRemitente,
-            string destNombre, string destApellido, string destDni,
+            string destNombre, string destApellido, string destDni, string destTelefono,
             int provinciaId, string provinciaNombre,
             int? localidadId, string? localidadNombre, bool localidadEsOtras,
             string tipoEntrega,
@@ -166,116 +155,64 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             int? agenciaId, string? agenciaNombre,
             int? cdDestinoId, string? cdDestinoNombre,
             int cantS, int cantM, int cantL, int cantXL,
-            int cdOrigenId = 0, string cdOrigenNombre = ""
+            int cdOrigenId, string cdOrigenNombre
         )
         {
-            var cli = BuscarCliente(cuitRemitente);
-            if (cli is null) throw new InvalidOperationException("CUIT inexistente.");
+            var cliente = ClienteAlmacen.Clientes.FirstOrDefault(c => c.CUIT == cuitRemitente);
+            if (cliente == null) throw new Exception("Cliente no encontrado.");
 
-            if ((cantS + cantM + cantL + cantXL) == 0)
-                throw new InvalidOperationException("Debe indicar al menos una encomienda (S/M/L/XL).");
-
-            if (!_provincias.ContainsKey(provinciaId))
-                throw new InvalidOperationException("Provincia inválida.");
-
-            if (!localidadEsOtras && localidadId.HasValue)
+            var cdOrigen = CentroDistribucionAlmacen.CDs.FirstOrDefault(c => c.Id == cdOrigenId);
+            if (cdOrigen == null)
             {
-                var ok = _localidadesPorProv.TryGetValue(provinciaId, out var locs) && locs.Any(l => l.id == localidadId.Value);
-                if (!ok) throw new InvalidOperationException("La localidad no pertenece a la provincia seleccionada.");
+                throw new Exception("No se pudo encontrar el CD de origen configurado.");
             }
 
-            switch (tipoEntrega)
+            var guias = new List<GuiaEntidad>();
+            var rand = new Random();
+
+            Action<TamanoEnumeracion, int> crearGuias = (tamano, cantidad) =>
             {
-                case "A domicilio":
-                    if (string.IsNullOrWhiteSpace(direccion) || string.IsNullOrWhiteSpace(codigoPostal))
-                        throw new InvalidOperationException("Para entrega a Domicilio debe completar Dirección y Código Postal.");
-                    break;
-
-                case "En Agencia":
-                    if (!agenciaId.HasValue)
-                        throw new InvalidOperationException("Debe seleccionar una Agencia.");
-                    var agOk = localidadId.HasValue
-                               && _agenciasPorLoc.TryGetValue(localidadId.Value, out var ags)
-                               && ags.Any(a => a.id == agenciaId.Value);
-                    if (!agOk) throw new InvalidOperationException("La agencia no pertenece a la localidad seleccionada.");
-                    break;
-
-                case "En CD":
-                    if (!cdDestinoId.HasValue)
-                        throw new InvalidOperationException("Debe seleccionar un Centro de Distribución (destino).");
-                    var cdOk = _cdsPorProv.TryGetValue(provinciaId, out var cds)
-                               && cds.Any(c => c.id == cdDestinoId.Value);
-                    if (!cdOk) throw new InvalidOperationException("El CD seleccionado no pertenece a la provincia.");
-                    break;
-                default:
-                    throw new InvalidOperationException("Tipo de entrega inválido.");
-            }
-
-            // --- ACEPTA lo que venga del form, pero si no coincide, fuerza Corrientes ---
-            if (cdOrigenId != ORIGEN_CD_CORRIENTES_ID)
-            {
-                cdOrigenId = ORIGEN_CD_CORRIENTES_ID;
-                cdOrigenNombre = ORIGEN_CD_CORRIENTES_NOMBRE;
-            }
-            if (string.IsNullOrWhiteSpace(cdOrigenNombre))
-                cdOrigenNombre = ORIGEN_CD_CORRIENTES_NOMBRE;
-            // ---------------------------------------------------------------------------
-
-            var guias = new List<Guia>();
-
-            void AgregarGuia(int s, int m, int l, int xl)
-            {
-                // Tomamos el LLL del CD Corrientes para numeración (mapped a 070)
-                int lll = _codigoCD3.TryGetValue(cdOrigenId, out var code3) ? code3 : 1;
-
-                // Numeramos como CD (TLLL en 0001–0999) ⇒ para Corrientes será 0070
-                var numero = NextGuiaCode(esCD: true, codigo3: lll);
-
-                guias.Add(new Guia
+                for (int i = 0; i < cantidad; i++)
                 {
-                    NumeroGuia = numero,
-                    Estado = "Pendiente de retiro en domicilio",
-                    CUIT = Digits(cuitRemitente),
+                    var nuevaGuia = new GuiaEntidad
+                    {
+                        Numero = rand.Next(100000, 999999),
+                        Estado = EstadoGuiaEnum.Admitida,
+                        FechaAdmision = DateTime.Now,
+                        Cliente = cliente,
+                        Destinatario = new DestinatarioAux
+                        {
+                            Nombre = destNombre,
+                            Apellido = destApellido,
+                            DNI = int.Parse(destDni),
+                            Localidad = new LocalidadEntidad { Id = localidadId ?? 0, Nombre = localidadNombre ?? "Otras", Provincia = (ProvinciaEnumeracion)provinciaId },
+                            Direccion = direccion ?? "",
+                            CodigoPostal = int.TryParse(codigoPostal, out var cpInt) ? cpInt : 0
+                        },
+                        Tamano = tamano,
+                        Entrega = (EntregaEnum)Enum.Parse(typeof(EntregaEnum), tipoEntrega, true),
+                        AgenciaDestino = agenciaId.HasValue ? new AgenciaEntidad { Id = agenciaId.Value, Nombre = agenciaNombre } : null,
+                        CentroDistribucionDestino = cdDestinoId.HasValue ? new CentroDeDistribucionEntidad { Id = cdDestinoId.Value, Nombre = cdDestinoNombre } : null,
+                        CentroDistribucionOrigen = cdOrigen,
+                        Tarifa = new TarifaBase
+                        {
+                            PreciosXTamano = new Dictionary<TamanoEnumeracion, decimal> { [tamano] = 100m },
+                            CodPostalOrigen = 0,
+                            CodPostalDestino = int.TryParse(codigoPostal, out var cp2) ? cp2 : 0
+                        }
+                    };
+                    guias.Add(nuevaGuia);
+                    GuiaAlmacen.Guias.Add(nuevaGuia);
+                }
+            };
 
-                    Destinatario = new Destinatario { Nombre = destNombre, Apellido = destApellido, DNI = destDni },
+            crearGuias(TamanoEnumeracion.S, cantS);
+            crearGuias(TamanoEnumeracion.M, cantM);
+            crearGuias(TamanoEnumeracion.L, cantL);
+            crearGuias(TamanoEnumeracion.XL, cantXL);
 
-                    CdOrigenId = cdOrigenId,
-                    CdOrigenNombre = cdOrigenNombre,
-
-                    ProvinciaId = provinciaId,
-                    ProvinciaNombre = provinciaNombre,
-                    LocalidadId = localidadId,
-                    LocalidadNombre = localidadNombre,
-                    LocalidadEsOtras = localidadEsOtras,
-
-                    TipoEntrega = tipoEntrega,
-                    Direccion = direccion,
-                    CodigoPostal = codigoPostal,
-                    NombreAgencia = agenciaNombre,
-                    NombreCD = cdDestinoNombre,
-
-                    CantPorTamanio = 1,
-                    Tamanio = s == 1 ? "S" : m == 1 ? "M" : l == 1 ? "L" : xl == 1 ? "XL" : null
-                });
-            }
-
-            for (int i = 0; i < cantS; i++) AgregarGuia(1, 0, 0, 0);
-            for (int i = 0; i < cantM; i++) AgregarGuia(0, 1, 0, 0);
-            for (int i = 0; i < cantL; i++) AgregarGuia(0, 0, 1, 0);
-            for (int i = 0; i < cantXL; i++) AgregarGuia(0, 0, 0, 1);
-
+            GuiaAlmacen.Grabar();
             return guias;
-        }
-
-        public int? GetCDIdPorNombre(string nombreCD)
-        {
-            if (string.IsNullOrWhiteSpace(nombreCD)) return null;
-
-            var cd = _cdsPorProv.Values
-                .SelectMany(v => v)
-                .FirstOrDefault(c => string.Equals(c.nombre?.Trim(), nombreCD.Trim(), StringComparison.OrdinalIgnoreCase));
-
-            return cd.id != 0 ? cd.id : (int?)null;
         }
     }
 }

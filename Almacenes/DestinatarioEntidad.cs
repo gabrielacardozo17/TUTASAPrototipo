@@ -1,12 +1,12 @@
 namespace TUTASAPrototipo.Almacenes
 {
-    public class DestinatarioEntidad
+    public class DestinatarioAux
     {
-        public int DNIDestinatario { get; set; }
-        public string NombreDestinatario { get; set; } = string.Empty;
-        public string ApellidoDestinatario { get; set; } = string.Empty;
-        public string LocalidadDestinatario { get; set; } = string.Empty;
-        public string DireccionDestinatario { get; set; } = string.Empty;
-        public int CodigoPostalDestinatario { get; set; }
+        public int DNI { get; set; }
+        public string Nombre { get; set; } = string.Empty;
+        public string Apellido { get; set; } = string.Empty;
+        public LocalidadEntidad Localidad { get; set; }
+        public string Direccion { get; set; } = string.Empty;
+        public int CodigoPostal { get; set; }
     }
 }

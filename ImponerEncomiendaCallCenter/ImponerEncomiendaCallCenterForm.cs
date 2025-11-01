@@ -2,6 +2,7 @@
 using System.Drawing;           // SystemColors
 using System.Linq;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
 {
@@ -300,6 +301,10 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             if (string.IsNullOrWhiteSpace(dni) || !DniOk(dni))
             { MessageBox.Show("Ingresá un DNI válido (7–8 dígitos).", "Validación"); return; }
 
+            var telefonoDest = (TelefonoDestinatarioTextBox.Text ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(telefonoDest))
+            { MessageBox.Show("Ingresá un teléfono para el destinatario.", "Validación"); return; }
+
             if (ProvinciaComboBox.SelectedItem is not KeyValuePair<int, string> { Key: var provId, Value: var provNombre })
             { MessageBox.Show("Seleccioná una Provincia.", "Validación"); return; }
 
@@ -363,6 +368,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                     nombre,
                     apellido,
                     dni,
+                    telefonoDest,
                     provId, provNombre,
                     esOtras ? (int?)null : locId,
                     esOtras ? null : locNombre,
@@ -375,7 +381,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                     cdOrigenId, cdOrigenNombre
                 );
 
-                var lineas = guias.Select(g => $"- {g.NumeroGuia} (Tamaño: {g.Tamanio})");
+                var lineas = guias.Select(g => $"- {g.Numero} (Tamaño: {g.Tamano})");
 
                 var cuerpo = string.Join(Environment.NewLine, lineas);
 
@@ -402,6 +408,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             NombreDestinatarioTextBox.Text = "";
             ApellidoDestinatarioTextBox.Text = "";
             DNIDestinatarioTextBox.Text = "";
+            TelefonoDestinatarioTextBox.Text = "";
 
             ProvinciaComboBox.SelectedIndex = -1;
             ProvinciaComboBox.Text = "";

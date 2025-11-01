@@ -3,13 +3,23 @@ namespace TUTASAPrototipo.Almacenes
     public enum ProvinciaEnumeracion
     {
         BuenosAires,
+        Catamarca,
+        Chaco,
+        Chubut,
         CABA,
         Cordoba,
-        SantaFe,
         Corrientes,
-        Tucuman,
+        EntreRios,
+        Formosa,
+        Jujuy,
+        LaPampa,
+        LaRioja,
+        Mendoza,
+        Misiones,
         Neuquen,
         RioNegro,
-        Mendoza
+        SantaFe,
+        Tucuman,
+        TierraDelFuego,
     }
 }

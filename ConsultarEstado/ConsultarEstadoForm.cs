@@ -1,8 +1,8 @@
 ﻿// TUTASAPrototipo/ConsultarEstado/ConsultarEstadoForm.cs  (REEMPLAZO TOTAL)
 using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.ConsultarEstado
 {
@@ -41,7 +41,7 @@ namespace TUTASAPrototipo.ConsultarEstado
 
             var input = NroGuiaBusquedaGroupBox.Text?.Trim() ?? "";
 
-            // Validaciones N0–N2 (nuevo formato TLLLNNNNN: 9 dígitos)
+            // Validaciones
             if (string.IsNullOrWhiteSpace(input))
             {
                 MessageBox.Show("Debe ingresar un número de guía.", "Validación");
@@ -49,49 +49,20 @@ namespace TUTASAPrototipo.ConsultarEstado
                 return;
             }
 
-            var digits = Digits(input);
-
-            // Solo números
-            if (!Regex.IsMatch(digits, @"^\d+$"))
-            {
-                MessageBox.Show("Debe ingresar un número entero positivo.", "Validación");
-                return;
-            }
-
-            // Exactamente 9 dígitos: TLLLNNNNN
-            if (!Regex.IsMatch(digits, @"^\d{9}$"))
-            {
-                MessageBox.Show("Número de guía inválido (debe tener 9 dígitos).", "Validación");
-                return;
-            }
-
-            // Buscar guía en el modelo (archivo en memoria)
-            var guia = _modelo.ObtenerPorNumero(digits);
+            // Buscar guía en el modelo
+            var guia = _modelo.ObtenerPorNumero(input);
             if (guia is null)
             {
                 MessageBox.Show("Número de guía no encontrado.", "Información");
                 return;
             }
 
-            // Mostrar resultado en el ListView (Fecha, Estado, Ubicación)
-            foreach (var mov in guia.Historial.OrderBy(m => m.Fecha))
-            {
-                var item = new ListViewItem(mov.Fecha.ToString("dd/MM/yyyy"));
-                item.SubItems.Add(mov.Estado.ToString());
-                item.SubItems.Add(mov.Ubicacion);
-                HistorialGuiaListView.Items.Add(item);
-            }
-
-            // Si el último movimiento no coincide con el estado actual, lo agrega
-            if (guia.Historial.Count == 0
-                || guia.Historial.Last().Estado != guia.Estado
-                || guia.Historial.Last().Ubicacion != guia.Ubicacion)
-            {
-                var actual = new ListViewItem(DateTime.Now.ToString("dd/MM/yyyy"));
-                actual.SubItems.Add(guia.Estado.ToString());
-                actual.SubItems.Add(guia.Ubicacion);
-                HistorialGuiaListView.Items.Add(actual);
-            }
+            // Por ahora, solo mostramos el estado actual.
+            // El historial de movimientos no está implementado en el nuevo modelo.
+            var item = new ListViewItem(guia.FechaAdmision.ToString("dd/MM/yyyy"));
+            item.SubItems.Add(guia.Estado.ToString());
+            item.SubItems.Add(guia.Ubicacion);
+            HistorialGuiaListView.Items.Add(item);
         }
 
         // --- EVENTO: BOTÓN SALIR / CANCELAR ---

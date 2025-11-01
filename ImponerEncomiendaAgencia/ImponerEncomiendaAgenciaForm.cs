@@ -2,14 +2,14 @@
 using System.Drawing;           // SystemColors
 using System.Linq;
 using System.Windows.Forms;
-using CD = TUTASAPrototipo.ImponerEncomiendaCD; // reutiliza el modelo del módulo CD
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.ImponerEncomiendaAgencia
 {
     public partial class ImponerEncomiendaAgenciaForm : Form
     {
         // Reutilizamos el mismo modelo de CD para tener idéntico comportamiento
-        private readonly CD.ImponerEncomiendaCentroDistribucionModelo _modelo = new();
+        private readonly ImponerEncomiendaAgenciaModelo _modelo = new();
 
         public ImponerEncomiendaAgenciaForm()
         {
@@ -298,6 +298,11 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             if (string.IsNullOrWhiteSpace(dni) || !DniOk(dni))
             { MessageBox.Show("Ingresá un DNI válido (7–8 dígitos).", "Validación"); return; }
 
+            // Telefono Destinatario
+            var telefonoDest = (TelefonoDestinatarioTextBox.Text ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(telefonoDest))
+            { MessageBox.Show("Ingresá un teléfono para el destinatario.", "Validación"); return; }
+
             if (ProvinciaComboBox.SelectedItem is not KeyValuePair<int, string> { Key: var provId, Value: var provNombre })
             { MessageBox.Show("Seleccioná una Provincia.", "Validación"); return; }
 
@@ -364,6 +369,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                     nombre,
                     apellido,
                     dni,
+                    telefonoDest,
                     provId, provNombre,
                     esOtras ? (int?)null : locId,
                     esOtras ? null : locNombre,
@@ -379,7 +385,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                 // (Opcional) Si querés forzar estado inicial distinto, podés setearlo acá.
                 // foreach (var g in guias) g.Estado = CD.EstadoGuia.PendRetiroDomicilio;
 
-                var lineas = guias.Select(g => $"- {g.NumeroGuia} (Tamaño: {g.Tamanio})");
+                var lineas = guias.Select(g => $"- {g.Numero} (Tamaño: {g.Tamano})");
 
                 var cuerpo = string.Join(Environment.NewLine, lineas);
 
@@ -406,6 +412,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             NombreDestinatarioTextBox.Text = "";
             ApellidoDestinatarioResult.Text = "";
             DNIDestinatarioTextBox.Text = "";
+            TelefonoDestinatarioTextBox.Text = "";
 
             ProvinciaComboBox.SelectedIndex = -1;
             ProvinciaComboBox.Text = "";

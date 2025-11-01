@@ -1,9 +1,13 @@
+using System.Collections.Generic;
+
 namespace TUTASAPrototipo.Almacenes
 {
     public class CuentaCorrienteEntidad
     {
-        public string IDCC { get; set; } = string.Empty;
+        // Según diagrama
+        public string ID { get; set; }
         public int CUITCliente { get; set; }
-        public int IDMovimientosCC { get; set; }
+
+        public List<MovimientoCliente> Movimientos { get; set; } = new();
     }
 }

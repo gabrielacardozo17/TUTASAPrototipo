@@ -1,6 +1,6 @@
 namespace TUTASAPrototipo.Almacenes
 {
-    public enum EntregaEnumeracion
+    public enum EntregaEnum
     {
 	    CD,
 	    Agencia,

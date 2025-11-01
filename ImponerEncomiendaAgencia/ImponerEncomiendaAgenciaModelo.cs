@@ -1,23 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.ImponerEncomiendaAgencia
 {
     public class ImponerEncomiendaAgenciaModelo
     {
         // ---------- DATOS DE PRUEBA ----------
-        private readonly List<Cliente> _clientes = new()
-        {
-            new Cliente { CUIT = "30-12345678-1", RazonSocial = "Distribuidora Sur", Telefono = "1122334455", Direccion = "Av. Siempre Viva 742, CABA" },
-            new Cliente { CUIT = "20-11111111-2", RazonSocial = "Mayorista Norte", Telefono = "1144556677", Direccion = "San Martín 1200, La Plata" },
-            new Cliente { CUIT = "30-22223333-3", RazonSocial = "Logística Pampeana", Telefono = "1133665599", Direccion = "Ruta 5 km 320, Santa Rosa" },
-            new Cliente { CUIT = "27-44445555-6", RazonSocial = "Agroexport SRL", Telefono = "1147891234", Direccion = "Av. Mitre 2300, Rosario" },
-            new Cliente { CUIT = "33-55556666-7", RazonSocial = "Transportes del Litoral", Telefono = "1125873645", Direccion = "Av. Maipú 2700, Corrientes" },
-            new Cliente { CUIT = "20-77778888-9", RazonSocial = "Comercial Andina", Telefono = "2614567890", Direccion = "San Martín 1800, Mendoza" },
-            new Cliente { CUIT = "23-99990000-1", RazonSocial = "Depósito Patagónico", Telefono = "2994672301", Direccion = "Anaya 3005, Neuquén" }
-        };
-
         // Provincias con CD
         private readonly Dictionary<int, string> _provincias = new()
         {
@@ -93,17 +83,18 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
         private static string Digits(string s) => new string(s.Where(char.IsDigit).ToArray());
 
         // Genera TLLLNNNNN para AGENCIA ⇒ TLLL = 1000 + LLL
-        private static string NextGuiaCode_Agencia(int codigo3)
+        private static int NextGuiaCode_Agencia(int codigo3)
         {
             int codigo4 = 1000 + codigo3; // 1000–1999 = Agencias
             _seqPorOrigen[codigo4] = _seqPorOrigen.TryGetValue(codigo4, out var s) ? s + 1 : 1;
-            return $"{codigo4:D4}{_seqPorOrigen[codigo4]:D5}";
+            //return $"{codigo4:D4}{_seqPorOrigen[codigo4]:D5}";
+            return _seqPorOrigen[codigo4];
         }
 
-        public Cliente? BuscarCliente(string cuit)
+        public ClienteEntidad? BuscarCliente(string cuit)
         {
             var digits = Digits(cuit);
-            return _clientes.FirstOrDefault(c => Digits(c.CUIT) == digits);
+            return ClienteAlmacen.Clientes.FirstOrDefault(c => Digits(c.CUIT) == digits);
         }
 
         public IEnumerable<KeyValuePair<int, string>> GetProvincias() => _provincias;
@@ -149,9 +140,9 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
         }
 
         // Confirmar: valida y crea UNA guía por cada bulto
-        public List<Guia> ConfirmarImposicion(
+        public List<GuiaEntidad> ConfirmarImposicion(
             string cuitRemitente,
-            string destNombre, string destApellido, string destDni,
+            string destNombre, string destApellido, string destDni, string destTelefono,
             int provinciaId, string provinciaNombre,
             int? localidadId, string? localidadNombre, bool localidadEsOtras,
             string tipoEntrega,
@@ -177,74 +168,91 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                 if (!ok) throw new InvalidOperationException("La localidad no pertenece a la provincia seleccionada.");
             }
 
+            AgenciaEntidad agenciaDestino = null;
+            CentroDeDistribucionEntidad cdDestino = null;
+            EntregaEnum entrega;
+
             switch (tipoEntrega)
             {
                 case "A domicilio":
                     if (string.IsNullOrWhiteSpace(direccion) || string.IsNullOrWhiteSpace(codigoPostal))
                         throw new InvalidOperationException("Para entrega a Domicilio debe completar Dirección y Código Postal.");
+                    entrega = EntregaEnum.Domicilio;
                     break;
 
                 case "En Agencia":
                     if (!agenciaId.HasValue)
                         throw new InvalidOperationException("Debe seleccionar una Agencia.");
-                    var agOk = localidadId.HasValue
-                               && _agenciasPorLoc.TryGetValue(localidadId.Value, out var ags)
-                               && ags.Any(a => a.id == agenciaId.Value);
-                    if (!agOk) throw new InvalidOperationException("La agencia no pertenece a la localidad seleccionada.");
+                    agenciaDestino = AgenciaAlmacen.Agencias.FirstOrDefault(a => a.Id == agenciaId.Value);
+                    if (agenciaDestino == null) throw new InvalidOperationException("La agencia seleccionada no es válida.");
+                    entrega = EntregaEnum.Agencia;
                     break;
 
                 case "En CD":
                     if (!cdDestinoId.HasValue)
                         throw new InvalidOperationException("Debe seleccionar un Centro de Distribución (destino).");
-                    var cdOk = _cdsPorProv.TryGetValue(provinciaId, out var cds)
-                               && cds.Any(c => c.id == cdDestinoId.Value);
-                    if (!cdOk) throw new InvalidOperationException("El CD seleccionado no pertenece a la provincia.");
+                    cdDestino = CentroDistribucionAlmacen.CDs.FirstOrDefault(c => c.Id == cdDestinoId.Value);
+                    if (cdDestino == null) throw new InvalidOperationException("El CD seleccionado no es válido.");
+                    entrega = EntregaEnum.CD;
                     break;
                 default:
                     throw new InvalidOperationException("Tipo de entrega inválido.");
             }
 
-            var guias = new List<Guia>();
+            var guias = new List<GuiaEntidad>();
 
-            void AgregarGuia(int s, int m, int l, int xl)
+            // Helper para crear la entidad Localidad a partir de los datos de prueba
+            LocalidadEntidad CrearLocalidad(int provId, int locId, string locNombre)
             {
-                // Siempre usar Agencia CABA Centro como origen (LLL=001 => TLLL=1001)
-                int lll = ORIGEN_AGENCIA_CABA_CENTRO_COD3;
-
-                var numero = NextGuiaCode_Agencia(codigo3: lll);
-
-                guias.Add(new Guia
-                {
-                    NumeroGuia = numero,
-                    Estado = "A retirar en agencia de origen",
-                    CUIT = Digits(cuitRemitente),
-
-                    Destinatario = new Destinatario { Nombre = destNombre, Apellido = destApellido, DNI = destDni },
-
-                    CdOrigenId = cdOrigenId,
-                    CdOrigenNombre = cdOrigenNombre,
-
-                    ProvinciaId = provinciaId,
-                    ProvinciaNombre = provinciaNombre,
-                    LocalidadId = localidadId,
-                    LocalidadNombre = localidadNombre,
-                    LocalidadEsOtras = localidadEsOtras,
-
-                    TipoEntrega = tipoEntrega,
-                    Direccion = direccion,
-                    CodigoPostal = codigoPostal,
-                    NombreAgencia = agenciaNombre,
-                    NombreCD = cdDestinoNombre,
-
-                    CantPorTamanio = 1,
-                    Tamanio = s == 1 ? "S" : m == 1 ? "M" : l == 1 ? "L" : xl == 1 ? "XL" : null
-                });
+                var provincia = (ProvinciaEnumeracion)Enum.Parse(typeof(ProvinciaEnumeracion), _provincias[provId].Replace(" ", ""));
+                return new LocalidadEntidad { Id = locId, Nombre = locNombre, Provincia = provincia };
             }
 
-            for (int i = 0; i < cantS; i++) AgregarGuia(1, 0, 0, 0);
-            for (int i = 0; i < cantM; i++) AgregarGuia(0, 1, 0, 0);
-            for (int i = 0; i < cantL; i++) AgregarGuia(0, 0, 1, 0);
-            for (int i = 0; i < cantXL; i++) AgregarGuia(0, 0, 0, 1);
+            var localidadDestino = localidadId.HasValue ? CrearLocalidad(provinciaId, localidadId.Value, localidadNombre) : null;
+
+            void AgregarGuia(TamanoEnumeracion tamano)
+            {
+                int lll = ORIGEN_AGENCIA_CABA_CENTRO_COD3;
+                var numero = NextGuiaCode_Agencia(codigo3: lll);
+
+                var agenciaOrigen = AgenciaAlmacen.Agencias.FirstOrDefault(a => a.Id == 5001); // Origen Fijo: Agencia CABA Centro
+
+                var guia = new GuiaEntidad
+                {
+                    Numero = numero,
+                    Estado = EstadoGuiaEnum.Admitida,
+                    Ubicacion = agenciaOrigen?.Nombre ?? "Agencia Origen",
+                    FechaAdmision = DateTime.Now,
+                    Entrega = entrega,
+                    SolicitaRetiro = false, // Se impone en agencia
+                    AgenciaOrigen = agenciaOrigen,
+                    CentroDistribucionOrigen = agenciaOrigen?.CentroDeDistribucion,
+                    AgenciaDestino = agenciaDestino,
+                    CentroDistribucionDestino = cdDestino ?? agenciaDestino?.CentroDeDistribucion,
+                    Cliente = cli,
+                    Tamano = tamano,
+                    Destinatario = new DestinatarioAux
+                    {
+                        DNI = int.Parse(destDni),
+                        Nombre = destNombre,
+                        Apellido = destApellido,
+                        Localidad = localidadDestino,
+                        Direccion = direccion,
+                        CodigoPostal = !string.IsNullOrEmpty(codigoPostal) ? int.Parse(codigoPostal) : 0
+                    },
+                    Tarifa = new TarifaBase() // Tarifa de ejemplo
+                };
+                guias.Add(guia);
+            }
+
+            for (int i = 0; i < cantS; i++) AgregarGuia(TamanoEnumeracion.S);
+            for (int i = 0; i < cantM; i++) AgregarGuia(TamanoEnumeracion.M);
+            for (int i = 0; i < cantL; i++) AgregarGuia(TamanoEnumeracion.L);
+            for (int i = 0; i < cantXL; i++) AgregarGuia(TamanoEnumeracion.XL);
+
+            // Persistir las nuevas guías
+            GuiaAlmacen.Guias.AddRange(guias);
+            GuiaAlmacen.Grabar();
 
             return guias;
         }

@@ -1,8 +1,10 @@
 ﻿// TUTASAPrototipo/EmitirFactura/EmitirFacturaForm.cs  (REEMPLAZO TOTAL)
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.EmitirFactura
 {
@@ -89,17 +91,19 @@ namespace TUTASAPrototipo.EmitirFactura
             DatosClienteLabel.Text = _datosClienteBaseText; // ← restaurar
         }
 
-        private void CargarLineas(System.Collections.Generic.IEnumerable<Guia> guias)
+        private void CargarLineas(IEnumerable<GuiaEntidad> guias)
         {
             DetalleFacturaciónListView.Items.Clear();
             foreach (var g in guias)
             {
-                var it = new ListViewItem(g.NumeroGuia);
-                it.SubItems.Add(g.Fecha.ToString("dd/MM/yyyy"));
-                it.SubItems.Add(g.Origen);
-                it.SubItems.Add(g.Destino);
-                it.SubItems.Add(g.Tamanio.ToString());
-                it.SubItems.Add($"${g.Importe:N2}");
+                var it = new ListViewItem(g.Numero.ToString());
+                it.SubItems.Add(g.FechaAdmision.ToString("dd/MM/yyyy"));
+                it.SubItems.Add(g.AgenciaOrigen?.Nombre ?? g.CentroDistribucionOrigen?.Nombre ?? "N/A");
+                it.SubItems.Add(g.AgenciaDestino?.Nombre ?? g.CentroDistribucionDestino?.Nombre ?? "N/A");
+                it.SubItems.Add(g.Tamano.ToString());
+                // El importe ahora se calcula en el modelo, aquí solo mostramos el total.
+                // Para mostrar un importe por línea, necesitaríamos un DTO o una lógica de tarifa aquí.
+                it.SubItems.Add("$1000.00"); // Valor de ejemplo
                 DetalleFacturaciónListView.Items.Add(it);
             }
         }
@@ -140,7 +144,7 @@ namespace TUTASAPrototipo.EmitirFactura
                     DatosClienteLabel.Text = $"{_datosClienteBaseText} {cli.RazonSocial}";
 
                     CargarLineas(pendientes);
-                    var total = pendientes.Sum(g => g.Importe);
+                    var total = pendientes.Count * 1000.0; // Lógica de ejemplo, igual que en el modelo
                     MontoTotalLabel.Text = $"${total:N2}";
 
                     _clienteValidado = true;
@@ -178,7 +182,7 @@ namespace TUTASAPrototipo.EmitirFactura
                     var factura = _modelo.EmitirFactura(_cuitValidadoDigits);
 
                     MessageBox.Show(
-                        $"Operación finalizada con éxito. Factura {factura.Numero} emitida y registrada en la cuenta corriente del cliente",
+                        $"Operación finalizada con éxito. Factura {factura.ID} emitida y registrada en la cuenta corriente del cliente",
                         "Emitir Factura",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information

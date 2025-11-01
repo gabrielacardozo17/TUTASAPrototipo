@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using TUTASAPrototipo.Almacenes;
 
-namespace TUTASAPrototipo.EmitirFactura
+namespace TUTASAPrototipo.Almacenes
 {
     // Almacén básico de facturas persistido en JSON
     public static class FacturaAlmacen
     {
         private const string Archivo = "Facturas.json";
 
-        public static List<Factura> Facturas { get; private set; } = new();
+        public static List<FacturaEntidad> Facturas { get; private set; } = new();
 
         static FacturaAlmacen()
         {
@@ -18,7 +19,7 @@ namespace TUTASAPrototipo.EmitirFactura
                 if (File.Exists(Archivo))
                 {
                     var json = File.ReadAllText(Archivo);
-                    Facturas = JsonSerializer.Deserialize<List<Factura>>(json) ?? new();
+                    Facturas = JsonSerializer.Deserialize<List<FacturaEntidad>>(json) ?? new();
                 }
             }
             catch

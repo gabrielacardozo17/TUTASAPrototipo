@@ -9,7 +9,7 @@ namespace TUTASAPrototipo.Almacenes
     {
         private const string Archivo = "Destinatarios.json";
 
-        public static List<DestinatarioEntidad> Destinatarios { get; private set; } = new();
+        public static List<DestinatarioAux> Destinatarios { get; private set; } = new();
 
         static DestinatarioAlmacen()
         {
@@ -18,7 +18,7 @@ namespace TUTASAPrototipo.Almacenes
                 if (File.Exists(Archivo))
                 {
                     var json = File.ReadAllText(Archivo);
-                    Destinatarios = JsonSerializer.Deserialize<List<DestinatarioEntidad>>(json) ?? new();
+                    Destinatarios = JsonSerializer.Deserialize<List<DestinatarioAux>>(json) ?? new();
                 }
             }
             catch

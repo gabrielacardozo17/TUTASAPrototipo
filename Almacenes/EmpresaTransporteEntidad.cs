@@ -2,7 +2,8 @@ namespace TUTASAPrototipo.Almacenes
 {
     public class EmpresaTransporteEntidad
     {
-        public int IDEmpresaTransporte { get; set; }
-        public string NombreEmpresaTransporte { get; set; } = string.Empty;
+        public string CUIT { get; set; }
+        public string Nombre { get; set; }
+        public CuentaCorrienteEmpresaTransporte CuentaCorriente { get; set; }
     }
 }

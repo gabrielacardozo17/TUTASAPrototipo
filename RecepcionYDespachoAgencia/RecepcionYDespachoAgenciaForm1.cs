@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 {
@@ -11,44 +13,25 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
         public RecepcionYDespachoAgenciaForm1()
         {
             InitializeComponent();
-
-            // No duplicamos eventos que ya cablea el Designer:
-            // BuscarxDNIFleteroButton.Click += BuscarxDNIFleteroButton_Click;
-            // ConfirmarButton.Click += ConfirmarButton_Click;
-            // CancelarButton.Click += CancelarButton_Click; (el Designer ya lo conecta)
-
-            // Fix visual (por si quedan detrás de groupboxes)
             try { ConfirmarButton.BringToFront(); CancelarButton.BringToFront(); } catch { }
-
-            // Labels superiores fijos
             NombreUsuarioLabel.Text = "Juan Perez";
-            NombreAgenciaLabel.Text = "CABA Centro";
-
-            // Inicializar labels de búsqueda como vacíos
+            NombreAgenciaLabel.Text = "Agencia CABA Centro"; // Agencia de la sesión
             NombreResultLabel.Text = "";
             ApellidoResultLabel.Text = "";
-
             LimpiarFormulario();
         }
 
-        // ---------- LOAD ----------
         private void RecepcionAgenciaForm1_Load(object? sender, EventArgs e)
         {
             LimpiarFormulario();
         }
 
-        // ---------- CLICK USUARIO (Designer lo exige) ----------
-        private void UsuarioLabel_Click(object? sender, EventArgs e)
-        {
-            // no-op (stub para satisfacer el hook del Designer)
-        }
+        private void UsuarioLabel_Click(object? sender, EventArgs e) { }
 
-        // ---------- BUSCAR ----------
         private void BuscarxDNIFleteroButton_Click(object? sender, EventArgs e)
         {
             var dniTexto = DNIFleteroTextBox.Text.Trim();
 
-            // N0–N2: requerido, numérico, longitud (7–8)
             if (string.IsNullOrWhiteSpace(dniTexto))
             {
                 MessageBox.Show("Debe ingresar un número de DNI", "Validación");
@@ -74,7 +57,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             try
             {
-                // N3: Buscar fletero
                 var fletero = _modelo.BuscarFleteroPorDni(dni);
                 if (fletero == null)
                 {
@@ -86,13 +68,11 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
                     return;
                 }
 
-                // Mostrar nombre y apellido del fletero en los labels
                 NombreResultLabel.Text = fletero.Nombre;
                 ApellidoResultLabel.Text = fletero.Apellido;
 
-                // N4: Obtener guías del fletero
-                var (aRecepcionar, aEntregar) = _modelo.GetGuiasPorFletero(dni);
-                CargarListas(aRecepcionar, aEntregar);
+                var (aRecepcionar, aDespachar) = _modelo.GetGuiasPorFletero(dni, NombreAgenciaLabel.Text);
+                CargarListas(aRecepcionar, aDespachar);
             }
             catch (Exception ex)
             {
@@ -101,7 +81,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             }
         }
 
-        // ---------- CONFIRMAR ----------
         private void ConfirmarButton_Click(object? sender, EventArgs e)
         {
             var dniTexto = DNIFleteroTextBox.Text.Trim();
@@ -113,22 +92,19 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
                 return;
             }
 
-            // Tomar marcadas (CheckBoxes) en cada lista
-            var recibidas = new List<string>();
+            var recibidas = new List<int>();
             foreach (ListViewItem it in GuiasARecepcionarAgenciaListView.Items)
-                if (it.Checked) recibidas.Add(it.Text);
+                if (it.Checked) recibidas.Add(int.Parse(it.Text));
 
-            var entregadas = new List<string>();
+            var despachadas = new List<int>();
             foreach (ListViewItem it in GuiasAEntregarListView.Items)
-                if (it.Checked) entregadas.Add(it.Text);
+                if (it.Checked) despachadas.Add(int.Parse(it.Text));
 
             try
             {
-                _modelo.ConfirmarOperacion(dni, recibidas, entregadas);
-
+                _modelo.ConfirmarOperacion(dni, recibidas, despachadas, NombreAgenciaLabel.Text);
                 MessageBox.Show("Operación confirmada. Estados actualizados.", "Recepción en Agencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 LimpiarFormulario();
             }
             catch (Exception ex)
@@ -137,8 +113,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             }
         }
 
-        // ---------- HELPERS VISUALES ----------
-        private void CargarListas(IEnumerable<Guia> aRecepcionar, IEnumerable<Guia> aEntregar)
+        private void CargarListas(IEnumerable<GuiaEntidad> aRecepcionar, IEnumerable<GuiaEntidad> aDespachar)
         {
             GuiasARecepcionarAgenciaListView.FullRowSelect = true;
             GuiasAEntregarListView.FullRowSelect = true;
@@ -146,20 +121,18 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             GuiasARecepcionarAgenciaListView.Items.Clear();
             GuiasAEntregarListView.Items.Clear();
 
-            // RECEPCIÓN: solo número y tamaño (ubicación actual está vacía porque están en ruta)
             foreach (var g in aRecepcionar)
             {
-                var li = new ListViewItem(g.NumeroGuia);
-                li.SubItems.Add(g.Tamanio);
+                var li = new ListViewItem(g.Numero.ToString());
+                li.SubItems.Add(g.Tamano.ToString());
                 GuiasARecepcionarAgenciaListView.Items.Add(li);
             }
 
-            // DESPACHO: número, tamaño y ubicación actual (donde está físicamente la guía)
-            foreach (var g in aEntregar)
+            foreach (var g in aDespachar)
             {
-                var li = new ListViewItem(g.NumeroGuia);
-                li.SubItems.Add(g.Tamanio);
-                li.SubItems.Add(g.Ubicacion); // Agrega columna de ubicación
+                var li = new ListViewItem(g.Numero.ToString());
+                li.SubItems.Add(g.Tamano.ToString());
+                li.SubItems.Add(g.Ubicacion);
                 GuiasAEntregarListView.Items.Add(li);
             }
         }
@@ -169,38 +142,25 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             DNIFleteroTextBox.Clear();
             NombreResultLabel.Text = "";
             ApellidoResultLabel.Text = "";
-
-            // Labels superiores fijos: no limpiarlos para que muestren siempre los valores configurados en el constructor.
-            // Dejá "Agencia:" fijo en AgenciaLabel; NombreAgenciaLabel arranca con "Agencia: CABA"
-
             GuiasARecepcionarAgenciaListView.Items.Clear();
             GuiasAEntregarListView.Items.Clear();
-
-            // Visibilidad/orden y anclado de botones
             try
             {
                 ConfirmarButton.Visible = true; ConfirmarButton.Enabled = true; ConfirmarButton.BringToFront();
                 CancelarButton.Visible = true; CancelarButton.Enabled = true; CancelarButton.BringToFront();
-
                 ConfirmarButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
                 CancelarButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             }
             catch { }
         }
 
-        private void RecepcionYDespachoAgenciaForm1_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void RecepcionYDespachoAgenciaForm1_Load(object sender, EventArgs e) { }
 
         private void CancelarButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void GuiasAEntregarListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void GuiasAEntregarListView_SelectedIndexChanged(object sender, EventArgs e) { }
     }
 }

@@ -1,13 +1,14 @@
 using System;
+using System.Collections.Generic;
 
 namespace TUTASAPrototipo.Almacenes
 {
-    // Se usa nombre distinto para no colisionar con EmitirFactura.Factura
     public class FacturaEntidad
     {
-        public string IDFactura { get; set; } = string.Empty;
+        public string ID { get; set; }
         public DateTime FechaEmisionFactura { get; set; }
-        public string CUITCliente { get; set; } = string.Empty;
+        public string CUITCliente { get; set; }
         public decimal Total { get; set; }
+        public List<int> GuiasFacturadas { get; set; }
     }
 }

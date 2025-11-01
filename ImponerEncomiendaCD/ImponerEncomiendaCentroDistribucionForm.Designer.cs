@@ -61,6 +61,8 @@
             ApellidoDestinatarioLabel = new Label();
             NombreDestinatarioTextBox = new TextBox();
             NombreDestinatarioLabel = new Label();
+            TelefonoDestinatarioTextBox = new TextBox();
+            TelefonoDestinatarioLabel = new Label();
             EncomiendasGroupBox = new GroupBox();
             tipoXLNumericUpDown = new NumericUpDown();
             tipoXLLabel = new Label();
@@ -223,6 +225,8 @@
             DestinatarioGroupBox.Controls.Add(ApellidoDestinatarioLabel);
             DestinatarioGroupBox.Controls.Add(NombreDestinatarioTextBox);
             DestinatarioGroupBox.Controls.Add(NombreDestinatarioLabel);
+            DestinatarioGroupBox.Controls.Add(TelefonoDestinatarioTextBox);
+            DestinatarioGroupBox.Controls.Add(TelefonoDestinatarioLabel);
             DestinatarioGroupBox.Location = new Point(91, 303);
             DestinatarioGroupBox.Margin = new Padding(3, 4, 3, 4);
             DestinatarioGroupBox.Name = "DestinatarioGroupBox";
@@ -231,6 +235,23 @@
             DestinatarioGroupBox.TabIndex = 6;
             DestinatarioGroupBox.TabStop = false;
             DestinatarioGroupBox.Text = "Datos del destinatario";
+            // 
+            // TelefonoDestinatarioTextBox
+            // 
+            TelefonoDestinatarioTextBox.Location = new Point(427, 80);
+            TelefonoDestinatarioTextBox.Margin = new Padding(3, 4, 3, 4);
+            TelefonoDestinatarioTextBox.Name = "TelefonoDestinatarioTextBox";
+            TelefonoDestinatarioTextBox.Size = new Size(150, 27);
+            TelefonoDestinatarioTextBox.TabIndex = 48;
+            // 
+            // TelefonoDestinatarioLabel
+            // 
+            TelefonoDestinatarioLabel.AutoSize = true;
+            TelefonoDestinatarioLabel.Location = new Point(350, 84);
+            TelefonoDestinatarioLabel.Name = "TelefonoDestinatarioLabel";
+            TelefonoDestinatarioLabel.Size = new Size(70, 20);
+            TelefonoDestinatarioLabel.TabIndex = 49;
+            TelefonoDestinatarioLabel.Text = "Teléfono:";
             // 
             // CDComboBox
             // 
@@ -640,6 +661,8 @@
         private Label ApellidoDestinatarioLabel;
         private TextBox NombreDestinatarioTextBox;
         private Label NombreDestinatarioLabel;
+        private TextBox TelefonoDestinatarioTextBox;
+        private Label TelefonoDestinatarioLabel;
         private GroupBox EncomiendasGroupBox;
         private NumericUpDown tipoXLNumericUpDown;
         private Label tipoXLLabel;

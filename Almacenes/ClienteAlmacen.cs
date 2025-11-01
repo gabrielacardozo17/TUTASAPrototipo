@@ -4,7 +4,6 @@ using System.Text.Json;
 
 namespace TUTASAPrototipo.Almacenes
 {
-    // Almacén de clientes persistido en JSON
     public static class ClienteAlmacen
     {
         private const string Archivo = "Clientes.json";

@@ -2,12 +2,12 @@ using System;
 
 namespace TUTASAPrototipo.Almacenes
 {
-    public class RegistroMovimientosCCEntidad
+    public class MovimientoCliente
     {
-        public int IDMovimientosCC { get; set; }
+        // Según diagrama
         public int IDFactura { get; set; }
         public DateTime Fecha { get; set; }
-        public string Concepto { get; set; } = string.Empty;
+        public string Concepto { get; set; }
         public decimal Debe { get; set; }
         public decimal Haber { get; set; }
         public decimal SaldoActual { get; set; }

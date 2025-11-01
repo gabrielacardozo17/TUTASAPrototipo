@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.EntregarEncomiendaCD
 {
@@ -13,8 +15,6 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
             InitializeComponent();
             modelo = new EntregarEncomiendaCDModelo();
         }
-
-        // Reemplazar este método en EntregarEncomiendaCDForm.cs
 
         private void EntregarEncomiendaCDForm_Load(object sender, EventArgs e)
         {
@@ -63,7 +63,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
             ApellidoResultLabel.Text = destinatario.Apellido; // CORREGIDO: Usando ApellidoResultLabel
 
             // Buscar y mostrar guías pendientes
-            CargarGuiasPendientes(destinatario.DNI);
+            CargarGuiasPendientes(destinatario.DNI.ToString());
         }
 
         private void ConfirmarEntregaButton_Click(object sender, EventArgs e)
@@ -71,15 +71,18 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
             // Validación N2: Consistencia (debe haber guías para entregar)
             if (GuiasAEntregarCDListView.Items.Count == 0)
             {
-                MessageBox.Show("Debe ingresar un número de DNI.", "Operación no válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No hay guías para entregar.", "Operación no válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // Recopilar los números de guía a entregar
-            var guiasParaEntregar = new List<string>();
+            var guiasParaEntregar = new List<int>();
             foreach (ListViewItem item in GuiasAEntregarCDListView.Items)
             {
-                guiasParaEntregar.Add(item.SubItems[0].Text); // Columna "Nro de guia"
+                if (int.TryParse(item.SubItems[0].Text, out int numeroGuia))
+                {
+                    guiasParaEntregar.Add(numeroGuia);
+                }
             }
 
             // Confirmar entrega en el modelo
@@ -123,8 +126,8 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
 
             foreach (var guia in guias)
             {
-                ListViewItem item = new ListViewItem(guia.NumeroGuia);
-                item.SubItems.Add(guia.Tamanio.ToString());
+                ListViewItem item = new ListViewItem(guia.Numero.ToString());
+                item.SubItems.Add(guia.Tamano.ToString());
                 GuiasAEntregarCDListView.Items.Add(item);
             }
         }

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
 {
@@ -18,20 +21,17 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
         {
             // Establecemos valores fijos para el prototipo
             UsuarioResult.Text = "Juan Perez";
-            CDResult.Text = "Cordoba";
+            CDResult.Text = "CD Córdoba Capital"; // CD de la sesión
 
             // Deshabilitamos los controles que dependen de una búsqueda exitosa
             GuiasGroupBox.Enabled = false;
-            // NOTA: Este control es un GroupBox aunque su nombre sugiera ser una ListView. Lo usamos tal cual está en el Designer.
             GuiasADespacharServicioListView.Enabled = false;
             ConfirmarRecepcionYDespachoButton.Enabled = false;
             NumServicioTextBox.Clear();
             LimpiarListViews();
             NumServicioTextBox.Focus();
-
-            // Deshabilitar checkboxes en los ListView
-            GuiaxServicioRecibidaListView.CheckBoxes = false;
-            GuiasADespacharxServicioListView.CheckBoxes = false;
+            GuiaxServicioRecibidaListView.CheckBoxes = true;
+            GuiasADespacharxServicioListView.CheckBoxes = true;
         }
 
         private void BuscarServicioButton_Click(object sender, EventArgs e)
@@ -45,43 +45,51 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                 return;
             }
 
-            // Llamamos al modelo para realizar la búsqueda
-            var servicioEncontrado = modelo.BuscarServicio(numeroServicio);
-
-            if (servicioEncontrado != null)
+            try
             {
-                PoblarListViews(servicioEncontrado);
+                // Llamamos al modelo para realizar la búsqueda
+                var servicioEncontrado = modelo.BuscarServicio(numeroServicio);
+
+                if (servicioEncontrado == null)
+                {
+                    MessageBox.Show("No se encontró un servicio con el número ingresado. Vuelva a intentarlo.", "Búsqueda sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    InicializarFormulario();
+                    return;
+                }
+
+                var (aRecepcionar, aDespachar) = modelo.GetGuiasPorServicio(servicioEncontrado.Id, CDResult.Text);
+                PoblarListViews(aRecepcionar, aDespachar);
+
                 // Habilitamos controles después de una búsqueda exitosa
                 GuiasGroupBox.Enabled = true;
                 GuiasADespacharServicioListView.Enabled = true; // Habilitamos el GroupBox de "Acciones"
                 ConfirmarRecepcionYDespachoButton.Enabled = true;
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No se encontró un servicio con el número ingresado. Vuelva a intentarlo.", "Búsqueda sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // Deshabilitamos los controles y limpiamos si la búsqueda falla
+                MessageBox.Show(ex.Message, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 InicializarFormulario();
             }
         }
 
-        private void PoblarListViews(ServicioTransporte servicio)
+        private void PoblarListViews(List<GuiaEntidad> aRecepcionar, List<GuiaEntidad> aDespachar)
         {
             LimpiarListViews();
 
             // Llenar ListView de Guías a Recibir (nombre del designer: GuiaxServicioRecibidaListView)
-            foreach (var guia in servicio.GuiasARecibir)
+            foreach (var guia in aRecepcionar)
             {
-                var item = new ListViewItem(guia.NumeroGuia);
-                item.SubItems.Add(guia.Tamanio);
+                var item = new ListViewItem(guia.Numero.ToString());
+                item.SubItems.Add(guia.Tamano.ToString());
                 GuiaxServicioRecibidaListView.Items.Add(item);
             }
 
             // Llenar ListView de Guías a Despachar (nombre del designer: GuiasADespacharxServicioListView)
-            foreach (var guia in servicio.GuiasADespachar)
+            foreach (var guia in aDespachar)
             {
-                var item = new ListViewItem(guia.NumeroGuia);
-                item.SubItems.Add(guia.Tamanio);
-                item.SubItems.Add(guia.Destino);
+                var item = new ListViewItem(guia.Numero.ToString());
+                item.SubItems.Add(guia.Tamano.ToString());
+                item.SubItems.Add(guia.CentroDistribucionDestino?.Nombre ?? "N/A");
                 GuiasADespacharxServicioListView.Items.Add(item);
             }
         }
@@ -94,40 +102,38 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
 
         private void ConfirmarRecepcionYDespachoButton_Click(object sender, EventArgs e)
         {
-            string numeroServicio = NumServicioTextBox.Text.Trim();
-
-            if (GuiaxServicioRecibidaListView.Items.Count == 0 && GuiasADespacharxServicioListView.Items.Count == 0)
+            string numeroServicioStr = NumServicioTextBox.Text.Trim();
+            if (!int.TryParse(numeroServicioStr, out int numeroServicio))
             {
-                MessageBox.Show("No hay encomiendas para recibir o despachar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El número de servicio no es válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            var guiasRecibidas = GuiaxServicioRecibidaListView.Items.Cast<ListViewItem>().Select(item => item.Text).ToList();
-            var guiasDespachadas = GuiasADespacharxServicioListView.Items.Cast<ListViewItem>().Select(item => item.Text).ToList();
+            var guiasRecibidas = GuiaxServicioRecibidaListView.CheckedItems.Cast<ListViewItem>().Select(item => int.Parse(item.Text)).ToList();
+            var guiasDespachadas = GuiasADespacharxServicioListView.CheckedItems.Cast<ListViewItem>().Select(item => int.Parse(item.Text)).ToList();
 
-            // Marcar guías como procesadas en el modelo
-            modelo.MarcarGuiasProcesadas(numeroServicio, guiasRecibidas, guiasDespachadas);
-
-            // Asignar automáticamente guías pendientes si hay disponibles
-            int cantidadPendientes = modelo.ObtenerCantidadGuiasPendientes();
-            if (cantidadPendientes > 0)
+            if (guiasRecibidas.Count == 0 && guiasDespachadas.Count == 0)
             {
-                modelo.AsignarGuiasPendientes(numeroServicio);
+                MessageBox.Show("No ha seleccionado ninguna encomienda para recibir o despachar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            MessageBox.Show("Recepción y despacho confirmados con éxito.", "Operación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            InicializarFormulario(); // Reiniciamos el formulario a su estado inicial
+            try
+            {
+                // Confirmar operaciones de recepción y despacho
+                modelo.ConfirmarOperacion(numeroServicio, guiasRecibidas, guiasDespachadas, CDResult.Text);
+                MessageBox.Show("Recepción y despacho confirmados con éxito.", "Operación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                InicializarFormulario(); // Reiniciamos el formulario a su estado inicial
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void CancelarButton_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void PrepararListViews()
-        {
-            GuiaxServicioRecibidaListView.CheckBoxes = false;
-            GuiasADespacharxServicioListView.CheckBoxes = false;
         }
     }
 }

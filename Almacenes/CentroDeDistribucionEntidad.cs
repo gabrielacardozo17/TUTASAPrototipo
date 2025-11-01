@@ -2,10 +2,9 @@ namespace TUTASAPrototipo.Almacenes
 {
     public class CentroDeDistribucionEntidad
     {
-        public int IDCD { get; set; }
-        public string NombreCD { get; set; } = string.Empty;
-        public string DireccionCD { get; set; } = string.Empty;
-        public string ProvinciaCD { get; set; } = string.Empty;
-        public string LocalidadCD { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Nombre { get; set; } = string.Empty;
+        public string Direccion { get; set; } = string.Empty;
+        public LocalidadEntidad Localidad { get; set; }
     }
 }
