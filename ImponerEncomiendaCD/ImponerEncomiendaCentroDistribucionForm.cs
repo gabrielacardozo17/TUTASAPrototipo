@@ -240,8 +240,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             DireccionDestinatarioTextBox.Enabled = esDom;
             DireccionDestinatarioTextBox.BackColor = esDom ? SystemColors.Window : SystemColors.Control;
 
-            CodigoPostalTextBox.Enabled = esDom;
-            CodigoPostalTextBox.BackColor = esDom ? SystemColors.Window : SystemColors.Control;
 
             // Agencia
             AgenciaComboBox.Enabled = esAge;
@@ -257,7 +255,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         {
             // Dirección / CP
             DireccionDestinatarioTextBox.Text = "";
-            CodigoPostalTextBox.Text = "";
 
             // Agencia
             if (AgenciaComboBox.DataSource != null) AgenciaComboBox.SelectedIndex = -1;
@@ -332,17 +329,13 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             if (string.Equals(tipo, "A domicilio", StringComparison.OrdinalIgnoreCase))
             {
                 direccion = (DireccionDestinatarioTextBox.Text ?? "").Trim();
-                cp = (CodigoPostalTextBox.Text ?? "").Trim();
 
                 // ---- Dirección / CP (inline) ----
                 bool direccionOk = !string.IsNullOrWhiteSpace(direccion) && direccion.Length >= 3;
-                bool cpOk = (cp.Length == 4) && cp.All(char.IsDigit) && cp != "0000";
 
                 if (!direccionOk)
                 { MessageBox.Show("Ingresá una dirección válida (no vacía).", "Validación"); return; }
 
-                if (!cpOk)
-                { MessageBox.Show("El Código Postal debe tener 4 dígitos numéricos.", "Validación"); return; }
             }
             else if (string.Equals(tipo, "En Agencia", StringComparison.OrdinalIgnoreCase)
                   && AgenciaComboBox.SelectedItem is KeyValuePair<int, string> { Key: var agId, Value: var agNom })
@@ -431,7 +424,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             TipoEntregaComboBox.SelectedIndex = -1;
 
             DireccionDestinatarioTextBox.Text = "";
-            CodigoPostalTextBox.Text = "";
 
             AgenciaComboBox.DataSource = null;
             CDComboBox.DataSource = null;

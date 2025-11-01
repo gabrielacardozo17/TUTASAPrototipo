@@ -45,8 +45,6 @@
             AgenciaComboBox = new ComboBox();
             label2 = new Label();
             LocalidadxProvinciaComboBox = new ComboBox();
-            CodigoPostalTextBox = new TextBox();
-            CodigoPostalLabel = new Label();
             TipoEntregaLabel = new Label();
             TipoEntregaComboBox = new ComboBox();
             IndicacionLabel = new Label();
@@ -207,8 +205,6 @@
             DestinatarioGroupBox.Controls.Add(AgenciaComboBox);
             DestinatarioGroupBox.Controls.Add(label2);
             DestinatarioGroupBox.Controls.Add(LocalidadxProvinciaComboBox);
-            DestinatarioGroupBox.Controls.Add(CodigoPostalTextBox);
-            DestinatarioGroupBox.Controls.Add(CodigoPostalLabel);
             DestinatarioGroupBox.Controls.Add(TipoEntregaLabel);
             DestinatarioGroupBox.Controls.Add(TipoEntregaComboBox);
             DestinatarioGroupBox.Controls.Add(IndicacionLabel);
@@ -282,21 +278,6 @@
             // 
             // CodigoPostalTextBox
             // 
-            CodigoPostalTextBox.BackColor = SystemColors.ScrollBar;
-            CodigoPostalTextBox.Location = new Point(130, 353);
-            CodigoPostalTextBox.Margin = new Padding(3, 4, 3, 4);
-            CodigoPostalTextBox.Name = "CodigoPostalTextBox";
-            CodigoPostalTextBox.Size = new Size(114, 27);
-            CodigoPostalTextBox.TabIndex = 42;
-            // 
-            // CodigoPostalLabel
-            // 
-            CodigoPostalLabel.AutoSize = true;
-            CodigoPostalLabel.Location = new Point(18, 357);
-            CodigoPostalLabel.Name = "CodigoPostalLabel";
-            CodigoPostalLabel.Size = new Size(106, 20);
-            CodigoPostalLabel.TabIndex = 41;
-            CodigoPostalLabel.Text = "Código postal:";
             // 
             // TipoEntregaLabel
             // 
@@ -655,8 +636,6 @@
         private ComboBox AgenciaComboBox;
         private Label label2;
         private ComboBox LocalidadxProvinciaComboBox;
-        private TextBox CodigoPostalTextBox;
-        private Label CodigoPostalLabel;
         private Label TipoEntregaLabel;
         private ComboBox TipoEntregaComboBox;
         private Label IndicacionLabel;

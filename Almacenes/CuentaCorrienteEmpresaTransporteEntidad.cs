@@ -2,10 +2,10 @@ using System.Collections.Generic;
 
 namespace TUTASAPrototipo.Almacenes
 {
-    public class CuentaCorrienteEmpresaTransporte
+    public class CuentaCorrienteEmpresaTransporteEntidad
     {
         public string ID { get; set; } = string.Empty;
         public int IDEmpresaTransporte { get; set; }
-        public List<MovimientoEmpresaTransporte> Movimientos { get; set; }
+        public List<MovimientoEmpresaTransporteAux> Movimientos { get; set; }
     }
 }

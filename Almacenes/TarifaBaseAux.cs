@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TUTASAPrototipo.Almacenes
 {
-    public class TarifaBase
+    public class TarifaBaseAux
     {
         public Dictionary<TamanoEnum, decimal> PreciosXTamano { get; set; }
         public int CodigoPostalOrigen { get; set; }

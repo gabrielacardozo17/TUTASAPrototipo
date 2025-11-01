@@ -2,7 +2,7 @@ using System;
 
 namespace TUTASAPrototipo.Almacenes
 {
-    public class Tramo
+    public class TramoAux
     {
         public int ID { get; set; }
         public int CodigoPostalOrigen { get; set; }

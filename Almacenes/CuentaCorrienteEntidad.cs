@@ -7,6 +7,6 @@ namespace TUTASAPrototipo.Almacenes
         // Según diagrama
         public string ID { get; set; } = string.Empty;
         public int CUITCliente { get; set; }
-        public List<MovimientoCliente> Movimientos { get; set; }
+        public List<MovimientoClienteAux> Movimientos { get; set; }
     }
 }

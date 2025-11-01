@@ -48,9 +48,7 @@
             LocalidadxProvinciaComboBox = new ComboBox();
             label2 = new Label();
             ApellidoDestinatarioTextBox = new TextBox();
-            CodigoPostalTextBox = new TextBox();
             ApellidoDestinatarioLabel = new Label();
-            CodigoPostalLabel = new Label();
             NombreDestinatarioTextBox = new TextBox();
             TipoEntregaLabel = new Label();
             NombreDestinatarioLabel = new Label();
@@ -201,9 +199,7 @@
             DestinatarioGroupBox.Controls.Add(LocalidadxProvinciaComboBox);
             DestinatarioGroupBox.Controls.Add(label2);
             DestinatarioGroupBox.Controls.Add(ApellidoDestinatarioTextBox);
-            DestinatarioGroupBox.Controls.Add(CodigoPostalTextBox);
             DestinatarioGroupBox.Controls.Add(ApellidoDestinatarioLabel);
-            DestinatarioGroupBox.Controls.Add(CodigoPostalLabel);
             DestinatarioGroupBox.Controls.Add(NombreDestinatarioTextBox);
             DestinatarioGroupBox.Controls.Add(TipoEntregaLabel);
             DestinatarioGroupBox.Controls.Add(NombreDestinatarioLabel);
@@ -289,13 +285,6 @@
             ApellidoDestinatarioTextBox.Size = new Size(137, 23);
             ApellidoDestinatarioTextBox.TabIndex = 3;
             // 
-            // CodigoPostalTextBox
-            // 
-            CodigoPostalTextBox.BackColor = SystemColors.ScrollBar;
-            CodigoPostalTextBox.Location = new Point(114, 281);
-            CodigoPostalTextBox.Name = "CodigoPostalTextBox";
-            CodigoPostalTextBox.Size = new Size(100, 23);
-            CodigoPostalTextBox.TabIndex = 29;
             // 
             // ApellidoDestinatarioLabel
             // 
@@ -307,13 +296,6 @@
             ApellidoDestinatarioLabel.Text = "Apellido:";
             // 
             // CodigoPostalLabel
-            // 
-            CodigoPostalLabel.AutoSize = true;
-            CodigoPostalLabel.Location = new Point(16, 284);
-            CodigoPostalLabel.Name = "CodigoPostalLabel";
-            CodigoPostalLabel.Size = new Size(84, 15);
-            CodigoPostalLabel.TabIndex = 28;
-            CodigoPostalLabel.Text = "Código postal:";
             // 
             // NombreDestinatarioTextBox
             // 
@@ -584,8 +566,6 @@
         private Button CancelarButton;
         private Button ConfirmarButton;
         private ComboBox LocalidadxProvinciaComboBox;
-        private TextBox CodigoPostalTextBox;
-        private Label CodigoPostalLabel;
         private Label TipoEntregaLabel;
         private ComboBox TipoEntregaComboBox;
         private Label IndicacionLabel;

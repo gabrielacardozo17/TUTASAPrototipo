@@ -2,7 +2,7 @@ using System;
 
 namespace TUTASAPrototipo.Almacenes
 {
-    public class MovimientoEmpresaTransporte
+    public class MovimientoEmpresaTransporteAux
     {
         public string NumeroFactura { get; set; }
         public DateTime Fecha { get; set; }

@@ -2,7 +2,7 @@ using System;
 
 namespace TUTASAPrototipo.Almacenes
 {
-    public class MovimientoCliente
+    public class MovimientoClienteAux
     {
         public int IDFactura { get; set; }
         public DateTime Fecha { get; set; }

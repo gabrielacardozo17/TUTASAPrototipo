@@ -35,8 +35,6 @@
             AgenciaComboBox = new ComboBox();
             label1 = new Label();
             LocalidadxProvinciaComboBox = new ComboBox();
-            CodigoPostalTextBox = new TextBox();
-            CodigoPostalLabel = new Label();
             TipoEntregaLabel = new Label();
             label3 = new Label();
             TipoEntregaComboBox = new ComboBox();
@@ -209,8 +207,6 @@
             DestinatarioGroupBox.Controls.Add(AgenciaComboBox);
             DestinatarioGroupBox.Controls.Add(label1);
             DestinatarioGroupBox.Controls.Add(LocalidadxProvinciaComboBox);
-            DestinatarioGroupBox.Controls.Add(CodigoPostalTextBox);
-            DestinatarioGroupBox.Controls.Add(CodigoPostalLabel);
             DestinatarioGroupBox.Controls.Add(TipoEntregaLabel);
             DestinatarioGroupBox.Controls.Add(label3);
             DestinatarioGroupBox.Controls.Add(TipoEntregaComboBox);
@@ -282,24 +278,6 @@
             LocalidadxProvinciaComboBox.Name = "LocalidadxProvinciaComboBox";
             LocalidadxProvinciaComboBox.Size = new Size(226, 28);
             LocalidadxProvinciaComboBox.TabIndex = 17;
-            // 
-            // CodigoPostalTextBox
-            // 
-            CodigoPostalTextBox.BackColor = SystemColors.ScrollBar;
-            CodigoPostalTextBox.Location = new Point(122, 367);
-            CodigoPostalTextBox.Margin = new Padding(3, 4, 3, 4);
-            CodigoPostalTextBox.Name = "CodigoPostalTextBox";
-            CodigoPostalTextBox.Size = new Size(114, 27);
-            CodigoPostalTextBox.TabIndex = 16;
-            // 
-            // CodigoPostalLabel
-            // 
-            CodigoPostalLabel.AutoSize = true;
-            CodigoPostalLabel.Location = new Point(10, 371);
-            CodigoPostalLabel.Name = "CodigoPostalLabel";
-            CodigoPostalLabel.Size = new Size(106, 20);
-            CodigoPostalLabel.TabIndex = 15;
-            CodigoPostalLabel.Text = "Código postal:";
             // 
             // TipoEntregaLabel
             // 
@@ -633,8 +611,6 @@
         private Label TipoSLabel;
         private Label EncomiendasLabel;
         private GroupBox DestinatarioGroupBox;
-        private TextBox CodigoPostalTextBox;
-        private Label CodigoPostalLabel;
         private Label TipoEntregaLabel;
         private Label label3;
         private ComboBox TipoEntregaComboBox;

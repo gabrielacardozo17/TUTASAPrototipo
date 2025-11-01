@@ -8,6 +8,6 @@ namespace TUTASAPrototipo.Almacenes
         public int ID { get; set; }
         public int CapacidadBodega { get; set; }
         public int IDEmpresaTransporte { get; set; }
-        public List<Tramo> Tramos { get; set; }
+        public List<TramoAux> Tramos { get; set; }
     }
 }
