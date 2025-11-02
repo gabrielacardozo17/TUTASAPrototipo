@@ -12,9 +12,9 @@
     "Tamano": 1,
     "Destinatario": {
       "DNI": 32568974,
-      "Nombre": "Lucía",
-      "Apellido": "Fernández",
-      "Direccion": "Duarte Quirós 1250, Córdoba",
+      "Nombre": "Lucia",
+      "Apellido": "Fernandez",
+      "Direccion": "Duarte Quiros 1250, Cordoba",
       "CodigoPostal": 5000
     },
     "IDConvenio": 200001,
@@ -45,7 +45,7 @@
       "DNI": 29654321,
       "Nombre": "Diego",
       "Apellido": "Herrera",
-      "Direccion": "San Martín 1200, Mendoza",
+      "Direccion": "San Martin 1200, Mendoza",
       "CodigoPostal": 5500
     },
     "IDConvenio": 200009,
@@ -75,7 +75,7 @@
       "DNI": 27456321,
       "Nombre": "Marcos",
       "Apellido": "Prieto",
-      "Direccion": "San Martín 1100, Santa Fe",
+      "Direccion": "San Martin 1100, Santa Fe",
       "CodigoPostal": 3000
     },
     "IDConvenio": 200005,
@@ -109,7 +109,7 @@
       "DNI": 30321456,
       "Nombre": "Soledad",
       "Apellido": "Mella",
-      "Direccion": "Perito Moreno 320, Neuquén",
+      "Direccion": "Perito Moreno 320, Neuquen",
       "CodigoPostal": 8300
     },
     "IDConvenio": 200014,
@@ -169,15 +169,15 @@
     "CodigoPostalCDOrigen": 3000,
     "CodigoPostalCDDestino": 1000,
     "IDAgenciaOrigen": "03000",
-    "IDAgenciaDestino": "01406",
+    "IDAgenciaDestino": "01000",
     "CUITCliente": "30-94715263-9",
     "Tamano": 1,
     "Destinatario": {
       "DNI": 40222333,
       "Nombre": "Andrea",
-      "Apellido": "Suárez",
-      "Direccion": "Honduras 4800, Palermo",
-      "CodigoPostal": 1406
+      "Apellido": "Suarez",
+      "Direccion": "Honduras 4800, CABA",
+      "CodigoPostal": 1000
     },
     "IDConvenio": 200013,
     "ImporteAFacturar": 5400.00,
@@ -192,7 +192,7 @@
       { "Estado": 6, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-24T16:30:00-03:00" },
       { "Estado": 7, "UbicacionGuia": "CD 1000", "FechaActualizacionEstado": "2025-10-25T08:50:00-03:00" },
       { "Estado": 9, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-25T09:30:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "Agencia 01406", "FechaActualizacionEstado": "2025-10-25T10:15:00-03:00" },
+      { "Estado": 10, "UbicacionGuia": "Agencia 01000", "FechaActualizacionEstado": "2025-10-25T10:15:00-03:00" },
       { "Estado": 11, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-25T13:40:00-03:00" }
     ]
   },
@@ -210,7 +210,7 @@
     "Destinatario": {
       "DNI": 31111999,
       "Nombre": "Patricia",
-      "Apellido": "Díaz",
+      "Apellido": "Diaz",
       "Direccion": "Belgrano 900, Santiago del Estero",
       "CodigoPostal": 4200
     },
@@ -246,7 +246,7 @@
       "DNI": 20555111,
       "Nombre": "Natalia",
       "Apellido": "Arias",
-      "Direccion": "Maipú 200, Ushuaia",
+      "Direccion": "Maipu 200, Ushuaia",
       "CodigoPostal": 9410
     },
     "IDConvenio": 200015,
@@ -280,7 +280,7 @@
       "DNI": 29123456,
       "Nombre": "Julieta",
       "Apellido": "Acosta",
-      "Direccion": "Perú 350, Microcentro",
+      "Direccion": "Peru 350, Microcentro",
       "CodigoPostal": 1000
     },
     "IDConvenio": 200002,
@@ -311,8 +311,8 @@
     "Tamano": 1,
     "Destinatario": {
       "DNI": 32444888,
-      "Nombre": "Tomás",
-      "Apellido": "Roldán",
+      "Nombre": "Tomas",
+      "Apellido": "Roldan",
       "Direccion": "Italia 3500, Santa Fe",
       "CodigoPostal": 3000
     },
@@ -376,7 +376,7 @@
       "DNI": 34111977,
       "Nombre": "Javier",
       "Apellido": "Valdez",
-      "Direccion": "Bolívar 400, Posadas",
+      "Direccion": "Bolivar 400, Posadas",
       "CodigoPostal": 3300
     },
     "IDConvenio": 200021,
@@ -406,8 +406,8 @@
     "Destinatario": {
       "DNI": 30888821,
       "Nombre": "Carolina",
-      "Apellido": "Benítez",
-      "Direccion": "San Martín 1200, Mendoza",
+      "Apellido": "Benitez",
+      "Direccion": "San Martin 1200, Mendoza",
       "CodigoPostal": 5500
     },
     "IDConvenio": 200012,

@@ -17,7 +17,7 @@
   },
   {
     "CUIT": "30-68362980-0",
-    "RazonSocial": "Textiles del Atlántico SA",
+    "RazonSocial": "Textiles del Atlantico SA",
     "Telefono": "0223-491-3300",
     "Direccion": "Av. Luro 5200, Mar del Plata",
     "IDConvenio": 200003,
@@ -25,9 +25,9 @@
   },
   {
     "CUIT": "30-69639215-9",
-    "RazonSocial": "Bahía Drinks SA",
+    "RazonSocial": "Bahia Drinks SA",
     "Telefono": "0291-452-8800",
-    "Direccion": "Av. Alem 600, Bahía Blanca",
+    "Direccion": "Av. Alem 600, Bahia Blanca",
     "IDConvenio": 200004,
     "CodigoPostal": 8000
   },
@@ -36,7 +36,7 @@
     "CUIT": "30-98656280-6",
     "RazonSocial": "Sistemas Microcentro SA",
     "Telefono": "011-4331-2200",
-    "Direccion": "Perú 300, Microcentro",
+    "Direccion": "Peru 300, Microcentro",
     "IDConvenio": 200005,
     "CodigoPostal": 1000
   },
@@ -67,9 +67,9 @@
 
   {
     "CUIT": "30-87419362-4",
-    "RazonSocial": "Córdoba Motors SA",
+    "RazonSocial": "Cordoba Motors SA",
     "Telefono": "0351-426-9000",
-    "Direccion": "9 de Julio 200, Córdoba",
+    "Direccion": "9 de Julio 200, Cordoba",
     "IDConvenio": 200009,
     "CodigoPostal": 5000
   },
@@ -77,15 +77,15 @@
     "CUIT": "30-52143679-0",
     "RazonSocial": "Hoteles Sierras SRL",
     "Telefono": "03541-422-300",
-    "Direccion": "Av. San Martín 50, Villa Carlos Paz",
+    "Direccion": "Av. San Martin 50, Villa Carlos Paz",
     "IDConvenio": 200010,
     "CodigoPostal": 5152
   },
   {
     "CUIT": "33-17426359-7",
-    "RazonSocial": "Agro Río Cuarto SA",
+    "RazonSocial": "Agro Rio Cuarto SA",
     "Telefono": "0358-462-1100",
-    "Direccion": "Constitución 800, Río Cuarto",
+    "Direccion": "Constitucion 800, Rio Cuarto",
     "IDConvenio": 200011,
     "CodigoPostal": 5800
   },
@@ -102,14 +102,14 @@
     "CUIT": "30-94715263-9",
     "RazonSocial": "Universo Santa Fe SA",
     "Telefono": "0342-450-9000",
-    "Direccion": "San Jerónimo 1500, Santa Fe",
+    "Direccion": "San Jeronimo 1500, Santa Fe",
     "IDConvenio": 200013,
     "CodigoPostal": 3000
   },
 
   {
     "CUIT": "33-63184527-6",
-    "RazonSocial": "Vitivinícola Cuyo SA",
+    "RazonSocial": "Vitivinicola Cuyo SA",
     "Telefono": "0261-420-5500",
     "Direccion": "Peatonal Sarmiento 100, Mendoza",
     "IDConvenio": 200014,
@@ -117,7 +117,7 @@
   },
   {
     "CUIT": "30-81524639-6",
-    "RazonSocial": "Lácteos del Sur SRL",
+    "RazonSocial": "Lacteos del Sur SRL",
     "Telefono": "0260-442-1100",
     "Direccion": "Av. H. Yrigoyen 900, San Rafael",
     "IDConvenio": 200015,
@@ -126,9 +126,9 @@
 
   {
     "CUIT": "33-50182746-7",
-    "RazonSocial": "Neuquén Oil Services SA",
+    "RazonSocial": "Neuquen Oil Services SA",
     "Telefono": "0299-443-8800",
-    "Direccion": "Perito Moreno 300, Neuquén",
+    "Direccion": "Perito Moreno 300, Neuquen",
     "IDConvenio": 200016,
     "CodigoPostal": 8300
   },
@@ -152,7 +152,7 @@
 
   {
     "CUIT": "33-24567139-0",
-    "RazonSocial": "Cítricos Tucumán SA",
+    "RazonSocial": "Citricos Tucuman SA",
     "Telefono": "0381-422-3300",
     "Direccion": "24 de Septiembre 800, SMT",
     "IDConvenio": 200019,
@@ -163,7 +163,7 @@
     "CUIT": "30-83426197-7",
     "RazonSocial": "Minera del Norte SA",
     "Telefono": "0387-431-5500",
-    "Direccion": "España 300, Salta",
+    "Direccion": "Espana 300, Salta",
     "IDConvenio": 200020,
     "CodigoPostal": 4400
   },
@@ -172,7 +172,7 @@
     "CUIT": "33-76251483-5",
     "RazonSocial": "Patagonia Shipping SRL",
     "Telefono": "0297-447-8800",
-    "Direccion": "San Martín 700, Comodoro Rivadavia",
+    "Direccion": "San Martin 700, Comodoro Rivadavia",
     "IDConvenio": 200021,
     "CodigoPostal": 9000
   },
@@ -181,7 +181,7 @@
     "CUIT": "30-49261573-7",
     "RazonSocial": "Chaco Bioinsumos SA",
     "Telefono": "0362-445-2200",
-    "Direccion": "Güemes 500, Resistencia",
+    "Direccion": "Guemes 500, Resistencia",
     "IDConvenio": 200022,
     "CodigoPostal": 3500
   },
@@ -190,16 +190,16 @@
     "CUIT": "33-28465173-0",
     "RazonSocial": "Arroz Corrientes SA",
     "Telefono": "0379-443-3300",
-    "Direccion": "Junín 600, Corrientes",
+    "Direccion": "Junin 600, Corrientes",
     "IDConvenio": 200023,
     "CodigoPostal": 3400
   },
 
   {
     "CUIT": "30-31876452-0",
-    "RazonSocial": "Maderas del Paraná SRL",
+    "RazonSocial": "Maderas del Parana SRL",
     "Telefono": "0376-443-2200",
-    "Direccion": "Bolívar 300, Posadas",
+    "Direccion": "Bolivar 300, Posadas",
     "IDConvenio": 200024,
     "CodigoPostal": 3300
   }
