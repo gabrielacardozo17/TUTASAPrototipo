@@ -1,142 +1,180 @@
-﻿// TUTASAPrototipo/EmitirFactura/EmitirFacturaModelo.cs  (REEMPLAZO TOTAL)
+﻿// TUTASAPrototipo/EmitirFactura/EmitirFacturaModelo.cs (ACTUALIZADO PARA USAR ALMACENES)
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TUTASAPrototipo.Almacenes; // acceso a datos persistidos (archivos JSON)
 
 namespace TUTASAPrototipo.EmitirFactura
 {
-    public class EmitirFacturaModelo
-    {
-        // ---------- DATOS DE PRUEBA ----------
-        // Clientes (agregados algunos más; CUIT con DV válido)
-        private readonly List<Cliente> _clientes = new()
-        {
-            new Cliente { Cuit="30-12345678-1", RazonSocial="Distribuidora Sur S.A.",           Convenio="General"      },
-            new Cliente { Cuit="30-87654321-0", RazonSocial="Mayorista Norte S.R.L.",           Convenio="Preferencial" },
-            new Cliente { Cuit="33-33445566-7", RazonSocial="Biotec Litoral S.R.L.",            Convenio="General"      },
+ public class EmitirFacturaModelo
+ {
+ /*
+ // ---------- DATOS DE PRUEBA (dejados como COMENTARIO) ----------
+ // Clientes (agregados algunos más; CUIT con DV válido)
+ private readonly List<Cliente> _clientes = new()
+ {
+ new Cliente { Cuit="30-12345678-1", RazonSocial="Distribuidora Sur S.A.", Convenio="General" },
+ new Cliente { Cuit="30-87654321-0", RazonSocial="Mayorista Norte S.R.L.", Convenio="Preferencial" },
+ new Cliente { Cuit="33-33445566-7", RazonSocial="Biotec Litoral S.R.L.", Convenio="General" },
+ // EXISTENTES
+ new Cliente { Cuit="30-10123456-4", RazonSocial="Tecnología Andina S.A.", Convenio="General" },
+ new Cliente { Cuit="30-33445566-8", RazonSocial="Editorial Horizonte S.A.", Convenio="General" },
+ new Cliente { Cuit="33-12345678-0", RazonSocial="Farmacorp S.A.", Convenio="Preferencial" },
+ // NUEVOS
+ new Cliente { Cuit="30-22113456-3", RazonSocial="Alimentos Pampeanos S.A.", Convenio="General" },
+ new Cliente { Cuit="30-24681357-0", RazonSocial="Logística Patagónica S.A.", Convenio="General" },
+ new Cliente { Cuit="33-22113456-2", RazonSocial="Bodega del Sol S.A.", Convenio="Preferencial" },
+ new Cliente { Cuit="33-24681357-9", RazonSocial="Casa Central Hogar S.A.", Convenio="General" }
+ };
 
-            // EXISTENTES (ya agregados anteriormente)
-            new Cliente { Cuit="30-10123456-4", RazonSocial="Tecnología Andina S.A.",           Convenio="General"      },
-            new Cliente { Cuit="30-33445566-8", RazonSocial="Editorial Horizonte S.A.",         Convenio="General"      },
-            new Cliente { Cuit="33-12345678-0", RazonSocial="Farmacorp S.A.",                   Convenio="Preferencial" },
+ // Guías (TLLLNNNNN)
+ // private readonly List<Guia> _guias = new() { ...datos de prueba... };
+ */
 
-            // NUEVOS (pedidos ahora)
-            new Cliente { Cuit="30-22113456-3", RazonSocial="Alimentos Pampeanos S.A.",         Convenio="General"      },
-            new Cliente { Cuit="30-24681357-0", RazonSocial="Logística Patagónica S.A.",        Convenio="General"      },
-            new Cliente { Cuit="33-22113456-2", RazonSocial="Bodega del Sol S.A.",              Convenio="Preferencial" },
-            new Cliente { Cuit="33-24681357-9", RazonSocial="Casa Central Hogar S.A.",          Convenio="General"      }
-        };
+ private static int _seqFactura =1; // numerador local simple
 
-        // Guías (TLLLNNNNN) con estados aptos para facturación y montos > 0
-        private readonly List<Guia> _guias = new()
-        {
-            // -------- EXISTENTES (ajustadas a formato TLLLNNNNN coherente) --------
-            // Cliente 30-12345678-1  — CD Córdoba Capital (0040)
-            new Guia { Numero="004000123", CuitCliente="30-12345678-1", FechaAdmision=new(2025,09,09), Origen="CD Córdoba Capital", Destino="Agencia Rosario Centro", Tamano="S",  Importe=2400m, Estado="Entregada" },
-            new Guia { Numero="004000124", CuitCliente="30-12345678-1", FechaAdmision=new(2025,09,10), Origen="CD Córdoba Capital", Destino="CD Rosario",              Tamano="M",  Importe=3700m, Estado="Intento de entrega" },
+ // ---------- HELPERS ----------
+ private static string Digits(string s) => new string((s ?? "").Where(char.IsDigit).ToArray());
 
-            // Cliente 30-87654321-0  — CD Buenos Aires – La Plata (0010)
-            new Guia { Numero="001000781", CuitCliente="30-87654321-0", FechaAdmision=new(2025,09,12), Origen="CD Buenos Aires – La Plata", Destino="CD CABA Sur",     Tamano="L",  Importe=5200m, Estado="Devuelta" },
+ // ---------- MÉTODOS ----------
+ public (Cliente cliente, List<Guia> guias) BuscarPorCuit(string cuitDigits)
+ {
+ // Normalizamos a dígitos (la pantalla ya envía solo dígitos, igual reforzamos)
+ var digits = Digits(cuitDigits);
 
-            // Cliente 33-33445566-7  — CD Buenos Aires – Mar del Plata (0011)
-            new Guia { Numero="001100045", CuitCliente="33-33445566-7", FechaAdmision=new(2025,09,05), Origen="CD Buenos Aires – Mar del Plata", Destino="CD Bahía Blanca", Tamano="XL", Importe=4900m, Estado="Entregada" },
+ //1) Buscar cliente en almacén
+ var cliEntidad = ClienteAlmacen.clientes
+ .FirstOrDefault(c => Digits(c.CUIT) == digits);
 
-            // -------- NUEVAS (anteriores) --------
-            // Cliente 30-12345678-1
-            new Guia { Numero="004000125", CuitCliente="30-12345678-1", FechaAdmision=new(2025,09,11), Origen="CD Córdoba Capital", Destino="Agencia Rosario Centro", Tamano="S",  Importe=1800m, Estado="Entregada" },
-            new Guia { Numero="004000126", CuitCliente="30-12345678-1", FechaAdmision=new(2025,09,12), Origen="CD Córdoba Capital", Destino="CD Rosario",              Tamano="M",  Importe=3100m, Estado="Devuelta" },
+ if (cliEntidad is null)
+ throw new InvalidOperationException("No existe el cliente seleccionado. Vuelva a intentarlo.");
 
-            // Cliente 30-87654321-0
-            new Guia { Numero="001000782", CuitCliente="30-87654321-0", FechaAdmision=new(2025,09,13), Origen="CD Buenos Aires – La Plata", Destino="Agencia CABA Centro", Tamano="S", Importe=1500m, Estado="Intento de entrega" },
-            new Guia { Numero="001000783", CuitCliente="30-87654321-0", FechaAdmision=new(2025,09,14), Origen="CD Buenos Aires – La Plata", Destino="CD CABA Sur",        Tamano="L", Importe=5400m, Estado="Entregada" },
+ //2) Guías pendientes del cliente: según CU, solo estado Entregada
+ // Tomamos del almacén de guías, filtramos por CUIT y estado
+ var pendientesEntidad = GuiaAlmacen.guias
+ .Where(g => Digits(g.CUITCliente) == digits)
+ .Where(g => g.Estado == EstadoGuiaEnum.Entregada)
+ .OrderBy(g => g.FechaAdmision)
+ .ToList();
 
-            // Cliente 33-33445566-7
-            new Guia { Numero="001100046", CuitCliente="33-33445566-7", FechaAdmision=new(2025,09,06), Origen="CD Buenos Aires – Mar del Plata", Destino="Agencia Bahía Blanca Centro", Tamano="M",  Importe=2600m, Estado="Intento de entrega" },
-            new Guia { Numero="001100047", CuitCliente="33-33445566-7", FechaAdmision=new(2025,09,07), Origen="CD Buenos Aires – Mar del Plata", Destino="CD Bahía Blanca",               Tamano="S",  Importe=1900m, Estado="Devuelta" },
+ if (!pendientesEntidad.Any())
+ throw new InvalidOperationException("No se encontraron ítems pendientes de facturar.");
 
-            // Cliente 30-10123456-4 — Tecnología Andina
-            new Guia { Numero="004000211", CuitCliente="30-10123456-4", FechaAdmision=new(2025,10,02), Origen="CD Córdoba Capital",           Destino="CD Mendoza Capital",        Tamano="L",  Importe=5600m, Estado="Entregada" },
-            new Guia { Numero="004000212", CuitCliente="30-10123456-4", FechaAdmision=new(2025,10,03), Origen="CD Córdoba Capital",           Destino="Agencia Mendoza Centro",    Tamano="M",  Importe=3300m, Estado="Intento de entrega" },
+ //3) Mapear entidades → clases de pantalla (sin crear métodos nuevos)
+ // Origen/Destino: resolvemos nombre de CD o Agencia según datos presentes
+ var guiasPantalla = pendientesEntidad
+ .Select(g => new Guia
+ {
+ Numero = g.NumeroGuia.ToString("D9"),
+ FechaAdmision = g.FechaAdmision,
+ Origen =
+ (g.CodigoPostalCDOrigen !=0
+ ? (CentroDeDistribucionAlmacen.centrosDeDistribucion
+ .FirstOrDefault(cd => cd.CodigoPostal == g.CodigoPostalCDOrigen)?.Nombre ?? $"CD {g.CodigoPostalCDOrigen}")
+ : (!string.IsNullOrWhiteSpace(g.IDAgenciaOrigen)
+ ? (AgenciaAlmacen.agencias.FirstOrDefault(a => a.ID == g.IDAgenciaOrigen)?.Nombre ?? $"Agencia {g.IDAgenciaOrigen}")
+ : "")),
+ Destino =
+ (g.CodigoPostalCDDestino !=0
+ ? (CentroDeDistribucionAlmacen.centrosDeDistribucion
+ .FirstOrDefault(cd => cd.CodigoPostal == g.CodigoPostalCDDestino)?.Nombre ?? $"CD {g.CodigoPostalCDDestino}")
+ : (!string.IsNullOrWhiteSpace(g.IDAgenciaDestino)
+ ? (AgenciaAlmacen.agencias.FirstOrDefault(a => a.ID == g.IDAgenciaDestino)?.Nombre ?? $"Agencia {g.IDAgenciaDestino}")
+ : "")),
+ Tamano = g.Tamano.ToString(),
+ Importe = g.ImporteAFacturar,
+ Estado = g.Estado.ToString().Replace("_", " "),
+ CuitCliente = cliEntidad.CUIT
+ })
+ .ToList();
 
-            // Cliente 30-33445566-8 — Editorial Horizonte
-            new Guia { Numero="005000301", CuitCliente="30-33445566-8", FechaAdmision=new(2025,10,04), Origen="CD Rosario",                   Destino="CD Córdoba Capital",        Tamano="XL", Importe=6200m, Estado="Devuelta" },
-            new Guia { Numero="005000302", CuitCliente="30-33445566-8", FechaAdmision=new(2025,10,05), Origen="CD Rosario",                   Destino="Agencia Córdoba Norte",     Tamano="S",  Importe=1700m, Estado="Entregada" },
+ //4) Devolver cliente mapeado + guías
+ var clientePantalla = new Cliente
+ {
+ Cuit = cliEntidad.CUIT,
+ RazonSocial = cliEntidad.RazonSocial,
+ Convenio = "General" // sin mapeo de convenios en este modelo
+ };
 
-            // Cliente 33-12345678-0 — Farmacorp
-            new Guia { Numero="000100901", CuitCliente="33-12345678-0", FechaAdmision=new(2025,10,06), Origen="CD CABA Oeste",                Destino="CD Buenos Aires – La Plata", Tamano="M", Importe=2950m, Estado="Entregada" },
-            new Guia { Numero="000100902", CuitCliente="33-12345678-0", FechaAdmision=new(2025,10,07), Origen="CD CABA Oeste",                Destino="Agencia La Plata",           Tamano="L", Importe=4500m, Estado="Intento de entrega" },
+ return (clientePantalla, guiasPantalla);
+ }
 
-            // -------- NUEVAS (pedidas ahora) --------
+ public Factura EmitirFactura(string cuitDigits)
+ {
+ //1) Reutilizar la búsqueda para validar existencia + pendientes
+ var (cliente, pendientes) = BuscarPorCuit(cuitDigits);
 
-            // Cliente 30-22113456-3 — Alimentos Pampeanos (Mendoza)
-            new Guia { Numero="010000321", CuitCliente="30-22113456-3", FechaAdmision=new(2025,10,01), Origen="CD Mendoza Capital",           Destino="CD Bahía Blanca",           Tamano="M",  Importe=3800m, Estado="Entregada" },
-            new Guia { Numero="010000322", CuitCliente="30-22113456-3", FechaAdmision=new(2025,10,02), Origen="CD Mendoza Capital",           Destino="Agencia Godoy Cruz",         Tamano="S",  Importe=1600m, Estado="Intento de entrega" },
-            new Guia { Numero="010000323", CuitCliente="30-22113456-3", FechaAdmision=new(2025,10,03), Origen="CD Mendoza Capital",           Destino="CD Neuquén",                 Tamano="L",  Importe=5200m, Estado="Devuelta" },
+ //2) Calcular total
+ var total = pendientes.Sum(g => g.Importe);
+ if (total <=0)
+ throw new InvalidOperationException("No es posible emitir una factura por $0.");
 
-            // Cliente 30-24681357-0 — Logística Patagónica (Viedma)
-            new Guia { Numero="009000211", CuitCliente="30-24681357-0", FechaAdmision=new(2025,09,30), Origen="CD Viedma",                    Destino="CD Bahía Blanca",           Tamano="S",  Importe=1850m, Estado="Entregada" },
-            new Guia { Numero="009000212", CuitCliente="30-24681357-0", FechaAdmision=new(2025,10,01), Origen="CD Viedma",                    Destino="Agencia San Antonio Oeste",  Tamano="M",  Importe=2300m, Estado="Intento de entrega" },
+ //3) Generar número de factura simple (no persistente)
+ var numero = $"FA-{DateTime.Now:yyyyMM}-{_seqFactura++:00000}";
 
-            // Cliente 33-22113456-2 — Bodega del Sol (Cuyo)
-            new Guia { Numero="010000411", CuitCliente="33-22113456-2", FechaAdmision=new(2025,10,04), Origen="CD Mendoza Capital",           Destino="CD San Miguel de Tucumán",   Tamano="XL", Importe=6400m, Estado="Devuelta" },
-            new Guia { Numero="010000412", CuitCliente="33-22113456-2", FechaAdmision=new(2025,10,05), Origen="CD Mendoza Capital",           Destino="Agencia Mendoza Centro",     Tamano="S",  Importe=1500m, Estado="Entregada" },
+ //4) Registrar factura en almacén (persistencia en archivo JSON)
+ var facEntidad = new FacturaEntidad
+ {
+ ID = numero,
+ FechaEmisionFactura = DateTime.Now,
+ CUITCliente = cliente.Cuit,
+ Total = total,
+ GuiasFacturadas = pendientes.Select(p => p.Numero).ToList()
+ };
+ FacturaAlmacen.facturas.Add(facEntidad);
+ FacturaAlmacen.Grabar();
 
-            // Cliente 33-24681357-9 — Casa Central Hogar (NOA/Patagonia)
-            new Guia { Numero="008000145", CuitCliente="33-24681357-9", FechaAdmision=new(2025,10,05), Origen="CD Neuquén",                    Destino="CD CABA Oeste",             Tamano="M",  Importe=4100m, Estado="Intento de entrega" },
-            new Guia { Numero="008000146", CuitCliente="33-24681357-9", FechaAdmision=new(2025,10,06), Origen="CD Neuquén",                    Destino="Agencia Plottier",          Tamano="S",  Importe=1350m, Estado="Entregada" }
-        };
+ //5) Registrar movimiento en Cuenta Corriente
+ var cc = CuentaCorrienteAlmacen.cuentasCorrientes
+ .FirstOrDefault(c => Digits(c.CUITCliente) == Digits(cliente.Cuit));
+ if (cc == null)
+ {
+ cc = new CuentaCorrienteEntidad
+ {
+ ID = Guid.NewGuid().ToString("N"),
+ CUITCliente = cliente.Cuit,
+ Movimientos = new List<MovimientoClienteAux>()
+ };
+ CuentaCorrienteAlmacen.cuentasCorrientes.Add(cc);
+ }
+ // asegurar lista de movimientos
+ cc.Movimientos ??= new List<MovimientoClienteAux>();
 
-        private static int _seqFactura = 1;
+ var saldoAnterior = cc.Movimientos.LastOrDefault()?.SaldoActual ??0m;
+ var mov = new MovimientoClienteAux
+ {
+ IDFactura = Math.Abs(numero.GetHashCode()), // entero derivado del número
+ Fecha = DateTime.Now,
+ Concepto = $"Factura {numero}",
+ Debe = total,
+ Haber =0m,
+ SaldoActual = saldoAnterior + total
+ };
+ cc.Movimientos.Add(mov);
+ CuentaCorrienteAlmacen.Grabar();
 
-        // ---------- HELPERS ----------
-        private static string Digits(string s) => new string((s ?? "").Where(char.IsDigit).ToArray());
+ //6) Marcar las guías como Facturadas en el almacén (si existe esa transición)
+ foreach (var p in pendientes)
+ {
+ var num = int.Parse(p.Numero);
+ var guia = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == num);
+ if (guia != null)
+ {
+ guia.Estado = EstadoGuiaEnum.Facturada;
+ }
+ }
+ GuiaAlmacen.Grabar();
 
-        // ---------- MÉTODOS ----------
-        public (Cliente cliente, List<Guia> guias) BuscarPorCuit(string cuitDigits)
-        {
-            var digits = Digits(cuitDigits);
+ //7) Devolver factura en el formato que espera la pantalla
+ var facPantalla = new Factura
+ {
+ Numero = numero,
+ Fecha = facEntidad.FechaEmisionFactura,
+ Cliente = cliente,
+ GuiasFacturadas = pendientes
+ };
 
-            var cliente = _clientes.FirstOrDefault(c => Digits(c.Cuit) == digits);
-            if (cliente is null)
-                throw new InvalidOperationException("No existe el cliente seleccionado. Vuelva a intentarlo.");
-
-            // “Pendientes” = guías en estados facturables y no facturadas aún
-            var pendientes = _guias
-                .Where(g => Digits(g.CuitCliente) == digits)
-                .Where(g => g.Estado == "Entregada"
-                         || g.Estado == "Devuelta"
-                         || g.Estado == "Intento de entrega")
-                .OrderBy(g => g.FechaAdmision)
-                .ToList();
-
-            if (!pendientes.Any())
-                throw new InvalidOperationException("No se encontraron ítems pendientes de facturar.");
-
-            return (cliente, pendientes);
-        }
-
-        public Factura EmitirFactura(string cuitDigits)
-        {
-            var (cliente, pendientes) = BuscarPorCuit(cuitDigits);
-            var total = pendientes.Sum(g => g.Importe);
-
-            if (total <= 0)
-                throw new InvalidOperationException("No es posible emitir una factura por $0.");
-
-            var numero = $"FA-{DateTime.Now:yyyyMM}-{_seqFactura++:00000}";
-
-            var fac = new Factura
-            {
-                Numero = numero,
-                Cliente = cliente,
-                GuiasFacturadas = pendientes
-            };
-
-            // Marcar como facturadas las guías incluidas
-            foreach (var g in pendientes)
-                g.Estado = "Facturada";
-
-            return fac;
-        }
-    }
+ return facPantalla;
+ }
+ }
 }

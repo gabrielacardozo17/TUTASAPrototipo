@@ -1,15 +1,14 @@
-﻿// TUTASAPrototipo/ConsultarEstado/ConsultarEstadoModelo.cs  (VERSIÓN ACTUALIZADA)
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TUTASAPrototipo.Almacenes; // Agregado para acceder a los almacenes
 
 namespace TUTASAPrototipo.ConsultarEstado
 {
     public class ConsultarEstadoModelo
     {
-        // Helper local: solo dígitos
-        private static string Digits(string s) => new string((s ?? "").Where(char.IsDigit).ToArray());
-
+        /*
         // ─────────────────────────────────────────────────────────────────────────────
         // DATOS DE PRUEBA – coherentes con el flujo logístico y el formato TLLLNNNNN
         // TLLL: código (0001–0999 = CD, 1000+ = Agencia)
@@ -220,15 +219,49 @@ namespace TUTASAPrototipo.ConsultarEstado
                 }
             },
         };
+        */
 
-        // ─────────────────────────────────────────────────────────────────────────────
-        // API del modelo
-        // ─────────────────────────────────────────────────────────────────────────────
+        // --- PASO 1: CONEXIÓN CON LA CAPA DE DATOS (Almacenes) ---
+        // No se necesita una instancia de GuiaAlmacen porque es una clase estática.
+        // Se accederá directamente a sus miembros estáticos (ej: GuiaAlmacen.guias).
+
+        // --- PASO 2: IMPLEMENTACIÓN DE LA LÓGICA DE BÚSQUEDA ---
+        // Este método es el corazón del caso de uso. Recibe el número de guía desde la pantalla,
+        // lo valida, busca la guía en el almacén y devuelve el resultado.
         public Guia? ObtenerPorNumero(string input)
         {
-            var key = Digits(input);
-            if (key.Length != 9) return null;   // nuevo formato: 9 dígitos
-            return _guias.FirstOrDefault(g => Digits(g.Numero) == key);
+            // Validaciones defensivas (la pantalla ya valida, esto es respaldo)
+            if (string.IsNullOrWhiteSpace(input)) return null;
+            if (!input.All(char.IsDigit)) return null;
+            if (input.Length !=9) return null;
+
+            // Buscar en el almacén por NumeroGuia (int)
+            var numeroGuiaBuscado = int.Parse(input);
+            var guiaEntidad = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == numeroGuiaBuscado);
+            if (guiaEntidad == null) return null;
+
+            // Seleccionar ubicación actual: si el último registro tiene ubicación, usarla; si no, "No disponible"
+            var historial = guiaEntidad.Historial ?? new List<RegistroEstadoAux>();
+            var ultimo = historial.LastOrDefault();
+            var ubicacionActual = string.IsNullOrWhiteSpace(ultimo?.UbicacionGuia) ? "No disponible" : ultimo!.UbicacionGuia;
+
+            // Mapear a la clase que usa la pantalla
+            var guiaParaPantalla = new Guia
+            {
+                Numero = guiaEntidad.NumeroGuia.ToString("D9"),
+                EstadoActual = guiaEntidad.Estado.ToString().Replace("_", " "),
+                UbicacionActual = ubicacionActual,
+                Historial = historial
+                .Select(h => new Guia.Movimiento(
+                    h.FechaActualizacionEstado,
+                    h.Estado.ToString().Replace("_", " "),
+                    h.UbicacionGuia
+                ))
+                .OrderBy(m => m.Fecha)
+                .ToList()
+            };
+
+            return guiaParaPantalla;
         }
     }
 }
