@@ -22,7 +22,7 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var centroDeDistribucionJson = System.Text.Json.JsonSerializer.Serialize(centrosDeDistribucion);
-            File.WriteAllText("CentrosDeDistribucion.json", centroDeDistribucionJson);
+            File.WriteAllText("Datos/CentrosDeDistribucion.json", centroDeDistribucionJson);
         }
     }
 

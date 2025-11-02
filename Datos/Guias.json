@@ -421,6 +421,336 @@
       { "Estado": 4, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-26T17:50:00-03:00" },
       { "Estado": 5, "UbicacionGuia": "CD 3000", "FechaActualizacionEstado": "2025-10-26T18:30:00-03:00" }
     ]
+  },
+  {
+    "NumeroGuia": 550010001,
+    "Estado": 10,
+    "FechaAdmision": "2025-11-02T10:00:00-03:00",
+    "TipoEntrega": 0,
+    "CodigoPostalCDOrigen": 1888,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "30-87419362-4",
+    "Tamano": 1,
+    "Destinatario": {
+      "DNI": 29654321,
+      "Nombre": "Diego",
+      "Apellido": "Herrera",
+      "Direccion": "San Martin 1200, Mendoza",
+      "CodigoPostal": 5500
+    },
+    "IDConvenio": 200009,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-11-02T10:00:00-03:00" },
+      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-02T18:40:00-03:00" },
+      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-03T09:00:00-03:00" }
+    ]
+  },
+  {
+    "NumeroGuia": 550010002,
+    "Estado": 10,
+    "FechaAdmision": "2025-11-03T08:30:00-03:00",
+    "TipoEntrega": 0,
+    "CodigoPostalCDOrigen": 1888,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "30-87419362-4",
+    "Tamano": 0,
+    "Destinatario": {
+      "DNI": 29654321,
+      "Nombre": "Diego",
+      "Apellido": "Herrera",
+      "Direccion": "San Martin 1200, Mendoza",
+      "CodigoPostal": 5500
+    },
+    "IDConvenio": 200009,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-11-03T08:30:00-03:00" },
+      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-03T16:10:00-03:00" },
+      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-04T09:00:00-03:00" }
+    ]
+  },
+  {
+    "NumeroGuia": 550010003,
+    "Estado": 10,
+    "FechaAdmision": "2025-11-03T09:15:00-03:00",
+    "TipoEntrega": 0,
+    "CodigoPostalCDOrigen": 1888,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "33-99274898-8",
+    "Tamano": 3,
+    "Destinatario": {
+      "DNI": 29654321,
+      "Nombre": "Diego",
+      "Apellido": "Herrera",
+      "Direccion": "San Martin 1200, Mendoza",
+      "CodigoPostal": 5500
+    },
+    "IDConvenio": 200001,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-11-03T09:15:00-03:00" },
+      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-03T19:30:00-03:00" },
+      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-04T09:30:00-03:00" }
+    ]
+  },
+  {
+    "NumeroGuia": 550010004,
+    "Estado": 10,
+    "FechaAdmision": "2025-11-01T13:20:00-03:00",
+    "TipoEntrega": 0,
+    "CodigoPostalCDOrigen": 3000,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "30-68274139-2",
+    "Tamano": 2,
+    "Destinatario": {
+      "DNI": 30888821,
+      "Nombre": "Carolina",
+      "Apellido": "Benitez",
+      "Direccion": "San Martin 1200, Mendoza",
+      "CodigoPostal": 5500
+    },
+    "IDConvenio": 200012,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      { "Estado": 5, "UbicacionGuia": "CD 3000", "FechaActualizacionEstado": "2025-11-01T13:20:00-03:00" },
+      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-02T09:00:00-03:00" },
+      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-02T12:00:00-03:00" }
+    ]
+  },
+  {
+    "NumeroGuia": 550010005,
+    "Estado": 10,
+    "FechaAdmision": "2025-11-01T10:40:00-03:00",
+    "TipoEntrega": 0,
+    "CodigoPostalCDOrigen": 8300,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "33-50182746-7",
+    "Tamano": 0,
+    "Destinatario": {
+      "DNI": 37888999,
+      "Nombre": "Camila",
+      "Apellido": "Ruiz",
+      "Direccion": "Belgrano 1100, Godoy Cruz",
+      "CodigoPostal": 5501
+    },
+    "IDConvenio": 200016,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      { "Estado": 5, "UbicacionGuia": "CD 8300", "FechaActualizacionEstado": "2025-11-01T10:40:00-03:00" },
+      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-01T18:10:00-03:00" },
+      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-02T08:30:00-03:00" }
+    ]
+  },
+  {
+    "NumeroGuia": 550010006,
+    "Estado": 10,
+    "FechaAdmision": "2025-11-02T09:50:00-03:00",
+    "TipoEntrega": 0,
+    "CodigoPostalCDOrigen": 1888,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "30-12345678-9",
+    "Tamano": 1,
+    "Destinatario": {
+      "DNI": 31222333,
+      "Nombre": "Matias",
+      "Apellido": "Gomez",
+      "Direccion": "Las Heras 800, Mendoza",
+      "CodigoPostal": 5500
+    },
+    "IDConvenio": 200030,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-11-02T09:50:00-03:00" },
+      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-02T17:40:00-03:00" },
+      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-03T08:20:00-03:00" }
+    ]
+  },
+  {
+    "NumeroGuia": 550010007,
+    "Estado": 10,
+    "FechaAdmision": "2025-11-02T11:05:00-03:00",
+    "TipoEntrega": 0,
+    "CodigoPostalCDOrigen": 1888,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "33-76251483-5",
+    "Tamano": 2,
+    "Destinatario": {
+      "DNI": 33123456,
+      "Nombre": "Sabrina",
+      "Apellido": "Alvarez",
+      "Direccion": "Guaymallen 1400, Mendoza",
+      "CodigoPostal": 5521
+    },
+    "IDConvenio": 200021,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-11-02T11:05:00-03:00" },
+      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-02T19:15:00-03:00" },
+      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-03T09:10:00-03:00" }
+    ]
+  },
+  {
+    "NumeroGuia": 550090101,
+    "Estado": 10,
+    "FechaAdmision": "2025-11-04T09:10:00-03:00",
+    "TipoEntrega": 1,
+    "CodigoPostalCDOrigen": 1888,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "01888",
+    "IDAgenciaDestino": "05500",
+    "CUITCliente": "30-55555555-5",
+    "Tamano": 0,
+    "Destinatario": {
+      "DNI": 35678123,
+      "Nombre": "Valentina",
+      "Apellido": "Paredes",
+      "Direccion": "Colon 900, Mendoza",
+      "CodigoPostal": 5500
+    },
+    "IDConvenio": 200040,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-11-04T09:10:00-03:00" },
+      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-04T17:10:00-03:00" },
+      { "Estado": 10, "UbicacionGuia": "Agencia 05500", "FechaActualizacionEstado": "2025-11-05T08:20:00-03:00" }
+    ]
+  },
+  {
+    "NumeroGuia": 550090102,
+    "Estado": 10,
+    "FechaAdmision": "2025-11-04T10:25:00-03:00",
+    "TipoEntrega": 1,
+    "CodigoPostalCDOrigen": 5000,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "05000",
+    "IDAgenciaDestino": "05500",
+    "CUITCliente": "33-44444444-4",
+    "Tamano": 1,
+    "Destinatario": {
+      "DNI": 37234567,
+      "Nombre": "Rodrigo",
+      "Apellido": "Lopez",
+      "Direccion": "Rivadavia 1200, Mendoza",
+      "CodigoPostal": 5500
+    },
+    "IDConvenio": 200041,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      { "Estado": 5, "UbicacionGuia": "CD 5000", "FechaActualizacionEstado": "2025-11-04T10:25:00-03:00" },
+      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-04T19:20:00-03:00" },
+      { "Estado": 10, "UbicacionGuia": "Agencia 05500", "FechaActualizacionEstado": "2025-11-05T08:40:00-03:00" }
+    ]
+  },
+  {
+    "NumeroGuia": 550090103,
+    "Estado": 10,
+    "FechaAdmision": "2025-11-04T11:40:00-03:00",
+    "TipoEntrega": 1,
+    "CodigoPostalCDOrigen": 8300,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "08300",
+    "IDAgenciaDestino": "05500",
+    "CUITCliente": "30-33333333-3",
+    "Tamano": 2,
+    "Destinatario": {
+      "DNI": 39555111,
+      "Nombre": "Juliana",
+      "Apellido": "Torres",
+      "Direccion": "Sarmiento 700, Mendoza",
+      "CodigoPostal": 5500
+    },
+    "IDConvenio": 200042,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      { "Estado": 5, "UbicacionGuia": "CD 8300", "FechaActualizacionEstado": "2025-11-04T11:40:00-03:00" },
+      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-04T20:30:00-03:00" },
+      { "Estado": 10, "UbicacionGuia": "Agencia 05500", "FechaActualizacionEstado": "2025-11-05T09:10:00-03:00" }
+    ]
+  },
+  {
+    "NumeroGuia": 550090104,
+    "Estado": 10,
+    "FechaAdmision": "2025-11-04T12:55:00-03:00",
+    "TipoEntrega": 1,
+    "CodigoPostalCDOrigen": 9100,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "09100",
+    "IDAgenciaDestino": "05500",
+    "CUITCliente": "33-22222222-2",
+    "Tamano": 3,
+    "Destinatario": {
+      "DNI": 41222333,
+      "Nombre": "Federico",
+      "Apellido": "Alvarez",
+      "Direccion": "Mitre 500, Mendoza",
+      "CodigoPostal": 5500
+    },
+    "IDConvenio": 200043,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      { "Estado": 5, "UbicacionGuia": "CD 9100", "FechaActualizacionEstado": "2025-11-04T12:55:00-03:00" },
+      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-04T21:10:00-03:00" },
+      { "Estado": 10, "UbicacionGuia": "Agencia 05500", "FechaActualizacionEstado": "2025-11-05T09:30:00-03:00" }
+    ]
   }
 ]
 

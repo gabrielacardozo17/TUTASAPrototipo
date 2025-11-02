@@ -22,7 +22,7 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var guiaJson = System.Text.Json.JsonSerializer.Serialize(guias);
-            File.WriteAllText("Guias.json", guiaJson);
+            File.WriteAllText("Datos/Guias.json", guiaJson);
         }
     }
 
