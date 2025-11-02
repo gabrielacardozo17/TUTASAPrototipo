@@ -20,7 +20,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
         {
             // Simulación de datos de sesión con nombres realistas y consistentes con el Modelo
             UsuarioResult.Text = "Juan Perez";
-            CDResult.Text = "CD CABA Oeste"; // CORREGIDO: Debe coincidir EXACTAMENTE con la Ubicacion en los datos
+            CDResult.Text = "CD Mendoza"; // Usar un CD existente para que los filtros funcionen
             NombreResultLabel.Text = "";
             ApellidoResultLabel.Text = "";
         }

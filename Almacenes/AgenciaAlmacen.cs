@@ -12,9 +12,9 @@ namespace TUTASAPrototipo.Almacenes
 
         static AgenciaAlmacen()
         {
-            if (File.Exists("Agencias.json"))
+            if (File.Exists("Datos/Agencias.json"))
             {
-                var agenciaJson = File.ReadAllText("Agencias.json");
+                var agenciaJson = File.ReadAllText("Datos/Agencias.json");
                 agencias = System.Text.Json.JsonSerializer.Deserialize<List<AgenciaEntidad>>(agenciaJson) ?? new List<AgenciaEntidad>();
             }
         }
@@ -22,7 +22,7 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var agenciaJson = System.Text.Json.JsonSerializer.Serialize(agencias);
-            File.WriteAllText("Agencias.json", agenciaJson);
+            File.WriteAllText("Datos/Agencias.json", agenciaJson);
         }
     }
     

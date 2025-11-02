@@ -12,9 +12,9 @@ namespace TUTASAPrototipo.Almacenes
 
         static CentroDeDistribucionAlmacen()
         {
-            if (File.Exists("CentrosDeDistribucion.json"))
+            if (File.Exists("Datos/CentrosDeDistribucion.json"))
             {
-                var centroDeDistribucionJson = File.ReadAllText("CentrosDeDistribucion.json");
+                var centroDeDistribucionJson = File.ReadAllText("Datos/CentrosDeDistribucion.json");
                 centrosDeDistribucion = System.Text.Json.JsonSerializer.Deserialize<List<CentroDeDistribucionEntidad>>(centroDeDistribucionJson) ?? new List<CentroDeDistribucionEntidad>();
             }
         }
@@ -22,7 +22,7 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var centroDeDistribucionJson = System.Text.Json.JsonSerializer.Serialize(centrosDeDistribucion);
-            File.WriteAllText("CentrosDeDistribucion.json", centroDeDistribucionJson);
+            File.WriteAllText("Datos/CentrosDeDistribucion.json", centroDeDistribucionJson);
         }
     }
 
