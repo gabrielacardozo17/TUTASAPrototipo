@@ -12,9 +12,9 @@ namespace TUTASAPrototipo.Almacenes
 
         static ServicioTransporteAlmacen()
         {
-            if (File.Exists("ServiciosTransporte.json"))
+            if (File.Exists("Datos/ServiciosTransporte.json"))
             {
-                var servicioTransporteJson = File.ReadAllText("ServiciosTransporte.json");
+                var servicioTransporteJson = File.ReadAllText("Datos/ServiciosTransporte.json");
                 serviciosTransporte = System.Text.Json.JsonSerializer.Deserialize<List<ServicioTransporteEntidad>>(servicioTransporteJson) ?? new List<ServicioTransporteEntidad>();
             }
         }

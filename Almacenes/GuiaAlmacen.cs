@@ -12,9 +12,9 @@ namespace TUTASAPrototipo.Almacenes
 
         static GuiaAlmacen()
         {
-            if (File.Exists("Guias.json"))
+            if (File.Exists("Datos/Guias.json"))
             {
-                var guiaJson = File.ReadAllText("Guias.json");
+                var guiaJson = File.ReadAllText("Datos/Guias.json");
                 guias = System.Text.Json.JsonSerializer.Deserialize<List<GuiaEntidad>>(guiaJson) ?? new List<GuiaEntidad>();
             }
         }
