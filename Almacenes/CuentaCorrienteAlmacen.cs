@@ -12,9 +12,9 @@ namespace TUTASAPrototipo.Almacenes
 
         static CuentaCorrienteAlmacen()
         {
-            if (File.Exists("CuentasCorrientes.json"))
+            if (File.Exists("CuentaCorriente.json"))
             {
-                var cuentaCorrienteJson = File.ReadAllText("CuentaCorrientes.json");
+                var cuentaCorrienteJson = File.ReadAllText("CuentaCorriente.json");
                 cuentasCorrientes = System.Text.Json.JsonSerializer.Deserialize<List<CuentaCorrienteEntidad>>(cuentaCorrienteJson) ?? new List<CuentaCorrienteEntidad>();
             }
         }
@@ -22,7 +22,7 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var cuentaCorrienteJson = System.Text.Json.JsonSerializer.Serialize(cuentasCorrientes);
-            File.WriteAllText("CuentasCorrientes.json", cuentaCorrienteJson);
+            File.WriteAllText("CuentaCorriente.json", cuentaCorrienteJson);
         }
     }
 

@@ -1,1 +1,206 @@
-﻿
+﻿[
+  {
+    "CUIT": "33-99274898-8",
+    "RazonSocial": "Distribuidora Pampeana SA",
+    "Telefono": "011-4370-1200",
+    "Direccion": "Av. Mitre 2100, Quilmes",
+    "IDConvenio": 200001,
+    "CodigoPostal": 1888
+  },
+  {
+    "CUIT": "30-40762117-0",
+    "RazonSocial": "Transmetal SRL",
+    "Telefono": "0221-450-2100",
+    "Direccion": "Calle 50 700, La Plata",
+    "IDConvenio": 200002,
+    "CodigoPostal": 1900
+  },
+  {
+    "CUIT": "30-68362980-0",
+    "RazonSocial": "Textiles del Atlántico SA",
+    "Telefono": "0223-491-3300",
+    "Direccion": "Av. Luro 5200, Mar del Plata",
+    "IDConvenio": 200003,
+    "CodigoPostal": 7600
+  },
+  {
+    "CUIT": "30-69639215-9",
+    "RazonSocial": "Bahía Drinks SA",
+    "Telefono": "0291-452-8800",
+    "Direccion": "Av. Alem 600, Bahía Blanca",
+    "IDConvenio": 200004,
+    "CodigoPostal": 8000
+  },
+
+  {
+    "CUIT": "30-98656280-6",
+    "RazonSocial": "Sistemas Microcentro SA",
+    "Telefono": "011-4331-2200",
+    "Direccion": "Perú 300, Microcentro",
+    "IDConvenio": 200005,
+    "CodigoPostal": 1000
+  },
+  {
+    "CUIT": "30-21453678-5",
+    "RazonSocial": "Recoleta Beauty SRL",
+    "Telefono": "011-4801-5500",
+    "Direccion": "Larrea 900, Recoleta",
+    "IDConvenio": 200006,
+    "CodigoPostal": 1420
+  },
+  {
+    "CUIT": "33-51372864-2",
+    "RazonSocial": "Palermo Deco SA",
+    "Telefono": "011-4775-1600",
+    "Direccion": "Honduras 4800, Palermo",
+    "IDConvenio": 200007,
+    "CodigoPostal": 1406
+  },
+  {
+    "CUIT": "30-72913658-9",
+    "RazonSocial": "Editorial Andina SA",
+    "Telefono": "011-4783-7700",
+    "Direccion": "Av. Santa Fe 2200, Recoleta",
+    "IDConvenio": 200008,
+    "CodigoPostal": 1160
+  },
+
+  {
+    "CUIT": "30-87419362-4",
+    "RazonSocial": "Córdoba Motors SA",
+    "Telefono": "0351-426-9000",
+    "Direccion": "9 de Julio 200, Córdoba",
+    "IDConvenio": 200009,
+    "CodigoPostal": 5000
+  },
+  {
+    "CUIT": "30-52143679-0",
+    "RazonSocial": "Hoteles Sierras SRL",
+    "Telefono": "03541-422-300",
+    "Direccion": "Av. San Martín 50, Villa Carlos Paz",
+    "IDConvenio": 200010,
+    "CodigoPostal": 5152
+  },
+  {
+    "CUIT": "33-17426359-7",
+    "RazonSocial": "Agro Río Cuarto SA",
+    "Telefono": "0358-462-1100",
+    "Direccion": "Constitución 800, Río Cuarto",
+    "IDConvenio": 200011,
+    "CodigoPostal": 5800
+  },
+
+  {
+    "CUIT": "30-68274139-2",
+    "RazonSocial": "Rosario Digital SRL",
+    "Telefono": "0341-480-2000",
+    "Direccion": "Bv. Oroño 1200, Rosario",
+    "IDConvenio": 200012,
+    "CodigoPostal": 2000
+  },
+  {
+    "CUIT": "30-94715263-9",
+    "RazonSocial": "Universo Santa Fe SA",
+    "Telefono": "0342-450-9000",
+    "Direccion": "San Jerónimo 1500, Santa Fe",
+    "IDConvenio": 200013,
+    "CodigoPostal": 3000
+  },
+
+  {
+    "CUIT": "33-63184527-6",
+    "RazonSocial": "Vitivinícola Cuyo SA",
+    "Telefono": "0261-420-5500",
+    "Direccion": "Peatonal Sarmiento 100, Mendoza",
+    "IDConvenio": 200014,
+    "CodigoPostal": 5500
+  },
+  {
+    "CUIT": "30-81524639-6",
+    "RazonSocial": "Lácteos del Sur SRL",
+    "Telefono": "0260-442-1100",
+    "Direccion": "Av. H. Yrigoyen 900, San Rafael",
+    "IDConvenio": 200015,
+    "CodigoPostal": 5600
+  },
+
+  {
+    "CUIT": "33-50182746-7",
+    "RazonSocial": "Neuquén Oil Services SA",
+    "Telefono": "0299-443-8800",
+    "Direccion": "Perito Moreno 300, Neuquén",
+    "IDConvenio": 200016,
+    "CodigoPostal": 8300
+  },
+
+  {
+    "CUIT": "30-96425173-2",
+    "RazonSocial": "Bariloche Outdoors SRL",
+    "Telefono": "0294-442-7700",
+    "Direccion": "Mitre 500, San Carlos de Bariloche",
+    "IDConvenio": 200017,
+    "CodigoPostal": 8400
+  },
+  {
+    "CUIT": "30-71824563-5",
+    "RazonSocial": "Viedma Pesca SA",
+    "Telefono": "02920-422-900",
+    "Direccion": "Belgrano 200, Viedma",
+    "IDConvenio": 200018,
+    "CodigoPostal": 8500
+  },
+
+  {
+    "CUIT": "33-24567139-0",
+    "RazonSocial": "Cítricos Tucumán SA",
+    "Telefono": "0381-422-3300",
+    "Direccion": "24 de Septiembre 800, SMT",
+    "IDConvenio": 200019,
+    "CodigoPostal": 4000
+  },
+
+  {
+    "CUIT": "30-83426197-7",
+    "RazonSocial": "Minera del Norte SA",
+    "Telefono": "0387-431-5500",
+    "Direccion": "España 300, Salta",
+    "IDConvenio": 200020,
+    "CodigoPostal": 4400
+  },
+
+  {
+    "CUIT": "33-76251483-5",
+    "RazonSocial": "Patagonia Shipping SRL",
+    "Telefono": "0297-447-8800",
+    "Direccion": "San Martín 700, Comodoro Rivadavia",
+    "IDConvenio": 200021,
+    "CodigoPostal": 9000
+  },
+
+  {
+    "CUIT": "30-49261573-7",
+    "RazonSocial": "Chaco Bioinsumos SA",
+    "Telefono": "0362-445-2200",
+    "Direccion": "Güemes 500, Resistencia",
+    "IDConvenio": 200022,
+    "CodigoPostal": 3500
+  },
+
+  {
+    "CUIT": "33-28465173-0",
+    "RazonSocial": "Arroz Corrientes SA",
+    "Telefono": "0379-443-3300",
+    "Direccion": "Junín 600, Corrientes",
+    "IDConvenio": 200023,
+    "CodigoPostal": 3400
+  },
+
+  {
+    "CUIT": "30-31876452-0",
+    "RazonSocial": "Maderas del Paraná SRL",
+    "Telefono": "0376-443-2200",
+    "Direccion": "Bolívar 300, Posadas",
+    "IDConvenio": 200024,
+    "CodigoPostal": 3300
+  }
+]

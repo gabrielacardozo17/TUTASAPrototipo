@@ -8,8 +8,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <!-- Asegurar que los JSON NO se traten como Compile y se copien a la salida -->
   <ItemGroup>
-    <Compile Include="Datos\Clientes.json" />
+    <Compile Remove="Datos\**\*.json" />
+    <EmbeddedResource Remove="Datos\**\*.json" />
+    <None Include="Datos\**\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

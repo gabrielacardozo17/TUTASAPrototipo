@@ -1,0 +1,23 @@
+﻿[
+  {
+    "ID": "FA-202510-000001",
+    "FechaEmisionFactura": "2025-10-10T10:15:00",
+    "CUITCliente": "30-87654321-0",
+    "Total": 10300.00,
+    "GuiasFacturadas": ["001000781","001000783","001000782"]
+  },
+  {
+    "ID": "FA-202510-000002",
+    "FechaEmisionFactura": "2025-10-10T10:45:00",
+    "CUITCliente": "30-12345678-1",
+    "Total": 4200.00,
+    "GuiasFacturadas": ["004000123","004000125"]
+  },
+  {
+    "ID": "FA-202510-000003",
+    "FechaEmisionFactura": "2025-10-11T11:05:00",
+    "CUITCliente": "33-22113456-2",
+    "Total": 1500.00,
+    "GuiasFacturadas": ["010000412"]
+  }
+]

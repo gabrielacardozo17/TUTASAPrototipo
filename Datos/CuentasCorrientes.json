@@ -1,0 +1,88 @@
+﻿[
+  {
+    "ID": "CC-30-12345678-1",
+    "CUITCliente": "30-12345678-1",
+    "Movimientos": [
+      { "IDFactura": 101, "Fecha": "2025-09-05T00:00:00", "Concepto": "Factura FA-202509-000101", "Debe": 2400, "Haber": 0,    "SaldoActual": 2400 },
+      { "IDFactura": 102, "Fecha": "2025-09-12T00:00:00", "Concepto": "Factura FA-202509-000102", "Debe": 1800, "Haber": 0,    "SaldoActual": 4200 },
+      { "IDFactura": 0,   "Fecha": "2025-09-25T00:00:00", "Concepto": "Pago recibido",             "Debe": 0,    "Haber": 2500, "SaldoActual": 1700 },
+      { "IDFactura": 103, "Fecha": "2025-10-02T00:00:00", "Concepto": "Factura FA-202510-000103", "Debe": 2400, "Haber": 0,    "SaldoActual": 4100 },
+      { "IDFactura": 0,   "Fecha": "2025-10-10T00:00:00", "Concepto": "Pago recibido",             "Debe": 0,    "Haber": 2000, "SaldoActual": 2100 }
+    ]
+  },
+  {
+    "ID": "CC-30-87654321-0",
+    "CUITCliente": "30-87654321-0",
+    "Movimientos": [
+      { "IDFactura": 201, "Fecha": "2025-09-10T00:00:00", "Concepto": "Factura FA-202509-000201", "Debe": 5200, "Haber": 0,    "SaldoActual": 5200 },
+      { "IDFactura": 0,   "Fecha": "2025-09-20T00:00:00", "Concepto": "Pago recibido",             "Debe": 0,    "Haber": 3000, "SaldoActual": 2200 },
+      { "IDFactura": 202, "Fecha": "2025-10-01T00:00:00", "Concepto": "Factura FA-202510-000202", "Debe": 5400, "Haber": 0,    "SaldoActual": 7600 },
+      { "IDFactura": 203, "Fecha": "2025-10-02T00:00:00", "Concepto": "Factura FA-202510-000203", "Debe": 3300, "Haber": 0,    "SaldoActual": 10900 },
+      { "IDFactura": 204, "Fecha": "2025-10-06T00:00:00", "Concepto": "Factura FA-202510-000204", "Debe": 1700, "Haber": 0,    "SaldoActual": 12600 },
+      { "IDFactura": 0,   "Fecha": "2025-10-15T00:00:00", "Concepto": "Pago recibido",             "Debe": 0,    "Haber": 8000, "SaldoActual": 4600 }
+    ]
+  },
+  {
+    "ID": "CC-30-10123456-4",
+    "CUITCliente": "30-10123456-4",
+    "Movimientos": [
+      { "IDFactura": 301, "Fecha": "2025-10-02T00:00:00", "Concepto": "Factura FA-202510-000301", "Debe": 5600, "Haber": 0,    "SaldoActual": 5600 },
+      { "IDFactura": 302, "Fecha": "2025-10-03T00:00:00", "Concepto": "Factura FA-202510-000302", "Debe": 3300, "Haber": 0,    "SaldoActual": 8900 },
+      { "IDFactura": 0,   "Fecha": "2025-10-12T00:00:00", "Concepto": "Pago recibido",             "Debe": 0,    "Haber": 6000, "SaldoActual": 2900 }
+    ]
+  },
+  {
+    "ID": "CC-33-12345678-0",
+    "CUITCliente": "33-12345678-0",
+    "Movimientos": [
+      { "IDFactura": 401, "Fecha": "2025-10-06T00:00:00", "Concepto": "Factura FA-202510-000401", "Debe": 2950, "Haber": 0,    "SaldoActual": 2950 },
+      { "IDFactura": 402, "Fecha": "2025-10-07T00:00:00", "Concepto": "Factura FA-202510-000402", "Debe": 4500, "Haber": 0,    "SaldoActual": 7450 }
+    ]
+  },
+  {
+    "ID": "CC-30-33445566-8",
+    "CUITCliente": "30-33445566-8",
+    "Movimientos": [
+      { "IDFactura": 501, "Fecha": "2025-10-04T00:00:00", "Concepto": "Factura FA-202510-000501", "Debe": 6200, "Haber": 0,    "SaldoActual": 6200 },
+      { "IDFactura": 502, "Fecha": "2025-10-05T00:00:00", "Concepto": "Factura FA-202510-000502", "Debe": 1700, "Haber": 0,    "SaldoActual": 7900 },
+      { "IDFactura": 0,   "Fecha": "2025-10-20T00:00:00", "Concepto": "Pago recibido",             "Debe": 0,    "Haber": 4000, "SaldoActual": 3900 }
+    ]
+  },
+  {
+    "ID": "CC-30-22113456-3",
+    "CUITCliente": "30-22113456-3",
+    "Movimientos": [
+      { "IDFactura": 601, "Fecha": "2025-10-01T00:00:00", "Concepto": "Factura FA-202510-000601", "Debe": 3800, "Haber": 0,    "SaldoActual": 3800 },
+      { "IDFactura": 602, "Fecha": "2025-10-02T00:00:00", "Concepto": "Factura FA-202510-000602", "Debe": 1600, "Haber": 0,    "SaldoActual": 5400 },
+      { "IDFactura": 603, "Fecha": "2025-10-03T00:00:00", "Concepto": "Factura FA-202510-000603", "Debe": 5200, "Haber": 0,    "SaldoActual": 10600 },
+      { "IDFactura": 0,   "Fecha": "2025-10-18T00:00:00", "Concepto": "Pago recibido",             "Debe": 0,    "Haber": 5000, "SaldoActual": 5600 }
+    ]
+  },
+  {
+    "ID": "CC-30-24681357-0",
+    "CUITCliente": "30-24681357-0",
+    "Movimientos": [
+      { "IDFactura": 701, "Fecha": "2025-09-30T00:00:00", "Concepto": "Factura FA-202509-000701", "Debe": 1850, "Haber": 0,    "SaldoActual": 1850 },
+      { "IDFactura": 702, "Fecha": "2025-10-01T00:00:00", "Concepto": "Factura FA-202510-000702", "Debe": 2300, "Haber": 0,    "SaldoActual": 4150 },
+      { "IDFactura": 0,   "Fecha": "2025-10-15T00:00:00", "Concepto": "Pago recibido",             "Debe": 0,    "Haber": 4000, "SaldoActual": 150 }
+    ]
+  },
+  {
+    "ID": "CC-33-22113456-2",
+    "CUITCliente": "33-22113456-2",
+    "Movimientos": [
+      { "IDFactura": 801, "Fecha": "2025-10-04T00:00:00", "Concepto": "Factura FA-202510-000801", "Debe": 6400, "Haber": 0,    "SaldoActual": 6400 },
+      { "IDFactura": 802, "Fecha": "2025-10-05T00:00:00", "Concepto": "Factura FA-202510-000802", "Debe": 1500, "Haber": 0,    "SaldoActual": 7900 },
+      { "IDFactura": 0,   "Fecha": "2025-10-20T00:00:00", "Concepto": "Pago recibido",             "Debe": 0,    "Haber": 7000, "SaldoActual": 900 }
+    ]
+  },
+  {
+    "ID": "CC-33-24681357-9",
+    "CUITCliente": "33-24681357-9",
+    "Movimientos": [
+      { "IDFactura": 901, "Fecha": "2025-10-05T00:00:00", "Concepto": "Factura FA-202510-000901", "Debe": 4100, "Haber": 0,    "SaldoActual": 4100 },
+      { "IDFactura": 902, "Fecha": "2025-10-06T00:00:00", "Concepto": "Factura FA-202510-000902", "Debe": 1350, "Haber": 0,    "SaldoActual": 5450 },
+      { "IDFactura": 0,   "Fecha": "2025-10-22T00:00:00", "Concepto": "Pago recibido",             "Debe": 0,    "Haber": 3000, "SaldoActual": 2450 }
+    ]
+  }
+]

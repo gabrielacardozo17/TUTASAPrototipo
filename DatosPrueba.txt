@@ -1,411 +1,144 @@
-﻿Formatos (estándar, comunes a todas las pantallas)
-● Guía (tracking): TLLL NNNNN
-TLLL: código de CD/Agencia de origen (4 dígitos) , la T indica si es Agencia o CD
-“De origen” indica el lugar donde llega desde el cliente, incluso si es impuesto por call center. 0001 a 0999 → cd mayor a 1000 → agencia
-NNNNN: correlativo por establecimiento. Ej.: 004000123 (CD 0040, guía #00123).
-atributos de guia:
-- fecha de admision
-- origen, destino, que sea real (con los cd /agencias que tenemos pensados)
-- tamaño
-- importe
--
-- Ubicación de donde esta, que también sea real. ( un cd, unaagencia, o el estándar “domicilio del cliente”)
-- estado en el que está
-DEFINIR NOSOTROS
-En espera de retiro en agencia | lugar: una agencia.---> arranca acá si se impone en agencia
-En espera de retiro al cliente | lugar: domicilio x —-> arranca acá si se impone en call center
-En ruta a CD de origen: el fletero la fue a retirar a agencia o domicilio | no tiene lugar actual
-Admitida | lugar: siempre un CD —------> arranca acá si se impone en cd
-En tránsito al CD destino. | puede no tener lugar actual, o tener un CD intermedio, donde bajo la encomienda, pero espera ser subida a otro camion de larga distancia. —------> solo se usa en ruteos de larga distancia
-En CD destino. | lugar: un cd —----> solo se usa en ruteos de larga distancia
-En ruta al domicilio de entrega ---> el fletero la va a entregar a la persona| no tiene lugar actual. —> se da siempre, sea UM o Larga distancia (si ocurre, no ocurren los siguientes dos estados)
-en ruta a la agencia de entrega ---> el fletero la va a entregar a una agencia. | no tiene lugar actual —> se da siempre, sea UM o Larga distancia (si ocurre, no ocurre el estado anterior)
-En agencia destino: lugar: una agencia. —> se da solo si se dio el estado anterior.
-Entregada. | no tiene lugar actual —> —> se da siempre
-● HDR (Hoja de Ruta): H TLLL NNNNNN FLLL
-H: será una letra identificatoria del tipo de hdr.
-- Para hojas de ruta de transporte -> T
-- Para hijas de ruta de retiro → R
-- Para hijas de ruta de distribución → D
-TLLL origen de la hdr (CD o Agencia que la hizo)
-NNNNNN correlativo del día por par O–D.
-TLLL destino (CD o agencia a donde va)
------> siempre que sea 0000, es un domicilio.
-Ej.: D 0010 586245 1020
-● Servicio de transporte (media/larga):
-CCC NNNNN
-CCC: 3 dígitos empresa
-NNNNN: 5 digitos. Código unico de servicio, dadas las propiedades de este (ruta, tamaño de bodega, etc)
-Visual: 100-00744.
-● DNI fletero: 7–8 dígitos.
-● CUIT cliente: máscara ##-########-# (DV válido).
-● Código Postal: 4 dígitos/si o si numéricos.
-Catálogos de prueba (maestros)
-Centros de Distribución (CD)
-TLLL
-Descripción
-Dirección
-Provincia
-0001
-CD CABA Oeste
-Av. Warnes 200, CABA
-CABA
-0002
-CD CABA Sur
-Av. Rondeau 300, CABA
-CABA
-0010
-CD Buenos Aires – La Plata
-Av. 520 y 25, La Plata
-Buenos Aires
-0011
-CD Buenos Aires – Mar del Plata
-Av. Juan B. Justo 9000, MdP
-Buenos Aires
-0040
-CD Córdoba Capital
-Av. Sabattini 3000, Córdoba
-Córdoba
-0050
-CD Rosario
-Cafferata 702 (Term. M. Moreno)
-Santa Fe
-0060
-CD San Miguel de Tucumán
-Av. Brígido Terán 250
-Tucumán
-0070
-CD Corrientes
-Av. Maipú 2700 (Terminal)
-Corrientes
-0080
-CD Neuquén
-Anaya 3005 (Terminal)
-Neuquén
-0090
-CD Viedma
-Av. F. de Viedma 1400
-Río Negro
-0100
-CD Mendoza Capital
-Acceso Este y Costanera
-Mendoza
-0110
-CD Bahía Blanca
-Drago 1900 (Terminal)
-Buenos Aires
-Agencias (24)
-TLLL
-Descripción
-Dirección
-CD dependiente
-1010
-Agencia CABA Centro
-Av. Corrientes 1000, CABA
-1011
-Agencia CABA Flores
-Av. Rivadavia 7100, CABA
-1020
-Agencia La Plata
-Calle 8 123, La Plata
-1021
-Agencia Mar del Plata
-Av. Colón 5000, MdP
-1022
-Agencia Bahía Blanca Centro
-Av. Alem 100, BB
-1040
-Agencia Nueva Córdoba
-Bv. Chacabuco 1050, Cba
-1041
-Agencia Córdoba Norte
-Av. M. P. Cabrera 5000, Cba
-1050
-Agencia Rosario Centro
-Córdoba 1400, Rosario
-1051
-Agencia Rosario Norte
-Bv. Rondeau 2500, Rosario
-1060
-Agencia Tucumán Centro
-24 de Septiembre 500, SMT
-1070
-Agencia Corrientes Centro
-Junín 850, Corrientes
-1080
-Agencia Neuquén Centro
-Av. Argentina 1200, Nqn
-1090
-Agencia Viedma Centro
-25 de Mayo 400, Viedma
-1100
-Agencia Mendoza Centro
-Av. San Martín 1200, Mza
-1101
-Agencia Godoy Cruz
-San Martín Sur 1800, GC
-1023
-Agencia Quilmes
-Av. Calchaquí 3950, Quilmes
-1024
-Agencia Pilar
-Panamericana Km 50, Pilar
-1042
-Agencia Villa Allende
-Av. Goycochea 50, V. Allende
-1052
-Agencia Funes
-San José 1200, Funes
-1061
-Agencia Yerba Buena
-Av. Aconquija 1500, YB
-1071
-Agencia Goya
-Colón 850, Goya
-1081
-Agencia Plottier
-San Martín 300, Plottier
-1091
-Agencia San Antonio Oeste
-Mitre 200, SAO
-1025
-Agencia San Isidro
-Av. Centenario 1100, SI
-Empresas de transporte
-CCC
-Empresa
-100
-Plusmar
-200
-Fletar SRL
-300
-AndesMar Cargas
-400
-Via Bariloche Cargo
-500
-El Cóndor – La Estrella Cargo
-600
-Crucero del Norte Cargo
-atributos de empresa de transporte: razón social, costo mensual (cuánto nos cuesta el servicio que nos dan, arrendamiento de bodegas), ventas mensuales (ganancia nuestra por las encomiendas que utilizaron este servicio; lo que ganamos llevando esas encomiendas, nuestra ganancia por las guías de encomiendas que esa empresa llevó—> sale de la facturación que hemos hecho nosotros de esas encomiendas)
-Servicios
-ID de servicio interno
-Nro de servicio gral
-CC
-Empresa
-Tipo bodega (A–D)
-Horario de servicio
-CC NNNNN
-NNNNN
-10
-Plusmar
-A
-20
-Fletar SRL
-B
-30
-AndesMar Cargas
-B
-40
-Via Bariloche Cargo
-C
-50
-El Cóndor – La Estrella Cargo
-C
-60
-Crucero del Norte Cargo
-D
-Fleteros (última milla)
-Nombre
-DNI
-Celular
-Base (CD)
-Juan Pereyra
-28765432
-11-3890-2211
-CD CABA Oeste
-María Ledesma
-32198765
-11-4788-3300
-CD CABA Sur
-Luis Ferreyra
-30456789
-221-523-7788
-CD La Plata
-Sofía Bustos
-29876543
-223-456-9911
-CD MdP
-Carlos Maidana
-30987654
-351-421-6600
-CD Córdoba
-Valeria Ríos
-27654321
-341-612-0033
-CD Rosario
-Gustavo Acuña
-31234567
-381-455-1122
-CD Tucumán
-Paula Benítez
-29811223
-379-447-2200
-CD Corrientes
-Nicolás Godoy
-30123456
-299-442-8800
-CD Neuquén
-Carla Mansilla
-28456712
-2920-442200
-CD Viedma
-Clientes (20, CUIT con DV válido, direcciones verosímiles)
-CUIT
-Razón social
-Teléfono
-Dirección
-30-12345678-1
-Distribuidora Sur S.A.
-11-4310-1200
-Av. Paseo Colón 650, CABA, CABA
-30-87654321-0
-Mayorista Norte S.R.L.
-221-451-2200
-Calle 50 735, La Plata, Buenos Aires
-30-10123456-4
-Tecnología Andina S.A.
-351-482-3300
-Av. Colón 3450, Córdoba, Córdoba
-30-12004567-5
-Frigorífico Río Plata S.A.
-223-470-1122
-Av. Constitución 5900, Mar del Plata, BA
-30-22113456-3
-Alimentos Pampeanos S.A.
-261-420-9900
-San Martín 1980, Mendoza, Mendoza
-30-33445566-8
-Editorial Horizonte S.A.
-341-440-8800
-Av. Pellegrini 1800, Rosario, Santa Fe
-30-55667788-9
-Textiles del Centro S.R.L.
-299-447-3311
-Av. Olascoaga 1400, Neuquén, Neuquén
-30-10293847-6
-Mecánica Austral S.A.
-381-431-2200
-Av. Sarmiento 950, SMT, Tucumán
-30-56473829-4
-Electro Hogar S.R.L.
-379-443-0088
-Av. 3 de Abril 1200, Corrientes, Corrientes
-30-24681357-0
-Logística Patagónica S.A.
-2920-443-3300
-Belgrano 530, Viedma, Río Negro
-33-12345678-0
-Farmacorp S.A.
-11-4321-7788
-Florida 200, CABA, CABA
-33-87654321-9
-Mercantil Andina S.R.L.
-291-455-6600
-Chiclana 300, Bahía Blanca, BA
-33-10123456-3
-Grupo Delta S.A.
-351-422-1177
-Bv. Illia 550, Córdoba, Córdoba
-33-12004567-4
-Aceros Cuyanos S.A.
-260-444-8800
-Av. H. Yrigoyen 700, San Rafael, Mendoza
-33-22113456-2
-Bodega del Sol S.A.
-264-421-7788
-Av. Libertador 2400, San Juan, SJ
-33-33445566-7
-Biotec Litoral S.R.L.
-342-455-1122
-Bv. Gálvez 1200, Santa Fe, SF
-33-55667788-9
-Librería Argenta S.A.
-343-420-7700
-Av. Almafuerte 3000, Paraná, ER
-33-10293847-5
-Calzados Río S.R.L.
-362-441-9090
-Av. Sarmiento 2100, Resistencia, Chaco
-33-56473829-3
-Plásticos del Norte S.A.
-387-422-6600
-Av. Chile 1600, Salta, Salta
-33-24681357-9
-Casa Central Hogar S.A.
-388-423-5500
-Av. El Éxodo 950, SS de Jujuy, Jujuy
-Nota: son CUITs con dígito verificador correcto y direcciones creíbles (sin usar “11 2222 3333” ni textos repetidos).
-Propiedades del cliente:
-- cuit (se lo reconoce por este)
-- razon social
-- movimientos de su cuenta corriente (periodo —-> fecha, concepto, monto+-)
-GUIAS 1010 00015 | 2025-10-02 | 1010→0040 | En ruta a CD de origen | — | recogida en agencia por fletero
-0010 04567 | 2025-09-29 | 0010→0000 | En ruta al domicilio de entrega | — | asignada HDR D 0010 000210 1020
-0002 00001 | 2025-10-01 | 0002→1010 | En tránsito al CD destino | CD intermedio 0050 | media distancia
-1040 00011 | 2025-10-08 | 1040→0040 | Admitida | CD 0040 | ingreso a CD
-0070 00150 | 2025-09-18 | 0070→0000 | En ruta a la agencia de entrega | — | luego pasará a En agencia destino
-1011 00005 | 2025-10-03 | 1011→0000 | En espera de retiro en agencia | Ag. 1011 | impuesta en agencia
-1024 00007 | 2025-10-07 | 1024→0000 | En espera de retiro al cliente | Domicilio | call center
-0110 00077 | 2025-10-09 | 0110→0000 | En ruta al domicilio de entrega | — | última milla
-1080 00023 | 2025-10-01 | 1080→0000 | Entregada | — | con firma electrónica
-1010 00016 | 2025-10-02 | 1010→0040 | En ruta a CD de origen | — | recogida en agencia por fletero
-0010 04568 | 2025-09-29 | 0010→0000 | En ruta al domicilio de entrega | — |
-0002 00002 | 2025-10-01 | 0002→1010 | En tránsito al CD destino | CD intermedio 0050 | media distancia
-1040 00012 | 2025-10-08 | 1040→0040 | Admitida | CD 0040 | ingreso a CD
-0070 00151 | 2025-09-18 | 0070→0000 | En ruta a la agencia de entrega | — | luego pasará a En agencia destino
-1011 00006 | 2025-10-03 | 1011→0000 | En espera de retiro en agencia | Ag. 1011 | impuesta en agencia
-1024 00008 | 2025-10-07 | 1024→0000 | En espera de retiro al cliente | Domicilio | call center
-0110 00078 | 2025-10-09 | 0110→0000 | En ruta al domicilio de entrega | — | última milla
-1080 00024 | 2025-10-01 | 1080→0000 | Entregada | — |
-0090 00045 | 2025-10-03 | 0090→1090 | Admitida | CD 0090 | ingreso a CD
-1050 00031 | 2025-10-04 | 1050→0000 | Pendiente de entrega | Ag. 1050 | espera retiro
-0040 00210 | 2025-10-06 | 0040→0000 | En CD destino | CD 0050 | larga distancia completada
-0001 00101 | 2025-09-30 | 0001→1001 | En ruta a la agencia de entrega | — | en tránsito urbano
-1020 00029 | 2025-10-05 | 1020→0000 | En espera de retiro al cliente | Domicilio | call center
-0100 00055 | 2025-10-02 | 0100→0000 | En ruta al domicilio de entrega | — | reparto local
-1052 00042 | 2025-09-28 | 1052→0000 | Entregada | — | confirmada en sistema
-0060 00075 | 2025-10-07 | 0060→0000 | En ruta a CD de origen | — | traslado al depósito
-1095 00017 | 2025-10-03 | 1095→0000 | A retirar en agencia de origen | Ag. 1095 | lista para retiro
-0040 00089 | 2025-09-25 | 0040→1040 | En ruta al domicilio de entrega | — | última milla
-0020 00061 | 2025-09-27 | 0020→1020 | En tránsito al CD destino | CD intermedio 0011 | paso intermedio
-1060 00022 | 2025-10-04 | 1060→0000 | En ruta al domicilio de entrega | — | en camino
-0110 00081 | 2025-10-10 | 0110→0000 | Entregada | — | cierre operativo
-0080 00065 | 2025-09-28 | 0080→0000 | En agencia destino | Ag. 1081 | lista para entrega
-0100 00066 | 2025-09-29 | 0100→0000 | En tránsito al CD destino | CD 0090 | inter-CD
-0130 00088 | 2025-10-02 | 0130→0000 | En ruta al domicilio de entrega | — | última milla
-0140 00054 | 2025-10-03 | 0140→0000 | Pendiente de entrega | Ag. 1096 | espera cliente
-0150 00035 | 2025-10-03 | 0150→0000 | En ruta a CD de origen | — | traslado interno
-0160 00029 | 2025-10-04 | 0160→0000 | En tránsito al CD destino | CD 0050 | paso intermedio
-0170 00021 | 2025-10-05 | 0170→0070 | En CD destino | CD 0070 | llegada completada
-0180 00010 | 2025-10-06 | 0180→0000 | En ruta al domicilio de entrega | — | reparto final
-0190 00011 | 2025-10-07 | 0190→0000 | Entregada | — | cierre
-1012 00003 | 2025-09-27 | 1012→0000 | En espera de retiro en agencia | Ag. 1012 | impuesta en agencia
-1013 00009 | 2025-09-26 | 1013→0000 | En espera de retiro al cliente | Domicilio | solicitud telefónica
-1041 00025 | 2025-09-28 | 1041→0040 | En ruta a CD de origen | — | fletero asignado
-1042 00019 | 2025-09-29 | 1042→0000 | En tránsito al CD destino | CD intermedio 0050 | media distancia
-1044 00022 | 2025-09-30 | 1044→0000 | En CD destino | CD 0040 | carga recibida
-1053 00018 | 2025-10-01 | 1053→0000 | En ruta al domicilio de entrega | — | última milla
-1054 00014 | 2025-10-01 | 1054→0000 | Pendiente de entrega | Ag. 1054 | espera cliente
-1055 00013 | 2025-10-02 | 1055→0000 | En ruta a la agencia de entrega | — | traslado local
-1063 00011 | 2025-10-02 | 1063→0000 | En agencia destino | Ag. 1060 | lista para retiro
-1072 00033 | 2025-09-28 | 1072→0000 | En espera de retiro en agencia | Ag. 1072 | lista de origen
-1073 00045 | 2025-09-27 | 1073→0000 | En tránsito al CD destino | CD 0070 | ruta interprovincial
-1074 00025 | 2025-09-29 | 1074→0000 | En CD destino | CD 0070 | recepción confirmada
-1075 00031 | 2025-10-03 | 1075→0000 | En ruta al domicilio de entrega | — | última milla
-1076 00042 | 2025-10-04 | 1076→0000 | Pendiente de entrega | Ag. 1076 | espera firma
-1077 00019 | 2025-10-04 | 1077→0000 | Entregada | — | confirmada
-1082 00029 | 2025-10-04 | 1082→0000 | En tránsito al CD destino | CD 0090 | media distancia
-1083 00037 | 2025-10-05 | 1083→0000 | En ruta a la agencia de entrega | — | entrega en preparación
-1084 00048 | 2025-10-06 | 1084→0000 | En agencia destino | Ag. 1081 | en espera
-1085 00059 | 2025-10-07 | 1085→0000 | Pendiente de entrega | Ag. 1081 | espera cliente
-1086 00067 | 2025-10-08 | 1086→0000 | Entregada | — | confirmada por sistema
+﻿Kit de formatos y datos de prueba — versión ampliada 
+1) Formatos 
+Los formatos deben ser realistas de acuerdo a su contexto. Somos una empresa que trabaja en todas las provincias de argentina, tiene un centro de distribución (CD) por provincia, y una agencia por localidad (aunque no hay en todas las localidades, no habra dos agencias en la misma).
+DEBEN SER DATOS REALISTAS. Los formatos deben ser los solicitados en este documento, sin alucinaciones.
+
+Formato de:
+
+CD:
+ID DEL CD
+Número de 4 dígitos, dado por el código postal de la localidad en la que se encuentre el cd (también perteneciente a una provincia, hay UN CD POR PROVINCIA)
+1888 – CP de Florencio Varela → CD de Buenos Aires.
+
+Nombre del CD - Dado por CD + Provincia en la que está. Ejemplo: CD Tucumán. 
+Hay UN CD POR PROVINCIA.
+
+Dirección CD 
+Debe ser una dirección verdadera de la provincia y localidad en la que se encuentra el CD.
+
+AGENCIA—>> cada una está relacionada a un único CD. (el de la provincia en la que se encuentran, aunque no sea necesariamente la misma localidad).
+
+ID de agencia:
+Número de 5 dígitos, dado por número “0” más el código postal de la localidad en la que se encuentre la agencia. Hay UNA agencia por localidad.
+1888 - CP de Florencio Varela → 01888 ID de la agencia - Florencio Varela - Buenos Aires.
+
+Nombre agencia:
+Puede ser cualquier cosa, invéntelo. Puede estar relacionado a la localidad en la que está.
+
+Dirección agencia:
+Debe ser una dirección de la localidad en la que se encuentra.
+
+Código postal: CP de la localidad en la que se encuentra.
+
+Guia:
+Numero de guia (para tracking): XXXXX NNNNN
+(10 nums si es agencia, 9 nums si es cd)
+
+XXXXX: Origen (dado por CD o agencia)
+ (5 nums si es agencia, 4 nums si es cd)
+
+NNNNN: Correlativo por establecimiento (5 dígitos). 
+
+HDR:
+
+ID HDR: H XXXXX NNNNNN XXXXX (15 a 17 nums, dependiendo de los X)
+
+H = tipo: T (transporte), R (retiro), D (distribución). 
+XXXXX: origen de la hoja. (código postal si es CD, o ID de agencia)
+NNNNNN: correlativo global (6 dígitos, no diario). 
+XXXXX: destino (0000 = domicilio). 
+
+
+Empresa de transporte 
+ID Empresa: CCC (número de 3 dígitos random)
+Nombre de la empresa: Debe ser uno real y de la empresa.
+
+Servicio de transporte
+ID Servicio: CCC NNNNN (CCC = ID de la empresa a la que pertenece, 3 dígitos). 
+
+Otros:
+DNI fletero: 7–8 dígitos , un DNI realista.- El fletero pertenece a un cd base (hay varios fleteros por cd)
+
+CUIT: ## - ########-# con DV válido. 
+CP (codigo postal): 4 dígitos, válido, de acuerdo a las localidades del resto de los datos.
+
+Cliente:   
+	Su identificador es el CUIT. Debe ser válido.
+Su código postal debe coincidir con el del CD con el que trabaja, o las agencias con las que trabaja.
+
+Convenio con el cliente. ID CONVENIO: Número random de 6 dígitos. (o inventar formato). Se relaciona con un cliente en particular. 
+
+Factura.
+formato: "FA-{DateTime.Now:yyyyMM}-{_seqFactura++:00000}"
+La parte azul es un número random de 6 dígitos (segundo {}).
+
+Destinatario:
+La dirección y código postal del destinatario deben ser de la misma provincia (no necesariamente localidad) del CD de destino o la misma localidad de la agencia destino.
+2) Estados de guía (definitivos) y reglas de lugar 
+
+Estados de guía (definitivos) y reglas de lugar  
+
+Usar exactamente estos estados y su semántica para las pantallas. Algunos **no 
+llevan ** lugar (queda vacío o null ).  
+
+1. A retirar en agencia de origen.  
+lugar: una agencia, quien la impuso.  
+Caso: cuando la guía se impone en agencia. Arranca acá.  
+
+2. A retirar por domicilio del cliente.  
+lugar: domicilio del cliente  por call center. Arranca acá.  
+Caso: cuando la guía se impone 
+
+3. En camino a retirar en agencia de origen. 
+Caso: el fletero fue a retirar a agencia de origen. 
+
+4. En camino a retirar por domicilio 
+lugar: (sin lugar actual)  
+Caso: el fletero fue a retirar al domicilio, volverá con el mismo estado hacia 
+el CD de origen. El próximo estado es admitida. 
+
+5. En camino a retirar por agencia 
+
+6. En ruta a CD de origen, desde agencia. 
+lugar: (sin lugar actual)  
+Caso: el fletero retiró en agencia, esta lo indico en sistema mediante la 
+pantalla de rendición y despacho de agencia, por lo que se entiende que el 
+fletero (con paquete) este volviendo hacia el CD de origen.  
+
+7. Admitida  
+lugar: siempre un CD Caso: cuando la guía se impone en CD. Arranca acá.  
+
+8. En tránsito al CD destino  
+lugar: puede ser vacío o un CD intermedio (cross-dock)  
+Uso: solo en ruteos de media/larga distancia.  
+
+9. En CD destino  
+lugar: un CD  
+Uso: solo en ruteos de media/larga distancia.  
+
+10. En ruta al domicilio de entrega.  
+lugar: (sin lugar actual)  
+Fletero va a entregar a domicilio. Se da siempre (UM o Larga Distancia).   
+Si ocurre, no ocurre el siguiente.  
+
+11. En ruta a la agencia destino  
+lugar: (sin lugar actual) Fletero va a entregar a una agencia. Se da siempre 
+(UM o Larga Distancia). Si ocurre, no ocurre el anterior.  
+
+12. Pendiente de entrega.  
+lugar: Un CD (si el destinatario lo debe pasar a buscar por ahi) o una 
+agencia (si ocurrio previamente el 10). Siempre se debe dar.  
+
+13. Entregada   
+Lugar: (sin lugar actual)  
+Se da siempre (estado final).  
+
+Además, para excepciones:
+14. CANCELADO
+15.. No entregado
+
+Existe un estado, no perteneciente al tracking, que 2 indica si la factura está 
+Facturada o no (luego de entregada, hay un tiempo en donde no esta facturada, y 
+luego ya si)
+16. Facturada
+

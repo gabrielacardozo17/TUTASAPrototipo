@@ -9,6 +9,6 @@ namespace TUTASAPrototipo.Almacenes
         public DateTime FechaEmisionFactura { get; set; }
         public string CUITCliente { get; set; } = string.Empty;
         public decimal Total { get; set; }
-        public List<int> GuiasFacturadas { get; set; }
+        public List<string> GuiasFacturadas { get; set; }
     }
 }

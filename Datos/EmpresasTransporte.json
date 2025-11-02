@@ -1,0 +1,68 @@
+﻿[
+  {
+    "ID": 100,
+    "IDConvenioEmpresa": 600100,
+    "Nombre": "Plusmar",
+    "PrecioPorBodegaFijoPorMes": {
+      "BodegaA": 850000,
+      "BodegaB": 1100000,
+      "BodegaC": 1450000,
+      "BodegaD": 1900000
+    }
+  },
+  {
+    "ID": 200,
+    "IDConvenioEmpresa": 600200,
+    "Nombre": "Fletar SRL",
+    "PrecioPorBodegaFijoPorMes": {
+      "BodegaA": 780000,
+      "BodegaB": 1020000,
+      "BodegaC": 1380000,
+      "BodegaD": 1820000
+    }
+  },
+  {
+    "ID": 300,
+    "IDConvenioEmpresa": 600300,
+    "Nombre": "Andesmar Cargas",
+    "PrecioPorBodegaFijoPorMes": {
+      "BodegaA": 900000,
+      "BodegaB": 1180000,
+      "BodegaC": 1550000,
+      "BodegaD": 2050000
+    }
+  },
+  {
+    "ID": 400,
+    "IDConvenioEmpresa": 600400,
+    "Nombre": "Via Bariloche Cargo",
+    "PrecioPorBodegaFijoPorMes": {
+      "BodegaA": 820000,
+      "BodegaB": 1090000,
+      "BodegaC": 1490000,
+      "BodegaD": 1950000
+    }
+  },
+  {
+    "ID": 500,
+    "IDConvenioEmpresa": 600500,
+    "Nombre": "El Condor - La Estrella Cargo",
+    "PrecioPorBodegaFijoPorMes": {
+      "BodegaA": 800000,
+      "BodegaB": 1060000,
+      "BodegaC": 1420000,
+      "BodegaD": 1880000
+    }
+  },
+  {
+    "ID": 600,
+    "IDConvenioEmpresa": 600600,
+    "Nombre": "Crucero del Norte Cargo",
+    "PrecioPorBodegaFijoPorMes": {
+      "BodegaA": 760000,
+      "BodegaB": 1010000,
+      "BodegaC": 1370000,
+      "BodegaD": 1800000
+    }
+  }
+]

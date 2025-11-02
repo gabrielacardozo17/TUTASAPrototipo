@@ -11,8 +11,8 @@ namespace TUTASAPrototipo.Almacenes
         public EntregaEnum TipoEntrega { get; set; }
         public int CodigoPostalCDOrigen { get; set; }
         public int CodigoPostalCDDestino { get; set; }
-        public int IDAgenciaOrigen { get; set; }
-        public int IDAgenciaDestino { get; set; }
+        public string IDAgenciaOrigen { get; set; }
+        public string IDAgenciaDestino { get; set; }
         public string CUITCliente { get; set; } = string.Empty;
         public TamanoEnum Tamano { get; set; }
         public DestinatarioAux Destinatario { get; set; }
