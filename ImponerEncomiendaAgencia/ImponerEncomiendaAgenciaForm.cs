@@ -173,7 +173,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
         // ---------- TIPO DE ENTREGA ----------
         private void TipoEntregaComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            // Siempre que cambia el tipo, limpiamos Dirección/CP y selecciones de Agencia/CD
+            // Siempre que cambia el tipo, limpiamos Dirección y selecciones de Agencia/CD
             LimpiarCamposEntrega();
 
             var tipoStr = TipoEntregaComboBox.SelectedItem as string;
@@ -236,7 +236,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             var esAge = string.Equals(tipo, "En Agencia", StringComparison.OrdinalIgnoreCase);
             var esCd = string.Equals(tipo, "En CD", StringComparison.OrdinalIgnoreCase);
 
-            // Dirección / CP
+            // Dirección
             DireccionDestinatarioTextBox.Enabled = esDom;
             DireccionDestinatarioTextBox.BackColor = esDom ? SystemColors.Window : SystemColors.Control;
 
@@ -317,7 +317,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
 
             var tipo = tipoSel; // Usamos string
 
-            string? direccion = null, cp = null, agenciaNombre = null, cdDestinoNombre = null;
+            string? direccion = null, agenciaNombre = null, cdDestinoNombre = null;
             int? agenciaId = null, cdDestinoId = null;
 
             if (string.Equals(tipo, "A domicilio", StringComparison.OrdinalIgnoreCase))
@@ -363,7 +363,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                     esOtras ? null : locNombre,
                     esOtras,
                     tipo,
-                    direccion, cp,
+                    direccion, null,
                     agenciaId, agenciaNombre,
                     cdDestinoId, cdDestinoNombre,
                     cantS, cantM, cantL, cantXL,

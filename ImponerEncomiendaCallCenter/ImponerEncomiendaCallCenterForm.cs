@@ -172,7 +172,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
         // ---------- TIPO DE ENTREGA ----------
         private void TipoEntregaComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            // Siempre que cambia el tipo, limpiamos Dirección/CP y selecciones de Agencia/CD
+            // Siempre que cambia el tipo, limpiamos Dirección y selecciones de Agencia/CD
             LimpiarCamposEntrega();
 
             var tipoStr = TipoEntregaComboBox.SelectedItem as string;
@@ -235,10 +235,9 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             var esAge = string.Equals(tipo, "En Agencia", StringComparison.OrdinalIgnoreCase);
             var esCd = string.Equals(tipo, "En CD", StringComparison.OrdinalIgnoreCase);
 
-            // Dirección / CP
+            // Dirección
             DireccionDestinatarioTextBox.Enabled = esDom;
             DireccionDestinatarioTextBox.BackColor = esDom ? SystemColors.Window : SystemColors.Control;
-
 
             // Agencia
             AgenciaComboBox.Enabled = esAge;
@@ -252,7 +251,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
         // Limpia todos los campos/selecciones dependientes del tipo de entrega
         private void LimpiarCamposEntrega()
         {
-            // Dirección / CP
+            // Dirección
             DireccionDestinatarioTextBox.Text = "";
 
             // Agencia
@@ -319,7 +318,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
 
             var tipo = tipoSel; // seguimos usando string
 
-            string? direccion = null, cp = null, agenciaNombre = null, cdDestinoNombre = null;
+            string? direccion = null, agenciaNombre = null, cdDestinoNombre = null;
             int? agenciaId = null, cdDestinoId = null;
 
             if (string.Equals(tipo, "A domicilio", StringComparison.OrdinalIgnoreCase))
@@ -327,7 +326,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                 direccion = (DireccionDestinatarioTextBox.Text ?? "").Trim();
 
                 bool direccionOk = !string.IsNullOrWhiteSpace(direccion) && direccion.Length >= 3;
-                bool cpOk = (cp.Length == 4) && cp.All(char.IsDigit) && cp != "0000";
 
                 if (!direccionOk) { MessageBox.Show("Ingresá una dirección válida (no vacía).", "Validación"); return; }
             }
@@ -343,8 +341,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             }
             else
             {
-                MessageBox.Show("Completá el dato requerido del tipo de entrega elegido.", "Validación");
-                return;
+                MessageBox.Show("Completá el dato requerido del tipo de entrega elegido.", "Validación"); return;
             }
 
             try
@@ -363,27 +360,18 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                     esOtras ? null : locNombre,
                     esOtras,
                     tipo,
-                    direccion, cp,
+                    direccion, null,
                     agenciaId, agenciaNombre,
                     cdDestinoId, cdDestinoNombre,
                     cantS, cantM, cantL, cantXL,
                     cdOrigenId, cdOrigenNombre
                 );
 
-                var lineas = guias.Select(g =>
-                {
-                    string tam = g.CantS == 1 ? "S"
-                               : g.CantM == 1 ? "M"
-                               : g.CantL == 1 ? "L"
-                               : g.CantXL == 1 ? "XL"
-                               : "?";
-                    return $"- {g.Numero} (Tamaño: {tam})";
-                });
-
+                var lineas = guias.Select(g => $"- {g.Numero} (Tamaño: {(g.CantS==1?"S":g.CantM==1?"M":g.CantL==1?"L":"XL")})");
                 var cuerpo = string.Join(Environment.NewLine, lineas);
 
                 MessageBox.Show(
-                    $"Imposición confirmada. Se generaron {guias.Count} guías (Estado: A retirar por domicilio del cliente):{Environment.NewLine}{cuerpo}",
+                    $"Imposición confirmada. Se generaron {guias.Count} guías (Estado: Pendiente Retiro a Domicilio):{Environment.NewLine}{cuerpo}",
                     "Operación Exitosa",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information

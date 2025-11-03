@@ -173,7 +173,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         // ---------- TIPO DE ENTREGA ----------
         private void TipoEntregaComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            // Siempre que cambia el tipo, limpiamos Dirección/CP y selecciones de Agencia/CD
+            // Siempre que cambia el tipo, limpiamos Dirección y selecciones de Agencia/CD
             LimpiarCamposEntrega();
 
             var tipoStr = TipoEntregaComboBox.SelectedItem as string;
@@ -236,7 +236,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             var esAge = string.Equals(tipo, "En Agencia", StringComparison.OrdinalIgnoreCase);
             var esCd = string.Equals(tipo, "En CD", StringComparison.OrdinalIgnoreCase);
 
-            // Dirección / CP
+            // Dirección
             DireccionDestinatarioTextBox.Enabled = esDom;
             DireccionDestinatarioTextBox.BackColor = esDom ? SystemColors.Window : SystemColors.Control;
 
@@ -253,7 +253,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         // Limpia todos los campos/selecciones dependientes del tipo de entrega
         private void LimpiarCamposEntrega()
         {
-            // Dirección / CP
+            // Dirección
             DireccionDestinatarioTextBox.Text = "";
 
             // Agencia
@@ -323,16 +323,15 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
             var tipo = tipoSel; // seguimos usando string
 
-            string? direccion = null, cp = null, agenciaNombre = null, cdDestinoNombre = null;
+            string? direccion = null, agenciaNombre = null, cdDestinoNombre = null;
             int? agenciaId = null, cdDestinoId = null;
 
             if (string.Equals(tipo, "A domicilio", StringComparison.OrdinalIgnoreCase))
             {
                 direccion = (DireccionDestinatarioTextBox.Text ?? "").Trim();
 
-                // ---- Dirección / CP (inline) ----
+                // ---- Dirección (inline) ----
                 bool direccionOk = !string.IsNullOrWhiteSpace(direccion) && direccion.Length >= 3;
-
                 if (!direccionOk)
                 { MessageBox.Show("Ingresá una dirección válida (no vacía).", "Validación"); return; }
 
@@ -355,11 +354,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
             try
             {
-                var cdOrigenId = _modelo.OrigenCdFijoId;            // 9501
-                var cdOrigenNombre = _modelo.OrigenCdFijoNombre;       // "CD Corrientes"
-
-                //var cdOrigenNombre = (CDLabel?.Text ?? "").Replace("CD:", "").Trim();
-                //var cdOrigenId = _modelo.GetCDIdPorNombre(cdOrigenNombre) ?? 0;
+                var cdOrigenId = _modelo.OrigenCdFijoId;
+                var cdOrigenNombre = _modelo.OrigenCdFijoNombre;
 
                 var guias = _modelo.ConfirmarImposicion(
                     cuit,
@@ -371,13 +367,12 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                     esOtras ? null : locNombre,
                     esOtras,
                     tipo,
-                    direccion, cp,
+                    direccion, null,
                     agenciaId, agenciaNombre,
                     cdDestinoId, cdDestinoNombre,
                     cantS, cantM, cantL, cantXL,
                     cdOrigenId, cdOrigenNombre
                 );
-
 
                 var lineas = guias.Select(g =>
                 {
@@ -405,7 +400,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 MessageBox.Show(ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
 
         // ---------- LIMPIEZAS ----------
         private void LimpiarFormulario()
