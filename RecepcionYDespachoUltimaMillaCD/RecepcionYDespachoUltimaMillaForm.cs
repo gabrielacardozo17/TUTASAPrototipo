@@ -85,7 +85,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             PintarNombreFletero(fletero.Nombre);
 
             // Asegurar HDRs para que las grillas muestren HDR ya al terminar la búsqueda
-            _modelo.AsegurarHDRsAsignadasParaFletero(dni);
+           //modelo.AsegurarHDRsAsignadasParaFletero(dni);
 
             // Cargar guías asignadas (listas superiores) y también las "nuevas" (resumen HDR) para que se vean inmediatamente
             CargarAsignadas(dni);
@@ -117,7 +117,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             {
                 _modelo.ConfirmarRendicion(dni, marcadasDistrib, marcadasRetiro);
                 _modelo.AsignarHDRsPorDireccion(dni);
-                _modelo.AsegurarHDRsAsignadasParaFletero(dni);
+               //modelo.AsegurarHDRsAsignadasParaFletero(dni);
 
                 // Recargar para que las secciones de "asignadas" reflejen la situación final
                 CargarAsignadas(dni);
@@ -164,15 +164,15 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             foreach (var g in t.distribucion)
             {
                 var it = new ListViewItem("") { Checked = false };
-                it.SubItems.Add(g.Numero);
-                it.SubItems.Add(g.NroHDR ?? "");
+                it.SubItems.Add(g.NumeroGuia.ToString());
+                //it.SubItems.Add(g.NroHDR ?? "");
                 GuiasDistribucionxFleteroListView.Items.Add(it);
             }
             foreach (var g in t.retiro)
             {
                 var it = new ListViewItem("") { Checked = false };
-                it.SubItems.Add(g.Numero);
-                it.SubItems.Add(g.NroHDR ?? "");
+                it.SubItems.Add(g.NumeroGuia.ToString());
+                //it.SubItems.Add(g.NroHDR ?? "");
                 GuiasRetiroxFleteroListView.Items.Add(it);
             }
         }
@@ -185,24 +185,29 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             NuevasGuiasRetiroxFleteroListView.Items.Clear();
             NuevasGuiasDistribucionxFleteroListView.Items.Clear();
 
-            var t = _modelo.GetGuiasPorFletero(dni);
-            foreach (var g in t.retiro)
+            var noAsignadas = _modelo.GetGuiasNoAsignadasPorEstado();
+
+            // Cuadro 3: En CD destino (distribución)
+            foreach (var g in noAsignadas.enCDDestino)
             {
-                var it = new ListViewItem(g.Numero);
-                it.SubItems.Add(g.Tamaño);
-                it.SubItems.Add(g.Destino);
-                it.SubItems.Add(g.NroHDR ?? "");
-                NuevasGuiasRetiroxFleteroListView.Items.Add(it);
-            }
-            foreach (var g in t.distribucion)
-            {
-                var it = new ListViewItem(g.Numero);
-                it.SubItems.Add(g.Tamaño);
-                it.SubItems.Add(g.Destino);
-                it.SubItems.Add(g.NroHDR ?? "");
+                var it = new ListViewItem(g.NumeroGuia.ToString());
+                it.SubItems.Add(g.Tamano.ToString());
+                it.SubItems.Add(g.Destinatario?.Direccion ?? "");
+                it.SubItems.Add(""); // HDR vacía porque no está en HDR
                 NuevasGuiasDistribucionxFleteroListView.Items.Add(it);
             }
+
+            // Cuadro 4: Pendiente de retiro
+            foreach (var g in noAsignadas.pendientesRetiro)
+            {
+                var it = new ListViewItem(g.NumeroGuia.ToString());
+                it.SubItems.Add(g.Tamano.ToString());
+                it.SubItems.Add(g.Destinatario?.Direccion ?? "");
+                it.SubItems.Add(""); // HDR vacía
+                NuevasGuiasRetiroxFleteroListView.Items.Add(it);
+            }
         }
+
 
         // ====== HELPERS UI ======
         private void PrepararListViews()

@@ -24,10 +24,26 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 0, "UbicacionGuia": "Agencia 01888", "FechaActualizacionEstado": "2025-10-29T09:10:00-03:00" },
-      { "Estado": 4, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-29T10:00:00-03:00" },
-      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-10-29T12:20:00-03:00" },
-      { "Estado": 6, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-29T18:40:00-03:00" }
+      {
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 01888",
+        "FechaActualizacionEstado": "2025-10-29T09:10:00-03:00"
+      },
+      {
+        "Estado": 4,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-29T10:00:00-03:00"
+      },
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 1888",
+        "FechaActualizacionEstado": "2025-10-29T12:20:00-03:00"
+      },
+      {
+        "Estado": 6,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-29T18:40:00-03:00"
+      }
     ]
   },
   {
@@ -55,9 +71,21 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 5, "UbicacionGuia": "CD 5000", "FechaActualizacionEstado": "2025-10-28T15:35:00-03:00" },
-      { "Estado": 6, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-28T21:10:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-10-29T10:05:00-03:00" }
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 5000",
+        "FechaActualizacionEstado": "2025-10-28T15:35:00-03:00"
+      },
+      {
+        "Estado": 6,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-28T21:10:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-10-29T10:05:00-03:00"
+      }
     ]
   },
   {
@@ -85,13 +113,41 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 0, "UbicacionGuia": "Agencia 01000", "FechaActualizacionEstado": "2025-10-27T11:05:00-03:00" },
-      { "Estado": 4, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-27T12:00:00-03:00" },
-      { "Estado": 5, "UbicacionGuia": "CD 1000", "FechaActualizacionEstado": "2025-10-27T13:00:00-03:00" },
-      { "Estado": 6, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-27T20:30:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 3000", "FechaActualizacionEstado": "2025-10-28T09:40:00-03:00" },
-      { "Estado": 9, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-28T10:10:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "Agencia 03000", "FechaActualizacionEstado": "2025-10-28T12:00:00-03:00" }
+      {
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 01000",
+        "FechaActualizacionEstado": "2025-10-27T11:05:00-03:00"
+      },
+      {
+        "Estado": 4,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-27T12:00:00-03:00"
+      },
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 1000",
+        "FechaActualizacionEstado": "2025-10-27T13:00:00-03:00"
+      },
+      {
+        "Estado": 6,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-27T20:30:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 3000",
+        "FechaActualizacionEstado": "2025-10-28T09:40:00-03:00"
+      },
+      {
+        "Estado": 9,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-28T10:10:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "Agencia 03000",
+        "FechaActualizacionEstado": "2025-10-28T12:00:00-03:00"
+      }
     ]
   },
   {
@@ -119,12 +175,36 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 0, "UbicacionGuia": "Agencia 05500", "FechaActualizacionEstado": "2025-10-26T10:25:00-03:00" },
-      { "Estado": 4, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-26T11:10:00-03:00" },
-      { "Estado": 5, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-10-26T12:00:00-03:00" },
-      { "Estado": 6, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-26T20:00:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 8300", "FechaActualizacionEstado": "2025-10-27T09:00:00-03:00" },
-      { "Estado": 8, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-27T10:15:00-03:00" }
+      {
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 05500",
+        "FechaActualizacionEstado": "2025-10-26T10:25:00-03:00"
+      },
+      {
+        "Estado": 4,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-26T11:10:00-03:00"
+      },
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-10-26T12:00:00-03:00"
+      },
+      {
+        "Estado": 6,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-26T20:00:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 8300",
+        "FechaActualizacionEstado": "2025-10-27T09:00:00-03:00"
+      },
+      {
+        "Estado": 8,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-27T10:15:00-03:00"
+      }
     ]
   },
   {
@@ -152,13 +232,41 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 0, "UbicacionGuia": "Agencia 09100", "FechaActualizacionEstado": "2025-10-25T16:40:00-03:00" },
-      { "Estado": 4, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-25T17:20:00-03:00" },
-      { "Estado": 5, "UbicacionGuia": "CD 9100", "FechaActualizacionEstado": "2025-10-25T18:00:00-03:00" },
-      { "Estado": 6, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-25T22:30:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 8500", "FechaActualizacionEstado": "2025-10-26T09:10:00-03:00" },
-      { "Estado": 9, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-26T10:00:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "Agencia 08500", "FechaActualizacionEstado": "2025-10-26T12:20:00-03:00" }
+      {
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 09100",
+        "FechaActualizacionEstado": "2025-10-25T16:40:00-03:00"
+      },
+      {
+        "Estado": 4,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-25T17:20:00-03:00"
+      },
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 9100",
+        "FechaActualizacionEstado": "2025-10-25T18:00:00-03:00"
+      },
+      {
+        "Estado": 6,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-25T22:30:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 8500",
+        "FechaActualizacionEstado": "2025-10-26T09:10:00-03:00"
+      },
+      {
+        "Estado": 9,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-26T10:00:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "Agencia 08500",
+        "FechaActualizacionEstado": "2025-10-26T12:20:00-03:00"
+      }
     ]
   },
   {
@@ -186,14 +294,46 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 0, "UbicacionGuia": "Agencia 03000", "FechaActualizacionEstado": "2025-10-24T10:00:00-03:00" },
-      { "Estado": 4, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-24T10:35:00-03:00" },
-      { "Estado": 5, "UbicacionGuia": "CD 3000", "FechaActualizacionEstado": "2025-10-24T11:10:00-03:00" },
-      { "Estado": 6, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-24T16:30:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 1000", "FechaActualizacionEstado": "2025-10-25T08:50:00-03:00" },
-      { "Estado": 9, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-25T09:30:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "Agencia 01000", "FechaActualizacionEstado": "2025-10-25T10:15:00-03:00" },
-      { "Estado": 11, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-25T13:40:00-03:00" }
+      {
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 03000",
+        "FechaActualizacionEstado": "2025-10-24T10:00:00-03:00"
+      },
+      {
+        "Estado": 4,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-24T10:35:00-03:00"
+      },
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 3000",
+        "FechaActualizacionEstado": "2025-10-24T11:10:00-03:00"
+      },
+      {
+        "Estado": 6,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-24T16:30:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 1000",
+        "FechaActualizacionEstado": "2025-10-25T08:50:00-03:00"
+      },
+      {
+        "Estado": 9,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-25T09:30:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "Agencia 01000",
+        "FechaActualizacionEstado": "2025-10-25T10:15:00-03:00"
+      },
+      {
+        "Estado": 11,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-25T13:40:00-03:00"
+      }
     ]
   },
   {
@@ -221,14 +361,46 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 0, "UbicacionGuia": "Agencia 04400", "FechaActualizacionEstado": "2025-10-23T14:25:00-03:00" },
-      { "Estado": 4, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-23T15:00:00-03:00" },
-      { "Estado": 5, "UbicacionGuia": "CD 4400", "FechaActualizacionEstado": "2025-10-23T15:45:00-03:00" },
-      { "Estado": 6, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-23T22:10:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 4200", "FechaActualizacionEstado": "2025-10-24T09:30:00-03:00" },
-      { "Estado": 9, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-24T10:15:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "Agencia 04200", "FechaActualizacionEstado": "2025-10-24T11:00:00-03:00" },
-      { "Estado": 13, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-24T18:30:00-03:00" }
+      {
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 04400",
+        "FechaActualizacionEstado": "2025-10-23T14:25:00-03:00"
+      },
+      {
+        "Estado": 4,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-23T15:00:00-03:00"
+      },
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 4400",
+        "FechaActualizacionEstado": "2025-10-23T15:45:00-03:00"
+      },
+      {
+        "Estado": 6,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-23T22:10:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 4200",
+        "FechaActualizacionEstado": "2025-10-24T09:30:00-03:00"
+      },
+      {
+        "Estado": 9,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-24T10:15:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "Agencia 04200",
+        "FechaActualizacionEstado": "2025-10-24T11:00:00-03:00"
+      },
+      {
+        "Estado": 13,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-24T18:30:00-03:00"
+      }
     ]
   },
   {
@@ -256,13 +428,41 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 0, "UbicacionGuia": "Agencia 05500", "FechaActualizacionEstado": "2025-10-22T09:00:00-03:00" },
-      { "Estado": 4, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-22T09:40:00-03:00" },
-      { "Estado": 5, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-10-22T10:10:00-03:00" },
-      { "Estado": 6, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-22T22:30:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 9410", "FechaActualizacionEstado": "2025-10-24T11:20:00-03:00" },
-      { "Estado": 9, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-24T11:45:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "Agencia 09410", "FechaActualizacionEstado": "2025-10-24T12:30:00-03:00" }
+      {
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 05500",
+        "FechaActualizacionEstado": "2025-10-22T09:00:00-03:00"
+      },
+      {
+        "Estado": 4,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-22T09:40:00-03:00"
+      },
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-10-22T10:10:00-03:00"
+      },
+      {
+        "Estado": 6,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-22T22:30:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 9410",
+        "FechaActualizacionEstado": "2025-10-24T11:20:00-03:00"
+      },
+      {
+        "Estado": 9,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-24T11:45:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "Agencia 09410",
+        "FechaActualizacionEstado": "2025-10-24T12:30:00-03:00"
+      }
     ]
   },
   {
@@ -290,12 +490,36 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 0, "UbicacionGuia": "Agencia 01888", "FechaActualizacionEstado": "2025-10-30T09:20:00-03:00" },
-      { "Estado": 4, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-30T10:00:00-03:00" },
-      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-10-30T11:45:00-03:00" },
-      { "Estado": 6, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-30T18:30:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 1000", "FechaActualizacionEstado": "2025-10-31T08:50:00-03:00" },
-      { "Estado": 9, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-31T10:20:00-03:00" }
+      {
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 01888",
+        "FechaActualizacionEstado": "2025-10-30T09:20:00-03:00"
+      },
+      {
+        "Estado": 4,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-30T10:00:00-03:00"
+      },
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 1888",
+        "FechaActualizacionEstado": "2025-10-30T11:45:00-03:00"
+      },
+      {
+        "Estado": 6,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-30T18:30:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 1000",
+        "FechaActualizacionEstado": "2025-10-31T08:50:00-03:00"
+      },
+      {
+        "Estado": 9,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-31T10:20:00-03:00"
+      }
     ]
   },
   {
@@ -323,10 +547,26 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 5, "UbicacionGuia": "CD 5000", "FechaActualizacionEstado": "2025-10-29T16:40:00-03:00" },
-      { "Estado": 6, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-29T20:50:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 3000", "FechaActualizacionEstado": "2025-10-30T09:30:00-03:00" },
-      { "Estado": 8, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-30T10:10:00-03:00" }
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 5000",
+        "FechaActualizacionEstado": "2025-10-29T16:40:00-03:00"
+      },
+      {
+        "Estado": 6,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-29T20:50:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 3000",
+        "FechaActualizacionEstado": "2025-10-30T09:30:00-03:00"
+      },
+      {
+        "Estado": 8,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-30T10:10:00-03:00"
+      }
     ]
   },
   {
@@ -354,11 +594,31 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 0, "UbicacionGuia": "Agencia 08300", "FechaActualizacionEstado": "2025-10-28T12:30:00-03:00" },
-      { "Estado": 4, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-28T13:00:00-03:00" },
-      { "Estado": 5, "UbicacionGuia": "CD 8300", "FechaActualizacionEstado": "2025-10-28T14:00:00-03:00" },
-      { "Estado": 6, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-28T21:30:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-10-29T10:00:00-03:00" }
+      {
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 08300",
+        "FechaActualizacionEstado": "2025-10-28T12:30:00-03:00"
+      },
+      {
+        "Estado": 4,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-28T13:00:00-03:00"
+      },
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 8300",
+        "FechaActualizacionEstado": "2025-10-28T14:00:00-03:00"
+      },
+      {
+        "Estado": 6,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-28T21:30:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-10-29T10:00:00-03:00"
+      }
     ]
   },
   {
@@ -386,10 +646,26 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 0, "UbicacionGuia": "Agencia 09100", "FechaActualizacionEstado": "2025-10-27T08:50:00-03:00" },
-      { "Estado": 4, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-27T09:30:00-03:00" },
-      { "Estado": 5, "UbicacionGuia": "CD 9100", "FechaActualizacionEstado": "2025-10-27T10:00:00-03:00" },
-      { "Estado": 6, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-27T18:10:00-03:00" }
+      {
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 09100",
+        "FechaActualizacionEstado": "2025-10-27T08:50:00-03:00"
+      },
+      {
+        "Estado": 4,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-27T09:30:00-03:00"
+      },
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 9100",
+        "FechaActualizacionEstado": "2025-10-27T10:00:00-03:00"
+      },
+      {
+        "Estado": 6,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-27T18:10:00-03:00"
+      }
     ]
   },
   {
@@ -417,9 +693,21 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 0, "UbicacionGuia": "Agencia 03000", "FechaActualizacionEstado": "2025-10-26T17:20:00-03:00" },
-      { "Estado": 4, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-10-26T17:50:00-03:00" },
-      { "Estado": 5, "UbicacionGuia": "CD 3000", "FechaActualizacionEstado": "2025-10-26T18:30:00-03:00" }
+      {
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 03000",
+        "FechaActualizacionEstado": "2025-10-26T17:20:00-03:00"
+      },
+      {
+        "Estado": 4,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-26T17:50:00-03:00"
+      },
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 3000",
+        "FechaActualizacionEstado": "2025-10-26T18:30:00-03:00"
+      }
     ]
   },
   {
@@ -447,9 +735,21 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-11-02T10:00:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-02T18:40:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-03T09:00:00-03:00" }
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 1888",
+        "FechaActualizacionEstado": "2025-11-02T10:00:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-11-02T18:40:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-03T09:00:00-03:00"
+      }
     ]
   },
   {
@@ -477,9 +777,21 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-11-03T08:30:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-03T16:10:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-04T09:00:00-03:00" }
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 1888",
+        "FechaActualizacionEstado": "2025-11-03T08:30:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-11-03T16:10:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-04T09:00:00-03:00"
+      }
     ]
   },
   {
@@ -507,9 +819,21 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-11-03T09:15:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-03T19:30:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-04T09:30:00-03:00" }
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 1888",
+        "FechaActualizacionEstado": "2025-11-03T09:15:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-11-03T19:30:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-04T09:30:00-03:00"
+      }
     ]
   },
   {
@@ -537,9 +861,21 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 5, "UbicacionGuia": "CD 3000", "FechaActualizacionEstado": "2025-11-01T13:20:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-02T09:00:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-02T12:00:00-03:00" }
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 3000",
+        "FechaActualizacionEstado": "2025-11-01T13:20:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-11-02T09:00:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-02T12:00:00-03:00"
+      }
     ]
   },
   {
@@ -567,9 +903,21 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 5, "UbicacionGuia": "CD 8300", "FechaActualizacionEstado": "2025-11-01T10:40:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-01T18:10:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-02T08:30:00-03:00" }
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 8300",
+        "FechaActualizacionEstado": "2025-11-01T10:40:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-11-01T18:10:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-02T08:30:00-03:00"
+      }
     ]
   },
   {
@@ -597,9 +945,21 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-11-02T09:50:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-02T17:40:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-03T08:20:00-03:00" }
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 1888",
+        "FechaActualizacionEstado": "2025-11-02T09:50:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-11-02T17:40:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-03T08:20:00-03:00"
+      }
     ]
   },
   {
@@ -627,9 +987,21 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-11-02T11:05:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-02T19:15:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "", "FechaActualizacionEstado": "2025-11-03T09:10:00-03:00" }
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 1888",
+        "FechaActualizacionEstado": "2025-11-02T11:05:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-11-02T19:15:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-03T09:10:00-03:00"
+      }
     ]
   },
   {
@@ -657,9 +1029,21 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 5, "UbicacionGuia": "CD 1888", "FechaActualizacionEstado": "2025-11-04T09:10:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-04T17:10:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "Agencia 05500", "FechaActualizacionEstado": "2025-11-05T08:20:00-03:00" }
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 1888",
+        "FechaActualizacionEstado": "2025-11-04T09:10:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-11-04T17:10:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "Agencia 05500",
+        "FechaActualizacionEstado": "2025-11-05T08:20:00-03:00"
+      }
     ]
   },
   {
@@ -687,9 +1071,21 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 5, "UbicacionGuia": "CD 5000", "FechaActualizacionEstado": "2025-11-04T10:25:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-04T19:20:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "Agencia 05500", "FechaActualizacionEstado": "2025-11-05T08:40:00-03:00" }
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 5000",
+        "FechaActualizacionEstado": "2025-11-04T10:25:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-11-04T19:20:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "Agencia 05500",
+        "FechaActualizacionEstado": "2025-11-05T08:40:00-03:00"
+      }
     ]
   },
   {
@@ -717,9 +1113,21 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 5, "UbicacionGuia": "CD 8300", "FechaActualizacionEstado": "2025-11-04T11:40:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-04T20:30:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "Agencia 05500", "FechaActualizacionEstado": "2025-11-05T09:10:00-03:00" }
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 8300",
+        "FechaActualizacionEstado": "2025-11-04T11:40:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-11-04T20:30:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "Agencia 05500",
+        "FechaActualizacionEstado": "2025-11-05T09:10:00-03:00"
+      }
     ]
   },
   {
@@ -747,10 +1155,116 @@
     "ComisionFleteroOrigen": 0,
     "ComisionFleteroDestino": 0,
     "Historial": [
-      { "Estado": 5, "UbicacionGuia": "CD 9100", "FechaActualizacionEstado": "2025-11-04T12:55:00-03:00" },
-      { "Estado": 7, "UbicacionGuia": "CD 5500", "FechaActualizacionEstado": "2025-11-04T21:10:00-03:00" },
-      { "Estado": 10, "UbicacionGuia": "Agencia 05500", "FechaActualizacionEstado": "2025-11-05T09:30:00-03:00" }
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 9100",
+        "FechaActualizacionEstado": "2025-11-04T12:55:00-03:00"
+      },
+      {
+        "Estado": 7,
+        "UbicacionGuia": "CD 5500",
+        "FechaActualizacionEstado": "2025-11-04T21:10:00-03:00"
+      },
+      {
+        "Estado": 10,
+        "UbicacionGuia": "Agencia 05500",
+        "FechaActualizacionEstado": "2025-11-05T09:30:00-03:00"
+      }
     ]
+  },
+  {
+    "NumeroGuia": 10003,
+    "Estado": 5,
+    "FechaAdmision": "2025-11-03T09:15:00",
+    "TipoEntrega": 2,
+    "CodigoPostalCDOrigen": 1000,
+    "CodigoPostalCDDestino": 2002,
+    "IDAgenciaOrigen": "A001",
+    "IDAgenciaDestino": "A004",
+    "CUITCliente": "20304050609",
+    "Tamano": 1,
+    "Destinatario": {
+      "Nombre": "Luis",
+      "Apellido": "Gomez",
+      "Direccion": "Calle Verde 45"
+    },
+    "IDConvenio": 1,
+    "ImporteAFacturar": 80,
+    "ComisionAgenciaOrigen": 8,
+    "ComisionAgenciaDestino": 10,
+    "ComisionFleteroOrigen": 12,
+    "ComisionFleteroDestino": 15,
+    "Historial": []
+  },
+  {
+    "NumeroGuia": 10004,
+    "Estado": 10,
+    "FechaAdmision": "2025-11-03T10:00:00",
+    "TipoEntrega": 2,
+    "CodigoPostalCDOrigen": 1001,
+    "CodigoPostalCDDestino": 2003,
+    "IDAgenciaOrigen": "A002",
+    "IDAgenciaDestino": "A005",
+    "CUITCliente": "20304050610",
+    "Tamano": 3,
+    "Destinatario": {
+      "Nombre": "Ana",
+      "Apellido": "Perez",
+      "Direccion": "Av. Azul 120"
+    },
+    "IDConvenio": 1,
+    "ImporteAFacturar": 150,
+    "ComisionAgenciaOrigen": 12,
+    "ComisionAgenciaDestino": 15,
+    "ComisionFleteroOrigen": 18,
+    "ComisionFleteroDestino": 20,
+    "Historial": []
+  },
+  {
+    "NumeroGuia": 10001,
+    "Tamano": 1,
+    "Estado": 7,
+    "Destinatario": {
+      "Nombre": "Juan López",
+      "Direccion": "Calle Falsa 123"
+    }
+  },
+  {
+    "NumeroGuia": 10002,
+    "Tamano": 1,
+    "Estado": 7,
+    "Destinatario": {
+      "Nombre": "Ana Torres",
+      "Direccion": "Av. Siempre Viva 742"
+    }
+  },
+  {
+    "NumeroGuia": 10003,
+    "Tamano": 2,
+    "Estado": 0,
+    "Destinatario": {
+      "Nombre": "Carlos Pérez",
+      "Direccion": "Calle Luna 555"
+    }
+  },
+  {
+    "NumeroGuia": 10004,
+    "Tamano": 2,
+    "Estado": 1,
+    "Destinatario": {
+      "Nombre": "María Gómez",
+      "Direccion": "Av. Sol 321"
+    }
+  },
+  {
+    "NumeroGuia": 10005,
+    "Tamano": 3,
+    "Estado": 0,
+    "Destinatario": {
+      "Nombre": "Pedro Ramírez",
+      "Direccion": "Calle Estrella 77"
+    }
   }
 ]
+
 

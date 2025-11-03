@@ -1243,5 +1243,73 @@
 		],
 		"CodigoPostalOrigen": 7600,
 		"CodigoPostalDestino": 0
+	},
+	{
+		"ID": "D 7613 000501 0022",
+		"TipoHDR": 0,
+		"DNIFletero": 28765432,
+		"IDServicioTransporte": 1,
+		"CodigoPostalOrigen": 1000,
+		"CodigoPostalDestino": 2000,
+		"Guias": [
+			{
+				"NumeroGuia": 10001,
+				"Estado": 10,
+				"FechaAdmision": "2025-11-03T09:00:00",
+				"TipoEntrega": 2,
+				"CodigoPostalCDOrigen": 1000,
+				"CodigoPostalCDDestino": 2000,
+				"IDAgenciaOrigen": "A001",
+				"IDAgenciaDestino": "A002",
+				"CUITCliente": "20304050607",
+				"Tamano": 1, 
+				"Destinatario": {
+					"Nombre": "Carlos",
+					"Apellido": "Gomez",
+					"Direccion": "Calle Falsa 123"
+				},
+				"IDConvenio": 1,
+				"ImporteAFacturar": 120.5,
+				"ComisionAgenciaOrigen": 10,
+				"ComisionAgenciaDestino": 15,
+				"ComisionFleteroOrigen": 20,
+				"ComisionFleteroDestino": 25,
+				"Historial": []
+			}
+		]
+	},
+	{
+		"ID": "R 1122 000501 0022",
+		"TipoHDR": 1,
+		"DNIFletero": 28765432,
+		"IDServicioTransporte": 1,
+		"CodigoPostalOrigen": 1000,
+		"CodigoPostalDestino": 2000,
+		"Guias": [
+			{
+				"NumeroGuia": 10002,
+				"Estado": 0,
+				"FechaAdmision": "2025-11-03T09:30:00",
+				"TipoEntrega": 2,
+				"CodigoPostalCDOrigen": 1000,
+				"CodigoPostalCDDestino": 2001,
+				"IDAgenciaOrigen": "A001",
+				"IDAgenciaDestino": "A003",
+				"CUITCliente": "20304050608",
+				"Tamano":2,
+				"Destinatario": {
+					"Nombre": "Ana",
+					"Apellido": "Martinez",
+					"Direccion": "Av. Siempre Viva 742"
+				},
+				"IDConvenio": 1,
+				"ImporteAFacturar": 200,
+				"ComisionAgenciaOrigen": 15,
+				"ComisionAgenciaDestino": 20,
+				"ComisionFleteroOrigen": 25,
+				"ComisionFleteroDestino": 30,
+				"Historial": []
+			}
+		]
 	}
 ]
