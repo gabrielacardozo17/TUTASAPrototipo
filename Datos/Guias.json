@@ -1264,6 +1264,191 @@
       "Nombre": "Pedro Ramírez",
       "Direccion": "Calle Estrella 77"
     }
+  },
+  {
+    "NumeroGuia": 300000010,
+    "Estado": 11,
+    "FechaAdmision": "2025-11-05T09:00:00-03:00",
+    "TipoEntrega": 1,
+    "CodigoPostalCDOrigen": 3000,
+    "CodigoPostalCDDestino": 1000,
+    "IDAgenciaOrigen": "03000",
+    "IDAgenciaDestino": "01000",
+    "CUITCliente": "30-94715263-9",
+    "Tamano": 1,
+    "Destinatario": {
+      "DNI": 40222333,
+      "Nombre": "Andrea",
+      "Apellido": "Suarez",
+      "Direccion": "Honduras 4800, CABA",
+      "CodigoPostal": 1000
+    },
+    "IDConvenio": 200013,
+    "ImporteAFacturar": 7800.00,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      {
+        "Estado": 10,
+        "UbicacionGuia": "Agencia 01000",
+        "FechaActualizacionEstado": "2025-11-05T11:00:00-03:00"
+      },
+      {
+        "Estado": 11,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-05T13:40:00-03:00"
+      }
+    ]
+  },
+  {
+    "NumeroGuia": 188800010,
+    "Estado": 11,
+    "FechaAdmision": "2025-11-04T10:20:00-03:00",
+    "TipoEntrega": 2,
+    "CodigoPostalCDOrigen": 1888,
+    "CodigoPostalCDDestino": 5000,
+    "IDAgenciaOrigen": "01888",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "33-99274898-8",
+    "Tamano": 2,
+    "Destinatario": {
+      "DNI": 30555111,
+      "Nombre": "Lucia",
+      "Apellido": "Fernandez",
+      "Direccion": "Duarte Quiros 1250, Cordoba",
+      "CodigoPostal": 5000
+    },
+    "IDConvenio": 200001,
+    "ImporteAFacturar": 13250.50,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      {
+        "Estado": 10,
+        "UbicacionGuia": "CD 5000",
+        "FechaActualizacionEstado": "2025-11-04T18:10:00-03:00"
+      },
+      {
+        "Estado": 11,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-05T09:10:00-03:00"
+      }
+    ]
+  },
+  {
+    "NumeroGuia": 550000010,
+    "Estado": 11,
+    "FechaAdmision": "2025-11-03T08:50:00-03:00",
+    "TipoEntrega": 1,
+    "CodigoPostalCDOrigen": 5500,
+    "CodigoPostalCDDestino": 8300,
+    "IDAgenciaOrigen": "05500",
+    "IDAgenciaDestino": "08300",
+    "CUITCliente": "33-63184527-6",
+    "Tamano": 0,
+    "Destinatario": {
+      "DNI": 30321456,
+      "Nombre": "Soledad",
+      "Apellido": "Mella",
+      "Direccion": "Perito Moreno 320, Neuquen",
+      "CodigoPostal": 8300
+    },
+    "IDConvenio": 200014,
+    "ImporteAFacturar": 9450.00,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      {
+        "Estado": 10,
+        "UbicacionGuia": "Agencia 08300",
+        "FechaActualizacionEstado": "2025-11-03T12:00:00-03:00"
+      },
+      {
+        "Estado": 11,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-03T15:10:00-03:00"
+      }
+    ]
+  },
+  {
+    "NumeroGuia": 910000010,
+    "Estado": 11,
+    "FechaAdmision": "2025-11-02T17:05:00-03:00",
+    "TipoEntrega": 1,
+    "CodigoPostalCDOrigen": 9100,
+    "CodigoPostalCDDestino": 8500,
+    "IDAgenciaOrigen": "09100",
+    "IDAgenciaDestino": "08500",
+    "CUITCliente": "33-76251483-5",
+    "Tamano": 3,
+    "Destinatario": {
+      "DNI": 28111222,
+      "Nombre": "Leandro",
+      "Apellido": "Rivas",
+      "Direccion": "Belgrano 300, Viedma",
+      "CodigoPostal": 8500
+    },
+    "IDConvenio": 200021,
+    "ImporteAFacturar": 19800.75,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      {
+        "Estado": 10,
+        "UbicacionGuia": "Agencia 08500",
+        "FechaActualizacionEstado": "2025-11-03T09:30:00-03:00"
+      },
+      {
+        "Estado": 11,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-03T12:20:00-03:00"
+      }
+    ]
+  },
+  {
+    "NumeroGuia": 500000010,
+    "Estado": 11,
+    "FechaAdmision": "2025-11-01T11:30:00-03:00",
+    "TipoEntrega": 2,
+    "CodigoPostalCDOrigen": 5000,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "05000",
+    "IDAgenciaDestino": "05500",
+    "CUITCliente": "30-87419362-4",
+    "Tamano": 2,
+    "Destinatario": {
+      "DNI": 29654321,
+      "Nombre": "Diego",
+      "Apellido": "Herrera",
+      "Direccion": "San Martin 1200, Mendoza",
+      "CodigoPostal": 5500
+    },
+    "IDConvenio": 200009,
+    "ImporteAFacturar": 11200.00,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      {
+        "Estado": 10,
+        "UbicacionGuia": "Agencia 05500",
+        "FechaActualizacionEstado": "2025-11-02T08:10:00-03:00"
+      },
+      {
+        "Estado": 11,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-02T09:10:00-03:00"
+      }
+    ]
   }
 ]
 
