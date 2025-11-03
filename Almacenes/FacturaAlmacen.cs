@@ -12,20 +12,10 @@ namespace TUTASAPrototipo.Almacenes
 
         static FacturaAlmacen()
         {
-            // Preferir la ruta en Datos, mantener compatibilidad con raíz
+            // Cargar solo desde Datos/Facturas.json
             if (File.Exists("Datos/Facturas.json"))
             {
                 var facturaJson = File.ReadAllText("Datos/Facturas.json");
-                facturas = System.Text.Json.JsonSerializer.Deserialize<List<FacturaEntidad>>(facturaJson) ?? new List<FacturaEntidad>();
-            }
-            else if (File.Exists("Datos\\Facturas.json"))
-            {
-                var facturaJson = File.ReadAllText("Datos\\Facturas.json");
-                facturas = System.Text.Json.JsonSerializer.Deserialize<List<FacturaEntidad>>(facturaJson) ?? new List<FacturaEntidad>();
-            }
-            else if (File.Exists("Facturas.json"))
-            {
-                var facturaJson = File.ReadAllText("Facturas.json");
                 facturas = System.Text.Json.JsonSerializer.Deserialize<List<FacturaEntidad>>(facturaJson) ?? new List<FacturaEntidad>();
             }
         }

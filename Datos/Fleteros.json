@@ -1,17 +1,182 @@
 ﻿[
-  {"DNI":28765432,"Nombre":"Juan","Apellido":"Pereyra","CodigoPostalCD":1000,"PreciosXTamano":{"S":1200,"M":1800,"L":2500,"XL":3200}},
-  {"DNI":32198765,"Nombre":"Maria","Apellido":"Ledesma","CodigoPostalCD":1000,"PreciosXTamano":{"S":1200,"M":1850,"L":2600,"XL":3300}},
-  {"DNI":30456789,"Nombre":"Luis","Apellido":"Ferreyra","CodigoPostalCD":1900,"PreciosXTamano":{"S":1100,"M":1700,"L":2400,"XL":3100}},
-  {"DNI":29876543,"Nombre":"Sofia","Apellido":"Bustos","CodigoPostalCD":7600,"PreciosXTamano":{"S":1150,"M":1750,"L":2450,"XL":3150}},
-  {"DNI":30987654,"Nombre":"Carlos","Apellido":"Maidana","CodigoPostalCD":5000,"PreciosXTamano":{"S":1250,"M":1900,"L":2650,"XL":3350}},
-  {"DNI":27654321,"Nombre":"Valeria","Apellido":"Rios","CodigoPostalCD":2000,"PreciosXTamano":{"S":1200,"M":1800,"L":2500,"XL":3200}},
-  {"DNI":31234567,"Nombre":"Gustavo","Apellido":"Acuña","CodigoPostalCD":4000,"PreciosXTamano":{"S":1200,"M":1800,"L":2500,"XL":3200}},
-  {"DNI":29811223,"Nombre":"Paula","Apellido":"Benitez","CodigoPostalCD":3400,"PreciosXTamano":{"S":1150,"M":1750,"L":2450,"XL":3150}},
-  {"DNI":30123456,"Nombre":"Nicolas","Apellido":"Godoy","CodigoPostalCD":8300,"PreciosXTamano":{"S":1200,"M":1800,"L":2500,"XL":3200}},
-  {"DNI":28456712,"Nombre":"Carla","Apellido":"Mansilla","CodigoPostalCD":8500,"PreciosXTamano":{"S":1100,"M":1700,"L":2400,"XL":3100}},
-  {"DNI":28765984,"Nombre":"Ricardo","Apellido":"Suarez","CodigoPostalCD":1888,"PreciosXTamano":{"S":1200,"M":1800,"L":2500,"XL":3200}},
-  {"DNI":33125498,"Nombre":"Esteban","Apellido":"Ojeda","CodigoPostalCD":3000,"PreciosXTamano":{"S":1200,"M":1800,"L":2500,"XL":3200}},
-  {"DNI":29567891,"Nombre":"Micaela","Apellido":"Perez","CodigoPostalCD":9100,"PreciosXTamano":{"S":1200,"M":1800,"L":2500,"XL":3200}},
-  {"DNI":30567890,"Nombre":"Hernan","Apellido":"Quiroga","CodigoPostalCD":4400,"PreciosXTamano":{"S":1200,"M":1800,"L":2500,"XL":3200}},
-  {"DNI":30789456,"Nombre":"Jimena","Apellido":"Gimenez","CodigoPostalCD":5500,"PreciosXTamano":{"S":1200,"M":1800,"L":2500,"XL":3200}}
+ {
+ "DNI": 28765432,
+ "Nombre": "Juan",
+ "Apellido": "Pereyra",
+ "CodigoPostalCD": 1000,
+ "PreciosXTamano": {
+ "S": 1200,
+ "M": 1800,
+ "L": 2500,
+ "XL": 3200
+ }
+ },
+ {
+ "DNI": 32198765,
+ "Nombre": "Maria",
+ "Apellido": "Ledesma",
+ "CodigoPostalCD": 1000,
+ "PreciosXTamano": {
+ "S": 1200,
+ "M": 1850,
+ "L": 2600,
+ "XL": 3300
+ }
+ },
+ {
+ "DNI": 30456789,
+ "Nombre": "Luis",
+ "Apellido": "Ferreyra",
+ "CodigoPostalCD": 1900,
+ "PreciosXTamano": {
+ "S": 1100,
+ "M": 1700,
+ "L": 2400,
+ "XL": 3100
+ }
+ },
+ {
+ "DNI": 29876543,
+ "Nombre": "Sofia",
+ "Apellido": "Bustos",
+ "CodigoPostalCD": 7600,
+ "PreciosXTamano": {
+ "S": 1150,
+ "M": 1750,
+ "L": 2450,
+ "XL": 3150
+ }
+ },
+ {
+ "DNI": 30987654,
+ "Nombre": "Carlos",
+ "Apellido": "Maidana",
+ "CodigoPostalCD": 5000,
+ "PreciosXTamano": {
+ "S": 1250,
+ "M": 1900,
+ "L": 2650,
+ "XL": 3350
+ }
+ },
+ {
+ "DNI": 27654321,
+ "Nombre": "Valeria",
+ "Apellido": "Rios",
+ "CodigoPostalCD": 2000,
+ "PreciosXTamano": {
+ "S": 1200,
+ "M": 1800,
+ "L": 2500,
+ "XL": 3200
+ }
+ },
+ {
+ "DNI": 31234567,
+ "Nombre": "Gustavo",
+ "Apellido": "Acuña",
+ "CodigoPostalCD": 4000,
+ "PreciosXTamano": {
+ "S": 1200,
+ "M": 1800,
+ "L": 2500,
+ "XL": 3200
+ }
+ },
+ {
+ "DNI": 29811223,
+ "Nombre": "Paula",
+ "Apellido": "Benitez",
+ "CodigoPostalCD": 3400,
+ "PreciosXTamano": {
+ "S": 1150,
+ "M": 1750,
+ "L": 2450,
+ "XL": 3150
+ }
+ },
+ {
+ "DNI": 30123456,
+ "Nombre": "Nicolas",
+ "Apellido": "Godoy",
+ "CodigoPostalCD": 8300,
+ "PreciosXTamano": {
+ "S": 1200,
+ "M": 1800,
+ "L": 2500,
+ "XL": 3200
+ }
+ },
+ {
+ "DNI": 28456712,
+ "Nombre": "Carla",
+ "Apellido": "Mansilla",
+ "CodigoPostalCD": 8500,
+ "PreciosXTamano": {
+ "S": 1100,
+ "M": 1700,
+ "L": 2400,
+ "XL": 3100
+ }
+ },
+ {
+ "DNI": 28765984,
+ "Nombre": "Ricardo",
+ "Apellido": "Suarez",
+ "CodigoPostalCD": 1888,
+ "PreciosXTamano": {
+ "S": 1200,
+ "M": 1800,
+ "L": 2500,
+ "XL": 3200
+ }
+ },
+ {
+ "DNI": 33125498,
+ "Nombre": "Esteban",
+ "Apellido": "Ojeda",
+ "CodigoPostalCD": 3000,
+ "PreciosXTamano": {
+ "S": 1200,
+ "M": 1800,
+ "L": 2500,
+ "XL": 3200
+ }
+ },
+ {
+ "DNI": 29567891,
+ "Nombre": "Micaela",
+ "Apellido": "Perez",
+ "CodigoPostalCD": 9100,
+ "PreciosXTamano": {
+ "S": 1200,
+ "M": 1800,
+ "L": 2500,
+ "XL": 3200
+ }
+ },
+ {
+ "DNI": 30567890,
+ "Nombre": "Hernan",
+ "Apellido": "Quiroga",
+ "CodigoPostalCD": 4400,
+ "PreciosXTamano": {
+ "S": 1200,
+ "M": 1800,
+ "L": 2500,
+ "XL": 3200
+ }
+ },
+ {
+ "DNI": 30789456,
+ "Nombre": "Jimena",
+ "Apellido": "Gimenez",
+ "CodigoPostalCD": 5500,
+ "PreciosXTamano": {
+ "S": 1200,
+ "M": 1800,
+ "L": 2500,
+ "XL": 3200
+ }
+ }
 ]

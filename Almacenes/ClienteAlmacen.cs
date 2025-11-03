@@ -12,20 +12,10 @@ namespace TUTASAPrototipo.Almacenes
 
         static ClienteAlmacen()
         {
-            // Preferir la ruta en Datos, mantener compatibilidad con raíz
+            // Cargar solo desde Datos/Clientes.json
             if (File.Exists("Datos/Clientes.json"))
             {
                 var clienteJson = File.ReadAllText("Datos/Clientes.json");
-                clientes = System.Text.Json.JsonSerializer.Deserialize<List<ClienteEntidad>>(clienteJson) ?? new List<ClienteEntidad>();
-            }
-            else if (File.Exists("Datos\\Clientes.json"))
-            {
-                var clienteJson = File.ReadAllText("Datos\\Clientes.json");
-                clientes = System.Text.Json.JsonSerializer.Deserialize<List<ClienteEntidad>>(clienteJson) ?? new List<ClienteEntidad>();
-            }
-            else if (File.Exists("Clientes.json"))
-            {
-                var clienteJson = File.ReadAllText("Clientes.json");
                 clientes = System.Text.Json.JsonSerializer.Deserialize<List<ClienteEntidad>>(clienteJson) ?? new List<ClienteEntidad>();
             }
         }

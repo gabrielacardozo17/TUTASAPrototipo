@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using TUTASAPrototipo.Almacenes; // Agregado para acceder a los almacenes
@@ -225,6 +224,86 @@ namespace TUTASAPrototipo.ConsultarEstado
         // No se necesita una instancia de GuiaAlmacen porque es una clase estática.
         // Se accederá directamente a sus miembros estáticos (ej: GuiaAlmacen.guias).
 
+        // Helper: normaliza texto de ubicación a nombre descriptivo
+        private static string ResolverNombreUbicacion(string? ubicacion)
+        {
+            if (string.IsNullOrWhiteSpace(ubicacion)) return ubicacion ?? string.Empty;
+
+            var txt = ubicacion.Trim();
+
+            // Si ya es un nombre (no comienza con prefijo) devolvemos tal cual
+            // Intentamos detectar patrones "Agencia XXXXX" o "CD NNNN"
+            bool empiezaAgencia = txt.StartsWith("Agencia", StringComparison.OrdinalIgnoreCase);
+            bool empiezaCD = txt.StartsWith("CD", StringComparison.OrdinalIgnoreCase);
+
+            // Agencia: "Agencia03000" → buscar por ID y devolver el Nombre (que ya incluye prefijo "Agencia ...")
+            if (empiezaAgencia)
+            {
+                var dig = new string(txt.Where(char.IsDigit).ToArray());
+                if (!string.IsNullOrEmpty(dig))
+                {
+                    var ag = AgenciaAlmacen.agencias.FirstOrDefault(a => string.Equals(a.ID, dig, StringComparison.OrdinalIgnoreCase));
+                    if (ag != null && !string.IsNullOrWhiteSpace(ag.Nombre))
+                        return ag.Nombre; // ya incluye "Agencia ..."
+                }
+                return txt; // fallback
+            }
+
+            // CD: "CD3000" → buscar por CodigoPostal y devolver Nombre (normalmente "CD ...")
+            if (empiezaCD)
+            {
+                var dig = new string(txt.Where(char.IsDigit).ToArray());
+                if (int.TryParse(dig, out var cp))
+                {
+                    var cd = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == cp);
+                    if (cd != null && !string.IsNullOrWhiteSpace(cd.Nombre))
+                        return cd.Nombre; // ya incluye prefijo "CD ..." en el nombre del JSON
+                }
+                return txt; // fallback
+            }
+
+            // Otros textos libres ("Domicilio ...", "CD intermedio0050", etc.) → intentar resolver número si corresponde a agencia
+            // Si contiene un ID de agencia embebido, no lo cambiamos salvo que sea el patrón exacto.
+            return txt;
+        }
+
+        // Helper: convierte EstadoGuiaEnum a texto con espacios/acentos sin usar un archivo extra
+        private static string EstadoDisplay(EstadoGuiaEnum estado)
+        {
+            return estado switch
+            {
+                EstadoGuiaEnum.ARetirarEnAgenciaDeOrigen => "A retirar en agencia de origen",
+                EstadoGuiaEnum.ARetirarPorDomicilioDelCliente => "A retirar por domicilio del cliente",
+                EstadoGuiaEnum.EnCaminoARetirarPorDomicilio => "En camino a retirar por domicilio",
+                EstadoGuiaEnum.EnCaminoARetirarPorAgencia => "En camino a retirar por agencia",
+                EstadoGuiaEnum.EnRutaACDDeOrigenDesdeAgencia => "En ruta a CD de origen (desde agencia)",
+                EstadoGuiaEnum.Admitida => "Admitida",
+                EstadoGuiaEnum.EnTransitoAlCDDestino => "En tránsito al CD destino",
+                EstadoGuiaEnum.EnCDDestino => "En CD destino",
+                EstadoGuiaEnum.EnRutaAlDomicilioDeEntrega => "En ruta al domicilio de entrega",
+                EstadoGuiaEnum.EnRutaAlaAgenciaDestino => "En ruta a la agencia destino",
+                EstadoGuiaEnum.PendienteDeEntrega => "Pendiente de entrega",
+                EstadoGuiaEnum.Entregada => "Entregada",
+                EstadoGuiaEnum.Cancelada => "Cancelada",
+                EstadoGuiaEnum.NoEntregada => "No entregada",
+                EstadoGuiaEnum.Facturada => "Facturada",
+                _ => InsertarEspaciosEnPascalCase(estado.ToString())
+            };
+        }
+
+        private static string InsertarEspaciosEnPascalCase(string name)
+        {
+            if (string.IsNullOrEmpty(name)) return name;
+            var sb = new System.Text.StringBuilder(name.Length *2);
+            for (int i =0; i < name.Length; i++)
+            {
+                var c = name[i];
+                if (i >0 && char.IsUpper(c) && char.IsLower(name[i -1])) sb.Append(' ');
+                sb.Append(c);
+            }
+            return sb.ToString();
+        }
+
         // --- PASO 2: IMPLEMENTACIÓN DE LA LÓGICA DE BÚSQUEDA ---
         // Este método es el corazón del caso de uso. Recibe el número de guía desde la pantalla,
         // lo valida, busca la guía en el almacén y devuelve el resultado.
@@ -243,19 +322,20 @@ namespace TUTASAPrototipo.ConsultarEstado
             // Seleccionar ubicación actual: si el último registro tiene ubicación, usarla; si no, "No disponible"
             var historial = guiaEntidad.Historial ?? new List<RegistroEstadoAux>();
             var ultimo = historial.LastOrDefault();
-            var ubicacionActual = string.IsNullOrWhiteSpace(ultimo?.UbicacionGuia) ? "No disponible" : ultimo!.UbicacionGuia;
+            var ubicacionActualRaw = string.IsNullOrWhiteSpace(ultimo?.UbicacionGuia) ? string.Empty : ultimo!.UbicacionGuia;
+            var ubicacionActual = string.IsNullOrWhiteSpace(ubicacionActualRaw) ? "No disponible" : ResolverNombreUbicacion(ubicacionActualRaw);
 
             // Mapear a la clase que usa la pantalla
             var guiaParaPantalla = new Guia
             {
                 Numero = guiaEntidad.NumeroGuia.ToString("D9"),
-                EstadoActual = guiaEntidad.Estado.ToString().Replace("_", " "),
+                EstadoActual = EstadoDisplay(guiaEntidad.Estado),
                 UbicacionActual = ubicacionActual,
                 Historial = historial
                 .Select(h => new Guia.Movimiento(
                     h.FechaActualizacionEstado,
-                    h.Estado.ToString().Replace("_", " "),
-                    h.UbicacionGuia
+                    EstadoDisplay(h.Estado),
+                    ResolverNombreUbicacion(h.UbicacionGuia)
                 ))
                 .OrderBy(m => m.Fecha)
                 .ToList()
