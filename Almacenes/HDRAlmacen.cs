@@ -22,7 +22,7 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var HDRJson = System.Text.Json.JsonSerializer.Serialize(HDR);
-            File.WriteAllText("HDR.json", HDRJson);
+            File.WriteAllText("Datos/HDR.json", HDRJson);
         }
     }
 

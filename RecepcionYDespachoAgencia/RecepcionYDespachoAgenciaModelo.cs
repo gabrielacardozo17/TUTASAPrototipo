@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using TUTASAPrototipo.Almacenes;
+
 
 namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 {
     public class RecepcionYDespachoAgenciaModelo
     {
+        /*
         // ======= Datos de prueba =======
         private readonly List<Fletero> _fleteros = new List<Fletero>
         {
@@ -110,11 +114,11 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             new Guia { Numero = "107001701", Tamaño = "M",  Destino = "CD Corrientes", Tipo = "Retiro", Estado = "A retirar en agencia de origen", FleteroDni = 29811223, UbicacionActual = "Agencia Corrientes Centro" },
             new Guia { Numero = "107001702", Tamaño = "XL", Destino = "CD Corrientes", Tipo = "Retiro", Estado = "A retirar en agencia de origen", FleteroDni = 29811223, UbicacionActual = "Agencia Goya" }
         };
-
+        */
         // ======= API para el Form =======
-        public Fletero? BuscarFleteroPorDni(int dni) => _fleteros.FirstOrDefault(f => f.Dni == dni);
+        public FleteroEntidad? BuscarFleteroPorDni(int dni) => FleteroAlmacen.fleteros.FirstOrDefault(f => f.DNI == dni); //ojo no se si está bien
 
-        public (List<Guia> aRecepcionar, List<Guia> aEntregar) GetGuiasPorFletero(int dni)
+        public (List<GuiaEntidad> aRecepcionar, List<GuiaEntidad> aEntregar) GetGuiasPorFletero(int dni)
         {
             // N3: el fletero debe existir
             if (BuscarFleteroPorDni(dni) is null)
@@ -122,14 +126,24 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             // N4: Filtrar guías por fletero y estado
             // RECEPCIÓN: Guías en ruta a agencia destino (para recepcionar)
-            var aRecepcionar = _guias.Where(g => g.FleteroDni == dni 
-                                                && string.Equals(g.Tipo, "Distribución", StringComparison.OrdinalIgnoreCase)
-                                                && string.Equals(g.Estado, "En ruta a agencia destino", StringComparison.OrdinalIgnoreCase)).ToList();
-            
+
+            // string idAgencia = UsuarioAlmacen.usuarioActual!.IDAgencia; //la agencia en donde está el usuario ahora.
+            string idAgencia = "01406";
+
+
+            //busco las HDRS asignadas a ese fletero
+            var hdrsDeRetiroFletero = HDRAlmacen.HDR.Where(h => h.DNIFletero == dni && h.TipoHDR == TipoHDREnum.Retiro).ToList();
+
+            var hdrsDeDistribucionFletero = HDRAlmacen.HDR.Where(h => h.DNIFletero == dni && h.TipoHDR == TipoHDREnum.Distribucion).ToList();
+
+            //obtengo las guias de esas HDRS
+            var guiasDeRetiro = hdrsDeRetiroFletero.SelectMany(h => h.Guias).ToList();
+            var guiasDeDistribucion = hdrsDeDistribucionFletero.SelectMany(h => h.Guias).ToList();
+
+            var aRecepcionar = guiasDeRetiro.Where(g => g.Estado == EstadoGuiaEnum.EnRutaAlaAgenciaDestino).ToList();
+
             // DESPACHO: Guías a retirar en agencia origen (para entregar al fletero)
-            var aEntregar = _guias.Where(g => g.FleteroDni == dni 
-                                            && string.Equals(g.Tipo, "Retiro", StringComparison.OrdinalIgnoreCase)
-                                            && string.Equals(g.Estado, "A retirar en agencia de origen", StringComparison.OrdinalIgnoreCase)).ToList();
+            var aEntregar = guiasDeDistribucion.Where(g => g.Estado == EstadoGuiaEnum.ARetirarEnAgenciaDeOrigen).ToList();
 
             if (aRecepcionar.Count == 0 && aEntregar.Count == 0)
                 throw new InvalidOperationException("El fletero seleccionado no tiene guías a recibir ni entregar");
@@ -137,18 +151,21 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             return (aRecepcionar, aEntregar);
         }
 
+
         public void ConfirmarOperacion(int dni, List<string> guiasRecepcionadas, List<string> guiasEntregadas)
         {
             // N3: existencia
             if (BuscarFleteroPorDni(dni) is null)
-                throw new InvalidOperationException("Debe seleccionar un transportista primero");
-
-            // N4: actualizar estados según marcado en la UI
+                throw new InvalidOperationException("Debe indicar a un fletero primero"); // se renombra a Debe indicar un fletero primero
+            /*
+            // N4: actualizar estados 
             foreach (var g in _guias.Where(g => string.Equals(g.Tipo, "Distribución", StringComparison.OrdinalIgnoreCase)))
                 g.Estado = guiasRecepcionadas.Contains(g.Numero) ? "Recibida" : "No procesada";
 
             foreach (var g in _guias.Where(g => string.Equals(g.Tipo, "Retiro", StringComparison.OrdinalIgnoreCase)))
                 g.Estado = guiasEntregadas.Contains(g.Numero) ? "Entregada" : "No procesada";
+            */
         }
+
     }
 }

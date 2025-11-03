@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 {
@@ -22,7 +23,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             // Labels superiores fijos
             NombreUsuarioLabel.Text = "Juan Perez";
-            NombreAgenciaLabel.Text = "CABA Centro";
+            NombreAgenciaLabel.Text = "Agencia Posadas";
 
             // Inicializar labels de búsqueda como vacíos
             NombreResultLabel.Text = "";
@@ -138,7 +139,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
         }
 
         // ---------- HELPERS VISUALES ----------
-        private void CargarListas(IEnumerable<Guia> aRecepcionar, IEnumerable<Guia> aEntregar)
+        private void CargarListas(IEnumerable<GuiaEntidad> aRecepcionar, IEnumerable<GuiaEntidad> aEntregar)
         {
             GuiasARecepcionarAgenciaListView.FullRowSelect = true;
             GuiasAEntregarListView.FullRowSelect = true;
@@ -149,17 +150,17 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             // RECEPCIÓN: solo número y tamaño (ubicación actual está vacía porque están en ruta)
             foreach (var g in aRecepcionar)
             {
-                var li = new ListViewItem(g.Numero);
-                li.SubItems.Add(g.Tamaño);
+                var li = new ListViewItem(g.NumeroGuia.ToString());
+                li.SubItems.Add(g.Tamano.ToString());
                 GuiasARecepcionarAgenciaListView.Items.Add(li);
             }
 
             // DESPACHO: número, tamaño y ubicación actual (donde está físicamente la guía)
             foreach (var g in aEntregar)
             {
-                var li = new ListViewItem(g.Numero);
-                li.SubItems.Add(g.Tamaño);
-                li.SubItems.Add(g.UbicacionActual); // Agrega columna de ubicación
+                var li = new ListViewItem(g.NumeroGuia.ToString());
+                li.SubItems.Add(g.Tamano.ToString());
+               // li.SubItems.Add(g.UbicacionActual); // Agrega columna de ubicación
                 GuiasAEntregarListView.Items.Add(li);
             }
         }
