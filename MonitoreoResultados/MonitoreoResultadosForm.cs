@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.MonitoreoResultados
 {
@@ -40,21 +41,36 @@ namespace TUTASAPrototipo.MonitoreoResultados
 
 
             // Se los envío al modelo para obtener los datos
-            var resultados = Modelo.ObtenerResultados(año, mes);
-            bool hayResultados = resultados.Any(resultados => resultados.Costo > 0 || resultados.Venta > 0); //verifico que existan datos > 0, si todos son 0 entonces no hay datos para el periodo seleccionado
+            var resultados = Modelo.ObtenerResultados(año, mes) ?? new List<(string Empresa, decimal Costo, decimal Venta, decimal Resultado)>();
 
-            if (!hayResultados)
+            // Si no hay empresas cargadas en el sistema, mostramos mensaje
+            if (!resultados.Any())
             {
+                // Diagnostics: contar objetos relevantes en los almacenes para el periodo
+                EmpresaTransporteAlmacen.Load();
+                CuentaCorrienteEmpresaTransporteAlmacen.Load();
+
+                int empresasCount = EmpresaTransporteAlmacen.empresasTransporte?.Count ?? 0;
+                int cuentasCount = CuentaCorrienteEmpresaTransporteAlmacen.cuentaCorrienteEmpresaTransporte?.Count ?? 0;
+                int cuentasConMovimientosEnPeriodo = CuentaCorrienteEmpresaTransporteAlmacen.cuentaCorrienteEmpresaTransporte
+                    .Count(cc => cc.Movimientos != null && cc.Movimientos.Any(m => m.Fecha.Year == año && m.Fecha.Month == mes));
+
+                FacturaAlmacen.facturas = FacturaAlmacen.facturas ?? new List<FacturaEntidad>();
+                int facturasEnPeriodo = FacturaAlmacen.facturas.Count(f => f.FechaEmisionFactura.Year == año && f.FechaEmisionFactura.Month == mes);
+
+                HDRAlmacen.HDR = HDRAlmacen.HDR ?? new List<HDREntidad>();
+                int hdrsConGuias = HDRAlmacen.HDR.Count(h => (h.Guias ?? Enumerable.Empty<GuiaEntidad>()).Any(g => g.NumeroGuia > 0));
+
                 MessageBox.Show(
-                    "No se encontraron resultados para el período seleccionado.",
-                    "Sin resultados",
+                    $"No se encontraron resultados para el período seleccionado.\n\nDiagnóstico rápido:\nEmpresas cargadas: {empresasCount}\nCuentas corriente (empresas): {cuentasCount}\nCuentas con movimientos en {new DateTime(año, mes, 1):MMMM yyyy}: {cuentasConMovimientosEnPeriodo}\nFacturas en período: {facturasEnPeriodo}\nHDRs totales: {hdrsConGuias}",
+                    "Sin resultados - Diagnóstico",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
+                    MessageBoxIcon.Information
                  );
                 return;
             }
 
-            // Muestro el resultado obtenido en el ListView, si existen datos para el periodo
+            // Muestro el resultado obtenido en el ListView (incluye ceros)
             foreach (var r in resultados)
             {
                 var item = new ListViewItem(r.Empresa);
@@ -64,7 +80,31 @@ namespace TUTASAPrototipo.MonitoreoResultados
                 ResultadosxEmpresaListView.Items.Add(item);
             }
 
+            // If all zeros, show the previous quick diagnostic summary (not the long per-company list)
+            bool allZero = resultados.All(x => x.Costo == 0m && x.Venta == 0m);
+            if (allZero)
+            {
+                EmpresaTransporteAlmacen.Load();
+                CuentaCorrienteEmpresaTransporteAlmacen.Load();
 
+                int empresasCount = EmpresaTransporteAlmacen.empresasTransporte?.Count ?? 0;
+                int cuentasCount = CuentaCorrienteEmpresaTransporteAlmacen.cuentaCorrienteEmpresaTransporte?.Count ?? 0;
+                int cuentasConMovimientosEnPeriodo = CuentaCorrienteEmpresaTransporteAlmacen.cuentaCorrienteEmpresaTransporte
+                    .Count(cc => cc.Movimientos != null && cc.Movimientos.Any(m => m.Fecha.Year == año && m.Fecha.Month == mes));
+
+                FacturaAlmacen.facturas = FacturaAlmacen.facturas ?? new List<FacturaEntidad>();
+                int facturasEnPeriodo = FacturaAlmacen.facturas.Count(f => f.FechaEmisionFactura.Year == año && f.FechaEmisionFactura.Month == mes);
+
+                HDRAlmacen.HDR = HDRAlmacen.HDR ?? new List<HDREntidad>();
+                int hdrsConGuias = HDRAlmacen.HDR.Count(h => (h.Guias ?? Enumerable.Empty<GuiaEntidad>()).Any(g => g.NumeroGuia > 0));
+
+                MessageBox.Show(
+                    $"No se encontraron resultados para el período seleccionado.\n\nDiagnóstico rápido:\nEmpresas cargadas: {empresasCount}\nCuentas corriente (empresas): {cuentasCount}\nCuentas con movimientos en {new DateTime(año, mes, 1):MMMM yyyy}: {cuentasConMovimientosEnPeriodo}\nFacturas en período: {facturasEnPeriodo}\nHDRs totales: {hdrsConGuias}",
+                    "Sin resultados - Diagnóstico",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                 );
+            }
 
         }
 
@@ -78,5 +118,4 @@ namespace TUTASAPrototipo.MonitoreoResultados
 
         }
     }
-
 }

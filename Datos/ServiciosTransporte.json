@@ -51,5 +51,8 @@
       { "ID": 10, "CodigoPostalOrigen": 3400, "Salida": "2025-10-11T08:00:00", "CodigoPostalDestino": 4000, "Llegada": "2025-10-11T14:30:00" },
       { "ID": 11, "CodigoPostalOrigen": 4000, "Salida": "2025-10-11T16:00:00", "CodigoPostalDestino": 3400, "Llegada": "2025-10-11T22:20:00" }
     ]
-  }
+  },
+  { "ID": 1001, "IDEmpresaTransporte": 100, "CapacidadBodega": 100, "Tramos": [] },
+  { "ID": 2001, "IDEmpresaTransporte": 200, "CapacidadBodega": 80, "Tramos": [] },
+  { "ID": 3001, "IDEmpresaTransporte": 300, "CapacidadBodega": 120, "Tramos": [] }
 ]

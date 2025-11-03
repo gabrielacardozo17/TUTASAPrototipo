@@ -106,6 +106,9 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
             //obtengo movimientos del modelo
             var (movimientos, saldo, tieneMovimientos, estaAlDia) = Modelo.ObtenerEstadoCuenta(cuit, año, mes);
 
+            // Update saldo label always (even if no movements)
+            SaldoAlCierre.Text = $"Saldo al cierre del período: ${saldo:N2}";
+
             // No hay movimientos en el período consultado y tiene deuda 
             if (!tieneMovimientos && saldo > 0)
             {
@@ -114,7 +117,8 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
                   MessageBoxButtons.OK,
                   MessageBoxIcon.Information);
 
-                LimpiarFormulario(); 
+                // keep label showing saldo; do not clear it
+                MovimientosListView.Items.Clear();
                 return; 
             }
 
@@ -128,10 +132,10 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
                     MessageBoxIcon.Information
                 );
 
-                LimpiarFormulario();
+                // show saldo (0) but clear list
+                MovimientosListView.Items.Clear();
                 return;
             }
-
 
             // Si hay movimientos, los muestro en la lista
             foreach (var mov in movimientos)
@@ -140,10 +144,12 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
                 item.SubItems.Add(mov.Descripcion);
                 item.SubItems.Add(mov.Debe.ToString("N2"));
                 item.SubItems.Add(mov.Haber.ToString("N2"));
+                // agregar saldo calculado
+                item.SubItems.Add(mov.Saldo.ToString("N2"));
                 MovimientosListView.Items.Add(item);
             }
 
-            // actualizo el saldo mostrado
+            // actualizo el saldo mostrado (already set above, but keep in case of movements)
             SaldoAlCierre.Text = $"Saldo al cierre del período: ${saldo:N2}";
 
         }

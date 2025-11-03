@@ -12,5 +12,7 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
         public string Descripcion { get; set; }
         public decimal Debe { get; set; }
         public decimal Haber { get; set; }
+        // Saldo acumulado después del movimiento
+        public decimal Saldo { get; set; }
     }
 }
