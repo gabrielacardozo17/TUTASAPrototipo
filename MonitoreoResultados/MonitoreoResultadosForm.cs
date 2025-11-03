@@ -46,27 +46,10 @@ namespace TUTASAPrototipo.MonitoreoResultados
             // Si no hay empresas cargadas en el sistema, mostramos mensaje
             if (!resultados.Any())
             {
-                // Diagnostics: contar objetos relevantes en los almacenes para el periodo
-                EmpresaTransporteAlmacen.Load();
-                CuentaCorrienteEmpresaTransporteAlmacen.Load();
-
-                int empresasCount = EmpresaTransporteAlmacen.empresasTransporte?.Count ?? 0;
-                int cuentasCount = CuentaCorrienteEmpresaTransporteAlmacen.cuentaCorrienteEmpresaTransporte?.Count ?? 0;
-                int cuentasConMovimientosEnPeriodo = CuentaCorrienteEmpresaTransporteAlmacen.cuentaCorrienteEmpresaTransporte
-                    .Count(cc => cc.Movimientos != null && cc.Movimientos.Any(m => m.Fecha.Year == año && m.Fecha.Month == mes));
-
-                FacturaAlmacen.facturas = FacturaAlmacen.facturas ?? new List<FacturaEntidad>();
-                int facturasEnPeriodo = FacturaAlmacen.facturas.Count(f => f.FechaEmisionFactura.Year == año && f.FechaEmisionFactura.Month == mes);
-
-                HDRAlmacen.HDR = HDRAlmacen.HDR ?? new List<HDREntidad>();
-                int hdrsConGuias = HDRAlmacen.HDR.Count(h => (h.Guias ?? Enumerable.Empty<GuiaEntidad>()).Any(g => g.NumeroGuia > 0));
-
-                MessageBox.Show(
-                    $"No se encontraron resultados para el período seleccionado.\n\nDiagnóstico rápido:\nEmpresas cargadas: {empresasCount}\nCuentas corriente (empresas): {cuentasCount}\nCuentas con movimientos en {new DateTime(año, mes, 1):MMMM yyyy}: {cuentasConMovimientosEnPeriodo}\nFacturas en período: {facturasEnPeriodo}\nHDRs totales: {hdrsConGuias}",
-                    "Sin resultados - Diagnóstico",
+                MessageBox.Show("No se encontraron resultados para el período seleccionado.",
+                    "Sin resultados",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                 );
+                    MessageBoxIcon.Information);
                 return;
             }
 
@@ -84,26 +67,10 @@ namespace TUTASAPrototipo.MonitoreoResultados
             bool allZero = resultados.All(x => x.Costo == 0m && x.Venta == 0m);
             if (allZero)
             {
-                EmpresaTransporteAlmacen.Load();
-                CuentaCorrienteEmpresaTransporteAlmacen.Load();
-
-                int empresasCount = EmpresaTransporteAlmacen.empresasTransporte?.Count ?? 0;
-                int cuentasCount = CuentaCorrienteEmpresaTransporteAlmacen.cuentaCorrienteEmpresaTransporte?.Count ?? 0;
-                int cuentasConMovimientosEnPeriodo = CuentaCorrienteEmpresaTransporteAlmacen.cuentaCorrienteEmpresaTransporte
-                    .Count(cc => cc.Movimientos != null && cc.Movimientos.Any(m => m.Fecha.Year == año && m.Fecha.Month == mes));
-
-                FacturaAlmacen.facturas = FacturaAlmacen.facturas ?? new List<FacturaEntidad>();
-                int facturasEnPeriodo = FacturaAlmacen.facturas.Count(f => f.FechaEmisionFactura.Year == año && f.FechaEmisionFactura.Month == mes);
-
-                HDRAlmacen.HDR = HDRAlmacen.HDR ?? new List<HDREntidad>();
-                int hdrsConGuias = HDRAlmacen.HDR.Count(h => (h.Guias ?? Enumerable.Empty<GuiaEntidad>()).Any(g => g.NumeroGuia > 0));
-
-                MessageBox.Show(
-                    $"No se encontraron resultados para el período seleccionado.\n\nDiagnóstico rápido:\nEmpresas cargadas: {empresasCount}\nCuentas corriente (empresas): {cuentasCount}\nCuentas con movimientos en {new DateTime(año, mes, 1):MMMM yyyy}: {cuentasConMovimientosEnPeriodo}\nFacturas en período: {facturasEnPeriodo}\nHDRs totales: {hdrsConGuias}",
-                    "Sin resultados - Diagnóstico",
+                MessageBox.Show("No se encontraron resultados para el período seleccionado.",
+                    "Sin resultados",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                 );
+                    MessageBoxIcon.Information);
             }
 
         }

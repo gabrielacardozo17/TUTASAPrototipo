@@ -1108,6 +1108,25 @@
 		"CodigoPostalDestino": 3300
 	},
 	{
+		"ID": "T-AUG-100",
+		"TipoHDR": 2,
+		"DNIFletero": 28765002,
+		"IDServicioTransporte": 1001,
+		"Guias": [{
+				"NumeroGuia": 202508001,
+				"FechaAdmision": "2025-08-10T09:00:00",
+				"CUITCliente": "33-99274898-8",
+				"ImporteAFacturar": 9000
+			},
+			{
+				"NumeroGuia": 202508002,
+				"FechaAdmision": "2025-08-15T11:00:00",
+				"CUITCliente": "30-40762117-0",
+				"ImporteAFacturar": 8000
+			}
+		]
+	},
+	{
 		"ID": "T-SEP-100",
 		"TipoHDR": 2,
 		"DNIFletero": 28765001,
@@ -1119,10 +1138,10 @@
 				"ImporteAFacturar": 12000
 			},
 			{
-				"NumeroGuia": 202509002,
-				"FechaAdmision": "2025-09-12T09:30:00",
-				"CUITCliente": "30-40762117-0",
-				"ImporteAFacturar": 8000
+				"NumeroGuia": 202509101,
+				"FechaAdmision": "2025-09-06T08:40:00",
+				"CUITCliente": "30-68362980-0",
+				"ImporteAFacturar": 10000
 			}
 		]
 	},
@@ -1146,14 +1165,14 @@
 		]
 	},
 	{
-		"ID": "T-SEP-200",
+		"ID": "T-NOV-100",
 		"TipoHDR": 2,
-		"DNIFletero": 29900111,
-		"IDServicioTransporte": 2001,
+		"DNIFletero": 28765001,
+		"IDServicioTransporte": 1001,
 		"Guias": [{
-			"NumeroGuia": 202509101,
-			"FechaAdmision": "2025-09-06T08:40:00",
-			"CUITCliente": "30-68362980-0",
+			"NumeroGuia": 202511001,
+			"FechaAdmision": "2025-11-10T09:30:00",
+			"CUITCliente": "33-99274898-8",
 			"ImporteAFacturar": 10000
 		}]
 	}

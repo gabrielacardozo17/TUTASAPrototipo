@@ -12,18 +12,17 @@ namespace TUTASAPrototipo.Almacenes
 
         static ConvenioClienteAlmacen()
         {
-            // Cargar solo desde Datos/ConvenioClientes.json
             if (File.Exists("Datos/ConvenioClientes.json"))
             {
-                var json = File.ReadAllText("Datos/ConvenioClientes.json");
-                convenioClientes = System.Text.Json.JsonSerializer.Deserialize<List<ConvenioClienteEntidad>>(json) ?? new List<ConvenioClienteEntidad>();
+                var ConvenioClientesjson = File.ReadAllText("Datos/ConvenioClientes.json");
+                convenioClientes = System.Text.Json.JsonSerializer.Deserialize<List<ConvenioClienteEntidad>>(ConvenioClientesjson) ?? new List<ConvenioClienteEntidad>();
             }
         }
+
 
         public static void Grabar()
         {
             var convenioClienteJson = System.Text.Json.JsonSerializer.Serialize(convenioClientes);
-            // Persistir siempre en Datos
             File.WriteAllText("Datos/ConvenioClientes.json", convenioClienteJson);
         }
     }

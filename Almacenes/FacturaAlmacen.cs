@@ -12,7 +12,6 @@ namespace TUTASAPrototipo.Almacenes
 
         static FacturaAlmacen()
         {
-            // Cargar solo desde Datos/Facturas.json
             if (File.Exists("Datos/Facturas.json"))
             {
                 var facturaJson = File.ReadAllText("Datos/Facturas.json");
@@ -23,7 +22,6 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var facturaJson = System.Text.Json.JsonSerializer.Serialize(facturas);
-            // Grabar siempre bajo Datos
             File.WriteAllText("Datos/Facturas.json", facturaJson);
         }
     }

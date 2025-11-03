@@ -2,20 +2,71 @@
 using System.Collections.Generic;
 using System.Linq;
 using TUTASAPrototipo.Almacenes; // Agregado para acceder a los almacenes
+using System.IO;
 
 namespace TUTASAPrototipo.MonitoreoResultados
 {
     internal class MonitoreoResultadosModelo
     {
+        private static List<T> TryLoadFromFiles<T>(params string[] paths)
+        {
+            foreach (var p in paths)
+            {
+                if (File.Exists(p))
+                {
+                    try
+                    {
+                        var json = File.ReadAllText(p);
+                        return System.Text.Json.JsonSerializer.Deserialize<List<T>>(json) ?? new List<T>();
+                    }
+                    catch
+                    {
+                        // ignore and try next
+                    }
+                }
+            }
+            return new List<T>();
+        }
+
         //metodo para obtener los resultados (Ventas-Costos)
         public List<(string Empresa, decimal Costo, decimal Venta, decimal Resultado)> ObtenerResultados(int año, int mes)
         {
+            // Obtener datos desde almacenes, con fallback directo a archivos JSON en Datos/ si el almacen no contiene datos
             var empresas = EmpresaTransporteAlmacen.empresasTransporte ?? new List<EmpresaTransporteEntidad>();
+            if (!empresas.Any())
+            {
+                empresas = TryLoadFromFiles<EmpresaTransporteEntidad>("Datos/EmpresasTransporte.json", "EmpresasTransporte.json", "Datos\\EmpresasTransporte.json");
+            }
+
             var cuentas = CuentaCorrienteEmpresaTransporteAlmacen.cuentaCorrienteEmpresaTransporte ?? new List<CuentaCorrienteEmpresaTransporteEntidad>();
+            if (!cuentas.Any())
+            {
+                cuentas = TryLoadFromFiles<CuentaCorrienteEmpresaTransporteEntidad>("Datos/CuentaCorrienteEmpresaTransportes.json", "CuentaCorrienteEmpresaTransportes.json", "Datos\\CuentaCorrienteEmpresaTransportes.json");
+            }
+
             var facturas = FacturaAlmacen.facturas ?? new List<FacturaEntidad>();
+            if (!facturas.Any())
+            {
+                facturas = TryLoadFromFiles<FacturaEntidad>("Datos/Facturas.json", "Facturas.json", "Datos\\Facturas.json");
+            }
+
             var guiasAlmacen = GuiaAlmacen.guias ?? new List<GuiaEntidad>();
+            if (!guiasAlmacen.Any())
+            {
+                guiasAlmacen = TryLoadFromFiles<GuiaEntidad>("Datos/Guias.json", "Guias.json", "Datos\\Guias.json");
+            }
+
             var hdrs = HDRAlmacen.HDR ?? new List<HDREntidad>();
+            if (!hdrs.Any())
+            {
+                hdrs = TryLoadFromFiles<HDREntidad>("Datos/HDR.json", "HDR.json", "Datos\\HDR.json");
+            }
+
             var servicios = ServicioTransporteAlmacen.serviciosTransporte ?? new List<ServicioTransporteEntidad>();
+            if (!servicios.Any())
+            {
+                servicios = TryLoadFromFiles<ServicioTransporteEntidad>("Datos/ServiciosTransporte.json", "ServiciosTransporte.json", "Datos\\ServiciosTransporte.json");
+            }
 
             // guias extraídas desde HDRs (la fuente que contiene ImporteAFacturar)
             var allHdrGuias = hdrs.SelectMany(h => h.Guias ?? Enumerable.Empty<GuiaEntidad>()).ToList();
@@ -40,7 +91,7 @@ namespace TUTASAPrototipo.MonitoreoResultados
                         .Where(m => m.Fecha.Year == año && m.Fecha.Month == mes)
                         .Sum(m => (m.Debe - m.Haber));
 
-                    // if no movimientos, estimate cost from PrecioPorBodegaFijoPorMes if available
+                    // if no movements, estimate cost from PrecioPorBodegaFijoPorMes if available
                     if (costo == 0m)
                     {
                         decimal defaultCosto = 0m;

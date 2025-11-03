@@ -23,8 +23,7 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
         {
             if (string.IsNullOrWhiteSpace(cuit)) return false;
             var cuitDigits = Digits(cuit);
-            // Asegurarse que los datos están cargados
-            ClienteAlmacen.Load();
+          
             return ClienteAlmacen.clientes.Any(c => Digits(c.CUIT) == cuitDigits);
         }
 
@@ -37,7 +36,7 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
                 return (new List<MovimientoCuenta>(), 0, false, true);
 
             // Asegurarse que los datos están cargados
-            CuentaCorrienteAlmacen.Load();
+           
             var cuentaCorriente = CuentaCorrienteAlmacen.cuentasCorrientes
                 .FirstOrDefault(cc => Digits(cc.CUITCliente) == cuitDigits);
 
