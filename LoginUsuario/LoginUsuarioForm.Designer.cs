@@ -34,6 +34,10 @@
             ContraseniaTextBox = new TextBox();
             IngresarButton = new Button();
             BienvenidoLabel = new Label();
+            label3 = new Label();
+            CdActualCombo = new ComboBox();
+            AgenciaActualCombo = new ComboBox();
+            label4 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -51,6 +55,7 @@
             EmailTextBox.Name = "EmailTextBox";
             EmailTextBox.Size = new Size(185, 23);
             EmailTextBox.TabIndex = 1;
+            EmailTextBox.Text = "jperez@gmail.com";
             // 
             // label2
             // 
@@ -67,11 +72,12 @@
             ContraseniaTextBox.Name = "ContraseniaTextBox";
             ContraseniaTextBox.Size = new Size(185, 23);
             ContraseniaTextBox.TabIndex = 3;
+            ContraseniaTextBox.Text = "juanAgosto";
             ContraseniaTextBox.UseSystemPasswordChar = true;
             // 
             // IngresarButton
             // 
-            IngresarButton.Location = new Point(122, 159);
+            IngresarButton.Location = new Point(136, 231);
             IngresarButton.Name = "IngresarButton";
             IngresarButton.Size = new Size(75, 23);
             IngresarButton.TabIndex = 4;
@@ -89,11 +95,49 @@
             BienvenidoLabel.TabIndex = 5;
             BienvenidoLabel.Text = "BIENVENIDO";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(22, 160);
+            label3.Name = "label3";
+            label3.Size = new Size(63, 15);
+            label3.TabIndex = 6;
+            label3.Text = "CD Actual:";
+            // 
+            // CdActualCombo
+            // 
+            CdActualCombo.FormattingEnabled = true;
+            CdActualCombo.Location = new Point(111, 157);
+            CdActualCombo.Name = "CdActualCombo";
+            CdActualCombo.Size = new Size(185, 23);
+            CdActualCombo.TabIndex = 7;
+            // 
+            // AgenciaActualCombo
+            // 
+            AgenciaActualCombo.FormattingEnabled = true;
+            AgenciaActualCombo.Location = new Point(111, 186);
+            AgenciaActualCombo.Name = "AgenciaActualCombo";
+            AgenciaActualCombo.Size = new Size(185, 23);
+            AgenciaActualCombo.TabIndex = 9;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(22, 189);
+            label4.Name = "label4";
+            label4.Size = new Size(88, 15);
+            label4.TabIndex = 8;
+            label4.Text = "Agencia actual:";
+            // 
             // LoginUsuarioForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(321, 217);
+            ClientSize = new Size(321, 297);
+            Controls.Add(AgenciaActualCombo);
+            Controls.Add(label4);
+            Controls.Add(CdActualCombo);
+            Controls.Add(label3);
             Controls.Add(BienvenidoLabel);
             Controls.Add(IngresarButton);
             Controls.Add(ContraseniaTextBox);
@@ -102,6 +146,7 @@
             Controls.Add(label1);
             Name = "LoginUsuarioForm";
             Text = "Inicio de Sesión";
+            Load += LoginUsuarioForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -114,5 +159,9 @@
         private TextBox ContraseniaTextBox;
         private Button IngresarButton;
         private Label BienvenidoLabel;
+        private Label label3;
+        private ComboBox CdActualCombo;
+        private ComboBox AgenciaActualCombo;
+        private Label label4;
     }
 }

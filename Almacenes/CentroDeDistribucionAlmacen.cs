@@ -8,6 +8,9 @@ namespace TUTASAPrototipo.Almacenes
 {
     static class CentroDeDistribucionAlmacen
     {
+        public static CentroDeDistribucionEntidad CentroDistribucionActual { get; set; }
+
+
         public static List<CentroDeDistribucionEntidad> centrosDeDistribucion = new List<CentroDeDistribucionEntidad>();
 
         static CentroDeDistribucionAlmacen()

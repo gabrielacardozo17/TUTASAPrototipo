@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
+using TUTASAPrototipo.MenuPrincipal;
 using TUTASAPrototipo.MonitoreoResultados;
 
 namespace TUTASAPrototipo.LoginUsuario
@@ -81,21 +83,47 @@ namespace TUTASAPrototipo.LoginUsuario
             }
 
 
-            if(UsuarioValido != null)
+            if (UsuarioValido != null)
             {
-                LimpiarFormulario(); 
+                LimpiarFormulario();
                 MessageBox.Show("Usuario autenticado correctamente.",
                                "Acceso concedido",
                                MessageBoxButtons.OK,
                                MessageBoxIcon.Information);
             }
+
+            if (CdActualCombo.SelectedItem == null || AgenciaActualCombo.SelectedItem == null)
+            {
+                MessageBox.Show("Debe seleccionar una Agencia y un Centro de Distribución.",
+                               "Selección requerida",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Warning);
+                return;
+            }
+
+            //TODO: Establecer agencia y cd actual para todo el sistema, a partir de lo seleccionado en los combos.
+            //Acá de ejemplo estoy siempre seleccionando el primero del almacén.
+            AgenciaAlmacen.AgenciaActual = (AgenciaEntidad)AgenciaActualCombo.SelectedItem;
+            CentroDeDistribucionAlmacen.CentroDistribucionActual = (CentroDeDistribucionEntidad)CdActualCombo.SelectedItem;
+
+
+            //abro el menu principal
+            (new MenuPrincipalForm()).ShowDialog();
         }
 
-         private void LimpiarFormulario()
+        private void LimpiarFormulario()
         {
             EmailTextBox.Clear();
             ContraseniaTextBox.Clear();
-            
+
+        }
+
+        private void LoginUsuarioForm_Load(object sender, EventArgs e)
+        {
+            CdActualCombo.DisplayMember = "Nombre";
+            CdActualCombo.Items.AddRange(CentroDeDistribucionAlmacen.centrosDeDistribucion.OrderBy(c => c.Nombre).ToArray());
+            AgenciaActualCombo.DisplayMember = "Nombre";
+            AgenciaActualCombo.Items.AddRange(AgenciaAlmacen.agencias.OrderBy(a => a.Nombre).ToArray());
         }
     }
 }
