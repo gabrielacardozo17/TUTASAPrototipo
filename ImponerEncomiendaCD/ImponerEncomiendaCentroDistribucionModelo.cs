@@ -334,17 +334,12 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             var guias = new List<Guia>();
             var cuitDigits = Digits(cuitRemitente);
 
-            string NextNumero()
-            {
-                int lll = _codigoCD3.TryGetValue(cdOrigenId, out var code3) ? code3 : 1;
-                return NextGuiaCode(esCD: true, codigo3: lll);
-            }
-
             void AgregarGuia(int s, int m, int l, int xl)
             {
+                // We'll set Numero later after creating entity to ensure uniqueness
                 guias.Add(new Guia
                 {
-                    Numero = NextNumero(),
+                    Numero = string.Empty,
                     Estado = "Admitida",
                     CuitRemitente = cuitDigits,
                     Destinatario = new Destinatario { Nombre = destNombre, Apellido = destApellido, Dni = destDni },
@@ -374,7 +369,142 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             for (int i = 0; i < cantL; i++) AgregarGuia(0, 0, 1, 0);
             for (int i = 0; i < cantXL; i++) AgregarGuia(0, 0, 0, 1);
 
+            // Compute a global starting number > any existing NumeroGuia loaded from JSON
+            int nextGlobal = 1;
+            if (GuiaAlmacen.guias.Any())
+            {
+                var maxExisting = GuiaAlmacen.guias.Max(g => g.NumeroGuia);
+                nextGlobal = maxExisting + 1;
+            }
+
+            // Mapear y registrar en el almacen en memoria (no persistir en disco)
+            foreach (var g in guias)
+            {
+                // Determinar tamano (uno de los 4 debe ser 1)
+                TamanoEnum tam = TamanoEnum.S;
+                if (g.CantM == 1) tam = TamanoEnum.M;
+                else if (g.CantL == 1) tam = TamanoEnum.L;
+                else if (g.CantXL == 1) tam = TamanoEnum.XL;
+
+                // Calcular importe simple por tamaño (valor prototipo)
+                decimal importe = tam switch
+                {
+                    TamanoEnum.S => 100m,
+                    TamanoEnum.M => 150m,
+                    TamanoEnum.L => 200m,
+                    TamanoEnum.XL => 300m,
+                    _ => 0m
+                };
+
+                // Resolver ID Agencia destino (string) si existe
+                string idAgDestino = string.Empty;
+                if (g.AgenciaId.HasValue)
+                {
+                    var found = AgenciaAlmacen.agencias.FirstOrDefault(a =>
+                    {
+                        var digits = new string((a.ID ?? string.Empty).Where(char.IsDigit).ToArray());
+                        return int.TryParse(digits, out var n) && n == g.AgenciaId.Value;
+                    });
+                    idAgDestino = found?.ID ?? g.AgenciaId.Value.ToString();
+                }
+
+                // Generate unique global number (guaranteed > any loaded from JSON)
+                var numeroInt = nextGlobal++;
+                var numeroStr = numeroInt.ToString("D9");
+                g.Numero = numeroStr;
+
+                var entidad = new GuiaEntidad
+                {
+                    NumeroGuia = numeroInt,
+                    Estado = EstadoGuiaEnum.Admitida,
+                    FechaAdmision = DateTime.Now,
+                    TipoEntrega = string.Equals(g.TipoEntrega, "En CD", StringComparison.OrdinalIgnoreCase) ? EntregaEnum.CD :
+                                  string.Equals(g.TipoEntrega, "En Agencia", StringComparison.OrdinalIgnoreCase) ? EntregaEnum.Agencia : EntregaEnum.Domicilio,
+                    CodigoPostalCDOrigen = g.CdOrigenId,
+                    CodigoPostalCDDestino = g.CDId ?? 0,
+                    IDAgenciaOrigen = string.Empty,
+                    IDAgenciaDestino = idAgDestino,
+                    CUITCliente = g.CuitRemitente ?? string.Empty,
+                    Tamano = tam,
+                    Destinatario = new DestinatarioAux
+                    {
+                        DNI = int.TryParse(g.Destinatario.Dni, out var dniVal) ? dniVal : 0,
+                        Nombre = g.Destinatario.Nombre ?? string.Empty,
+                        Apellido = g.Destinatario.Apellido ?? string.Empty,
+                        Direccion = g.Direccion ?? string.Empty,
+                        CodigoPostal = g.CodigoPostal != null && int.TryParse(g.CodigoPostal, out var cp) ? cp : 0
+                    },
+                    IDConvenio = 0,
+                    ImporteAFacturar = importe,
+                    ComisionAgenciaOrigen = 0m,
+                    ComisionAgenciaDestino = 0m,
+                    ComisionFleteroOrigen = 0m,
+                    ComisionFleteroDestino = 0m,
+                    Historial = new List<RegistroEstadoAux>
+                    {
+                        new RegistroEstadoAux
+                        {
+                            Estado = EstadoGuiaEnum.Admitida,
+                            UbicacionGuia = CentroDeDistribucionAlmacen.centrosDeDistribucion
+                                .FirstOrDefault(cd => cd.CodigoPostal == g.CdOrigenId)?.Nombre ?? string.Empty,
+                            FechaActualizacionEstado = DateTime.Now
+                        }
+                    }
+                };
+
+                // Always add a new entity
+                GuiaAlmacen.guias.Add(entidad);
+            }
+
             return guias;
+        }
+
+        /// <summary>
+        /// Verifica y marca una guía existente en memoria como Admitida. Calcula importe si faltara.
+        /// No persiste a disco.
+        /// </summary>
+        public GuiaEntidad? VerificarYAdmitirGuia(string numero)
+        {
+            if (string.IsNullOrWhiteSpace(numero)) return null;
+            var digits = new string(numero.Where(char.IsDigit).ToArray());
+            if (!int.TryParse(digits, out var num)) return null;
+
+            var guia = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == num);
+            if (guia == null) return null;
+
+            // Calcular importe si es 0
+            if (guia.ImporteAFacturar <= 0m)
+            {
+                guia.ImporteAFacturar = guia.Tamano switch
+                {
+                    TamanoEnum.S => 100m,
+                    TamanoEnum.M => 150m,
+                    TamanoEnum.L => 200m,
+                    TamanoEnum.XL => 300m,
+                    _ => 0m
+                };
+            }
+
+            // Evitar duplicar un registro 'Admitida' si ya existe uno en el historial con la misma ubicación
+            guia.Historial ??= new List<RegistroEstadoAux>();
+            var ubic = CentroDeDistribucionAlmacen.centrosDeDistribucion
+                        .FirstOrDefault(cd => cd.CodigoPostal == guia.CodigoPostalCDOrigen)?.Nombre ?? string.Empty;
+
+            bool yaAdmitida = guia.Estado == EstadoGuiaEnum.Admitida && guia.Historial.Any(h => h.Estado == EstadoGuiaEnum.Admitida && h.UbicacionGuia == ubic);
+            if (!yaAdmitida)
+            {
+                // Actualizar estado y anotar en historial
+                guia.Estado = EstadoGuiaEnum.Admitida;
+                guia.Historial.Add(new RegistroEstadoAux
+                {
+                    Estado = EstadoGuiaEnum.Admitida,
+                    UbicacionGuia = ubic,
+                    FechaActualizacionEstado = DateTime.Now
+                });
+            }
+
+            // No persistir (no llamar GuiaAlmacen.Grabar())
+            return guia;
         }
     }
 }

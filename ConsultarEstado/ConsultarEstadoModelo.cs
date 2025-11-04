@@ -326,22 +326,27 @@ namespace TUTASAPrototipo.ConsultarEstado
             var ubicacionActual = string.IsNullOrWhiteSpace(ubicacionActualRaw) ? "No disponible" : ResolverNombreUbicacion(ubicacionActualRaw);
 
             // Mapear a la clase que usa la pantalla
-            var guiaParaPantalla = new Guia
-            {
-                Numero = guiaEntidad.NumeroGuia.ToString("D9"),
-                EstadoActual = EstadoDisplay(guiaEntidad.Estado),
-                UbicacionActual = ubicacionActual,
-                Historial = historial
+            var movimientos = historial
                 .Select(h => new Guia.Movimiento(
                     h.FechaActualizacionEstado,
                     EstadoDisplay(h.Estado),
                     ResolverNombreUbicacion(h.UbicacionGuia)
                 ))
+                // Agrupar por Estado+Ubicacion para eliminar duplicados de mismo estado/ubicación
+                .GroupBy(m => new { m.Estado, m.Ubicacion })
+                .Select(g => g.OrderBy(m => m.Fecha).Last()) // conservar el último registro por grupo
                 .OrderBy(m => m.Fecha)
-                .ToList()
+                .ToList();
+
+            var guiaParaPantalla = new Guia
+            {
+                Numero = guiaEntidad.NumeroGuia.ToString("D9"),
+                EstadoActual = EstadoDisplay(guiaEntidad.Estado),
+                UbicacionActual = ubicacionActual,
+                Historial = movimientos
             };
 
             return guiaParaPantalla;
-        }
-    }
-}
+         }
+     }
+ }
