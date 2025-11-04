@@ -206,6 +206,130 @@ namespace TUTASAPrototipo.EmitirFactura
 
             return facPantalla;
         }
+
+        /// <summary>
+        /// Postcondición 1: Actualiza los archivos de "Factura" y "Cuenta Corriente"
+        /// Este método persiste explícitamente los cambios realizados en la emisión.
+        /// </summary>
+        public void ActualizarArchivosFacturaYCuentaCorriente()
+        {
+            FacturaAlmacen.Grabar();
+            CuentaCorrienteAlmacen.Grabar();
+        }
+
+        /// <summary>
+        /// Postcondición 2: Registra nueva deuda en la cuenta corriente del cliente
+        /// Valida que el movimiento se haya registrado correctamente.
+        /// </summary>
+        public MovimientoClienteAux ObtenerUltimoMovimientoCuenta(string cuitDigits)
+        {
+            var digits = Digits(cuitDigits);
+            var cc = CuentaCorrienteAlmacen.cuentasCorrientes
+                .FirstOrDefault(c => Digits(c.CUITCliente) == digits);
+
+            if (cc?.Movimientos == null || !cc.Movimientos.Any())
+                throw new InvalidOperationException("No se encontraron movimientos en la cuenta corriente.");
+
+            return cc.Movimientos.Last();
+        }
+
+        /// <summary>
+        /// Postcondición 3: Disponibiliza la factura para consulta interna y entrega al cliente
+        /// Retorna los datos de la factura emitida en formato accesible.
+        /// </summary>
+        public Factura ObtenerFacturaEmitida(string numeroFactura)
+        {
+            var facEntidad = FacturaAlmacen.facturas
+                .FirstOrDefault(f => f.ID == numeroFactura);
+
+            if (facEntidad is null)
+                throw new InvalidOperationException($"No se encontró la factura {numeroFactura}.");
+
+            var cliente = ClienteAlmacen.clientes
+                .FirstOrDefault(c => Digits(c.CUIT) == Digits(facEntidad.CUITCliente));
+
+            if (cliente is null)
+                throw new InvalidOperationException("No se encontró el cliente asociado a la factura.");
+
+            var guiasFacturadas = facEntidad.GuiasFacturadas
+                .Select(numGuia =>
+                {
+                    var guiaNum = int.Parse(numGuia);
+                    var guia = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == guiaNum);
+                    return new Guia
+                    {
+                        Numero = numGuia,
+                        FechaAdmision = guia?.FechaAdmision ?? DateTime.Now,
+                        Importe = guia?.ImporteAFacturar ?? 0m,
+                        Estado = "Facturada"
+                    };
+                })
+                .ToList();
+
+            return new Factura
+            {
+                Numero = facEntidad.ID,
+                Fecha = facEntidad.FechaEmisionFactura,
+                Cliente = new Cliente
+                {
+                    Cuit = cliente.CUIT,
+                    RazonSocial = cliente.RazonSocial
+                },
+                GuiasFacturadas = guiasFacturadas
+            };
+        }
+
+        /// <summary>
+        /// Postcondición 4: Permite acceso a reportes y auditoría de facturas emitidas
+        /// Retorna todas las facturas para reportes internos.
+        /// </summary>
+        public List<Factura> ObtenerReporteFacturasEmitidas()
+        {
+            return FacturaAlmacen.facturas
+                .Select(f =>
+                {
+                    var cliente = ClienteAlmacen.clientes
+                        .FirstOrDefault(c => Digits(c.CUIT) == Digits(f.CUITCliente));
+
+                    return new Factura
+                    {
+                        Numero = f.ID,
+                        Fecha = f.FechaEmisionFactura,
+                        Cliente = new Cliente
+                        {
+                            Cuit = f.CUITCliente,
+                            RazonSocial = cliente?.RazonSocial ?? "Cliente desconocido"
+                        },
+                        GuiasFacturadas = f.GuiasFacturadas
+                            .Select(g => new Guia { Numero = g })
+                            .ToList()
+                    };
+                })
+                .OrderByDescending(f => f.Fecha)
+                .ToList();
+        }
+
+        /// <summary>
+        /// Postcondición 5: Limpia la pantalla para iniciar una nueva factura
+        /// Retorna los datos necesarios para resetear el formulario.
+        /// </summary>
+        public void LimpiarFormularioFactura()
+        {
+            // Este método es principalmente informativo para la vista.
+            // La lógica de limpieza real ocurre en la pantalla (vaciar textboxes, listas, etc.)
+            // No requiere persistencia aquí.
+        }
+
+        /// <summary>
+        /// Retorna un objeto vacío para resetear la pantalla después de la emisión.
+        /// </summary>
+        public (Cliente cliente, List<Guia> guias) ObtenerFormularioVacio()
+        {
+            return (
+                new Cliente { Cuit = string.Empty, RazonSocial = string.Empty, Convenio = string.Empty },
+                new List<Guia>()
+            );
+        }
     }
 }
 

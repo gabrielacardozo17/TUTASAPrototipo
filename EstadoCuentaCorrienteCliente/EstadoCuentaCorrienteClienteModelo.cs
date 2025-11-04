@@ -35,8 +35,6 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
             if (!ClienteExiste(cuitDigits))
                 return (new List<MovimientoCuenta>(), 0, false, true);
 
-            // Asegurarse que los datos están cargados
-           
             var cuentaCorriente = CuentaCorrienteAlmacen.cuentasCorrientes
                 .FirstOrDefault(cc => Digits(cc.CUITCliente) == cuitDigits);
 
@@ -79,6 +77,17 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
             bool estaAlDia = saldoAlCierre <= 0;
 
             return (movimientos, saldoAlCierre, movimientos.Any(), estaAlDia);
+        }
+
+        // Obtiene el último período (primer día del mes) que tiene movimientos para el CUIT
+        public DateTime? ObtenerUltimoPeriodoConMovimientos(string cuit)
+        {
+            var cuitDigits = Digits(cuit);
+            var cc = CuentaCorrienteAlmacen.cuentasCorrientes
+                .FirstOrDefault(x => Digits(x.CUITCliente) == cuitDigits);
+            var ultimo = cc?.Movimientos?.OrderByDescending(m => m.Fecha).FirstOrDefault();
+            if (ultimo == null) return null;
+            return new DateTime(ultimo.Fecha.Year, ultimo.Fecha.Month, 1);
         }
     }
 }

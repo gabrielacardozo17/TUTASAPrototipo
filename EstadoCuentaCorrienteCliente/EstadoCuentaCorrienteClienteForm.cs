@@ -16,7 +16,9 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
         public EstadoCuentaCorrienteClienteForm()
         {
             InitializeComponent();
-            //PeriodoDateTimePicker.MaxDate = DateTime.Today;  // Limitar al mes actual (no permito seleccionar fechas futuras)
+            //PeriodoDateTimePicker.MaxDate = DateTime.Today; // Limitar al mes actual (no permito seleccionar fechas futuras)
+            // Dejar el control en el primer día del mes actual para evitar confusiones
+            PeriodoDateTimePicker.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month,1);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -51,7 +53,7 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
             }
 
             //valido que el CUIT tenga longitud correcta
-            if (cuit.Length != 11)
+            if (cuit.Length !=11)
             {
                 MessageBox.Show("El formato de CUIT ingresado es inválido. Verifique los datos.",
                     "Error",
@@ -106,13 +108,31 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
             //obtengo movimientos del modelo
             var (movimientos, saldo, tieneMovimientos, estaAlDia) = Modelo.ObtenerEstadoCuenta(cuit, año, mes);
 
+            // Si el mes seleccionado no tiene movimientos, intento auto-ajustar al último mes con movimientos
+            if (!tieneMovimientos)
+            {
+                var ultimoPeriodo = Modelo.ObtenerUltimoPeriodoConMovimientos(cuit);
+                if (ultimoPeriodo.HasValue)
+                {
+                    var periodoSeleccionado = new DateTime(año, mes,1);
+                    if (ultimoPeriodo.Value != periodoSeleccionado)
+                    {
+                        // cambio el período y recalculo
+                        PeriodoDateTimePicker.Value = ultimoPeriodo.Value;
+                        año = ultimoPeriodo.Value.Year;
+                        mes = ultimoPeriodo.Value.Month;
+                        (movimientos, saldo, tieneMovimientos, estaAlDia) = Modelo.ObtenerEstadoCuenta(cuit, año, mes);
+                    }
+                }
+            }
+
             // Update saldo label always (even if no movements)
             SaldoAlCierre.Text = $"Saldo al cierre del período: ${saldo:N2}";
 
             // No hay movimientos en el período consultado y tiene deuda 
-            if (!tieneMovimientos && saldo > 0)
+            if (!tieneMovimientos && saldo >0)
             {
-                MessageBox.Show($"El cliente no registra movimientos en el período seleccionado.\nSaldo pendiente a {new DateTime(año, mes, 1):MMMM yyyy}: ${saldo:N2}",
+                MessageBox.Show($"El cliente no registra movimientos en el período seleccionado.\nSaldo pendiente a {new DateTime(año, mes,1):MMMM yyyy}: ${saldo:N2}",
                   "Sin movimientos",
                   MessageBoxButtons.OK,
                   MessageBoxIcon.Information);
@@ -123,10 +143,10 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
             }
 
             // Si no hay movimientos en el periodo consultado y no tiene deuda
-            if (!tieneMovimientos && saldo <= 0)
+            if (!tieneMovimientos && saldo <=0)
             {
                 MessageBox.Show(
-                    $"El cliente no registra movimientos ni deuda pendiente en {new DateTime(año, mes, 1):MMMM yyyy}.",
+                   $"El cliente no registra movimientos ni deuda pendiente en {new DateTime(año, mes,1):MMMM yyyy}.",
                     "Sin movimientos",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information

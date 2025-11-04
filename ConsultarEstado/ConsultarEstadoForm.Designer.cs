@@ -96,7 +96,6 @@
             NroGuiaLabel.Size = new Size(441, 20);
             NroGuiaLabel.TabIndex = 4;
             NroGuiaLabel.Text = "Ingrese el número de guía de la encomienda que desea consultar";
-            NroGuiaLabel.Click += NroGuiaLabel_Click;
             // 
             // NroGuiaBusquedaGroupBox
             // 
