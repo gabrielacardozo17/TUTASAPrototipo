@@ -3,16 +3,98 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-// NUEVO: linkeo a almacenes (JSON cargados por las clases estáticas)
 using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
 {
     public class ImponerEncomiendaCallCenterModelo
     {
-        /* Datos de prueba comentados: ver bloque original al inicio si se quiere volver */
+        // ---------- DATOS DE PRUEBA ----------
+        /*
+        private readonly List<Cliente> _clientes = new()
+        {
+            new Cliente { Cuit = "30-12345678-1", Nombre = "Distribuidora Sur", Telefono = "1122334455", Direccion = "Av. Siempre Viva 742, CABA" },
+            new Cliente { Cuit = "20-11111111-2", Nombre = "Mayorista Norte", Telefono = "1144556677", Direccion = "San Martín 1200, La Plata" },
+            new Cliente { Cuit = "30-22223333-3", Nombre = "Logística Pampeana", Telefono = "1133665599", Direccion = "Ruta 5 km 320, Santa Rosa" },
+            new Cliente { Cuit = "27-44445555-6", Nombre = "Agroexport SRL", Telefono = "1147891234", Direccion = "Av. Mitre 2300, Rosario" },
+            new Cliente { Cuit = "33-55556666-7", Nombre = "Transportes del Litoral", Telefono = "1125873645", Direccion = "Av. Maipú 2700, Corrientes" },
+            new Cliente { Cuit = "20-77778888-9", Nombre = "Comercial Andina", Telefono = "2614567890", Direccion = "San Martín 1800, Mendoza" },
+            new Cliente { Cuit = "23-99990000-1", Nombre = "Depósito Patagónico", Telefono = "2994672301", Direccion = "Anaya 3005, Neuquén" }
+        };
 
-        // LINQ desde almacenes (activo)
+        // Provincias con CD
+        private readonly Dictionary<int, string> _provincias = new()
+        {
+            { 1, "CABA" }, { 2, "Buenos Aires" }, { 3, "Córdoba" }, { 4, "Santa Fe" },
+            { 5, "Tucumán" }, { 6, "Corrientes" }, { 7, "Neuquén" }, { 8, "Río Negro" }, { 9, "Mendoza" }
+        };
+
+        // Localidades por Provincia: (id, nombre, tieneAgencia)
+        private readonly Dictionary<int, List<(int id, string nombre, bool tieneAgencia)>> _localidadesPorProv = new()
+        {
+            { 1, new() { (101,"CABA", true) } },
+            { 2, new() { (201,"La Plata", true), (202,"Mar del Plata", true), (203,"Bahía Blanca", true), (1001,"San Isidro", true), (1002,"Quilmes", true), (1003,"Pilar", true) } },
+            { 3, new() { (301,"Río Cuarto", true), (302,"Córdoba Capital", true), (303,"Villa Allende", true) } },
+            { 4, new() { (401,"Rosario", true), (402,"Funes", true) } },
+            { 5, new() { (501,"San Miguel de Tucumán", true), (502,"Yerba Buena", true) } },
+            { 6, new() { (601,"Corrientes", true), (602,"Goya", true) } },
+            { 7, new() { (701,"Neuquén", true), (702,"Plottier", true) } },
+            { 8, new() { (801,"Viedma", true), (802,"San Antonio Oeste", true) } },
+            { 9, new() { (901,"Mendoza", true), (902,"Godoy Cruz", true) } }
+        };
+
+        // Agencias por Localidad
+        private readonly Dictionary<int, List<(int id, string nombre, string direccion)>> _agenciasPorLoc = new()
+        {
+            { 101, new() { (5001,"Agencia CABA Centro","Av. Corrientes 1000"), (5002,"Agencia CABA Flores","Av. Rivadavia 7100") } },
+            { 201, new() { (5101,"Agencia La Plata","Calle 8 123"), (5104,"Agencia Quilmes","Av. Calchaquí 3950"), (5106,"Agencia San Isidro","Av. Centenario 1100"), (5105,"Agencia Pilar","Panamericana Km 50") } },
+            { 202, new() { (5102,"Agencia Mar del Plata","Av. Colón 5000") } },
+            { 203, new() { (5103,"Agencia Bahía Blanca Centro","Av. Alem 100") } },
+            { 301, new() { (5201,"Agencia Nueva Córdoba","Bv. Chacabuco 1050") } },
+            { 302, new() { (5202,"Agencia Córdoba Norte","Av. P. Cabrera 5000") } },
+            { 303, new() { (5203,"Agencia Villa Allende","Av. Goycochea 50") } },
+            { 401, new() { (5301,"Agencia Rosario Centro","Córdoba 1400"), (5302,"Agencia Rosario Norte","Bv. Rondeau 2500") } },
+            { 402, new() { (5303,"Agencia Funes","San José 1200") } },
+            { 501, new() { (5401,"Agencia Tucumán Centro","24 de Septiembre 500"), (5402,"Agencia Yerba Buena","Av. Aconquija 1500") } },
+            { 601, new() { (5501,"Agencia Corrientes Centro","Junín 850") } },
+            { 602, new() { (5502,"Agencia Goya","Colón 850") } },
+            { 701, new() { (5601,"Agencia Neuquén Centro","Av. Argentina 1200"), (5602,"Agencia Plottier","San Martín 300") } },
+            { 801, new() { (5701,"Agencia Viedma Centro","25 de Mayo 400") } },
+            { 802, new() { (5702,"Agencia San Antonio Oeste","Mitre 200") } },
+            { 901, new() { (5801,"Agencia Mendoza Centro","Av. San Martín 1200") } },
+            { 902, new() { (5802,"Agencia Godoy Cruz","San Martín Sur 1800") } }
+        };
+
+        // CDs por Provincia
+        private readonly Dictionary<int, List<(int id, string nombre, string direccion)>> _cdsPorProv = new()
+        {
+            { 1, new() { (9001,"CD CABA Oeste","Av. Warnes 200"), (9002,"CD CABA Sur","Av. Rondeau 300") } },
+            { 2, new() { (9101,"CD Buenos Aires – La Plata","Av. 520 y 25"), (9102,"CD Buenos Aires – Mar del Plata","Av. J. B. Justo 9000"), (9901,"CD Bahía Blanca","Drago 1900") } },
+            { 3, new() { (9201,"CD Córdoba Capital","Av. Sabattini 3000") } },
+            { 4, new() { (9301,"CD Rosario","Cafferata 702") } },
+            { 5, new() { (9401,"CD San Miguel de Tucumán","Av. Brígido Terán 250") } },
+            { 6, new() { (9501,"CD Corrientes","Av. Maipú 2700") } },
+            { 7, new() { (9601,"CD Neuquén","Anaya 3005") } },
+            { 8, new() { (9701,"CD Viedma","Av. F. de Viedma 1400") } },
+            { 9, new() { (9801,"CD Mendoza Capital","Acceso Este y Costanera") } }
+        };
+
+        // --- Numeración TLLLNNNNN ---
+        private readonly Dictionary<int, int> _codigoCD3 = new()
+        {
+            { 9001, 001 }, { 9002, 002 }, { 9101, 010 }, { 9102, 011 }, { 9201, 040 },
+            { 9301, 050 }, { 9401, 060 }, { 9501, 070 }, { 9601, 080 }, { 9701, 090 },
+            { 9801, 100 }, { 9901, 110 }
+        };
+        */
+
+        // =============================================================
+        // 1) DATOS TRAIDOS DESDE ALMACENES
+        // =============================================================
+
+        private static string Digits(string s) => new string(s.Where(char.IsDigit).ToArray());
+
+        // Clientes desde almacén
         private readonly List<Cliente> _clientes =
             ClienteAlmacen.clientes
                 .Select(c => new Cliente
@@ -24,6 +106,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                 })
                 .ToList();
 
+        // Provincias desde CDs (id = CP del CD; nombre = sin prefijo "CD ")
         private readonly Dictionary<int, string> _provincias =
             CentroDeDistribucionAlmacen.centrosDeDistribucion
                 .Select(cd => new
@@ -36,87 +119,98 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                 .GroupBy(x => x.CodigoPostal)
                 .ToDictionary(g => g.Key, g => g.First().Nombre);
 
+        // Localidades por provincia (construidas en ctor)
         private readonly Dictionary<int, List<(int id, string nombre, bool tieneAgencia)>> _localidadesPorProv;
+        // Agencias por localidad
         private readonly Dictionary<int, List<(int id, string nombre, string direccion)>> _agenciasPorLoc;
+        // CDs por provincia
         private readonly Dictionary<int, List<(int id, string nombre, string direccion)>> _cdsPorProv;
+        // Código LLL para numeración
         private readonly Dictionary<int, int> _codigoCD3;
 
-        private static readonly Dictionary<string, int> _seqPorUbicacion = new();
-        private static string Digits(string s) => new string(s.Where(char.IsDigit).ToArray());
-
+        // correlativo por origen (TLLL)
+        private static readonly Dictionary<int, int> _seqPorOrigen = new();
         private static string NextGuiaCode(bool esCD, int codigo3)
         {
-            var t = esCD ? '0' : '1';
-            var key = $"{t}{codigo3:D3}";
-            _seqPorUbicacion[key] = _seqPorUbicacion.TryGetValue(key, out var s) ? s + 1 : 1;
-            return $"{t}{codigo3:D3}{_seqPorUbicacion[key]:D5}";
+            int codigo4 = esCD ? codigo3 : (1000 + codigo3);
+            _seqPorOrigen[codigo4] = _seqPorOrigen.TryGetValue(codigo4, out var s) ? s + 1 : 1;
+            return $"{codigo4:D4}{_seqPorOrigen[codigo4]:D5}";
         }
 
         public ImponerEncomiendaCallCenterModelo()
         {
-            // Localidades por provincia
-            _localidadesPorProv = new Dictionary<int, List<(int id, string nombre, bool tieneAgencia)>>();
-            foreach (var prov in _provincias.Keys)
-            {
-                var provEnum = LocalidadAlmacen.localidades.FirstOrDefault(l => l.CodigoPostal == prov)?.Provincia;
-                var lista = new List<(int id, string nombre, bool tieneAgencia)>();
-                foreach (var loc in LocalidadAlmacen.localidades.Where(l => l.Provincia.Equals(provEnum)))
+            // Localidades por provincia (LINQ)
+            _localidadesPorProv = _provincias.Keys
+                .Select(prov => new
                 {
-                    bool tieneAgencia = AgenciaAlmacen.agencias.Any(a => a.CodigoPostal == loc.CodigoPostal);
-                    bool esLocalidadDelCD = loc.CodigoPostal == prov;
-                    if (tieneAgencia || esLocalidadDelCD)
+                    prov,
+                    provEnum = LocalidadAlmacen.localidades.FirstOrDefault(l => l.CodigoPostal == prov)?.Provincia
+                })
+                .ToDictionary(
+                    x => x.prov,
+                    x => LocalidadAlmacen.localidades
+                            .Where(l => l.Provincia.Equals(x.provEnum))
+                            .Select(l => new
+                            {
+                                id = l.CodigoPostal,
+                                nombre = l.Nombre ?? string.Empty,
+                                tieneAgencia = AgenciaAlmacen.agencias.Any(a => a.CodigoPostal == l.CodigoPostal),
+                                esLocalidadDelCD = l.CodigoPostal == x.prov
+                            })
+                            .Where(t => t.tieneAgencia || t.esLocalidadDelCD)
+                            .GroupBy(t => t.id)
+                            .Select(g => g.First())
+                            .OrderBy(t => t.nombre)
+                            .Select(t => (t.id, t.nombre, t.tieneAgencia))
+                            .ToList()
+                );
+
+            // Agencias por localidad (LINQ)
+            _agenciasPorLoc = AgenciaAlmacen.agencias
+                .GroupBy(a => a.CodigoPostal)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g
+                        .Select(ag =>
+                        {
+                            var idDigits = Digits(ag.ID ?? string.Empty);
+                            int.TryParse(idDigits, out var idNum);
+                            return (id: idNum, nombre: ag.Nombre ?? string.Empty, direccion: ag.Direccion ?? string.Empty);
+                        })
+                        .OrderBy(t => t.nombre)
+                        .ToList()
+                );
+
+            // CDs por provincia (clave = CP del CD) (LINQ)
+            _cdsPorProv = CentroDeDistribucionAlmacen.centrosDeDistribucion
+                .GroupBy(cd => cd.CodigoPostal)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g
+                        .Select(cd => (id: cd.CodigoPostal,
+                                       nombre: cd.Nombre ?? $"CD {cd.CodigoPostal}",
+                                       direccion: cd.Direccion ?? string.Empty))
+                        .OrderBy(t => t.nombre)
+                        .ToList()
+                );
+
+            // Código LLL por CP del CD (LINQ)
+            _codigoCD3 = CentroDeDistribucionAlmacen.centrosDeDistribucion
+                .GroupBy(cd => cd.CodigoPostal)
+                .ToDictionary(
+                    g => g.Key,
+                    g =>
                     {
-                        lista.Add((loc.CodigoPostal, loc.Nombre ?? string.Empty, tieneAgencia));
+                        var key = g.Key;
+                        var last3 = Math.Abs(key) % 1000;
+                        return last3 == 0 ? 1 : last3;
                     }
-                }
-                var ordenada = lista.GroupBy(t => t.id).Select(g => g.First()).OrderBy(t => t.nombre).ToList();
-                _localidadesPorProv[prov] = ordenada;
-            }
-
-            // Agencias por localidad
-            _agenciasPorLoc = new Dictionary<int, List<(int id, string nombre, string direccion)>>();
-            foreach (var ag in AgenciaAlmacen.agencias)
-            {
-                var cp = ag.CodigoPostal;
-                var idDigits = Digits(ag.ID ?? string.Empty);
-                int.TryParse(idDigits, out var idNum);
-                var item = (id: idNum, nombre: ag.Nombre ?? string.Empty, direccion: ag.Direccion ?? string.Empty);
-                if (!_agenciasPorLoc.TryGetValue(cp, out var list))
-                {
-                    list = new List<(int, string, string)>();
-                    _agenciasPorLoc[cp] = list;
-                }
-                list.Add(item);
-            }
-            foreach (var k in _agenciasPorLoc.Keys.ToList())
-            { _agenciasPorLoc[k] = _agenciasPorLoc[k].OrderBy(t => t.nombre).ToList(); }
-
-            // CDs por provincia (clave = CP del CD)
-            _cdsPorProv = new Dictionary<int, List<(int id, string nombre, string direccion)>>();
-            foreach (var cd in CentroDeDistribucionAlmacen.centrosDeDistribucion)
-            {
-                var key = cd.CodigoPostal;
-                var item = (id: cd.CodigoPostal, nombre: cd.Nombre ?? $"CD {cd.CodigoPostal}", direccion: cd.Direccion ?? string.Empty);
-                if (!_cdsPorProv.TryGetValue(key, out var list))
-                {
-                    list = new List<(int, string, string)>();
-                    _cdsPorProv[key] = list;
-                }
-                list.Add(item);
-            }
-            foreach (var k in _cdsPorProv.Keys.ToList())
-            { _cdsPorProv[k] = _cdsPorProv[k].OrderBy(t => t.nombre).ToList(); }
-
-            // Código LLL por CP del CD
-            _codigoCD3 = new Dictionary<int, int>();
-            foreach (var cd in CentroDeDistribucionAlmacen.centrosDeDistribucion)
-            {
-                var key = cd.CodigoPostal;
-                var last3 = Math.Abs(key) % 1000;
-                var lll = last3 == 0 ? 1 : last3;
-                if (!_codigoCD3.ContainsKey(key)) _codigoCD3[key] = lll;
-            }
+                );
         }
+
+        // =============================================================
+        // 2) FUNCIONES DEL MODELO (helpers y consultas)
+        // =============================================================
 
         public Cliente? BuscarCliente(string cuit)
         {
@@ -124,36 +218,40 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             return _clientes.FirstOrDefault(c => Digits(c.Cuit) == digits);
         }
 
-        public IEnumerable<KeyValuePair<int, string>> GetProvincias() => _provincias.OrderBy(kvp => kvp.Value);
+        public List<KeyValuePair<int, string>> GetProvincias() => _provincias.ToList();
 
-        public IEnumerable<(int id, string nombre, bool tieneAgencia)> GetLocalidades(int provinciaId)
+        public List<(int id, string nombre, bool tieneAgencia)> GetLocalidades(int provinciaId)
         {
             var list = _localidadesPorProv.TryGetValue(provinciaId, out var locs) ? new List<(int, string, bool)>(locs) : new();
             list.Add((-1, "Otras", false));
             return list;
         }
 
-        public IEnumerable<KeyValuePair<int, string>> GetAgencias(int localidadId)
+        public List<KeyValuePair<int, string>> GetAgencias(int localidadId)
         {
-            if (localidadId == -1) return Array.Empty<KeyValuePair<int, string>>();
-            return (_agenciasPorLoc.TryGetValue(localidadId, out var ags)
-                ? ags.Select(a => new KeyValuePair<int, string>(a.id, a.nombre))
-                : Enumerable.Empty<KeyValuePair<int, string>>());
+            if (localidadId == -1) return new List<KeyValuePair<int, string>>();
+            return _agenciasPorLoc.TryGetValue(localidadId, out var ags)
+                ? ags.Select(a => new KeyValuePair<int, string>(a.id, a.nombre)).ToList()
+                : new List<KeyValuePair<int, string>>();
         }
 
-        public IEnumerable<KeyValuePair<int, string>> GetCDs(int provinciaId)
+        public List<KeyValuePair<int, string>> GetCDs(int provinciaId)
         {
-            return (_cdsPorProv.TryGetValue(provinciaId, out var cds)
-                ? cds.Select(c => new KeyValuePair<int, string>(c.id, c.nombre))
-                : Enumerable.Empty<KeyValuePair<int, string>>());
+            return _cdsPorProv.TryGetValue(provinciaId, out var cds)
+                ? cds.Select(c => new KeyValuePair<int, string>(c.id, c.nombre)).ToList()
+                : new List<KeyValuePair<int, string>>();
         }
 
         public string[] GetTiposEntregaDisponibles(int provinciaId, int localidadId)
         {
-            var tipos = new List<string> { "A domicilio" };
-            if (localidadId == -1) return tipos.ToArray();
+            if (localidadId == -1) return new[] { "A domicilio" };
 
-            if (_agenciasPorLoc.TryGetValue(localidadId, out var ags) && ags.Count > 0)
+            var tipos = new List<string> { "A domicilio" };
+
+            if (_localidadesPorProv.TryGetValue(provinciaId, out var locs)
+                && locs.Any(l => l.id == localidadId && l.tieneAgencia)
+                && _agenciasPorLoc.TryGetValue(localidadId, out var ags)
+                && ags.Count > 0)
             { tipos.Add("En Agencia"); }
 
             if (_cdsPorProv.TryGetValue(provinciaId, out var cds) && cds.Count > 0)
@@ -162,7 +260,22 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             return tipos.ToArray();
         }
 
-        // Crea guías simples (sin persistencia) como en CD/Agencia
+        public int? GetCDIdPorNombre(string nombreCD)
+        {
+            if (string.IsNullOrWhiteSpace(nombreCD)) return null;
+
+            var cd = _cdsPorProv.Values
+                .SelectMany(v => v)
+                .FirstOrDefault(c => string.Equals(c.nombre?.Trim(), nombreCD.Trim(), StringComparison.OrdinalIgnoreCase));
+
+            return cd.id != 0 ? cd.id : (int?)null;
+        }
+
+        // =============================================================
+        // 3) CREACION DE LA GUIA
+        // =============================================================
+
+        // Crea guías simples (sin persistencia)
         public List<Guia> ConfirmarImposicion(
             string cuitRemitente,
             string destNombre, string destApellido, string destDni,
@@ -182,10 +295,13 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             if ((cantS + cantM + cantL + cantXL) == 0)
                 throw new InvalidOperationException("Debe indicar al menos una encomienda (S/M/L/XL).");
 
+            if (!_provincias.ContainsKey(provinciaId))
+                throw new InvalidOperationException("Provincia inválida.");
+
             if (!localidadEsOtras && !localidadId.HasValue)
                 throw new InvalidOperationException("Seleccioná una Localidad.");
 
-            // Validaciones por tipo de entrega (sin CP)
+            // Validaciones por tipo de entrega (sin CP obligatorio)
             if (string.Equals(tipoEntrega, "A domicilio", StringComparison.OrdinalIgnoreCase))
             {
                 if (string.IsNullOrWhiteSpace(direccion) || direccion.Trim().Length < 3)
@@ -216,20 +332,23 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             var guias = new List<Guia>();
             var cuitDigits = Digits(cuitRemitente);
 
-            void AgregarGuia(int s, int m, int l, int xl)
+            string NextNumero()
             {
-                // Determinar LLL (si no hay origen informado, usamos el primer CD de la provincia para numeración)
+                // Determinar LLL para numeración: si no hay origen, usar el primer CD de la provincia
                 int lll = _codigoCD3.TryGetValue(cdOrigenId, out var c3)
                           ? c3
                           : (_cdsPorProv.TryGetValue(provinciaId, out var cdsProv) && cdsProv.Count > 0
                                 ? (_codigoCD3.TryGetValue(cdsProv[0].id, out var c3alt) ? c3alt : 1)
                                 : 1);
+                // En CallCenter usamos prefijo de CD (como CD): TLLL = LLL
+                return NextGuiaCode(esCD: true, codigo3: lll);
+            }
 
-                var numero = NextGuiaCode(esCD: true, codigo3: lll);
-
+            void AgregarGuia(int s, int m, int l, int xl)
+            {
                 guias.Add(new Guia
                 {
-                    Numero = numero,
+                    Numero = NextNumero(),
                     Estado = string.Equals(tipoEntrega, "A domicilio", StringComparison.OrdinalIgnoreCase)
                                 ? "Pendiente de retiro en domicilio"
                                 : (string.Equals(tipoEntrega, "En Agencia", StringComparison.OrdinalIgnoreCase)
@@ -264,17 +383,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             for (int i = 0; i < cantXL; i++) AgregarGuia(0, 0, 0, 1);
 
             return guias;
-        }
-
-        public int? GetCDIdPorNombre(string nombreCD)
-        {
-            if (string.IsNullOrWhiteSpace(nombreCD)) return null;
-
-            var cd = _cdsPorProv.Values
-                .SelectMany(v => v)
-                .FirstOrDefault(c => string.Equals(c.nombre?.Trim(), nombreCD.Trim(), StringComparison.OrdinalIgnoreCase));
-
-            return cd.id != 0 ? cd.id : (int?)null;
         }
     }
 }

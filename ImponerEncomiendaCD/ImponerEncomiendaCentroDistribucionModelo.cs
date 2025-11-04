@@ -8,7 +8,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
     public class ImponerEncomiendaCentroDistribucionModelo
     {
         // ---------- DATOS DE PRUEBA ----------
-        // ---------- DATOS DE PRUEBA (COMENTADO) ----------
         /*
         private readonly List<Cliente> _clientes = new()
         {
@@ -87,9 +86,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         };
         */
 
-        private static readonly Dictionary<string, int> _seqPorUbicacion = new();
         // =============================================================
-        // == NUEVO: CARGA DESDE ALMACENES (ACTIVO) ====================
+        // 1) DATOS TRAIDOS DESDE ALMACENES
         // =============================================================
 
         private static string Digits(string s) => new string(s.Where(char.IsDigit).ToArray());
@@ -128,18 +126,12 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         // Código LLL para numeración (por CP del CD)
         private readonly Dictionary<int, int> _codigoCD3;
 
-        // === Origen fijo (lo que el form pasa): CD Corrientes ===
-        private const int ORIGEN_CD_CORRIENTES_ID = 9501;
-        private const string ORIGEN_CD_CORRIENTES_NOMBRE = "CD Corrientes";
-
-        // Propiedades para que el form pueda pasar SIEMPRE este origen
-        public int OrigenCdFijoId => ORIGEN_CD_CORRIENTES_ID;
-        public string OrigenCdFijoNombre => ORIGEN_CD_CORRIENTES_NOMBRE;
-        // ====================================================================
+        // Origen fijo para CD (expuesto directo, sin const duplicados)
+        public int OrigenCdFijoId => 9501;
+        public string OrigenCdFijoNombre => "CD Corrientes";
 
         // Numeración TLLLNNNNN → CD: 0001–0999, Agencia: 1000+
         private static readonly Dictionary<int, int> _seqPorOrigen = new();
-
         private static string NextGuiaCode(bool esCD, int codigo3)
         {
             int codigo4 = esCD ? codigo3 : (1000 + codigo3);
@@ -149,97 +141,107 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
         public ImponerEncomiendaCentroDistribucionModelo()
         {
-            // Localidades por provincia
-            _localidadesPorProv = new Dictionary<int, List<(int id, string nombre, bool tieneAgencia)>>();
-            foreach (var prov in _provincias.Keys)
-            {
-                var provEnum = LocalidadAlmacen.localidades.FirstOrDefault(l => l.CodigoPostal == prov)?.Provincia;
-                var lista = new List<(int id, string nombre, bool tieneAgencia)>();
-                foreach (var loc in LocalidadAlmacen.localidades.Where(l => l.Provincia.Equals(provEnum)))
+            // Localidades por provincia (LINQ)
+            _localidadesPorProv = _provincias.Keys
+                .Select(prov => new
                 {
-                    bool tieneAgencia = AgenciaAlmacen.agencias.Any(a => a.CodigoPostal == loc.CodigoPostal);
-                    bool esLocalidadDelCD = loc.CodigoPostal == prov;
-                    if (tieneAgencia || esLocalidadDelCD)
-                    { lista.Add((loc.CodigoPostal, loc.Nombre ?? string.Empty, tieneAgencia)); }
-                }
-                var ordenada = lista.GroupBy(t => t.id).Select(g => g.First()).OrderBy(t => t.nombre).ToList();
-                _localidadesPorProv[prov] = ordenada;
-            }
+                    prov,
+                    provEnum = LocalidadAlmacen.localidades.FirstOrDefault(l => l.CodigoPostal == prov)?.Provincia
+                })
+                .ToDictionary(
+                    x => x.prov,
+                    x => LocalidadAlmacen.localidades
+                            .Where(l => l.Provincia.Equals(x.provEnum))
+                            .Select(l => new
+                            {
+                                id = l.CodigoPostal,
+                                nombre = l.Nombre ?? string.Empty,
+                                tieneAgencia = AgenciaAlmacen.agencias.Any(a => a.CodigoPostal == l.CodigoPostal),
+                                esLocalidadDelCD = l.CodigoPostal == x.prov
+                            })
+                            .Where(t => t.tieneAgencia || t.esLocalidadDelCD)
+                            .GroupBy(t => t.id)
+                            .Select(g => g.First())
+                            .OrderBy(t => t.nombre)
+                            .Select(t => (t.id, t.nombre, t.tieneAgencia))
+                            .ToList()
+                );
 
-            // Agencias por localidad
-            _agenciasPorLoc = new Dictionary<int, List<(int id, string nombre, string direccion)>>();
-            foreach (var ag in AgenciaAlmacen.agencias)
-            {
-                var cp = ag.CodigoPostal;
-                var idDigits = new string((ag.ID ?? string.Empty).Where(char.IsDigit).ToArray());
-                int.TryParse(idDigits, out var idNum);
-                var item = (id: idNum, nombre: ag.Nombre ?? string.Empty, direccion: ag.Direccion ?? string.Empty);
-                if (!_agenciasPorLoc.TryGetValue(cp, out var list))
-                {
-                    list = new List<(int, string, string)>();
-                    _agenciasPorLoc[cp] = list;
-                }
-                list.Add(item);
-            }
-            foreach (var k in _agenciasPorLoc.Keys.ToList())
-            { _agenciasPorLoc[k] = _agenciasPorLoc[k].OrderBy(t => t.nombre).ToList(); }
+            // Agencias por localidad (LINQ)
+            _agenciasPorLoc = AgenciaAlmacen.agencias
+                .GroupBy(a => a.CodigoPostal)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g
+                        .Select(ag =>
+                        {
+                            var idDigits = Digits(ag.ID ?? string.Empty);
+                            int.TryParse(idDigits, out var idNum);
+                            return (id: idNum, nombre: ag.Nombre ?? string.Empty, direccion: ag.Direccion ?? string.Empty);
+                        })
+                        .OrderBy(t => t.nombre)
+                        .ToList()
+                );
 
-            // CDs por provincia (clave = CP del CD)
-            _cdsPorProv = new Dictionary<int, List<(int id, string nombre, string direccion)>>();
-            foreach (var cd in CentroDeDistribucionAlmacen.centrosDeDistribucion)
-            {
-                var key = cd.CodigoPostal;
-                var item = (id: cd.CodigoPostal, nombre: cd.Nombre ?? $"CD {cd.CodigoPostal}", direccion: cd.Direccion ?? string.Empty);
-                if (!_cdsPorProv.TryGetValue(key, out var list))
-                {
-                    list = new List<(int, string, string)>();
-                    _cdsPorProv[key] = list;
-                }
-                list.Add(item);
-            }
-            foreach (var k in _cdsPorProv.Keys.ToList())
-            { _cdsPorProv[k] = _cdsPorProv[k].OrderBy(t => t.nombre).ToList(); }
+            // CDs por provincia (LINQ)
+            _cdsPorProv = CentroDeDistribucionAlmacen.centrosDeDistribucion
+                .GroupBy(cd => cd.CodigoPostal)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g
+                        .Select(cd => (id: cd.CodigoPostal,
+                                       nombre: cd.Nombre ?? $"CD {cd.CodigoPostal}",
+                                       direccion: cd.Direccion ?? string.Empty))
+                        .OrderBy(t => t.nombre)
+                        .ToList()
+                );
 
-            // Código LLL por CP del CD
-            _codigoCD3 = new Dictionary<int, int>();
-            foreach (var cd in CentroDeDistribucionAlmacen.centrosDeDistribucion)
-            {
-                var key = cd.CodigoPostal;
-                var last3 = Math.Abs(key) % 1000;
-                var lll = last3 == 0 ? 1 : last3;
-                if (!_codigoCD3.ContainsKey(key)) _codigoCD3[key] = lll;
-            }
+            // Código LLL por CP del CD (LINQ)
+            _codigoCD3 = CentroDeDistribucionAlmacen.centrosDeDistribucion
+                .GroupBy(cd => cd.CodigoPostal)
+                .ToDictionary(
+                    g => g.Key,
+                    g =>
+                    {
+                        var key = g.Key;
+                        var last3 = Math.Abs(key) % 1000;
+                        return last3 == 0 ? 1 : last3;
+                    }
+                );
         }
 
-        // ---------- API ----------
+        // =============================================================
+        // 2) FUNCIONES DEL MODELO
+        // =============================================================
+
         public Cliente? BuscarCliente(string cuit)
         {
             var digits = Digits(cuit);
             return _clientes.FirstOrDefault(c => Digits(c.Cuit) == digits);
         }
 
-        public IEnumerable<KeyValuePair<int, string>> GetProvincias() => _provincias;
+        public List<KeyValuePair<int, string>> GetProvincias() => _provincias.ToList();
 
-        public IEnumerable<(int id, string nombre, bool tieneAgencia)> GetLocalidades(int provinciaId)
+        public List<(int id, string nombre, bool tieneAgencia)> GetLocalidades(int provinciaId)
         {
             var list = _localidadesPorProv.TryGetValue(provinciaId, out var locs) ? new List<(int, string, bool)>(locs) : new();
             list.Add((-1, "Otras", false));
             return list;
         }
 
-        public IEnumerable<KeyValuePair<int, string>> GetAgencias(int localidadId)
+        public List<KeyValuePair<int, string>> GetAgencias(int localidadId)
         {
-            if (localidadId == -1) return Array.Empty<KeyValuePair<int, string>>();
-            return (_agenciasPorLoc.TryGetValue(localidadId, out var ags)
-                ? ags.Select(a => new KeyValuePair<int, string>(a.id, a.nombre))
-                : Enumerable.Empty<KeyValuePair<int, string>>());
+            if (localidadId == -1) return new List<KeyValuePair<int, string>>();
+            return _agenciasPorLoc.TryGetValue(localidadId, out var ags)
+                ? ags.Select(a => new KeyValuePair<int, string>(a.id, a.nombre)).ToList()
+                : new List<KeyValuePair<int, string>>();
         }
 
-        public IEnumerable<KeyValuePair<int, string>> GetCDs(int provinciaId)
+        public List<KeyValuePair<int, string>> GetCDs(int provinciaId)
         {
-            return (_cdsPorProv.TryGetValue(provinciaId, out var cds)
-                ? cds.Select(c => new KeyValuePair<int, string>(c.id, c.nombre))
-                : Enumerable.Empty<KeyValuePair<int, string>>());
+            return _cdsPorProv.TryGetValue(provinciaId, out var cds)
+                ? cds.Select(c => new KeyValuePair<int, string>(c.id, c.nombre)).ToList()
+                : new List<KeyValuePair<int, string>>();
         }
 
         public string[] GetTiposEntregaDisponibles(int provinciaId, int localidadId)
@@ -259,6 +261,10 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
             return tipos.ToArray();
         }
+
+        // =============================================================
+        // 3) CREACION DE LA GUIA
+        // =============================================================
 
         // Confirmar: valida y crea UNA guía por cada bulto (sin persistencia)
         public List<Guia> ConfirmarImposicion(
@@ -292,8 +298,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             switch (tipoEntrega)
             {
                 case "A domicilio":
-                    if (string.IsNullOrWhiteSpace(direccion) || string.IsNullOrWhiteSpace(codigoPostal))
-                        throw new InvalidOperationException("Para entrega a Domicilio debe completar Dirección y Código Postal.");
+                    if (string.IsNullOrWhiteSpace(direccion))
+                        throw new InvalidOperationException("Para entrega a Domicilio debe completar Dirección.");
                     break;
 
                 case "En Agencia":
@@ -316,28 +322,30 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                     throw new InvalidOperationException("Tipo de entrega inválido.");
             }
 
-            // --- Origen fijo: Corrientes ---
-            if (cdOrigenId != ORIGEN_CD_CORRIENTES_ID)
+            // Origen fijo
+            if (cdOrigenId != OrigenCdFijoId)
             {
-                cdOrigenId = ORIGEN_CD_CORRIENTES_ID;
-                cdOrigenNombre = ORIGEN_CD_CORRIENTES_NOMBRE;
+                cdOrigenId = OrigenCdFijoId;
+                cdOrigenNombre = OrigenCdFijoNombre;
             }
             if (string.IsNullOrWhiteSpace(cdOrigenNombre))
-                cdOrigenNombre = ORIGEN_CD_CORRIENTES_NOMBRE;
-            // --------------------------------
+                cdOrigenNombre = OrigenCdFijoNombre;
 
             var guias = new List<Guia>();
             var cuitDigits = Digits(cuitRemitente);
 
-            void AgregarGuia(int s, int m, int l, int xl)
+            string NextNumero()
             {
                 int lll = _codigoCD3.TryGetValue(cdOrigenId, out var code3) ? code3 : 1;
-                var numero = NextGuiaCode(esCD: true, codigo3: lll);
+                return NextGuiaCode(esCD: true, codigo3: lll);
+            }
 
+            void AgregarGuia(int s, int m, int l, int xl)
+            {
                 guias.Add(new Guia
                 {
-                    Numero = numero,
-                    Estado = "Pendiente de retiro en domicilio",
+                    Numero = NextNumero(),
+                    Estado = "Admitida",
                     CuitRemitente = cuitDigits,
                     Destinatario = new Destinatario { Nombre = destNombre, Apellido = destApellido, Dni = destDni },
                     CdOrigenId = cdOrigenId,
@@ -367,17 +375,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             for (int i = 0; i < cantXL; i++) AgregarGuia(0, 0, 0, 1);
 
             return guias;
-        }
-
-        public int? GetCDIdPorNombre(string nombreCD)
-        {
-            if (string.IsNullOrWhiteSpace(nombreCD)) return null;
-
-            var cd = _cdsPorProv.Values
-                .SelectMany(v => v)
-                .FirstOrDefault(c => string.Equals(c.nombre?.Trim(), nombreCD.Trim(), StringComparison.OrdinalIgnoreCase));
-
-            return cd.id != 0 ? cd.id : (int?)null;
         }
     }
 }

@@ -70,6 +70,10 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             tipoXLNumericUpDown.Minimum = 0;
 
             LimpiarRemitente();
+
+            // Label de CD: origen fijo desde el modelo
+            if (CDResult != null)
+                CDResult.Text = _modelo.OrigenCdFijoNombre;
         }
 
         // ---------- CONFIRMACIÓN DE SALIDA ----------
@@ -100,7 +104,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         {
             var cuit = CUITRemitenteMaskedText.Text.Trim();
 
-            if (!CuitFormatoOk(cuit) || !CuitDvOk(cuit))
+            // Validar solo formato (11 dígitos), sin DV
+            if (!CuitFormatoOk(cuit))
             {
                 LimpiarRemitente();
                 MessageBox.Show("Ingresá un CUIT válido (NN-NNNNNNNN-N).", "Validación");
@@ -269,7 +274,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         private void ConfirmarImposicionButton_Click(object? sender, EventArgs e)
         {
             var cuit = CUITRemitenteMaskedText.Text.Trim();
-            if (!CuitFormatoOk(cuit) || !CuitDvOk(cuit))
+            // Validar solo formato (11 dígitos), sin DV
+            if (!CuitFormatoOk(cuit))
             { MessageBox.Show("Ingresá un CUIT válido (NN-NNNNNNNN-N).", "Validación"); return; }
 
             var cli = _modelo.BuscarCliente(cuit);
@@ -444,17 +450,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         {
             var d = new string(cuit.Where(char.IsDigit).ToArray());
             return d.Length == 11;
-        }
-
-        private static bool CuitDvOk(string cuit)
-        {
-            var d = new string(cuit.Where(char.IsDigit).ToArray());
-            if (d.Length != 11) return false;
-            int[] pesos = { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
-            int suma = 0; for (int i = 0; i < 10; i++) suma += (d[i] - '0') * pesos[i];
-            int resto = suma % 11;
-            int dv = resto == 0 ? 0 : resto == 1 ? 9 : 11 - resto;
-            return dv == (d[10] - '0');
         }
 
         private static bool DniOk(string dni) => dni.All(char.IsDigit) && dni.Length is >= 7 and <= 8;

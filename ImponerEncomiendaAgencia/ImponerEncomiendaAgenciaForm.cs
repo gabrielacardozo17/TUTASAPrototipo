@@ -2,24 +2,20 @@
 using System.Drawing;           // SystemColors
 using System.Linq;
 using System.Windows.Forms;
-using CD = TUTASAPrototipo.ImponerEncomiendaCD; // reutiliza el modelo del módulo CD
 
 namespace TUTASAPrototipo.ImponerEncomiendaAgencia
 {
     public partial class ImponerEncomiendaAgenciaForm : Form
     {
-        // Reutilizamos el mismo modelo de CD para tener idéntico comportamiento
-        private readonly CD.ImponerEncomiendaCentroDistribucionModelo _modelo = new();
+        private readonly ImponerEncomiendaAgenciaModelo _modelo = new();
 
         public ImponerEncomiendaAgenciaForm()
         {
             InitializeComponent();
 
-            // Ciclo de vida
             Load += Form_Load;
             FormClosing += Form_FormClosing;
 
-            // Interacción (nombres según tu diseñador de Agencia)
             BuscarCuitButton.Click += BuscarCuitButton_Click;
             ProvinciaComboBox.SelectedIndexChanged += ProvinciaComboBox_SelectedIndexChanged;
             LocalidadxProvinciaComboBox.SelectedIndexChanged += LocalidadComboBox_SelectedIndexChanged;
@@ -27,10 +23,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             ConfirmarImposicionButton.Click += ConfirmarImposicionButton_Click;
             CancelarButton.Click += (s, e) => Close();
 
-            // Estado inicial de dependientes
             HabilitarCamposEntrega(null);
 
-            // Al escribir CUIT, limpiar datos de remitente
             CUITRemitenteMaskedText.TextChanged += (s, e) =>
             {
                 NombreClienteResult.Text = "";
@@ -39,10 +33,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             };
         }
 
-        // ---------- CARGA INICIAL ----------
         private void Form_Load(object? sender, EventArgs e)
         {
-            // Máscara CUIT
             CUITRemitenteMaskedText.Mask = "00-00000000-0";
             CUITRemitenteMaskedText.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             CUITRemitenteMaskedText.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
@@ -50,26 +42,26 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             CUITRemitenteMaskedText.ResetOnSpace = true;
             CUITRemitenteMaskedText.AsciiOnly = true;
 
-            // Provincias (solo con CD)
             ProvinciaComboBox.DisplayMember = "Value";
             ProvinciaComboBox.ValueMember = "Key";
-            ProvinciaComboBox.DataSource = _modelo.GetProvincias().ToList();
+            ProvinciaComboBox.DataSource = _modelo.GetProvincias();
             ProvinciaComboBox.SelectedIndex = -1;
             ProvinciaComboBox.Text = "";
 
-            // Limpiar dependientes
             LocalidadxProvinciaComboBox.DataSource = null;
             TipoEntregaComboBox.Items.Clear();
             AgenciaComboBox.DataSource = null;
             CentroDistribucionComboBox.DataSource = null;
 
-            // NumericUpDowns (permiten 0)
             tipoSNumericUpDown.Minimum = 0;
             tipoMNumericUpDown.Minimum = 0;
             tipoLNumericUpDown.Minimum = 0;
             tipoXLNumericUpDown.Minimum = 0;
 
             LimpiarRemitente();
+
+            // Label de agencia: mostrar la actual o la default simple
+            AgenciaResult.Text = $"{_modelo.GetAgenciaActualNombre()}";
         }
 
         // ---------- CONFIRMACIÓN DE SALIDA ----------
@@ -100,7 +92,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
         {
             var cuit = CUITRemitenteMaskedText.Text.Trim();
 
-            if (!CuitFormatoOk(cuit) || !CuitDvOk(cuit))
+            // Validar solo formato (11 dígitos), sin DV
+            if (!CuitFormatoOk(cuit))
             {
                 LimpiarRemitente();
                 MessageBox.Show("Ingresá un CUIT válido (NN-NNNNNNNN-N).", "Validación");
@@ -266,7 +259,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
         private void ConfirmarImposicionButton_Click(object? sender, EventArgs e)
         {
             var cuit = CUITRemitenteMaskedText.Text.Trim();
-            if (!CuitFormatoOk(cuit) || !CuitDvOk(cuit))
+            // Validar solo formato (11 dígitos), sin DV
+            if (!CuitFormatoOk(cuit))
             { MessageBox.Show("Ingresá un CUIT válido (NN-NNNNNNNN-N).", "Validación"); return; }
 
             var cli = _modelo.BuscarCliente(cuit);
@@ -370,9 +364,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                     cdOrigenId, cdOrigenNombre
                 );
 
-                // (Opcional) Si querés forzar estado inicial distinto, podés setearlo acá.
-                // foreach (var g in guias) g.Estado = CD.EstadoGuia.PendRetiroDomicilio;
-
                 var lineas = guias.Select(g =>
                 {
                     string tam = g.CantS == 1 ? "S"
@@ -445,22 +436,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             return d.Length == 11;
         }
 
-        private static bool CuitDvOk(string cuit)
-        {
-            var d = new string(cuit.Where(char.IsDigit).ToArray());
-            if (d.Length != 11) return false;
-            int[] pesos = { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
-            int suma = 0; for (int i = 0; i < 10; i++) suma += (d[i] - '0') * pesos[i];
-            int resto = suma % 11;
-            int dv = resto == 0 ? 0 : resto == 1 ? 9 : 11 - resto;
-            return dv == (d[10] - '0');
-        }
-
         private static bool DniOk(string dni) => dni.All(char.IsDigit) && dni.Length is >= 7 and <= 8;
 
-        private void AgenciaResult_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
