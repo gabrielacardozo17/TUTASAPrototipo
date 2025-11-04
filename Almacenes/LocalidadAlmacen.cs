@@ -12,9 +12,9 @@ namespace TUTASAPrototipo.Almacenes
 
         static LocalidadAlmacen()
         {
-            if (File.Exists("Datos/Localidades.json"))
+            if (File.Exists(@"Datos\Localidades.json"))
             {
-                var localidadJson = File.ReadAllText("Datos/Localidades.json");
+                var localidadJson = File.ReadAllText(@"Datos\Localidades.json");
                 localidades = System.Text.Json.JsonSerializer.Deserialize<List<LocalidadEntidad>>(localidadJson) ?? new List<LocalidadEntidad>();
             }
         }
@@ -22,7 +22,7 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var localidadJson = System.Text.Json.JsonSerializer.Serialize(localidades);
-            File.WriteAllText("Datos/Localidades.json", localidadJson);
+            File.WriteAllText(@"Datos\Localidades.json", localidadJson);
         }
     }
     

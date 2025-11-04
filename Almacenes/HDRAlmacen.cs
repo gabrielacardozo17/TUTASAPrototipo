@@ -12,9 +12,9 @@ namespace TUTASAPrototipo.Almacenes
 
         static HDRAlmacen()
         {
-            if (File.Exists("Datos/HDR.json"))
+            if (File.Exists(@"Datos\HDR.json"))
             {
-                var HDRJson = File.ReadAllText("Datos/HDR.json");
+                var HDRJson = File.ReadAllText(@"Datos\HDR.json");
                 HDR = System.Text.Json.JsonSerializer.Deserialize<List<HDREntidad>>(HDRJson) ?? new List<HDREntidad>();
             }
         }
@@ -22,7 +22,7 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var HDRJson = System.Text.Json.JsonSerializer.Serialize(HDR);
-            File.WriteAllText("Datos/HDR.json", HDRJson);
+            File.WriteAllText(@"Datos\HDR.json", HDRJson);
         }
     }
 

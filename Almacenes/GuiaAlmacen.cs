@@ -12,9 +12,9 @@ namespace TUTASAPrototipo.Almacenes
 
         static GuiaAlmacen()
         {
-            if (File.Exists("Datos/Guias.json"))
+            if (File.Exists(@"Datos\Guias.json"))
             {
-                var guiaJson = File.ReadAllText("Datos/Guias.json");
+                var guiaJson = File.ReadAllText(@"Datos\Guias.json");
                 guias = System.Text.Json.JsonSerializer.Deserialize<List<GuiaEntidad>>(guiaJson) ?? new List<GuiaEntidad>();
             }
         }
@@ -22,7 +22,7 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var guiaJson = System.Text.Json.JsonSerializer.Serialize(guias);
-            File.WriteAllText("Datos/Guias.json", guiaJson);
+            File.WriteAllText(@"Datos\Guias.json", guiaJson);
         }
     }
 
