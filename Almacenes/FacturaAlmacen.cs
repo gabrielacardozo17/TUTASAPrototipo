@@ -12,9 +12,9 @@ namespace TUTASAPrototipo.Almacenes
 
         static FacturaAlmacen()
         {
-            if (File.Exists("Datos/Facturas.json"))
+            if (File.Exists(@"Datos\Facturas.json"))
             {
-                var facturaJson = File.ReadAllText("Datos/Facturas.json");
+                var facturaJson = File.ReadAllText(@"Datos\Facturas.json");
                 facturas = System.Text.Json.JsonSerializer.Deserialize<List<FacturaEntidad>>(facturaJson) ?? new List<FacturaEntidad>();
             }
         }
@@ -22,7 +22,7 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var facturaJson = System.Text.Json.JsonSerializer.Serialize(facturas);
-            File.WriteAllText("Datos/Facturas.json", facturaJson);
+            File.WriteAllText(@"Datos\Facturas.json", facturaJson);
         }
     }
 

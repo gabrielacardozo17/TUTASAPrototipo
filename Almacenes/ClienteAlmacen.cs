@@ -12,9 +12,9 @@ namespace TUTASAPrototipo.Almacenes
 
         static ClienteAlmacen()
         {
-            if (File.Exists("Datos/Clientes.json"))
+            if (File.Exists(@"Datos\Clientes.json"))
             {
-                var clienteJson = File.ReadAllText("Datos/Clientes.json");
+                var clienteJson = File.ReadAllText(@"Datos\Clientes.json");
                 clientes = System.Text.Json.JsonSerializer.Deserialize<List<ClienteEntidad>>(clienteJson) ?? new List<ClienteEntidad>();
             }
         }
@@ -23,7 +23,7 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var clienteJson = System.Text.Json.JsonSerializer.Serialize(clientes);    
-           File.WriteAllText("Datos/Clientes.json", clienteJson);
+           File.WriteAllText(@"Datos\Clientes.json", clienteJson);
         }
     }
 

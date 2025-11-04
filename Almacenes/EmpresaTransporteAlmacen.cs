@@ -12,9 +12,9 @@ namespace TUTASAPrototipo.Almacenes
 
         static EmpresaTransporteAlmacen()
         {
-            if (File.Exists("EmpresasTransporte.json"))
+            if (File.Exists(@"Datos\EmpresasTransporte.json"))
             {
-                var empresaTransporteJson = File.ReadAllText("EmpresasTransporte.json");
+                var empresaTransporteJson = File.ReadAllText(@"Datos\EmpresasTransporte.json");
                 empresasTransporte = System.Text.Json.JsonSerializer.Deserialize<List<EmpresaTransporteEntidad>>(empresaTransporteJson) ?? new List<EmpresaTransporteEntidad>();
             }
         }
@@ -22,7 +22,7 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var empresaTransporteJson = System.Text.Json.JsonSerializer.Serialize(empresasTransporte);
-            File.WriteAllText("EmpresasTransporte.json", empresaTransporteJson);
+            File.WriteAllText(@"Datos\EmpresasTransporte.json", empresaTransporteJson);
         }
     }
 
