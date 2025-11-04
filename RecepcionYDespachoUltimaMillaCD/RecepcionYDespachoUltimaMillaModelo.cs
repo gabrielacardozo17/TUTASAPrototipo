@@ -30,7 +30,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             var guiasRetiro = hdrsFletero
                 .Where(h => h.TipoHDR == TipoHDREnum.Retiro)
                 .SelectMany(h => h.Guias)
-                .Where(g => EsRetiro(g.Estado))
+                .Where(g => g.Estado ==EstadoGuiaEnum.ARetirarPorDomicilioDelCliente
+                            || g.Estado == EstadoGuiaEnum.ARetirarEnAgenciaDeOrigen)
                 .OrderBy(g => g.NumeroGuia)
                 .ToList();
 

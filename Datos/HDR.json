@@ -431,7 +431,7 @@
 		"Guias": [
 			{
 				"NumeroGuia": 911000001,
-				"Estado": 9,
+				"Estado": 0,
 				"FechaAdmision": "2025-10-29T08:45:00-03:00",
 				"TipoEntrega": 1,
 				"CodigoPostalCDOrigen": 9200,
@@ -473,7 +473,7 @@
 			},
 			{
 				"NumeroGuia": 911000033,
-				"Estado": 9,
+				"Estado": 1,
 				"FechaAdmision": "2025-10-29T08:45:00-03:00",
 				"TipoEntrega": 1,
 				"CodigoPostalCDOrigen": 9200,
