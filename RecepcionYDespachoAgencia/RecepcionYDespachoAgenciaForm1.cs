@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using TUTASAPrototipo.Almacenes;
+using TUTASAPrototipo;
 
 namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 {
@@ -30,6 +31,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             ApellidoResultLabel.Text = "";
 
             LimpiarFormulario();
+        }
+
+        // New overload accepting selected agency
+        public RecepcionYDespachoAgenciaForm1(AgenciaEntidad? selectedAgencia) : this()
+        {
+            NombreAgenciaLabel.Text = selectedAgencia?.Nombre ?? "Agencia Posadas";
         }
 
         // ---------- LOAD ----------

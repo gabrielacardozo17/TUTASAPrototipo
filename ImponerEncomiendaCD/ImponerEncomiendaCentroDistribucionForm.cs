@@ -2,6 +2,8 @@
 using System.Drawing;           // ← para SystemColors
 using System.Linq;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
+using TUTASAPrototipo;
 
 namespace TUTASAPrototipo.ImponerEncomiendaCD
 {
@@ -35,6 +37,13 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 TelefonoClienteResult.Text = "";
                 DireccionClienteResult.Text = "";
             };
+        }
+
+        // Overload: accept preselected CD (no persistence)
+        public ImponerEncomiendaCentroDistribucionForm(CentroDeDistribucionEntidad? selectedCd) : this()
+        {
+            if (CDResult != null)
+                CDResult.Text = selectedCd?.Nombre ?? "N/A";
         }
 
         private void RemitenteGroupBox_Enter(object? sender, EventArgs e) { /* no-op */ }
@@ -71,9 +80,9 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
             LimpiarRemitente();
 
-            // Label de CD: origen fijo desde el modelo
-            if (CDResult != null)
-                CDResult.Text = _modelo.OrigenCdFijoNombre;
+            // Label de CD: si no fue seteado por el constructor, usar valor por defecto "N/A"
+            if (CDResult != null && string.IsNullOrWhiteSpace(CDResult.Text))
+                CDResult.Text = "N/A";
         }
 
         // ---------- CONFIRMACIÓN DE SALIDA ----------

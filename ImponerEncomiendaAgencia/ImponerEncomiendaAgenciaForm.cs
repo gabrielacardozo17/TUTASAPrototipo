@@ -2,6 +2,8 @@
 using System.Drawing;           // SystemColors
 using System.Linq;
 using System.Windows.Forms;
+using TUTASAPrototipo;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.ImponerEncomiendaAgencia
 {
@@ -33,6 +35,11 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             };
         }
 
+        public ImponerEncomiendaAgenciaForm(AgenciaEntidad? selectedAgencia) : this()
+        {
+            AgenciaResult.Text = selectedAgencia?.Nombre ?? "N/A";
+        }
+
         private void Form_Load(object? sender, EventArgs e)
         {
             CUITRemitenteMaskedText.Mask = "00-00000000-0";
@@ -60,8 +67,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
 
             LimpiarRemitente();
 
-            // Label de agencia: mostrar la actual o la default simple
-            AgenciaResult.Text = $"{_modelo.GetAgenciaActualNombre()}";
+            if (string.IsNullOrWhiteSpace(AgenciaResult.Text)) AgenciaResult.Text = "N/A";
         }
 
         // ---------- CONFIRMACIÓN DE SALIDA ----------

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
 {
@@ -12,6 +14,20 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             InitializeComponent();
             modelo = new RecepcionYDespachoLargaDistanciaModelo();
             InicializarFormulario();
+        }
+
+        // Nuevo constructor sobrecargado: acepta CD o Agencia seleccionada (sin persistencia)
+        public RecepcionYDespachoLargaDistanciaForm(CentroDeDistribucionEntidad? cdSeleccionado, AgenciaEntidad? agSeleccionada) : this()
+        {
+            if (cdSeleccionado != null)
+                CDResult.Text = cdSeleccionado.Nombre ?? "N/A";
+            else if (agSeleccionada != null)
+            {
+                var cd = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == agSeleccionada.CodigoPostalCD);
+                CDResult.Text = cd?.Nombre ?? "N/A";
+            }
+            else
+                CDResult.Text = "N/A";
         }
 
         private void InicializarFormulario()

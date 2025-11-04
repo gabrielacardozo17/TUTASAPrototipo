@@ -7,6 +7,8 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
+using TUTASAPrototipo;
 
 namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 {
@@ -20,11 +22,17 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
             modelo = new EntregarEncomiendaEnAgenciaModelo();
         }
 
+        // Nuevo constructor: acepta selección de agencia (sin persistencia)
+        public EntregarEncomiendaEnAgenciaForm(AgenciaEntidad? agenciaSeleccionada) : this()
+        {
+            AgenciaResult.Text = agenciaSeleccionada?.Nombre ?? "N/A";
+        }
+
         // Reemplazar este método en EntregarEncomiendaEnAgenciaForm.cs
         private void EntregarEncomiendaEnAgenciaForm_Load(object sender, EventArgs e)
         {
             UsuarioResult.Text = "Juan Perez";
-            AgenciaResult.Text = "Agencia Mendoza"; // nombre que existe en Datos/Agencias.json (ID 05500)
+            AgenciaResult.Text = string.IsNullOrWhiteSpace(AgenciaResult.Text) ? "N/A" : AgenciaResult.Text;
             NombreDestinatarioResult.Text = "";
             ApellidoDestinatarioResult.Text = "";
         }

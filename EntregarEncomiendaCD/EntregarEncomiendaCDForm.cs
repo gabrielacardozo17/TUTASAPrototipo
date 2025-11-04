@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
+using TUTASAPrototipo;
 
 namespace TUTASAPrototipo.EntregarEncomiendaCD
 {
@@ -14,13 +16,20 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
             modelo = new EntregarEncomiendaCDModelo();
         }
 
+        // New overload to accept selected CD (no persistence)
+        public EntregarEncomiendaCDForm(CentroDeDistribucionEntidad? selectedCd) : this()
+        {
+            CDResult.Text = selectedCd?.Nombre ?? "N/A";
+        }
+
         // Reemplazar este método en EntregarEncomiendaCDForm.cs
 
         private void EntregarEncomiendaCDForm_Load(object sender, EventArgs e)
         {
             // Simulación de datos de sesión con nombres realistas y consistentes con el Modelo
             UsuarioResult.Text = "Juan Perez";
-            CDResult.Text = "CD Mendoza"; // Usar un CD existente para que los filtros funcionen
+            // Asegurar que CDResult tenga valor por defecto si nadie lo pasó
+            if (string.IsNullOrWhiteSpace(CDResult.Text)) CDResult.Text = "N/A";
             NombreResultLabel.Text = "";
             ApellidoResultLabel.Text = "";
         }

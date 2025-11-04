@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 {
@@ -29,7 +30,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             CancelarButton.Click += CancelarButton_Click;
 
             UsuarioResult.Text = "Juan Perez";
-            CDResult.Text = "Buenos Aires";
+            CDResult.Text = "N/A";
 
             // Renombrar groupboxes según negocio (texto provisto)
             try
@@ -40,6 +41,25 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             }
             catch { }
             PrepararListViews();
+        }
+
+        // New overload: accept selected CD or Agencia and display appropriate CD name (no persistence)
+        public RecepcionYDespachoUltimaMillaForm(CentroDeDistribucionEntidad? selectedCd, AgenciaEntidad? selectedAg) : this()
+        {
+            if (selectedCd != null)
+            {
+                CDResult.Text = selectedCd.Nombre ?? "N/A";
+            }
+            else if (selectedAg != null)
+            {
+                // Map agency to its CD by CodigoPostalCD
+                var cd = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == selectedAg.CodigoPostalCD);
+                CDResult.Text = cd?.Nombre ?? "N/A";
+            }
+            else
+            {
+                CDResult.Text = "N/A";
+            }
         }
 
         // ====== LOAD ======

@@ -80,35 +80,35 @@ namespace TUTASAPrototipo.LoginUsuario
                                MessageBoxButtons.OK,
                                MessageBoxIcon.Error);
                 LimpiarFormulario();
+                return;
             }
 
+            // Validar selección: debe haber AL MENOS un item seleccionado explícitamente en uno de los combos.
+            // Aceptamos que el usuario seleccione "N/A" en uno de ellos; no persistimos nada.
+            var selectedCd = CdActualCombo.SelectedItem as CentroDeDistribucionEntidad;
+            var selectedAg = AgenciaActualCombo.SelectedItem as AgenciaEntidad;
 
-            if (UsuarioValido != null)
-            {
-                LimpiarFormulario();
-                MessageBox.Show("Usuario autenticado correctamente.",
-                               "Acceso concedido",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Information);
-            }
+            bool cdSelected = selectedCd != null;
+            bool agSelected = selectedAg != null;
 
-            if (CdActualCombo.SelectedItem == null || AgenciaActualCombo.SelectedItem == null)
+            if (!cdSelected && !agSelected)
             {
-                MessageBox.Show("Debe seleccionar una Agencia y un Centro de Distribución.",
+                MessageBox.Show("Debe seleccionar al menos un Centro de Distribución o una Agencia (o marcar N/A en uno de ellos).",
                                "Selección requerida",
                                MessageBoxButtons.OK,
                                MessageBoxIcon.Warning);
                 return;
             }
 
-            //TODO: Establecer agencia y cd actual para todo el sistema, a partir de lo seleccionado en los combos.
-            //Acá de ejemplo estoy siempre seleccionando el primero del almacén.
-            AgenciaAlmacen.AgenciaActual = (AgenciaEntidad)AgenciaActualCombo.SelectedItem;
-            CentroDeDistribucionAlmacen.CentroDistribucionActual = (CentroDeDistribucionEntidad)CdActualCombo.SelectedItem;
+            LimpiarFormulario();
+            MessageBox.Show("Usuario autenticado correctamente.",
+                           "Acceso concedido",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Information);
 
-
-            //abro el menu principal
-            (new MenuPrincipalForm()).ShowDialog();
+            // Abrir menú principal pasando la selección (sin persistir en ningún almacen)
+            using var menu = new MenuPrincipalForm(selectedCd, selectedAg);
+            menu.ShowDialog();
         }
 
         private void LimpiarFormulario()
@@ -121,9 +121,20 @@ namespace TUTASAPrototipo.LoginUsuario
         private void LoginUsuarioForm_Load(object sender, EventArgs e)
         {
             CdActualCombo.DisplayMember = "Nombre";
-            CdActualCombo.Items.AddRange(CentroDeDistribucionAlmacen.centrosDeDistribucion.OrderBy(c => c.Nombre).ToArray());
             AgenciaActualCombo.DisplayMember = "Nombre";
-            AgenciaActualCombo.Items.AddRange(AgenciaAlmacen.agencias.OrderBy(a => a.Nombre).ToArray());
+
+            // Agregar N/A como opción - sin tocar almacenes ni guardar nada
+            var cds = new List<object> { new CentroDeDistribucionEntidad { CodigoPostal = 0, Nombre = "N/A", Direccion = string.Empty } };
+            cds.AddRange(CentroDeDistribucionAlmacen.centrosDeDistribucion.OrderBy(c => c.Nombre));
+            CdActualCombo.Items.AddRange(cds.ToArray());
+
+            var ags = new List<object> { new AgenciaEntidad { ID = "N/A", Nombre = "N/A", Direccion = string.Empty, CodigoPostal = 0, CodigoPostalCD = 0 } };
+            ags.AddRange(AgenciaAlmacen.agencias.OrderBy(a => a.Nombre));
+            AgenciaActualCombo.Items.AddRange(ags.ToArray());
+
+            // Por defecto dejar sin selección (el usuario elegirá)
+            CdActualCombo.SelectedIndex = -1;
+            AgenciaActualCombo.SelectedIndex = -1;
         }
     }
 }

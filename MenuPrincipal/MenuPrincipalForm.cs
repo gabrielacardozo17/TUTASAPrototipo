@@ -19,18 +19,22 @@ using TUTASAPrototipo.MonitoreoResultados;
 using TUTASAPrototipo.RecepcionYDespachoAgencia;
 using TUTASAPrototipo.RecepcionYDespachoLargaDistancia;
 using TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD;
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.MenuPrincipal
 {
     public partial class MenuPrincipalForm : Form
     {
+        private readonly CentroDeDistribucionEntidad? _selectedCd;
+        private readonly AgenciaEntidad? _selectedAg;
 
-        public MenuPrincipalForm()
+        // Accept selections from Login (nullable, represents user's choice or N/A)
+        public MenuPrincipalForm(CentroDeDistribucionEntidad? selectedCd = null, AgenciaEntidad? selectedAg = null)
         {
             InitializeComponent();
+            _selectedCd = selectedCd;
+            _selectedAg = selectedAg;
         }
-
-
 
         private void MenuPrincipalForm_Load(object sender, EventArgs e)
         {
@@ -49,7 +53,6 @@ namespace TUTASAPrototipo.MenuPrincipal
                 ImposicionCallCenter.ShowDialog();
             }
         }
-        
 
         private void CallCenterGroupBox_Enter(object sender, EventArgs e)
         {
@@ -66,11 +69,9 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         }
 
-
-
         private void ImposicionAgenciaButton_Click(object sender, EventArgs e)
         {
-            using (var ImposicionAgencia = new ImponerEncomiendaAgenciaForm())
+            using (var ImposicionAgencia = new ImponerEncomiendaAgenciaForm(_selectedAg))
             {
                 ImposicionAgencia.ShowDialog();
             }
@@ -78,7 +79,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void RecepcionAgenciaButton_Click(object sender, EventArgs e)
         {
-            using (var RecepcionAgencia = new RecepcionYDespachoAgenciaForm1())
+            using (var RecepcionAgencia = new RecepcionYDespachoAgenciaForm1(_selectedAg))
             {
                 RecepcionAgencia.ShowDialog();
             }
@@ -86,7 +87,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void EntregarEncomiendaAgenciaButton_Click(object sender, EventArgs e)
         {
-            using (var EntregaAgencia = new EntregarEncomiendaEnAgenciaForm())
+            using (var EntregaAgencia = new EntregarEncomiendaEnAgenciaForm(_selectedAg))
             {
                 EntregaAgencia.ShowDialog();
             }
@@ -94,7 +95,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void ImposicionEncomiendasCDButton_Click(object sender, EventArgs e)
         {
-            using (var ImposicionCD = new ImponerEncomiendaCentroDistribucionForm())
+            using (var ImposicionCD = new ImponerEncomiendaCentroDistribucionForm(_selectedCd))
             {
                 ImposicionCD.ShowDialog();
             }
@@ -102,7 +103,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void RecepcionYDespachoUMButton_Click(object sender, EventArgs e)
         {
-            using (var RecepcionDespachoUM = new RecepcionYDespachoUltimaMillaForm())
+            using (var RecepcionDespachoUM = new RecepcionYDespachoUltimaMillaForm(_selectedCd, _selectedAg))
             {
                 RecepcionDespachoUM.ShowDialog();
             }
@@ -111,7 +112,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void RecepcionYDespachoLargaDistanciaButton_Click(object sender, EventArgs e)
         {
-            using (var RecepcionDespachoLargaDistancia = new RecepcionYDespachoLargaDistanciaForm())
+            using (var RecepcionDespachoLargaDistancia = new RecepcionYDespachoLargaDistanciaForm(_selectedCd, _selectedAg))
             {
                 RecepcionDespachoLargaDistancia.ShowDialog();
             }
@@ -119,7 +120,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void EntregaEncomiendasCDButton_Click(object sender, EventArgs e)
         {
-            using (var EntregaEncomiendasCD = new EntregarEncomiendaCDForm())
+            using (var EntregaEncomiendasCD = new EntregarEncomiendaCDForm(_selectedCd))
             {
                 EntregaEncomiendasCD.ShowDialog();
             }
@@ -166,5 +167,4 @@ namespace TUTASAPrototipo.MenuPrincipal
             }
         }
     }
-    
 }
