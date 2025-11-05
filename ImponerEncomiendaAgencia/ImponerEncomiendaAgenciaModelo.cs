@@ -54,7 +54,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             { 303, new() { (5203,"Agencia Villa Allende","Av. Goycochea 50") } },
             { 401, new() { (5301,"Agencia Rosario Centro","Córdoba 1400"), (5302,"Agencia Rosario Norte","Bv. Rondeau 2500") } },
             { 402, new() { (5303,"Agencia Funes","San José 1200") } },
-            { 501, new() { (5401,"Agencia Tucumán Centro","24 de Septiembre 500"), (5402,"Agencia Yerba Buena","Av. Aconquija 1500") } },
+            { 5, new() { (5401,"Agencia Tucumán Centro","24 de Septiembre 500"), (5402,"Agencia Yerba Buena","Av. Aconquija 1500") } },
             { 601, new() { (5501,"Agencia Corrientes Centro","Junín 850") } },
             { 602, new() { (5502,"Agencia Goya","Colón 850") } },
             { 701, new() { (5601,"Agencia Neuquén Centro","Av. Argentina 1200"), (5602,"Agencia Plottier","San Martín 300") } },
@@ -93,7 +93,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
 
         private static string Digits(string s) => new string(s.Where(char.IsDigit).ToArray());
 
-        // Clientes desde almacén
+        // Clients desde almacén
         private readonly List<Cliente> _clientes =
             ClienteAlmacen.clientes
                 .Select(c => new Cliente
@@ -267,10 +267,26 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             return TamanoEnum.XL;
         }
 
+        // Inicializa correlativo de Agencia leyendo guías persistidas (evita reinicio 00001)
+        private static void EnsureSeqForAgencia(string idAgenciaOrigen)
+        {
+            if (_seqPorAgenciaOrigen.ContainsKey(idAgenciaOrigen)) return;
+            int maxSeq = 0;
+            foreach (var g in GuiaAlmacen.guias)
+            {
+                if (!string.Equals(g.IDAgenciaOrigen, idAgenciaOrigen, StringComparison.Ordinal)) continue;
+                // tomar los últimos 5 dígitos del número como secuencia
+                var seq = g.NumeroGuia % 100000;
+                if (seq > maxSeq) maxSeq = seq;
+            }
+            _seqPorAgenciaOrigen[idAgenciaOrigen] = maxSeq;
+        }
+
         // Numeración: XXXXX + correlativo de 5 dígitos
         private static string NextGuiaCodeAgencia(string idAgenciaOrigen)
         {
-            _seqPorAgenciaOrigen[idAgenciaOrigen] = _seqPorAgenciaOrigen.TryGetValue(idAgenciaOrigen, out var s) ? s + 1 : 1;
+            EnsureSeqForAgencia(idAgenciaOrigen);
+            _seqPorAgenciaOrigen[idAgenciaOrigen] = _seqPorAgenciaOrigen[idAgenciaOrigen] + 1;
             return $"{idAgenciaOrigen}{_seqPorAgenciaOrigen[idAgenciaOrigen]:D5}";
         }
 

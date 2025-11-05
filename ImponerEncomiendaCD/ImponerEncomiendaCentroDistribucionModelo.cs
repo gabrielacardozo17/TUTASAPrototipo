@@ -269,10 +269,27 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             return tarifa.PreciosXTamano.TryGetValue(tamano, out var precio) ? precio : 0m;
         }
 
+        // Inicializa correlativo desde almacén
+        private static void EnsureSeqForCD(int cpCD)
+        {
+            if (_seqPorCDOrigen.ContainsKey(cpCD)) return;
+            int maxSeq = 0;
+            foreach (var g in GuiaAlmacen.guias)
+            {
+                if (!string.IsNullOrWhiteSpace(g.IDAgenciaOrigen)) continue; // solo CD
+                if (g.CodigoPostalCDOrigen != cpCD) continue;
+                var s = g.NumeroGuia.ToString("D9");
+                if (s.Length >= 9 && int.TryParse(s[^5..], out var seq))
+                    if (seq > maxSeq) maxSeq = seq;
+            }
+            _seqPorCDOrigen[cpCD] = maxSeq;
+        }
+
         // Numeración: prefijo del CD + correlativo de 5 dígitos
         private static string NextGuiaCodeCD(int cpCDOrigen)
         {
-            _seqPorCDOrigen[cpCDOrigen] = _seqPorCDOrigen.TryGetValue(cpCDOrigen, out var s) ? s + 1 : 1;
+            EnsureSeqForCD(cpCDOrigen);
+            _seqPorCDOrigen[cpCDOrigen] = _seqPorCDOrigen[cpCDOrigen] + 1;
             return $"{cpCDOrigen:D4}{_seqPorCDOrigen[cpCDOrigen]:D5}";
         }
 
@@ -301,8 +318,18 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
             var creadas = new List<(string, TamanoEnum)>();
 
-            // Origen desde login (dato confiable)
-            int cpOrigen = CentroDeDistribucionAlmacen.CentroDistribucionActual!.CodigoPostal;
+
+            int cpOrigen = 0;
+            var cdActual = CentroDeDistribucionAlmacen.CentroDistribucionActual;
+            var nombreCd = cdActual?.Nombre ?? string.Empty;
+            if (cdActual != null && !string.Equals(nombreCd, "No aplica", StringComparison.OrdinalIgnoreCase))
+            {
+                cpOrigen = cdActual.CodigoPostal;
+            }
+            else if (_cdsPorProv.TryGetValue(provinciaId, out var cdsProv) && cdsProv.Count > 0)
+            {
+                cpOrigen = cdsProv[0].id;
+            }
 
             // Destino
             int CodigoPostalDestino()
