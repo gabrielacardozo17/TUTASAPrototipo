@@ -431,7 +431,7 @@
 		"Guias": [
 			{
 				"NumeroGuia": 911000001,
-				"Estado": 0,
+				"Estado": 4,
 				"FechaAdmision": "2025-10-29T08:45:00-03:00",
 				"TipoEntrega": 1,
 				"CodigoPostalCDOrigen": 9200,
@@ -473,7 +473,7 @@
 			},
 			{
 				"NumeroGuia": 911000033,
-				"Estado": 1,
+				"Estado": 2,
 				"FechaAdmision": "2025-10-29T08:45:00-03:00",
 				"TipoEntrega": 1,
 				"CodigoPostalCDOrigen": 9200,
@@ -534,7 +534,7 @@
 		"Guias": [
 			{
 				"NumeroGuia": 910000002,
-				"Estado": 0,
+				"Estado": 8,
 				"FechaAdmision": "2025-10-27T10:00:00-03:00",
 				"TipoEntrega": 1,
 				"CodigoPostalCDOrigen": 9100,
@@ -581,7 +581,7 @@
 			},
 			{
 				"NumeroGuia": 910000003,
-				"Estado": 0,
+				"Estado": 9,
 				"FechaAdmision": "2025-10-27T10:00:00-03:00",
 				"TipoEntrega": 1,
 				"CodigoPostalCDOrigen": 9100,
