@@ -37,7 +37,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
 
         public ImponerEncomiendaAgenciaForm(AgenciaEntidad? selectedAgencia) : this()
         {
-            AgenciaResult.Text = selectedAgencia?.Nombre ?? "N/A";
+            AgenciaAlmacen.AgenciaActual = selectedAgencia ?? AgenciaAlmacen.AgenciaActual;
+            AgenciaResult.Text = _modelo.GetAgenciaActualNombre();
         }
 
         private void Form_Load(object? sender, EventArgs e)
@@ -51,7 +52,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
 
             ProvinciaComboBox.DisplayMember = "Value";
             ProvinciaComboBox.ValueMember = "Key";
-            ProvinciaComboBox.DataSource = _modelo.GetProvincias();
+            ProvinciaComboBox.DataSource = _modelo.GetProvincias().ToList();
             ProvinciaComboBox.SelectedIndex = -1;
             ProvinciaComboBox.Text = "";
 
@@ -67,7 +68,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
 
             LimpiarRemitente();
 
-            if (string.IsNullOrWhiteSpace(AgenciaResult.Text)) AgenciaResult.Text = "N/A";
+            AgenciaResult.Text = _modelo.GetAgenciaActualNombre();
         }
 
         // ---------- CONFIRMACIÓN DE SALIDA ----------
@@ -107,17 +108,18 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                 return;
             }
 
-            var cli = _modelo.BuscarCliente(cuit);
-            if (cli is null)
+            try
+            {
+                var cli = _modelo.BuscarCliente(cuit);
+                NombreClienteResult.Text = cli.Nombre;
+                TelefonoClienteResult.Text = cli.Telefono;
+                DireccionClienteResult.Text = cli.Direccion;
+            }
+            catch (Exception ex)
             {
                 LimpiarRemitente();
-                MessageBox.Show("CUIT inexistente.", "Validación");
-                return;
+                MessageBox.Show(ex.Message, "Validación");
             }
-
-            NombreClienteResult.Text = cli.Nombre;
-            TelefonoClienteResult.Text = cli.Telefono;
-            DireccionClienteResult.Text = cli.Direccion;
         }
 
         // ---------- PROVINCIA ----------
@@ -269,11 +271,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             if (!CuitFormatoOk(cuit))
             { MessageBox.Show("Ingresá un CUIT válido (NN-NNNNNNNN-N).", "Validación"); return; }
 
-            var cli = _modelo.BuscarCliente(cuit);
-            if (cli is null)
-            { MessageBox.Show("CUIT inexistente.", "Validación"); return; }
+            // existencia de CUIT y agencia actual: los valida el modelo al confirmar
 
-            // Nombre / Apellido
             var nombre = (NombreDestinatarioTextBox.Text ?? "").Trim();
             var apellido = (ApellidoDestinatarioResult.Text ?? "").Trim();
 
@@ -290,7 +289,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             if (!nombreOk || !apellidoOk)
             { MessageBox.Show("Nombre y Apellido deben ser válidos (solo letras, espacios, ' y -).", "Validación"); return; }
 
-            // DNI
             var dni = (DNIDestinatarioTextBox.Text ?? "").Trim();
             if (string.IsNullOrWhiteSpace(dni) || !DniOk(dni))
             { MessageBox.Show("Ingresá un DNI válido (7–8 dígitos).", "Validación"); return; }
@@ -340,16 +338,11 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             }
             else
             {
-                MessageBox.Show("Completá el dato requerido del tipo de entrega elegido.", "Validación");
-                return;
+                MessageBox.Show("Completá el dato requerido del tipo de entrega elegido.", "Validación"); return;
             }
 
             try
             {
-                // Tomamos la agencia de origen del label superior (si existe)
-                var agenciaOrigenNombre = (AgenciaResult?.Text ?? "").Replace("Agencia:", "").Trim();
-
-                // El modelo no requiere ID de agencia de origen; mantenemos CD de origen vacío
                 int cdOrigenId = 0;
                 string cdOrigenNombre = "";
 
@@ -370,16 +363,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                     cdOrigenId, cdOrigenNombre
                 );
 
-                var lineas = guias.Select(g =>
-                {
-                    string tam = g.CantS == 1 ? "S"
-                               : g.CantM == 1 ? "M"
-                               : g.CantL == 1 ? "L"
-                               : g.CantXL == 1 ? "XL"
-                               : "?";
-                    return $"- {g.Numero} (Tamaño: {tam})";
-                });
-
+                var lineas = guias.Select(g => $"- {g.numero} (Tamaño: {g.tamano})");
                 var cuerpo = string.Join(Environment.NewLine, lineas);
 
                 MessageBox.Show(
@@ -389,6 +373,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                     MessageBoxIcon.Information
                 );
 
+                AgenciaResult.Text = _modelo.GetAgenciaActualNombre();
                 LimpiarFormulario();
             }
             catch (Exception ex)
@@ -443,7 +428,5 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
         }
 
         private static bool DniOk(string dni) => dni.All(char.IsDigit) && dni.Length is >= 7 and <= 8;
-
-       
     }
 }

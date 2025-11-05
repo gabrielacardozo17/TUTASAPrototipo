@@ -108,17 +108,18 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                 return;
             }
 
-            var cli = _modelo.BuscarCliente(cuit);
-            if (cli is null)
+            try
+            {
+                var cli = _modelo.BuscarCliente(cuit); // el modelo valida existencia y mensaje
+                NombreClienteResult.Text = cli.Nombre;
+                TelefonoClienteResult.Text = cli.Telefono;
+                DireccionClienteResult.Text = cli.Direccion;
+            }
+            catch (Exception ex)
             {
                 LimpiarRemitente();
-                MessageBox.Show("CUIT inexistente.", "Validación");
-                return;
+                MessageBox.Show(ex.Message, "Validación");
             }
-
-            NombreClienteResult.Text = cli.Nombre;
-            TelefonoClienteResult.Text = cli.Telefono;
-            DireccionClienteResult.Text = cli.Direccion;
         }
 
         // ---------- PROVINCIA ----------
@@ -272,9 +273,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             if (!CuitFormatoOk(cuit))
             { MessageBox.Show("Ingresá un CUIT válido (NN-NNNNNNNN-N).", "Validación"); return; }
 
-            var cli = _modelo.BuscarCliente(cuit);
-            if (cli is null)
-            { MessageBox.Show("CUIT inexistente.", "Validación"); return; }
+            // No validamos existencia de CUIT aquí: lo hace el modelo y devuelve el mensaje correspondiente
 
             // Nombre / Apellido
             var nombre = (NombreDestinatarioTextBox.Text ?? "").Trim();
@@ -369,7 +368,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                     cdOrigenId, cdOrigenNombre
                 );
 
-                var lineas = guias.Select(g => $"- {g.Numero} (Tamaño: {(g.CantS==1?"S":g.CantM==1?"M":g.CantL==1?"L":"XL")})");
+                var lineas = guias.Select(g => $"- {g.numero} (Tamaño: {g.tamano})");
                 var cuerpo = string.Join(Environment.NewLine, lineas);
 
                 MessageBox.Show(
