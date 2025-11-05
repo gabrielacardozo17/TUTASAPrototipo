@@ -42,6 +42,16 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             return destino;
         }
 
+        public CentroDeDistribucionEntidad? CDActual { get; set; }
+
+        // Permite al Form indicar el CD activo y recalcular vistas desde almacenes
+        public void SetCDActual(CentroDeDistribucionEntidad? cd)
+        {
+            CDActual = cd ?? CentroDeDistribucionAlmacen.CentroDistribucionActual;
+            // Re-mapear los datos para que las consultas reflejen el CD actual
+            MapearDesdeAlmacenes();
+        }
+
         // Mapear los datos de los almacenes a las clases usadas por la UI usando LINQ (GroupJoin / SELECT / ToList)
         private void MapearDesdeAlmacenes()
         {
@@ -49,6 +59,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             var hdrs = HDRAlmacen.HDR ?? new List<HDREntidad>();
             var guiasAlmacen = GuiaAlmacen.guias ?? new List<GuiaEntidad>();
             var cds = CentroDeDistribucionAlmacen.centrosDeDistribucion ?? new List<CentroDeDistribucionEntidad>();
+
+            // Resolve current CD postal
+            int? codigoPostalCDActual = CDActual?.CodigoPostal ?? CentroDeDistribucionAlmacen.CentroDistribucionActual?.CodigoPostal;
 
             // GroupJoin (left join) para conservar servicios aun cuando no tengan HDRs
             this.servicios = serviciosEnt
@@ -69,29 +82,43 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                                 .Distinct()
                                 .ToHashSet();
 
-                    // Guias a recibir: desde las HDR relacionadas (si las hay)
+                    // Guias a recibir: desde las HDR relacionadas (si las hay), pero solo las que están en tránsito al CD destino y cuyo CDDestino sea el CD actual
                     var guiasARecibir = hdrGroup
                         .SelectMany(h => h.Guias ?? Enumerable.Empty<GuiaEntidad>())
+                        .Where(gent => gent.Estado == EstadoGuiaEnum.EnTransitoAlCDDestino
+                                       && codigoPostalCDActual.HasValue
+                                       && gent.CodigoPostalCDDestino == codigoPostalCDActual.Value)
                         .Select(gent => new Guia
                         {
                             NroGuia = gent.NumeroGuia.ToString(),
                             Tamanio = gent.Tamano.ToString(),
                             Destino = cds.FirstOrDefault(cd => cd.CodigoPostal == gent.CodigoPostalCDDestino)?.Nombre ?? gent.CodigoPostalCDDestino.ToString()
                         })
+                        .OrderBy(g => g.NroGuia)
                         .ToList();
 
-                    // Guias a despachar: guías admitidas que coincidan con los códigos postales del servicio
-                    var guiasADespachar = guiasAlmacen
-                        .Where(ga => ga.Estado == EstadoGuiaEnum.Admitida &&
-                                     (cpSet.Contains(ga.CodigoPostalCDOrigen) || cpSet.Contains(ga.CodigoPostalCDDestino)))
-                        .DistinctBy(ga => ga.NumeroGuia)
-                        .Select(ga => new Guia
-                        {
-                            NroGuia = ga.NumeroGuia.ToString(),
-                            Tamanio = ga.Tamano.ToString(),
-                            Destino = cds.FirstOrDefault(cd => cd.CodigoPostal == ga.CodigoPostalCDDestino)?.Nombre ?? ga.CodigoPostalCDDestino.ToString()
-                        })
-                        .ToList();
+                    // Guias a despachar: guías admitidas en el CD actual y que pertenezcan al área del servicio (cpSet)
+                    var guiasADespachar = new List<Guia>();
+                    if (codigoPostalCDActual.HasValue)
+                    {
+                        guiasADespachar = guiasAlmacen
+                            .Where(ga =>
+                                // 1) Admitidas cuya CD de origen sea el CD actual (se despachan desde aquí)
+                                (ga.Estado == EstadoGuiaEnum.Admitida && ga.CodigoPostalCDOrigen == codigoPostalCDActual.Value)
+                                // 2) O guías que acaban de ser recepcionadas (EnCDDestino) cuyo CD destino es el CD actual
+                                || (ga.Estado == EstadoGuiaEnum.EnCDDestino && ga.CodigoPostalCDDestino == codigoPostalCDActual.Value)
+                                )
+                            .Where(ga => cpSet.Count == 0 || cpSet.Contains(ga.CodigoPostalCDDestino) || cpSet.Contains(ga.CodigoPostalCDOrigen))
+                             .DistinctBy(ga => ga.NumeroGuia)
+                             .Select(ga => new Guia
+                             {
+                                 NroGuia = ga.NumeroGuia.ToString(),
+                                 Tamanio = ga.Tamano.ToString(),
+                                 Destino = cds.FirstOrDefault(cd => cd.CodigoPostal == ga.CodigoPostalCDDestino)?.Nombre ?? ga.CodigoPostalCDDestino.ToString()
+                             })
+                             .OrderBy(g => g.NroGuia)
+                             .ToList();
+                    }
 
                     return new ServicioTransporte
                     {
@@ -213,16 +240,20 @@ var todasLasGuias = new List<Guia>
 // Validación Nivel 3-4: Lógica de búsqueda en la fuente de datos.
 public ServicioTransporte BuscarServicio(string numeroServicio)
 {
-if (string.IsNullOrWhiteSpace(numeroServicio))
-{
-    return null;
-}
-var servicio = servicios.FirstOrDefault(s => s.NumeroServicio == numeroServicio);
-if (servicio == null) return null;
-// Filtrar guías no procesadas
-servicio.GuiasARecibir = servicio.GuiasARecibir.Where(g => !g.Procesada).ToList();
-servicio.GuiasADespachar = servicio.GuiasADespachar.Where(g => !g.Procesada).ToList();
-return servicio;
+    if (string.IsNullOrWhiteSpace(numeroServicio))
+    {
+        return null;
+    }
+
+    // Re-mapear desde almacenes para reflejar cambios de estado recientes
+    MapearDesdeAlmacenes();
+    
+    var servicio = servicios.FirstOrDefault(s => s.NumeroServicio == numeroServicio);
+    if (servicio == null) return null;
+    // Filtrar guías no procesadas
+    servicio.GuiasARecibir = servicio.GuiasARecibir.Where(g => !g.Procesada).ToList();
+    servicio.GuiasADespachar = servicio.GuiasADespachar.Where(g => !g.Procesada).ToList();
+    return servicio;
 }
 
 public void MarcarGuiasProcesadas(string numeroServicio, List<string> guiasRecibidas, List<string> guiasDespachadas)
@@ -276,5 +307,100 @@ public int ObtenerCantidadGuiasPendientes()
 {
 return guiasPendientesDeAsignacion?.Count ?? 0;
 }
-}
+
+        // Confirma recepción y despacho en memoria (no persiste JSON)
+        // guiasRecibidas: números de guía que vinieron en HDR y deben marcarse EnCDDestino
+        // guiasDespachadas: números de guía admitidas que se despachan y deben marcarse EnTransitoAlCDDestino
+        public void ConfirmarRecepcionYDespacho(string numeroServicio, List<string> guiasRecibidas, List<string> guiasDespachadas)
+        {
+            if ((guiasRecibidas == null || guiasRecibidas.Count == 0) && (guiasDespachadas == null || guiasDespachadas.Count == 0))
+                return;
+
+            int? codigoPostalCDActual = CDActual?.CodigoPostal ?? CentroDeDistribucionAlmacen.CentroDistribucionActual?.CodigoPostal;
+            var fechaNow = DateTime.Now;
+
+            // Procesar recepciones: setear EnCDDestino y agregar historial con ubicacion = CDActual.Nombre
+            if (guiasRecibidas != null && guiasRecibidas.Count > 0 && codigoPostalCDActual.HasValue)
+            {
+                foreach (var nro in guiasRecibidas)
+                {
+                    if (!int.TryParse(nro, out var n)) continue;
+                    var entidad = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == n);
+                    if (entidad == null) continue;
+
+                    entidad.Historial ??= new List<RegistroEstadoAux>();
+                    entidad.Estado = EstadoGuiaEnum.EnCDDestino;
+                    entidad.Historial.Add(new RegistroEstadoAux
+                    {
+                        Estado = EstadoGuiaEnum.EnCDDestino,
+                        UbicacionGuia = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(cd => cd.CodigoPostal == codigoPostalCDActual.Value)?.Nombre ?? string.Empty,
+                        FechaActualizacionEstado = fechaNow
+                    });
+                }
+            }
+
+            // Procesar despachos: setear EnTransitoAlCDDestino y agregar historial
+            if (guiasDespachadas != null && guiasDespachadas.Count > 0)
+            {
+                foreach (var nro in guiasDespachadas)
+                {
+                    if (!int.TryParse(nro, out var n)) continue;
+                    var entidad = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == n);
+                    if (entidad == null) continue;
+
+                    entidad.Historial ??= new List<RegistroEstadoAux>();
+                    entidad.Estado = EstadoGuiaEnum.EnTransitoAlCDDestino;
+                    entidad.Historial.Add(new RegistroEstadoAux
+                    {
+                        Estado = EstadoGuiaEnum.EnTransitoAlCDDestino,
+                        UbicacionGuia = string.Empty,
+                        FechaActualizacionEstado = fechaNow
+                    });
+                }
+            }
+
+            // Importante: no llamar a GuiaAlmacen.Grabar() para no tocar los JSON según lo solicitado.
+        }
+
+        public class DebugStats
+        {
+            public int ServiciosCargados { get; set; }
+            public int HDRsCargados { get; set; }
+            public int GuiasEnAlmacen { get; set; }
+            public int HDRsQueCoincidenConServicio { get; set; }
+            public int GuiasEnHDRsQueCoinciden { get; set; }
+            public int GuiasARecibirSegunFiltro { get; set; }
+            public int CodigoPostalCDActual { get; set; }
+        }
+
+        // Devuelve estadísticas útiles para debugging
+        public DebugStats GetDebugStats(string numeroServicio)
+        {
+            var stats = new DebugStats();
+            var serviciosEnt = ServicioTransporteAlmacen.serviciosTransporte ?? new List<ServicioTransporteEntidad>();
+            var hdrs = HDRAlmacen.HDR ?? new List<HDREntidad>();
+            var guiasAlmacen = GuiaAlmacen.guias ?? new List<GuiaEntidad>();
+
+            stats.ServiciosCargados = serviciosEnt.Count;
+            stats.HDRsCargados = hdrs.Count;
+            stats.GuiasEnAlmacen = guiasAlmacen.Count;
+
+            if (int.TryParse(numeroServicio, out var svcId))
+            {
+                var hdrsMatch = hdrs.Where(h => h.IDServicioTransporte == svcId).ToList();
+                stats.HDRsQueCoincidenConServicio = hdrsMatch.Count;
+                stats.GuiasEnHDRsQueCoinciden = hdrsMatch.SelectMany(h => h.Guias ?? Enumerable.Empty<GuiaEntidad>()).Count();
+
+                int? codigoPostal = CDActual?.CodigoPostal ?? CentroDeDistribucionAlmacen.CentroDistribucionActual?.CodigoPostal;
+                stats.CodigoPostalCDActual = codigoPostal ?? -1;
+
+                stats.GuiasARecibirSegunFiltro = hdrsMatch
+                    .SelectMany(h => h.Guias ?? Enumerable.Empty<GuiaEntidad>())
+                    .Where(g => g.Estado == EstadoGuiaEnum.EnTransitoAlCDDestino && codigoPostal.HasValue && g.CodigoPostalCDDestino == codigoPostal.Value)
+                    .Count();
+            }
+
+            return stats;
+        }
+    }
 }
