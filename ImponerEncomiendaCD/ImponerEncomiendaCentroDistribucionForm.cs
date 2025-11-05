@@ -80,7 +80,9 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
             LimpiarRemitente();
 
-            // Label de CD: si no fue seteado por el constructor, usar valor por defecto "N/A"
+            // Label de CD actual (desde login)
+            if (CDResult != null)
+                CDResult.Text = CentroDeDistribucionAlmacen.CentroDistribucionActual?.Nombre ?? CDResult.Text;
             if (CDResult != null && string.IsNullOrWhiteSpace(CDResult.Text))
                 CDResult.Text = "N/A";
         }
@@ -363,15 +365,11 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             }
             else
             {
-                MessageBox.Show("Completá el dato requerido del tipo de entrega elegido.", "Validación");
-                return;
+                MessageBox.Show("Completá el dato requerido del tipo de entrega elegido.", "Validación"); return;
             }
 
             try
             {
-                var cdOrigenId = _modelo.OrigenCdFijoId;
-                var cdOrigenNombre = _modelo.OrigenCdFijoNombre;
-
                 var guias = _modelo.ConfirmarImposicion(
                     cuit,
                     nombre,
@@ -385,20 +383,10 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                     direccion, null,
                     agenciaId, agenciaNombre,
                     cdDestinoId, cdDestinoNombre,
-                    cantS, cantM, cantL, cantXL,
-                    cdOrigenId, cdOrigenNombre
+                    cantS, cantM, cantL, cantXL
                 );
 
-                var lineas = guias.Select(g =>
-                {
-                    string tam = g.CantS == 1 ? "S"
-                               : g.CantM == 1 ? "M"
-                               : g.CantL == 1 ? "L"
-                               : g.CantXL == 1 ? "XL"
-                               : "?";
-                    return $"- {g.Numero} (Tamaño: {tam})";
-                });
-
+                var lineas = guias.Select(g => $"- {g.numero} (Tamaño: {g.tamano})");
                 var cuerpo = string.Join(Environment.NewLine, lineas);
 
                 MessageBox.Show(
@@ -407,6 +395,10 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
+
+                // refrescar label de CD por si cambió la sesión
+                if (CDResult != null)
+                    CDResult.Text = CentroDeDistribucionAlmacen.CentroDistribucionActual?.Nombre ?? CDResult.Text;
 
                 LimpiarFormulario();
             }
