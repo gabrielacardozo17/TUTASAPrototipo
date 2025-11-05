@@ -12,8 +12,8 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
     {
         // NOTA IMPORTANTE
         // - No tocamos pantallas.
-        // - No escribimos en almacenes/JSON (SOLO LECTURA), tal como indicaron.
-        // - Usamos LINQ para mapear desde las entidades de los almacenes a las clases simples de esta pantalla.
+        // - Usamos los almacenes existentes (JSON) sin modificar su estructura.
+        // - Cambios mínimos: lectura para búsqueda y escritura de estado al confirmar.
 
         // Se mantienen estas listas para que el formulario pueda inspeccionar/depender si quisiera.
         // No se cargan con datos "semilla"; se completan con resultados de las búsquedas.
@@ -72,9 +72,8 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
                 return Guias;
             }
 
-            // 2) Obtenemos en UNA consulta LINQ las guías pendientes de entrega en este CD y para el DNI indicado
-            //    Hacemos un join con Centros para reforzar la relación y usar el Nombre en la proyección final.
-            var resultados = GuiaAlmacen.guias
+            // 2) Obtenemos los pares (guía, cd) relevantes
+            var pares = GuiaAlmacen.guias
                 .Join(
                     CentroDeDistribucionAlmacen.centrosDeDistribucion,
                     guia => guia.CodigoPostalCDDestino,
@@ -86,47 +85,129 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
                     x.guia.Estado == EstadoGuiaEnum.PendienteDeEntrega &&
                     x.guia.TipoEntrega == EntregaEnum.CD &&
                     string.Equals(x.cd.Nombre, cdActual, StringComparison.OrdinalIgnoreCase) &&
-                    !_guiasEntregadasLocalmente.Contains(x.guia.NumeroGuia.ToString()) // excluir entregadas en esta sesión
+                    !_guiasEntregadasLocalmente.Contains(x.guia.NumeroGuia.ToString())
                 )
+                .ToList();
+
+            // 3) Asegurar que el estado "Pendiente de entrega" tenga ubicación física en el historial
+            bool huboCambios = false;
+            foreach (var x in pares)
+            {
+                x.guia.Historial ??= new List<RegistroEstadoAux>();
+                // Tomar el último registro con PendienteDeEntrega
+                var lastPend = x.guia.Historial.LastOrDefault(h => h.Estado == EstadoGuiaEnum.PendienteDeEntrega);
+                var ubicacionDeseada = $"CD{x.cd.CodigoPostal}"; // reconocible por ConsultarEstadoModelo
+
+                if (lastPend == null)
+                {
+                    // Si no existía registro pendiente en historial pero el estado actual lo es, agregamos uno con ubicación
+                    x.guia.Historial.Add(new RegistroEstadoAux
+                    {
+                        Estado = EstadoGuiaEnum.PendienteDeEntrega,
+                        UbicacionGuia = ubicacionDeseada,
+                        FechaActualizacionEstado = DateTime.Now
+                    });
+                    huboCambios = true;
+                }
+                else if (string.IsNullOrWhiteSpace(lastPend.UbicacionGuia))
+                {
+                    lastPend.UbicacionGuia = ubicacionDeseada;
+                    huboCambios = true;
+                }
+            }
+
+            if (huboCambios)
+            {
+                // Persistimos la corrección de ubicación para que Consultar Estado la muestre
+                GuiaAlmacen.Grabar();
+            }
+
+            // 4) Proyección a la clase consumida por la pantalla
+            var resultados = pares
                 .Select(x => new Guia
                 {
-                    // Mapeo simple a la clase usada por la pantalla
                     NumeroGuia = x.guia.NumeroGuia.ToString(),
-                    Tamanio = x.guia.Tamano.ToString(), // Enum -> texto "S/M/L/XL"
+                    Tamanio = x.guia.Tamano.ToString(),
                     DniDestinatario = x.guia.Destinatario.DNI.ToString(),
                     Estado = "Pendiente de entrega",
                     Ubicacion = x.cd.Nombre
                 })
                 .ToList();
 
-            // Dejamos el resultado en memoria (solo para esta sesión del modelo)
             Guias = resultados;
             return resultados;
         }
 
         // ---------------------------------------------------------------------
-        // CONFIRMAR ENTREGA (solo actualiza el estado local; no persiste en almacenes/JSON)
+        // CONFIRMAR ENTREGA: Actualiza estado en JSON a "Entregada" y registra movimiento
         // ---------------------------------------------------------------------
         public bool ConfirmarEntrega(List<string> numerosDeGuia)
         {
-            // Respetamos la consigna: SOLO LECTURA en almacenes.
-            // Por lo tanto, no modificamos GuiaAlmacen.guias ni grabamos JSON.
-            // Actualizamos solamente la colección local de resultados para mantener coherencia en memoria.
+            if (numerosDeGuia == null || numerosDeGuia.Count == 0)
+                return false;
+
+            bool huboCambios = false;
 
             foreach (var numero in numerosDeGuia)
             {
+                if (string.IsNullOrWhiteSpace(numero)) continue;
+                if (!int.TryParse(numero, out var nroInt)) continue;
+
+                var entidad = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == nroInt);
+                if (entidad == null) continue;
+
+                entidad.Historial ??= new List<RegistroEstadoAux>();
+
+                if (entidad.Estado == EstadoGuiaEnum.PendienteDeEntrega)
+                {
+                    // Transición válida: Pendiente -> Entregada
+                    entidad.Estado = EstadoGuiaEnum.Entregada;
+                    entidad.Historial.Add(new RegistroEstadoAux
+                    {
+                        Estado = EstadoGuiaEnum.Entregada,
+                        UbicacionGuia = string.Empty, // Entregada: sin ubicación visible
+                        FechaActualizacionEstado = DateTime.Now
+                    });
+                    huboCambios = true;
+                }
+                else if (entidad.Estado == EstadoGuiaEnum.Entregada)
+                {
+                    // Ya figuraba como entregada: actualizar fecha del último movimiento "Entregada" en lugar de duplicarlo
+                    var lastEnt = entidad.Historial.LastOrDefault(h => h.Estado == EstadoGuiaEnum.Entregada);
+                    if (lastEnt != null)
+                    {
+                        lastEnt.FechaActualizacionEstado = DateTime.Now;
+                        // Asegurar ubicación vacía en entregada
+                        lastEnt.UbicacionGuia = string.Empty;
+                    }
+                    else
+                    {
+                        // Si no existía registro (datos antiguos), agregamos uno
+                        entidad.Historial.Add(new RegistroEstadoAux
+                        {
+                            Estado = EstadoGuiaEnum.Entregada,
+                            UbicacionGuia = string.Empty,
+                            FechaActualizacionEstado = DateTime.Now
+                        });
+                    }
+                    huboCambios = true;
+                }
+
+                // Marcar como entregada en esta sesión para que no reaparezca hasta nueva búsqueda
+                _guiasEntregadasLocalmente.Add(numero);
+
+                // Mantener coherencia en la lista local que consume la UI
                 var guiaLocal = Guias.FirstOrDefault(g => g.NumeroGuia == numero);
                 if (guiaLocal != null)
                 {
                     guiaLocal.Estado = "Entregada";
-                    guiaLocal.Ubicacion = string.Empty; // Entregada => sin ubicación
+                    guiaLocal.Ubicacion = string.Empty;
                 }
+            }
 
-                // Además, registramos que esta guía ya fue entregada en esta sesión
-                if (!string.IsNullOrWhiteSpace(numero))
-                {
-                    _guiasEntregadasLocalmente.Add(numero);
-                }
+            if (huboCambios)
+            {
+                GuiaAlmacen.Grabar();
             }
 
             return true;
