@@ -121,14 +121,14 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
                 return;
             }
 
-            // Tomar marcadas (CheckBoxes) en cada lista
+            // Tomar TODAS las guías listadas en cada lista (sin checkboxes)
             var recibidas = new List<string>();
             foreach (ListViewItem it in GuiasARecepcionarAgenciaListView.Items)
-                if (it.Checked) recibidas.Add(it.Text);
+                recibidas.Add(it.Text);
 
             var entregadas = new List<string>();
             foreach (ListViewItem it in GuiasAEntregarListView.Items)
-                if (it.Checked) entregadas.Add(it.Text);
+                entregadas.Add(it.Text);
 
             try
             {
@@ -177,9 +177,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             DNIFleteroTextBox.Clear();
             NombreResultLabel.Text = "";
             ApellidoResultLabel.Text = "";
-
-            // Labels superiores fijos: no limpiarlos para que muestren siempre los valores configurados en el constructor.
-            // Dejá "Agencia:" fijo en AgenciaLabel; NombreAgenciaLabel arranca con "Agencia: CABA"
 
             GuiasARecepcionarAgenciaListView.Items.Clear();
             GuiasAEntregarListView.Items.Clear();

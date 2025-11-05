@@ -144,6 +144,7 @@
             // 
             // GuiasARecepcionarAgenciaListView
             // 
+            GuiasARecepcionarAgenciaListView.CheckBoxes = false;
             GuiasARecepcionarAgenciaListView.Columns.AddRange(new ColumnHeader[] { NroGuiaColumn, TamanioColumn });
             GuiasARecepcionarAgenciaListView.Location = new Point(174, 22);
             GuiasARecepcionarAgenciaListView.Name = "GuiasARecepcionarAgenciaListView";
@@ -194,6 +195,7 @@
             // 
             // GuiasAEntregarListView
             // 
+            GuiasAEntregarListView.CheckBoxes = false;
             GuiasAEntregarListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
             GuiasAEntregarListView.Location = new Point(174, 22);
             GuiasAEntregarListView.Name = "GuiasAEntregarListView";

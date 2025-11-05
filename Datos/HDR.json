@@ -1175,5 +1175,210 @@
 			"CUITCliente": "33-99274898-8",
 			"ImporteAFacturar": 10000
 		}]
+	},
+	{
+		"ID": "D 1000 000990 01000",
+		"TipoHDR": 0,
+		"DNIFletero": 28765432,
+		"IDServicioTransporte": 0,
+		"Guias": [
+			{
+				"NumeroGuia": 100000990,
+				"Estado": 9,
+				"FechaAdmision": "2025-11-01T08:00:00-03:00",
+				"TipoEntrega": 1,
+				"CodigoPostalCDOrigen": 1000,
+				"CodigoPostalCDDestino": 1000,
+				"IDAgenciaOrigen": "",
+				"IDAgenciaDestino": "01000",
+				"CUITCliente": "30-98656280-6",
+				"Tamano": 0,
+				"Destinatario": {
+					"DNI": 27456321,
+					"Nombre": "Marcos",
+					"Apellido": "Prieto",
+					"Direccion": "San Martin 1100, CABA",
+					"CodigoPostal": 1000
+				},
+				"IDConvenio": 200005,
+				"ImporteAFacturar": 1200,
+				"ComisionAgenciaOrigen": 0,
+				"ComisionAgenciaDestino": 60,
+				"ComisionFleteroOrigen": 0,
+				"ComisionFleteroDestino": 120,
+				"Historial": [
+					{
+						"Estado": 5,
+						"UbicacionGuia": "CD 1000",
+						"FechaActualizacionEstado": "2025-11-01T07:00:00-03:00"
+					},
+					{
+						"Estado": 9,
+						"UbicacionGuia": "",
+						"FechaActualizacionEstado": "2025-11-01T08:00:00-03:00"
+					}
+				]
+			},
+			{
+				"NumeroGuia": 100000991,
+				"Estado": 9,
+				"FechaAdmision": "2025-11-01T08:00:00-03:00",
+				"TipoEntrega": 1,
+				"CodigoPostalCDOrigen": 1000,
+				"CodigoPostalCDDestino": 1000,
+				"IDAgenciaOrigen": "",
+				"IDAgenciaDestino": "01000",
+				"CUITCliente": "30-98656280-6",
+				"Tamano": 1,
+				"Destinatario": {
+					"DNI": 30111222,
+					"Nombre": "Lucia",
+					"Apellido": "Gomez",
+					"Direccion": "Corrientes 2500, CABA",
+					"CodigoPostal": 1000
+				},
+				"IDConvenio": 200005,
+				"ImporteAFacturar": 1800,
+				"ComisionAgenciaOrigen": 0,
+				"ComisionAgenciaDestino": 90,
+				"ComisionFleteroOrigen": 0,
+				"ComisionFleteroDestino": 180,
+				"Historial": [
+					{
+						"Estado": 5,
+						"UbicacionGuia": "CD 1000",
+						"FechaActualizacionEstado": "2025-11-01T07:00:00-03:00"
+					},
+					{
+						"Estado": 9,
+						"UbicacionGuia": "",
+						"FechaActualizacionEstado": "2025-11-01T08:00:00-03:00"
+					}
+				]
+			},
+			{
+				"NumeroGuia": 100000992,
+				"Estado": 9,
+				"FechaAdmision": "2025-11-01T08:00:00-03:00",
+				"TipoEntrega": 1,
+				"CodigoPostalCDOrigen": 1000,
+				"CodigoPostalCDDestino": 1000,
+				"IDAgenciaOrigen": "",
+				"IDAgenciaDestino": "01000",
+				"CUITCliente": "30-98656280-6",
+				"Tamano": 2,
+				"Destinatario": {
+					"DNI": 28333444,
+					"Nombre": "Sofia",
+					"Apellido": "Martinez",
+					"Direccion": "Santa Fe 1800, CABA",
+					"CodigoPostal": 1000
+				},
+				"IDConvenio": 200005,
+				"ImporteAFacturar": 2500,
+				"ComisionAgenciaOrigen": 0,
+				"ComisionAgenciaDestino": 125,
+				"ComisionFleteroOrigen": 0,
+				"ComisionFleteroDestino": 250,
+				"Historial": [
+					{
+						"Estado": 5,
+						"UbicacionGuia": "CD 1000",
+						"FechaActualizacionEstado": "2025-11-01T07:00:00-03:00"
+					},
+					{
+						"Estado": 9,
+						"UbicacionGuia": "",
+						"FechaActualizacionEstado": "2025-11-01T08:00:00-03:00"
+					}
+				]
+			}
+		],
+		"CodigoPostalOrigen": 1000,
+		"CodigoPostalDestino": 1000
+	},
+	{
+		"ID": "R 1000 000991 0000",
+		"TipoHDR": 1,
+		"DNIFletero": 28765432,
+		"IDServicioTransporte": 0,
+		"Guias": [
+			{
+				"NumeroGuia": 100000993,
+				"Estado": 3,
+				"FechaAdmision": "2025-11-01T09:00:00-03:00",
+				"TipoEntrega": 1,
+				"CodigoPostalCDOrigen": 1000,
+				"CodigoPostalCDDestino": 3000,
+				"IDAgenciaOrigen": "01000",
+				"IDAgenciaDestino": "",
+				"CUITCliente": "30-94715263-9",
+				"Tamano": 2,
+				"Destinatario": {
+					"DNI": 40222333,
+					"Nombre": "Andrea",
+					"Apellido": "Suarez",
+					"Direccion": "Honduras 4800, CABA",
+					"CodigoPostal": 1000
+				},
+				"IDConvenio": 200013,
+				"ImporteAFacturar": 2500,
+				"ComisionAgenciaOrigen": 125,
+				"ComisionAgenciaDestino": 0,
+				"ComisionFleteroOrigen": 250,
+				"ComisionFleteroDestino": 0,
+				"Historial": [
+					{
+						"Estado": 0,
+						"UbicacionGuia": "Agencia 01000",
+						"FechaActualizacionEstado": "2025-11-01T08:30:00-03:00"
+					},
+					{
+						"Estado": 3,
+						"UbicacionGuia": "Agencia 01000",
+						"FechaActualizacionEstado": "2025-11-01T09:00:00-03:00"
+					}
+				]
+			},
+			{
+				"NumeroGuia": 100000994,
+				"Estado": 3,
+				"FechaAdmision": "2025-11-01T09:00:00-03:00",
+				"TipoEntrega": 1,
+				"CodigoPostalCDOrigen": 1000,
+				"CodigoPostalCDDestino": 5000,
+				"IDAgenciaOrigen": "01000",
+				"IDAgenciaDestino": "",
+				"CUITCliente": "33-12349876-9",
+				"Tamano": 3,
+				"Destinatario": {
+					"DNI": 35444555,
+					"Nombre": "Roberto",
+					"Apellido": "Diaz",
+					"Direccion": "Lavalle 800, CABA",
+					"CodigoPostal": 1000
+				},
+				"IDConvenio": 300001,
+				"ImporteAFacturar": 3200,
+				"ComisionAgenciaOrigen": 160,
+				"ComisionAgenciaDestino": 0,
+				"ComisionFleteroOrigen": 320,
+				"ComisionFleteroDestino": 0,
+				"Historial": [
+					{
+						"Estado": 0,
+						"UbicacionGuia": "Agencia 01000",
+						"FechaActualizacionEstado": "2025-11-01T08:30:00-03:00"
+					},
+					{
+						"Estado": 3,
+						"UbicacionGuia": "Agencia 01000",
+						"FechaActualizacionEstado": "2025-11-01T09:00:00-03:00"
+					}
+				]
+			}
+		],
+		"CodigoPostalOrigen": 1000,
+		"CodigoPostalDestino": 0
 	}
 ]
