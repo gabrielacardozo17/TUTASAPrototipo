@@ -89,40 +89,12 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
                 )
                 .ToList();
 
-            // 3) Asegurar que el estado "Pendiente de entrega" tenga ubicación física en el historial
-            bool huboCambios = false;
-            foreach (var x in pares)
-            {
-                x.guia.Historial ??= new List<RegistroEstadoAux>();
-                // Tomar el último registro con PendienteDeEntrega
-                var lastPend = x.guia.Historial.LastOrDefault(h => h.Estado == EstadoGuiaEnum.PendienteDeEntrega);
-                var ubicacionDeseada = $"CD{x.cd.CodigoPostal}"; // reconocible por ConsultarEstadoModelo
+            // IMPORTANTE: No modificar el historial aquí.
+            // La pantalla de Consulta de Estado ya tiene fallback para mostrar ubicación
+            // de 'Pendiente de entrega' cuando el registro no la trae. Esto evita que,
+            // por una búsqueda, se inserten movimientos posteriores a 'Entregada'.
 
-                if (lastPend == null)
-                {
-                    // Si no existía registro pendiente en historial pero el estado actual lo es, agregamos uno con ubicación
-                    x.guia.Historial.Add(new RegistroEstadoAux
-                    {
-                        Estado = EstadoGuiaEnum.PendienteDeEntrega,
-                        UbicacionGuia = ubicacionDeseada,
-                        FechaActualizacionEstado = DateTime.Now
-                    });
-                    huboCambios = true;
-                }
-                else if (string.IsNullOrWhiteSpace(lastPend.UbicacionGuia))
-                {
-                    lastPend.UbicacionGuia = ubicacionDeseada;
-                    huboCambios = true;
-                }
-            }
-
-            if (huboCambios)
-            {
-                // Persistimos la corrección de ubicación para que Consultar Estado la muestre
-                GuiaAlmacen.Grabar();
-            }
-
-            // 4) Proyección a la clase consumida por la pantalla
+            // 3) Proyección a la clase consumida por la pantalla
             var resultados = pares
                 .Select(x => new Guia
                 {
@@ -161,33 +133,41 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
                 if (entidad.Estado == EstadoGuiaEnum.PendienteDeEntrega)
                 {
                     // Transición válida: Pendiente -> Entregada
+                    var fechaEntregada = DateTime.Now;
                     entidad.Estado = EstadoGuiaEnum.Entregada;
                     entidad.Historial.Add(new RegistroEstadoAux
                     {
                         Estado = EstadoGuiaEnum.Entregada,
                         UbicacionGuia = string.Empty, // Entregada: sin ubicación visible
-                        FechaActualizacionEstado = DateTime.Now
+                        FechaActualizacionEstado = fechaEntregada
                     });
+
+                    // Si por alguna operación anterior se insertó un 'Pendiente de entrega' con
+                    // fecha posterior a la entrega, retrotraemos esa fecha para mantener el orden cronológico.
+                    foreach (var pend in entidad.Historial.Where(h => h.Estado == EstadoGuiaEnum.PendienteDeEntrega && h.FechaActualizacionEstado > fechaEntregada))
+                    {
+                        pend.FechaActualizacionEstado = fechaEntregada.AddSeconds(-1);
+                    }
+
                     huboCambios = true;
                 }
                 else if (entidad.Estado == EstadoGuiaEnum.Entregada)
                 {
                     // Ya figuraba como entregada: actualizar fecha del último movimiento "Entregada" en lugar de duplicarlo
                     var lastEnt = entidad.Historial.LastOrDefault(h => h.Estado == EstadoGuiaEnum.Entregada);
+                    var nuevaFecha = DateTime.Now;
                     if (lastEnt != null)
                     {
-                        lastEnt.FechaActualizacionEstado = DateTime.Now;
-                        // Asegurar ubicación vacía en entregada
+                        lastEnt.FechaActualizacionEstado = nuevaFecha;
                         lastEnt.UbicacionGuia = string.Empty;
                     }
                     else
                     {
-                        // Si no existía registro (datos antiguos), agregamos uno
                         entidad.Historial.Add(new RegistroEstadoAux
                         {
                             Estado = EstadoGuiaEnum.Entregada,
                             UbicacionGuia = string.Empty,
-                            FechaActualizacionEstado = DateTime.Now
+                            FechaActualizacionEstado = nuevaFecha
                         });
                     }
                     huboCambios = true;

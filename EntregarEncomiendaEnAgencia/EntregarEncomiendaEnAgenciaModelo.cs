@@ -90,21 +90,80 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 
         public bool ConfirmarEntrega(List<string> numerosDeGuia)
         {
+            // Persistir cambio de estado a "Entregada" en el JSON (GuiaAlmacen)
+            if (numerosDeGuia == null || numerosDeGuia.Count == 0)
+                return false;
+
+            bool huboCambios = false;
+
             foreach (var numeroGuia in numerosDeGuia)
             {
-                var guia = Guias.FirstOrDefault(g => g.NumeroGuia == numeroGuia);
-                if (guia != null)
+                if (string.IsNullOrWhiteSpace(numeroGuia)) continue;
+                if (!int.TryParse(numeroGuia, out var nroInt)) continue;
+
+                var entidad = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == nroInt);
+                if (entidad == null) continue;
+
+                entidad.Historial ??= new List<RegistroEstadoAux>();
+
+                if (entidad.Estado == EstadoGuiaEnum.PendienteDeEntrega)
                 {
-                    guia.Estado = "Entregada";
-                    guia.Ubicacion = string.Empty; // sin ubicación cuando está entregada
+                    var fechaEntregada = DateTime.Now;
+                    entidad.Estado = EstadoGuiaEnum.Entregada;
+                    entidad.Historial.Add(new RegistroEstadoAux
+                    {
+                        Estado = EstadoGuiaEnum.Entregada,
+                        UbicacionGuia = string.Empty, // Entregada: sin ubicación
+                        FechaActualizacionEstado = fechaEntregada
+                    });
+
+                    // Si quedara algún 'Pendiente de entrega' con fecha posterior, lo ajustamos
+                    foreach (var pend in entidad.Historial.Where(h => h.Estado == EstadoGuiaEnum.PendienteDeEntrega && h.FechaActualizacionEstado > fechaEntregada))
+                    {
+                        pend.FechaActualizacionEstado = fechaEntregada.AddSeconds(-1);
+                    }
+
+                    huboCambios = true;
+                }
+                else if (entidad.Estado == EstadoGuiaEnum.Entregada)
+                {
+                    // Ya entregada: refrescamos la marca temporal del último registro Entregada
+                    var lastEnt = entidad.Historial.LastOrDefault(h => h.Estado == EstadoGuiaEnum.Entregada);
+                    var nuevaFecha = DateTime.Now;
+                    if (lastEnt != null)
+                    {
+                        lastEnt.FechaActualizacionEstado = nuevaFecha;
+                        lastEnt.UbicacionGuia = string.Empty;
+                    }
+                    else
+                    {
+                        entidad.Historial.Add(new RegistroEstadoAux
+                        {
+                            Estado = EstadoGuiaEnum.Entregada,
+                            UbicacionGuia = string.Empty,
+                            FechaActualizacionEstado = nuevaFecha
+                        });
+                    }
+                    huboCambios = true;
                 }
 
-                // registrar como entregada en esta sesión (no persistente)
-                if (!string.IsNullOrWhiteSpace(numeroGuia))
+                // Registrar como entregada en esta sesión para excluir en resultados subsiguientes
+                _guiasEntregadasLocalmente.Add(numeroGuia);
+
+                // Mantener coherencia con la lista local usada por la UI
+                var guiaLocal = Guias.FirstOrDefault(g => g.NumeroGuia == numeroGuia);
+                if (guiaLocal != null)
                 {
-                    _guiasEntregadasLocalmente.Add(numeroGuia);
+                    guiaLocal.Estado = "Entregada";
+                    guiaLocal.Ubicacion = string.Empty;
                 }
             }
+
+            if (huboCambios)
+            {
+                GuiaAlmacen.Grabar();
+            }
+
             return true;
         }
     }

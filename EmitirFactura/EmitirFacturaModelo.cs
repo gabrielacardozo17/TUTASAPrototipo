@@ -69,21 +69,18 @@ namespace TUTASAPrototipo.EmitirFactura
             if (cliEntidad is null)
                 throw new InvalidOperationException("No existe el cliente seleccionado. Vuelva a intentarlo.");
 
-            // 2) Guías pendientes del cliente: según CU, solo estado Entregada
-            // Compatibilidad: si existen datos creados cuando Entregada tenía otro valor,
-            // también consideramos PendienteDeEntrega como facturable.
+            // 2) Guías pendientes del cliente para facturar: SOLO estado Entregada
             var estadosFacturables = new HashSet<EstadoGuiaEnum>
-        {
-            EstadoGuiaEnum.Entregada,
-            EstadoGuiaEnum.PendienteDeEntrega // compatibilidad hacia atrás
-        };
+            {
+                EstadoGuiaEnum.Entregada
+            };
 
             // Tomamos del almacén de guías, filtramos por CUIT y estado
             var pendientesEntidad = GuiaAlmacen.guias
-         .Where(g => Digits(g.CUITCliente) == digits)
-                    .Where(g => estadosFacturables.Contains(g.Estado))
-            .OrderBy(g => g.FechaAdmision)
-              .ToList();
+                .Where(g => Digits(g.CUITCliente) == digits)
+                .Where(g => estadosFacturables.Contains(g.Estado))
+                .OrderBy(g => g.FechaAdmision)
+                .ToList();
 
             if (!pendientesEntidad.Any())
                 throw new InvalidOperationException("No se encontraron ítems pendientes de facturar.");
