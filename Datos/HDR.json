@@ -157,9 +157,9 @@
 		"TipoHDR": 0,
 		"DNIFletero": 30987654,
 		"IDServicioTransporte": 0,
-		"Guias": [],
-		"CodigoPostalOrigen": 5000,
-		"CodigoPostalDestino": 0
+		"Guias": [ 500000120 ],
+		"CodigoPostalOrigen":0,
+		"CodigoPostalDestino": 5000
 	},
 	{
 		"ID": "T 5000 000303 3000",
@@ -177,7 +177,7 @@
 		"TipoHDR": 1,
 		"DNIFletero": 30987654,
 		"IDServicioTransporte": 0,
-		"Guias": [],
+		"Guias": [ 500000026 ],
 		"CodigoPostalOrigen": 5000,
 		"CodigoPostalDestino": 0
 	},

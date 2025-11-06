@@ -1948,5 +1948,92 @@
       }
 
     ]
+  },
+  {
+    "NumeroGuia": 500000026,
+    "Estado": 2,
+    "FechaAdmision": "2025-10-29T12:20:00-03:00",
+    "TipoEntrega": 2,
+    "CodigoPostalCDOrigen": 5000,
+    "CodigoPostalCDDestino":1888,
+    "IDAgenciaOrigen": "01888",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "33-99274898-8",
+    "Tamano": 1,
+    "Destinatario": {
+      "DNI": 32568974,
+      "Nombre": "Lucia",
+      "Apellido": "Fernandez",
+      "Direccion": "Duarte Quiros 1250, Cordoba",
+      "CodigoPostal": 5000
+    },
+    "IDConvenio": 200001,
+    "ImporteAFacturar": 15420.00,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      {
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 01888",
+        "FechaActualizacionEstado": "2025-10-29T09:10:00-03:00"
+      },
+      {
+        "Estado": 4,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-29T10:00:00-03:00"
+      },
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 1888",
+        "FechaActualizacionEstado": "2025-10-29T12:20:00-03:00"
+      }
+
+    ]
+  },
+  {
+    "NumeroGuia": 500000120,
+    "Estado": 8,
+    "FechaAdmision": "2025-10-29T12:20:00-03:00",
+    "TipoEntrega": 2,
+    "CodigoPostalCDOrigen": 1888,
+    "CodigoPostalCDDestino": 5000,
+    "IDAgenciaOrigen": "01888",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "33-99274898-8",
+    "Tamano": 1,
+    "Destinatario": {
+      "DNI": 32568974,
+      "Nombre": "Lucia",
+      "Apellido": "Fernandez",
+      "Direccion": "Duarte Quiros 1250, Cordoba",
+      "CodigoPostal": 5000
+    },
+    "IDConvenio": 200001,
+    "ImporteAFacturar": 15420.00,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      {
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 01888",
+        "FechaActualizacionEstado": "2025-10-29T09:10:00-03:00"
+      },
+      {
+        "Estado": 4,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-10-29T10:00:00-03:00"
+      },
+      {
+        "Estado": 5,
+        "UbicacionGuia": "CD 1888",
+        "FechaActualizacionEstado": "2025-10-29T12:20:00-03:00"
+      }
+
+    ]
   }
+  
 ]
