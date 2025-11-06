@@ -4,52 +4,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 28765984,
 		"IDServicioTransporte": 1000744,
-		"Guias": [{
-			"NumeroGuia": 188800001,
-			"Estado": 6,
-			"FechaAdmision": "2025-10-29T12:20:00-03:00",
-			"TipoEntrega": 2,
-			"CodigoPostalCDOrigen": 1888,
-			"CodigoPostalCDDestino": 5000,
-			"IDAgenciaOrigen": "01888",
-			"IDAgenciaDestino": "",
-			"CUITCliente": "33-99274898-8",
-			"Tamano": 1,
-			"Destinatario": {
-				"DNI": 32568974,
-				"Nombre": "Lucia",
-				"Apellido": "Fernandez",
-				"Direccion": "Duarte Quiros 1250, Cordoba",
-				"CodigoPostal": 5000
-			},
-			"IDConvenio": 200001,
-			"ImporteAFacturar": 15420,
-			"ComisionAgenciaOrigen": 0,
-			"ComisionAgenciaDestino": 0,
-			"ComisionFleteroOrigen": 0,
-			"ComisionFleteroDestino": 0,
-			"Historial": [{
-					"Estado": 0,
-					"UbicacionGuia": "Agencia 01888",
-					"FechaActualizacionEstado": "2025-10-29T09:10:00-03:00"
-				},
-				{
-					"Estado": 4,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-29T10:00:00-03:00"
-				},
-				{
-					"Estado": 5,
-					"UbicacionGuia": "CD 1888",
-					"FechaActualizacionEstado": "2025-10-29T12:20:00-03:00"
-				},
-				{
-					"Estado": 6,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-29T18:40:00-03:00"
-				}
-			]
-		}],
+		"Guias": [
+			188800001
+		],
 		"CodigoPostalOrigen": 1888,
 		"CodigoPostalDestino": 5000
 	},
@@ -58,62 +15,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 28765984,
 		"IDServicioTransporte": 0,
-		"Guias": [{
-			"NumeroGuia": 188800002,
-			"Estado": 9,
-			"FechaAdmision": "2025-10-30T11:45:00-03:00",
-			"TipoEntrega": 1,
-			"CodigoPostalCDOrigen": 1888,
-			"CodigoPostalCDDestino": 1000,
-			"IDAgenciaOrigen": "01888",
-			"IDAgenciaDestino": "01000",
-			"CUITCliente": "30-40762117-0",
-			"Tamano": 1,
-			"Destinatario": {
-				"DNI": 29123456,
-				"Nombre": "Julieta",
-				"Apellido": "Acosta",
-				"Direccion": "Peru 350, Microcentro",
-				"CodigoPostal": 1000
-			},
-			"IDConvenio": 200002,
-			"ImporteAFacturar": 9100,
-			"ComisionAgenciaOrigen": 0,
-			"ComisionAgenciaDestino": 0,
-			"ComisionFleteroOrigen": 0,
-			"ComisionFleteroDestino": 0,
-			"Historial": [{
-					"Estado": 0,
-					"UbicacionGuia": "Agencia 01888",
-					"FechaActualizacionEstado": "2025-10-30T09:20:00-03:00"
-				},
-				{
-					"Estado": 4,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-30T10:00:00-03:00"
-				},
-				{
-					"Estado": 5,
-					"UbicacionGuia": "CD 1888",
-					"FechaActualizacionEstado": "2025-10-30T11:45:00-03:00"
-				},
-				{
-					"Estado": 6,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-30T18:30:00-03:00"
-				},
-				{
-					"Estado": 7,
-					"UbicacionGuia": "CD 1000",
-					"FechaActualizacionEstado": "2025-10-31T08:50:00-03:00"
-				},
-				{
-					"Estado": 9,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-31T10:20:00-03:00"
-				}
-			]
-		}],
+		"Guias": [
+			188800002
+		],
 		"CodigoPostalOrigen": 1888,
 		"CodigoPostalDestino": 1000
 	},
@@ -122,47 +26,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 30987654,
 		"IDServicioTransporte": 2000521,
-		"Guias": [{
-			"NumeroGuia": 500000002,
-			"Estado": 7,
-			"FechaAdmision": "2025-10-28T15:35:00-03:00",
-			"TipoEntrega": 1,
-			"CodigoPostalCDOrigen": 5000,
-			"CodigoPostalCDDestino": 5500,
-			"IDAgenciaOrigen": "",
-			"IDAgenciaDestino": "05500",
-			"CUITCliente": "30-87419362-4",
-			"Tamano": 1,
-			"Destinatario": {
-				"DNI": 29654321,
-				"Nombre": "Diego",
-				"Apellido": "Herrera",
-				"Direccion": "San Martin 1200, Mendoza",
-				"CodigoPostal": 5500
-			},
-			"IDConvenio": 200009,
-			"ImporteAFacturar": 8240,
-			"ComisionAgenciaOrigen": 0,
-			"ComisionAgenciaDestino": 0,
-			"ComisionFleteroOrigen": 0,
-			"ComisionFleteroDestino": 0,
-			"Historial": [{
-					"Estado": 5,
-					"UbicacionGuia": "CD 5000",
-					"FechaActualizacionEstado": "2025-10-28T15:35:00-03:00"
-				},
-				{
-					"Estado": 6,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-28T21:10:00-03:00"
-				},
-				{
-					"Estado": 7,
-					"UbicacionGuia": "CD 5500",
-					"FechaActualizacionEstado": "2025-10-29T10:05:00-03:00"
-				}
-			]
-		}],
+		"Guias": [
+			500000002
+		],
 		"CodigoPostalOrigen": 5000,
 		"CodigoPostalDestino": 5500
 	},
@@ -171,72 +37,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 33125498,
 		"IDServicioTransporte": 3003345,
-		"Guias": [{
-			"NumeroGuia": 300000001,
-			"Estado": 11,
-			"FechaAdmision": "2025-10-24T11:10:00-03:00",
-			"TipoEntrega": 1,
-			"CodigoPostalCDOrigen": 3000,
-			"CodigoPostalCDDestino": 1000,
-			"IDAgenciaOrigen": "03000",
-			"IDAgenciaDestino": "01000",
-			"CUITCliente": "30-94715263-9",
-			"Tamano": 1,
-			"Destinatario": {
-				"DNI": 40222333,
-				"Nombre": "Andrea",
-				"Apellido": "Suarez",
-				"Direccion": "Honduras 4800, CABA",
-				"CodigoPostal": 1000
-			},
-			"IDConvenio": 200013,
-			"ImporteAFacturar": 5400,
-			"ComisionAgenciaOrigen": 0,
-			"ComisionAgenciaDestino": 0,
-			"ComisionFleteroOrigen": 0,
-			"ComisionFleteroDestino": 0,
-			"Historial": [{
-					"Estado": 0,
-					"UbicacionGuia": "Agencia 03000",
-					"FechaActualizacionEstado": "2025-10-24T10:00:00-03:00"
-				},
-				{
-					"Estado": 4,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-24T10:35:00-03:00"
-				},
-				{
-					"Estado": 5,
-					"UbicacionGuia": "CD 3000",
-					"FechaActualizacionEstado": "2025-10-24T11:10:00-03:00"
-				},
-				{
-					"Estado": 6,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-24T16:30:00-03:00"
-				},
-				{
-					"Estado": 7,
-					"UbicacionGuia": "CD 1000",
-					"FechaActualizacionEstado": "2025-10-25T08:50:00-03:00"
-				},
-				{
-					"Estado": 9,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-25T09:30:00-03:00"
-				},
-				{
-					"Estado": 10,
-					"UbicacionGuia": "Agencia 01000",
-					"FechaActualizacionEstado": "2025-10-25T10:15:00-03:00"
-				},
-				{
-					"Estado": 11,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-25T13:40:00-03:00"
-				}
-			]
-		}],
+		"Guias": [
+			300000001
+		],
 		"CodigoPostalOrigen": 3000,
 		"CodigoPostalDestino": 1000
 	},
@@ -272,67 +75,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 29567891,
 		"IDServicioTransporte": 5005789,
-		"Guias": [{
-			"NumeroGuia": 910000001,
-			"Estado": 10,
-			"FechaAdmision": "2025-10-25T18:00:00-03:00",
-			"TipoEntrega": 1,
-			"CodigoPostalCDOrigen": 9100,
-			"CodigoPostalCDDestino": 8500,
-			"IDAgenciaOrigen": "09100",
-			"IDAgenciaDestino": "08500",
-			"CUITCliente": "33-76251483-5",
-			"Tamano": 1,
-			"Destinatario": {
-				"DNI": 28111222,
-				"Nombre": "Leandro",
-				"Apellido": "Rivas",
-				"Direccion": "Belgrano 300, Viedma",
-				"CodigoPostal": 8500
-			},
-			"IDConvenio": 200021,
-			"ImporteAFacturar": 22150,
-			"ComisionAgenciaOrigen": 0,
-			"ComisionAgenciaDestino": 0,
-			"ComisionFleteroOrigen": 0,
-			"ComisionFleteroDestino": 0,
-			"Historial": [{
-					"Estado": 0,
-					"UbicacionGuia": "Agencia 09100",
-					"FechaActualizacionEstado": "2025-10-25T16:40:00-03:00"
-				},
-				{
-					"Estado": 4,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-25T17:20:00-03:00"
-				},
-				{
-					"Estado": 5,
-					"UbicacionGuia": "CD 9100",
-					"FechaActualizacionEstado": "2025-10-25T18:00:00-03:00"
-				},
-				{
-					"Estado": 6,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-25T22:30:00-03:00"
-				},
-				{
-					"Estado": 7,
-					"UbicacionGuia": "CD 8500",
-					"FechaActualizacionEstado": "2025-10-26T09:10:00-03:00"
-				},
-				{
-					"Estado": 9,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-26T10:00:00-03:00"
-				},
-				{
-					"Estado": 10,
-					"UbicacionGuia": "Agencia 08500",
-					"FechaActualizacionEstado": "2025-10-26T12:20:00-03:00"
-				}
-			]
-		}],
+		"Guias": [
+			910000001
+		],
 		"CodigoPostalOrigen": 9100,
 		"CodigoPostalDestino": 8500
 	},
@@ -341,67 +86,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 28765432,
 		"IDServicioTransporte": 1000744,
-		"Guias": [{
-			"NumeroGuia": 100000001,
-			"Estado": 10,
-			"FechaAdmision": "2025-10-27T13:00:00-03:00",
-			"TipoEntrega": 1,
-			"CodigoPostalCDOrigen": 1000,
-			"CodigoPostalCDDestino": 3000,
-			"IDAgenciaOrigen": "01000",
-			"IDAgenciaDestino": "03000",
-			"CUITCliente": "30-98656280-6",
-			"Tamano": 1,
-			"Destinatario": {
-				"DNI": 27456321,
-				"Nombre": "Marcos",
-				"Apellido": "Prieto",
-				"Direccion": "San Martin 1100, Santa Fe",
-				"CodigoPostal": 3000
-			},
-			"IDConvenio": 200005,
-			"ImporteAFacturar": 6120,
-			"ComisionAgenciaOrigen": 0,
-			"ComisionAgenciaDestino": 0,
-			"ComisionFleteroOrigen": 0,
-			"ComisionFleteroDestino": 0,
-			"Historial": [{
-					"Estado": 0,
-					"UbicacionGuia": "Agencia 01000",
-					"FechaActualizacionEstado": "2025-10-27T11:05:00-03:00"
-				},
-				{
-					"Estado": 4,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-27T12:00:00-03:00"
-				},
-				{
-					"Estado": 5,
-					"UbicacionGuia": "CD 1000",
-					"FechaActualizacionEstado": "2025-10-27T13:00:00-03:00"
-				},
-				{
-					"Estado": 6,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-27T20:30:00-03:00"
-				},
-				{
-					"Estado": 7,
-					"UbicacionGuia": "CD 3000",
-					"FechaActualizacionEstado": "2025-10-28T09:40:00-03:00"
-				},
-				{
-					"Estado": 9,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-28T10:10:00-03:00"
-				},
-				{
-					"Estado": 10,
-					"UbicacionGuia": "Agencia 03000",
-					"FechaActualizacionEstado": "2025-10-28T12:00:00-03:00"
-				}
-			]
-		}],
+		"Guias": [
+			100000001
+		],
 		"CodigoPostalOrigen": 1000,
 		"CodigoPostalDestino": 3000
 	},
@@ -429,90 +116,8 @@
 		"DNIFletero": 28765432,
 		"IDServicioTransporte": 0,
 		"Guias": [
-			{
-				"NumeroGuia": 911000001,
-				"Estado": 4,
-				"FechaAdmision": "2025-10-29T08:45:00-03:00",
-				"TipoEntrega": 1,
-				"CodigoPostalCDOrigen": 9200,
-				"CodigoPostalCDDestino": 3400,
-				"IDAgenciaOrigen": "09200",
-				"IDAgenciaDestino": "03400",
-				"CUITCliente": "33-12349876-9",
-				"Tamano": 2,
-				"Destinatario": {
-					"DNI": 42123456,
-					"Nombre": "Carlos",
-					"Apellido": "Perez",
-					"Direccion": "Calle San Martin 99, Posadas",
-					"CodigoPostal": 3400
-				},
-				"IDConvenio": 300001,
-				"ImporteAFacturar": 22000,
-				"ComisionAgenciaOrigen": 100,
-				"ComisionAgenciaDestino": 100,
-				"ComisionFleteroOrigen": 50,
-				"ComisionFleteroDestino": 50,
-				"Historial": [
-					{
-						"Estado": 0,
-						"UbicacionGuia": "Agencia 09200",
-						"FechaActualizacionEstado": "2025-10-29T08:00:00-03:00"
-					},
-					{
-						"Estado": 2,
-						"UbicacionGuia": "En ruta",
-						"FechaActualizacionEstado": "2025-10-29T08:30:00-03:00"
-					},
-					{
-						"Estado": 4,
-						"UbicacionGuia": "CD 9200",
-						"FechaActualizacionEstado": "2025-10-29T08:45:00-03:00"
-					}
-				]
-			},
-			{
-				"NumeroGuia": 911000033,
-				"Estado": 2,
-				"FechaAdmision": "2025-10-29T08:45:00-03:00",
-				"TipoEntrega": 1,
-				"CodigoPostalCDOrigen": 9200,
-				"CodigoPostalCDDestino": 3400,
-				"IDAgenciaOrigen": "09200",
-				"IDAgenciaDestino": "03400",
-				"CUITCliente": "33-12349876-9",
-				"Tamano": 0,
-				"Destinatario": {
-					"DNI": 42123456,
-					"Nombre": "Carlos",
-					"Apellido": "Perez",
-					"Direccion": "Calle San Martin 99, Posadas",
-					"CodigoPostal": 3400
-				},
-				"IDConvenio": 300001,
-				"ImporteAFacturar": 22000,
-				"ComisionAgenciaOrigen": 100,
-				"ComisionAgenciaDestino": 100,
-				"ComisionFleteroOrigen": 50,
-				"ComisionFleteroDestino": 50,
-				"Historial": [
-					{
-						"Estado": 0,
-						"UbicacionGuia": "Agencia 09200",
-						"FechaActualizacionEstado": "2025-10-29T08:00:00-03:00"
-					},
-					{
-						"Estado": 2,
-						"UbicacionGuia": "En ruta",
-						"FechaActualizacionEstado": "2025-10-29T08:30:00-03:00"
-					},
-					{
-						"Estado": 4,
-						"UbicacionGuia": "CD 9200",
-						"FechaActualizacionEstado": "2025-10-29T08:45:00-03:00"
-					}
-				]
-			}
+			911000001,
+			911000033
 		],
 		"CodigoPostalOrigen": 1000,
 		"CodigoPostalDestino": 0
@@ -532,100 +137,8 @@
 		"DNIFletero": 28765432,
 		"IDServicioTransporte": 0,
 		"Guias": [
-			{
-				"NumeroGuia": 910000002,
-				"Estado": 8,
-				"FechaAdmision": "2025-10-27T10:00:00-03:00",
-				"TipoEntrega": 1,
-				"CodigoPostalCDOrigen": 9100,
-				"CodigoPostalCDDestino": 3300,
-				"IDAgenciaOrigen": "09100",
-				"IDAgenciaDestino": "03300",
-				"CUITCliente": "33-76251483-5",
-				"Tamano": 1,
-				"Destinatario": {
-					"DNI": 34111977,
-					"Nombre": "Javier",
-					"Apellido": "Valdez",
-					"Direccion": "Bolivar 400, Posadas",
-					"CodigoPostal": 3300
-				},
-				"IDConvenio": 200021,
-				"ImporteAFacturar": 17600,
-				"ComisionAgenciaOrigen": 0,
-				"ComisionAgenciaDestino": 0,
-				"ComisionFleteroOrigen": 0,
-				"ComisionFleteroDestino": 0,
-				"Historial": [
-					{
-						"Estado": 0,
-						"UbicacionGuia": "Agencia 09100",
-						"FechaActualizacionEstado": "2025-10-27T08:50:00-03:00"
-					},
-					{
-						"Estado": 4,
-						"UbicacionGuia": "",
-						"FechaActualizacionEstado": "2025-10-27T09:30:00-03:00"
-					},
-					{
-						"Estado": 5,
-						"UbicacionGuia": "CD 9100",
-						"FechaActualizacionEstado": "2025-10-27T10:00:00-03:00"
-					},
-					{
-						"Estado": 6,
-						"UbicacionGuia": "",
-						"FechaActualizacionEstado": "2025-10-27T18:10:00-03:00"
-					}
-				]
-			},
-			{
-				"NumeroGuia": 910000003,
-				"Estado": 9,
-				"FechaAdmision": "2025-10-27T10:00:00-03:00",
-				"TipoEntrega": 1,
-				"CodigoPostalCDOrigen": 9100,
-				"CodigoPostalCDDestino": 3300,
-				"IDAgenciaOrigen": "09100",
-				"IDAgenciaDestino": "03300",
-				"CUITCliente": "33-76251483-5",
-				"Tamano": 2,
-				"Destinatario": {
-					"DNI": 34111977,
-					"Nombre": "Javier",
-					"Apellido": "Valdez",
-					"Direccion": "Bolivar 400, Posadas",
-					"CodigoPostal": 3300
-				},
-				"IDConvenio": 200021,
-				"ImporteAFacturar": 17600,
-				"ComisionAgenciaOrigen": 0,
-				"ComisionAgenciaDestino": 0,
-				"ComisionFleteroOrigen": 0,
-				"ComisionFleteroDestino": 0,
-				"Historial": [
-					{
-						"Estado": 0,
-						"UbicacionGuia": "Agencia 09100",
-						"FechaActualizacionEstado": "2025-10-27T08:50:00-03:00"
-					},
-					{
-						"Estado": 4,
-						"UbicacionGuia": "",
-						"FechaActualizacionEstado": "2025-10-27T09:30:00-03:00"
-					},
-					{
-						"Estado": 5,
-						"UbicacionGuia": "CD 9100",
-						"FechaActualizacionEstado": "2025-10-27T10:00:00-03:00"
-					},
-					{
-						"Estado": 6,
-						"UbicacionGuia": "",
-						"FechaActualizacionEstado": "2025-10-27T18:10:00-03:00"
-					}
-				]
-			}
+			910000002,
+			910000003
 		],
 		"CodigoPostalOrigen": 1000,
 		"CodigoPostalDestino": 0
@@ -653,52 +166,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 30987654,
 		"IDServicioTransporte": 2000521,
-		"Guias": [{
-			"NumeroGuia": 500000003,
-			"Estado": 8,
-			"FechaAdmision": "2025-10-29T16:40:00-03:00",
-			"TipoEntrega": 2,
-			"CodigoPostalCDOrigen": 5000,
-			"CodigoPostalCDDestino": 3000,
-			"IDAgenciaOrigen": "05000",
-			"IDAgenciaDestino": "03000",
-			"CUITCliente": "30-87419362-4",
-			"Tamano": 1,
-			"Destinatario": {
-				"DNI": 32444888,
-				"Nombre": "Tomas",
-				"Apellido": "Roldan",
-				"Direccion": "Italia 3500, Santa Fe",
-				"CodigoPostal": 3000
-			},
-			"IDConvenio": 200009,
-			"ImporteAFacturar": 10560,
-			"ComisionAgenciaOrigen": 0,
-			"ComisionAgenciaDestino": 0,
-			"ComisionFleteroOrigen": 0,
-			"ComisionFleteroDestino": 0,
-			"Historial": [{
-					"Estado": 5,
-					"UbicacionGuia": "CD 5000",
-					"FechaActualizacionEstado": "2025-10-29T16:40:00-03:00"
-				},
-				{
-					"Estado": 6,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-29T20:50:00-03:00"
-				},
-				{
-					"Estado": 7,
-					"UbicacionGuia": "CD 3000",
-					"FechaActualizacionEstado": "2025-10-30T09:30:00-03:00"
-				},
-				{
-					"Estado": 8,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-30T10:10:00-03:00"
-				}
-			]
-		}],
+		"Guias": [
+			500000003
+		],
 		"CodigoPostalOrigen": 5000,
 		"CodigoPostalDestino": 3000
 	},
@@ -735,100 +205,8 @@
 		"DNIFletero": 29876543,
 		"IDServicioTransporte": 0,
 		"Guias": [
-			{
-				"NumeroGuia": 910000236,
-				"Estado": 9,
-				"FechaAdmision": "2025-10-27T10:00:00-03:00",
-				"TipoEntrega": 1,
-				"CodigoPostalCDOrigen": 9100,
-				"CodigoPostalCDDestino": 3300,
-				"IDAgenciaOrigen": "09100",
-				"IDAgenciaDestino": "03300",
-				"CUITCliente": "33-76251483-5",
-				"Tamano": 1,
-				"Destinatario": {
-					"DNI": 34111977,
-					"Nombre": "Javier",
-					"Apellido": "Valdez",
-					"Direccion": "Bolivar 400, Posadas",
-					"CodigoPostal": 3300
-				},
-				"IDConvenio": 200021,
-				"ImporteAFacturar": 17600,
-				"ComisionAgenciaOrigen": 0,
-				"ComisionAgenciaDestino": 0,
-				"ComisionFleteroOrigen": 0,
-				"ComisionFleteroDestino": 0,
-				"Historial": [
-					{
-						"Estado": 0,
-						"UbicacionGuia": "Agencia 09100",
-						"FechaActualizacionEstado": "2025-10-27T08:50:00-03:00"
-					},
-					{
-						"Estado": 4,
-						"UbicacionGuia": "",
-						"FechaActualizacionEstado": "2025-10-27T09:30:00-03:00"
-					},
-					{
-						"Estado": 5,
-						"UbicacionGuia": "CD 9100",
-						"FechaActualizacionEstado": "2025-10-27T10:00:00-03:00"
-					},
-					{
-						"Estado": 6,
-						"UbicacionGuia": "",
-						"FechaActualizacionEstado": "2025-10-27T18:10:00-03:00"
-					}
-				]
-			},
-			{
-				"NumeroGuia": 910000237,
-				"Estado": 9,
-				"FechaAdmision": "2025-10-27T10:00:00-03:00",
-				"TipoEntrega": 1,
-				"CodigoPostalCDOrigen": 9100,
-				"CodigoPostalCDDestino": 3300,
-				"IDAgenciaOrigen": "09100",
-				"IDAgenciaDestino": "03300",
-				"CUITCliente": "33-76251483-5",
-				"Tamano": 0,
-				"Destinatario": {
-					"DNI": 34111977,
-					"Nombre": "Javier",
-					"Apellido": "Valdez",
-					"Direccion": "Bolivar 400, Posadas",
-					"CodigoPostal": 3300
-				},
-				"IDConvenio": 200021,
-				"ImporteAFacturar": 17600,
-				"ComisionAgenciaOrigen": 0,
-				"ComisionAgenciaDestino": 0,
-				"ComisionFleteroOrigen": 0,
-				"ComisionFleteroDestino": 0,
-				"Historial": [
-					{
-						"Estado": 0,
-						"UbicacionGuia": "Agencia 09100",
-						"FechaActualizacionEstado": "2025-10-27T08:50:00-03:00"
-					},
-					{
-						"Estado": 4,
-						"UbicacionGuia": "",
-						"FechaActualizacionEstado": "2025-10-27T09:30:00-03:00"
-					},
-					{
-						"Estado": 5,
-						"UbicacionGuia": "CD 9100",
-						"FechaActualizacionEstado": "2025-10-27T10:00:00-03:00"
-					},
-					{
-						"Estado": 6,
-						"UbicacionGuia": "",
-						"FechaActualizacionEstado": "2025-10-27T18:10:00-03:00"
-					}
-				]
-			}
+			910000236,
+			910000237
 		],
 		"CodigoPostalOrigen": 7600,
 		"CodigoPostalDestino": 0
@@ -856,57 +234,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 30123456,
 		"IDServicioTransporte": 2000521,
-		"Guias": [{
-			"NumeroGuia": 830000003,
-			"Estado": 7,
-			"FechaAdmision": "2025-10-28T14:00:00-03:00",
-			"TipoEntrega": 1,
-			"CodigoPostalCDOrigen": 8300,
-			"CodigoPostalCDDestino": 5500,
-			"IDAgenciaOrigen": "08300",
-			"IDAgenciaDestino": "05501",
-			"CUITCliente": "33-50182746-7",
-			"Tamano": 1,
-			"Destinatario": {
-				"DNI": 37888999,
-				"Nombre": "Camila",
-				"Apellido": "Ruiz",
-				"Direccion": "Belgrano 1100, Godoy Cruz",
-				"CodigoPostal": 5501
-			},
-			"IDConvenio": 200016,
-			"ImporteAFacturar": 6400,
-			"ComisionAgenciaOrigen": 0,
-			"ComisionAgenciaDestino": 0,
-			"ComisionFleteroOrigen": 0,
-			"ComisionFleteroDestino": 0,
-			"Historial": [{
-					"Estado": 0,
-					"UbicacionGuia": "Agencia 08300",
-					"FechaActualizacionEstado": "2025-10-28T12:30:00-03:00"
-				},
-				{
-					"Estado": 4,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-28T13:00:00-03:00"
-				},
-				{
-					"Estado": 5,
-					"UbicacionGuia": "CD 8300",
-					"FechaActualizacionEstado": "2025-10-28T14:00:00-03:00"
-				},
-				{
-					"Estado": 6,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-28T21:30:00-03:00"
-				},
-				{
-					"Estado": 7,
-					"UbicacionGuia": "CD 5500",
-					"FechaActualizacionEstado": "2025-10-29T10:00:00-03:00"
-				}
-			]
-		}],
+		"Guias": [
+			830000003
+		],
 		"CodigoPostalOrigen": 8300,
 		"CodigoPostalDestino": 5500
 	},
@@ -915,67 +245,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 30789456,
 		"IDServicioTransporte": 5005789,
-		"Guias": [{
-			"NumeroGuia": 550000002,
-			"Estado": 10,
-			"FechaAdmision": "2025-10-22T10:10:00-03:00",
-			"TipoEntrega": 1,
-			"CodigoPostalCDOrigen": 5500,
-			"CodigoPostalCDDestino": 9410,
-			"IDAgenciaOrigen": "05500",
-			"IDAgenciaDestino": "09410",
-			"CUITCliente": "30-81524639-6",
-			"Tamano": 1,
-			"Destinatario": {
-				"DNI": 20555111,
-				"Nombre": "Natalia",
-				"Apellido": "Arias",
-				"Direccion": "Maipu 200, Ushuaia",
-				"CodigoPostal": 9410
-			},
-			"IDConvenio": 200015,
-			"ImporteAFacturar": 16450,
-			"ComisionAgenciaOrigen": 0,
-			"ComisionAgenciaDestino": 0,
-			"ComisionFleteroOrigen": 0,
-			"ComisionFleteroDestino": 0,
-			"Historial": [{
-					"Estado": 0,
-					"UbicacionGuia": "Agencia 05500",
-					"FechaActualizacionEstado": "2025-10-22T09:00:00-03:00"
-				},
-				{
-					"Estado": 4,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-22T09:40:00-03:00"
-				},
-				{
-					"Estado": 5,
-					"UbicacionGuia": "CD 5500",
-					"FechaActualizacionEstado": "2025-10-22T10:10:00-03:00"
-				},
-				{
-					"Estado": 6,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-22T22:30:00-03:00"
-				},
-				{
-					"Estado": 7,
-					"UbicacionGuia": "CD 9410",
-					"FechaActualizacionEstado": "2025-10-24T11:20:00-03:00"
-				},
-				{
-					"Estado": 9,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-24T11:45:00-03:00"
-				},
-				{
-					"Estado": 10,
-					"UbicacionGuia": "Agencia 09410",
-					"FechaActualizacionEstado": "2025-10-24T12:30:00-03:00"
-				}
-			]
-		}],
+		"Guias": [
+			550000002
+		],
 		"CodigoPostalOrigen": 5500,
 		"CodigoPostalDestino": 9410
 	},
@@ -984,72 +256,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 30567890,
 		"IDServicioTransporte": 4004123,
-		"Guias": [{
-			"NumeroGuia": 440000001,
-			"Estado": 13,
-			"FechaAdmision": "2025-10-23T15:45:00-03:00",
-			"TipoEntrega": 1,
-			"CodigoPostalCDOrigen": 4400,
-			"CodigoPostalCDDestino": 4200,
-			"IDAgenciaOrigen": "04400",
-			"IDAgenciaDestino": "04200",
-			"CUITCliente": "30-83426197-7",
-			"Tamano": 1,
-			"Destinatario": {
-				"DNI": 31111999,
-				"Nombre": "Patricia",
-				"Apellido": "Diaz",
-				"Direccion": "Belgrano 900, Santiago del Estero",
-				"CodigoPostal": 4200
-			},
-			"IDConvenio": 200020,
-			"ImporteAFacturar": 11800,
-			"ComisionAgenciaOrigen": 0,
-			"ComisionAgenciaDestino": 0,
-			"ComisionFleteroOrigen": 0,
-			"ComisionFleteroDestino": 0,
-			"Historial": [{
-					"Estado": 0,
-					"UbicacionGuia": "Agencia 04400",
-					"FechaActualizacionEstado": "2025-10-23T14:25:00-03:00"
-				},
-				{
-					"Estado": 4,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-23T15:00:00-03:00"
-				},
-				{
-					"Estado": 5,
-					"UbicacionGuia": "CD 4400",
-					"FechaActualizacionEstado": "2025-10-23T15:45:00-03:00"
-				},
-				{
-					"Estado": 6,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-23T22:10:00-03:00"
-				},
-				{
-					"Estado": 7,
-					"UbicacionGuia": "CD 4200",
-					"FechaActualizacionEstado": "2025-10-24T09:30:00-03:00"
-				},
-				{
-					"Estado": 9,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-24T10:15:00-03:00"
-				},
-				{
-					"Estado": 10,
-					"UbicacionGuia": "Agencia 04200",
-					"FechaActualizacionEstado": "2025-10-24T11:00:00-03:00"
-				},
-				{
-					"Estado": 13,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-24T18:30:00-03:00"
-				}
-			]
-		}],
+		"Guias": [
+			440000001
+		],
 		"CodigoPostalOrigen": 4400,
 		"CodigoPostalDestino": 4200
 	},
@@ -1058,52 +267,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 29567891,
 		"IDServicioTransporte": 5005789,
-		"Guias": [{
-			"NumeroGuia": 910000002,
-			"Estado": 6,
-			"FechaAdmision": "2025-10-27T10:00:00-03:00",
-			"TipoEntrega": 1,
-			"CodigoPostalCDOrigen": 9100,
-			"CodigoPostalCDDestino": 3300,
-			"IDAgenciaOrigen": "09100",
-			"IDAgenciaDestino": "03300",
-			"CUITCliente": "33-76251483-5",
-			"Tamano": 1,
-			"Destinatario": {
-				"DNI": 34111977,
-				"Nombre": "Javier",
-				"Apellido": "Valdez",
-				"Direccion": "Bolivar 400, Posadas",
-				"CodigoPostal": 3300
-			},
-			"IDConvenio": 200021,
-			"ImporteAFacturar": 17600,
-			"ComisionAgenciaOrigen": 0,
-			"ComisionAgenciaDestino": 0,
-			"ComisionFleteroOrigen": 0,
-			"ComisionFleteroDestino": 0,
-			"Historial": [{
-					"Estado": 0,
-					"UbicacionGuia": "Agencia 09100",
-					"FechaActualizacionEstado": "2025-10-27T08:50:00-03:00"
-				},
-				{
-					"Estado": 4,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-27T09:30:00-03:00"
-				},
-				{
-					"Estado": 5,
-					"UbicacionGuia": "CD 9100",
-					"FechaActualizacionEstado": "2025-10-27T10:00:00-03:00"
-				},
-				{
-					"Estado": 6,
-					"UbicacionGuia": "",
-					"FechaActualizacionEstado": "2025-10-27T18:10:00-03:00"
-				}
-			]
-		}],
+		"Guias": [
+			910000002
+		],
 		"CodigoPostalOrigen": 9100,
 		"CodigoPostalDestino": 3300
 	},
@@ -1112,18 +278,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 28765002,
 		"IDServicioTransporte": 1001,
-		"Guias": [{
-				"NumeroGuia": 202508001,
-				"FechaAdmision": "2025-08-10T09:00:00",
-				"CUITCliente": "33-99274898-8",
-				"ImporteAFacturar": 9000
-			},
-			{
-				"NumeroGuia": 202508002,
-				"FechaAdmision": "2025-08-15T11:00:00",
-				"CUITCliente": "30-40762117-0",
-				"ImporteAFacturar": 8000
-			}
+		"Guias": [
+			202508001,
+			202508002
 		]
 	},
 	{
@@ -1131,18 +288,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 28765001,
 		"IDServicioTransporte": 1001,
-		"Guias": [{
-				"NumeroGuia": 202509001,
-				"FechaAdmision": "2025-09-05T10:00:00",
-				"CUITCliente": "33-99274898-8",
-				"ImporteAFacturar": 12000
-			},
-			{
-				"NumeroGuia": 202509101,
-				"FechaAdmision": "2025-09-06T08:40:00",
-				"CUITCliente": "30-68362980-0",
-				"ImporteAFacturar": 10000
-			}
+		"Guias": [
+			202509001,
+			202509101
 		]
 	},
 	{
@@ -1150,18 +298,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 28765001,
 		"IDServicioTransporte": 1001,
-		"Guias": [{
-				"NumeroGuia": 202510101,
-				"FechaAdmision": "2025-10-05T11:00:00",
-				"CUITCliente": "33-99274898-8",
-				"ImporteAFacturar": 15000
-			},
-			{
-				"NumeroGuia": 202510102,
-				"FechaAdmision": "2025-10-18T14:20:00",
-				"CUITCliente": "30-40762117-0",
-				"ImporteAFacturar": 17500
-			}
+		"Guias": [
+			202510101,
+			202510102
 		]
 	},
 	{
@@ -1169,12 +308,9 @@
 		"TipoHDR": 2,
 		"DNIFletero": 28765001,
 		"IDServicioTransporte": 1001,
-		"Guias": [{
-			"NumeroGuia": 202511001,
-			"FechaAdmision": "2025-11-10T09:30:00",
-			"CUITCliente": "33-99274898-8",
-			"ImporteAFacturar": 10000
-		}]
+		"Guias": [
+			202511001
+		]
 	},
 	{
 		"ID": "D 1000 000990 01000",
@@ -1182,117 +318,9 @@
 		"DNIFletero": 28765432,
 		"IDServicioTransporte": 0,
 		"Guias": [
-			{
-				"NumeroGuia": 100000990,
-				"Estado": 9,
-				"FechaAdmision": "2025-11-01T08:00:00-03:00",
-				"TipoEntrega": 1,
-				"CodigoPostalCDOrigen": 1000,
-				"CodigoPostalCDDestino": 1000,
-				"IDAgenciaOrigen": "",
-				"IDAgenciaDestino": "01000",
-				"CUITCliente": "30-98656280-6",
-				"Tamano": 0,
-				"Destinatario": {
-					"DNI": 27456321,
-					"Nombre": "Marcos",
-					"Apellido": "Prieto",
-					"Direccion": "San Martin 1100, CABA",
-					"CodigoPostal": 1000
-				},
-				"IDConvenio": 200005,
-				"ImporteAFacturar": 1200,
-				"ComisionAgenciaOrigen": 0,
-				"ComisionAgenciaDestino": 60,
-				"ComisionFleteroOrigen": 0,
-				"ComisionFleteroDestino": 120,
-				"Historial": [
-					{
-						"Estado": 5,
-						"UbicacionGuia": "CD 1000",
-						"FechaActualizacionEstado": "2025-11-01T07:00:00-03:00"
-					},
-					{
-						"Estado": 9,
-						"UbicacionGuia": "",
-						"FechaActualizacionEstado": "2025-11-01T08:00:00-03:00"
-					}
-				]
-			},
-			{
-				"NumeroGuia": 100000991,
-				"Estado": 9,
-				"FechaAdmision": "2025-11-01T08:00:00-03:00",
-				"TipoEntrega": 1,
-				"CodigoPostalCDOrigen": 1000,
-				"CodigoPostalCDDestino": 1000,
-				"IDAgenciaOrigen": "",
-				"IDAgenciaDestino": "01000",
-				"CUITCliente": "30-98656280-6",
-				"Tamano": 1,
-				"Destinatario": {
-					"DNI": 30111222,
-					"Nombre": "Lucia",
-					"Apellido": "Gomez",
-					"Direccion": "Corrientes 2500, CABA",
-					"CodigoPostal": 1000
-				},
-				"IDConvenio": 200005,
-				"ImporteAFacturar": 1800,
-				"ComisionAgenciaOrigen": 0,
-				"ComisionAgenciaDestino": 90,
-				"ComisionFleteroOrigen": 0,
-				"ComisionFleteroDestino": 180,
-				"Historial": [
-					{
-						"Estado": 5,
-						"UbicacionGuia": "CD 1000",
-						"FechaActualizacionEstado": "2025-11-01T07:00:00-03:00"
-					},
-					{
-						"Estado": 9,
-						"UbicacionGuia": "",
-						"FechaActualizacionEstado": "2025-11-01T08:00:00-03:00"
-					}
-				]
-			},
-			{
-				"NumeroGuia": 100000992,
-				"Estado": 9,
-				"FechaAdmision": "2025-11-01T08:00:00-03:00",
-				"TipoEntrega": 1,
-				"CodigoPostalCDOrigen": 1000,
-				"CodigoPostalCDDestino": 1000,
-				"IDAgenciaOrigen": "",
-				"IDAgenciaDestino": "01000",
-				"CUITCliente": "30-98656280-6",
-				"Tamano": 2,
-				"Destinatario": {
-					"DNI": 28333444,
-					"Nombre": "Sofia",
-					"Apellido": "Martinez",
-					"Direccion": "Santa Fe 1800, CABA",
-					"CodigoPostal": 1000
-				},
-				"IDConvenio": 200005,
-				"ImporteAFacturar": 2500,
-				"ComisionAgenciaOrigen": 0,
-				"ComisionAgenciaDestino": 125,
-				"ComisionFleteroOrigen": 0,
-				"ComisionFleteroDestino": 250,
-				"Historial": [
-					{
-						"Estado": 5,
-						"UbicacionGuia": "CD 1000",
-						"FechaActualizacionEstado": "2025-11-01T07:00:00-03:00"
-					},
-					{
-						"Estado": 9,
-						"UbicacionGuia": "",
-						"FechaActualizacionEstado": "2025-11-01T08:00:00-03:00"
-					}
-				]
-			}
+			100000990,
+			100000991,
+			100000992
 		],
 		"CodigoPostalOrigen": 1000,
 		"CodigoPostalDestino": 1000
@@ -1303,80 +331,8 @@
 		"DNIFletero": 28765432,
 		"IDServicioTransporte": 0,
 		"Guias": [
-			{
-				"NumeroGuia": 100000993,
-				"Estado": 3,
-				"FechaAdmision": "2025-11-01T09:00:00-03:00",
-				"TipoEntrega": 1,
-				"CodigoPostalCDOrigen": 1000,
-				"CodigoPostalCDDestino": 3000,
-				"IDAgenciaOrigen": "01000",
-				"IDAgenciaDestino": "",
-				"CUITCliente": "30-94715263-9",
-				"Tamano": 2,
-				"Destinatario": {
-					"DNI": 40222333,
-					"Nombre": "Andrea",
-					"Apellido": "Suarez",
-					"Direccion": "Honduras 4800, CABA",
-					"CodigoPostal": 1000
-				},
-				"IDConvenio": 200013,
-				"ImporteAFacturar": 2500,
-				"ComisionAgenciaOrigen": 125,
-				"ComisionAgenciaDestino": 0,
-				"ComisionFleteroOrigen": 250,
-				"ComisionFleteroDestino": 0,
-				"Historial": [
-					{
-						"Estado": 0,
-						"UbicacionGuia": "Agencia 01000",
-						"FechaActualizacionEstado": "2025-11-01T08:30:00-03:00"
-					},
-					{
-						"Estado": 3,
-						"UbicacionGuia": "Agencia 01000",
-						"FechaActualizacionEstado": "2025-11-01T09:00:00-03:00"
-					}
-				]
-			},
-			{
-				"NumeroGuia": 100000994,
-				"Estado": 3,
-				"FechaAdmision": "2025-11-01T09:00:00-03:00",
-				"TipoEntrega": 1,
-				"CodigoPostalCDOrigen": 1000,
-				"CodigoPostalCDDestino": 5000,
-				"IDAgenciaOrigen": "01000",
-				"IDAgenciaDestino": "",
-				"CUITCliente": "33-12349876-9",
-				"Tamano": 3,
-				"Destinatario": {
-					"DNI": 35444555,
-					"Nombre": "Roberto",
-					"Apellido": "Diaz",
-					"Direccion": "Lavalle 800, CABA",
-					"CodigoPostal": 1000
-				},
-				"IDConvenio": 300001,
-				"ImporteAFacturar": 3200,
-				"ComisionAgenciaOrigen": 160,
-				"ComisionAgenciaDestino": 0,
-				"ComisionFleteroOrigen": 320,
-				"ComisionFleteroDestino": 0,
-				"Historial": [
-					{
-						"Estado": 0,
-						"UbicacionGuia": "Agencia 01000",
-						"FechaActualizacionEstado": "2025-11-01T08:30:00-03:00"
-					},
-					{
-						"Estado": 3,
-						"UbicacionGuia": "Agencia 01000",
-						"FechaActualizacionEstado": "2025-11-01T09:00:00-03:00"
-					}
-				]
-			}
+			100000993,
+			100000994
 		],
 		"CodigoPostalOrigen": 1000,
 		"CodigoPostalDestino": 0

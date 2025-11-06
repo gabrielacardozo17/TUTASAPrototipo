@@ -37,7 +37,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
             // Tomamos el primer destinatario que matchee el DNI desde las guías cargadas en almacén
             var dest = GuiaAlmacen.guias
                 .Select(g => g.Destinatario)
-                .FirstOrDefault(d => d.DNI.ToString() == dni);
+                .FirstOrDefault(d => d != null && d.DNI.ToString() == dni);
 
             if (dest is null) return null;
 
@@ -68,6 +68,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 
             var resultados = GuiaAlmacen.guias
                 .Where(g =>
+                    g.Destinatario != null &&
                     g.Destinatario.DNI.ToString() == dni &&
                     g.Estado == EstadoGuiaEnum.PendienteDeEntrega &&
                     g.TipoEntrega == EntregaEnum.Agencia &&

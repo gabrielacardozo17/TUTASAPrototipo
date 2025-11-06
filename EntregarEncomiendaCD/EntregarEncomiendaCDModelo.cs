@@ -37,7 +37,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
             // (No hay un almacén independiente de Destinatarios, la info vive dentro de cada guía)
             var dest = GuiaAlmacen.guias
                 .Select(g => g.Destinatario)
-                .FirstOrDefault(d => d.DNI.ToString() == dni);
+                .FirstOrDefault(d => d != null && d.DNI.ToString() == dni);
 
             // Si no hay coincidencia, devolvemos null (la pantalla muestra el mensaje correspondiente)
             if (dest is null) return null;

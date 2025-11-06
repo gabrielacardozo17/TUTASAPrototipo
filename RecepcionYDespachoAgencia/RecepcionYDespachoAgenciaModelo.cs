@@ -32,20 +32,26 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             // RECEPCIÓN: deben venir de distribución y estar EnRutaAlaAgenciaDestino
             var aRecepcionar = guiasDeDistribucion
-      .Where(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g).Estado == EstadoGuiaEnum.EnRutaAlaAgenciaDestino)
+      .Where(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g)?.Estado == EstadoGuiaEnum.EnRutaAlaAgenciaDestino)
+    .Select(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g))
+    .Where(g => g != null)
+    .Select(g => g!)
     .ToList();
 
             // DESPACHO: SOLO considerar EnCaminoARetirarPorAgencia
             // (las que están ARetirarEnAgenciaDeOrigen no son para esta pantalla, 
             // esas esperan que el fletero vaya a buscarlas)
             var aEntregar = guiasDeRetiro
-             .Where(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g).Estado == EstadoGuiaEnum.EnCaminoARetirarPorAgencia)
+             .Where(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g)?.Estado == EstadoGuiaEnum.EnCaminoARetirarPorAgencia)
+             .Select(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g))
+             .Where(g => g != null)
+             .Select(g => g!)
                .ToList();
 
             if (aRecepcionar.Count == 0 && aEntregar.Count == 0)
                 throw new InvalidOperationException("El fletero seleccionado no tiene guías a recibir ni entregar");
 
-            return (aRecepcionar.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g)).ToList(), aEntregar.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g)).ToList());
+            return (aRecepcionar, aEntregar);
         }
 
 
@@ -86,7 +92,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             var hdrsDelFletero = HDRAlmacen.HDR.Where(h => h.DNIFletero == dni).ToList();
             foreach (var hdr in hdrsDelFletero)
             {
-                foreach (var g in hdr.Guias.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g)))
+                foreach (var g in hdr.Guias.Select(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g)).Where(x => x != null).Select(x => x!).ToList())
                 {
                     // Recepción: EnRutaAlaAgenciaDestino -> PendienteDeEntrega
                     if (recepSet.Contains(g.NumeroGuia) && g.Estado == EstadoGuiaEnum.EnRutaAlaAgenciaDestino)
@@ -214,7 +220,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             int agregadas = 0;
 
-            foreach (var g in hdrs.SelectMany(h => h.Guias.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g))))
+            foreach (var g in hdrs.SelectMany(h => h.Guias.Select(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g))).Where(x => x != null).Select(x => x!))
             {
                 if (!index.ContainsKey(g.NumeroGuia))
                 {

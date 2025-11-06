@@ -84,7 +84,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
 
                     // Guias a recibir: desde las HDR relacionadas (si las hay), pero solo las que están en tránsito al CD destino y cuyo CDDestino sea el CD actual
                     var guiasARecibir = hdrGroup
-                        .SelectMany(h => h.Guias.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g)))
+                        .SelectMany(h => h.Guias.Select(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g)))
+                        .Where(gent => gent != null)
+                        .Select(gent => gent!)
                         .Where(gent => gent.Estado == EstadoGuiaEnum.EnTransitoAlCDDestino
                                        && codigoPostalCDActual.HasValue
                                        && gent.CodigoPostalCDDestino == codigoPostalCDActual.Value)
@@ -131,7 +133,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
 
             // Pool de guías pendientes: guías en almacen que NO están en ninguna HDR
             var guiasEnHDRNums = hdrs
-                .SelectMany(h => h.Guias.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g)).ToList())
+                .SelectMany(h => h.Guias.Select(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g)).Where(x => x != null).Select(x => x!))
                 .Select(g => g.NumeroGuia)
                 .ToHashSet();
 
@@ -389,13 +391,16 @@ return guiasPendientesDeAsignacion?.Count ?? 0;
             {
                 var hdrsMatch = hdrs.Where(h => h.IDServicioTransporte == svcId).ToList();
                 stats.HDRsQueCoincidenConServicio = hdrsMatch.Count;
-                stats.GuiasEnHDRsQueCoinciden = hdrsMatch.SelectMany(h => h.Guias.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g)).ToList()).Count();
+
+                stats.GuiasEnHDRsQueCoinciden = hdrsMatch
+                    .SelectMany(h => h.Guias.Select(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g)).Where(x => x != null).Select(x => x!))
+                    .Count();
 
                 int? codigoPostal = CDActual?.CodigoPostal ?? CentroDeDistribucionAlmacen.CentroDistribucionActual?.CodigoPostal;
                 stats.CodigoPostalCDActual = codigoPostal ?? -1;
 
                 stats.GuiasARecibirSegunFiltro = hdrsMatch
-                    .SelectMany(h => h.Guias.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g)).ToList())
+                    .SelectMany(h => h.Guias.Select(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g)).Where(x => x != null).Select(x => x!))
                     .Where(g => g.Estado == EstadoGuiaEnum.EnTransitoAlCDDestino && codigoPostal.HasValue && g.CodigoPostalCDDestino == codigoPostal.Value)
                     .Count();
             }
