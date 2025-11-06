@@ -223,87 +223,77 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
             var secuencia = HDRAlmacen.HDR.Count + 1;
 
-            // Obtener las GuiasPosibles
+            // Guías que fueron seleccionadas en el paso anterior
             var guiasReales = GuiaAlmacen.guias
                 .Where(g => GuiasPosibles.Contains(g.NumeroGuia))
+                .Take(5) // solo las primeras 5
                 .ToList();
 
-            // Separar en distribución y retiro
+            // Separar las de distribución y retiro
             var guiasDistribucion = guiasReales
                 .Where(g => g.Estado == EstadoGuiaEnum.Admitida)
-                .GroupBy(g => g.CodigoPostalCDDestino);
+                .ToList();
 
             var guiasRetiro = guiasReales
                 .Where(g => g.Estado == EstadoGuiaEnum.ARetirarEnAgenciaDeOrigen ||
                             g.Estado == EstadoGuiaEnum.ARetirarPorDomicilioDelCliente)
-                .GroupBy(g => g.CodigoPostalCDOrigen);
+                .ToList();
 
-            // Crear HDRs de distribución
-            foreach (var grupo in guiasDistribucion)
+            // Crear una HDR de distribución (si corresponde)
+            if (guiasDistribucion.Any())
             {
-                foreach (var lote in grupo.Chunk(5))
+                var codigoOrigen = CDActual.CodigoPostal;
+                var codigoDestino = guiasDistribucion.First().CodigoPostalCDDestino;
+                var idHdr = $"D {codigoOrigen:00000} {secuencia:000000} {codigoDestino:00000}";
+
+                var hdr = new HDREntidad
                 {
-                    var codigoOrigen = CDActual.CodigoPostal;
-                    var codigoDestino = grupo.Key;
-                    var idHdr = $"D {codigoOrigen:00000} {secuencia:000000} {codigoDestino:00000}";
+                    ID = idHdr,
+                    DNIFletero = dni,
+                    TipoHDR = TipoHDREnum.Distribucion,
+                    CodigoPostalOrigen = codigoOrigen,
+                    CodigoPostalDestino = codigoDestino,
+                    Guias = guiasDistribucion.Select(g => g.NumeroGuia).ToList()
+                };
 
-                    var hdr = new HDREntidad
-                    {
-                        ID = idHdr,
-                        DNIFletero = dni,
-                        TipoHDR = TipoHDREnum.Distribucion,
-                        CodigoPostalOrigen = codigoOrigen,
-                        CodigoPostalDestino = codigoDestino,
-                        Guias = lote.Select(g => g.NumeroGuia).ToList()
-                    };
+                foreach (var guia in guiasDistribucion)
+                    ActualizarEstadoGuia(guia.NumeroGuia);
 
-                    // Actualizar estado de cada guía
-                    foreach (var guia in lote)
-                    {
-                        ActualizarEstadoGuia(guia.NumeroGuia);
-                    }
-
-                    HDRAlmacen.HDR.Add(hdr);
-                    secuencia++;
-                }
+                HDRAlmacen.HDR.Add(hdr);
+                secuencia++;
             }
 
-            // Crear HDRs de retiro
-            foreach (var grupo in guiasRetiro)
+            // Crear una HDR de retiro (si corresponde)
+            if (guiasRetiro.Any())
             {
-                foreach (var lote in grupo.Chunk(5))
+                var codigoOrigen = guiasRetiro.First().CodigoPostalCDOrigen;
+                var codigoDestino = CDActual.CodigoPostal;
+                var idHdr = $"R {codigoOrigen:00000} {secuencia:000000} {codigoDestino:00000}";
+
+                var hdr = new HDREntidad
                 {
-                    var codigoOrigen = grupo.Key;
-                    var codigoDestino = CDActual.CodigoPostal;
-                    var idHdr = $"R {codigoOrigen:00000} {secuencia:000000} {codigoDestino:00000}";
+                    ID = idHdr,
+                    DNIFletero = dni,
+                    TipoHDR = TipoHDREnum.Retiro,
+                    CodigoPostalOrigen = codigoOrigen,
+                    CodigoPostalDestino = codigoDestino,
+                    Guias = guiasRetiro.Select(g => g.NumeroGuia).ToList()
+                };
 
-                    var hdr = new HDREntidad
-                    {
-                        ID = idHdr,
-                        DNIFletero = dni,
-                        TipoHDR = TipoHDREnum.Retiro,
-                        CodigoPostalOrigen = codigoOrigen,
-                        CodigoPostalDestino = codigoDestino,
-                        Guias = lote.Select(g => g.NumeroGuia).ToList()
-                    };
-                    // Actualizar estado de cada guía
-                    foreach (var guia in lote)
-                    {
-                        ActualizarEstadoGuia(guia.NumeroGuia);
-                    }
+                foreach (var guia in guiasRetiro)
+                    ActualizarEstadoGuia(guia.NumeroGuia);
 
-                    HDRAlmacen.HDR.Add(hdr);
-                    secuencia++;
-                }
+                HDRAlmacen.HDR.Add(hdr);
             }
 
-            // Grabar cambios si se crearon HDRs
             if (guiasReales.Any())
             {
                 GuiaAlmacen.Grabar();
                 HDRAlmacen.Grabar();
             }
         }
+
+           
 
         /// <summary>
         /// *** NUEVO (para que en la grilla superior ya se vea HDR):***
