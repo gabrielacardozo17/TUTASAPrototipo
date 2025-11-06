@@ -56,7 +56,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             { 303, new() { (5203,"Agencia Villa Allende","Av. Goycochea 50") } },
             { 401, new() { (5301,"Agencia Rosario Centro","Córdoba 1400"), (5302,"Agencia Rosario Norte","Bv. Rondeau 2500") } },
             { 402, new() { (5303,"Agencia Funes","San José 1200") } },
-            { 501, new() { (5401,"Agencia Tucumán Centro","24 de Septiembre 500"), (5402,"Agencia Yerba Buena","Av. Aconquija 1500") } },
+            { 5, new() { (5401,"Agencia Tucumán Centro","24 de Septiembre 500"), (5402,"Agencia Yerba Buena","Av. Aconquija 1500") } },
             { 601, new() { (5501,"Agencia Corrientes Centro","Junín 850") } },
             { 602, new() { (5502,"Agencia Goya","Colón 850") } },
             { 701, new() { (5601,"Agencia Neuquén Centro","Av. Argentina 1200"), (5602,"Agencia Plottier","San Martín 300") } },
@@ -128,6 +128,9 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
         private readonly Dictionary<int, List<(int id, string nombre, string direccion)>> _cdsPorProv;
         // Código LLL para numeración
         private readonly Dictionary<int, int> _codigoCD3;
+
+        // correlativo por CD origen (Call Center)
+        private static readonly Dictionary<int, int> _seqPorOrigen = new();
 
         public ImponerEncomiendaCallCenterModelo()
         {
@@ -286,13 +289,30 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             return TamanoEnum.XL;
         }
 
+        // Inicializa correlativo desde almacén (por CD origen, sin agencia)
+        private static void EnsureSeqForCD(int cpCD)
+        {
+            if (_seqPorOrigen.ContainsKey(cpCD)) return;
+            int maxSeq = 0;
+            foreach (var g in GuiaAlmacen.guias)
+            {
+                if (!string.IsNullOrWhiteSpace(g.IDAgenciaOrigen)) continue; // solo guías generadas en CD
+                if (g.CodigoPostalCDOrigen != cpCD) continue;
+                var s = g.NumeroGuia.ToString("D9");
+                if (s.Length >= 9 && int.TryParse(s[^5..], out var seq))
+                {
+                    if (seq > maxSeq) maxSeq = seq;
+                }
+            }
+            _seqPorOrigen[cpCD] = maxSeq;
+        }
+
         // Numeración: prefijo de 4 dígitos del CD + correlativo de 5 dígitos
-        private static readonly Dictionary<int, int> _seqPorOrigen = new();
         private static string NextGuiaCodeCD(int cpCD)
         {
-            int prefijo4 = cpCD;
-            _seqPorOrigen[prefijo4] = _seqPorOrigen.TryGetValue(prefijo4, out var s) ? s + 1 : 1;
-            return $"{prefijo4:D4}{_seqPorOrigen[prefijo4]:D5}";
+            EnsureSeqForCD(cpCD);
+            _seqPorOrigen[cpCD] = _seqPorOrigen[cpCD] + 1;
+            return $"{cpCD:D4}{_seqPorOrigen[cpCD]:D5}";
         }
 
         // Crea GuiaEntidad, devuelve número y tamaño
