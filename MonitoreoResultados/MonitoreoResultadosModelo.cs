@@ -69,7 +69,7 @@ namespace TUTASAPrototipo.MonitoreoResultados
             }
 
             // guias extraídas desde HDRs (la fuente que contiene ImporteAFacturar)
-            var allHdrGuias = hdrs.SelectMany(h => h.Guias ?? Enumerable.Empty<GuiaEntidad>()).ToList();
+            var allHdrGuias = hdrs.SelectMany(h => h.Guias.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g))).ToList();
 
             // facturas emitidas en el periodo -> set de números de guía facturadas (string form)
             var facturaGuiasSet = facturas
@@ -115,7 +115,7 @@ namespace TUTASAPrototipo.MonitoreoResultados
                     // guías (nros) que están en HDRs de los servicios de la empresa
                     var guiasEmpresaNums = hdrs
                         .Where(h => servicioIds.Contains(h.IDServicioTransporte))
-                        .SelectMany(h => h.Guias ?? Enumerable.Empty<GuiaEntidad>())
+                        .SelectMany(h => h.Guias.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g)))
                         .Select(g => g.NumeroGuia)
                         .ToHashSet();
 

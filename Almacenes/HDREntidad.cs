@@ -8,7 +8,7 @@ namespace TUTASAPrototipo.Almacenes
         public TipoHDREnum TipoHDR { get; set; }
         public int DNIFletero { get; set; }
         public int IDServicioTransporte { get; set; }
-        public List<GuiaEntidad> Guias { get; set; }
+        public List<int> Guias { get; set; }
         public int CodigoPostalOrigen { get; set; }
         public int CodigoPostalDestino { get; set; }
     }

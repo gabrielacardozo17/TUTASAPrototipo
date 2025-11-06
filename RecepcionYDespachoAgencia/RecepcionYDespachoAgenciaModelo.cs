@@ -32,20 +32,20 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             // RECEPCIÓN: deben venir de distribución y estar EnRutaAlaAgenciaDestino
             var aRecepcionar = guiasDeDistribucion
-      .Where(g => g.Estado == EstadoGuiaEnum.EnRutaAlaAgenciaDestino)
+      .Where(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g).Estado == EstadoGuiaEnum.EnRutaAlaAgenciaDestino)
     .ToList();
 
             // DESPACHO: SOLO considerar EnCaminoARetirarPorAgencia
             // (las que están ARetirarEnAgenciaDeOrigen no son para esta pantalla, 
             // esas esperan que el fletero vaya a buscarlas)
             var aEntregar = guiasDeRetiro
-             .Where(g => g.Estado == EstadoGuiaEnum.EnCaminoARetirarPorAgencia)
+             .Where(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g).Estado == EstadoGuiaEnum.EnCaminoARetirarPorAgencia)
                .ToList();
 
             if (aRecepcionar.Count == 0 && aEntregar.Count == 0)
                 throw new InvalidOperationException("El fletero seleccionado no tiene guías a recibir ni entregar");
 
-            return (aRecepcionar, aEntregar);
+            return (aRecepcionar.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g)).ToList(), aEntregar.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g)).ToList());
         }
 
 
@@ -86,7 +86,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             var hdrsDelFletero = HDRAlmacen.HDR.Where(h => h.DNIFletero == dni).ToList();
             foreach (var hdr in hdrsDelFletero)
             {
-                foreach (var g in hdr.Guias)
+                foreach (var g in hdr.Guias.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g)))
                 {
                     // Recepción: EnRutaAlaAgenciaDestino -> PendienteDeEntrega
                     if (recepSet.Contains(g.NumeroGuia) && g.Estado == EstadoGuiaEnum.EnRutaAlaAgenciaDestino)
@@ -214,7 +214,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             int agregadas = 0;
 
-            foreach (var g in hdrs.SelectMany(h => h.Guias ?? new List<GuiaEntidad>()))
+            foreach (var g in hdrs.SelectMany(h => h.Guias.Select(g => GuiaAlmacen.guias.Single(gu => gu.NumeroGuia == g))))
             {
                 if (!index.ContainsKey(g.NumeroGuia))
                 {
