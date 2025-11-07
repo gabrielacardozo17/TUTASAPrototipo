@@ -22,7 +22,7 @@ namespace TUTASAPrototipo.Almacenes
         public static void Grabar()
         {
             var cuentaCorrienteEmpresaTransporteJson = System.Text.Json.JsonSerializer.Serialize(cuentaCorrienteEmpresaTransporte);
-            File.WriteAllText(@"Datos\CuentaCorrienteEmpresaTransporte.json", cuentaCorrienteEmpresaTransporteJson);
+            File.WriteAllText(@"Datos\CuentaCorrienteEmpresaTransportes.json", cuentaCorrienteEmpresaTransporteJson);
         }
     }
 

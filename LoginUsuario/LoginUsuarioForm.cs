@@ -128,12 +128,56 @@ namespace TUTASAPrototipo.LoginUsuario
             cds.AddRange(CentroDeDistribucionAlmacen.centrosDeDistribucion.OrderBy(c => c.Nombre));
             CdActualCombo.Items.AddRange(cds.ToArray());
 
+            // Inicialmente mostrar todas las agencias + N/A
             var ags = new List<object> { new AgenciaEntidad { ID = "N/A", Nombre = "N/A", Direccion = string.Empty, CodigoPostal = 0, CodigoPostalCD = 0 } };
             ags.AddRange(AgenciaAlmacen.agencias.OrderBy(a => a.Nombre));
             AgenciaActualCombo.Items.AddRange(ags.ToArray());
 
             // Por defecto dejar sin selección (el usuario elegirá)
             CdActualCombo.SelectedIndex = -1;
+            AgenciaActualCombo.SelectedIndex = -1;
+
+            // Wire up event to filter agencies when a CD is selected
+            CdActualCombo.SelectedIndexChanged += CdActualCombo_SelectedIndexChanged;
+        }
+
+        private void CdActualCombo_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            // Obtener CD seleccionado (puede ser null o la opción N/A)
+            var selectedCd = CdActualCombo.SelectedItem as CentroDeDistribucionEntidad;
+
+            // Preparar lista inicial con la opción N/A
+            var agenciasItems = new List<object> { new AgenciaEntidad { ID = "N/A", Nombre = "N/A", Direccion = string.Empty, CodigoPostal = 0, CodigoPostalCD = 0 } };
+
+            if (selectedCd == null)
+            {
+                // No hay CD seleccionado -> mostrar todas las agencias
+                agenciasItems.AddRange(AgenciaAlmacen.agencias.OrderBy(a => a.Nombre));
+            }
+            else if (selectedCd.Nombre == "N/A")
+            {
+                // Si seleccionó N/A en CD, dejamos solo N/A en agencias
+                // (si prefieres mostrar todas, cambia esta rama para agregar todas).
+            }
+            else
+            {
+                // Filtrar agencias por CodigoPostalCD == CodigoPostal del CD seleccionado
+                var filtradas = AgenciaAlmacen.agencias
+                    .Where(a => a.CodigoPostalCD == selectedCd.CodigoPostal)
+                    .OrderBy(a => a.Nombre)
+                    .Cast<object>()
+                    .ToList();
+
+                if (filtradas.Any())
+                {
+                    agenciasItems.AddRange(filtradas);
+                }
+                // Si no hay agencias para ese CD, dejamos solo N/A (puedes cambiar a mostrar todas si lo prefieres)
+            }
+
+            // Replegar el combo con las agencias filtradas
+            AgenciaActualCombo.Items.Clear();
+            AgenciaActualCombo.Items.AddRange(agenciasItems.ToArray());
             AgenciaActualCombo.SelectedIndex = -1;
         }
     }

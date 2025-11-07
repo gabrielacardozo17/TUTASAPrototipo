@@ -33,7 +33,6 @@
       { "NumeroFactura": "REC-202510-30005", "Fecha": "2025-10-26T00:00:00", "Concepto": "Pago octubre", "Debe": 0, "Haber": 300000, "SaldoActual": 148000 }
     ]
   },
-  // Mantener el resto de cuentas existentes (si existen) sin cambios
   {
     "ID": "CET-400",
     "IDEmpresaTransporte": 400,
