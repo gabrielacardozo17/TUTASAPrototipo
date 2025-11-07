@@ -11,9 +11,21 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 {
     public class RecepcionYDespachoAgenciaModelo
     {
-        public FleteroEntidad? BuscarFleteroPorDni(int dni) => FleteroAlmacen.fleteros.FirstOrDefault(f => f.DNI == dni);
+        // Método privado - no expone la entidad directamente
+        private FleteroEntidad? BuscarFleteroPorDni(int dni) => FleteroAlmacen.fleteros.FirstOrDefault(f => f.DNI == dni);
 
-        public (List<GuiaEntidad> aRecepcionar, List<GuiaEntidad> aEntregar) GetGuiasPorFletero(int dni)
+        // Método público que retorna solo los datos necesarios del fletero
+        public (bool existe, string nombre, string apellido) ObtenerDatosFletero(int dni)
+        {
+            var fletero = BuscarFleteroPorDni(dni);
+            if (fletero == null)
+                return (false, string.Empty, string.Empty);
+            
+            return (true, fletero.Nombre, fletero.Apellido);
+        }
+
+        // Método privado - no expone las entidades directamente
+        private (List<GuiaEntidad> aRecepcionar, List<GuiaEntidad> aEntregar) GetGuiasPorFletero(int dni)
         {
             // N3: el fletero debe existir
             if (BuscarFleteroPorDni(dni) is null)
@@ -54,6 +66,33 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             return (aRecepcionar, aEntregar);
         }
 
+        // Método público que retorna DTOs con solo los datos necesarios
+        public (List<GuiaDTO> aRecepcionar, List<GuiaDTO> aEntregar) ObtenerGuiasPorFletero(int dni)
+        {
+            // N3: el fletero debe existir
+            if (BuscarFleteroPorDni(dni) is null)
+                throw new InvalidOperationException("No existe el fletero. Vuelva a intentarlo.");
+
+            var (guiasRecep, guiasEntreg) = GetGuiasPorFletero(dni);
+            
+            // Convertir entidades a DTOs
+            var recepcionDTO = guiasRecep.Select(g => new GuiaDTO
+            {
+                NumeroGuia = g.NumeroGuia,
+                Tamano = g.Tamano
+            }).ToList();
+
+            var entregaDTO = guiasEntreg.Select(g => new GuiaDTO
+            {
+                NumeroGuia = g.NumeroGuia,
+                Tamano = g.Tamano
+            }).ToList();
+
+            if (recepcionDTO.Count == 0 && entregaDTO.Count == 0)
+                throw new InvalidOperationException("El fletero seleccionado no tiene guías a recibir ni entregar");
+
+            return (recepcionDTO, entregaDTO);
+        }
 
         public void ConfirmarOperacion(int dni, List<string> guiasRecepcionadas, List<string> guiasEntregadas)
         {
@@ -260,5 +299,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             return agregadas;
         }
+    }
+
+    // DTO para transferir datos de guías sin exponer la entidad completa
+    public class GuiaDTO
+    {
+        public int NumeroGuia { get; set; }
+        public TamanoEnum Tamano { get; set; }
     }
 }

@@ -82,9 +82,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             try
             {
-                // N3: Buscar fletero
-                var fletero = _modelo.BuscarFleteroPorDni(dni);
-                if (fletero == null)
+                // N3: Buscar fletero usando el nuevo método público
+                var (existe, nombre, apellido) = _modelo.ObtenerDatosFletero(dni);
+                if (!existe)
                 {
                     MessageBox.Show("No existe el fletero. Vuelva a intentarlo.", "Validación");
                     DNIFleteroTextBox.Clear();
@@ -95,11 +95,11 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
                 }
 
                 // Mostrar nombre y apellido del fletero en los labels
-                NombreResultLabel.Text = fletero.Nombre;
-                ApellidoResultLabel.Text = fletero.Apellido;
+                NombreResultLabel.Text = nombre;
+                ApellidoResultLabel.Text = apellido;
 
-                // N4: Obtener guías del fletero
-                var (aRecepcionar, aEntregar) = _modelo.GetGuiasPorFletero(dni);
+                // N4: Obtener guías del fletero usando el nuevo método público
+                var (aRecepcionar, aEntregar) = _modelo.ObtenerGuiasPorFletero(dni);
                 CargarListas(aRecepcionar, aEntregar);
             }
             catch (Exception ex)
@@ -146,7 +146,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
         }
 
         // ---------- HELPERS VISUALES ----------
-        private void CargarListas(IEnumerable<GuiaEntidad> aRecepcionar, IEnumerable<GuiaEntidad> aEntregar)
+        private void CargarListas(IEnumerable<GuiaDTO> aRecepcionar, IEnumerable<GuiaDTO> aEntregar)
         {
             GuiasARecepcionarAgenciaListView.FullRowSelect = true;
             GuiasAEntregarListView.FullRowSelect = true;
