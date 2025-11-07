@@ -158,7 +158,7 @@
 		"DNIFletero": 30987654,
 		"IDServicioTransporte": 0,
 		"Guias": [ 500000120 ],
-		"CodigoPostalOrigen":0,
+		"CodigoPostalOrigen": 0,
 		"CodigoPostalDestino": 5000
 	},
 	{
@@ -336,5 +336,29 @@
 		],
 		"CodigoPostalOrigen": 1000,
 		"CodigoPostalDestino": 0
+	},
+	{
+		"ID": "R 1888 000991 0000",
+		"TipoHDR": 1,
+		"DNIFletero": 28765984,
+		"IDServicioTransporte": 0,
+		"Guias": [
+			188800660,
+			188800670
+		],
+		"CodigoPostalOrigen": 1888,
+		"CodigoPostalDestino": 0
+	},
+	{
+		"ID": "D 1888 000991 0000",
+		"TipoHDR": 0,
+		"DNIFletero": 28765984,
+		"IDServicioTransporte": 0,
+		"Guias": [
+			188836549,
+			188836550
+		],
+		"CodigoPostalOrigen": 0,
+		"CodigoPostalDestino": 1888
 	}
 ]
