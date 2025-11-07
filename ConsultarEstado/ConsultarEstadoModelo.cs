@@ -50,6 +50,19 @@ namespace TUTASAPrototipo.ConsultarEstado
             return txt;
         }
 
+        // Helpers directos por catálogo
+        private static string NombreAgenciaPorId(string? id)
+        {
+            if (string.IsNullOrWhiteSpace(id)) return string.Empty;
+            var ag = AgenciaAlmacen.agencias.FirstOrDefault(a => string.Equals(a.ID, id, StringComparison.OrdinalIgnoreCase));
+            return ag?.Nombre ?? $"Agencia {id}";
+        }
+        private static string NombreCDPorCP(int cp)
+        {
+            var cd = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == cp);
+            return cd?.Nombre ?? $"CD {cp}";
+        }
+
         // Texto presentable del estado
         private static string EstadoDisplay(EstadoGuiaEnum estado)
         {
@@ -103,15 +116,9 @@ namespace TUTASAPrototipo.ConsultarEstado
                     switch (g.TipoEntrega)
                     {
                         case EntregaEnum.CD:
-                            var cd = CentroDeDistribucionAlmacen.centrosDeDistribucion
-                                .FirstOrDefault(c => c.CodigoPostal == g.CodigoPostalCDDestino);
-                            return cd?.Nombre ?? ($"CD{g.CodigoPostalCDDestino}");
+                            return NombreCDPorCP(g.CodigoPostalCDDestino);
                         case EntregaEnum.Agencia:
-                            var ag = AgenciaAlmacen.agencias
-                                .FirstOrDefault(a => string.Equals(a.ID, g.IDAgenciaDestino, StringComparison.OrdinalIgnoreCase));
-                            return ag?.Nombre ?? ($"Agencia{g.IDAgenciaDestino}");
-                        case EntregaEnum.Domicilio:
-                            return "Domicilio del destinatario";
+                            return NombreAgenciaPorId(g.IDAgenciaDestino);
                         default:
                             return null;
                     }
@@ -120,17 +127,126 @@ namespace TUTASAPrototipo.ConsultarEstado
             }
         }
 
+        // Busca DNI de fletero segun prioridad: preferido -> Transporte -> cualquiera -> por ruta
+        private static int? BuscarDNIFletero(GuiaEntidad g, TipoHDREnum tipoPreferido)
+        {
+            var hdrs = HDRAlmacen.HDR.Where(h => h.Guias != null && h.Guias.Contains(g.NumeroGuia)).ToList();
+            var prefer = hdrs.FirstOrDefault(h => h.TipoHDR == tipoPreferido)?.DNIFletero;
+            if (prefer.HasValue && prefer.Value > 0) return prefer;
+            var trans = hdrs.FirstOrDefault(h => h.TipoHDR == TipoHDREnum.Transporte)?.DNIFletero;
+            if (trans.HasValue && trans.Value > 0) return trans;
+            var cualquiera = hdrs.FirstOrDefault()?.DNIFletero;
+            if (cualquiera.HasValue && cualquiera.Value > 0) return cualquiera;
+
+            // Fallback por ruta (si no está explicitamente asignada la guía a una HDR)
+            var hdrRuta = HDRAlmacen.HDR.FirstOrDefault(h =>
+                h.TipoHDR == tipoPreferido &&
+                (h.CodigoPostalDestino == g.CodigoPostalCDDestino || h.CodigoPostalOrigen == g.CodigoPostalCDOrigen));
+            if (hdrRuta != null && hdrRuta.DNIFletero > 0) return hdrRuta.DNIFletero;
+
+            // Como último recurso, tomar cualquier HDR por ruta
+            var hdrRutaAny = HDRAlmacen.HDR.FirstOrDefault(h =>
+                (h.CodigoPostalDestino == g.CodigoPostalCDDestino || h.CodigoPostalOrigen == g.CodigoPostalCDOrigen));
+            return hdrRutaAny?.DNIFletero;
+        }
+
+        // Busca ID de servicio de transporte para la guía (HDR Transporte) o por ruta
+        private static int? BuscarIDServicioTransporte(GuiaEntidad g)
+        {
+            //1) HDR de Transporte que contenga la guía y tenga servicio
+            var hdr = HDRAlmacen.HDR.FirstOrDefault(h => h.Guias != null && h.Guias.Contains(g.NumeroGuia) && h.TipoHDR == TipoHDREnum.Transporte && h.IDServicioTransporte > 0);
+            if (hdr != null) return hdr.IDServicioTransporte;
+
+            //2) Coincidencia exacta de ruta (origen+destino) y servicio válido
+            var hdrRuta = HDRAlmacen.HDR.FirstOrDefault(h => h.TipoHDR == TipoHDREnum.Transporte && h.CodigoPostalOrigen == g.CodigoPostalCDOrigen && h.CodigoPostalDestino == g.CodigoPostalCDDestino && h.IDServicioTransporte > 0);
+            if (hdrRuta != null) return hdrRuta.IDServicioTransporte;
+
+            //3) Mismo destino (posible tramo intermedio) con servicio válido
+            var hdrMismoDestino = HDRAlmacen.HDR.FirstOrDefault(h => h.TipoHDR == TipoHDREnum.Transporte && h.CodigoPostalDestino == g.CodigoPostalCDDestino && h.IDServicioTransporte > 0);
+            if (hdrMismoDestino != null) return hdrMismoDestino.IDServicioTransporte;
+
+            //4) Último recurso: cualquier Transporte con servicio
+            var cualquiera = HDRAlmacen.HDR.FirstOrDefault(h => h.TipoHDR == TipoHDREnum.Transporte && h.IDServicioTransporte > 0);
+            return cualquiera?.IDServicioTransporte;
+        }
+
         // Determina la ubicación final a mostrar para cada movimiento del historial
         private static string UbicacionDisplayParaMovimiento(RegistroEstadoAux h, GuiaEntidad g)
         {
+            // Base a partir del historial (CD/Agencia normalizado)
             var baseDisplay = NormalizarUbicacionDisplay(h.UbicacionGuia);
-            var estadoDisp = EstadoDisplay(h.Estado);
-            if (estadoDisp == "Pendiente de entrega" && baseDisplay == "No disponible")
+
+            switch (h.Estado)
             {
-                var fb = UbicacionFisicaSegunEstadoActual(g);
-                if (!string.IsNullOrWhiteSpace(fb)) return fb;
+                case EstadoGuiaEnum.ARetirarEnAgenciaDeOrigen:
+                case EstadoGuiaEnum.EnCaminoARetirarPorAgencia:
+                    return NombreAgenciaPorId(g.IDAgenciaOrigen);
+
+                case EstadoGuiaEnum.ARetirarPorDomicilioDelCliente:
+                case EstadoGuiaEnum.EnCaminoARetirarPorDomicilio:
+                    return "En domicilio Cliente";
+
+                case EstadoGuiaEnum.EnRutaACDDeOrigenDesdeAgencia:
+                    {
+                        var dni = BuscarDNIFletero(g, TipoHDREnum.Retiro);
+                        return dni.HasValue ? $"En transporte con Fletero DNI: {dni.Value}" : "En transporte con Fletero DNI:";
+                    }
+
+                case EstadoGuiaEnum.Admitida:
+                    return NombreCDPorCP(g.CodigoPostalCDOrigen);
+
+                case EstadoGuiaEnum.EnTransitoAlCDDestino:
+                    {
+                        // Priorizar CD intermedio si viene en historial y NO es el CD destino final
+                        var txt = h.UbicacionGuia?.Trim() ?? string.Empty;
+                        if (txt.StartsWith("CD", StringComparison.OrdinalIgnoreCase))
+                        {
+                            var dig = new string(txt.Where(char.IsDigit).ToArray());
+                            if (int.TryParse(dig, out var cp))
+                            {
+                                if (cp != g.CodigoPostalCDDestino)
+                                {
+                                    return $"En CD Intermedio: {NombreCDPorCP(cp)}";
+                                }
+                            }
+                        }
+
+                        // Si no hay CD intermedio, intentar Servicio Transporte (por guía o por ruta)
+                        var idServ = BuscarIDServicioTransporte(g);
+                        if (idServ.HasValue && idServ.Value > 0)
+                            return $"En Servicio Nº {idServ.Value}";
+
+                        // Último recurso: no dejar "No disponible" en tránsito
+                        return "En Servicio Nº -";
+                    }
+
+                case EstadoGuiaEnum.EnCDDestino:
+                    return NombreCDPorCP(g.CodigoPostalCDDestino);
+
+                case EstadoGuiaEnum.EnRutaAlDomicilioDeEntrega:
+                case EstadoGuiaEnum.EnRutaAlaAgenciaDestino:
+                    {
+                        var dni = BuscarDNIFletero(g, TipoHDREnum.Distribucion);
+                        return dni.HasValue ? $"En transporte con Fletero DNI: {dni.Value}" : "En transporte con Fletero DNI:";
+                    }
+
+                case EstadoGuiaEnum.PendienteDeEntrega:
+                    {
+                        // Siempre forzar CD/Agencia destino según tipo de entrega
+                        var fb = UbicacionFisicaSegunEstadoActual(g);
+                        if (!string.IsNullOrWhiteSpace(fb)) return fb;
+                        return baseDisplay;
+                    }
+
+                case EstadoGuiaEnum.Entregada:
+                case EstadoGuiaEnum.Cancelada:
+                case EstadoGuiaEnum.NoEntregada:
+                case EstadoGuiaEnum.Facturada:
+                    return "-";
+
+                default:
+                    return baseDisplay;
             }
-            return baseDisplay;
         }
 
         // --- Lógica de búsqueda ---
@@ -146,7 +262,7 @@ namespace TUTASAPrototipo.ConsultarEstado
 
             var historial = guiaEntidad.Historial ?? new List<RegistroEstadoAux>();
 
-            // Construir movimientos (con normalización + fallback de ubicación para Pendiente de entrega)
+            // Construir movimientos (con normalización + reglas de ubicación por estado)
             var movimientos = historial
                 .Select(h => new Guia.Movimiento(
                     h.FechaActualizacionEstado,
@@ -170,7 +286,8 @@ namespace TUTASAPrototipo.ConsultarEstado
             else
             {
                 var ultimoRaw = historial.LastOrDefault();
-                ubicacionActual = NormalizarUbicacionDisplay(ultimoRaw?.UbicacionGuia);
+                // Intentar aplicar reglas también al último registro si no coincide el estado
+                ubicacionActual = ultimoRaw != null ? UbicacionDisplayParaMovimiento(ultimoRaw, guiaEntidad) : "No disponible";
             }
 
             // Si sigue "No disponible" y es un estado con ubicación física conocida, usar fallback
