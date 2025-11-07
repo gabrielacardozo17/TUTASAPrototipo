@@ -116,11 +116,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             _modelo.AsegurarHDRsAsignadasParaFletero(dni);
 
             // Cargar guías asignadas (listas superiores) y también las "nuevas" (resumen HDR) para que se vean inmediatamente
-            if (CargarAsignadas(dni) == false)
-            {
-                MessageBox.Show("El fletero seleccionado no tiene guias de retiro y distribución asignadas, ni se le van a asignar nuevas", "Validación"); DNIFleteroTextBox.Focus(); LimpiarPantalla(true); return; 
-            }
-
+            CargarAsignadas(dni);
+            
             CargarResumenPosterior(dni);
 
             MostrarSeccionBusquedaYListasSuperiores(true);
@@ -145,6 +142,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             var marcadasDistrib = recibidasDistPorHdr.SelectMany(kv => kv.Value).ToList();
             var marcadasRetiro = recibidasRetiroPorHdr.SelectMany(kv => kv.Value).ToList();
 
+
             try
             {
                 _modelo.ConfirmarRendicion(dni, marcadasDistrib, marcadasRetiro);
@@ -153,26 +151,41 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 _modelo.AsegurarHDRsAsignadasParaFletero(dni);
                 CargarAsignadas(dni);
 
+                bool distribucionAsignadasVacia = GuiasDistribucionxFleteroListView.Items.Count == 0;
+                bool retiroAsignadasVacio = GuiasRetiroxFleteroListView.Items.Count == 0;
+                bool nuevasDistribucionVacia = NuevasGuiasDistribucionxFleteroListView.Items.Count == 0;
+                bool nuevasRetiroVacio = NuevasGuiasRetiroxFleteroListView.Items.Count == 0;
 
-                // Construir el mensaje EXACTO solicitado
-                string msg =
-                    "Operacion exitosa. Rendicion confirmada." + Environment.NewLine +
-                    Environment.NewLine +
-                    "HDR de distribucion recibidas: " + Environment.NewLine +
-                    FormatearGrupos(recibidasDistPorHdr) + Environment.NewLine + Environment.NewLine +
-                    "HDR de retiro recibidas: " + Environment.NewLine +
-                    FormatearGrupos(recibidasRetiroPorHdr) + Environment.NewLine + Environment.NewLine +
-                    "HDR de distribucion asignadas: " + Environment.NewLine +
-                    ConstruirAsignadasSoloLineas(NuevasGuiasDistribucionxFleteroListView) + Environment.NewLine + Environment.NewLine +
-                    "HDR de retiro asignadas: " + Environment.NewLine +
-                    ConstruirAsignadasSoloLineas(NuevasGuiasRetiroxFleteroListView);
 
-                MessageBox.Show(msg, "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Verificar si todas las listas están vacías (sin guías seleccionadas)
+                if (distribucionAsignadasVacia && retiroAsignadasVacio && nuevasDistribucionVacia && nuevasRetiroVacio)
+                {
+                    MessageBox.Show("No hay guías a rendir ni tampoco asignadas", "Validación");
+                    return;
+                }
+                else
+                {
+                    // Construir el mensaje EXACTO solicitado
+                    string msg =
+                        "Operacion exitosa. Rendicion confirmada." + Environment.NewLine +
+                        Environment.NewLine +
+                        "HDR de distribucion recibidas: " + Environment.NewLine +
+                        FormatearGrupos(recibidasDistPorHdr) + Environment.NewLine + Environment.NewLine +
+                        "HDR de retiro recibidas: " + Environment.NewLine +
+                        FormatearGrupos(recibidasRetiroPorHdr) + Environment.NewLine + Environment.NewLine +
+                        "HDR de distribucion asignadas: " + Environment.NewLine +
+                        ConstruirAsignadasSoloLineas(NuevasGuiasDistribucionxFleteroListView) + Environment.NewLine + Environment.NewLine +
+                        "HDR de retiro asignadas: " + Environment.NewLine +
+                        ConstruirAsignadasSoloLineas(NuevasGuiasRetiroxFleteroListView);
 
-                _enRevision = false;
-                _dniEnRevision = null;
-                LimpiarPantalla(total: true);
-                MostrarSeccionBusquedaYListasSuperiores(true);
+                    MessageBox.Show(msg, "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    _enRevision = false;
+                    _dniEnRevision = null;
+                    LimpiarPantalla(total: true);
+                    MostrarSeccionBusquedaYListasSuperiores(true);
+                }
+                    
             }
             catch (Exception ex)
             {
@@ -183,7 +196,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
         private void CancelarButton_Click(object sender, EventArgs e) => Close();
 
         // ====== CARGA DE LISTAS ======
-        private bool CargarAsignadas(int dni)
+        private void CargarAsignadas(int dni)
         {
             AsegurarColumnaHDR(GuiasDistribucionxFleteroListView);
             AsegurarColumnaHDR(GuiasRetiroxFleteroListView);
@@ -192,11 +205,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             GuiasRetiroxFleteroListView.Items.Clear();
 
             var t = _modelo.GetGuiasPorFletero(dni);
-            if (!t.distribucion.Any() && !t.retiro.Any())
-            {
-               return false;
-
-            }
+          
 
             foreach (var g in t.distribucion)
             {
@@ -213,7 +222,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 GuiasRetiroxFleteroListView.Items.Add(it);
             }
 
-            return true;
         }
 
         private void CargarResumenPosterior(int dni)
@@ -225,6 +233,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             NuevasGuiasDistribucionxFleteroListView.Items.Clear();
 
             var t = _modelo.GetNuevasGuiasPorFletero();
+
+               
             foreach (var g in t.retiro)
             {
                 var it = new ListViewItem(g.Numero);
@@ -241,6 +251,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 it.SubItems.Add(g.NroHDR ?? "");
                 NuevasGuiasDistribucionxFleteroListView.Items.Add(it);
             }
+    
         }
 
         // ====== HELPERS UI ======
