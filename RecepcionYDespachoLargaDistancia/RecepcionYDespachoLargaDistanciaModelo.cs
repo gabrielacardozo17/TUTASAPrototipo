@@ -379,7 +379,7 @@ return guiasPendientesDeAsignacion?.Count ?? 0;
                     }
                     else
                     {
-                        entidad.Estado = EstadoGuiaEnum.Admitida; // ingresa a circuito de última milla (distribución)
+                        entidad.Estado = EstadoGuiaEnum.EnCDDestino; // ingresa a circuito de última milla (distribución)
                     }
 
                     entidad.Historial.Add(new RegistroEstadoAux
