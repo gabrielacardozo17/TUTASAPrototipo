@@ -2229,7 +2229,7 @@
   },
   {
     "NumeroGuia": 500000026,
-    "Estado": 5,
+    "Estado": 2,
     "FechaAdmision": "2025-10-29T12:20:00-03:00",
     "TipoEntrega": 2,
     "CodigoPostalCDOrigen": 5000,
@@ -2276,7 +2276,7 @@
   },
   {
     "NumeroGuia": 500000120,
-    "Estado": 10,
+    "Estado": 9,
     "FechaAdmision": "2025-10-29T12:20:00-03:00",
     "TipoEntrega": 2,
     "CodigoPostalCDOrigen": 1888,
@@ -2338,7 +2338,7 @@
   },
   {
     "NumeroGuia": 188800660,
-    "Estado": 0,
+    "Estado": 2,
     "FechaAdmision": "2025-10-29T12:20:00-03:00",
     "TipoEntrega": 2,
     "CodigoPostalCDOrigen": 1888,
@@ -2381,7 +2381,7 @@
   },
   {
     "NumeroGuia": 188800670,
-    "Estado": 1,
+    "Estado": 3,
     "FechaAdmision": "2025-10-29T12:20:00-03:00",
     "TipoEntrega": 2,
     "CodigoPostalCDOrigen": 1888,
