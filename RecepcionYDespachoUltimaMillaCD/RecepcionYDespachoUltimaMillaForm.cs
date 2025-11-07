@@ -44,7 +44,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             catch { }
             PrepararListViews();
 
-
         }
 
         // New overload: accept selected CD or Agencia and display appropriate CD name (no persistence)
@@ -157,10 +156,10 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 bool nuevasRetiroVacio = NuevasGuiasRetiroxFleteroListView.Items.Count == 0;
 
 
-                // Verificar si todas las listas están vacías (sin guías seleccionadas)
+                // Verifica si todas las listas están vacías (sin guias asignadas y sin nuevas guias)
                 if (distribucionAsignadasVacia && retiroAsignadasVacio && nuevasDistribucionVacia && nuevasRetiroVacio)
                 {
-                    MessageBox.Show("No hay guías a rendir ni tampoco asignadas", "Validación");
+                    MessageBox.Show("No hay guías a rendir ni tampoco nuevas guías asignadas", "Validación");
                     return;
                 }
                 else
