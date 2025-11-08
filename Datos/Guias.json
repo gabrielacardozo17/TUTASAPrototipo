@@ -191,17 +191,17 @@
     "FechaAdmision": "2025-10-26T12:00:00-03:00",
     "TipoEntrega": 2,
     "CodigoPostalCDOrigen": 5500,
-    "CodigoPostalCDDestino": 8300,
+    "CodigoPostalCDDestino": 5000,
     "IDAgenciaOrigen": "05500",
-    "IDAgenciaDestino": "08300",
+    "IDAgenciaDestino": "",
     "CUITCliente": "33-63184527-6",
     "Tamano": 1,
     "Destinatario": {
       "DNI": 30321456,
       "Nombre": "Soledad",
       "Apellido": "Mella",
-      "Direccion": "Perito Moreno 320, Neuquen",
-      "CodigoPostal": 8300
+      "Direccion": "Av. Colón 800, Córdoba",
+      "CodigoPostal": 5000
     },
     "IDConvenio": 200014,
     "ImporteAFacturar": 12870.00,
@@ -252,18 +252,18 @@
     "Estado": 11,
     "FechaAdmision": "2025-10-25T18:00:00-03:00",
     "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 9100,
-    "CodigoPostalCDDestino": 8500,
-    "IDAgenciaOrigen": "09100",
-    "IDAgenciaDestino": "08500",
+    "CodigoPostalCDOrigen": 5000,
+    "CodigoPostalCDDestino": 3000,
+    "IDAgenciaOrigen": "05000",
+    "IDAgenciaDestino": "03000",
     "CUITCliente": "33-76251483-5",
     "Tamano": 1,
     "Destinatario": {
       "DNI": 28111222,
       "Nombre": "Leandro",
       "Apellido": "Rivas",
-      "Direccion": "Belgrano 300, Viedma",
-      "CodigoPostal": 8500
+      "Direccion": "San Martín 1400, Santa Fe",
+      "CodigoPostal": 3000
     },
     "IDConvenio": 200021,
     "ImporteAFacturar": 22150.00,
@@ -463,18 +463,18 @@
     "Estado": 13,
     "FechaAdmision": "2025-10-23T15:45:00-03:00",
     "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 4400,
-    "CodigoPostalCDDestino": 4200,
-    "IDAgenciaOrigen": "04400",
-    "IDAgenciaDestino": "04200",
+    "CodigoPostalCDOrigen": 5000,
+    "CodigoPostalCDDestino": 3000,
+    "IDAgenciaOrigen": "05000",
+    "IDAgenciaDestino": "03000",
     "CUITCliente": "30-83426197-7",
     "Tamano": 1,
     "Destinatario": {
       "DNI": 31111999,
       "Nombre": "Patricia",
       "Apellido": "Diaz",
-      "Direccion": "Belgrano 900, Santiago del Estero",
-      "CodigoPostal": 4200
+      "Direccion": "Belgrano 900, Santa Fe",
+      "CodigoPostal": 3000
     },
     "IDConvenio": 200020,
     "ImporteAFacturar": 11800.00,
@@ -536,17 +536,17 @@
     "FechaAdmision": "2025-10-22T10:10:00-03:00",
     "TipoEntrega": 1,
     "CodigoPostalCDOrigen": 5500,
-    "CodigoPostalCDDestino": 9410,
+    "CodigoPostalCDDestino": 5000,
     "IDAgenciaOrigen": "05500",
-    "IDAgenciaDestino": "09410",
+    "IDAgenciaDestino": "05000",
     "CUITCliente": "30-81524639-6",
     "Tamano": 1,
     "Destinatario": {
       "DNI": 20555111,
       "Nombre": "Natalia",
       "Apellido": "Arias",
-      "Direccion": "Maipu 200, Ushuaia",
-      "CodigoPostal": 9410
+      "Direccion": "Independencia 500, Córdoba",
+      "CodigoPostal": 5000
     },
     "IDConvenio": 200015,
     "ImporteAFacturar": 16450.00,
@@ -617,7 +617,7 @@
       "DNI": 29123456,
       "Nombre": "Julieta",
       "Apellido": "Acosta",
-      "Direccion": "Peru 350, Microcentro",
+      "Direccion": "Peru 350, CABA",
       "CodigoPostal": 1000
     },
     "IDConvenio": 200002,
@@ -721,18 +721,18 @@
     "Estado": 7,
     "FechaAdmision": "2025-10-28T14:00:00-03:00",
     "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 8300,
+    "CodigoPostalCDOrigen": 5500,
     "CodigoPostalCDDestino": 5500,
-    "IDAgenciaOrigen": "08300",
-    "IDAgenciaDestino": "05501",
+    "IDAgenciaOrigen": "05500",
+    "IDAgenciaDestino": "05500",
     "CUITCliente": "33-50182746-7",
     "Tamano": 1,
     "Destinatario": {
       "DNI": 37888999,
       "Nombre": "Camila",
       "Apellido": "Ruiz",
-      "Direccion": "Belgrano 1100, Godoy Cruz",
-      "CodigoPostal": 5501
+      "Direccion": "Belgrano 1100, Mendoza",
+      "CodigoPostal": 5500
     },
     "IDConvenio": 200016,
     "ImporteAFacturar": 6400.00,
@@ -778,18 +778,18 @@
     "Estado": 6,
     "FechaAdmision": "2025-10-27T10:00:00-03:00",
     "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 9100,
-    "CodigoPostalCDDestino": 3300,
-    "IDAgenciaOrigen": "09100",
-    "IDAgenciaDestino": "03300",
+    "CodigoPostalCDOrigen": 5000,
+    "CodigoPostalCDDestino": 3000,
+    "IDAgenciaOrigen": "05000",
+    "IDAgenciaDestino": "03000",
     "CUITCliente": "33-76251483-5",
     "Tamano": 1,
     "Destinatario": {
       "DNI": 34111977,
       "Nombre": "Javier",
       "Apellido": "Valdez",
-      "Direccion": "Bolivar 400, Posadas",
-      "CodigoPostal": 3300
+      "Direccion": "Bolivar 400, Santa Fe",
+      "CodigoPostal": 3000
     },
     "IDConvenio": 200021,
     "ImporteAFacturar": 17600.00,
@@ -1095,8 +1095,8 @@
       "DNI": 37888999,
       "Nombre": "Camila",
       "Apellido": "Ruiz",
-      "Direccion": "Belgrano 1100, Godoy Cruz",
-      "CodigoPostal": 5501
+      "Direccion": "Belgrano 1100, Mendoza",
+      "CodigoPostal": 5500
     },
     "IDConvenio": 200016,
     "ImporteAFacturar": 9820.50,
@@ -1133,1301 +1133,11 @@
     ]
   },
   {
-    "NumeroGuia": 550010006,
-    "Estado": 11,
-    "FechaAdmision": "2025-11-02T09:50:00-03:00",
-    "TipoEntrega": 0,
-    "CodigoPostalCDOrigen": 1888,
-    "CodigoPostalCDDestino": 5500,
-    "IDAgenciaOrigen": "",
-    "IDAgenciaDestino": "",
-    "CUITCliente": "30-12345678-9",
-    "Tamano": 1,
-    "Destinatario": {
-      "DNI": 31222333,
-      "Nombre": "Matias",
-      "Apellido": "Gomez",
-      "Direccion": "Las Heras 800, Mendoza",
-      "CodigoPostal": 5500
-    },
-    "IDConvenio": 200030,
-    "ImporteAFacturar": 12340.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 1888",
-        "FechaActualizacionEstado": "2025-11-02T09:50:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-02T09:55:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-11-02T17:40:00-03:00"
-      },
-      {
-        "Estado": 8,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-03T08:20:00-03:00"
-      },
-      {
-        "Estado": 11,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-03T13:20:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 550010007,
-    "Estado": 11,
-    "FechaAdmision": "2025-11-02T11:05:00-03:00",
-    "TipoEntrega": 0,
-    "CodigoPostalCDOrigen": 1888,
-    "CodigoPostalCDDestino": 5500,
-    "IDAgenciaOrigen": "",
-    "IDAgenciaDestino": "",
-    "CUITCliente": "33-76251483-5",
-    "Tamano": 2,
-    "Destinatario": {
-      "DNI": 33123456,
-      "Nombre": "Sabrina",
-      "Apellido": "Alvarez",
-      "Direccion": "Guaymallen 1400, Mendoza",
-      "CodigoPostal": 5521
-    },
-    "IDConvenio": 200021,
-    "ImporteAFacturar": 15760.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 1888",
-        "FechaActualizacionEstado": "2025-11-02T11:05:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-02T11:10:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-11-02T19:15:00-03:00"
-      },
-      {
-        "Estado": 8,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-03T09:10:00-03:00"
-      },
-      {
-        "Estado": 11,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-03T14:10:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 550090101,
-    "Estado": 11,
-    "FechaAdmision": "2025-11-04T09:10:00-03:00",
-    "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 1888,
-    "CodigoPostalCDDestino": 5500,
-    "IDAgenciaOrigen": "01888",
-    "IDAgenciaDestino": "05500",
-    "CUITCliente": "33-99274898-8",
-    "Tamano": 0,
-    "Destinatario": {
-      "DNI": 35678123,
-      "Nombre": "Valentina",
-      "Apellido": "Paredes",
-      "Direccion": "Colon 900, Mendoza",
-      "CodigoPostal": 5500
-    },
-    "IDConvenio": 200040,
-    "ImporteAFacturar": 11500.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 1888",
-        "FechaActualizacionEstado": "2025-11-04T09:10:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-04T09:15:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-11-04T17:10:00-03:00"
-      },
-      {
-        "Estado": 9,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-05T08:20:00-03:00"
-      },
-      {
-        "Estado": 10,
-        "UbicacionGuia": "Agencia 05500",
-        "FechaActualizacionEstado": "2025-11-05T10:20:00-03:00"
-      },
-      {
-        "Estado": 11,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-05T13:20:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 550090102,
-    "Estado": 11,
-    "FechaAdmision": "2025-11-04T10:25:00-03:00",
-    "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 5000,
-    "CodigoPostalCDDestino": 5500,
-    "IDAgenciaOrigen": "05000",
-    "IDAgenciaDestino": "05500",
-    "CUITCliente": "33-44444444-4",
-    "Tamano": 1,
-    "Destinatario": {
-      "DNI": 37234567,
-      "Nombre": "Rodrigo",
-      "Apellido": "Lopez",
-      "Direccion": "Rivadavia 1200, Mendoza",
-      "CodigoPostal": 5500
-    },
-    "IDConvenio": 200041,
-    "ImporteAFacturar": 13280.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 5000",
-        "FechaActualizacionEstado": "2025-11-04T10:25:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-04T10:30:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-11-04T19:20:00-03:00"
-      },
-      {
-        "Estado": 9,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-05T08:40:00-03:00"
-      },
-      {
-        "Estado": 10,
-        "UbicacionGuia": "Agencia 05500",
-        "FechaActualizacionEstado": "2025-11-05T10:40:00-03:00"
-      },
-      {
-        "Estado": 11,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-05T13:40:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 550090103,
-    "Estado": 11,
-    "FechaAdmision": "2025-11-04T11:40:00-03:00",
-    "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 8300,
-    "CodigoPostalCDDestino": 5500,
-    "IDAgenciaOrigen": "08300",
-    "IDAgenciaDestino": "05500",
-    "CUITCliente": "30-33333333-3",
-    "Tamano": 2,
-    "Destinatario": {
-      "DNI": 39555111,
-      "Nombre": "Juliana",
-      "Apellido": "Torres",
-      "Direccion": "Sarmiento 700, Mendoza",
-      "CodigoPostal": 5500
-    },
-    "IDConvenio": 200042,
-    "ImporteAFacturar": 16450.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 8300",
-        "FechaActualizacionEstado": "2025-11-04T11:40:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-04T11:45:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-11-04T20:30:00-03:00"
-      },
-      {
-        "Estado": 9,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-05T09:10:00-03:00"
-      },
-      {
-        "Estado": 10,
-        "UbicacionGuia": "Agencia 05500",
-        "FechaActualizacionEstado": "2025-11-05T11:10:00-03:00"
-      },
-      {
-        "Estado": 11,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-05T14:10:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 550090104,
-    "Estado": 11,
-    "FechaAdmision": "2025-11-04T12:55:00-03:00",
-    "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 9100,
-    "CodigoPostalCDDestino": 5500,
-    "IDAgenciaOrigen": "09100",
-    "IDAgenciaDestino": "05500",
-    "CUITCliente": "33-22222222-2",
-    "Tamano": 3,
-    "Destinatario": {
-      "DNI": 41222333,
-      "Nombre": "Federico",
-      "Apellido": "Alvarez",
-      "Direccion": "Mitre 500, Mendoza",
-      "CodigoPostal": 5500
-    },
-    "IDConvenio": 200043,
-    "ImporteAFacturar": 20175.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 9100",
-        "FechaActualizacionEstado": "2025-11-04T12:55:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-04T13:00:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-11-04T21:10:00-03:00"
-      },
-      {
-        "Estado": 9,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-05T09:30:00-03:00"
-      },
-      {
-        "Estado": 10,
-        "UbicacionGuia": "Agencia 05500",
-        "FechaActualizacionEstado": "2025-11-05T11:30:00-03:00"
-      },
-      {
-        "Estado": 11,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-05T14:30:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 999100201,
-    "Estado": 11,
-    "FechaAdmision": "2025-11-08T09:10:00-03:00",
-    "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 5000,
-    "CodigoPostalCDDestino": 5500,
-    "IDAgenciaOrigen": "",
-    "IDAgenciaDestino": "05500",
-    "CUITCliente": "30-22223333-4",
-    "Tamano": 1,
-    "Destinatario": {
-      "DNI": 32222333,
-      "Nombre": "Diego",
-      "Apellido": "Silva",
-      "Direccion": "Belgrano 800, Mendoza",
-      "CodigoPostal": 5500
-    },
-    "IDConvenio": 200060,
-    "ImporteAFacturar": 8300.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 1,
-        "UbicacionGuia": "Belgrano 50, Córdoba",
-        "FechaActualizacionEstado": "2025-11-08T08:30:00-03:00"
-      },
-      {
-        "Estado": 2,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-08T08:45:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 5000",
-        "FechaActualizacionEstado": "2025-11-08T09:10:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-08T18:00:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-11-09T10:00:00-03:00"
-      },
-      {
-        "Estado": 9,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-09T10:15:00-03:00"
-      },
-      {
-        "Estado": 10,
-        "UbicacionGuia": "Agencia 05500",
-        "FechaActualizacionEstado": "2025-11-09T12:00:00-03:00"
-      },
-      {
-        "Estado": 11,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-09T14:10:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 999100202,
-    "Estado": 11,
-    "FechaAdmision": "2025-11-08T09:20:00-03:00",
-    "TipoEntrega": 0,
-    "CodigoPostalCDOrigen": 5000,
-    "CodigoPostalCDDestino": 5500,
-    "IDAgenciaOrigen": "",
-    "IDAgenciaDestino": "",
-    "CUITCliente": "30-22223333-4",
-    "Tamano": 2,
-    "Destinatario": {
-      "DNI": 32222334,
-      "Nombre": "Elena",
-      "Apellido": "Silva",
-      "Direccion": "Sarmiento 900, Mendoza",
-      "CodigoPostal": 5500
-    },
-    "IDConvenio": 200060,
-    "ImporteAFacturar": 9100.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 1,
-        "UbicacionGuia": "Colon 100, Córdoba",
-        "FechaActualizacionEstado": "2025-11-08T08:40:00-03:00"
-      },
-      {
-        "Estado": 2,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-08T08:55:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 5000",
-        "FechaActualizacionEstado": "2025-11-08T09:20:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-08T18:10:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-11-09T10:10:00-03:00"
-      },
-      {
-        "Estado": 8,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-09T11:00:00-03:00"
-      },
-      {
-        "Estado": 11,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-09T12:20:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 999100203,
-    "Estado": 10,
-    "FechaAdmision": "2025-11-08T09:30:00-03:00",
-    "TipoEntrega": 2,
-    "CodigoPostalCDOrigen": 5000,
-    "CodigoPostalCDDestino": 5500,
-    "IDAgenciaOrigen": "",
-    "IDAgenciaDestino": "",
-    "CUITCliente": "30-22223333-4",
-    "Tamano": 3,
-    "Destinatario": {
-      "DNI": 32222335,
-      "Nombre": "Mario",
-      "Apellido": "Silva",
-      "Direccion": "Guaymallen 1500, Mendoza",
-      "CodigoPostal": 5500
-    },
-    "IDConvenio": 200060,
-    "ImporteAFacturar": 10800.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 1,
-        "UbicacionGuia": "Av. Colón 200, Córdoba",
-        "FechaActualizacionEstado": "2025-11-08T08:50:00-03:00"
-      },
-      {
-        "Estado": 2,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-08T09:05:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 5000",
-        "FechaActualizacionEstado": "2025-11-08T09:30:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-08T18:20:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-11-09T10:20:00-03:00"
-      },
-      {
-        "Estado": 10,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-11-09T11:10:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 999500301,
-    "Estado": 14,
-    "FechaAdmision": "2025-11-09T11:00:00-03:00",
-    "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 9100,
-    "CodigoPostalCDDestino": 8500,
-    "IDAgenciaOrigen": "09100",
-    "IDAgenciaDestino": "08500",
-    "CUITCliente": "30-33334444-5",
-    "Tamano": 1,
-    "Destinatario": {
-      "DNI": 34555111,
-      "Nombre": "Sergio",
-      "Apellido": "Rivas",
-      "Direccion": "Belgrano 600, Viedma",
-      "CodigoPostal": 8500
-    },
-    "IDConvenio": 200070,
-    "ImporteAFacturar": 13200.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 0,
-        "UbicacionGuia": "Agencia 09100",
-        "FechaActualizacionEstado": "2025-11-09T09:20:00-03:00"
-      },
-      {
-        "Estado": 3,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-09T09:25:00-03:00"
-      },
-      {
-        "Estado": 4,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-09T09:45:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 9100",
-        "FechaActualizacionEstado": "2025-11-09T10:00:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-09T11:15:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 8500",
-        "FechaActualizacionEstado": "2025-11-09T12:00:00-03:00"
-      },
-      {
-        "Estado": 9,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-09T13:00:00-03:00"
-      },
-      {
-        "Estado": 10,
-        "UbicacionGuia": "Agencia 08500",
-        "FechaActualizacionEstado": "2025-11-09T14:00:00-03:00"
-      },
-      {
-        "Estado": 14,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-09T16:30:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 999500302,
-    "Estado": 12,
-    "FechaAdmision": "2025-11-08T10:10:00-03:00",
-    "TipoEntrega": 0,
-    "CodigoPostalCDOrigen": 9100,
-    "CodigoPostalCDDestino": 8500,
-    "IDAgenciaOrigen": "09100",
-    "IDAgenciaDestino": "",
-    "CUITCliente": "30-33334444-5",
-    "Tamano": 2,
-    "Destinatario": {
-      "DNI": 34555112,
-      "Nombre": "Silvia",
-      "Apellido": "Rivas",
-      "Direccion": "Belgrano 800, Viedma",
-      "CodigoPostal": 8500
-    },
-    "IDConvenio": 200070,
-    "ImporteAFacturar": 14200.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 0,
-        "UbicacionGuia": "Agencia 09100",
-        "FechaActualizacionEstado": "2025-11-08T09:30:00-03:00"
-      },
-      {
-        "Estado": 3,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-08T09:35:00-03:00"
-      },
-      {
-        "Estado": 4,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-08T09:55:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 9100",
-        "FechaActualizacionEstado": "2025-11-08T10:10:00-03:00"
-      },
-      {
-        "Estado": 12,
-        "UbicacionGuia": "Cancelada sistema",
-        "FechaActualizacionEstado": "2025-11-08T10:30:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 999500303,
-    "Estado": 14,
-    "FechaAdmision": "2025-11-08T10:20:00-03:00",
-    "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 9100,
-    "CodigoPostalCDDestino": 8500,
-    "IDAgenciaOrigen": "09100",
-    "IDAgenciaDestino": "08500",
-    "CUITCliente": "30-33334444-5",
-    "Tamano": 3,
-    "Destinatario": {
-      "DNI": 34555113,
-      "Nombre": "Santiago",
-      "Apellido": "Rivas",
-      "Direccion": "Belgrano 900, Viedma",
-      "CodigoPostal": 8500
-    },
-    "IDConvenio": 200070,
-    "ImporteAFacturar": 16200.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 0,
-        "UbicacionGuia": "Agencia 09100",
-        "FechaActualizacionEstado": "2025-11-08T09:40:00-03:00"
-      },
-      {
-        "Estado": 3,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-08T09:45:00-03:00"
-      },
-      {
-        "Estado": 4,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-08T10:05:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 9100",
-        "FechaActualizacionEstado": "2025-11-08T10:20:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-08T18:40:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 8500",
-        "FechaActualizacionEstado": "2025-11-09T09:40:00-03:00"
-      },
-      {
-        "Estado": 9,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-09T09:55:00-03:00"
-      },
-      {
-        "Estado": 10,
-        "UbicacionGuia": "Agencia 08500",
-        "FechaActualizacionEstado": "2025-11-09T11:20:00-03:00"
-      },
-      {
-        "Estado": 11,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-09T12:50:00-03:00"
-      },
-      {
-        "Estado": 14,
-        "UbicacionGuia": "Facturada",
-        "FechaActualizacionEstado": "2025-11-09T16:45:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 999700401,
-    "Estado": 14,
-    "FechaAdmision": "2025-11-08T11:00:00-03:00",
-    "TipoEntrega": 0,
-    "CodigoPostalCDOrigen": 8300,
-    "CodigoPostalCDDestino": 5500,
-    "IDAgenciaOrigen": "",
-    "IDAgenciaDestino": "",
-    "CUITCliente": "33-77778888-9",
-    "Tamano": 1,
-    "Destinatario": {
-      "DNI": 37777888,
-      "Nombre": "Fabian",
-      "Apellido": "Ruiz",
-      "Direccion": "Colon 950, Mendoza",
-      "CodigoPostal": 5500
-    },
-    "IDConvenio": 200080,
-    "ImporteAFacturar": 9900.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 1,
-        "UbicacionGuia": "Belgrano 210, Neuquén",
-        "FechaActualizacionEstado": "2025-11-08T10:10:00-03:00"
-      },
-      {
-        "Estado": 2,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-08T10:25:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 8300",
-        "FechaActualizacionEstado": "2025-11-08T11:00:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-08T19:00:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-11-09T10:10:00-03:00"
-      },
-      {
-        "Estado": 8,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-09T11:00:00-03:00"
-      },
-      {
-        "Estado": 11,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-09T12:30:00-03:00"
-      },
-      {
-        "Estado": 14,
-        "UbicacionGuia": "Facturada",
-        "FechaActualizacionEstado": "2025-11-10T09:00:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 500000010,
-    "Estado": 10,
-    "FechaAdmision": "2025-11-01T11:30:00-03:00",
-    "TipoEntrega": 2,
-    "CodigoPostalCDOrigen": 5000,
-    "CodigoPostalCDDestino": 5500,
-    "IDAgenciaOrigen": "05000",
-    "IDAgenciaDestino": "05500",
-    "CUITCliente": "30-87419362-4",
-    "Tamano": 2,
-    "Destinatario": {
-      "DNI": 29654321,
-      "Nombre": "Diego",
-      "Apellido": "Herrera",
-      "Direccion": "San Martin 1200, Mendoza",
-      "CodigoPostal": 5500
-    },
-    "IDConvenio": 200009,
-    "ImporteAFacturar": 11200.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 0,
-        "UbicacionGuia": "Agencia 05000",
-        "FechaActualizacionEstado": "2025-11-01T11:30:00-03:00"
-      },
-      {
-        "Estado": 3,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-01T11:35:00-03:00"
-      },
-      {
-        "Estado": 4,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-01T12:00:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 5000",
-        "FechaActualizacionEstado": "2025-11-01T13:00:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-01T20:00:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-11-02T08:10:00-03:00"
-      },
-      {
-        "Estado": 10,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-11-02T11:10:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 100000990,
-    "Estado": 10,
-    "FechaAdmision": "2025-11-01T08:00:00-03:00",
-    "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 1000,
-    "CodigoPostalCDDestino": 1000,
-    "IDAgenciaOrigen": "",
-    "IDAgenciaDestino": "01000",
-    "CUITCliente": "30-98656280-6",
-    "Tamano": 0,
-    "Destinatario": {
-      "DNI": 27456321,
-      "Nombre": "Marcos",
-      "Apellido": "Prieto",
-      "Direccion": "San Martin 1100, CABA",
-      "CodigoPostal": 1000
-    },
-    "IDConvenio": 200005,
-    "ImporteAFacturar": 1200,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 1000",
-        "FechaActualizacionEstado": "2025-11-01T07:00:00-03:00"
-      },
-      {
-        "Estado": 9,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-01T08:00:00-03:00"
-      },
-      {
-        "Estado": 10,
-        "UbicacionGuia": "Agencia 01000",
-        "FechaActualizacionEstado": "2025-11-01T09:00:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 100000991,
-    "Estado": 10,
-    "FechaAdmision": "2025-11-01T08:00:00-03:00",
-    "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 1000,
-    "CodigoPostalCDDestino": 1000,
-    "IDAgenciaOrigen": "",
-    "IDAgenciaDestino": "01000",
-    "CUITCliente": "30-98656280-6",
-    "Tamano": 1,
-    "Destinatario": {
-      "DNI": 30111222,
-      "Nombre": "Lucia",
-      "Apellido": "Gomez",
-      "Direccion": "Corrientes 2500, CABA",
-      "CodigoPostal": 1000
-    },
-    "IDConvenio": 200005,
-    "ImporteAFacturar": 1800,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 1000",
-        "FechaActualizacionEstado": "2025-11-01T07:00:00-03:00"
-      },
-      {
-        "Estado": 9,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-01T08:00:00-03:00"
-      },
-      {
-        "Estado": 10,
-        "UbicacionGuia": "Agencia 01000",
-        "FechaActualizacionEstado": "2025-11-01T09:00:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 100000992,
-    "Estado": 10,
-    "FechaAdmision": "2025-11-01T08:00:00-03:00",
-    "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 1000,
-    "CodigoPostalCDDestino": 1000,
-    "IDAgenciaOrigen": "",
-    "IDAgenciaDestino": "01000",
-    "CUITCliente": "30-98656280-6",
-    "Tamano": 2,
-    "Destinatario": {
-      "DNI": 28333444,
-      "Nombre": "Sofia",
-      "Apellido": "Martinez",
-      "Direccion": "Santa Fe 1800, CABA",
-      "CodigoPostal": 1000
-    },
-    "IDConvenio": 200005,
-    "ImporteAFacturar": 2500,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 1000",
-        "FechaActualizacionEstado": "2025-11-01T07:00:00-03:00"
-      },
-      {
-        "Estado": 9,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-01T08:00:00-03:00"
-      },
-      {
-        "Estado": 10,
-        "UbicacionGuia": "Agencia 01000",
-        "FechaActualizacionEstado": "2025-11-01T09:00:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 100000993,
-    "Estado": 3,
-    "FechaAdmision": "2025-11-01T09:00:00-03:00",
-    "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 1000,
-    "CodigoPostalCDDestino": 3000,
-    "IDAgenciaOrigen": "01000",
-    "IDAgenciaDestino": "",
-    "CUITCliente": "30-94715263-9",
-    "Tamano": 2,
-    "Destinatario": {
-      "DNI": 40222333,
-      "Nombre": "Andrea",
-      "Apellido": "Suarez",
-      "Direccion": "Honduras 4800, CABA",
-      "CodigoPostal": 1000
-    },
-    "IDConvenio": 200013,
-    "ImporteAFacturar": 2500,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 0,
-        "UbicacionGuia": "Agencia 01000",
-        "FechaActualizacionEstado": "2025-11-01T08:30:00-03:00"
-      },
-      {
-        "Estado": 3,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-01T09:00:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 100000994,
-    "Estado": 3,
-    "FechaAdmision": "2025-11-01T09:00:00-03:00",
-    "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 1000,
-    "CodigoPostalCDDestino": 5000,
-    "IDAgenciaOrigen": "01000",
-    "IDAgenciaDestino": "",
-    "CUITCliente": "33-12349876-9",
-    "Tamano": 3,
-    "Destinatario": {
-      "DNI": 35444555,
-      "Nombre": "Roberto",
-      "Apellido": "Diaz",
-      "Direccion": "Lavalle 800, CABA",
-      "CodigoPostal": 1000
-    },
-    "IDConvenio": 300001,
-    "ImporteAFacturar": 3200,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 0,
-        "UbicacionGuia": "Agencia 01000",
-        "FechaActualizacionEstado": "2025-11-01T08:30:00-03:00"
-      },
-      {
-        "Estado": 3,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-11-01T09:00:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 200000001,
-    "Estado": 5,
-    "FechaAdmision": "2025-10-29T12:20:00-03:00",
-    "TipoEntrega": 2,
-    "CodigoPostalCDOrigen": 1888,
-    "CodigoPostalCDDestino": 5000,
-    "IDAgenciaOrigen": "01888",
-    "IDAgenciaDestino": "",
-    "CUITCliente": "33-99274898-8",
-    "Tamano": 1,
-    "Destinatario": {
-      "DNI": 32568974,
-      "Nombre": "Lucia",
-      "Apellido": "Fernandez",
-      "Direccion": "Duarte Quiros 1250, Cordoba",
-      "CodigoPostal": 5000
-    },
-    "IDConvenio": 200001,
-    "ImporteAFacturar": 15420.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 0,
-        "UbicacionGuia": "Agencia 01888",
-        "FechaActualizacionEstado": "2025-10-29T09:10:00-03:00"
-      },
-      {
-        "Estado": 3,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-10-29T09:15:00-03:00"
-      },
-      {
-        "Estado": 4,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-10-29T10:00:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 1888",
-        "FechaActualizacionEstado": "2025-10-29T12:20:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 500000026,
-    "Estado": 2,
-    "FechaAdmision": "2025-10-29T12:20:00-03:00",
-    "TipoEntrega": 2,
-    "CodigoPostalCDOrigen": 5000,
-    "CodigoPostalCDDestino": 1888,
-    "IDAgenciaOrigen": "01888",
-    "IDAgenciaDestino": "",
-    "CUITCliente": "33-99274898-8",
-    "Tamano": 1,
-    "Destinatario": {
-      "DNI": 32568974,
-      "Nombre": "Lucia",
-      "Apellido": "Fernandez",
-      "Direccion": "Duarte Quiros 1250, Cordoba",
-      "CodigoPostal": 5000
-    },
-    "IDConvenio": 200001,
-    "ImporteAFacturar": 15420.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 0,
-        "UbicacionGuia": "Agencia 01888",
-        "FechaActualizacionEstado": "2025-10-29T09:10:00-03:00"
-      },
-      {
-        "Estado": 3,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-10-29T09:15:00-03:00"
-      },
-      {
-        "Estado": 4,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-10-29T10:00:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 5000",
-        "FechaActualizacionEstado": "2025-10-29T12:20:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 500000120,
-    "Estado": 9,
-    "FechaAdmision": "2025-10-29T12:20:00-03:00",
-    "TipoEntrega": 2,
-    "CodigoPostalCDOrigen": 1888,
-    "CodigoPostalCDDestino": 5000,
-    "IDAgenciaOrigen": "01888",
-    "IDAgenciaDestino": "",
-    "CUITCliente": "33-99274898-8",
-    "Tamano": 1,
-    "Destinatario": {
-      "DNI": 32568974,
-      "Nombre": "Lucia",
-      "Apellido": "Fernandez",
-      "Direccion": "Duarte Quiros 1250, Cordoba",
-      "CodigoPostal": 5000
-    },
-    "IDConvenio": 200001,
-    "ImporteAFacturar": 15420.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 0,
-        "UbicacionGuia": "Agencia 01888",
-        "FechaActualizacionEstado": "2025-10-29T09:10:00-03:00"
-      },
-      {
-        "Estado": 3,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-10-29T09:15:00-03:00"
-      },
-      {
-        "Estado": 4,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-10-29T10:00:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 1888",
-        "FechaActualizacionEstado": "2025-10-29T12:20:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-10-29T18:00:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5000",
-        "FechaActualizacionEstado": "2025-10-30T09:00:00-03:00"
-      },
-      {
-        "Estado": 10,
-        "UbicacionGuia": "CD 5000",
-        "FechaActualizacionEstado": "2025-10-30T10:30:00-03:00"
-      }
-    ]
-  },
-  {
-    "NumeroGuia": 188800660,
-    "Estado": 2,
-    "FechaAdmision": "2025-10-29T12:20:00-03:00",
-    "TipoEntrega": 2,
-    "CodigoPostalCDOrigen": 1888,
-    "CodigoPostalCDDestino": 5000,
-    "IDAgenciaOrigen": "01888",
-    "IDAgenciaDestino": "",
-    "CUITCliente": "33-99274898-8",
-    "Tamano": 1,
-    "Destinatario": {
-      "DNI": 32568974,
-      "Nombre": "Lucia",
-      "Apellido": "Fernandez",
-      "Direccion": "Duarte Quiros 1250, Cordoba",
-      "CodigoPostal": 5000
-    },
-    "IDConvenio": 200001,
-    "ImporteAFacturar": 15420.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 0,
-        "UbicacionGuia": "Agencia 01888",
-        "FechaActualizacionEstado": "2025-10-29T09:10:00-03:00"
-      },
-      {
-        "Estado": 4,
-        "UbicacionGuia": "",
-        "FechaActualizacionEstado": "2025-10-29T10:00:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 1888",
-        "FechaActualizacionEstado": "2025-10-29T12:20:00-03:00"
-      }
-
-    ]
-  },
-  {
-    "NumeroGuia": 188800670,
-    "Estado": 3,
-    "FechaAdmision": "2025-10-29T12:20:00-03:00",
-    "TipoEntrega": 2,
-    "CodigoPostalCDOrigen": 1888,
-    "CodigoPostalCDDestino": 5000,
-    "IDAgenciaOrigen": "01888",
-    "IDAgenciaDestino": "",
-    "CUITCliente": "33-99274898-8",
-    "Tamano": 1,
-    "Destinatario": {
-      "DNI": 32568974,
-      "Nombre": "Lucia",
-      "Apellido": "Fernandez",
-      "Direccion": "Duarte Quiros 1250, Cordoba",
-      "CodigoPostal": 5000
-    },
-    "IDConvenio": 200001,
-    "ImporteAFacturar": 15420.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 0,
-        "UbicacionGuia": "Agencia 01888",
-        "FechaActualizacionEstado": "2025-10-29T09:10:00-03:00"
-      },
-      {
-        "Estado": 4,
-        "UbicacionGuia": "",
-        "FechaActualizacionEstado": "2025-10-29T10:00:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 1888",
-        "FechaActualizacionEstado": "2025-10-29T12:20:00-03:00"
-      }
-
-    ]
-  },
-  {
     "NumeroGuia": 188836549,
     "Estado": 8,
     "FechaAdmision": "2025-10-29T12:20:00-03:00",
     "TipoEntrega": 2,
-    "CodigoPostalCDOrigen": 0,
+    "CodigoPostalCDOrigen": 1888,
     "CodigoPostalCDDestino": 1888,
     "IDAgenciaOrigen": "01888",
     "IDAgenciaDestino": "",
@@ -2437,8 +1147,8 @@
       "DNI": 32568974,
       "Nombre": "Lucia",
       "Apellido": "Fernandez",
-      "Direccion": "Duarte Quiros 1250, Cordoba",
-      "CodigoPostal": 5000
+      "Direccion": "Av. Mitre 100, Florencio Varela",
+      "CodigoPostal": 1888
     },
     "IDConvenio": 200001,
     "ImporteAFacturar": 15420.00,
@@ -2462,7 +1172,6 @@
         "UbicacionGuia": "CD 1888",
         "FechaActualizacionEstado": "2025-10-29T12:20:00-03:00"
       }
-
     ]
   },
   {
@@ -2470,7 +1179,7 @@
     "Estado": 9,
     "FechaAdmision": "2025-10-29T12:20:00-03:00",
     "TipoEntrega": 2,
-    "CodigoPostalCDOrigen": 0,
+    "CodigoPostalCDOrigen": 1888,
     "CodigoPostalCDDestino": 1888,
     "IDAgenciaOrigen": "01888",
     "IDAgenciaDestino": "",
@@ -2480,8 +1189,8 @@
       "DNI": 32568974,
       "Nombre": "Lucia",
       "Apellido": "Fernandez",
-      "Direccion": "Duarte Quiros 1250, Cordoba",
-      "CodigoPostal": 5000
+      "Direccion": "Av. Mitre 100, Florencio Varela",
+      "CodigoPostal": 1888
     },
     "IDConvenio": 200001,
     "ImporteAFacturar": 15420.00,
@@ -2505,7 +1214,6 @@
         "UbicacionGuia": "CD 1888",
         "FechaActualizacionEstado": "2025-10-29T12:20:00-03:00"
       }
-
     ]
   }
 ]

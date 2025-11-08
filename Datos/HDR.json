@@ -2,7 +2,7 @@
 	{
 		"ID": "T 1888 000125 5000",
 		"TipoHDR": 2,
-		"DNIFletero": 28765984,
+		"DNIFletero": 0,
 		"IDServicioTransporte": 1000744,
 		"Guias": [
 			188800001
@@ -13,8 +13,8 @@
 	{
 		"ID": "T 1888 000126 1000",
 		"TipoHDR": 2,
-		"DNIFletero": 28765984,
-		"IDServicioTransporte": 0,
+		"DNIFletero": 0,
+		"IDServicioTransporte": 1000744,
 		"Guias": [
 			188800002
 		],
@@ -24,7 +24,7 @@
 	{
 		"ID": "T 5000 000127 5500",
 		"TipoHDR": 2,
-		"DNIFletero": 30987654,
+		"DNIFletero": 0,
 		"IDServicioTransporte": 2000521,
 		"Guias": [
 			500000002
@@ -33,58 +33,31 @@
 		"CodigoPostalDestino": 5500
 	},
 	{
-		"ID": "T 3000 000128 1000",
+		"ID": "T 2000 000128 1000",
 		"TipoHDR": 2,
-		"DNIFletero": 33125498,
+		"DNIFletero": 0,
 		"IDServicioTransporte": 3003345,
 		"Guias": [
 			300000001
 		],
-		"CodigoPostalOrigen": 3000,
+		"CodigoPostalOrigen": 2000,
 		"CodigoPostalDestino": 1000
 	},
 	{
-		"ID": "D 8300 000129 0000",
-		"TipoHDR": 0,
-		"DNIFletero": 30123456,
-		"IDServicioTransporte": 0,
-		"Guias": [],
-		"CodigoPostalOrigen": 8300,
-		"CodigoPostalDestino": 0
-	},
-	{
-		"ID": "D 8500 000130 08500",
-		"TipoHDR": 0,
-		"DNIFletero": 28456712,
-		"IDServicioTransporte": 0,
-		"Guias": [],
-		"CodigoPostalOrigen": 8500,
-		"CodigoPostalDestino": 8500
-	},
-	{
-		"ID": "R 5000 000131 0000",
-		"TipoHDR": 1,
-		"DNIFletero": 30987654,
-		"IDServicioTransporte": 0,
-		"Guias": [],
-		"CodigoPostalOrigen": 5000,
-		"CodigoPostalDestino": 0
-	},
-	{
-		"ID": "T 9100 000132 8500",
+		"ID": "T 5000 000132 8500",
 		"TipoHDR": 2,
-		"DNIFletero": 29567891,
+		"DNIFletero": 0,
 		"IDServicioTransporte": 5005789,
 		"Guias": [
 			910000001
 		],
-		"CodigoPostalOrigen": 9100,
+		"CodigoPostalOrigen": 5000,
 		"CodigoPostalDestino": 8500
 	},
 	{
 		"ID": "T 1000 000124 3000",
 		"TipoHDR": 2,
-		"DNIFletero": 28765432,
+		"DNIFletero": 0,
 		"IDServicioTransporte": 1000744,
 		"Guias": [
 			100000001
@@ -93,78 +66,9 @@
 		"CodigoPostalDestino": 3000
 	},
 	{
-		"ID": "T 1000 000201 5000",
-		"TipoHDR": 2,
-		"DNIFletero": 28765432,
-		"IDServicioTransporte": 1000744,
-		"Guias": [],
-		"CodigoPostalOrigen": 1000,
-		"CodigoPostalDestino": 5000
-	},
-	{
-		"ID": "D 1000 000202 0000",
-		"TipoHDR": 0,
-		"DNIFletero": 28765432,
-		"IDServicioTransporte": 0,
-		"Guias": [],
-		"CodigoPostalOrigen": 1000,
-		"CodigoPostalDestino": 0
-	},
-	{
-		"ID": "R 1000 000203 0000",
-		"TipoHDR": 1,
-		"DNIFletero": 28765432,
-		"IDServicioTransporte": 0,
-		"Guias": [
-			911000001,
-			911000033
-		],
-		"CodigoPostalOrigen": 1000,
-		"CodigoPostalDestino": 0
-	},
-	{
-		"ID": "T 1000 000204 3000",
-		"TipoHDR": 2,
-		"DNIFletero": 28765432,
-		"IDServicioTransporte": 0,
-		"Guias": [],
-		"CodigoPostalOrigen": 1000,
-		"CodigoPostalDestino": 3000
-	},
-	{
-		"ID": "D 1000 000205 0000",
-		"TipoHDR": 0,
-		"DNIFletero": 28765432,
-		"IDServicioTransporte": 0,
-		"Guias": [
-			910000002,
-			910000003
-		],
-		"CodigoPostalOrigen": 1000,
-		"CodigoPostalDestino": 0
-	},
-	{
-		"ID": "T 5000 000301 5500",
-		"TipoHDR": 2,
-		"DNIFletero": 30987654,
-		"IDServicioTransporte": 2000521,
-		"Guias": [],
-		"CodigoPostalOrigen": 5000,
-		"CodigoPostalDestino": 5500
-	},
-	{
-		"ID": "D 5000 000302 0000",
-		"TipoHDR": 0,
-		"DNIFletero": 30987654,
-		"IDServicioTransporte": 0,
-		"Guias": [ 500000120 ],
-		"CodigoPostalOrigen": 0,
-		"CodigoPostalDestino": 5000
-	},
-	{
 		"ID": "T 5000 000303 3000",
 		"TipoHDR": 2,
-		"DNIFletero": 30987654,
+		"DNIFletero": 0,
 		"IDServicioTransporte": 2000521,
 		"Guias": [
 			500000003
@@ -173,77 +77,20 @@
 		"CodigoPostalDestino": 3000
 	},
 	{
-		"ID": "R 5000 000304 0000",
-		"TipoHDR": 1,
-		"DNIFletero": 30987654,
-		"IDServicioTransporte": 0,
-		"Guias": [ 500000026 ],
-		"CodigoPostalOrigen": 5000,
-		"CodigoPostalDestino": 0
-	},
-	{
-		"ID": "T 5000 000305 8300",
+		"ID": "T 5500 000801 5500",
 		"TipoHDR": 2,
-		"DNIFletero": 30987654,
-		"IDServicioTransporte": 0,
-		"Guias": [],
-		"CodigoPostalOrigen": 5000,
-		"CodigoPostalDestino": 8300
-	},
-	{
-		"ID": "D 1900 000401 0000",
-		"TipoHDR": 0,
-		"DNIFletero": 30456789,
-		"IDServicioTransporte": 0,
-		"Guias": [],
-		"CodigoPostalOrigen": 1900,
-		"CodigoPostalDestino": 0
-	},
-	{
-		"ID": "R 7600 000501 0000",
-		"TipoHDR": 1,
-		"DNIFletero": 29876543,
-		"IDServicioTransporte": 0,
-		"Guias": [
-			910000236,
-			910000237
-		],
-		"CodigoPostalOrigen": 7600,
-		"CodigoPostalDestino": 0
-	},
-	{
-		"ID": "T 2000 000601 5000",
-		"TipoHDR": 2,
-		"DNIFletero": 27654321,
-		"IDServicioTransporte": 0,
-		"Guias": [],
-		"CodigoPostalOrigen": 2000,
-		"CodigoPostalDestino": 5000
-	},
-	{
-		"ID": "D 4000 000701 0000",
-		"TipoHDR": 0,
-		"DNIFletero": 31234567,
-		"IDServicioTransporte": 0,
-		"Guias": [],
-		"CodigoPostalOrigen": 4000,
-		"CodigoPostalDestino": 0
-	},
-	{
-		"ID": "T 8300 000801 5500",
-		"TipoHDR": 2,
-		"DNIFletero": 30123456,
+		"DNIFletero": 0,
 		"IDServicioTransporte": 2000521,
 		"Guias": [
 			830000003
 		],
-		"CodigoPostalOrigen": 8300,
+		"CodigoPostalOrigen": 5500,
 		"CodigoPostalDestino": 5500
 	},
 	{
 		"ID": "T 5500 000122 9410",
 		"TipoHDR": 2,
-		"DNIFletero": 30789456,
+		"DNIFletero": 0,
 		"IDServicioTransporte": 5005789,
 		"Guias": [
 			550000002
@@ -252,105 +99,18 @@
 		"CodigoPostalDestino": 9410
 	},
 	{
-		"ID": "T 4400 000123 4200",
+		"ID": "T 5000 000123 4200",
 		"TipoHDR": 2,
-		"DNIFletero": 30567890,
+		"DNIFletero": 0,
 		"IDServicioTransporte": 4004123,
 		"Guias": [
 			440000001
 		],
-		"CodigoPostalOrigen": 4400,
+		"CodigoPostalOrigen": 5000,
 		"CodigoPostalDestino": 4200
 	},
 	{
-		"ID": "T 9100 000120 3300",
-		"TipoHDR": 2,
-		"DNIFletero": 29567891,
-		"IDServicioTransporte": 5005789,
-		"Guias": [
-			910000002
-		],
-		"CodigoPostalOrigen": 9100,
-		"CodigoPostalDestino": 3300
-	},
-	{
-		"ID": "T-AUG-100",
-		"TipoHDR": 2,
-		"DNIFletero": 28765002,
-		"IDServicioTransporte": 1001,
-		"Guias": [
-			202508001,
-			202508002
-		]
-	},
-	{
-		"ID": "T-SEP-100",
-		"TipoHDR": 2,
-		"DNIFletero": 28765001,
-		"IDServicioTransporte": 1001,
-		"Guias": [
-			202509001,
-			202509101
-		]
-	},
-	{
-		"ID": "T-OCT-100",
-		"TipoHDR": 2,
-		"DNIFletero": 28765001,
-		"IDServicioTransporte": 1001,
-		"Guias": [
-			202510101,
-			202510102
-		]
-	},
-	{
-		"ID": "T-NOV-100",
-		"TipoHDR": 2,
-		"DNIFletero": 28765001,
-		"IDServicioTransporte": 1001,
-		"Guias": [
-			202511001
-		]
-	},
-	{
-		"ID": "D 1000 000990 01000",
-		"TipoHDR": 0,
-		"DNIFletero": 28765432,
-		"IDServicioTransporte": 0,
-		"Guias": [
-			100000990,
-			100000991,
-			100000992
-		],
-		"CodigoPostalOrigen": 1000,
-		"CodigoPostalDestino": 1000
-	},
-	{
-		"ID": "R 1000 000991 0000",
-		"TipoHDR": 1,
-		"DNIFletero": 28765432,
-		"IDServicioTransporte": 0,
-		"Guias": [
-			100000993,
-			100000994
-		],
-		"CodigoPostalOrigen": 1000,
-		"CodigoPostalDestino": 0
-	},
-	{
-		"ID": "R 1888 000991 0000",
-		"TipoHDR": 1,
-		"DNIFletero": 28765984,
-		"IDServicioTransporte": 0,
-		"Guias": [
-			188800660,
-			188800670
-		],
-		"CodigoPostalOrigen": 1888,
-		"CodigoPostalDestino": 0
-	},
-	{
-		"ID": "D 1888 000991 0000",
+		"ID": "D 5700 000991 0000",
 		"TipoHDR": 0,
 		"DNIFletero": 28765984,
 		"IDServicioTransporte": 0,
@@ -358,7 +118,7 @@
 			188836549,
 			188836550
 		],
-		"CodigoPostalOrigen": 0,
-		"CodigoPostalDestino": 1888
+		"CodigoPostalOrigen": 5700,
+		"CodigoPostalDestino": 5700
 	}
 ]

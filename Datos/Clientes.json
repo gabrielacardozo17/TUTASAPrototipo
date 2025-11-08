@@ -16,23 +16,6 @@
 		"CodigoPostal": 1888
 	},
 	{
-		"CUIT": "30-68362980-0",
-		"RazonSocial": "Textiles del Atlantico SA",
-		"Telefono": "0223-491-3300",
-		"Direccion": "Av. Luro 5200, Mar del Plata",
-		"IDConvenio": 200003,
-		"CodigoPostal": 1888
-	},
-	{
-		"CUIT": "30-69639215-9",
-		"RazonSocial": "Bahia Drinks SA",
-		"Telefono": "0291-452-8800",
-		"Direccion": "Av. Alem 600, Bahia Blanca",
-		"IDConvenio": 200004,
-		"CodigoPostal": 6300
-	},
-
-	{
 		"CUIT": "30-98656280-6",
 		"RazonSocial": "Sistemas Microcentro SA",
 		"Telefono": "011-4331-2200",
@@ -48,23 +31,6 @@
 		"IDConvenio": 200006,
 		"CodigoPostal": 1000
 	},
-	{
-		"CUIT": "33-51372864-2",
-		"RazonSocial": "Palermo Deco SA",
-		"Telefono": "011-4775-1600",
-		"Direccion": "Honduras 4800, Palermo",
-		"IDConvenio": 200007,
-		"CodigoPostal": 1000
-	},
-	{
-		"CUIT": "30-72913658-9",
-		"RazonSocial": "Editorial Andina SA",
-		"Telefono": "011-4783-7700",
-		"Direccion": "Av. Santa Fe 2200, Recoleta",
-		"IDConvenio": 200008,
-		"CodigoPostal": 1000
-	},
-
 	{
 		"CUIT": "30-87419362-4",
 		"RazonSocial": "Cordoba Motors SA",
@@ -82,15 +48,6 @@
 		"CodigoPostal": 5000
 	},
 	{
-		"CUIT": "33-17426359-7",
-		"RazonSocial": "Agro Rio Cuarto SA",
-		"Telefono": "0358-462-1100",
-		"Direccion": "Constitucion 800, Rio Cuarto",
-		"IDConvenio": 200011,
-		"CodigoPostal": 5000
-	},
-
-	{
 		"CUIT": "30-68274139-2",
 		"RazonSocial": "Rosario Digital SRL",
 		"Telefono": "0341-480-2000",
@@ -106,7 +63,6 @@
 		"IDConvenio": 200013,
 		"CodigoPostal": 2000
 	},
-
 	{
 		"CUIT": "33-63184527-6",
 		"RazonSocial": "Vitivinicola Cuyo SA",
@@ -123,7 +79,43 @@
 		"IDConvenio": 200015,
 		"CodigoPostal": 5500
 	},
+	{
+		"CUIT": "30-55667788-1",
+		"RazonSocial": "San Luis Tech SA",
+		"Telefono": "0266-442-1100",
+		"Direccion": "Av. Illia 350, San Luis",
+		"IDConvenio": 200025,
+		"CodigoPostal": 5700
+	},
+	{
+		"CUIT": "33-66778899-2",
+		"RazonSocial": "Villa Mercedes Logistics SRL",
+		"Telefono": "02657-423-300",
+		"Direccion": "Av. Mitre 120, Villa Mercedes",
+		"IDConvenio": 200026,
+		"CodigoPostal": 5700
+	},
 
+
+
+
+
+
+
+
+
+
+
+
+
+	{
+		"CUIT": "30-69639215-9",
+		"RazonSocial": "Bahia Drinks SA",
+		"Telefono": "0291-452-8800",
+		"Direccion": "Av. Alem 600, Bahia Blanca",
+		"IDConvenio": 200004,
+		"CodigoPostal": 6300
+	},
 	{
 		"CUIT": "33-50182746-7",
 		"RazonSocial": "Neuquen Oil Services SA",

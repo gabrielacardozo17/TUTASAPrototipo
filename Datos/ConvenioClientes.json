@@ -1,7 +1,7 @@
 ﻿[
   {
     "ID": 100001,
-    "CUITCliente": "30-12345678-1",
+    "CUITCliente": "33-99274898-8",
     "Extras": {
       "ExtraRetiroDomicilio": 1200,
       "ExtraEntregaDomicilio": 1500,
@@ -32,7 +32,7 @@
   },
   {
     "ID": 100002,
-    "CUITCliente": "30-87654321-0",
+    "CUITCliente": "30-40762117-0",
     "Extras": {
       "ExtraRetiroDomicilio": 1000,
       "ExtraEntregaDomicilio": 1300,
@@ -63,7 +63,7 @@
   },
   {
     "ID": 100003,
-    "CUITCliente": "30-10123456-4",
+    "CUITCliente": "30-98656280-6",
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
@@ -94,7 +94,7 @@
   },
   {
     "ID": 100007,
-    "CUITCliente": "33-22113456-2",
+    "CUITCliente": "30-87419362-4",
     "Extras": {
       "ExtraRetiroDomicilio": 1100,
       "ExtraEntregaDomicilio": 1400,
@@ -115,7 +115,7 @@
   },
   {
     "ID": 100008,
-    "CUITCliente": "30-24681357-0",
+    "CUITCliente": "30-52143679-0",
     "Extras": {
       "ExtraRetiroDomicilio": 950,
       "ExtraEntregaDomicilio": 1250,
@@ -136,7 +136,7 @@
   },
   {
     "ID": 200001,
-    "CUITCliente": "33-99274898-8",
+    "CUITCliente": "30-68274139-2",
     "Extras": {
       "ExtraRetiroDomicilio": 1200,
       "ExtraEntregaDomicilio": 1500,
@@ -167,7 +167,7 @@
   },
   {
     "ID": 200002,
-    "CUITCliente": "30-40762117-0",
+    "CUITCliente": "30-94715263-9",
     "Extras": {
       "ExtraRetiroDomicilio": 1000,
       "ExtraEntregaDomicilio": 1300,
@@ -188,7 +188,7 @@
   },
   {
     "ID": 200003,
-    "CUITCliente": "30-68362980-0",
+    "CUITCliente": "33-63184527-6",
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
@@ -209,7 +209,7 @@
   },
   {
     "ID": 200004,
-    "CUITCliente": "30-69639215-9",
+    "CUITCliente": "30-81524639-6",
     "Extras": {
       "ExtraRetiroDomicilio": 950,
       "ExtraEntregaDomicilio": 1250,
@@ -230,7 +230,7 @@
   },
   {
     "ID": 200005,
-    "CUITCliente": "30-98656280-6",
+    "CUITCliente": "30-55667788-1",
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
@@ -251,7 +251,7 @@
   },
   {
     "ID": 200006,
-    "CUITCliente": "30-21453678-5",
+    "CUITCliente": "33-66778899-2",
     "Extras": {
       "ExtraRetiroDomicilio": 950,
       "ExtraEntregaDomicilio": 1250,
@@ -291,6 +291,13 @@
       }
     ]
   },
+
+
+
+
+
+
+
   {
     "ID": 200008,
     "CUITCliente": "30-72913658-9",
