@@ -40,8 +40,8 @@
     },
     "TarifasPorOrigenDestino": [
       {
-        "CodigoPostalOrigen": 1900,
-        "CodigoPostalDestino": 1000,
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 1888,
         "PreciosXTamano": {
           "S": 1700,
           "M": 2400,
@@ -144,23 +144,13 @@
     },
     "TarifasPorOrigenDestino": [
       {
-        "CodigoPostalOrigen": 1888,
-        "CodigoPostalDestino": 5000,
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 5500,
         "PreciosXTamano": {
-          "S": 2000,
-          "M": 2800,
-          "L": 3600,
-          "XL": 4400
-        }
-      },
-      {
-        "CodigoPostalOrigen": 5000,
-        "CodigoPostalDestino": 1888,
-        "PreciosXTamano": {
-          "S": 2000,
-          "M": 2800,
-          "L": 3600,
-          "XL": 4400
+          "S": 2200,
+          "M": 3200,
+          "L": 4200,
+          "XL": 5200
         }
       }
     ]
@@ -171,17 +161,17 @@
     "Extras": {
       "ExtraRetiroDomicilio": 1000,
       "ExtraEntregaDomicilio": 1300,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1000
     },
     "TarifasPorOrigenDestino": [
       {
-        "CodigoPostalOrigen": 1900,
-        "CodigoPostalDestino": 1000,
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 5500,
         "PreciosXTamano": {
-          "S": 1900,
-          "M": 2700,
-          "L": 3500,
-          "XL": 4300
+          "S": 2100,
+          "M": 2800,
+          "L": 3600,
+          "XL": 4400
         }
       }
     ]
@@ -238,8 +228,8 @@
     },
     "TarifasPorOrigenDestino": [
       {
-        "CodigoPostalOrigen": 1000,
-        "CodigoPostalDestino": 3000,
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 1888,
         "PreciosXTamano": {
           "S": 1800,
           "M": 2600,
@@ -378,48 +368,6 @@
           "M": 2400,
           "L": 3000,
           "XL": 3600
-        }
-      }
-    ]
-  },
-  {
-    "ID": 200012,
-    "CUITCliente": "30-68274139-2",
-    "Extras": {
-      "ExtraRetiroDomicilio": 900,
-      "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
-    },
-    "TarifasPorOrigenDestino": [
-      {
-        "CodigoPostalOrigen": 2000,
-        "CodigoPostalDestino": 5000,
-        "PreciosXTamano": {
-          "S": 2200,
-          "M": 3000,
-          "L": 3800,
-          "XL": 4600
-        }
-      }
-    ]
-  },
-  {
-    "ID": 200013,
-    "CUITCliente": "30-94715263-9",
-    "Extras": {
-      "ExtraRetiroDomicilio": 900,
-      "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
-    },
-    "TarifasPorOrigenDestino": [
-      {
-        "CodigoPostalOrigen": 3000,
-        "CodigoPostalDestino": 1000,
-        "PreciosXTamano": {
-          "S": 1900,
-          "M": 2700,
-          "L": 3500,
-          "XL": 4300
         }
       }
     ]

@@ -41,8 +41,8 @@
     "CapacidadBodega": 110,
     "IDEmpresaTransporte": 500,
     "Tramos": [
-      { "ID": 10,  "CodigoPostalOrigen": 5500, "Salida": "2025-10-08T07:00:00", "CodigoPostalDestino": 2000, "Llegada": "2025-10-08T15:30:00" },
-      { "ID": 11,  "CodigoPostalOrigen": 2000, "Salida": "2025-10-08T17:00:00", "CodigoPostalDestino": 5500, "Llegada": "2025-10-08T23:50:00" }
+      { "ID": 10,  "CodigoPostalOrigen": 5500, "Salida": "2025-10-10T07:00:00", "CodigoPostalDestino": 2000, "Llegada": "2025-10-10T15:30:00" },
+      { "ID": 11,  "CodigoPostalOrigen": 2000, "Salida": "2025-10-10T17:00:00", "CodigoPostalDestino": 5500, "Llegada": "2025-10-10T23:50:00" }
     ]
   },
   {

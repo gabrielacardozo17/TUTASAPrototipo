@@ -65,7 +65,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                         Numero = numGuia.ToString(),
                         NroHDR = HDRAlmacen.HDR.First(h => h.Guias.Contains(numGuia)).ID,
                     })
-                .Where(g => GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnCaminoARetirarPorAgencia ||
+                .Where(g => GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnRutaACDDeOrigenDesdeAgencia ||
                             GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnCaminoARetirarPorDomicilio)
                 .OrderBy(g => g.Numero)
                 .ToList();

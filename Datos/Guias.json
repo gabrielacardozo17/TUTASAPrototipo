@@ -1,24 +1,24 @@
 ﻿[
   {
-    "NumeroGuia": 188800001,
-    "Estado": 10,
-    "FechaAdmision": "2025-10-29T12:20:00-03:00",
-    "TipoEntrega": 2,
-    "CodigoPostalCDOrigen": 1888,
-    "CodigoPostalCDDestino": 5000,
-    "IDAgenciaOrigen": "01888",
+    "NumeroGuia": 200000001,
+    "Estado": 0,
+    "FechaAdmision": "2025-10-29T09:10:00-03:00",
+    "TipoEntrega": 0,
+    "CodigoPostalCDOrigen": 2000,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "02000",
     "IDAgenciaDestino": "",
-    "CUITCliente": "33-99274898-8",
+    "CUITCliente": "30-94715263-9",
     "Tamano": 1,
     "Destinatario": {
       "DNI": 32568974,
       "Nombre": "Lucia",
       "Apellido": "Fernandez",
-      "Direccion": "Duarte Quiros 1250, Cordoba",
-      "CodigoPostal": 5000
+      "Direccion": "",
+      "CodigoPostal": 5500
     },
-    "IDConvenio": 200001,
-    "ImporteAFacturar": 15420.00,
+    "IDConvenio": 200002,
+    "ImporteAFacturar": 3700,
     "ComisionAgenciaOrigen": 0,
     "ComisionAgenciaDestino": 0,
     "ComisionFleteroOrigen": 0,
@@ -26,38 +26,200 @@
     "Historial": [
       {
         "Estado": 0,
-        "UbicacionGuia": "Agencia 01888",
+        "UbicacionGuia": "Agencia 02000",
         "FechaActualizacionEstado": "2025-10-29T09:10:00-03:00"
-      },
+      }
+    ]
+  },
+  {
+    "NumeroGuia": 200000002,
+    "Estado": 0,
+    "FechaAdmision": "2025-10-29T09:10:00-03:00",
+    "TipoEntrega": 0,
+    "CodigoPostalCDOrigen": 2000,
+    "CodigoPostalCDDestino": 5500,
+    "IDAgenciaOrigen": "02000",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "30-68274139-2",
+    "Tamano": 2,
+    "Destinatario": {
+      "DNI": 22689741,
+      "Nombre": "Marcela",
+      "Apellido": "Gonzalez",
+      "Direccion": "",
+      "CodigoPostal": 5500
+    },
+    "IDConvenio": 200012,
+    "ImporteAFacturar": 4700,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
       {
-        "Estado": 3,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-10-29T09:15:00-03:00"
-      },
-      {
-        "Estado": 4,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-10-29T10:00:00-03:00"
-      },
+        "Estado": 0,
+        "UbicacionGuia": "Agencia 02000",
+        "FechaActualizacionEstado": "2025-10-29T09:10:00-03:00"
+      }
+    ]
+  },
+  {
+    "NumeroGuia": 570010004,
+    "Estado": 5,
+    "FechaAdmision": "2025-11-09T15:08:55.6916277-03:00",
+    "TipoEntrega": 2,
+    "CodigoPostalCDOrigen": 5700,
+    "CodigoPostalCDDestino": 1888,
+    "IDAgenciaOrigen": "",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "30-55667788-1",
+    "Tamano": 0,
+    "Destinatario": {
+      "DNI": 23248321,
+      "Nombre": "Juan",
+      "Apellido": "Perez",
+      "Direccion": "Alvear 2888, Buenos Aires",
+      "CodigoPostal": 1888
+    },
+    "IDConvenio": 200025,
+    "ImporteAFacturar": 1800,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
       {
         "Estado": 5,
-        "UbicacionGuia": "CD 1888",
-        "FechaActualizacionEstado": "2025-10-29T12:20:00-03:00"
-      },
+        "UbicacionGuia": "CD San Luis",
+        "FechaActualizacionEstado": "2025-11-09T15:08:55.6919187-03:00"
+      }
+    ]
+  },
+  {
+    "NumeroGuia": 570010005,
+    "Estado": 5,
+    "FechaAdmision": "2025-11-09T15:08:55.69246-03:00",
+    "TipoEntrega": 2,
+    "CodigoPostalCDOrigen": 5700,
+    "CodigoPostalCDDestino": 1888,
+    "IDAgenciaOrigen": "",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "30-55667788-1",
+    "Tamano": 3,
+    "Destinatario": {
+      "DNI": 23248321,
+      "Nombre": "Juan",
+      "Apellido": "Perez",
+      "Direccion": "Alvear 2888, Buenos Aires",
+      "CodigoPostal": 1888
+    },
+    "IDConvenio": 200025,
+    "ImporteAFacturar": 4200,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
       {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-10-29T18:40:00-03:00"
-      },
+        "Estado": 5,
+        "UbicacionGuia": "CD San Luis",
+        "FechaActualizacionEstado": "2025-11-09T15:08:55.6924667-03:00"
+      }
+    ]
+  },
+  {
+    "NumeroGuia": 188810004,
+    "Estado": 1,
+    "FechaAdmision": "2025-11-09T15:47:28.3912929-03:00",
+    "TipoEntrega": 2,
+    "CodigoPostalCDOrigen": 1888,
+    "CodigoPostalCDDestino": 1888,
+    "IDAgenciaOrigen": "",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "30-40762117-0",
+    "Tamano": 0,
+    "Destinatario": {
+      "DNI": 35941201,
+      "Nombre": "Lucas",
+      "Apellido": "Barrios",
+      "Direccion": "Av. San Martin 500, Florencio Varela",
+      "CodigoPostal": 1888
+    },
+    "IDConvenio": 200002,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
       {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5000",
-        "FechaActualizacionEstado": "2025-10-30T09:00:00-03:00"
-      },
+        "Estado": 1,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-09T15:47:28.391828-03:00"
+      }
+    ]
+  },
+  {
+    "NumeroGuia": 188810005,
+    "Estado": 1,
+    "FechaAdmision": "2025-11-09T15:47:28.3925705-03:00",
+    "TipoEntrega": 2,
+    "CodigoPostalCDOrigen": 1888,
+    "CodigoPostalCDDestino": 1888,
+    "IDAgenciaOrigen": "",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "30-40762117-0",
+    "Tamano": 0,
+    "Destinatario": {
+      "DNI": 35941201,
+      "Nombre": "Lucas",
+      "Apellido": "Barrios",
+      "Direccion": "Av. San Martin 500, Florencio Varela",
+      "CodigoPostal": 1888
+    },
+    "IDConvenio": 200002,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
       {
-        "Estado": 10,
-        "UbicacionGuia": "CD 5000",
-        "FechaActualizacionEstado": "2025-10-30T10:30:00-03:00"
+        "Estado": 1,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-09T15:47:28.3925771-03:00"
+      }
+    ]
+  },
+  {
+    "NumeroGuia": 188810006,
+    "Estado": 1,
+    "FechaAdmision": "2025-11-09T15:47:28.3925801-03:00",
+    "TipoEntrega": 2,
+    "CodigoPostalCDOrigen": 1888,
+    "CodigoPostalCDDestino": 1888,
+    "IDAgenciaOrigen": "",
+    "IDAgenciaDestino": "",
+    "CUITCliente": "30-40762117-0",
+    "Tamano": 1,
+    "Destinatario": {
+      "DNI": 35941201,
+      "Nombre": "Lucas",
+      "Apellido": "Barrios",
+      "Direccion": "Av. San Martin 500, Florencio Varela",
+      "CodigoPostal": 1888
+    },
+    "IDConvenio": 200002,
+    "ImporteAFacturar": 0,
+    "ComisionAgenciaOrigen": 0,
+    "ComisionAgenciaDestino": 0,
+    "ComisionFleteroOrigen": 0,
+    "ComisionFleteroDestino": 0,
+    "Historial": [
+      {
+        "Estado": 1,
+        "UbicacionGuia": "",
+        "FechaActualizacionEstado": "2025-11-09T15:47:28.3925807-03:00"
       }
     ]
   },
