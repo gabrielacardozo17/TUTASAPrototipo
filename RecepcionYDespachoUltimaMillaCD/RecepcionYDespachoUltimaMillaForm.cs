@@ -32,7 +32,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             CancelarButton.Click += CancelarButton_Click;
 
             UsuarioResult.Text = "Juan Perez";
-            CDResult.Text = "N/A";
+            CDResult.Text = "Buenos Aires";
 
             // Renombrar groupboxes según negocio (texto provisto)
             try
@@ -43,6 +43,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             }
             catch { }
             PrepararListViews();
+
 
         }
 
@@ -116,10 +117,17 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
             // Cargar guías asignadas (listas superiores) y también las "nuevas" (resumen HDR) para que se vean inmediatamente
             CargarAsignadas(dni);
-            
+
+
             CargarResumenPosterior(dni);
 
             MostrarSeccionBusquedaYListasSuperiores(true);
+
+            if (NuevasGuiasRetiroxFleteroListView.Items.Count == 0 && NuevasGuiasDistribucionxFleteroListView.Items.Count == 0 && GuiasDistribucionxFleteroListView.Items.Count == 0 && GuiasRetiroxFleteroListView.Items.Count == 0)
+            {
+                MessageBox.Show("No tiene guias a asignar a este fletero", "Validación"); DNIFleteroTextBox.Clear(); DNIFleteroTextBox.Focus(); PintarNombreFletero(string.Empty); return;
+            }
+          
         }
 
         // ====== CONFIRMAR (ahora 1 paso: aplica y muestra popup) ======
@@ -133,7 +141,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
             int dni = int.Parse(dniTxt);
 
-            //  guías seleccionadas por HDR (para mostrar en el popup)
+            // Capturar ANTES de modificar el modelo: guías seleccionadas por HDR (para mostrar en el popup)
             var recibidasDistPorHdr = SeleccionadasPorHDR(GuiasDistribucionxFleteroListView);
             var recibidasRetiroPorHdr = SeleccionadasPorHDR(GuiasRetiroxFleteroListView);
 
@@ -141,50 +149,43 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             var marcadasDistrib = recibidasDistPorHdr.SelectMany(kv => kv.Value).ToList();
             var marcadasRetiro = recibidasRetiroPorHdr.SelectMany(kv => kv.Value).ToList();
 
-
             try
             {
+                // 1. Primero confirmar la rendición (solo cambia estados)
                 _modelo.ConfirmarRendicion(dni, marcadasDistrib, marcadasRetiro);
-                CargarResumenPosterior(dni); 
+
+                // 2. Obtener las guías y sus HDRs proyectadas (sin grabar aún)
+                CargarResumenPosterior(dni);  // Esto llama a GetNuevasGuiasPorFletero
+
+                // 3. Ahora sí, crear y grabar las HDRs que se mostraron
                 _modelo.AsignarHDRsPorDireccion(dni);
+
+                // 4. Asegurar que todo quedó correctamente asignado
                 _modelo.AsegurarHDRsAsignadasParaFletero(dni);
+
+                // 5. Actualizar la vista superior con las guías asignadas
                 CargarAsignadas(dni);
 
-                bool distribucionAsignadasVacia = GuiasDistribucionxFleteroListView.Items.Count == 0;
-                bool retiroAsignadasVacio = GuiasRetiroxFleteroListView.Items.Count == 0;
-                bool nuevasDistribucionVacia = NuevasGuiasDistribucionxFleteroListView.Items.Count == 0;
-                bool nuevasRetiroVacio = NuevasGuiasRetiroxFleteroListView.Items.Count == 0;
 
+                // Construir el mensaje EXACTO solicitado
+                string msg =
+                    "Operacion exitosa. Rendicion confirmada." + Environment.NewLine +
+                    Environment.NewLine +
+                    "HDR de distribucion recibidas: " + Environment.NewLine +
+                    FormatearGrupos(recibidasDistPorHdr) + Environment.NewLine + Environment.NewLine +
+                    "HDR de retiro recibidas: " + Environment.NewLine +
+                    FormatearGrupos(recibidasRetiroPorHdr) + Environment.NewLine + Environment.NewLine +
+                    "HDR de distribucion asignadas: " + Environment.NewLine +
+                    ConstruirAsignadasSoloLineas(NuevasGuiasDistribucionxFleteroListView) + Environment.NewLine + Environment.NewLine +
+                    "HDR de retiro asignadas: " + Environment.NewLine +
+                    ConstruirAsignadasSoloLineas(NuevasGuiasRetiroxFleteroListView);
 
-                // Verifica si todas las listas están vacías (sin guias asignadas y sin nuevas guias)
-                if (distribucionAsignadasVacia && retiroAsignadasVacio && nuevasDistribucionVacia && nuevasRetiroVacio)
-                {
-                    MessageBox.Show("No hay guías a rendir ni tampoco nuevas guías asignadas", "Validación");
-                    return;
-                }
-                else
-                {
-                    // Construir el mensaje EXACTO solicitado
-                    string msg =
-                        "Operacion exitosa. Rendicion confirmada." + Environment.NewLine +
-                        Environment.NewLine +
-                        "HDR de distribucion recibidas: " + Environment.NewLine +
-                        FormatearGrupos(recibidasDistPorHdr) + Environment.NewLine + Environment.NewLine +
-                        "HDR de retiro recibidas: " + Environment.NewLine +
-                        FormatearGrupos(recibidasRetiroPorHdr) + Environment.NewLine + Environment.NewLine +
-                        "HDR de distribucion asignadas: " + Environment.NewLine +
-                        ConstruirAsignadasSoloLineas(NuevasGuiasDistribucionxFleteroListView) + Environment.NewLine + Environment.NewLine +
-                        "HDR de retiro asignadas: " + Environment.NewLine +
-                        ConstruirAsignadasSoloLineas(NuevasGuiasRetiroxFleteroListView);
+                MessageBox.Show(msg, "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    MessageBox.Show(msg, "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    _enRevision = false;
-                    _dniEnRevision = null;
-                    LimpiarPantalla(total: true);
-                    MostrarSeccionBusquedaYListasSuperiores(true);
-                }
-                    
+                _enRevision = false;
+                _dniEnRevision = null;
+                LimpiarPantalla(total: true);
+                MostrarSeccionBusquedaYListasSuperiores(true);
             }
             catch (Exception ex)
             {
@@ -204,8 +205,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             GuiasRetiroxFleteroListView.Items.Clear();
 
             var t = _modelo.GetGuiasPorFletero(dni);
-          
-
             foreach (var g in t.distribucion)
             {
                 var it = new ListViewItem("") { Checked = false };
@@ -220,7 +219,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 it.SubItems.Add(g.NroHDR ?? "");
                 GuiasRetiroxFleteroListView.Items.Add(it);
             }
-
         }
 
         private void CargarResumenPosterior(int dni)
@@ -232,8 +230,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             NuevasGuiasDistribucionxFleteroListView.Items.Clear();
 
             var t = _modelo.GetNuevasGuiasPorFletero();
-
-               
             foreach (var g in t.retiro)
             {
                 var it = new ListViewItem(g.Numero);
@@ -250,7 +246,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 it.SubItems.Add(g.NroHDR ?? "");
                 NuevasGuiasDistribucionxFleteroListView.Items.Add(it);
             }
-    
         }
 
         // ====== HELPERS UI ======
@@ -427,4 +422,3 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
         private void GuiasRetiroxFleteroListView_SelectedIndexChanged(object sender, EventArgs e) { /* no-op */ }
     }
 }
-

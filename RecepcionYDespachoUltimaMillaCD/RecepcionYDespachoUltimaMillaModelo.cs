@@ -169,7 +169,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
             var GuiasParaDistribucionSinHDR = GuiaAlmacen.guias.Where(g => !GuiasEnHDR.Contains(g.NumeroGuia)
                                                         && g.CodigoPostalCDDestino == CDActual.CodigoPostal
-                                                        && g.Estado == EstadoGuiaEnum.Admitida)
+                                                        && (g.Estado == EstadoGuiaEnum.Admitida || g.Estado == EstadoGuiaEnum.EnCDDestino))
                                                         .Take(5)  // Tomar solo 5 guías de distribución
                                                         .ToList();
 
@@ -231,7 +231,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
             // Separar las de distribución y retiro
             var guiasDistribucion = guiasReales
-                .Where(g => g.Estado == EstadoGuiaEnum.Admitida)
+                .Where(g => g.Estado == EstadoGuiaEnum.Admitida || g.Estado == EstadoGuiaEnum.EnCDDestino)
                 .ToList();
 
             var guiasRetiro = guiasReales
@@ -352,6 +352,14 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                     break;
 
                 case EstadoGuiaEnum.Admitida when guia.TipoEntrega == EntregaEnum.Agencia:
+                    nuevoEstado = EstadoGuiaEnum.EnRutaAlaAgenciaDestino;
+                    break;
+
+                case EstadoGuiaEnum.EnCDDestino when guia.TipoEntrega == EntregaEnum.Domicilio:
+                    nuevoEstado = EstadoGuiaEnum.EnRutaAlDomicilioDeEntrega;
+                    break;
+
+                case EstadoGuiaEnum.EnCDDestino when guia.TipoEntrega == EntregaEnum.Agencia:
                     nuevoEstado = EstadoGuiaEnum.EnRutaAlaAgenciaDestino;
                     break;
 
