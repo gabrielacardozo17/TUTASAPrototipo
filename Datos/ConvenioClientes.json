@@ -102,8 +102,8 @@
     },
     "TarifasPorOrigenDestino": [
       {
-        "CodigoPostalOrigen": 5500,
-        "CodigoPostalDestino": 8300,
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 5500,
         "PreciosXTamano": {
           "S": 2400,
           "M": 3200,
@@ -305,27 +305,6 @@
           "M": 1800,
           "L": 2400,
           "XL": 3000
-        }
-      }
-    ]
-  },
-  {
-    "ID": 200009,
-    "CUITCliente": "30-87419362-4",
-    "Extras": {
-      "ExtraRetiroDomicilio": 1000,
-      "ExtraEntregaDomicilio": 1300,
-      "ExtraEntregaAgencia": 0
-    },
-    "TarifasPorOrigenDestino": [
-      {
-        "CodigoPostalOrigen": 5000,
-        "CodigoPostalDestino": 5500,
-        "PreciosXTamano": {
-          "S": 2600,
-          "M": 3400,
-          "L": 4200,
-          "XL": 5000
         }
       }
     ]
