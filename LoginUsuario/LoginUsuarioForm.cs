@@ -100,6 +100,12 @@ namespace TUTASAPrototipo.LoginUsuario
                 return;
             }
 
+            // Setear globals solo si hay selección; si no, no se setea
+            if (selectedCd != null && !string.Equals(selectedCd.Nombre, "N/A", StringComparison.OrdinalIgnoreCase))
+                CentroDeDistribucionAlmacen.CentroDistribucionActual = selectedCd;
+            if (selectedAg != null && !string.Equals(selectedAg.Nombre, "N/A", StringComparison.OrdinalIgnoreCase))
+                AgenciaAlmacen.AgenciaActual = selectedAg;
+
             LimpiarFormulario();
             MessageBox.Show("Usuario autenticado correctamente.",
                            "Acceso concedido",
