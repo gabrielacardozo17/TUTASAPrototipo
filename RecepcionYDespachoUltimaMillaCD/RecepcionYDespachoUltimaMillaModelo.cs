@@ -131,20 +131,35 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 guia.Estado = EstadoGuiaEnum.Admitida;
                 guia.ImporteAFacturar = CalcularImporte(guia.NumeroGuia);
 
-                // Guardar historial
+                // Guardar historial , primero en admitida
                 guia.Historial.Add(new RegistroEstadoAux
                 {
                     Estado = guia.Estado,
                     UbicacionGuia = CDActual.Nombre,
                     FechaActualizacionEstado = DateTime.Now
                 });
-            }
 
-            // Grabar cambios
-            if (guiasDistribucion.Any() || guiasRetiro.Any())
-            {
-                GuiaAlmacen.Grabar();
-                HDRAlmacen.Grabar();
+                //solo sen esta condicion tengo de borrar la guia de la HDR asignada antes, para que me la vuelva a asignar en la proxima HDR de distribucion
+                if (guia.CodigoPostalCDDestino == CDActual.CodigoPostal)
+                {
+                    guia.Estado = EstadoGuiaEnum.EnCDDestino;
+                    // Guardar historial , primero en admitida
+                    guia.Historial.Add(new RegistroEstadoAux
+                    {
+                        Estado = guia.Estado,
+                        UbicacionGuia = CDActual.Nombre,
+                        FechaActualizacionEstado = DateTime.Now
+                    });
+
+                    DesasignarGuiasDeHDR(hdrAnterior.ID.ToString(), guia.NumeroGuia);
+                }
+
+                // Grabar cambios
+                if (guiasDistribucion.Any() || guiasRetiro.Any())
+                {
+                    GuiaAlmacen.Grabar();
+                   // HDRAlmacen.Grabar(); no va estaba de mas
+                }
             }
         }
         
@@ -169,7 +184,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
             var GuiasParaDistribucionSinHDR = GuiaAlmacen.guias.Where(g => !GuiasEnHDR.Contains(g.NumeroGuia)
                                                         && g.CodigoPostalCDDestino == CDActual.CodigoPostal
-                                                        && (g.Estado == EstadoGuiaEnum.Admitida || g.Estado == EstadoGuiaEnum.EnCDDestino))
+                                                        && ( g.Estado == EstadoGuiaEnum.EnCDDestino))
                                                         .Take(5)  // Tomar solo 5 guías de distribución
                                                         .ToList();
 
@@ -456,6 +471,13 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 return DomicilioEntrega;
             }
 
+        }
+
+        private void DesasignarGuiasDeHDR(string hdr, int nroGuia)
+        {
+            var HDRGuia = HDRAlmacen.HDR.FirstOrDefault(h => h.ID == hdr);
+
+            HDRGuia?.Guias.Remove(nroGuia);
         }
 
     }
