@@ -155,7 +155,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 _modelo.ConfirmarRendicion(dni, marcadasDistrib, marcadasRetiro);
 
                 // 2. Obtener las guías y sus HDRs proyectadas (sin grabar aún)
+                /*
                 CargarResumenPosterior(dni);  // Esto llama a GetNuevasGuiasPorFletero
+                */
 
                 // 3. Ahora sí, crear y grabar las HDRs que se mostraron
                 _modelo.AsignarHDRsPorDireccion(dni);
@@ -164,7 +166,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 _modelo.AsegurarHDRsAsignadasParaFletero(dni);
 
                 // 5. Actualizar la vista superior con las guías asignadas
+                /*
                 CargarAsignadas(dni);
+                */
 
 
                 // Construir el mensaje EXACTO solicitado
