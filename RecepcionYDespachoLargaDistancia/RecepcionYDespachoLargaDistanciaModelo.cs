@@ -286,6 +286,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             var fechaNow = DateTime.Now;
             var cdNombreActual = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(cd => cd.CodigoPostal == codigoPostalCDActual)?.Nombre ?? string.Empty;
 
+            // Parsear el servicio actual una sola vez para reutilizar
+            _ = int.TryParse(numeroServicio, out var idServicioActual);
+
             // Recepción
             if (guiasRecibidas != null && guiasRecibidas.Count > 0 && codigoPostalCDActual.HasValue)
             {
@@ -341,7 +344,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                     entidad.Historial.Add(new RegistroEstadoAux
                     {
                         Estado = EstadoGuiaEnum.EnTransitoAlCDDestino,
-                        UbicacionGuia = string.Empty,
+                        UbicacionGuia = idServicioActual > 0 ? $"Servicio:{idServicioActual}" : string.Empty,
                         FechaActualizacionEstado = fechaNow
                     });
                     guiasDespachadasEntidades.Add(entidad);

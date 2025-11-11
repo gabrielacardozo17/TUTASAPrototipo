@@ -16,6 +16,13 @@ namespace TUTASAPrototipo.ConsultarEstado
 
             var txt = ubicacion.Trim();
 
+            // Marcas especiales internas
+            if (txt.StartsWith("Servicio:", StringComparison.OrdinalIgnoreCase))
+            {
+                var dig = new string(txt.Where(char.IsDigit).ToArray());
+                return string.IsNullOrEmpty(dig) ? "Servicio" : $"Servicio Nº {dig}";
+            }
+
             // Detectar prefijos conocidos
             bool empiezaAgencia = txt.StartsWith("Agencia", StringComparison.OrdinalIgnoreCase);
             bool empiezaCD = txt.StartsWith("CD", StringComparison.OrdinalIgnoreCase);
@@ -197,18 +204,27 @@ namespace TUTASAPrototipo.ConsultarEstado
 
                 case EstadoGuiaEnum.EnTransitoAlCDDestino:
                     {
-                        // Priorizar CD intermedio si viene en historial y NO es el CD destino final
+                        // Si la marca es Servicio: mostrarla directamente
+                        if (!string.IsNullOrWhiteSpace(h.UbicacionGuia) && h.UbicacionGuia.StartsWith("Servicio:", StringComparison.OrdinalIgnoreCase))
+                        {
+                            var dig = new string(h.UbicacionGuia.Where(char.IsDigit).ToArray());
+                            return string.IsNullOrEmpty(dig) ? "En Servicio Nº -" : $"En Servicio Nº {dig}";
+                        }
+
+                        // Priorizar CD intermedio si viene en historial y NO es el CD destino final. Detectar por nombre también.
                         var txt = h.UbicacionGuia?.Trim() ?? string.Empty;
+                        // 1) Formato CD####
                         if (txt.StartsWith("CD", StringComparison.OrdinalIgnoreCase))
                         {
                             var dig = new string(txt.Where(char.IsDigit).ToArray());
-                            if (int.TryParse(dig, out var cp))
-                            {
-                                if (cp != g.CodigoPostalCDDestino)
-                                {
-                                    return $"En CD Intermedio: {NombreCDPorCP(cp)}";
-                                }
-                            }
+                            if (int.TryParse(dig, out var cp) && cp != g.CodigoPostalCDDestino)
+                                return $"En CD Intermedio: {NombreCDPorCP(cp)}";
+                        }
+                        // 2) Nombre de CD existente distinto del destino final
+                        var cdMatch = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => string.Equals(c.Nombre, txt, StringComparison.OrdinalIgnoreCase));
+                        if (cdMatch != null && cdMatch.CodigoPostal != g.CodigoPostalCDDestino)
+                        {
+                            return $"En CD Intermedio: {cdMatch.Nombre}";
                         }
 
                         // Si no hay CD intermedio, intentar Servicio Transporte (por guía o por ruta)
@@ -263,14 +279,25 @@ namespace TUTASAPrototipo.ConsultarEstado
             var historial = guiaEntidad.Historial ?? new List<RegistroEstadoAux>();
 
             // Construir movimientos (con normalización + reglas de ubicación por estado)
-            var movimientos = historial
+            var movimientosRaw = historial
                 .Select(h => new Guia.Movimiento(
                     h.FechaActualizacionEstado,
                     EstadoDisplay(h.Estado),
                     UbicacionDisplayParaMovimiento(h, guiaEntidad)
                 ))
+                .OrderBy(m => m.Fecha)
+                .ToList();
+
+            // Reglas de agrupación:
+            // - Para "En tránsito al CD destino": NO colapsar, mantener todas las filas (aunque repitan ubicación)
+            // - Para el resto de estados: colapsar por (Estado, Ubicación) manteniendo el último por fecha
+            const string estadoTransitoDisplay = "En tránsito al CD destino";
+            var noAgrupar = movimientosRaw.Where(m => m.Estado == estadoTransitoDisplay);
+            var agruparOtros = movimientosRaw.Where(m => m.Estado != estadoTransitoDisplay)
                 .GroupBy(m => new { m.Estado, m.Ubicacion })
-                .Select(g => g.OrderBy(m => m.Fecha).Last())
+                .Select(g => g.OrderBy(m => m.Fecha).Last());
+
+            var movimientos = noAgrupar.Concat(agruparOtros)
                 .OrderBy(m => m.Fecha)
                 .ToList();
 
