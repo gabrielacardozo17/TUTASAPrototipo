@@ -9,11 +9,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
     {
         private List<ServicioTransporte> servicios;
         private List<Guia> guiasPendientesDeAsignacion;
-
-        // Almacenamiento interno de planes de ruta (no persiste fuera del modelo)
-        // Por NumeroGuia: lista ordenada de hops (CD destino parcial y servicio a usar).
         private readonly Dictionary<int, List<(int nextCd, int servicioId)>> _planesRuta = new();
-        // Índice del próximo hop a ejecutar por guía.
         private readonly Dictionary<int, int> _indiceHopActual = new();
 
         public RecepcionYDespachoLargaDistanciaModelo()
@@ -27,6 +23,24 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
         {
             CDActual = cd ?? CentroDeDistribucionAlmacen.CentroDistribucionActual;
             MapearDesdeAlmacenes();
+        }
+
+        // =================== NUEVAS VALIDACIONES (solo modelo) ===================
+        // Indica si el servicio existe y tiene al menos una guía (recibir o despachar)
+        public bool ServicioTieneGuias(string numeroServicio)
+        {
+            var s = BuscarServicio(numeroServicio);
+            return s != null && ((s.GuiasARecibir?.Count ?? 0) > 0 || (s.GuiasADespachar?.Count ?? 0) > 0);
+        }
+
+        // Indica si el servicio no tiene guías (recibir ni despachar)
+        public bool ServicioSinGuias(string numeroServicio) => !ServicioTieneGuias(numeroServicio);
+
+        // Indica si después de confirmar el servicio quedó sin guías pendientes
+        public bool ServicioSinGuiasPostConfirmacion(string numeroServicio)
+        {
+            var s = BuscarServicio(numeroServicio);
+            return s == null || ((s.GuiasARecibir?.Count ?? 0) == 0 && (s.GuiasADespachar?.Count ?? 0) == 0);
         }
 
         private static int CapacidadPorTamano(TamanoEnum tam) => tam switch
@@ -47,7 +61,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             return guiasEnHDR.Sum(g => CapacidadPorTamano(g.Tamano));
         }
 
-        // Construye grafo global (union de tramos de todos los servicios) y mapea tramo->servicios.
         private static void ConstruirGrafoGlobal(IEnumerable<ServicioTransporteEntidad> servicios, out Dictionary<int, List<int>> adj, out Dictionary<(int,int), List<int>> tramoServicios)
         {
             adj = new();
@@ -75,7 +88,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             }
         }
 
-        // BFS global para ruta óptima (mínimo hops) CD origen -> CD destino.
         private static List<int> CalcularRutaGlobal(int origen, int destino, Dictionary<int, List<int>> adj)
         {
             var ruta = new List<int>();
@@ -103,18 +115,16 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             int cur=destino; var stack=new Stack<int>(); stack.Push(cur);
             while(prev.ContainsKey(cur)) { cur = prev[cur]; stack.Push(cur); }
             ruta = stack.ToList();
-            return ruta; // incluye origen y destino
+            return ruta;
         }
 
-        // Planifica ruta si no existe todavía. Usa grafo global multi-servicio.
         private void PlanificarRutaSiNecesaria(GuiaEntidad guia, IEnumerable<ServicioTransporteEntidad> serviciosEnt, int cdActual)
         {
-            if (_planesRuta.ContainsKey(guia.NumeroGuia)) return; // ya existe
+            if (_planesRuta.ContainsKey(guia.NumeroGuia)) return;
             ConstruirGrafoGlobal(serviciosEnt, out var adj, out var tramoServicios);
             var rutaCds = CalcularRutaGlobal(cdActual, guia.CodigoPostalCDDestino, adj);
             if (rutaCds.Count < 2)
             {
-                // sin ruta real → plan directo
                 rutaCds = new List<int>{cdActual, guia.CodigoPostalCDDestino};
             }
             var hops = new List<(int nextCd,int servicioId)>();
@@ -122,14 +132,13 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             {
                 var orig = rutaCds[i];
                 var dest = rutaCds[i+1];
-                int servicioAsignado = tramoServicios.TryGetValue((orig,dest), out var svcs) ? svcs.First() : 0; // 0 si no hay (fallback)
+                int servicioAsignado = tramoServicios.TryGetValue((orig,dest), out var svcs) ? svcs.First() : 0;
                 hops.Add((dest, servicioAsignado));
             }
             _planesRuta[guia.NumeroGuia] = hops;
             _indiceHopActual[guia.NumeroGuia] = 0;
         }
 
-        // Obtiene próximo hop (next CD) para la guía según plan.
         private int ObtenerProximoHop(int numeroGuia)
         {
             if (!_planesRuta.TryGetValue(numeroGuia, out var hops)) return 0;
@@ -138,7 +147,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             return hops[idx].nextCd;
         }
 
-        // Avanza hop tras recepción intermedia.
         private void AvanzarHop(int numeroGuia)
         {
             if (_indiceHopActual.ContainsKey(numeroGuia)) _indiceHopActual[numeroGuia]++;
@@ -181,7 +189,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                     var guiasADespachar = new List<Guia>();
                     if (codigoPostalCDActual.HasValue && capacidadRestante > 0)
                     {
-                        // Candidatas: admitidas en origen actual o recién recibidas en hop intermedio (ubicación registro = CD actual)
                         var candidatas = guiasAlmacen
                             .Where(ga => ga.CodigoPostalCDDestino != codigoPostalCDActual.Value &&
                                         ((ga.Estado == EstadoGuiaEnum.Admitida && ga.CodigoPostalCDOrigen == codigoPostalCDActual.Value) ||
@@ -192,15 +199,13 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                         int carga = 0;
                         foreach (var ga in candidatas)
                         {
-                            // Planificar si es primer despacho desde origen (no existe plan)
                             if (!_planesRuta.ContainsKey(ga.NumeroGuia))
                                 PlanificarRutaSiNecesaria(ga, serviciosEnt, codigoPostalCDActual.Value);
                             int nextHop = ObtenerProximoHop(ga.NumeroGuia);
-                            if (nextHop == 0) continue; // sin hop válido
+                            if (nextHop == 0) continue;
 
-                            // Verificar que el servicio actual (s) pueda realizar este hop directo (existe tramo origen->nextHop)
                             bool servicioPuedeHop = s.Tramos != null && s.Tramos.Any(t => t.CodigoPostalOrigen == codigoPostalCDActual.Value && t.CodigoPostalDestino == nextHop);
-                            if (!servicioPuedeHop) continue; // este servicio no sirve para el siguiente hop planificado
+                            if (!servicioPuedeHop) continue;
 
                             int costo = CapacidadPorTamano(ga.Tamano);
                             if (carga + costo > capacidadRestante) continue;
@@ -224,7 +229,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                 })
                 .ToList();
 
-            // Guías para reasignación (hop intermedio) no incluidas en HDR actualmente.
             var guiasEnHDRNums = hdrs.SelectMany(h => h.Guias).ToHashSet();
             this.guiasPendientesDeAsignacion = guiasAlmacen
                 .Where(g => !guiasEnHDRNums.Contains(g.NumeroGuia) &&
@@ -244,14 +248,19 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             this.guiasPendientesDeAsignacion ??= new List<Guia>();
         }
 
-        private void CargarDatosDePrueba() { /* histórico comentado */ }
+        private void CargarDatosDePrueba() { }
 
         public ServicioTransporte BuscarServicio(string numeroServicio)
         {
-            if (string.IsNullOrWhiteSpace(numeroServicio)) return null;
+            if (string.IsNullOrWhiteSpace(numeroServicio))
+                return null;
+
             MapearDesdeAlmacenes();
+
             var servicio = servicios.FirstOrDefault(s => s.NumeroServicio == numeroServicio);
-            if (servicio == null) return null;
+            if (servicio == null)
+                return null;
+
             servicio.GuiasARecibir = servicio.GuiasARecibir.Where(g => !g.Procesada).ToList();
             servicio.GuiasADespachar = servicio.GuiasADespachar.Where(g => !g.Procesada).ToList();
             return servicio;
@@ -285,11 +294,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             int? codigoPostalCDActual = CDActual?.CodigoPostal ?? CentroDeDistribucionAlmacen.CentroDistribucionActual?.CodigoPostal;
             var fechaNow = DateTime.Now;
             var cdNombreActual = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(cd => cd.CodigoPostal == codigoPostalCDActual)?.Nombre ?? string.Empty;
-
-            // Parsear el servicio actual una sola vez para reutilizar
             _ = int.TryParse(numeroServicio, out var idServicioActual);
 
-            // Recepción
             if (guiasRecibidas != null && guiasRecibidas.Count > 0 && codigoPostalCDActual.HasValue)
             {
                 foreach (var nro in guiasRecibidas)
@@ -306,9 +312,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                     else
                     {
                         entidad.Estado = EstadoGuiaEnum.EnTransitoAlCDDestino;
-                        // Avanzar hop planificado si existe
                         if (_indiceHopActual.ContainsKey(entidad.NumeroGuia)) AvanzarHop(entidad.NumeroGuia);
-                        // Liberar de HDR al llegar a hop intermedio
                         var hdrsDestinoActual = HDRAlmacen.HDR.Where(h => h.CodigoPostalDestino == codigoPostalCDActual.Value && h.Guias.Contains(n)).ToList();
                         foreach (var hdr in hdrsDestinoActual)
                         {
@@ -325,7 +329,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                 }
             }
 
-            // Despacho: planificar rutas (si no existe) y agrupar por próximo hop calculado del plan.
             var guiasDespachadasEntidades = new List<GuiaEntidad>();
             if (guiasDespachadas != null && guiasDespachadas.Count > 0 && codigoPostalCDActual.HasValue)
             {
@@ -339,7 +342,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                     if (!_planesRuta.ContainsKey(entidad.NumeroGuia))
                         PlanificarRutaSiNecesaria(entidad, serviciosEnt, codigoPostalCDActual.Value);
                     int nextHop = ObtenerProximoHop(entidad.NumeroGuia);
-                    if (nextHop == 0) continue; // no se puede despachar
+                    if (nextHop == 0) continue;
                     entidad.Estado = EstadoGuiaEnum.EnTransitoAlCDDestino;
                     entidad.Historial.Add(new RegistroEstadoAux
                     {
@@ -354,7 +357,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             if (int.TryParse(numeroServicio, out var idServicio) && guiasDespachadasEntidades.Any() && codigoPostalCDActual.HasValue)
             {
                 int secuencia = HDRAlmacen.HDR.Count + 1;
-                // Agrupar por próximo hop según plan (filtrar las que el servicio efectivamente puede llevar).
                 var servicioActual = ServicioTransporteAlmacen.serviciosTransporte.FirstOrDefault(s => s.ID == idServicio);
                 var gruposPorHop = guiasDespachadasEntidades
                     .Select(g => new { Guia = g, Hop = ObtenerProximoHop(g.NumeroGuia) })
