@@ -389,7 +389,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 var lineas = guias.Select(g => $"- {g.numero} (Tamaño: {g.tamano})");
                 var cuerpo = string.Join(Environment.NewLine, lineas);
 
-                MessageBox.Show(
+                if (guias.Count > 0) MessageBox.Show(
                     $"Imposición confirmada. Se generaron {guias.Count} guías (Estado: Admitida):{Environment.NewLine}{cuerpo}",
                     "Operación Exitosa",
                     MessageBoxButtons.OK,

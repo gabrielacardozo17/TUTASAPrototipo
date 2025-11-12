@@ -259,16 +259,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             return tipos.ToArray();
         }
 
-        public int? GetCDIdPorNombre(string nombreCD)
-        {
-            if (string.IsNullOrWhiteSpace(nombreCD)) return null;
-
-            var cd = _cdsPorProv.Values
-                .SelectMany(v => v)
-                .FirstOrDefault(c => string.Equals(c.nombre?.Trim(), nombreCD.Trim(), StringComparison.OrdinalIgnoreCase));
-
-            return cd.id != 0 ? cd.id : (int?)null;
-        }
 
         // =============================================================
         // 3) CREACION DE LA GUIA

@@ -339,7 +339,16 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 return provinciaId;
             }
 
-            // Agencia destino (CP)
+            // Buscar tarifa exacta (solo origen/destino)
+            var convenio = ConvenioClienteAlmacen.convenioClientes.FirstOrDefault(c => c.CUITCliente == cuitParaGuia);
+            var tarifaOrigenDestino = convenio?.TarifasPorOrigenDestino
+                .FirstOrDefault(t => t.CodigoPostalOrigen == cpOrigen && t.CodigoPostalDestino == CodigoPostalDestino());
+            if (tarifaOrigenDestino == null)
+            {
+                MessageBox.Show($"No se encontró tarifa para Origen: {cpOrigen}, Destino: {CodigoPostalDestino()}", "Tarifa", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return new List<(string numero, TamanoEnum tamano)>();
+            }
+
             string IdAgenciaDestinoStr()
             {
                 if (!string.Equals(tipoEntrega, "En Agencia", StringComparison.OrdinalIgnoreCase) || !agenciaId.HasValue)
@@ -355,7 +364,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 var numeroInt = int.Parse(numeroStr);
                 var tam = MapTamanoEnum(s, m, l, xl);
 
-                var importe = CalcularImporteDesdeConvenio(cuitParaGuia, tam);
+                tarifaOrigenDestino.PreciosXTamano.TryGetValue(tam, out var importe);
 
                 var ge = new GuiaEntidad
                 {
