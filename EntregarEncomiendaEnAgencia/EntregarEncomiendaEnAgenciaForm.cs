@@ -1,10 +1,4 @@
-﻿// ===============================
-// EntregarEncomiendaEnAgenciaForm.cs
-// Pantalla: Entrega de encomiendas en Agencia
-// Flujo: igual a CD pero filtrando por Agencia actual y estado "Pendiente de entrega"
-// ===============================
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using TUTASAPrototipo.Almacenes;
@@ -14,33 +8,32 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 {
     public partial class EntregarEncomiendaEnAgenciaForm : Form
     {
-        private EntregarEncomiendaEnAgenciaModelo modelo;
+                                        // ESTÁ BIEN INICIALIZAR ASÍ EL MODELO? Porque está diferente a otros forms.
+                                        private EntregarEncomiendaEnAgenciaModelo modelo;
 
-        public EntregarEncomiendaEnAgenciaForm()
-        {
-            InitializeComponent();
-            modelo = new EntregarEncomiendaEnAgenciaModelo();
-        }
+                                        public EntregarEncomiendaEnAgenciaForm()
+                                        {
+                                            InitializeComponent();
+                                            modelo = new EntregarEncomiendaEnAgenciaModelo();
+                                        }
 
-        // Nuevo constructor: acepta selección de agencia (sin persistencia)
-        public EntregarEncomiendaEnAgenciaForm(AgenciaEntidad? agenciaSeleccionada) : this()
-        {
-            AgenciaResult.Text = agenciaSeleccionada?.Nombre ?? "N/A";
-        }
+                                        // ESTÁ BIEN? Se usó para el log in
+                                        // Acepta selección de agencia
+                                        public EntregarEncomiendaEnAgenciaForm(AgenciaEntidad? agenciaSeleccionada) : this()
+                                        {
+                                            AgenciaResult.Text = agenciaSeleccionada?.Nombre ?? "N/A";
+                                        }
 
-        // Reemplazar este método en EntregarEncomiendaEnAgenciaForm.cs
-        private void EntregarEncomiendaEnAgenciaForm_Load(object sender, EventArgs e)
-        {
-            UsuarioResult.Text = "Juan Perez";
-            AgenciaResult.Text = string.IsNullOrWhiteSpace(AgenciaResult.Text) ? "N/A" : AgenciaResult.Text;
-            NombreDestinatarioResult.Text = "";
-            ApellidoDestinatarioResult.Text = "";
-        }
+                                        // REVISAR SI FUNCIONA CON EL LOG IN
+                                        private void EntregarEncomiendaEnAgenciaForm_Load(object sender, EventArgs e)
+                                        {
+                                            UsuarioResult.Text = "Juan Perez";
+                                            AgenciaResult.Text = string.IsNullOrWhiteSpace(AgenciaResult.Text) ? "N/A" : AgenciaResult.Text;
+                                            NombreDestinatarioResult.Text = "";
+                                            ApellidoDestinatarioResult.Text = "";
+                                        }
 
-
-        // -------------------------------------------------------------------------
-        // MANEJADORES DE EVENTOS
-        // -------------------------------------------------------------------------
+        // EVENTOS
 
         private void BuscarDestinararioButton_Click(object sender, EventArgs e)
         {
@@ -54,7 +47,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
                 return;
             }
 
-            // Validación N1: Formato (numérico)
+            // Validación N1: Formato numérico
             if (!long.TryParse(DNIDestinatarioTextBox.Text, out _))
             {
                 MessageBox.Show("El DNI debe ser un valor numérico.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -71,8 +64,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
                 return;
             }
 
-            // Mostrar datos del destinatario (labels de resultado)
-            // CORRECCIÓN FINAL Y DEFINITIVA: Usando los nombres de control que existen en tu diseñador.
+            // Mostrar datos del destinatario 
             NombreDestinatarioResult.Text = destinatario.Nombre;
             ApellidoDestinatarioResult.Text = destinatario.Apellido;
 
@@ -82,8 +74,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 
         private void ConfirmarEntregaButton_Click(object sender, EventArgs e)
         {
-            // Validación N2: Consistencia (debe haber guías para entregar)
-            // CORREGIDO: Usando el nombre correcto del ListView: GuiasARecepcionarAgenciaListView
+            // Validación N2
             if (GuiasARecepcionarAgenciaListView.Items.Count == 0)
             {
                 MessageBox.Show("Debe ingresar un número de DNI.", "Operación no válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -148,7 +139,6 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
                 GuiasARecepcionarAgenciaListView.Items.Add(item);
             }
         }
-
 
         private void LimpiarCampos()
         {

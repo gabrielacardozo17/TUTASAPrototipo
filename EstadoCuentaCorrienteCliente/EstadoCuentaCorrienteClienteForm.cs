@@ -16,19 +16,9 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
         public EstadoCuentaCorrienteClienteForm()
         {
             InitializeComponent();
-            //PeriodoDateTimePicker.MaxDate = DateTime.Today; // Limitar al mes actual (no permito seleccionar fechas futuras)
-            // Dejar el control en el primer día del mes actual para evitar confusiones
+
+            // Dejamos el control en el primer día del mes actual para evitar confusiones
             PeriodoDateTimePicker.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month,1);
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DesdeDateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void BuscarClienteButton_Click(object sender, EventArgs e)
@@ -174,17 +164,10 @@ namespace TUTASAPrototipo.EstadoCuentaCorrienteCliente
 
         }
 
-
         private void CancelarButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        private void PeriodoDateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void LimpiarFormulario()
         {

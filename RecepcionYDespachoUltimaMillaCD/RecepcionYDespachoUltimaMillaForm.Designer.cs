@@ -114,7 +114,6 @@
             GuiasRetiroxFleteroListView.TabIndex = 0;
             GuiasRetiroxFleteroListView.UseCompatibleStateImageBehavior = false;
             GuiasRetiroxFleteroListView.View = View.Details;
-            GuiasRetiroxFleteroListView.SelectedIndexChanged += GuiasRetiroxFleteroListView_SelectedIndexChanged;
             // 
             // cumplidaRetiroColumn
             // 

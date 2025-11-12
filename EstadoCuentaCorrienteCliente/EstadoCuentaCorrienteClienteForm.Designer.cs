@@ -73,7 +73,6 @@
             PeriodoDateTimePicker.Size = new Size(200, 23);
             PeriodoDateTimePicker.TabIndex = 10;
             PeriodoDateTimePicker.Value = new DateTime(2025, 10, 7, 0, 0, 0, 0);
-            PeriodoDateTimePicker.ValueChanged += PeriodoDateTimePicker_ValueChanged;
             // 
             // PeriodoLabel
             // 
@@ -83,7 +82,6 @@
             PeriodoLabel.Size = new Size(51, 15);
             PeriodoLabel.TabIndex = 9;
             PeriodoLabel.Text = "Período:";
-            PeriodoLabel.Click += label1_Click;
             // 
             // BuscarClienteButton
             // 

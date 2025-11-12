@@ -8,35 +8,36 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
 {
     public partial class EntregarEncomiendaCDForm : Form
     {
-        private EntregarEncomiendaCDModelo modelo;
 
-        public EntregarEncomiendaCDForm()
-        {
-            InitializeComponent();
-            modelo = new EntregarEncomiendaCDModelo();
-        }
+                                            // ESTÁ BIEN INICIALIZAR ASÍ EL MODELO? Porque está diferente a otros forms.
 
-        // New overload to accept selected CD (no persistence)
-        public EntregarEncomiendaCDForm(CentroDeDistribucionEntidad? selectedCd) : this()
-        {
-            CDResult.Text = selectedCd?.Nombre ?? "N/A";
-        }
+                                            private EntregarEncomiendaCDModelo modelo;
 
-        // Reemplazar este método en EntregarEncomiendaCDForm.cs
+                                            public EntregarEncomiendaCDForm()
+                                            {
+                                                InitializeComponent();
+                                                modelo = new EntregarEncomiendaCDModelo();
+                                            }
 
-        private void EntregarEncomiendaCDForm_Load(object sender, EventArgs e)
-        {
-            // Simulación de datos de sesión con nombres realistas y consistentes con el Modelo
-            UsuarioResult.Text = "Juan Perez";
-            // Asegurar que CDResult tenga valor por defecto si nadie lo pasó
-            if (string.IsNullOrWhiteSpace(CDResult.Text)) CDResult.Text = "N/A";
-            NombreResultLabel.Text = "";
-            ApellidoResultLabel.Text = "";
-        }
+                                            // ESTÁ BIEN? Se usó para el log in. 
+                                            public EntregarEncomiendaCDForm(CentroDeDistribucionEntidad? selectedCd) : this()
+                                            {
+                                                CDResult.Text = selectedCd?.Nombre ?? "N/A";
+                                            }
 
-        // -------------------------------------------------------------------------
-        // MANEJADORES DE EVENTOS
-        // -------------------------------------------------------------------------
+                                            // REVISAR SI FUNCIONA CON EL LOG IN
+                                            private void EntregarEncomiendaCDForm_Load(object sender, EventArgs e)
+                                            {
+                                                UsuarioResult.Text = "Juan Perez";
+
+                                                // Asegurar que CDResult tenga valor por defecto si nadie lo pasó
+                                                if (string.IsNullOrWhiteSpace(CDResult.Text)) CDResult.Text = "N/A";
+                                                NombreResultLabel.Text = "";
+                                                ApellidoResultLabel.Text = "";
+                                            }
+
+
+        // EVENTOS
 
         private void BuscarDestinararioButton_Click(object sender, EventArgs e)
         {
@@ -141,8 +142,8 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
 
         private void LimpiarCampos()
         {
-            NombreResultLabel.Text = "";   // CORREGIDO: Limpiando el label correcto
-            ApellidoResultLabel.Text = ""; // CORREGIDO: Limpiando el label correcto
+            NombreResultLabel.Text = "";  
+            ApellidoResultLabel.Text = ""; 
             GuiasAEntregarCDListView.Items.Clear();
         }
 
@@ -152,6 +153,5 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
             LimpiarCampos();
         }
 
-        // Se ha eliminado el evento duplicado UsuarioLabel_Click que aparecía en el Designer.cs
     }
 }

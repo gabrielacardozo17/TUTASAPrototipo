@@ -1,5 +1,4 @@
-﻿// TUTASAPrototipo/EmitirFactura/EmitirFacturaForm.cs  (REEMPLAZO TOTAL)
-using System;
+﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -10,16 +9,18 @@ namespace TUTASAPrototipo.EmitirFactura
     {
         private readonly EmitirFacturaModelo _modelo = new();
 
-        // Estado de UI (no de negocio)
-        private bool _clienteValidado = false;
-        private string _cuitValidadoDigits = "";
+                                                    //PODEMOS TENER ESTO ACÁ O ESTÁ MAL?
+        
+                                                    // Estado de UI (no de negocio)
+                                                    private bool _clienteValidado = false;
+                                                    private string _cuitValidadoDigits = "";
 
-        // Guards anti doble ejecución
-        private bool _busyBuscar = false;
-        private bool _busyEmitir = false;
+                                                    // Guards anti doble ejecución
+                                                    private bool _busyBuscar = false;
+                                                    private bool _busyEmitir = false;
 
-        // Texto base del label “Datos del cliente:”
-        private readonly string _datosClienteBaseText;
+                                                    // Texto base del label “Datos del cliente:”
+                                                    private readonly string _datosClienteBaseText;
 
         public EmitirFacturaForm()
         {
@@ -30,10 +31,10 @@ namespace TUTASAPrototipo.EmitirFactura
                 ? "Datos del cliente:"
                 : DatosClienteLabel.Text;
 
-            // Validaciones automáticas desactivadas (hacemos N0–N2 manual)
+            // Validaciones automáticas desactivadas 
             this.AutoValidate = AutoValidate.Disable;
 
-            // --- MaskedText CUIT ---
+            // CUIT
             CuitClienteMaskedText.Mask = "00-00000000-0";
             CuitClienteMaskedText.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals; // Text solo dígitos
             CuitClienteMaskedText.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
@@ -51,14 +52,14 @@ namespace TUTASAPrototipo.EmitirFactura
                 DatosClienteLabel.Text = _datosClienteBaseText; // ← restaurar
             };
 
-            // --- ListView (solo lectura y aspecto) ---
+            // ListView (solo lectura y aspecto)
             DetalleFacturaciónListView.FullRowSelect = true;
             DetalleFacturaciónListView.MultiSelect = false;
             DetalleFacturaciónListView.View = View.Details;
             DetalleFacturaciónListView.GridLines = true;
             DetalleFacturaciónListView.HeaderStyle = ColumnHeaderStyle.Nonclickable;
 
-            // --- Botones ---
+            // Botones 
             BuscarFacturasButton.Click -= BuscarFacturasButton_Click;
             BuscarFacturasButton.Click += BuscarFacturasButton_Click;
 
@@ -71,12 +72,10 @@ namespace TUTASAPrototipo.EmitirFactura
             // Estado inicial limpio
             LimpiarPantalla();
 
-            // Según CU, Emitir debe poder clickease siempre; si no hay cliente validado, avisa.
             EmitirFacturaButton.Enabled = true;
         }
 
-        // ----------------- Helpers de UI -----------------
-        private static string Digits(string s) => new string((s ?? "").Where(char.IsDigit).ToArray());
+        // UI
         private static bool SoloNumeros(string s) => Regex.IsMatch(s ?? "", @"^\d+$");
 
         private void LimpiarPantalla()
@@ -104,7 +103,7 @@ namespace TUTASAPrototipo.EmitirFactura
             }
         }
 
-        // ----------------- Buscar (N0–N2 en Form; N3–N4 en Modelo) -----------------
+        // Buscar (N0–N2 en Form; N3–N4 en Modelo)
         private void BuscarFacturasButton_Click(object? sender, EventArgs e)
         {
             if (_busyBuscar) return;
@@ -117,7 +116,7 @@ namespace TUTASAPrototipo.EmitirFactura
                 _clienteValidado = false;
                 _cuitValidadoDigits = "";
 
-                // Con TextMaskFormat=ExcludePromptAndLiterals, Text trae solo dígitos
+                // solo dígitos
                 var digits = CuitClienteMaskedText.Text ?? "";
 
                 // N0: requerido
@@ -128,7 +127,7 @@ namespace TUTASAPrototipo.EmitirFactura
                 if (!SoloNumeros(digits))
                 { MessageBox.Show("Debe ingresar un numero.", "Validación"); CuitClienteMaskedText.Focus(); return; }
 
-                // N2: exactamente 11 dígitos
+                // N2
                 if (digits.Length != 11)
                 { MessageBox.Show("El CUIT debe tener 11 dígitos.", "Validación"); CuitClienteMaskedText.Focus(); return; }
 
@@ -148,7 +147,6 @@ namespace TUTASAPrototipo.EmitirFactura
                 }
                 catch (Exception ex)
                 {
-                    // Mensajes exactos del caso de uso (N3–N4)
                     MessageBox.Show(ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -158,7 +156,7 @@ namespace TUTASAPrototipo.EmitirFactura
             }
         }
 
-        // ----------------- Emitir Factura -----------------
+        // Emitir Factura 
         private void EmitirFacturaButton_Click(object? sender, EventArgs e)
         {
             if (_busyEmitir) return;
@@ -168,7 +166,7 @@ namespace TUTASAPrototipo.EmitirFactura
             {
                 if (!_clienteValidado)
                 {
-                    // Caso 6.3 / 6.4 del CU: sin CUIT validado, no se emite
+                    // sin CUIT validado, no se emite
                     MessageBox.Show("Debe ingresar el CUIT del cliente antes de emitir la factura.", "Validación");
                     return;
                 }
@@ -188,7 +186,7 @@ namespace TUTASAPrototipo.EmitirFactura
                 }
                 catch (Exception ex)
                 {
-                    // Incluye: “No es posible emitir una factura por $0.”
+                    // No es posible emitir una factura por $0
                     MessageBox.Show(ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }

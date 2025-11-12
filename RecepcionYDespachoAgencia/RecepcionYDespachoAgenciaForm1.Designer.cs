@@ -236,7 +236,6 @@
             UsuarioLabel.Size = new Size(50, 15);
             UsuarioLabel.TabIndex = 24;
             UsuarioLabel.Text = "Usuario:";
-            UsuarioLabel.Click += UsuarioLabel_Click;
             // 
             // NombreUsuarioLabel
             // 
@@ -272,7 +271,6 @@
             Controls.Add(BusquedaAgenciaGroupBox);
             Name = "RecepcionYDespachoAgenciaForm1";
             Text = "Recepcion y despacho en Agencia";
-            Load += RecepcionYDespachoAgenciaForm1_Load;
             BusquedaAgenciaGroupBox.ResumeLayout(false);
             BusquedaAgenciaGroupBox.PerformLayout();
             GuiasARecepcionarGroupBox.ResumeLayout(false);

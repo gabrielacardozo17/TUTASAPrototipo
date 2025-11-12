@@ -1,4 +1,4 @@
-﻿// TUTASAPrototipo/ConsultarEstado/ConsultarEstadoForm.cs  (REEMPLAZO TOTAL)
+﻿
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -12,7 +12,7 @@ namespace TUTASAPrototipo.ConsultarEstado
 
         public ConsultarEstadoForm()
         {
-            InitializeComponent();   // ← sin esto, el form queda vacío
+            InitializeComponent();  
 
             // Config inicial de la UI
             HistorialGuiaListView.FullRowSelect = true;
@@ -31,7 +31,6 @@ namespace TUTASAPrototipo.ConsultarEstado
             NroGuiaBusquedaGroupBox.Clear();
         }
 
-        // --- Helper ---
         private static string Digits(string s) => new string((s ?? "").Where(char.IsDigit).ToArray());
 
         // --- EVENTO: BOTÓN BUSCAR ---
@@ -41,7 +40,7 @@ namespace TUTASAPrototipo.ConsultarEstado
 
             var input = NroGuiaBusquedaGroupBox.Text?.Trim() ?? "";
 
-            // Validaciones N0–N2 (nuevo formato TLLLNNNNN: 9 dígitos)
+            // Validaciones N0–N2
             if (string.IsNullOrWhiteSpace(input))
             {
                 MessageBox.Show("Debe ingresar un número de guía.", "Validación");
@@ -58,7 +57,7 @@ namespace TUTASAPrototipo.ConsultarEstado
                 return;
             }
 
-            // Exactamente 9 dígitos: TLLLNNNNN
+            // Exactamente 9 dígitos
             if (!Regex.IsMatch(digits, @"^\d{9}$"))
             {
                 MessageBox.Show("Número de guía inválido (debe tener 9 dígitos).", "Validación");

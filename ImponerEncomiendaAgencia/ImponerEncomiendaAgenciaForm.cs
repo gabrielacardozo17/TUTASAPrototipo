@@ -71,7 +71,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             AgenciaResult.Text = _modelo.GetAgenciaActualNombre();
         }
 
-        // ---------- CONFIRMACIÓN DE SALIDA ----------
+        // CONFIRMACIÓN DE SALIDA
         private void Form_FormClosing(object? sender, FormClosingEventArgs e)
         {
             bool hayDatos =
@@ -94,12 +94,12 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             }
         }
 
-        // ---------- BUSCAR CLIENTE ----------
+        // BUSCAR CLIENTE 
         private void BuscarCuitButton_Click(object? sender, EventArgs e)
         {
             var cuit = CUITRemitenteMaskedText.Text.Trim();
 
-            // Validar solo formato (11 dígitos), sin DV
+            // Validar formato (11 dígitos)
             if (!CuitFormatoOk(cuit))
             {
                 LimpiarRemitente();
@@ -122,7 +122,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             }
         }
 
-        // ---------- PROVINCIA ----------
+        // PROVINCIA 
         private void ProvinciaComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
             if (ProvinciaComboBox.SelectedItem is not KeyValuePair<int, string> { Key: var provId })
@@ -152,7 +152,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             LimpiarCamposEntrega();
         }
 
-        // ---------- LOCALIDAD ----------
+        // LOCALIDAD 
         private void LocalidadComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
             TipoEntregaComboBox.Items.Clear();
@@ -171,7 +171,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             LimpiarCamposEntrega();
         }
 
-        // ---------- TIPO DE ENTREGA ----------
+        // TIPO DE ENTREGA 
         private void TipoEntregaComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
             // Siempre que cambia el tipo, limpiamos Dirección y selecciones de Agencia/CD
@@ -263,15 +263,15 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             else CentroDistribucionComboBox.Items.Clear();
         }
 
-        // ---------- CONFIRMAR ----------
+        // CONFIRMAR 
         private void ConfirmarImposicionButton_Click(object? sender, EventArgs e)
         {
             var cuit = CUITRemitenteMaskedText.Text.Trim();
-            // Validar solo formato (11 dígitos), sin DV
+            // Validar formato (11 dígitos)
             if (!CuitFormatoOk(cuit))
             { MessageBox.Show("Ingresá un CUIT válido (NN-NNNNNNNN-N).", "Validación"); return; }
 
-            // existencia de CUIT y agencia actual: los valida el modelo al confirmar
+            // existencia de CUIT y agencia actual: los valida el modelo
 
             var nombre = (NombreDestinatarioTextBox.Text ?? "").Trim();
             var apellido = (ApellidoDestinatarioResult.Text ?? "").Trim();
@@ -382,7 +382,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             }
         }
 
-        // ---------- LIMPIEZAS ----------
+        // LIMPIEZAS 
         private void LimpiarFormulario()
         {
             LimpiarRemitente();
@@ -420,7 +420,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             DireccionClienteResult.Text = "";
         }
 
-        // ---------- HELPERS ----------
+        // -
         private static bool CuitFormatoOk(string cuit)
         {
             var d = new string(cuit.Where(char.IsDigit).ToArray());

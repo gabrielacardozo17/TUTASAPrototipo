@@ -9,16 +9,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
     public partial class RecepcionYDespachoUltimaMillaForm : Form
     {
         private readonly RecepcionYDespachoUltimaMillaCDModelo _modelo = new();
-        private bool _enRevision = false;
-        private int? _dniEnRevision = null;
-
-
 
         public RecepcionYDespachoUltimaMillaForm()
         {
             InitializeComponent();
 
-            // Evitar doble cableado si el Designer ya lo tenía
+            // -
             Load -= RecepcionYDespachoUltimaMillaForm_Load;
             Load += RecepcionYDespachoUltimaMillaForm_Load;
 
@@ -31,13 +27,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             CancelarButton.Click -= CancelarButton_Click;
             CancelarButton.Click += CancelarButton_Click;
 
-            UsuarioResult.Text = "Juan Perez";
-            CDResult.Text = "Buenos Aires";
+                                                                    // SE USA EN EL LOG IN
+                                                                    UsuarioResult.Text = "Juan Perez";
+                                                                    CDResult.Text = "Buenos Aires";
 
-            // Renombrar groupboxes según negocio (texto provisto)
             try
             {
-                // Textos exactos pedidos
                 GuiasGroupBox.Text = "Detalle de guias de HDR de distribucion asignadas:";
                 groupBox2.Text = "Detalle de guias de HDR de retiro asignadas: ";
             }
@@ -47,30 +42,32 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
         }
 
-        // New overload: accept selected CD or Agencia and display appropriate CD name (no persistence)
-        public RecepcionYDespachoUltimaMillaForm(CentroDeDistribucionEntidad? selectedCd, AgenciaEntidad? selectedAg) : this()
-        {
-            if (selectedCd != null)
-            {
-                CDResult.Text = selectedCd.Nombre ?? "N/A";
-                _modelo.CDActual = selectedCd;
-            }
-            else if (selectedAg != null)
-            {
-                // Map agency to its CD by CodigoPostalCD
-                var cd = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == selectedAg.CodigoPostalCD);
-                CDResult.Text = cd?.Nombre ?? "N/A";
-                _modelo.CDActual = cd;
-            }
-            else
-            {
-                CDResult.Text = "N/A";
-            }
-        }
+                                                                    // ESTÁ BIEN? Es para el log in
+                                                                    public RecepcionYDespachoUltimaMillaForm(CentroDeDistribucionEntidad? selectedCd, AgenciaEntidad? selectedAg) : this()
+                                                                    {
+                                                                        if (selectedCd != null)
+                                                                        {
+                                                                            CDResult.Text = selectedCd.Nombre ?? "N/A";
+                                                                            _modelo.CDActual = selectedCd;
+                                                                        }
+                                                                        else if (selectedAg != null)
+                                                                        {
+                                                                            var cd = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == selectedAg.CodigoPostalCD);
+                                                                            CDResult.Text = cd?.Nombre ?? "N/A";
+                                                                            _modelo.CDActual = cd;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            CDResult.Text = "N/A";
+                                                                        }
+                                                                    }
+
+        private bool _enRevision = false;
+        private int? _dniEnRevision = null;
 
 
 
-        // ====== LOAD ======
+        // LOAD
         private void RecepcionYDespachoUltimaMillaForm_Load(object sender, EventArgs e)
         {
             _enRevision = false;
@@ -85,7 +82,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             }
         }
 
-        // ====== BUSCAR ======
+        // BUSCAR 
         private void BuscarButton_Click(object sender, EventArgs e)
         {
             _enRevision = false;
@@ -130,7 +127,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
           
         }
 
-        // ====== CONFIRMAR (ahora 1 paso: aplica y muestra popup) ======
+        // CONFIRMAR 
         private void ConfirmarButton_Click(object sender, EventArgs e)
         {
             var dniTxt = (DNIFleteroTextBox.Text ?? string.Empty).Trim();
@@ -145,33 +142,23 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             var recibidasDistPorHdr = SeleccionadasPorHDR(GuiasDistribucionxFleteroListView);
             var recibidasRetiroPorHdr = SeleccionadasPorHDR(GuiasRetiroxFleteroListView);
 
-            // Listas planas para confirmar en el modelo
+            // Listas para confirmar en el modelo
             var marcadasDistrib = recibidasDistPorHdr.SelectMany(kv => kv.Value).ToList();
             var marcadasRetiro = recibidasRetiroPorHdr.SelectMany(kv => kv.Value).ToList();
 
             try
             {
-                // 1. Primero confirmar la rendición (solo cambia estados)
+                // confirmar la rendición (cambia estados)
                 _modelo.ConfirmarRendicion(dni, marcadasDistrib, marcadasRetiro);
 
-                // 2. Obtener las guías y sus HDRs proyectadas (sin grabar aún)
-                /*
-                CargarResumenPosterior(dni);  // Esto llama a GetNuevasGuiasPorFletero
-                */
-
-                // 3. Ahora sí, crear y grabar las HDRs que se mostraron
+                // crear y grabar las HDRs que se mostraron
                 _modelo.AsignarHDRsPorDireccion(dni);
 
-                // 4. Asegurar que todo quedó correctamente asignado
+                // Asegurar que todo quedó correctamente asignado
                 _modelo.AsegurarHDRsAsignadasParaFletero(dni);
 
-                // 5. Actualizar la vista superior con las guías asignadas
-                /*
-                CargarAsignadas(dni);
-                */
 
-
-                // Construir el mensaje EXACTO solicitado
+                // -
                 string msg =
                     "Operacion exitosa. Rendicion confirmada." + Environment.NewLine +
                     Environment.NewLine +
@@ -199,7 +186,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
         private void CancelarButton_Click(object sender, EventArgs e) => Close();
 
-        // ====== CARGA DE LISTAS ======
+        // CARGA DE LISTAS 
         private void CargarAsignadas(int dni)
         {
             AsegurarColumnaHDR(GuiasDistribucionxFleteroListView);
@@ -252,7 +239,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             }
         }
 
-        // ====== HELPERS UI ======
+        // -
         private void PrepararListViews()
         {
             GuiasDistribucionxFleteroListView.CheckBoxes = true;
@@ -284,6 +271,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 lv.Columns.Add(new ColumnHeader { Text = "HDR", Width = 200 });
         }
 
+        /*
         private static List<string> GuiasMarcadas(ListView lv)
         {
             var res = new List<string>();
@@ -293,9 +281,11 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             return res;
         }
 
-        // ====== HELPERS (popup) ======
+        // popup
 
         // Recibidas: toma SOLO las marcadas en los listviews superiores y agrupa por HDR (columna 2)
+
+
         private static string ConstruirSeccionRecibidasPorHDR(ListView lv, string titulo)
         {
             var grupos = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
@@ -341,7 +331,11 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             return string.Join(Environment.NewLine, lineas);
         }
 
-        // Helper: agrupa las guías seleccionadas (checked) por HDR usando las listas superiores.
+        /*
+        */
+
+
+        // agrupa las guías seleccionadas por HDR 
         private static Dictionary<string, List<string>> SeleccionadasPorHDR(ListView lv)
         {
             var grupos = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
@@ -358,7 +352,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             return grupos;
         }
 
-        // Helper: formatea grupos HDR -> guías como líneas "- HDR X con guías ..."
+        // formatea grupos HDR 
         private static string FormatearGrupos(Dictionary<string, List<string>> grupos)
         {
             if (grupos.Count == 0) return "(ninguna)";
@@ -368,7 +362,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             return string.Join(Environment.NewLine, lineas);
         }
 
-        // Helper: para las listas inferiores (asignadas) devuelve solo líneas agrupadas por HDR
+        // para las listas asignadas devuelve líneas agrupadas por HDR
         private static string ConstruirAsignadasSoloLineas(ListView lv)
         {
             var grupos = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
@@ -423,6 +417,5 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
         private Label? FindLabel(string name) =>
             this.Controls.Find(name, true).FirstOrDefault() as Label;
 
-        private void GuiasRetiroxFleteroListView_SelectedIndexChanged(object sender, EventArgs e) { /* no-op */ }
     }
 }

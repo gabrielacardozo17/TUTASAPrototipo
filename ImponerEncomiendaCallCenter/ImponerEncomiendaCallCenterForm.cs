@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Drawing;           // SystemColors
+using System.Drawing;           
 using System.Linq;
 using System.Windows.Forms;
 
@@ -7,18 +7,15 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
 {
     public partial class ImponerEncomiendaCallCenterForm : Form
     {
-        // Usamos el modelo propio del Call Center (con strings)
         private readonly ImponerEncomiendaCallCenterModelo _modelo = new();
 
         public ImponerEncomiendaCallCenterForm()
         {
             InitializeComponent();
 
-            // Eventos de ciclo de vida
             Load += Form_Load;
             FormClosing += Form_FormClosing;
 
-            // Eventos de interacción (nombres adaptados al diseñador de CallCenter)
             BuscarCuitButton.Click += BuscarCuitButton_Click;
             ProvinciaComboBox.SelectedIndexChanged += ProvinciaComboBox_SelectedIndexChanged;
             LocalidadxProvinciaComboBox.SelectedIndexChanged += LocalidadComboBox_SelectedIndexChanged;
@@ -38,7 +35,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             };
         }
 
-        // ---------- CARGA INICIAL ----------
+        // CARGA INICIAL 
         private void Form_Load(object? sender, EventArgs e)
         {
             // Máscara CUIT
@@ -62,7 +59,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             AgenciaComboBox.DataSource = null;
             CentroDistribucionComboBox.DataSource = null;
 
-            // NumericUpDowns (permiten 0)
+            // Elegir cantidad (permitir 0)
             tipoSNumericUpDown.Minimum = 0;
             tipoMNumericUpDown.Minimum = 0;
             tipoLNumericUpDown.Minimum = 0;
@@ -71,7 +68,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             LimpiarRemitente();
         }
 
-        // ---------- CONFIRMACIÓN DE SALIDA ----------
+        // CONFIRMACIÓN DE SALIDA 
         private void Form_FormClosing(object? sender, FormClosingEventArgs e)
         {
             bool hayDatos =
@@ -94,7 +91,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             }
         }
 
-        // ---------- BUSCAR CLIENTE ----------
+        //  BUSCAR CLIENTE 
         private void BuscarCuitButton_Click(object? sender, EventArgs e)
         {
             var cuit = CUITRemitenteMaskedText.Text.Trim();
@@ -122,7 +119,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             }
         }
 
-        // ---------- PROVINCIA ----------
+        //  PROVINCIA 
         private void ProvinciaComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
             if (ProvinciaComboBox.SelectedItem is not KeyValuePair<int, string> { Key: var provId })
@@ -152,7 +149,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             LimpiarCamposEntrega();
         }
 
-        // ---------- LOCALIDAD ----------
+        //  LOCALIDAD 
         private void LocalidadComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
             TipoEntregaComboBox.Items.Clear();
@@ -171,7 +168,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             LimpiarCamposEntrega();
         }
 
-        // ---------- TIPO DE ENTREGA ----------
+        //  TIPO DE ENTREGA 
         private void TipoEntregaComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
             // Siempre que cambia el tipo, limpiamos Dirección y selecciones de Agencia/CD
@@ -386,7 +383,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             }
         }
 
-        // ---------- LIMPIEZAS ----------
+        // LIMPIEZAS 
         private void LimpiarFormulario()
         {
             LimpiarRemitente();
@@ -424,7 +421,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             DireccionClienteResult.Text = "";
         }
 
-        // ---------- HELPERS ----------
+        // --  
         private static bool CuitFormatoOk(string cuit)
         {
             var d = new string(cuit.Where(char.IsDigit).ToArray());

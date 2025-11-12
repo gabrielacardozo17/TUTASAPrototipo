@@ -14,17 +14,13 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
         {
             InitializeComponent();
 
-            // No duplicamos eventos que ya cablea el Designer:
-            // BuscarxDNIFleteroButton.Click += BuscarxDNIFleteroButton_Click;
-            // ConfirmarButton.Click += ConfirmarButton_Click;
-            // CancelarButton.Click += CancelarButton_Click; (el Designer ya lo conecta)
-
-            // Fix visual (por si quedan detrás de groupboxes)
+            // Fix visual
             try { ConfirmarButton.BringToFront(); CancelarButton.BringToFront(); } catch { }
 
-            // Labels superiores fijos
-            NombreUsuarioLabel.Text = "Juan Perez";
-            NombreAgenciaLabel.Text = "Agencia Posadas";
+                                                                                                    // VERIFICAR SI QUITARLO
+                                                                                                    // Labels superiores fijos
+                                                                                                    NombreUsuarioLabel.Text = "Juan Perez";
+                                                                                                    NombreAgenciaLabel.Text = "Agencia Posadas";
 
             // Inicializar labels de búsqueda como vacíos
             NombreResultLabel.Text = "";
@@ -33,25 +29,15 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             LimpiarFormulario();
         }
 
-        // New overload accepting selected agency
-        public RecepcionYDespachoAgenciaForm1(AgenciaEntidad? selectedAgencia) : this()
-        {
-            NombreAgenciaLabel.Text = selectedAgencia?.Nombre ?? "Agencia Posadas";
-        }
+                                                                                                    //ESTÁ BIEN? Es por lo del log in
+                                                                                                    public RecepcionYDespachoAgenciaForm1(AgenciaEntidad? selectedAgencia) : this()
+                                                                                                    {
+                                                                                                        NombreAgenciaLabel.Text = selectedAgencia?.Nombre ?? "Agencia Posadas";
+                                                                                                    }
 
-        // ---------- LOAD ----------
-        private void RecepcionAgenciaForm1_Load(object? sender, EventArgs e)
-        {
-            LimpiarFormulario();
-        }
 
-        // ---------- CLICK USUARIO (Designer lo exige) ----------
-        private void UsuarioLabel_Click(object? sender, EventArgs e)
-        {
-            // no-op (stub para satisfacer el hook del Designer)
-        }
 
-        // ---------- BUSCAR ----------
+        //  BUSCAR 
         private void BuscarxDNIFleteroButton_Click(object? sender, EventArgs e)
         {
             var dniTexto = DNIFleteroTextBox.Text.Trim();
@@ -82,7 +68,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             try
             {
-                // N3: Buscar fletero usando el nuevo método público
+                // N3: Buscar fletero 
                 var (existe, nombre, apellido) = _modelo.ObtenerDatosFletero(dni);
                 if (!existe)
                 {
@@ -98,7 +84,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
                 NombreResultLabel.Text = nombre;
                 ApellidoResultLabel.Text = apellido;
 
-                // N4: Obtener guías del fletero usando el nuevo método público
+                // N4: Obtener guías del fletero 
                 var (aRecepcionar, aEntregar) = _modelo.ObtenerGuiasPorFletero(dni);
                 CargarListas(aRecepcionar, aEntregar);
             }
@@ -109,7 +95,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             }
         }
 
-        // ---------- CONFIRMAR ----------
+        //  CONFIRMAR 
         private void ConfirmarButton_Click(object? sender, EventArgs e)
         {
             var dniTexto = DNIFleteroTextBox.Text.Trim();
@@ -145,7 +131,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             }
         }
 
-        // ---------- HELPERS VISUALES ----------
+        // -
         private void CargarListas(IEnumerable<GuiaDTO> aRecepcionar, IEnumerable<GuiaDTO> aEntregar)
         {
             GuiasARecepcionarAgenciaListView.FullRowSelect = true;
@@ -167,7 +153,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             {
                 var li = new ListViewItem(g.NumeroGuia.ToString());
                 li.SubItems.Add(g.Tamano.ToString());
-               // li.SubItems.Add(g.UbicacionActual); // Agrega columna de ubicación
                 GuiasAEntregarListView.Items.Add(li);
             }
         }
@@ -193,19 +178,10 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             catch { }
         }
 
-        private void RecepcionYDespachoAgenciaForm1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void CancelarButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void GuiasAEntregarListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

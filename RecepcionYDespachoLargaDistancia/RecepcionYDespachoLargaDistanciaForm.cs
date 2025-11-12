@@ -13,48 +13,51 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
         {
             InitializeComponent();
             modelo = new RecepcionYDespachoLargaDistanciaModelo();
-            // Inicializar CD actual en el modelo usando el seleccionado global si existe.
-            // Si no hay selección global (pruebas locales), tomar por defecto el CD de Córdoba (CP 5000)
-            var cdDefault = CentroDeDistribucionAlmacen.CentroDistribucionActual
-                            ?? CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == 5000
-                                || c.Nombre.IndexOf("Cordoba", System.StringComparison.OrdinalIgnoreCase) >= 0);
-            modelo.SetCDActual(cdDefault);
-            InicializarFormulario();
+
+                                                                            // CHEQUEAR
+                                                                            // Inicializar CD actual en el modelo usando el seleccionado global si existe.
+                                                                            // Si no hay selección global (pruebas locales), tomar por defecto el CD de Córdoba (CP 5000)
+
+                                                                            var cdDefault = CentroDeDistribucionAlmacen.CentroDistribucionActual
+                                                                                            ?? CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == 5000
+                                                                                                || c.Nombre.IndexOf("Cordoba", System.StringComparison.OrdinalIgnoreCase) >= 0);
+
+                                                                            modelo.SetCDActual(cdDefault);
+                                                                            InicializarFormulario();
         }
 
-        // Nuevo constructor sobrecargado: acepta CD o Agencia seleccionada (sin persistencia)
-        public RecepcionYDespachoLargaDistanciaForm(CentroDeDistribucionEntidad? cdSeleccionado, AgenciaEntidad? agSeleccionada) : this()
-        {
-            // Propagar la selección al modelo para que filtre guías por el CD
-            if (cdSeleccionado != null)
-            {
-                modelo.SetCDActual(cdSeleccionado);
-                CDResult.Text = cdSeleccionado.Nombre ?? "N/A";
-            }
-            else if (agSeleccionada != null)
-            {
-                var cd = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == agSeleccionada.CodigoPostalCD);
-                modelo.SetCDActual(cd);
-                CDResult.Text = cd?.Nombre ?? "N/A";
-            }
-            else
-            {
-                // dejar modelo con el CD global ya seteado en el ctor por defecto
-                CDResult.Text = CentroDeDistribucionAlmacen.CentroDistribucionActual?.Nombre
-                                ?? CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == 5000)?.Nombre
-                                ?? "N/A";
-            }
-        }
+                                                                            // ESTÁ BIEN? Es para el log in
+                                                                            public RecepcionYDespachoLargaDistanciaForm(CentroDeDistribucionEntidad? cdSeleccionado, AgenciaEntidad? agSeleccionada) : this()
+                                                                            {
+                                                                                if (cdSeleccionado != null)
+                                                                                {
+                                                                                    modelo.SetCDActual(cdSeleccionado);
+                                                                                    CDResult.Text = cdSeleccionado.Nombre ?? "N/A";
+                                                                                }
+                                                                                else if (agSeleccionada != null)
+                                                                                {
+                                                                                    var cd = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == agSeleccionada.CodigoPostalCD);
+                                                                                    modelo.SetCDActual(cd);
+                                                                                    CDResult.Text = cd?.Nombre ?? "N/A";
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    // dejar modelo con el CD global ya seteado por defecto
+                                                                                    CDResult.Text = CentroDeDistribucionAlmacen.CentroDistribucionActual?.Nombre
+                                                                                                    ?? CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == 5000)?.Nombre
+                                                                                                    ?? "N/A";
+                                                                                }
+                                                                            }
 
         private void InicializarFormulario()
         {
-            // Establecemos valores fijos para el prototipo
-            UsuarioResult.Text = "Juan Perez";
-            CDResult.Text = "Cordoba";
+                                                                                            // ES POR EL LOG IN
+                                                                                            // Establecemos valores fijos para el prototipo
+                                                                                            UsuarioResult.Text = "Juan Perez";
+                                                                                            CDResult.Text = "Cordoba";
 
             // Deshabilitamos los controles que dependen de una búsqueda exitosa
             GuiasGroupBox.Enabled = false;
-            // NOTA: Este control es un GroupBox aunque su nombre sugiera ser una ListView. Lo usamos tal cual está en el Designer.
             GuiasADespacharServicioListView.Enabled = false;
             ConfirmarRecepcionYDespachoButton.Enabled = false;
             NumServicioTextBox.Clear();
@@ -100,7 +103,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
         {
             LimpiarListViews();
 
-            // Llenar ListView de Guías a Recibir (nombre del designer: GuiaxServicioRecibidaListView)
+            // Llenar ListView de Guías a Recibir 
             foreach (var guia in servicio.GuiasARecibir)
             {
                 var item = new ListViewItem(guia.NroGuia);
@@ -108,7 +111,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                 GuiaxServicioRecibidaListView.Items.Add(item);
             }
 
-            // Llenar ListView de Guías a Despachar (nombre del designer: GuiasADespacharxServicioListView)
+            // Llenar ListView de Guías a Despachar 
             foreach (var guia in servicio.GuiasADespachar)
             {
                 var item = new ListViewItem(guia.NroGuia);
@@ -137,10 +140,10 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             var guiasRecibidas = GuiaxServicioRecibidaListView.Items.Cast<ListViewItem>().Select(item => item.Text).ToList();
             var guiasDespachadas = GuiasADespacharxServicioListView.Items.Cast<ListViewItem>().Select(item => item.Text).ToList();
 
-            // 1) Actualizar estados en memoria (recepciones -> EnCDDestino, despachos -> EnTransitoAlCDDestino)
+            // Actualizar estados en memoria (recepciones -> EnCDDestino, despachos -> EnTransitoAlCDDestino)
             modelo.ConfirmarRecepcionYDespacho(numeroServicio, guiasRecibidas, guiasDespachadas);
 
-            // 2) Marcar guías como procesadas en la vista del servicio para que no vuelvan a mostrarse
+            // Marcar guías como procesadas en la vista del servicio para que no vuelvan a mostrarse
             modelo.MarcarGuiasProcesadas(numeroServicio, guiasRecibidas, guiasDespachadas);
 
             // Asignar automáticamente guías pendientes si hay disponibles
@@ -159,10 +162,5 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             this.Close();
         }
 
-        private void PrepararListViews()
-        {
-            GuiaxServicioRecibidaListView.CheckBoxes = false;
-            GuiasADespacharxServicioListView.CheckBoxes = false;
-        }
     }
 }

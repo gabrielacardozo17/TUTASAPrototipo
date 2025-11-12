@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Drawing;           // ← para SystemColors
+using System.Drawing;          
 using System.Linq;
 using System.Windows.Forms;
 using TUTASAPrototipo.Almacenes;
@@ -15,11 +15,9 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         {
             InitializeComponent();
 
-            // Eventos de ciclo de vida
             Load += Form_Load;
             FormClosing += Form_FormClosing;
 
-            // Eventos de interacción
             BuscarClienteButton.Click += BuscarClienteButton_Click;
             ProvinciaComboBox.SelectedIndexChanged += ProvinciaComboBox_SelectedIndexChanged;
             LocalidadxProvinciaComboBox.SelectedIndexChanged += LocalidadComboBox_SelectedIndexChanged;
@@ -27,7 +25,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             ConfirmarImposicionButton.Click += ConfirmarImposicionButton_Click;
             CancelarButton.Click += (s, e) => Close();
 
-            // Estado inicial de campos dependientes
+            // Estado inicial
             HabilitarCamposEntrega(null);
 
             // Al escribir un CUIT nuevo, limpiar los datos mostrados del remitente
@@ -38,8 +36,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 DireccionClienteResult.Text = "";
             };
         }
-
-        // Overload: accept preselected CD (no persistence)
         public ImponerEncomiendaCentroDistribucionForm(CentroDeDistribucionEntidad? selectedCd) : this()
         {
             if (CDResult != null)
@@ -48,7 +44,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
         private void RemitenteGroupBox_Enter(object? sender, EventArgs e) { /* no-op */ }
 
-        // ---------- CARGA INICIAL ----------
+        // CARGA INICIAL
         private void Form_Load(object? sender, EventArgs e)
         {
             // Mascara CUIT
@@ -72,7 +68,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             AgenciaComboBox.DataSource = null;
             CDComboBox.DataSource = null;
 
-            // NumericUpDowns (permiten 0)
+            // Elegir antidades, permitir cero.
             tipoSNumericUpDown.Minimum = 0;
             tipoMNumericUpDown.Minimum = 0;
             tipoLNumericUpDown.Minimum = 0;
@@ -80,14 +76,15 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
             LimpiarRemitente();
 
-            // Label de CD actual (desde login)
-            if (CDResult != null)
-                CDResult.Text = CentroDeDistribucionAlmacen.CentroDistribucionActual?.Nombre ?? CDResult.Text;
-            if (CDResult != null && string.IsNullOrWhiteSpace(CDResult.Text))
-                CDResult.Text = "N/A";
+                                                            // CONSULTAR SI ESTÁ BIEN
+                                                            // Label de CD actual (desde login)
+                                                            if (CDResult != null)
+                                                                CDResult.Text = CentroDeDistribucionAlmacen.CentroDistribucionActual?.Nombre ?? CDResult.Text;
+                                                            if (CDResult != null && string.IsNullOrWhiteSpace(CDResult.Text))
+                                                                CDResult.Text = "N/A";
         }
 
-        // ---------- CONFIRMACIÓN DE SALIDA ----------
+        // CONFIRMACIÓN DE SALIDA
         private void Form_FormClosing(object? sender, FormClosingEventArgs e)
         {
             bool hayDatos =
@@ -110,7 +107,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             }
         }
 
-        // ---------- BUSCAR CLIENTE ----------
+        // BUSCAR CLIENTE 
         private void BuscarClienteButton_Click(object? sender, EventArgs e)
         {
             var cuit = CUITRemitenteMaskedText.Text.Trim();
@@ -137,7 +134,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             DireccionClienteResult.Text = cli.Direccion;
         }
 
-        // ---------- PROVINCIA ----------
+        // PROVINCIA
         private void ProvinciaComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
             if (ProvinciaComboBox.SelectedItem is not KeyValuePair<int, string> { Key: var provId })
@@ -167,7 +164,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             LimpiarCamposEntrega(); // ← limpia dependientes
         }
 
-        // ---------- LOCALIDAD ----------
+        // LOCALIDAD 
         private void LocalidadComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
             TipoEntregaComboBox.Items.Clear();
@@ -186,7 +183,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             LimpiarCamposEntrega(); // ← limpia dependientes
         }
 
-        // ---------- TIPO DE ENTREGA ----------
+        // TIPO DE ENTREGA 
         private void TipoEntregaComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
             // Siempre que cambia el tipo, limpiamos Dirección y selecciones de Agencia/CD
@@ -281,7 +278,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             else CDComboBox.Items.Clear();
         }
 
-        // ---------- CONFIRMAR ----------
+        // CONFIRMAR
         private void ConfirmarImposicionButton_Click(object? sender, EventArgs e)
         {
             var cuit = CUITRemitenteMaskedText.Text.Trim();
@@ -313,7 +310,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 return;
             }
 
-            // DNI (seguís usando tu DniOk existente)
+            // DNI 
             var dni = (DNIDestinatarioTextBox.Text ?? "").Trim();
             if (string.IsNullOrWhiteSpace(dni) || !DniOk(dni))
             { MessageBox.Show("Ingresá un DNI válido (7–8 dígitos).", "Validación"); return; }
@@ -338,7 +335,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             var locNombre = LocalidadxProvinciaComboBox.Text;
             var esOtras = (locId == -1);
 
-            var tipo = tipoSel; // seguimos usando string
+            var tipo = tipoSel; 
 
             string? direccion = null, agenciaNombre = null, cdDestinoNombre = null;
             int? agenciaId = null, cdDestinoId = null;
@@ -347,7 +344,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             {
                 direccion = (DireccionDestinatarioTextBox.Text ?? "").Trim();
 
-                // ---- Dirección (inline) ----
+                //  Dirección 
                 bool direccionOk = !string.IsNullOrWhiteSpace(direccion) && direccion.Length >= 3;
                 if (!direccionOk)
                 { MessageBox.Show("Ingresá una dirección válida (no vacía).", "Validación"); return; }
@@ -408,7 +405,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             }
         }
 
-        // ---------- LIMPIEZAS ----------
+        // LIMPIEZAS
         private void LimpiarFormulario()
         {
             LimpiarRemitente();
@@ -446,7 +443,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             DireccionClienteResult.Text = "";
         }
 
-        // ---------- HELPERS ----------
+        // -
         private static bool CuitFormatoOk(string cuit)
         {
             var d = new string(cuit.Where(char.IsDigit).ToArray());
