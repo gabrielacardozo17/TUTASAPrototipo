@@ -1,23 +1,19 @@
-﻿// ===============================
-// EntregarEncomiendaEnAgenciaModelo.cs
-// ===============================
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using TUTASAPrototipo.Almacenes; // Usamos entidades y almacenes (solo lectura)
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 {
     public class EntregarEncomiendaEnAgenciaModelo
     {
-        // Inicializadas para no quedar null al salir del ctor
         public List<Destinatario> Destinatarios { get; private set; } = new();
         public List<Guia> Guias { get; private set; } = new();
 
-        // Estado local: números de guía entregados en esta sesión (no persistente)
+        // Estado local: números de guía entregados en esta sesión 
         private readonly HashSet<string> _guiasEntregadasLocalmente = new();
 
         public EntregarEncomiendaEnAgenciaModelo()
@@ -27,9 +23,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 
         private void InicializarDatos()
         {
-            // Datos de prueba COMENTADOS: ahora se usa SOLO LECTURA desde los almacenes/JSON
-            // Destinatarios = new List<Destinatario> { ... };
-            // Guias = new List<Guia> { ... };
+
         }
 
         public Destinatario? BuscarDestinatarioPorDNI(string dni)
@@ -63,17 +57,17 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 
             if (!string.IsNullOrWhiteSpace(agenciaActual))
             {
-                // 1) Intentar por nombre exacto (ignore-case)
+                // 1) Intentar por nombre exacto
                 agencia = agencias.FirstOrDefault(a => string.Equals(a.Nombre, agenciaActual, StringComparison.OrdinalIgnoreCase));
 
                 if (agencia == null)
                 {
-                    // 2) Extraer dígitos del texto del label (p. ej. "Agencia 5600" -> "5600")
+                    // 2) Extraer dígitos del texto del label 
                     var digits = new string((agenciaActual ?? string.Empty).Where(char.IsDigit).ToArray());
 
                     if (!string.IsNullOrWhiteSpace(digits))
                     {
-                        // Buscar por ID exacto (puede venir con o sin ceros a la izquierda)
+                        // Buscar por ID exacto 
                         agencia = agencias.FirstOrDefault(a =>
                         {
                             var aIdDigits = new string((a.ID ?? string.Empty).Where(char.IsDigit).ToArray());
@@ -129,7 +123,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 
         public bool ConfirmarEntrega(List<string> numerosDeGuia)
         {
-            // Persistir cambio de estado a "Entregada" en el JSON (GuiaAlmacen)
+            // Persistir cambio de estado a "Entregada" en el JSON
             if (numerosDeGuia == null || numerosDeGuia.Count == 0)
                 return false;
 
@@ -200,7 +194,8 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 
             if (huboCambios)
             {
-                GuiaAlmacen.Grabar();
+                                                            //Aca Grabamos
+                                                            GuiaAlmacen.Grabar();
             }
 
             return true;

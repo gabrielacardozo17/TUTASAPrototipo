@@ -93,7 +93,7 @@ namespace TUTASAPrototipo.ConsultarEstado
             }
         }
 
-        // --- EVENTO: BOTÓN SALIR / CANCELAR ---
+        //BOTÓN CANCELAR
         private void CancelarButton_Click(object? sender, EventArgs e)
         {
             NroGuiaBusquedaGroupBox.Clear();

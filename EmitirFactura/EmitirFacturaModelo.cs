@@ -10,15 +10,13 @@ namespace TUTASAPrototipo.EmitirFactura
 
         private static int _seqFactura = 1; 
 
-        // ---------- HELPERS ----------
+        // HELPERS
         private static string Digits(string s)
         {
-            // Normaliza el CUIT a sus11 dígitos (sin guiones). Antes se tomaban8 del medio.
-            // Esto evita falsas no-coincidencias y colisiones.
             return new string((s ?? "").Where(char.IsDigit).ToArray());
         }
 
-        // Formato legible del estado (sin crear clases/archivos nuevos)
+        // Formato legible del estado
         private static string EstadoDisplay(EstadoGuiaEnum estado)
         {
             return estado switch
@@ -56,10 +54,10 @@ namespace TUTASAPrototipo.EmitirFactura
             return sb.ToString();
         }
 
-        // ---------- MÉTODOS ----------
+        //MÉTODOS
         public (Cliente cliente, List<Guia> guias) BuscarPorCuit(string cuitDigits)
         {
-            // Normalizamos a dígitos (la pantalla ya envía solo dígitos, igual reforzamos)
+            // Normalizamos a dígitos
             var digits = Digits(cuitDigits);
 
             // 1) Buscar cliente en almacén
@@ -69,7 +67,7 @@ namespace TUTASAPrototipo.EmitirFactura
             if (cliEntidad is null)
                 throw new InvalidOperationException("No existe el cliente seleccionado. Vuelva a intentarlo.");
 
-            // 2) Guías pendientes del cliente para facturar: SOLO estado Entregada
+            // 2) Guías pendientes del cliente para facturar en estado Entregada
             var estadosFacturables = new HashSet<EstadoGuiaEnum>
             {
                 EstadoGuiaEnum.Entregada
@@ -85,7 +83,7 @@ namespace TUTASAPrototipo.EmitirFactura
             if (!pendientesEntidad.Any())
                 throw new InvalidOperationException("No se encontraron ítems pendientes de facturar.");
 
-            // 3) Mapear entidades → clases de pantalla (sin crear métodos nuevos)
+            // 3) Mapear entidades → clases de pantalla
             // Origen/Destino: resolvemos nombre de CD o Agencia según datos presentes
             var guiasPantalla = pendientesEntidad
             .Select(g => new Guia
@@ -134,10 +132,10 @@ namespace TUTASAPrototipo.EmitirFactura
             if (total <= 0)
                 throw new InvalidOperationException("No es posible emitir una factura por $0.");
 
-            // 3) Generar número de factura simple (no persistente)
+            // 3) Generar número de factura simple
             var numero = $"FA-{DateTime.Now:yyyyMM}-{_seqFactura++:00000}";
 
-            // 4) Registrar factura en almacén (persistencia en archivo JSON)
+            // 4) Registrar factura en almacén
             var facEntidad = new FacturaEntidad
             {
                 ID = numero,
@@ -147,7 +145,8 @@ namespace TUTASAPrototipo.EmitirFactura
                 GuiasFacturadas = pendientes.Select(p => p.Numero).ToList()
             };
             FacturaAlmacen.facturas.Add(facEntidad);
-            FacturaAlmacen.Grabar();
+                                                                 //Aca Grabamos
+                                                                 FacturaAlmacen.Grabar();
 
             // 5) Registrar movimiento en Cuenta Corriente
             var cc = CuentaCorrienteAlmacen.cuentasCorrientes
@@ -178,9 +177,10 @@ namespace TUTASAPrototipo.EmitirFactura
                 SaldoActual = saldoAnterior + total
             };
             cc.Movimientos.Add(mov);
-            CuentaCorrienteAlmacen.Grabar();
+                                                                            // Aca Grabamos
+                                                                            CuentaCorrienteAlmacen.Grabar();
 
-            // 6) Marcar las guías como Facturadas EN MEMORIA (no persistir en JSON para permitir re-facturación al reiniciar)
+            // 6) Marcar las guías como Facturadas EN MEMORIA 
             foreach (var p in pendientes)
             {
                 var num = int.Parse(p.Numero);
@@ -190,7 +190,6 @@ namespace TUTASAPrototipo.EmitirFactura
                     guia.Estado = EstadoGuiaEnum.Facturada;
                 }
             }
-            // NO llamar GuiaAlmacen.Grabar() aquí → el cambio solo persiste en memoria durante la sesión
 
             // 7) Devolver factura en el formato que espera la pantalla
             var facPantalla = new Factura
@@ -204,20 +203,16 @@ namespace TUTASAPrototipo.EmitirFactura
             return facPantalla;
         }
 
-        /// <summary>
-        /// Postcondición 1: Actualiza los archivos de "Factura" y "Cuenta Corriente"
-        /// Este método persiste explícitamente los cambios realizados en la emisión.
-        /// </summary>
+
+        // Actualiza los archivos de "Factura" y "Cuenta Corriente"
         public void ActualizarArchivosFacturaYCuentaCorriente()
         {
-            FacturaAlmacen.Grabar();
-            CuentaCorrienteAlmacen.Grabar();
+                                                                    //Aca Grabamos
+                                                                    FacturaAlmacen.Grabar();
+                                                                    CuentaCorrienteAlmacen.Grabar();
         }
 
-        /// <summary>
-        /// Postcondición 2: Registra nueva deuda en la cuenta corriente del cliente
-        /// Valida que el movimiento se haya registrado correctamente.
-        /// </summary>
+        // Registra nueva deuda en la cuenta corriente del cliente
         public MovimientoClienteAux ObtenerUltimoMovimientoCuenta(string cuitDigits)
         {
             var digits = Digits(cuitDigits);
@@ -230,10 +225,8 @@ namespace TUTASAPrototipo.EmitirFactura
             return cc.Movimientos.Last();
         }
 
-        /// <summary>
-        /// Postcondición 3: Disponibiliza la factura para consulta interna y entrega al cliente
-        /// Retorna los datos de la factura emitida en formato accesible.
-        /// </summary>
+
+        // Retorna los datos de la factura emitida en formato accesible.
         public Factura ObtenerFacturaEmitida(string numeroFactura)
         {
             var facEntidad = FacturaAlmacen.facturas
@@ -276,10 +269,7 @@ namespace TUTASAPrototipo.EmitirFactura
             };
         }
 
-        /// <summary>
-        /// Postcondición 4: Permite acceso a reportes y auditoría de facturas emitidas
-        /// Retorna todas las facturas para reportes internos.
-        /// </summary>
+        // Retorna todas las facturas para reportes internos.
         public List<Factura> ObtenerReporteFacturasEmitidas()
         {
             return FacturaAlmacen.facturas
@@ -306,10 +296,7 @@ namespace TUTASAPrototipo.EmitirFactura
                 .ToList();
         }
 
-        /// <summary>
-        /// Postcondición 5: Limpia la pantalla para iniciar una nueva factura
-        /// Retorna los datos necesarios para resetear el formulario.
-        /// </summary>
+        // Retorna los datos necesarios para resetear el formulario.
         public void LimpiarFormularioFactura()
         {
             // Este método es principalmente informativo para la vista.
@@ -317,9 +304,7 @@ namespace TUTASAPrototipo.EmitirFactura
             // No requiere persistencia aquí.
         }
 
-        /// <summary>
-        /// Retorna un objeto vacío para resetear la pantalla después de la emisión.
-        /// </summary>
+        // Retorna un objeto vacío para resetear la pantalla después de la emisión.
         public (Cliente cliente, List<Guia> guias) ObtenerFormularioVacio()
         {
             return (

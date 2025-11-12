@@ -34,12 +34,12 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                 DireccionClienteResult.Text = "";
             };
         }
-
-        public ImponerEncomiendaAgenciaForm(AgenciaEntidad? selectedAgencia) : this()
-        {
-            AgenciaAlmacen.AgenciaActual = selectedAgencia ?? AgenciaAlmacen.AgenciaActual;
-            AgenciaResult.Text = _modelo.GetAgenciaActualNombre();
-        }
+                                //ESTO ES PARA EL LOG IN
+                                public ImponerEncomiendaAgenciaForm(AgenciaEntidad? selectedAgencia) : this()
+                                {
+                                    AgenciaAlmacen.AgenciaActual = selectedAgencia ?? AgenciaAlmacen.AgenciaActual;
+                                    AgenciaResult.Text = _modelo.GetAgenciaActualNombre();
+                                }
 
         private void Form_Load(object? sender, EventArgs e)
         {

@@ -10,31 +10,21 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
 {
     public class EntregarEncomiendaCDModelo
     {
-        // NOTA IMPORTANTE
-        // - No tocamos pantallas.
-        // - Usamos los almacenes existentes (JSON) sin modificar su estructura.
-        // - Cambios mínimos: lectura para búsqueda y escritura de estado al confirmar.
-
-        // Se mantienen estas listas para que el formulario pueda inspeccionar/depender si quisiera.
-        // No se cargan con datos "semilla"; se completan con resultados de las búsquedas.
         public List<Destinatario> Destinatarios { get; private set; } = new();
         public List<Guia> Guias { get; private set; } = new();
 
-        // Mantener estado local de guías entregadas (solo durante la vida de este modelo)
+        // Mantener estado local de guías entregadas
         private readonly HashSet<string> _guiasEntregadasLocalmente = new();
 
         public EntregarEncomiendaCDModelo()
         {
-            // Sin datos de prueba: todo sale de los almacenes.
+
         }
 
-        // ---------------------------------------------------------------------
         // BUSCAR DESTINATARIO POR DNI
-        // ---------------------------------------------------------------------
         public Destinatario? BuscarDestinatarioPorDNI(string dni)
         {
             // Tomamos el primer destinatario que matchee el DNI desde las guías cargadas en almacén.
-            // (No hay un almacén independiente de Destinatarios, la info vive dentro de cada guía)
             var dest = GuiaAlmacen.guias
                 .Select(g => g.Destinatario)
                 .FirstOrDefault(d => d != null && d.DNI.ToString() == dni);
@@ -49,14 +39,12 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
                 Apellido = dest.Apellido
             };
 
-            // Guardamos el último resultado en memoria (solo para trazabilidad local en el modelo)
+            // Guardamos el último resultado en memoria 
             Destinatarios = new List<Destinatario> { resultado };
             return resultado;
         }
 
-        // ---------------------------------------------------------------------
         // BUSCAR GUÍAS PENDIENTES PARA ENTREGAR EN ESTE CD (por DNI + CD actual)
-        // ---------------------------------------------------------------------
         public List<Guia> BuscarGuiasPendientes(string dni, string cdActual)
         {
             // 1) Resolvemos el CD actual por Nombre -> CodigoPostal (una sola línea LINQ)
@@ -89,10 +77,6 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
                 )
                 .ToList();
 
-            // IMPORTANTE: No modificar el historial aquí.
-            // La pantalla de Consulta de Estado ya tiene fallback para mostrar ubicación
-            // de 'Pendiente de entrega' cuando el registro no la trae. Esto evita que,
-            // por una búsqueda, se inserten movimientos posteriores a 'Entregada'.
 
             // 3) Proyección a la clase consumida por la pantalla
             var resultados = pares
@@ -110,9 +94,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
             return resultados;
         }
 
-        // ---------------------------------------------------------------------
         // CONFIRMAR ENTREGA: Actualiza estado en JSON a "Entregada" y registra movimiento
-        // ---------------------------------------------------------------------
         public bool ConfirmarEntrega(List<string> numerosDeGuia)
         {
             if (numerosDeGuia == null || numerosDeGuia.Count == 0)
@@ -187,7 +169,8 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
 
             if (huboCambios)
             {
-                GuiaAlmacen.Grabar();
+                                                        //Aca Grabamos
+                                                        GuiaAlmacen.Grabar();
             }
 
             return true;
