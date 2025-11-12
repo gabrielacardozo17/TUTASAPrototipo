@@ -210,11 +210,16 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                             int costo = CapacidadPorTamano(ga.Tamano);
                             if (carga + costo > capacidadRestante) continue;
                             carga += costo;
+
+                            var nombreFinal = cds.FirstOrDefault(cd => cd.CodigoPostal == ga.CodigoPostalCDDestino)?.Nombre ?? ga.CodigoPostalCDDestino.ToString();
+                            var nombreIntermedio = cds.FirstOrDefault(cd => cd.CodigoPostal == nextHop)?.Nombre ?? nextHop.ToString();
+                            var destinoMostrar = nextHop == ga.CodigoPostalCDDestino ? nombreFinal : $"CD Intermedio: {nombreIntermedio}";
+
                             guiasADespachar.Add(new Guia
                             {
                                 NroGuia = ga.NumeroGuia.ToString(),
                                 Tamanio = ga.Tamano.ToString(),
-                                Destino = cds.FirstOrDefault(cd => cd.CodigoPostal == ga.CodigoPostalCDDestino)?.Nombre ?? ga.CodigoPostalCDDestino.ToString()
+                                Destino = destinoMostrar
                             });
                             if (carga >= capacidadRestante) break;
                         }
