@@ -264,10 +264,14 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
 
             var servicio = servicios.FirstOrDefault(s => s.NumeroServicio == numeroServicio);
             if (servicio == null)
-                return null;
+                return null; // solo null si NO existe el servicio
 
+            // Filtrar guías ya procesadas
             servicio.GuiasARecibir = servicio.GuiasARecibir.Where(g => !g.Procesada).ToList();
             servicio.GuiasADespachar = servicio.GuiasADespachar.Where(g => !g.Procesada).ToList();
+
+            // Si no hay guías, devolver igualmente el servicio (para que el form no muestre 'no existe').
+            // Las pantallas pueden usar ServicioTieneGuias/ServicioSinGuias si necesitan mensaje específico.
             return servicio;
         }
 

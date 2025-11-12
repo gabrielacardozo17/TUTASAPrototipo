@@ -85,6 +85,14 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
 
             if (servicioEncontrado != null)
             {
+                // si no tiene guías para recibir ni despachar, informar y no habilitar acciones
+                if (servicioEncontrado.GuiasARecibir.Count == 0 && servicioEncontrado.GuiasADespachar.Count == 0)
+                {
+                    MessageBox.Show("El servicio no tiene guías para recibir ni despachar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    InicializarFormulario();
+                    return;
+                }
+
                 PoblarListViews(servicioEncontrado);
                 // Habilitamos controles después de una búsqueda exitosa
                 GuiasGroupBox.Enabled = true;
