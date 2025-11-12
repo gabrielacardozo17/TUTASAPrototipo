@@ -8,53 +8,70 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 {
     public partial class EntregarEncomiendaEnAgenciaForm : Form
     {
-                                        // ESTÁ BIEN INICIALIZAR ASÍ EL MODELO? Porque está diferente a otros forms.
-                                        private EntregarEncomiendaEnAgenciaModelo modelo;
+        // Seguir patrón de otros forms: modelo readonly inicializado inline
+        private readonly EntregarEncomiendaEnAgenciaModelo modelo = new EntregarEncomiendaEnAgenciaModelo();
 
-                                        public EntregarEncomiendaEnAgenciaForm()
-                                        {
-                                            InitializeComponent();
-                                            modelo = new EntregarEncomiendaEnAgenciaModelo();
-                                        }
+        public EntregarEncomiendaEnAgenciaForm()
+        {
+            InitializeComponent();
 
-                                        // ESTÁ BIEN? Se usó para el log in
-                                        // Acepta selección de agencia
-                                        public EntregarEncomiendaEnAgenciaForm(AgenciaEntidad? agenciaSeleccionada) : this()
-                                        {
-                                            AgenciaResult.Text = agenciaSeleccionada?.Nombre ?? "N/A";
-                                        }
+            // Wiring consistente de eventos (igual que en otros forms del proyecto)
+            Load -= EntregarEncomiendaEnAgenciaForm_Load;
+            Load += EntregarEncomiendaEnAgenciaForm_Load;
 
-                                        // REVISAR SI FUNCIONA CON EL LOG IN
-                                        private void EntregarEncomiendaEnAgenciaForm_Load(object sender, EventArgs e)
-                                        {
-                                            UsuarioResult.Text = "Juan Perez";
-                                            AgenciaResult.Text = string.IsNullOrWhiteSpace(AgenciaResult.Text) ? "N/A" : AgenciaResult.Text;
-                                            NombreDestinatarioResult.Text = "";
-                                            ApellidoDestinatarioResult.Text = "";
-                                        }
+            BuscarDestinararioButton.Click -= BuscarDestinararioButton_Click;
+            BuscarDestinararioButton.Click += BuscarDestinararioButton_Click;
+
+            ConfirmarEntregaButton.Click -= ConfirmarEntregaButton_Click;
+            ConfirmarEntregaButton.Click += ConfirmarEntregaButton_Click;
+
+            CancelarButton.Click -= CancelarButton_Click;
+            CancelarButton.Click += CancelarButton_Click;
+        }
+
+        // Sobrecarga usada desde el Menú/LogIn: mantiene consistencia con otros forms
+        public EntregarEncomiendaEnAgenciaForm(AgenciaEntidad? agenciaSeleccionada) : this()
+        {
+            // Mostrar nombre en label y sincronizar el almacen global (fuente de verdad)
+            AgenciaResult.Text = agenciaSeleccionada?.Nombre ?? "N/A";
+            if (agenciaSeleccionada != null && !string.Equals(agenciaSeleccionada.Nombre, "N/A", StringComparison.OrdinalIgnoreCase))
+            {
+                AgenciaAlmacen.AgenciaActual = agenciaSeleccionada;
+            }
+        }
+
+        private void EntregarEncomiendaEnAgenciaForm_Load(object sender, EventArgs e)
+        {
+            // Seguir patrón: mostrar usuario de prototipo y tomar agencia desde el almacen global si existe
+            UsuarioResult.Text = "Juan Perez";
+
+            // Fuente de verdad para la agencia: primero AgenciaAlmacen, si no usar lo que haya en el label o "N/A"
+            AgenciaResult.Text = !string.IsNullOrWhiteSpace(AgenciaAlmacen.AgenciaActual?.Nombre)
+                ? AgenciaAlmacen.AgenciaActual!.Nombre
+                : (string.IsNullOrWhiteSpace(AgenciaResult.Text) ? "N/A" : AgenciaResult.Text);
+
+            NombreDestinatarioResult.Text = "";
+            ApellidoDestinatarioResult.Text = "";
+        }
 
         // EVENTOS
 
         private void BuscarDestinararioButton_Click(object sender, EventArgs e)
         {
-            // Limpiar resultados anteriores
             LimpiarCampos();
 
-            // Validación N0: Campo requerido
             if (string.IsNullOrWhiteSpace(DNIDestinatarioTextBox.Text))
             {
                 MessageBox.Show("Debe ingresar un número de DNI.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Validación N1: Formato numérico
             if (!long.TryParse(DNIDestinatarioTextBox.Text, out _))
             {
                 MessageBox.Show("El DNI debe ser un valor numérico.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Obtener datos del modelo
             string dniBuscado = DNIDestinatarioTextBox.Text;
             var destinatario = modelo.BuscarDestinatarioPorDNI(dniBuscado);
 
@@ -64,31 +81,26 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
                 return;
             }
 
-            // Mostrar datos del destinatario 
             NombreDestinatarioResult.Text = destinatario.Nombre;
             ApellidoDestinatarioResult.Text = destinatario.Apellido;
 
-            // Buscar y mostrar guías pendientes en la Agencia actual
             CargarGuiasPendientes(destinatario.DNI);
         }
 
         private void ConfirmarEntregaButton_Click(object sender, EventArgs e)
         {
-            // Validación N2
             if (GuiasARecepcionarAgenciaListView.Items.Count == 0)
             {
                 MessageBox.Show("Debe ingresar un número de DNI.", "Operación no válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Recopilar los números de guía a entregar
             var guiasParaEntregar = new List<string>();
             foreach (ListViewItem item in GuiasARecepcionarAgenciaListView.Items)
             {
                 guiasParaEntregar.Add(item.SubItems[0].Text);
             }
 
-            // Confirmar entrega en el modelo
             bool exito = modelo.ConfirmarEntrega(guiasParaEntregar);
 
             if (exito)
@@ -104,34 +116,32 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 
         private void CancelarButton_Click(object sender, EventArgs e)
         {
-            // Cierra la pantalla (regreso al menú o flujo anterior)
             this.Close();
         }
 
         private void CargarGuiasPendientes(string dni)
         {
-            // Toma la agencia de la sesión (label superior)
+            // Tomar la agencia desde la fuente de verdad: label o el almacen global como fallback
             string agenciaActual = AgenciaResult.Text;
+            if (string.IsNullOrWhiteSpace(agenciaActual) || string.Equals(agenciaActual, "N/A", StringComparison.OrdinalIgnoreCase))
+            {
+                agenciaActual = AgenciaAlmacen.AgenciaActual?.Nombre ?? agenciaActual;
+            }
 
-            // Busca guías "Pendiente de entrega" en la agencia actual
             var guias = modelo.BuscarGuiasPendientes(dni, agenciaActual);
 
             if (guias.Count == 0)
             {
                 MessageBox.Show("El destinatario no tiene encomiendas pendientes de entrega en esta agencia.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Limpieza adicional (igual que en CD)
                 NombreDestinatarioResult.Text = "";
                 ApellidoDestinatarioResult.Text = "";
                 GuiasARecepcionarAgenciaListView.Items.Clear();
-
-                // Dejar el foco en el DNI para intentar otra búsqueda
                 DNIDestinatarioTextBox.Select();
                 DNIDestinatarioTextBox.Focus();
                 return;
             }
 
-            // Carga de filas en el ListView (Nro de guía + Tamaño)
+            GuiasARecepcionarAgenciaListView.Items.Clear();
             foreach (var guia in guias)
             {
                 ListViewItem item = new ListViewItem(guia.NumeroGuia);
@@ -142,7 +152,6 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 
         private void LimpiarCampos()
         {
-            // CORREGIDO: Usando los nombres de control correctos que existen en tu diseñador.
             NombreDestinatarioResult.Text = "";
             ApellidoDestinatarioResult.Text = "";
             GuiasARecepcionarAgenciaListView.Items.Clear();
@@ -150,7 +159,6 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 
         private void LimpiarFormularioCompleto()
         {
-            // Limpia toda la pantalla para permitir una nueva operación
             DNIDestinatarioTextBox.Clear();
             LimpiarCampos();
         }

@@ -59,12 +59,49 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
                 ? (JsonSerializer.Deserialize<List<AgenciaEntidad>>(File.ReadAllText(Path.Combine("Datos", "Agencias.json"))) ?? new List<AgenciaEntidad>())
                 : new List<AgenciaEntidad>();
 
-            var agencia = agencias.FirstOrDefault(a => string.Equals(a.Nombre, agenciaActual, StringComparison.OrdinalIgnoreCase));
+            AgenciaEntidad? agencia = null;
+
+            if (!string.IsNullOrWhiteSpace(agenciaActual))
+            {
+                // 1) Intentar por nombre exacto (ignore-case)
+                agencia = agencias.FirstOrDefault(a => string.Equals(a.Nombre, agenciaActual, StringComparison.OrdinalIgnoreCase));
+
+                if (agencia == null)
+                {
+                    // 2) Extraer dígitos del texto del label (p. ej. "Agencia 5600" -> "5600")
+                    var digits = new string((agenciaActual ?? string.Empty).Where(char.IsDigit).ToArray());
+
+                    if (!string.IsNullOrWhiteSpace(digits))
+                    {
+                        // Buscar por ID exacto (puede venir con o sin ceros a la izquierda)
+                        agencia = agencias.FirstOrDefault(a =>
+                        {
+                            var aIdDigits = new string((a.ID ?? string.Empty).Where(char.IsDigit).ToArray());
+                            if (string.Equals(aIdDigits, digits, StringComparison.OrdinalIgnoreCase)) return true;
+                            // comparar con padding a 5 dígitos (formato usado en el almacen)
+                            if (aIdDigits == digits.PadLeft(5, '0')) return true;
+                            return false;
+                        });
+
+                        // 3) Si sigue null, intentar buscar por CodigoPostal igual al número extraído
+                        if (agencia == null && int.TryParse(digits, out var cp))
+                        {
+                            agencia = agencias.FirstOrDefault(a => a.CodigoPostal == cp || a.CodigoPostalCD == cp);
+                        }
+                    }
+                }
+            }
+
             if (agencia is null)
             {
                 Guias = new List<Guia>();
                 return Guias;
             }
+
+            // Normalizador: obtiene solo dígitos del ID de agencia de la guía y del almacén para comparar sin problemas de ceros.
+            static string NormalizeIdDigits(string? id) => new string((id ?? string.Empty).Where(char.IsDigit).ToArray()).TrimStart('0');
+
+            var agenciaIdNormalized = NormalizeIdDigits(agencia.ID);
 
             var resultados = GuiaAlmacen.guias
                 .Where(g =>
@@ -72,7 +109,8 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
                     g.Destinatario.DNI.ToString() == dni &&
                     g.Estado == EstadoGuiaEnum.PendienteDeEntrega &&
                     g.TipoEntrega == EntregaEnum.Agencia &&
-                    string.Equals(g.IDAgenciaDestino, agencia.ID, StringComparison.OrdinalIgnoreCase) &&
+                    // comparar IDs normalizados (evita fallo por ceros a la izquierda)
+                    string.Equals(NormalizeIdDigits(g.IDAgenciaDestino), agenciaIdNormalized, StringComparison.OrdinalIgnoreCase) &&
                     !_guiasEntregadasLocalmente.Contains(g.NumeroGuia.ToString()) // excluir entregadas en esta sesión
                 )
                 .Select(g => new Guia
