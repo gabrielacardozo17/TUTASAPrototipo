@@ -16,44 +16,11 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
 
         // Propiedad pública para guardar el CD seleccionado
-        public CentroDeDistribucionEntidad? CDActual { get; set; } //obtengo el CD desde el form
+        public CentroDeDistribucionEntidad? CDActual { get; set; }
 
-        // VALIDACIONES
-        // Verifica si un fletero tiene guías activas (distribución o retiro) en el CD actual
-        public bool FleteroTieneGuiasActivas(int dni)
-        {
-            if (CDActual == null) return false;
-            var hdrsFletero = HDRAlmacen.HDR.Where(h => h.DNIFletero == dni &&
-                                            (h.CodigoPostalDestino == CDActual.CodigoPostal || h.CodigoPostalOrigen == CDActual.CodigoPostal)).ToList();
-            if (!hdrsFletero.Any()) return false;
-            var guias = hdrsFletero.SelectMany(h => h.Guias).Distinct().ToList();
-            return guias.Any();
-        }
-
-        // Indica si NO hay guías para confirmar dado el estado actual del almacén
-        public bool SinGuiasParaConfirmar(int dni)
-        {
-            if (!FleteroTieneGuiasActivas(dni))
-            {
-                // Revisa también potenciales nuevas guías
-                var potenciales = GuiaAlmacen.guias.Any(g => g.CodigoPostalCDOrigen == CDActual?.CodigoPostal || g.CodigoPostalCDDestino == CDActual?.CodigoPostal);
-                return !potenciales;
-            }
-            return false;
-        }
-
-        // Indica si luego de un proceso las guías del fletero quedaron sin pendientes (todas entregadas / no asignables)
-        public bool FleteroSinGuiasPostConfirmacion(int dni)
-        {
-            if (CDActual == null) return true;
-            var (dist, retiro) = GetGuiasPorFletero(dni);
-            return !(dist.Any() || retiro.Any());
-        }
-
-        //Buscar Fletero por DNI
         public Fletero? BuscarFleteroPorDni(int dni) => FleteroAlmacen.fleteros.Select(f => new Fletero{Dni = f.DNI, Nombre = f.Nombre + " " + f.Apellido}).FirstOrDefault(f => f.Dni == dni);
- 
 
+        //obtengo las guias asignadas al fletero en el CD actual
         public (IEnumerable<Guia> distribucion, IEnumerable<Guia> retiro) GetGuiasPorFletero(int dni)
         {
             // HDRs asignadas al fletero en el CD actual
@@ -63,45 +30,42 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                              h.CodigoPostalOrigen == CDActual.CodigoPostal))
                 .ToList();
 
-           
+
 
             //guías de distribución 
-            var dist = hdrsFletero
-                .Where(h => h.TipoHDR == TipoHDREnum.Distribucion)
-                .SelectMany(h => h.Guias)
-                .Join(GuiaAlmacen.guias,
-                    numGuia => numGuia,
-                    guia => guia.NumeroGuia,
-                    (numGuia, guia) => new Guia
-                    {
-                        Numero = numGuia.ToString(),
-                        NroHDR = HDRAlmacen.HDR.First(h => h.Guias.Contains(numGuia)).ID,
-                    })
-                .Where(g => GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnRutaAlDomicilioDeEntrega ||
-                            GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnRutaAlaAgenciaDestino)
-                .OrderBy(g => g.Numero)
-                .ToList();
-
+            var distribucion = hdrsFletero.Where(h => h.TipoHDR == TipoHDREnum.Distribucion)
+                                          .SelectMany(h => h.Guias.Select(numGuia => new { numGuia, hdrId = h.ID }))
+                                          .Join(GuiaAlmacen.guias,
+                                            x => x.numGuia,
+                                            guia => guia.NumeroGuia,
+                                            (x, guia) => new Guia
+                                            {
+                                               Numero = x.numGuia.ToString(),
+                                               NroHDR = x.hdrId,  // ← Usar directamente el ID que ya tienes
+                                            })
+                                          .Where(g => GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnRutaAlDomicilioDeEntrega ||
+                                                   GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnRutaAlaAgenciaDestino)
+                                            .OrderBy(g => g.Numero)
+                                            .ToList();
 
 
             // guías de retiro
-            var retiro = hdrsFletero
-                .Where(h => h.TipoHDR == TipoHDREnum.Retiro)
-                .SelectMany(h => h.Guias)
-                .Join(GuiaAlmacen.guias,
-                    numGuia => numGuia,
-                    guia => guia.NumeroGuia,
-                    (numGuia, guia) => new Guia
-                    {
-                        Numero = numGuia.ToString(),
-                        NroHDR = HDRAlmacen.HDR.First(h => h.Guias.Contains(numGuia)).ID,
-                    })
-                .Where(g => GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnRutaACDDeOrigenDesdeAgencia ||
-                            GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnCaminoARetirarPorDomicilio)
-                .OrderBy(g => g.Numero)
-                .ToList();
+            var retiro = hdrsFletero.Where(h => h.TipoHDR == TipoHDREnum.Retiro)
+                                    .SelectMany(h => h.Guias.Select(numGuia => new { numGuia, hdrId = h.ID }))  // ← Llevar el ID de la HDR
+                                    .Join(GuiaAlmacen.guias,
+                                    x => x.numGuia,
+                                    guia => guia.NumeroGuia,
+                                    (x, guia) => new Guia
+                                    {
+                                        Numero = x.numGuia.ToString(),
+                                        NroHDR = x.hdrId,  // ← Usar directamente el ID que ya tienes
+                                    })
+                                    .Where(g => GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnRutaACDDeOrigenDesdeAgencia ||
+                                            GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnCaminoARetirarPorDomicilio)
+                                    .OrderBy(g => g.Numero)
+                                    .ToList();
 
-            return (dist, retiro);
+            return (distribucion, retiro);
 
         }
 
@@ -115,8 +79,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 throw new InvalidOperationException("Debe seleccionar un Centro de Distribución.");
 
             _ultimosRetirosMarcados = new List<Guia>();
+            string ubicacion = ""; 
 
-            // 1. Procesar guías de distribución marcadas
+            //Procesar guías de distribución marcadas
             var guiasDistribucion = GuiaAlmacen.guias
                 .Where(x => (x.Estado == EstadoGuiaEnum.EnRutaAlaAgenciaDestino ||
                             x.Estado == EstadoGuiaEnum.EnRutaAlDomicilioDeEntrega) &&
@@ -130,7 +95,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 // Cambiar estado según el tipo de entrega
                 if (guia.TipoEntrega == EntregaEnum.Agencia)
                 {
-                    guia.Estado = EstadoGuiaEnum.PendienteDeEntrega;
+                    guia.Estado = EstadoGuiaEnum.PendienteDeEntrega; //revisar acá 
+                    ubicacion = ObtenerDestinoParaDistribucion(guia.NumeroGuia);
                 }
                 else
                 {
@@ -141,12 +107,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 guia.Historial.Add(new RegistroEstadoAux
                 {
                     Estado = guia.Estado,
-                    UbicacionGuia = "",
+                    UbicacionGuia = ubicacion,
                     FechaActualizacionEstado = DateTime.Now
                 });
             }
 
-            // 2. Procesar guías de retiro marcadas
+            // Procesar guías de retiro marcadas
             var guiasRetiro = GuiaAlmacen.guias
                 .Where(x => retirosMarcados.Contains(x.NumeroGuia.ToString()))
                 .ToList();
@@ -167,18 +133,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                     FechaActualizacionEstado = DateTime.Now
                 });
 
-                //solo en esta condicion tengo de borrar la guia de la HDR asignada antes , para que me la vuelva a asignar en la proxima HDR de distribucion
+
                 if (guia.CodigoPostalCDDestino == CDActual.CodigoPostal)
                 {
-                
-                    DesasignarGuiasDeHDR(hdrAnterior.ID.ToString(), guia.NumeroGuia);
-
-                                                                                            //Aca Grabamos
-                                                                                            HDRAlmacen.Grabar();
-
                     guia.Estado = EstadoGuiaEnum.EnCDDestino;
 
-                    // Guardar historial?
+                    // Guardar historial
                     guia.Historial.Add(new RegistroEstadoAux
                     {
                         Estado = guia.Estado,
@@ -218,8 +178,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                                                 .Take(5)  // Tomar solo 5 guías de retiro
                                                 .ToList();
 
-            var GuiasParaDistribucionSinHDR = GuiaAlmacen.guias.Where(g => !GuiasEnHDR.Contains(g.NumeroGuia)
-                                                    && g.CodigoPostalCDDestino == CDActual.CodigoPostal
+            var GuiasParaDistribucionSinHDR = GuiaAlmacen.guias.Where(g =>g.CodigoPostalCDDestino == CDActual.CodigoPostal
                                                     && g.Estado == EstadoGuiaEnum.EnCDDestino)
                                                     .Take(5)  // Tomar solo 5 guías de distribución
                                                     .ToList();
@@ -336,7 +295,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 };
 
                 foreach (var guia in guiasDelGrupo)
-                    ActualizarEstadoGuia(guia.NumeroGuia);
+                    ActualizarEstadoGuia(guia.NumeroGuia, dni);
 
                 HDRAlmacen.HDR.Add(hdr);
                 secuencia++;
@@ -360,7 +319,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                     };
 
                     foreach (var guia in siguienteGrupo)
-                        ActualizarEstadoGuia(guia.NumeroGuia);
+                        ActualizarEstadoGuia(guia.NumeroGuia, dni);
 
                     HDRAlmacen.HDR.Add(hdrAdicional);
                     secuencia++;
@@ -400,7 +359,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 };
 
                 foreach (var guía in guiasDelGrupo)
-                    ActualizarEstadoGuia(guía.NumeroGuia);
+                    ActualizarEstadoGuia(guía.NumeroGuia, dni);
 
                 HDRAlmacen.HDR.Add(hdr);
                 secuencia++;
@@ -424,7 +383,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                     };
 
                     foreach (var guia in siguienteGrupo)
-                        ActualizarEstadoGuia(guia.NumeroGuia);
+                        ActualizarEstadoGuia(guia.NumeroGuia, dni);
 
                     HDRAlmacen.HDR.Add(hdrAdicional);
                     secuencia++;
@@ -443,37 +402,44 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
         public void AsegurarHDRsAsignadasParaFletero(int dni) { }
 
-        private void ActualizarEstadoGuia(int NroGuia)
+        private void ActualizarEstadoGuia(int NroGuia, int dni)
         {
             // Determinar el nuevo estado según el tipo de guía
             var guia = GuiaAlmacen.guias.First(g => g.NumeroGuia == NroGuia);
 
             EstadoGuiaEnum nuevoEstado = guia.Estado;
+            string Ubicacion = ""; //resolver mañana
 
             switch (guia.Estado)
             {
                 case EstadoGuiaEnum.ARetirarPorDomicilioDelCliente:
                     nuevoEstado = EstadoGuiaEnum.EnCaminoARetirarPorDomicilio;
+                    Ubicacion = "En domicilio cliente"; 
                     break;
 
                 case EstadoGuiaEnum.ARetirarEnAgenciaDeOrigen:
                     nuevoEstado = EstadoGuiaEnum.EnCaminoARetirarPorAgencia;
+                    Ubicacion = "En agencia de origen";
                     break;
 
                 case EstadoGuiaEnum.Admitida when guia.TipoEntrega == EntregaEnum.Domicilio:
                     nuevoEstado = EstadoGuiaEnum.EnRutaAlDomicilioDeEntrega;
+                    Ubicacion = $"En transporte con Fletero DNI: {dni}";
                     break;
 
                 case EstadoGuiaEnum.Admitida when guia.TipoEntrega == EntregaEnum.Agencia:
                     nuevoEstado = EstadoGuiaEnum.EnRutaAlaAgenciaDestino;
+                    Ubicacion = $"En transporte con Fletero DNI: {dni}";
                     break;
 
                 case EstadoGuiaEnum.EnCDDestino when guia.TipoEntrega == EntregaEnum.Domicilio:
                     nuevoEstado = EstadoGuiaEnum.EnRutaAlDomicilioDeEntrega;
+                    Ubicacion = $"En transporte con Fletero DNI: {dni}";
                     break;
 
                 case EstadoGuiaEnum.EnCDDestino when guia.TipoEntrega == EntregaEnum.Agencia:
                     nuevoEstado = EstadoGuiaEnum.EnRutaAlaAgenciaDestino;
+                    Ubicacion = $"En transporte con Fletero DNI: {dni}";
                     break;
 
                 default:
@@ -485,7 +451,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             guia.Historial.Add(new RegistroEstadoAux
             {
                 Estado = nuevoEstado,
-                UbicacionGuia = "",
+                UbicacionGuia = Ubicacion,
                 FechaActualizacionEstado = DateTime.Now
             });
         }
@@ -519,11 +485,27 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             {
                 throw new InvalidOperationException("No se encontró precio para el tamaño");
             }
+
             decimal Extras = 0;
+            bool TuvoRetiroDomicilio = guia.Historial.Any(x => x.Estado == EstadoGuiaEnum.ARetirarPorDomicilioDelCliente);
+
+
             if (guia.TipoEntrega == EntregaEnum.Domicilio &&
-                Convenio.Extras.TryGetValue(ExtrasEnum.ExtraRetiroDomicilio, out decimal retiro))
+                Convenio.Extras.TryGetValue(ExtrasEnum.ExtraEntregaDomicilio, out decimal EntregaDomicilio))
             {
-                Extras += retiro;
+                Extras += EntregaDomicilio;
+            }
+
+            if (guia.TipoEntrega == EntregaEnum.Domicilio &&
+              Convenio.Extras.TryGetValue(ExtrasEnum.ExtraEntregaAgencia, out decimal EntregaAgencia))
+            {
+                Extras += EntregaAgencia;
+            }
+
+            if (TuvoRetiroDomicilio && Convenio.Extras.TryGetValue(ExtrasEnum.ExtraEntregaAgencia, out decimal RetiroDomicilio))
+            {
+
+                Extras += RetiroDomicilio;
             }
 
             return PrecioBase + Extras;
@@ -558,8 +540,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             {
                 // quiero obtener el nombre de la agencia
                 var AgenciaEntrega = AgenciaAlmacen.agencias
-                                .FirstOrDefault(a => a.ID == guia.IDAgenciaOrigen);
-                return AgenciaEntrega?.Nombre ?? guia.IDAgenciaOrigen;
+                                .FirstOrDefault(a => a.ID.Substring(1) == guia.IDAgenciaDestino);
+                return AgenciaEntrega.Nombre;
             }
             else
             {
@@ -568,13 +550,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             }
 
         }
-
-        private void DesasignarGuiasDeHDR(string hdr, int nroGuia)
+        private bool ValidarRetiroDomicilio(int numeroGuia)
         {
-            var HDRGuia = HDRAlmacen.HDR.FirstOrDefault(h => h.ID == hdr);
-
-            HDRGuia?.Guias.Remove(nroGuia);
-
+            var guia = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == numeroGuia);
+            if (guia == null || guia.Historial == null)
+                return false;
+            return guia.Historial.Any(h => h.Estado == EstadoGuiaEnum.ARetirarPorDomicilioDelCliente);
         }
 
     }

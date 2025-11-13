@@ -77,17 +77,6 @@
 		"CodigoPostalDestino": 3000
 	},
 	{
-		"ID": "T 5500 000801 5500",
-		"TipoHDR": 2,
-		"DNIFletero": 0,
-		"IDServicioTransporte": 2000521,
-		"Guias": [
-			830000003
-		],
-		"CodigoPostalOrigen": 5500,
-		"CodigoPostalDestino": 5500
-	},
-	{
 		"ID": "T 5500 000122 9410",
 		"TipoHDR": 2,
 		"DNIFletero": 0,

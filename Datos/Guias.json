@@ -943,63 +943,6 @@
     ]
   },
   {
-    "NumeroGuia": 830000003,
-    "Estado": 7,
-    "FechaAdmision": "2025-10-28T14:00:00-03:00",
-    "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 5500,
-    "CodigoPostalCDDestino": 5500,
-    "IDAgenciaOrigen": "05500",
-    "IDAgenciaDestino": "05500",
-    "CUITCliente": "33-50182746-7",
-    "Tamano": 1,
-    "Destinatario": {
-      "DNI": 37888999,
-      "Nombre": "Camila",
-      "Apellido": "Ruiz",
-      "Direccion": "Belgrano 1100, Mendoza",
-      "CodigoPostal": 5500
-    },
-    "IDConvenio": 200016,
-    "ImporteAFacturar": 6400.00,
-    "ComisionAgenciaOrigen": 0,
-    "ComisionAgenciaDestino": 0,
-    "ComisionFleteroOrigen": 0,
-    "ComisionFleteroDestino": 0,
-    "Historial": [
-      {
-        "Estado": 0,
-        "UbicacionGuia": "Agencia 08300",
-        "FechaActualizacionEstado": "2025-10-28T12:30:00-03:00"
-      },
-      {
-        "Estado": 3,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-10-28T12:35:00-03:00"
-      },
-      {
-        "Estado": 4,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-10-28T13:00:00-03:00"
-      },
-      {
-        "Estado": 5,
-        "UbicacionGuia": "CD 8300",
-        "FechaActualizacionEstado": "2025-10-28T14:00:00-03:00"
-      },
-      {
-        "Estado": 6,
-        "UbicacionGuia": null,
-        "FechaActualizacionEstado": "2025-10-28T21:30:00-03:00"
-      },
-      {
-        "Estado": 7,
-        "UbicacionGuia": "CD 5500",
-        "FechaActualizacionEstado": "2025-10-29T10:00:00-03:00"
-      }
-    ]
-  },
-  {
     "NumeroGuia": 910000002,
     "Estado": 6,
     "FechaAdmision": "2025-10-27T10:00:00-03:00",
