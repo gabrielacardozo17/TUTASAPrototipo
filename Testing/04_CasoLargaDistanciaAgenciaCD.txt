@@ -1,0 +1,115 @@
+﻿01: Inicio de Sesión (Login)
+	1. Mail: jperez@gmail.com
+	2. Contraseña: juanAgosto
+	3. CD y Agencia: Santa Fe / Rosario
+
+02: Imposición de encomiendas (Agencia)
+	1. CUIT:30-94715263-9
+	2. Botón Buscar
+	3. Verificar: cliente encontrado
+	4. Nombre destinatario: Juan
+	5. Apellido destinatario: Castro
+	6. DNI destinatario: 19568232
+	7. Provincia: Mendoza
+	8. Localidad: San Rafael, Mendoza
+	9. Tipo de entrega disponible: CD
+	10. CD: CD Mendoza
+	11. Detalle de encomiendas:
+	 - XL: 1
+	12. Botón Confirmar
+	13. Botón Aceptar en el pop‑up
+	14. Verificar: guía impuesta correctamente (nro.200000003)
+	15. Cerrar el menú de la pantalla
+
+03: Recepción y despacho (Última Milla CD – Retiro)
+	1. DNI fletero:	29811223
+	2. Botón Buscar
+	3. Verificar: la guía 200000003 se asigna a una nueva HDR de Retiro
+	4. Botón Confirmar
+	5. Verificar: anotar Nro HDR de Retiro generado (R 02000 000012 02000)
+	6. Botón Aceptar
+	7. Botón Cancelar
+	8. DNI fletero: 29811223
+	9. Botón Buscar
+	10. Verificar: la guía 200000003 aparece en el detalle de HDR de Retiro (R 02000 000012 02000)
+	11. Marcar guía 200000003
+	12. Botón Confirmar
+	13. Verificar: la HDR R 02000 000012 02000 quedó recibida
+	14. Cerrar el menú de la pantalla
+
+04: Recepción y despacho (Agencia)
+	1. DNI fletero: 29811223
+	2. Botón Buscar
+	3. Verificar: la guía 200000003 figura “En camino a retirar por agencia”
+	4. Botón Confirmar
+	5. Verificar: estado actualizado a “En ruta a CD de origen (desde agencia)”
+	6. Cerrar el menú de la pantalla
+
+05: Recepción y despacho (Última Milla CD – Rendición Retiro)
+	1. DNI fletero: 29811223
+	2. Botón Buscar
+	3. Marcar guía 200000003
+	4. Botón Confirmar rendición
+	5. Verificar: estado “Admitida” en CD Rosario
+	6. Cerrar el menú de la pantalla
+
+06: Recepción y despacho (Larga Distancia – Origen)
+	1. Seleccionar Servicio Transporte: 3003345
+	2. Verificar en guías a despachar: 200000003 (XL, Destino: CD Mendoza)
+	3. Botón Confirmar
+	4. Verificar: estado “En tránsito al CD destino (Servicio Nº3003345)”
+	5. Cerrar el menú de la pantalla
+
+07: Salir al Login (Menú principal)
+	1. Cerrar el menú principal para volver a la pantalla de inicio de sesión
+
+08: Inicio de Sesión (Login) – cambio de sede
+	1. Mail: jperez@gmail.com
+	2. Contraseña: juanAgosto
+	3. CD y Agencia: CD Mendoza / Agencia San Rafael
+
+09: Recepción y despacho (Larga Distancia – Destino)
+	1. Servicio: 3003345
+	2. Verificar en guías a recibir: 200000003 (XL, Destino: CD Mendoza)
+	3. Botón Confirmar
+	4. Verificar: recepción OK y estado “Pendiente de entrega (CD Mendoza)”
+	5. Cerrar el menú de la pantalla
+	
+10: Entrega de encomiendas (Centro de Distribución)
+	1. DNI destinatario:19568232
+	2. Botón Buscar destinatario
+	3. Verificar: destinatario Juan Castro encontrado
+	4. Botón Buscar guías pendientes
+	5. Verificar: aparece 200000003 (XL, Ubicación: CD Mendoza)
+	6. Seleccionar guía 200000003
+	7. Botón Confirmar entrega
+	8. Verificar: guía entregada correctamente (Estado: Entregada)
+	9. Cerrar el menú de la pantalla
+
+11: Emisión de Factura (Facturación)
+	1. CUIT cliente: 30-94715263-9
+	2. Botón Buscar
+	3. Verificar: figura guía 200000003 en estado Entregada e importe >0
+	4. Botón Emitir Factura
+	5. Verificar: factura FA-202511-000XX emitida y registrada con éxito
+	6. Cerrar el menú de la pantalla
+
+12: Verificación Cuenta Corriente (Cuenta Corriente)
+	1. CUIT Cliente: 30-94715263-9
+	2. Período: Noviembre2025
+	3. Botón Buscar
+	4. Verificar: movimiento “Factura FA-202511-000XX” aparece con Debe=total, Haber=0
+	5. Cerrar el menú de la pantalla
+
+13: Consulta de Estado de Encomienda (Consulta de Estado)
+	1. Ingresar número guía: 200000003
+	2. Verificar historial en orden:
+		1. A retirar en agencia de origen
+		2. En camino a retirar por agencia
+		3. En ruta a CD de origen (desde agencia)
+		4. Admitida
+		5. En tránsito al CD destino (Servicio Nº3003345)
+		6. Pendiente de entrega (CD Mendoza)
+		7. Entregada
+		8. Facturada
+	3. Cerrar el menú de la pantalla
