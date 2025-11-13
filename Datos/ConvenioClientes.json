@@ -281,13 +281,6 @@
       }
     ]
   },
-
-
-
-
-
-
-
   {
     "ID": 200008,
     "CUITCliente": "30-72913658-9",
@@ -578,6 +571,58 @@
           "M": 1200,
           "L": 1600,
           "XL": 2000
+        }
+      }
+    ]
+  },
+  {
+    "ID": 200026,
+    "CUITCliente": "30-21453678-5",
+    "Extras": {
+      "ExtraRetiroDomicilio": 950,
+      "ExtraEntregaDomicilio": 1250,
+      "ExtraEntregaAgencia": 0
+    },
+    "TarifasPorOrigenDestino": [
+      {
+        "CodigoPostalOrigen": 1000,
+        "CodigoPostalDestino": 5000,
+        "PreciosXTamano": {
+          "S": 2000,
+          "M": 2800,
+          "L": 3600,
+          "XL": 4400
+        }
+      }
+    ]
+  },
+  {
+    "ID": 200027,
+    "CUITCliente": "30-69639215-9",
+    "Extras": {
+      "ExtraRetiroDomicilio": 950,
+      "ExtraEntregaDomicilio": 1250,
+      "ExtraEntregaAgencia": 0
+    },
+    "TarifasPorOrigenDestino": [
+      {
+        "CodigoPostalOrigen": 6300,
+        "CodigoPostalDestino": 5000,
+        "PreciosXTamano": {
+          "S": 1900,
+          "M": 2600,
+          "L": 3300,
+          "XL": 4000
+        }
+      },
+      {
+        "CodigoPostalOrigen": 6300,
+        "CodigoPostalDestino": 5500,
+        "PreciosXTamano": {
+          "S": 2300,
+          "M": 3100,
+          "L": 3900,
+          "XL": 4700
         }
       }
     ]
