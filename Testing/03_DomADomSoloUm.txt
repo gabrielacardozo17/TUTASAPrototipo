@@ -89,11 +89,62 @@
 09: Consulta de Estado de Encomienda (Consulta de Estado)
     1. Guía: 188810007
     2. Botón Buscar
-    3. Verificar historial en orden:
-        1. A retirar por domicilio del cliente
-        2. En camino a retirar por domicilio
-        3. Admitida
-        4. En ruta al domicilio de entrega
-        5. Entregada
-        6. Facturada
-        7. Cerrar el menú de la pantalla
+    3. Verificar resultado:
+
+        Fecha                   | Estado                                 | Ubicación
+        Fecha de actualización  | A retirar por domicilio del cliente    | En domicilio Cliente
+        Fecha de actualización  | En camino a retirar por domicilio      | En domicilio Cliente
+        Fecha de actualización  | Admitida                               | CD Buenos Aires
+        Fecha de actualización  | En ruta al domicilio de entrega        | En transporte con Fletero DNI: 29876543
+        Fecha de actualización  | Entregada                              | -
+        Fecha de actualización  | Facturada                              | -
+     
+    4. Cerrar el menú de la pantalla
+
+10: Verificar archivos
+
+    - HDRs:
+
+        {"ID":"R 018888 000012 18888",
+        "TipoHDR":1,
+        "DNIFletero":30456789,
+        "IDServicioTransporte":0,
+        "Guias":[188810007],
+        "CodigoPostalOrigen":18888,
+        "CodigoPostalDestino":18888},
+        {"ID":"D 01888 000013 018888",
+        "TipoHDR":0,
+        "DNIFletero":29876543,
+        "IDServicioTransporte":0,
+        "Guias":[188810007],
+        "CodigoPostalOrigen":18888,
+        "CodigoPostalDestino":18888}
+
+    - Guías:
+        {"NumeroGuia":188810007,
+        "Estado":11,
+        "TipoEntrega":1,
+        "CodigoPostalCDOrigen":18888,
+        "CodigoPostalCDDestino":18888,
+        "IDAgenciaOrigen":"",
+        "IDAgenciaDestino":"",
+        "CUITCliente":"30-40762117-0",
+        "Tamano":2,
+        "Destinatario":
+            {"DNI":13131163,
+            "Nombre":"Carlos",
+            "Apellido":"Mises",
+            "Direccion":"Tinogasta2620",
+            "CodigoPostal":1888},
+            "IDConvenio":0,
+            "ImporteAFacturar":1800,
+            "ComisionAgenciaOrigen":0,
+            "ComisionAgenciaDestino":0,
+            "ComisionFleteroOrigen":0,
+            "ComisionFleteroDestino":0,
+        "Historial":
+        [{"Estado":1,"UbicacionGuia":""},
+        {"Estado":2,"UbicacionGuia":""},
+        {"Estado":5,"UbicacionGuia":"CD Buenos Aires"},
+        {"Estado":8,"UbicacionGuia":""},
+        {"Estado":11,"UbicacionGuia":""}]}

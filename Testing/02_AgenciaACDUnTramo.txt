@@ -108,14 +108,73 @@
 	5. Cerrar el menú de la pantalla
 
 13: Consulta de Estado de Encomienda (Consulta de Estado)
-	1. Ingresar número guía: 200000003
-	2. Verificar historial en orden:
-		1. A retirar en agencia de origen
-		2. En camino a retirar por agencia
-		3. En ruta a CD de origen (desde agencia)
-		4. Admitida
-		5. En tránsito al CD destino (Servicio Nº3003345)
-		6. Pendiente de entrega (CD Mendoza)
-		7. Entregada
-		8. Facturada
-	3. Cerrar el menú de la pantalla
+	1. Número de guía: 200000003
+	2. Botón Buscar
+	3. Verificar resultado de la búsqueda:
+
+		Fecha de actualización	| Estado								  | Ubicación
+		Fecha de actualización  | A retirar en agencia de origen          | Agencia Rosario
+		Fecha de actualización  | En camino a retirar por agencia         | Agencia Rosario
+		Fecha de actualización  | En ruta a CD de origen (desde agencia)  | En transporte con Fletero DNI: 29811223
+		Fecha de actualización  | Admitida                                | CD Rosario
+		Fecha de actualización  | En tránsito al CD destino               | En Servicio Nº3003345
+		Fecha de actualización  | Pendiente de entrega                    | CD Mendoza
+		Fecha de actualización  | Entregada                               | -
+		Fecha de actualización  | Facturada                               | -
+
+	4. Botón Cancelar
+	5. Cerrar el menú de la pantalla
+
+14: Verificar archivos
+	- HDRs:
+		1 de retiro (busca en agencia de origen)
+		1 de transporte (CD origen a CD destino)
+
+		{
+		  "ID": "R 02000 000012 02000",
+		  "TipoHDR": 1,
+		  "DNIFletero": 29811223,
+		  "IDServicioTransporte": 0,
+		  "Guias": [200000003],
+		  "CodigoPostalOrigen": 2000,
+		  "CodigoPostalDestino": 2000
+		},
+		{
+		  "ID": "T 02000 0000XX 05500",
+		  "TipoHDR": 2,
+		  "DNIFletero": 0,
+		  "IDServicioTransporte": 3003345,
+		  "Guias": [200000003],
+		  "CodigoPostalOrigen": 2000,
+		  "CodigoPostalDestino": 5500
+		}
+
+	- Guías:
+		{
+		  "NumeroGuia": 200000003,
+		  "Estado": 11,
+		  "TipoEntrega": 0,
+		  "CodigoPostalCDOrigen": 2000,
+		  "CodigoPostalCDDestino": 5500,
+		  "IDAgenciaOrigen": "02000",
+		  "IDAgenciaDestino": "",
+		  "CUITCliente": "30-94715263-9",
+		  "Tamano": 3,
+		  "Destinatario": {"DNI": 19568232, "Nombre": "Juan", "Apellido": "Castro", "Direccion": "", "CodigoPostal": 5500},
+		  "IDConvenio": 1,
+		  "ImporteAFacturar": (valor calculado),
+		  "ComisionAgenciaOrigen": 0,
+		  "ComisionAgenciaDestino": 0,
+		  "ComisionFleteroOrigen": 0,
+		  "ComisionFleteroDestino": 0,
+		  "Historial": [
+		    {"Estado": 0,  "UbicacionGuia": ""},    
+		    {"Estado": 3,  "UbicacionGuia": ""},      
+		    {"Estado": 4,  "UbicacionGuia": ""},              
+		    {"Estado": 5,  "UbicacionGuia": "CD Rosario"},    
+		    {"Estado": 6,  "UbicacionGuia": "Servicio:3003345"},
+		    {"Estado": 10, "UbicacionGuia": "CD Mendoza"},    
+		    {"Estado": 11, "UbicacionGuia": ""}               
+		    {"Estado": 14, "UbicacionGuia": ""}            
+		  ]
+		}
