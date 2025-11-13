@@ -1,25 +1,31 @@
-﻿01: Inicio de Sesión (Login)
+﻿01: Login 
 	1. Mail: jperez@gmail.com
 	2. Contraseña: juanAgosto
 	3. CD y Agencia: Santa Fe / Rosario
+	4. Botón Ingresar
+	5. Botón Aceptar en el pop-up
 
 02: Imposición de encomiendas (Agencia)
-	1. CUIT:30-94715263-9
+	1. CUIT: 30-94715263-9
 	2. Botón Buscar
-	3. Verificar: cliente encontrado
+	3. Verificar: Cliente encontrado. Se completan su Razón social, Teléfono y Dirección.
 	4. Nombre destinatario: Juan
 	5. Apellido destinatario: Castro
 	6. DNI destinatario: 19568232
-	7. Provincia: Mendoza
-	8. Localidad: San Rafael, Mendoza
-	9. Tipo de entrega disponible: CD
-	10. CD: CD Mendoza
-	11. Detalle de encomiendas:
-	 - XL: 1
-	12. Botón Confirmar
-	13. Botón Aceptar en el pop‑up
-	14. Verificar: guía impuesta correctamente (nro.200000003)
-	15. Cerrar el menú de la pantalla
+	7. Verificar: Trae las 24 provincias.
+	8. Provincia: Mendoza
+	9. Verificar: Trae las localidades de mendoza.
+	10. Localidad: San Rafael, Mendoza
+	11. Verificar: Trae los tres tipos de entrega
+	12. Tipo de entrega disponible: CD
+	13. CD: CD Mendoza
+	14. Detalle de encomiendas:
+		XL: 1
+
+	15. Botón Confirmar
+	16. Verificar guía impuesta correctamente con nro:200000003 | Guía creada con estado “A retirar por agencia de origen” (nro: X)
+	17. Botón Aceptar en el pop‑up
+	18. Botón Cancelar 
 
 03: Recepción y despacho (Última Milla CD – Retiro)
 	1. DNI fletero:	29811223

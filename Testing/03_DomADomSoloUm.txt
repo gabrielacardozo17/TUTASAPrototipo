@@ -1,22 +1,23 @@
-﻿01: Inicio de Sesión (Login)
+﻿01: Login 
     1. Mail: jperez@gmail.com
     2. Contraseña: juanAgosto
     3. CD y Agencia: CD Buenos Aires / N/A
-    4. Cerrar el menú de la pantalla
+    4. Botón Ingresar
+	5. Botón Aceptar en el pop-up
 
 02: Imposición de encomiendas (Call Center)
     1. CUIT Cliente: 30-40762117-0
     2. Botón Buscar
-    3. Verificar: se completa Nombre, Teléfono y Dirección del cliente
+    3. Verificar: Cliente encontrado. Se completan su Razón social, Teléfono y Dirección.
     4. Nombre destinatario: Carlos
     5. Apellido destinatario: Mises
     6. DNI destinatario: 13131163
     7. Provincia: Buenos Aires
-    8. Localidad: Florencio Varela
+    8. Localidad: Florencio Varela, Buenos Aires
     9. Tipo de entrega disponible: A domicilio
     10. Dirección: Tinogasta2620
     11. Detalle de encomiendas:
-     - L: 1
+        L: 1
     12. Botón Confirmar
     13. Botón Aceptar en pop‑up
     14. Verificar: Guía creada con estado “A retirar por domicilio del cliente” (nro: 188810007)
