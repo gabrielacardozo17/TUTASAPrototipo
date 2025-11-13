@@ -1,0 +1,141 @@
+01 - Login
+1. Email: jperez@gmail.com 
+2. Contraseña: juanAgostoen 
+3. CD: San Luis y Agencia: N/A > AL FINAL QUE ONDA EL N/A
+ 
+02 - Imposición de encomiendas (Centro de Distribución)
+1. CUIT: 30-55667788-1
+2. Botón Buscar
+3. Verificar: se completa los label Nombre, Teléfono y Dirección > PONER VALOR
+4. Nombre destinatario: Pepe
+5. Apellido destinatario: Suarez
+6. DNI destinatario: 31165199
+7. Provincia: Buenos Aires
+8. Localidad: Florencio Varela, Buenos Aires
+9. Tipo de entrega disponible: A domicilio
+10. Dirección: Laprida 1122
+11. Detalle de encomiendas:
+      S: 1
+12. Botón confirmar
+13. Verificar encomiendas impuestas con guías nro: 570010006 (Tamaño S)
+14.Aceptar el mensaje
+15. Cancelar
+ 
+03 - Ingresar en Recepción y despacho de encomiendas larga distancia
+1. Número de servicio: "4004123"
+2. Botón Buscar
+3. Verificar que la guía 570010006 se asigne en Guias a despachar en este servicio
+4. Boton en confirmar
+5. Aceptar el mensaje "Recepción y despacho confirmado con éxito" > VER SI AJUSTAR ESTO EN PRUEBA
+ 
+04 - Consultar estado de encomiendas
+1. Número de guía: 570010006
+2. Botón Buscar
+3. Verificar que figure dos filas con la fecha del dia, estado "Admitida" en CD San Luis y luego "En tránsito al CD destino" con ubicación "En servicio N° 4004123"
+4. Cancelar
+5. Cerrar el menú principal
+ 
+05 - Recepción y despacho de encomiendas larga distancia Tramo 1
+1. Email: jperez@gmail.com 
+2. Contraseña: juanAgostoen
+3: CD: Córdoba y Agencia Actual: N/A 
+4. Número de servicio: "4004123"
+5. Botón Buscar
+6. Verificar que la guía 570010006 se asigne en Guías a recibir de este servicio
+7. Confirmar
+8. Aceptar
+9. Número de servicio: 4004123
+10. Botón Buscar
+11. Verificar que la guía 570010006 se asigne en Guías a despachar en este servicio
+12. Confirmar
+13. Aceptar
+14. Cancelar
+15. Cerrar el menú principal
+ 
+05 - Recepción y despacho de encomiendas larga distancia Tramo 2
+1. Email: jperez@gmail.com 
+2. Contraseña: juanAgostoen
+3. CD: Santa Fe y Agencia Actual: N/A 
+4. 4004123
+5. Botón Buscar
+6. Verificar que la guía 570010006 se asigne en Guías a recibir de este servicio
+7. Confirmar
+8. Aceptar
+9. Número de servicio: 4004123
+10. Botón Buscar
+11. Verificar que la guía 570010006 se asigne en Guías a despachar en este servicio
+12. Confirmar
+13. Aceptar
+14. Cancelar
+15. Cerrar el menú principal
+ 
+05 - Recepción y despacho de encomiendas larga distancia Tramo 3
+1. Email: jperez@gmail.com 
+2. Contraseña: juanAgostoen
+3. CD: CABA y Agencia Actual: N/A 
+4. Número de servicio: 4004123
+5. Botón Buscar
+6. Verificar que la guía 570010006 se asigne en Guías a recibir de este servicio
+7. Confirmar
+8. Aceptar
+9. Número de servicio: "4004123" 
+10. Botón Buscar
+11. Verificar que la guía 570010006 se asigne en Guías a despachar en este servicio
+12. Confirmar
+13. Aceptar
+14. Cancelar
+15. Cerrar el menú principal
+ 
+05 - Recepción y despacho de encomiendas larga distancia Tramo 3
+1. Email: jperez@gmail.com 
+2. Contraseña: juanAgostoen
+3. CD: Buenos Aires y Agencia Actual: N/A 
+4. Número de servicio: 4004123
+5. Botón Buscar
+6. Verificar que la guía 570010006 se asigne en Guías a recibir de este servicio
+7. Confirmar
+8. Aceptar
+9. Cancelar
+ 
+06 - Recepción y despacho de encomiendas última milla
+1. DNI: 30456789
+2. Botón Buscar
+3. Verificar que la guía 570010006 se asigne en "La nueva hoja de ruta de distribución asignada a este fletero contiene las siguientes guías"
+4. Confirmar
+5. Verificar que figure un mensaje de Operación exitosa, con la generación de la HDR y figure el nro de guía en "HDR de distribución asignadas" > AJUSTAR CON HDR
+6. Aceptar
+7. DNI: 30456789
+8. Botón Buscar
+9. Tildar la guia 570010006 de "Detalle de guias de HDR de distribución asignadas"
+10. Confirmar
+11.  Verificar que figure un mensaje de Operación exitosa, con la HDR de distribución recibidas y figure el nro de guía > AJUSTAR CON HDR
+12. Aceptar
+13. DNI: "0456789
+14. Botón Buscar
+15. Verificar que la guía 570010006 no quede asignada en ningún lado
+16. Cancelar
+ 
+06 - Emitir Factura
+1. Cuit: 30-55667788-1
+2. Botón Buscar
+3. Verificar que figure la guia 570010006 con importe $1.800,00
+4. Botón Emitir Factura
+5. Aceptar
+6. Cuit: 30-55667788-1
+7. Botón Buscar
+8. Verificar que figure un mensaje "No se encontraron ítems pendientes de facturar"
+9. Aceptar
+10. Cancelar
+ 
+07 - Consulta de estado de cuenta corriente 
+1. Cuit: 30-55667788-1 y período: noviembre 2025
+2. Botón Buscar
+3. Verificar Importe: $1.800,00 en Debe. 
+4. Verificar Saldo al cierre del periodo: $3.600,00
+5. Cancelar
+ 
+08 - Monitoreo de resultados
+1. Noviembre 2025
+2. Botón Buscar
+3. Verificar Via Bariloche Cargo-Ventas mensuales:$3.600,00
+4. AGREGAR TOTAL Verificar Via Bariloche Resultados: AGREGAR
