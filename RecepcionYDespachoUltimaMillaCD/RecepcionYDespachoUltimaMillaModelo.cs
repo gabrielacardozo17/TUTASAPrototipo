@@ -550,14 +550,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             }
 
         }
-        private bool ValidarRetiroDomicilio(int numeroGuia)
-        {
-            var guia = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == numeroGuia);
-            if (guia == null || guia.Historial == null)
-                return false;
-            return guia.Historial.Any(h => h.Estado == EstadoGuiaEnum.ARetirarPorDomicilioDelCliente);
-        }
-
     }
 
 }
