@@ -1,0 +1,82 @@
+﻿01: Inicio de Sesión
+Mail: jperez@gmail.com
+Contraseña: juanAgosto
+CD: Santa Fe
+Agencia: Rosario
+
+02: Imposición en agencia
+CUIT: 30-94715263-9
+Botón Buscar
+Nombre destinatario: Juan
+Apellido destinatario: Castro
+DNI destinatario: 19568232
+Provincia: Mendoza
+Localidad: San Rafael, Mendoza
+Tipo de entrega disponible: CD
+CD: CD Mendoza
+Detalle de encomiendas: una encomienda tamaño L
+Botón Confirmar
+Botón Aceptar en el pop-up
+Verificar: Encomienda impuesta correctamente con su nro. de guia 200000003
+
+03: Recepción y Despacho de encomiendas última milla (CD)
+DNI Fletero: 29811223
+Botón Confirmar
+Verificar qué se hayan asignado la HDR R 02000 000012 02000 al fletero con la guía 200000003
+
+04: Recepción Y Despacho Agencia
+DNI Fletero 29811223
+Botón Confirmar
+Verificar qué se hayan actualizado los estados de la guía 200000003 
+
+05: Recepción Y Despacho de encomiendas última milla CD
+DNI Fletero: 29811223
+Marcar las 3 guías (200000001, 200000002, 200000003) qué figuran en HDR de retiro asignadas
+Botón Confirmar
+Verificar que se haya asignado la HDR R 02000 000012 02000 de retiro al fletero 
+
+06: Recepción y Despacho Larga Distancia: 
+Seleccionar Servicio Transporte: 3003345
+Botón Confirmar
+Verificar: Recepción y Estado confirmados con éxito
+
+07: Inicio de Sesión
+Mail: jperez@gmail.com
+Contraseña: juanAgosto
+CD: CD Mendoza
+Agencia: Agencia San Rafael
+
+08: Recepción y Despacho Larga Distancia
+Servicio: 3003345
+Botón Confirmar
+Verificar: Recepción y Estado confirmados con éxito
+
+09: Entrega de encomiendas en CD 
+DNI Destinatario: 19568232 
+Botón Buscar destinatario 
+Botón Confirmar entrega 
+Verificar: Encomiendas entregadas correctamente
+
+10: Emisión de Factura
+CUIT cliente: 30-94715263-9 
+Botón Buscar
+Botón Emitir Factura
+Verificar: Factura FA-202511-000XX emitida y registrada con éxito
+
+11: Verificación Cuenta Corriente
+CUIT Cliente: 30-94715263-9
+Período: Noviembre 2025
+Botón Buscar
+Verificar: FA-AAAAMM-000XX debería aparecer en Movimientos de Cuenta Corriente
+
+13: Consulta de Estado de Encomienda  
+Ingresar número guía 200000003
+Verificar historial en orden:
+A retirar en agencia de origen
+En camino a retirar por agencia
+En ruta a CD de origen (desde agencia)
+Admitida
+En tránsito al CD destino (Servicio Nº 3003345)
+Pendiente de entrega (CD Mendoza)
+Entregada
+Facturada
