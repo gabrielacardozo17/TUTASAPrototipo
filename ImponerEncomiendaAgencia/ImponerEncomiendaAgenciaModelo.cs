@@ -186,9 +186,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                 );
         }
 
-        // =============================================================
-        // 2) CONSULTAS Y HELPERS PARA LA UI
-        // =============================================================
+        // 2) CONSULTAS
 
         // Buscar para el botón "Buscar": lanza si no existe
         public Cliente BuscarCliente(string cuit)
@@ -403,8 +401,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             for (int i = 0; i < cantL; i++) CrearYAgregar(0, 0, 1, 0);
             for (int i = 0; i < cantXL; i++) CrearYAgregar(0, 0, 0, 1);
 
-                                                                        //Aca Grabamos
-                                                                        GuiaAlmacen.Grabar();
 
             return creadas;
         }

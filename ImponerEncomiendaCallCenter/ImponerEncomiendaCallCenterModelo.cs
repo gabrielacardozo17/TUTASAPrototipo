@@ -407,8 +407,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             for (int i = 0; i < cantL; i++) CrearYAgregar(0, 0, 1, 0);
             for (int i = 0; i < cantXL; i++) CrearYAgregar(0, 0, 0, 1);
 
-                                                                                //Aca Grabamos
-                                                                                GuiaAlmacen.Grabar();
+                                                                               
 
             return creadas;
         }

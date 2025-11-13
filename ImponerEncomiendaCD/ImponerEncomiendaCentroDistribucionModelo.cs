@@ -409,9 +409,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             for (int i = 0; i < cantXL; i++) CrearYAgregar(0, 0, 0, 1);
 
 
-                                                                //Aca Grabamos
-                                                                GuiaAlmacen.Grabar();
-
             return creadas; 
         }
     }

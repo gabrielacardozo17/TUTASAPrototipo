@@ -1,5 +1,6 @@
 
-using System.Configuration; 
+using System.Configuration;
+using TUTASAPrototipo.Almacenes;
 namespace TUTASAPrototipo
 {
     internal static class Program
@@ -25,7 +26,11 @@ namespace TUTASAPrototipo
             //Application.Run(new RecepcionYDespachoLargaDistancia.RecepcionYDespachoLargaDistanciaForm());
             //Application.Run(new RecepcionYDespachoUltimaMillaCD.RecepcionYDespachoUltimaMillaForm());
             //Application.Run(new EstadoCuentaCorrienteCliente.EstadoCuentaCorrienteClienteForm());
-            Application.Run(new LoginUsuario.LoginUsuarioForm());            
+            Application.Run(new LoginUsuario.LoginUsuarioForm());
+
+
+            //Aca Grabamos
+            GuiaAlmacen.Grabar();
         }
     }
 }
