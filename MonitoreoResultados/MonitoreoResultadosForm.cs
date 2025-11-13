@@ -13,7 +13,7 @@ namespace TUTASAPrototipo.MonitoreoResultados
 {
     public partial class MonitoreoResultadosForm : Form
     {
-        private readonly MonitoreoResultadosModelo Modelo = new(); // accedemos al modelo
+        private readonly MonitoreoResultadosModelo Modelo = new();
         public MonitoreoResultadosForm()
         {
             InitializeComponent();

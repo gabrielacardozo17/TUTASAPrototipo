@@ -18,7 +18,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
         // Propiedad pública para guardar el CD seleccionado
         public CentroDeDistribucionEntidad? CDActual { get; set; } //obtengo el CD desde el form
 
-        // =================== NUEVAS VALIDACIONES (solo modelo) ===================
+        // VALIDACIONES
         // Verifica si un fletero tiene guías activas (distribución o retiro) en el CD actual
         public bool FleteroTieneGuiasActivas(int dni)
         {
@@ -30,12 +30,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             return guias.Any();
         }
 
-        // Indica si NO hay guías para confirmar (ni en retiro ni en distribución proyectadas) dado el estado actual del almacén
+        // Indica si NO hay guías para confirmar dado el estado actual del almacén
         public bool SinGuiasParaConfirmar(int dni)
         {
             if (!FleteroTieneGuiasActivas(dni))
             {
-                // Revisa también potenciales nuevas guías (que podrían asignarse)
+                // Revisa también potenciales nuevas guías
                 var potenciales = GuiaAlmacen.guias.Any(g => g.CodigoPostalCDOrigen == CDActual?.CodigoPostal || g.CodigoPostalCDDestino == CDActual?.CodigoPostal);
                 return !potenciales;
             }
@@ -50,8 +50,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             return !(dist.Any() || retiro.Any());
         }
 
-        // ================= API (usado por el Form) =================
-
+        //Buscar Fletero por DNI
         public Fletero? BuscarFleteroPorDni(int dni) => FleteroAlmacen.fleteros.Select(f => new Fletero{Dni = f.DNI, Nombre = f.Nombre + " " + f.Apellido}).FirstOrDefault(f => f.Dni == dni);
  
 
@@ -105,11 +104,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             return (dist, retiro);
 
         }
-        /// <summary>
-        /// N3–N4: Aplica cambios de negocio sobre guías marcadas.
-        /// - Distribución marcada → Entregada.
-        /// - Retiro marcado → EnRutaACDOrigen + guarda tanda para generar guías de distribución pendientes.
-        /// </summary>
+
+
         public void ConfirmarRendicion(int dni, List<string> entregasDistribucionMarcadas, List<string> retirosMarcados)
         {
             if (BuscarFleteroPorDni(dni) == null)
@@ -176,7 +172,10 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 {
                 
                     DesasignarGuiasDeHDR(hdrAnterior.ID.ToString(), guia.NumeroGuia);
-                    HDRAlmacen.Grabar();
+
+                                                                                            //Aca Grabamos
+                                                                                            HDRAlmacen.Grabar();
+
                     guia.Estado = EstadoGuiaEnum.EnCDDestino;
 
                     // Guardar historial?
@@ -193,7 +192,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 // Grabar cambios
                 if (guiasDistribucion.Any() || guiasRetiro.Any())
                 {
-                    GuiaAlmacen.Grabar();
+                                                                                            //Aca Grabamos
+                                                                                            GuiaAlmacen.Grabar();
                 
                 }
             }
@@ -224,7 +224,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                                                     .Take(5)  // Tomar solo 5 guías de distribución
                                                     .ToList();
 
-            // MODIFICADO: Agrupar por cliente y generar IDs únicos
+            // Agrupar por cliente y generar IDs únicos
             var resultadoDistribucion = new List<Guia>();
             var resultadoRetiro = new List<Guia>();
 
@@ -283,9 +283,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             return (distribucion: resultadoDistribucion, retiro: resultadoRetiro);
         }
 
-        /// <summary>
-        /// N3–N4: Adopta guías sin fletero, crea nuevas de distribución post-retiro y asigna HDR por cliente y destino (máx 5 por HDR).
-        /// </summary>
         public void AsignarHDRsPorDireccion(int dni)
         {
             if (CDActual == null)
@@ -308,7 +305,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                             g.Estado == EstadoGuiaEnum.ARetirarPorDomicilioDelCliente)
                 .ToList();
 
-            // NUEVO: Agrupar guías de distribución por Cliente (CUIT) + Destino
+            // Agrupar guías de distribución por Cliente (CUIT) + Destino
             var gruposDistribucion = guiasDistribucion
                 .GroupBy(g => new { 
                     CUITCliente = g.CUITCliente, 
@@ -372,7 +369,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 }
             }
 
-            // NUEVO: Agrupar guías de retiro por Cliente (CUIT) + Origen
+            // Agrupar guías de retiro por Cliente (CUIT) + Origen
             var gruposRetiro = guiasRetiro
                 .GroupBy(g => new { 
                     CUITCliente = g.CUITCliente, 
@@ -438,8 +435,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
             if (guiasReales.Any())
             {
-                GuiaAlmacen.Grabar();
-                HDRAlmacen.Grabar();
+                                                                                                            //Aca Grabamos
+                                                                                                            GuiaAlmacen.Grabar();
+                                                                                                            HDRAlmacen.Grabar();
             }
         }
 

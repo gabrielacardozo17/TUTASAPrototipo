@@ -87,9 +87,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
         };
         */
 
-        // =============================================================
         // 1) DATOS TRAIDOS DESDE ALMACENES
-        // =============================================================
 
         private static string Digits(string s) => new string(s.Where(char.IsDigit).ToArray());
 
@@ -186,9 +184,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 );
         }
 
-        // =============================================================
         // 2) CONSULTAS Y HELPERS PARA LA UI
-        // =============================================================
 
         public Cliente? BuscarCliente(string cuit)
         {
@@ -238,9 +234,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             return tipos.ToArray();
         }
 
-        // =============================================================
         // 3) CREACION DE LA GUIA
-        // =============================================================
 
         private static EntregaEnum MapEntregaEnum(string tipoEntrega)
         {
@@ -414,9 +408,11 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             for (int i = 0; i < cantL; i++) CrearYAgregar(0, 0, 1, 0);
             for (int i = 0; i < cantXL; i++) CrearYAgregar(0, 0, 0, 1);
 
-            GuiaAlmacen.Grabar();
 
-            return creadas;
+                                                                //Aca Grabamos
+                                                                GuiaAlmacen.Grabar();
+
+            return creadas; 
         }
     }
 }

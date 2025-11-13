@@ -125,7 +125,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
         // CDs por provincia
         private readonly Dictionary<int, List<(int id, string nombre, string direccion)>> _cdsPorProv;
 
-        // correlativo por origen (solo para Agencia) clave = IDAgenciaOrigen (5 dígitos)
+        // correlativo por origen (solo para Agencia) clave = IDAgenciaOrigen
         private static readonly Dictionary<string, int> _seqPorAgenciaOrigen = new();
 
         public ImponerEncomiendaAgenciaModelo()
@@ -248,9 +248,9 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             return AgenciaAlmacen.AgenciaActual?.Nombre ?? string.Empty;
         }
 
-        // =============================================================
+
         // 3) CREACION DE LA GUIA
-        // =============================================================
+   
 
         private static EntregaEnum MapEntregaEnum(string tipoEntrega)
         {
@@ -267,7 +267,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             return TamanoEnum.XL;
         }
 
-        // Inicializa correlativo de Agencia leyendo guías persistidas (evita reinicio 00001)
+        // Inicializa correlativo de Agencia leyendo guías persistidas 
         private static void EnsureSeqForAgencia(string idAgenciaOrigen)
         {
             if (_seqPorAgenciaOrigen.ContainsKey(idAgenciaOrigen)) return;
@@ -325,17 +325,17 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                 return provinciaId;
             }
 
-            // Origen desde agencia actual (dato confiable)
+            // Origen desde agencia actual
             var agenciaActual = AgenciaAlmacen.AgenciaActual;
 
-            // CP del CD de la misma provincia que la agencia o fallback
+            // CP del CD de la misma provincia que la agencia 
             int cpOrigen = CentroDeDistribucionAlmacen.centrosDeDistribucion
                 .Where(cd => LocalidadAlmacen.localidades.Any(lcd => lcd.CodigoPostal == cd.CodigoPostal &&
                             LocalidadAlmacen.localidades.FirstOrDefault(l => l.CodigoPostal == agenciaActual.CodigoPostal)?.Provincia.Equals(lcd.Provincia) == true))
                 .Select(cd => (int?)cd.CodigoPostal)
                 .FirstOrDefault() ?? agenciaActual.CodigoPostalCD;
 
-            // ID de agencia destino (CP)
+            // ID de agencia destino 
             string IdAgenciaDestinoStr()
             {
                 if (!string.Equals(tipoEntrega, "En Agencia", StringComparison.OrdinalIgnoreCase) || !agenciaId.HasValue)
@@ -403,7 +403,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             for (int i = 0; i < cantL; i++) CrearYAgregar(0, 0, 1, 0);
             for (int i = 0; i < cantXL; i++) CrearYAgregar(0, 0, 0, 1);
 
-            GuiaAlmacen.Grabar();
+                                                                        //Aca Grabamos
+                                                                        GuiaAlmacen.Grabar();
 
             return creadas;
         }

@@ -89,9 +89,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
         };
         */
 
-        // =============================================================
         // 1) DATOS TRAIDOS DESDE ALMACENES
-        // =============================================================
 
         private static string Digits(string s) => new string(s.Where(char.IsDigit).ToArray());
 
@@ -203,9 +201,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                 );
         }
 
-        // =============================================================
         // 2) CONSULTAS Y HELPERS PARA LA UI
-        // =============================================================
 
         // Usado por el botón Buscar: lanza si el CUIT no existe
         public Cliente BuscarCliente(string cuit)
@@ -260,9 +256,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
         }
 
 
-        // =============================================================
         // 3) CREACION DE LA GUIA
-        // =============================================================
 
         private static EntregaEnum MapEntregaEnum(string tipoEntrega)
         {
@@ -413,7 +407,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
             for (int i = 0; i < cantL; i++) CrearYAgregar(0, 0, 1, 0);
             for (int i = 0; i < cantXL; i++) CrearYAgregar(0, 0, 0, 1);
 
-            GuiaAlmacen.Grabar();
+                                                                                //Aca Grabamos
+                                                                                GuiaAlmacen.Grabar();
 
             return creadas;
         }

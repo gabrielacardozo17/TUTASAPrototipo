@@ -7,7 +7,6 @@ namespace TUTASAPrototipo.ConsultarEstado
 {
     public class ConsultarEstadoModelo
     {
-        // --- Conexión con almacenes: se usa GuiaAlmacen/AgenciaAlmacen/CentroDeDistribucionAlmacen ---
 
         // Normaliza texto de ubicación a un nombre descriptivo
         private static string ResolverNombreUbicacion(string? ubicacion)
@@ -27,7 +26,7 @@ namespace TUTASAPrototipo.ConsultarEstado
             bool empiezaAgencia = txt.StartsWith("Agencia", StringComparison.OrdinalIgnoreCase);
             bool empiezaCD = txt.StartsWith("CD", StringComparison.OrdinalIgnoreCase);
 
-            // Agencia: "Agencia03000" -> buscar por ID y devolver Nombre (incluye prefijo "Agencia ...")
+            // buscar por ID y devolver Nombre
             if (empiezaAgencia)
             {
                 var dig = new string(txt.Where(char.IsDigit).ToArray());
@@ -37,10 +36,10 @@ namespace TUTASAPrototipo.ConsultarEstado
                     if (ag != null && !string.IsNullOrWhiteSpace(ag.Nombre))
                         return ag.Nombre;
                 }
-                return txt; // fallback
+                return txt;
             }
 
-            // CD: "CD3000" -> buscar por CodigoPostal y devolver Nombre (normalmente "CD ...")
+            // buscar por CodigoPostal y devolver Nombre 
             if (empiezaCD)
             {
                 var dig = new string(txt.Where(char.IsDigit).ToArray());
@@ -50,10 +49,10 @@ namespace TUTASAPrototipo.ConsultarEstado
                     if (cd != null && !string.IsNullOrWhiteSpace(cd.Nombre))
                         return cd.Nombre;
                 }
-                return txt; // fallback
+                return txt; 
             }
 
-            // Otros textos libres ("Domicilio ...", etc.) -> devolver tal cual
+          
             return txt;
         }
 
@@ -114,7 +113,7 @@ namespace TUTASAPrototipo.ConsultarEstado
             return string.IsNullOrWhiteSpace(resolved) ? "No disponible" : resolved;
         }
 
-        // Fallback: determina ubicación física esperable para estados con lugar conocido
+        // determina ubicación física esperable para estados con lugar conocido
         private static string? UbicacionFisicaSegunEstadoActual(GuiaEntidad g)
         {
             switch (g.Estado)
@@ -213,7 +212,7 @@ namespace TUTASAPrototipo.ConsultarEstado
 
                         // Priorizar CD intermedio si viene en historial y NO es el CD destino final. Detectar por nombre también.
                         var txt = h.UbicacionGuia?.Trim() ?? string.Empty;
-                        // 1) Formato CD####
+                        
                         if (txt.StartsWith("CD", StringComparison.OrdinalIgnoreCase))
                         {
                             var dig = new string(txt.Where(char.IsDigit).ToArray());
@@ -265,7 +264,7 @@ namespace TUTASAPrototipo.ConsultarEstado
             }
         }
 
-        // --- Lógica de búsqueda ---
+        //Lógica de búsqueda
         public Guia? ObtenerPorNumero(string input)
         {
             if (string.IsNullOrWhiteSpace(input)) return null;
@@ -278,7 +277,7 @@ namespace TUTASAPrototipo.ConsultarEstado
 
             var historial = guiaEntidad.Historial ?? new List<RegistroEstadoAux>();
 
-            // Construir movimientos (con normalización + reglas de ubicación por estado)
+            // Construir movimientos
             var movimientosRaw = historial
                 .Select(h => new Guia.Movimiento(
                     h.FechaActualizacionEstado,
@@ -288,9 +287,7 @@ namespace TUTASAPrototipo.ConsultarEstado
                 .OrderBy(m => m.Fecha)
                 .ToList();
 
-            // Reglas de agrupación:
-            // - Para "En tránsito al CD destino": NO colapsar, mantener todas las filas (aunque repitan ubicación)
-            // - Para el resto de estados: colapsar por (Estado, Ubicación) manteniendo el último por fecha
+         
             const string estadoTransitoDisplay = "En tránsito al CD destino";
             var noAgrupar = movimientosRaw.Where(m => m.Estado == estadoTransitoDisplay);
             var agruparOtros = movimientosRaw.Where(m => m.Estado != estadoTransitoDisplay)
@@ -317,7 +314,6 @@ namespace TUTASAPrototipo.ConsultarEstado
                 ubicacionActual = ultimoRaw != null ? UbicacionDisplayParaMovimiento(ultimoRaw, guiaEntidad) : "No disponible";
             }
 
-            // Si sigue "No disponible" y es un estado con ubicación física conocida, usar fallback
             if (ubicacionActual == "No disponible")
             {
                 var fbActual = UbicacionFisicaSegunEstadoActual(guiaEntidad);

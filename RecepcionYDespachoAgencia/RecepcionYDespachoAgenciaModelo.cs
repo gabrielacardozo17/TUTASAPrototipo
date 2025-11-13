@@ -11,10 +11,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 {
     public class RecepcionYDespachoAgenciaModelo
     {
-        // Método privado - no expone la entidad directamente
         private FleteroEntidad? BuscarFleteroPorDni(int dni) => FleteroAlmacen.fleteros.FirstOrDefault(f => f.DNI == dni);
 
-        // Método público que retorna solo los datos necesarios del fletero
         public (bool existe, string nombre, string apellido) ObtenerDatosFletero(int dni)
         {
             var fletero = BuscarFleteroPorDni(dni);
@@ -24,14 +22,13 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             return (true, fletero.Nombre, fletero.Apellido);
         }
 
-        // Método privado - no expone las entidades directamente
         private (List<GuiaEntidad> aRecepcionar, List<GuiaEntidad> aEntregar) GetGuiasPorFletero(int dni)
         {
             // N3: el fletero debe existir
             if (BuscarFleteroPorDni(dni) is null)
                 throw new InvalidOperationException("No existe el fletero. Vuelva a intentarlo.");
 
-            // string idAgencia = UsuarioAlmacen.usuarioActual!.IDAgencia; //la agencia en donde está el usuario ahora.
+            //agencia en donde está el usuario ahora.
             string idAgencia = "01406";
 
             //busco las HDRS asignadas a ese fletero
@@ -44,11 +41,11 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             // RECEPCIÓN: deben venir de distribución y estar EnRutaAlaAgenciaDestino
             var aRecepcionar = guiasDeDistribucion
-      .Where(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g)?.Estado == EstadoGuiaEnum.EnRutaAlaAgenciaDestino)
-    .Select(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g))
-    .Where(g => g != null)
-    .Select(g => g!)
-    .ToList();
+              .Where(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g)?.Estado == EstadoGuiaEnum.EnRutaAlaAgenciaDestino)
+            .Select(g => GuiaAlmacen.guias.FirstOrDefault(gu => gu.NumeroGuia == g))
+            .Where(g => g != null)
+            .Select(g => g!)
+            .ToList();
 
             // DESPACHO: SOLO considerar EnCaminoARetirarPorAgencia
             // (las que están ARetirarEnAgenciaDeOrigen no son para esta pantalla, 
@@ -66,7 +63,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             return (aRecepcionar, aEntregar);
         }
 
-        // Método público que retorna DTOs con solo los datos necesarios
         public (List<GuiaDTO> aRecepcionar, List<GuiaDTO> aEntregar) ObtenerGuiasPorFletero(int dni)
         {
             // N3: el fletero debe existir
@@ -103,9 +99,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             // Normalizar listas a numeros de guía
             var recepSet = new HashSet<int>(
              (guiasRecepcionadas ?? new List<string>())
-   .Select(s => int.TryParse(s, out var n) ? n : (int?)null)
+                .Select(s => int.TryParse(s, out var n) ? n : (int?)null)
                 .Where(n => n.HasValue)
-         .Select(n => n!.Value)
+                .Select(n => n!.Value)
         );
 
             var entregSet = new HashSet<int>(
@@ -116,11 +112,11 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
       );
 
             if (recepSet.Count == 0 && entregSet.Count == 0)
-                return; // nada para hacer
+                return; 
 
             DateTime ahora = DateTime.Now;
 
-            // Helper local para asegurar historial
+            // asegurar historial
             static void AsegurarHistorial(GuiaEntidad g)
             {
                 if (g.Historial == null)
@@ -161,7 +157,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
                 }
             }
 
-            // Reflejar cambios también en el almacén global de guías (si existen allí)
+            // Reflejar cambios también en el almacén global de guías 
             if (GuiaAlmacen.guias is not null && GuiaAlmacen.guias.Count > 0)
             {
                 foreach (var g in GuiaAlmacen.guias)
@@ -191,19 +187,19 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
                 }
             }
 
-            // IMPORTANTE: Primero persistir cambios en almacenes
-            HDRAlmacen.Grabar();
-            GuiaAlmacen.Grabar();
+                                                                                                        // Aca Grabamos
+                                                                                                        HDRAlmacen.Grabar();
+                                                                                                        GuiaAlmacen.Grabar();
 
             // Sincronizar JSON: incorporar guías en HDR que no estén en Guias.json y actualizar estados
             SincronizarGuiasDesdeHDR(actualizarEstados: true);
 
-            // NUEVO: Recargar los almacenes desde el JSON actualizado
+            // Recargar los almacenes desde el JSON actualizado
             RecargarHDRAlmacen();
             RecargarGuiaAlmacen();
         }
 
-        // ===================== Recarga del almacén HDRAlmacen =====================
+        //  Recarga del almacén HDRAlmacen 
         private static void RecargarHDRAlmacen()
         {
             var hdrPath = Path.Combine("Datos", "HDR.json");
@@ -219,7 +215,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             }
         }
 
-        // ===================== Recarga del almacén GuiaAlmacen =====================
+        //  Recarga del almacén GuiaAlmacen
         private static void RecargarGuiaAlmacen()
         {
             var guiasPath = Path.Combine("Datos", "Guias.json");
@@ -235,7 +231,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             }
         }
 
-        // ===================== Sincronización solo por JSON (sin tocar Almacenes) =====================
+        // Sincronización solo por JSON 
         private static int SincronizarGuiasDesdeHDR(bool actualizarEstados)
         {
             var guiasPath = Path.Combine("Datos", "Guias.json");
@@ -252,7 +248,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             var index = new Dictionary<int, GuiaEntidad>();
             foreach (var g in guias)
             {
-                // Solo agregamos si no existe (evita duplicados en el diccionario)
+                // Solo agregamos si no existe (evita duplicados )
                 if (!index.ContainsKey(g.NumeroGuia))
                     index[g.NumeroGuia] = g;
             }
@@ -301,10 +297,10 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
         }
     }
 
-    // DTO para transferir datos de guías sin exponer la entidad completa
-    public class GuiaDTO
-    {
-        public int NumeroGuia { get; set; }
-        public TamanoEnum Tamano { get; set; }
-    }
+                                // PREGUNTAR  DTO para transferir datos de guías sin exponer la entidad completa
+                                public class GuiaDTO
+                                {
+                                    public int NumeroGuia { get; set; }
+                                    public TamanoEnum Tamano { get; set; }
+                                }
 }
