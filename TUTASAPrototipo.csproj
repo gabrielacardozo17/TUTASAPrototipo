@@ -11,10 +11,15 @@
   <!-- Asegurar que los JSON NO se traten como Compile y se copien a la salida -->
   <ItemGroup>
     <Compile Remove="Datos\**\*.json" />
+    <Compile Remove="Sesion\**" />
     <EmbeddedResource Remove="Datos\**\*.json" />
+    <EmbeddedResource Remove="Sesion\**" />
     <None Include="Datos\**\*.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Sesion\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,10 +77,6 @@
     <None Update="Datos\ServiciosTransporte.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Sesion\" />
   </ItemGroup>
 
 </Project>
