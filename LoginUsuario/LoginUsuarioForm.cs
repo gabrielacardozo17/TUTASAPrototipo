@@ -112,36 +112,44 @@ namespace TUTASAPrototipo.LoginUsuario
             CdActualCombo.DisplayMember = "Nombre";
             AgenciaActualCombo.DisplayMember = "Nombre";
 
-            // Cargar los Centros de Distribución
-            var cds = Modelo.ObtenerCentrosDeDistribucion();
-            var cdItems = new List<object> { new CentroDeDistribucionEntidad { Nombre = "N/A" } };
-            cdItems.AddRange(cds.OrderBy(c => c.Nombre).ToArray());
+            // Cargar los Centros de Distribución (sin opción N/A)
+            var cds = Modelo.ObtenerCentrosDeDistribucion()
+                             .OrderBy(c => c.Nombre)
+                             .Cast<object>()
+                             .ToArray();
             CdActualCombo.Items.Clear();
-            CdActualCombo.Items.AddRange(cdItems.ToArray());
+            CdActualCombo.Items.AddRange(cds);
+            CdActualCombo.SelectedIndex = -1;
+
+            // Asegurar que la agencia arranca vacía
+            AgenciaActualCombo.Items.Clear();
+            AgenciaActualCombo.SelectedIndex = -1;
+            AgenciaActualCombo.Text = string.Empty;
         }
 
         private void CdActualCombo_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            // Obtener CD seleccionado (puede ser null o la opción N/A)
+            // Obtener CD seleccionado
             var selectedCd = CdActualCombo.SelectedItem as CentroDeDistribucionEntidad;
 
-            // Limpiar y preparar el combo de agencias
+            // Limpiar y preparar el combo de agencias (sin opción N/A) y reset de selección
             AgenciaActualCombo.Items.Clear();
-            var agenciasItems = new List<object> { new AgenciaEntidad { ID = "N/A", Nombre = "N/A" } };
+            AgenciaActualCombo.SelectedItem = null;
+            AgenciaActualCombo.SelectedIndex = -1;
+            AgenciaActualCombo.Text = string.Empty;
+            AgenciaAlmacen.AgenciaActual = null; // limpiar selección global de agencia al cambiar CD
 
-            if (selectedCd != null && selectedCd.Nombre != "N/A")
+            if (selectedCd != null)
             {
                 // Filtrar agencias por el CD seleccionado usando el modelo
                 var filtradas = Modelo.ObtenerAgenciasPorCD(selectedCd.CodigoPostal);
                 if (filtradas.Any())
                 {
-                    agenciasItems.AddRange(filtradas.OrderBy(a => a.Nombre).Cast<object>().ToArray());
+                    AgenciaActualCombo.Items.AddRange(
+                        filtradas.OrderBy(a => a.Nombre).Cast<object>().ToArray()
+                    );
                 }
             }
-
-            // Replegar el combo con las agencias filtradas (o solo N/A)
-            AgenciaActualCombo.Items.AddRange(agenciasItems.ToArray());
-            AgenciaActualCombo.SelectedIndex = -1; // permitir seleccionar
         }
 
         private void LoginUsuarioForm_FormClosing(object sender, FormClosingEventArgs e)
