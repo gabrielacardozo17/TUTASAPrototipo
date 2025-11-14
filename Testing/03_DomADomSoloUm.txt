@@ -1,92 +1,84 @@
 ﻿01: Login 
     1. Mail: jperez@gmail.com
     2. Contraseña: juanAgosto
-    3. CD y Agencia: CD Buenos Aires / N/A
+    3. CD y Agencia: CD Buenos Aires / Florencio Varela
     4. Botón Ingresar
 	5. Botón Aceptar en el pop-up
  
 02: Imposición de encomiendas (Call Center)
     1. CUIT Cliente: 30-40762117-0
     2. Botón Buscar
-    3. Verificar: Cliente encontrado. Se completan su Razón social, Teléfono y Dirección.
+    3. Verificar: Cliente encontrado. Nombre: Transmetal SRL, Teléfono: 0221-450-2100, Dirección: Calle 50 700, La Plata.
     4. Nombre destinatario: Carlos
     5. Apellido destinatario: Mises
     6. DNI destinatario: 13131163
     7. Provincia: Buenos Aires
-    8. Localidad: Florencio Varela, Buenos Aires
-    9. Tipo de entrega disponible: A domicilio
-    10. Dirección: Tinogasta2620
-    11. Detalle de encomiendas:
+	8. Verificar desplegable localidades: Florencio Varela, Buenos Aires | La Plata Buenos Aires | Otras.
+    9. Localidad: Florencio Varela, Buenos Aires
+    10. Tipo de entrega disponible: A domicilio
+    11. Dirección: Tinogasta 2620
+    12. Detalle de encomiendas:
         L: 1
-    12. Botón Confirmar
-    13. Botón Aceptar en pop‑up
-    14. Verificar: Guía creada con estado “A retirar por domicilio del cliente” (nro: 188810007)
-    15. Cerrar el menú de la pantalla
+    13. Botón Confirmar
+    14. Verificar: Guía creada con estado “A retirar por domicilio del cliente”,Numero: 188810007 (Tamaño: L)
+    15. Botón Aceptar en pop‑up
+    16. Boton Cancelar
  
-03: Recepción y despacho (Última Milla CD – Asignar Retiro)
-    1. DNI Fletero:30456789
-    2. Botón Buscar
-    3. Verificar: la guía 188810007 se asigna a una nueva HDR de Retiro
-    4. Botón Confirmar
-    5. Verificar: la HDR "R 018888 000012 18888" fue generada para la guía 188810007
-    6. Botón Aceptar
-    7. Botón Cancelar
-    8. DNI Fletero: 30456789
-    9. Botón Buscar
-    10. Verificar: la guía 188810007 aparece en el detalle de HDR de Retiro (Nro exacto "R 018888 000012 18888")
-    11. Marcar guía 188810007
-    12. Botón Confirmar (recepción de retiro)
-    13. Verificar: la HDR "R 018888 000012 18888" quedó recibida
-    14. Cerrar el menú de la pantalla
- 
-04: Recepción y despacho (Última Milla CD – Rendición Retiro)
+03: Recepción y despacho (Centro de Distribucion)
     1. DNI Fletero: 30456789
     2. Botón Buscar
-    3. Verificar: guía 188810007 en “En camino a retirar por domicilio”
-    4. Botón Confirmar rendición
-    5. Verificar: estado “Admitida” (Ubicación: CD Buenos Aires)
-    6. Cerrar el menú de la pantalla
- 
-05: Recepción y despacho (Última Milla CD – Asignar Distribución)
-    1. DNI Fletero:29876543
-    2. Botón Buscar
-    3. Verificar: la guía 188810007 se asigna a HDR de Distribución
+    3. Verificar: guia 188810007 se asigna a una nueva HDR de Retiro (R 01888 000011 01888)
     4. Botón Confirmar
-    5. Verificar: la HDR "D 01888 000013 018888" se generó para la guía 188810007
-    6. Botón Aceptar
+    5. Verificar: Nro HDR de retiro asignado (R 01888 000011 01888)
+    6. Botón Aceptar en pop‑up
     7. Botón Cancelar
-    8. DNI Fletero:29876543
+
+    8. DNI Fletero: 30456789
     9. Botón Buscar
-    10. Verificar: la guía 188810007 figura en el detalle de HDR de Distribución D 01888 000013 018888
-    11. Marcar guía 188810007
-    12. Botón Confirmar (recepción de distribución)
-    13. Verificar: la HDR D 01888 0000130 18888 quedó recibida y estado de la guía “En ruta al domicilio de entrega”
-    14. Cerrar el menú de la pantalla
+    10. Verificar: la guía 188810007 aparece en el detalle de HDR de Retiro asignadas ("R 01888 000011 018888")
+    11. Marcar guía en HDR retiro asignadas: 188810007
+    12. Botón Confirmar
+    13. Verificar: la HDR "R 018888 000012 18888" quedó recibida
+    14. Botón Aceptar en pop‑up
+    15. Boton Cancelar
  
-06: Rendición Distribución (Entrega a domicilio)
+04: Recepción y despacho (Centro de Distribucion)
     1. DNI Fletero: 29876543
     2. Botón Buscar
-    3. Marcar guía 188810007
-    4. Botón Confirmar rendición
-    5. Verificar: estado “Entregada”
-    6. Cerrar el menú de la pantalla
+    3. Verificar: guia 188810007 se asigna a una nueva HDR de Distribución "D 01888 000012 01888"
+    4. Botón Confirmar
+    5. Verificar: Nro HDR de distribucion asignado (D 01888 000012 01888)
+    6. Botón Aceptar en pop‑up
+    7. Boton Cancelar
+
+    8. DNI Fletero: 29876543
+    9. Botón Buscar
+    10. Verificar: la guía 188810007 aparece en el detalle de HDR de Distribución asgnadas ("D 01888 000012 018888")
+    11. Marcar guía en HDR distribucion asignadas: 188810007
+    12. Botón Confirmar
+    13. Verificar: la HDR D 01888 0000130 18888 quedó recibida
+    14. Botón Aceptar en pop‑up
+    15. Boton Cancelar
  
-07: Emisión de Factura (Facturación)
+05: Emisión de Factura
     1. CUIT cliente: 30-40762117-0
     2. Botón Buscar
-    3. Verificar: figura guía 188810007 en estado Entregada e importe >0
-    4. Botón Emitir Factura
-    5. Verificar: Factura FA-202511-000XX emitida y registrada con éxito
-    6. Cerrar el menú de la pantalla
+    3. Verificar: guía 188810007 (Origen: CD Buenos Aires, Destino: CD Buenos Aires, Tamaño: L, Importe: $4,500)
+    4. Verificar Total: $13,600,00
+    5. Botón Emitir Factura
+    6. Verificar: Factura FA-202511-00001 emitida y registrada con éxito
+    7. Botón Aceptar en pop‑up
+    8. Boton Cancelar
  
-08: Verificación Cuenta Corriente (Cuenta Corriente)
+06: Consulta Estado Cuenta Corriente
     1. CUIT Cliente: 30-40762117-0
     2. Período: Noviembre 2025
     3. Botón Buscar
-    4. Verificar: Movimiento “Factura FA-202511-000XX” con Debe=total, Haber=0
-    5. Cerrar el menú de la pantalla
+	4. Verificar: Concepto: FA-202511-00001, Debe: $13600,00
+    5. Verificar Saldo al Cierre del Periodo: $15400,00
+    6. Boton Cancelar
  
-09: Consulta de Estado de Encomienda (Consulta de Estado)
+07: Consulta de Estado de Encomienda
     1. Guía: 188810007
     2. Botón Buscar
     3. Verificar resultado:
@@ -95,55 +87,64 @@
         Fecha de actualización  | A retirar por domicilio del cliente    | En domicilio Cliente
         Fecha de actualización  | En camino a retirar por domicilio      | En domicilio Cliente
         Fecha de actualización  | Admitida                               | CD Buenos Aires
+        Fecha de actualización  | En CD Destino                          | CD Buenos Aires
         Fecha de actualización  | En ruta al domicilio de entrega        | En transporte con Fletero DNI: 29876543
         Fecha de actualización  | Entregada                              | -
         Fecha de actualización  | Facturada                              | -
-    4. Cerrar el menú de la pantalla
+    6. Boton Cancelar
+
+08: Cerrar Sistema
+	1. Cerrar el menú principal
+	2. Cerrar Login
  
-10: Verificar archivos
+09: Verificar archivos
  
     - HDRs:
  
-        {"ID":"R 018888 000012 18888",
-        "TipoHDR":1,
-        "DNIFletero":30456789,
-        "IDServicioTransporte":0,
-        "Guias":[188810007],
-        "CodigoPostalOrigen":18888,
-        "CodigoPostalDestino":18888},
-        {"ID":"D 01888 000013 018888",
-        "TipoHDR":0,
-        "DNIFletero":29876543,
-        "IDServicioTransporte":0,
-        "Guias":[188810007],
-        "CodigoPostalOrigen":18888,
-        "CodigoPostalDestino":18888}
+            {
+            "ID":"R 01888 000011 01888",
+            "TipoHDR":1,
+            "DNIFletero":30456789,
+            "IDServicioTransporte":0,
+            "Guias":[188810004,188810005,188810006,188810007],
+            "CodigoPostalOrigen":1888,
+            "CodigoPostalDestino":1888
+            },
  
+            {
+            "ID":"D 01888 000012 01888",
+            "TipoHDR":0,
+            "DNIFletero":29876543,
+            "IDServicioTransporte":0,
+            "Guias":[188810007],
+            "CodigoPostalOrigen":1888,
+            "CodigoPostalDestino":1888
+            }
+
     - Guías:
-        {"NumeroGuia":188810007,
-        "Estado":11,
-        "TipoEntrega":1,
-        "CodigoPostalCDOrigen":18888,
-        "CodigoPostalCDDestino":18888,
-        "IDAgenciaOrigen":"",
-        "IDAgenciaDestino":"",
-        "CUITCliente":"30-40762117-0",
-        "Tamano":2,
-        "Destinatario":
-            {"DNI":13131163,
-            "Nombre":"Carlos",
-            "Apellido":"Mises",
-            "Direccion":"Tinogasta2620",
-            "CodigoPostal":1888},
-            "IDConvenio":0,
-            "ImporteAFacturar":1800,
+
+            {
+            "NumeroGuia":188810007,
+            "Estado":14,
+            "TipoEntrega":2,
+            "CodigoPostalCDOrigen":1888,
+            "CodigoPostalCDDestino":1888,
+            "IDAgenciaOrigen":"",
+            "IDAgenciaDestino":"",
+            "CUITCliente":"30-40762117-0",
+            "Tamano":2,
+            "Destinatario":{"DNI":13131163,"Nombre":"Carlos","Apellido":"Mises","Direccion":"Tinogasta 2620","CodigoPostal":1888},
+            "IDConvenio":100002,
+            "ImporteAFacturar":4500,
             "ComisionAgenciaOrigen":0,
             "ComisionAgenciaDestino":0,
             "ComisionFleteroOrigen":0,
             "ComisionFleteroDestino":0,
-        "Historial":
-        [{"Estado":1,"UbicacionGuia":""},
-        {"Estado":2,"UbicacionGuia":""},
-        {"Estado":5,"UbicacionGuia":"CD Buenos Aires"},
-        {"Estado":8,"UbicacionGuia":""},
-        {"Estado":11,"UbicacionGuia":""}]}
+            "Historial":[
+                {"Estado":1,"UbicacionGuia":"En domicilio Cliente","FechaActualizacionEstado":"2025-11-14T00:18:43.0303365-03:00"},
+                {"Estado":2,"UbicacionGuia":"En domicilio Cliente","FechaActualizacionEstado":"2025-11-14T00:29:35.4445292-03:00"},
+                {"Estado":5,"UbicacionGuia":"CD Buenos Aires","FechaActualizacionEstado":"2025-11-14T00:34:23.7131991-03:00"},
+                {"Estado":7,"UbicacionGuia":"CD Buenos Aires","FechaActualizacionEstado":"2025-11-14T00:34:23.713203-03:00"},
+                {"Estado":8,"UbicacionGuia":"En transporte con Fletero DNI: 29876543","FechaActualizacionEstado":"2025-11-14T00:43:53.9283843-03:00"},
+                {"Estado":11,"UbicacionGuia":"","FechaActualizacionEstado":"2025-11-14T00:53:26.4748065-03:00"}]
+            }

@@ -27,7 +27,7 @@
 	15. Botón Confirmar
 	16. Verificar guía impuesta correctamente con nro: 0200000003 (Tamaño XL) | Guía creada con estado “A retirar por agencia de origen” (nro: 0)
 	17. Botón Aceptar en el pop‑up
-	18. Cancelar
+	18. Boton Cancelar
  
 03: Recepción y despacho Última Milla (Centro de Distribucion)
 	1. DNI fletero: 29811223
@@ -36,7 +36,7 @@
 	4. Botón Confirmar
 	5. Verificar: Nro HDR de retiro asignado (R 02000 000011 02000)
 	6. Botón Aceptar en el pop-up
-	7. Cancelar
+	7. Boton Cancelar
  
 04: Recepción y despacho (Agencia)
 	1. DNI fletero: 29811223
@@ -45,7 +45,7 @@
 	4. Botón Confirmar
 	5. Verificar: Mensaje “Operacion confirmada. Estados Actualizados”
 	6. Botón Aceptar en el pop-up 
-	7. Cancelar
+	7. Boton Cancelar
  
 05: Recepción y despacho (Centro de Distribucion)
 	1. DNI fletero: 29811223
@@ -54,7 +54,7 @@
 	4. Botón Confirmar
 	5. Verificar: HDR Recibida R 02000 000011 02000
     6. Botón aceptar en el pop-up
-	7. Cancelar
+	7. Boton Cancelar
  
 06: Recepción y despacho de encomiendas de larga distancia
 	1. Numero de servicio: 3003345
@@ -62,7 +62,7 @@
 	3. Verificar en guías a despachar: 200000003 (XL, Destino: CD Mendoza)
 	4. Botón Confirmar
     5. Botón aceptar en el pop-up
-	6. Cancelar
+	6. Boton Cancelar
  
 07: Salir al Login 
 	1. Cerrar el menú principal
@@ -80,7 +80,7 @@
 	3. Verificar en guías a recibir: 200000003 (XL)
 	4. Botón Confirmar
 	5. Botón aceptar en el pop-up
-	6. Cancelar
+	6. Boton Cancelar
 
 10: Entrega de encomiendas (Centro de Distribución)
 	1. DNI destinatario: 19568232
@@ -91,7 +91,7 @@
 	6. Verificar guias en Encomiendas en piso a a entregar: 200000003 (XL)
 	7. Botón Confirmar
 	8. Botón Aceptar en el pop-up
-	9. Cancelar
+	9. Boton Cancelar
  
 11: Emitir Factura
 	1. CUIT : 30-94715263-9
@@ -100,14 +100,14 @@
 	4. Botón Emitir Factura
 	5. Verificar: Factura: FA-202511-0001
 	6. Botón Aceptar en el pop-up
-	7. Cancelar
+	7. Boton Cancelar
  
 12: Consulta de estado de cuenta corriente
 	1. CUIT : 30-94715263-9
 	2. Período: Noviembre 2025
 	3. Botón Buscar
-	4. Verificar: Conceto: FA-202511-0001, Debe: $9800 
-	5. Cancelar
+	4. Verificar: Concepto: FA-202511-0001, Debe: $9800
+	5. Boton Cancelar
  
 13: Consulta de Estado de Encomienda
 	1. Número de guía: 200000003
