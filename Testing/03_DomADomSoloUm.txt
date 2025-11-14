@@ -4,7 +4,7 @@
     3. CD y Agencia: CD Buenos Aires / N/A
     4. Botón Ingresar
 	5. Botón Aceptar en el pop-up
-
+ 
 02: Imposición de encomiendas (Call Center)
     1. CUIT Cliente: 30-40762117-0
     2. Botón Buscar
@@ -22,7 +22,7 @@
     13. Botón Aceptar en pop‑up
     14. Verificar: Guía creada con estado “A retirar por domicilio del cliente” (nro: 188810007)
     15. Cerrar el menú de la pantalla
-
+ 
 03: Recepción y despacho (Última Milla CD – Asignar Retiro)
     1. DNI Fletero:30456789
     2. Botón Buscar
@@ -38,7 +38,7 @@
     12. Botón Confirmar (recepción de retiro)
     13. Verificar: la HDR "R 018888 000012 18888" quedó recibida
     14. Cerrar el menú de la pantalla
-
+ 
 04: Recepción y despacho (Última Milla CD – Rendición Retiro)
     1. DNI Fletero: 30456789
     2. Botón Buscar
@@ -46,7 +46,7 @@
     4. Botón Confirmar rendición
     5. Verificar: estado “Admitida” (Ubicación: CD Buenos Aires)
     6. Cerrar el menú de la pantalla
-
+ 
 05: Recepción y despacho (Última Milla CD – Asignar Distribución)
     1. DNI Fletero:29876543
     2. Botón Buscar
@@ -62,7 +62,7 @@
     12. Botón Confirmar (recepción de distribución)
     13. Verificar: la HDR D 01888 0000130 18888 quedó recibida y estado de la guía “En ruta al domicilio de entrega”
     14. Cerrar el menú de la pantalla
-
+ 
 06: Rendición Distribución (Entrega a domicilio)
     1. DNI Fletero: 29876543
     2. Botón Buscar
@@ -70,7 +70,7 @@
     4. Botón Confirmar rendición
     5. Verificar: estado “Entregada”
     6. Cerrar el menú de la pantalla
-
+ 
 07: Emisión de Factura (Facturación)
     1. CUIT cliente: 30-40762117-0
     2. Botón Buscar
@@ -78,19 +78,19 @@
     4. Botón Emitir Factura
     5. Verificar: Factura FA-202511-000XX emitida y registrada con éxito
     6. Cerrar el menú de la pantalla
-
+ 
 08: Verificación Cuenta Corriente (Cuenta Corriente)
     1. CUIT Cliente: 30-40762117-0
     2. Período: Noviembre 2025
     3. Botón Buscar
     4. Verificar: Movimiento “Factura FA-202511-000XX” con Debe=total, Haber=0
     5. Cerrar el menú de la pantalla
-
+ 
 09: Consulta de Estado de Encomienda (Consulta de Estado)
     1. Guía: 188810007
     2. Botón Buscar
     3. Verificar resultado:
-
+ 
         Fecha                   | Estado                                 | Ubicación
         Fecha de actualización  | A retirar por domicilio del cliente    | En domicilio Cliente
         Fecha de actualización  | En camino a retirar por domicilio      | En domicilio Cliente
@@ -98,13 +98,12 @@
         Fecha de actualización  | En ruta al domicilio de entrega        | En transporte con Fletero DNI: 29876543
         Fecha de actualización  | Entregada                              | -
         Fecha de actualización  | Facturada                              | -
-     
     4. Cerrar el menú de la pantalla
-
+ 
 10: Verificar archivos
-
+ 
     - HDRs:
-
+ 
         {"ID":"R 018888 000012 18888",
         "TipoHDR":1,
         "DNIFletero":30456789,
@@ -119,7 +118,7 @@
         "Guias":[188810007],
         "CodigoPostalOrigen":18888,
         "CodigoPostalDestino":18888}
-
+ 
     - Guías:
         {"NumeroGuia":188810007,
         "Estado":11,
