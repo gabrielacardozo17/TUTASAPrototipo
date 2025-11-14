@@ -36,12 +36,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 DireccionClienteResult.Text = "";
             };
         }
-                                    //ESTO ES PARA EL LOG IN
-                                    public ImponerEncomiendaCentroDistribucionForm(CentroDeDistribucionEntidad? selectedCd) : this()
-                                    {
-                                        if (CDResult != null)
-                                            CDResult.Text = selectedCd?.Nombre ?? "N/A";
-                                    }
 
         private void RemitenteGroupBox_Enter(object? sender, EventArgs e) { /* no-op */ }
 

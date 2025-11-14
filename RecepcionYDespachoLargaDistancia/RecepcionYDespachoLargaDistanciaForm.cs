@@ -14,49 +14,19 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             InitializeComponent();
             modelo = new RecepcionYDespachoLargaDistanciaModelo();
 
-                                                                            // CHEQUEAR
-                                                                            // Inicializar CD actual en el modelo usando el seleccionado global si existe.
-                                                                            // Si no hay selección global (pruebas locales), tomar por defecto el CD de Córdoba (CP 5000)
+            var cdDefault = CentroDeDistribucionAlmacen.CentroDistribucionActual
+                            ?? CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == 5000
+                                || c.Nombre.IndexOf("Cordoba", System.StringComparison.OrdinalIgnoreCase) >= 0);
 
-                                                                            var cdDefault = CentroDeDistribucionAlmacen.CentroDistribucionActual
-                                                                                            ?? CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == 5000
-                                                                                                || c.Nombre.IndexOf("Cordoba", System.StringComparison.OrdinalIgnoreCase) >= 0);
-
-                                                                            modelo.SetCDActual(cdDefault);
-                                                                            InicializarFormulario();
+            modelo.SetCDActual(cdDefault);
+            InicializarFormulario();
         }
-
-                                                                            // ESTÁ BIEN? Es para el log in
-                                                                            public RecepcionYDespachoLargaDistanciaForm(CentroDeDistribucionEntidad? cdSeleccionado, AgenciaEntidad? agSeleccionada) : this()
-                                                                            {
-                                                                                if (cdSeleccionado != null)
-                                                                                {
-                                                                                    modelo.SetCDActual(cdSeleccionado);
-                                                                                    CDResult.Text = cdSeleccionado.Nombre ?? "N/A";
-                                                                                }
-                                                                                else if (agSeleccionada != null)
-                                                                                {
-                                                                                    var cd = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == agSeleccionada.CodigoPostalCD);
-                                                                                    modelo.SetCDActual(cd);
-                                                                                    CDResult.Text = cd?.Nombre ?? "N/A";
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    // dejar modelo con el CD global ya seteado por defecto
-                                                                                    CDResult.Text = CentroDeDistribucionAlmacen.CentroDistribucionActual?.Nombre
-                                                                                                    ?? CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == 5000)?.Nombre
-                                                                                                    ?? "N/A";
-                                                                                }
-                                                                            }
 
         private void InicializarFormulario()
         {
-                                                                                            // ES POR EL LOG IN
-                                                                                            // Establecemos valores fijos para el prototipo
-                                                                                            UsuarioResult.Text = "Juan Perez";
-                                                                                            CDResult.Text = "Cordoba";
+            UsuarioResult.Text = "Juan Perez"; // usuario mock
+            CDResult.Text = modelo.GetNombreCDActual(); // dinámico
 
-            // Deshabilitamos los controles que dependen de una búsqueda exitosa
             GuiasGroupBox.Enabled = false;
             GuiasADespacharServicioListView.Enabled = false;
             ConfirmarRecepcionYDespachoButton.Enabled = false;
@@ -64,7 +34,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             LimpiarListViews();
             NumServicioTextBox.Focus();
 
-            // Deshabilitar checkboxes en los ListView
             GuiaxServicioRecibidaListView.CheckBoxes = false;
             GuiasADespacharxServicioListView.CheckBoxes = false;
         }

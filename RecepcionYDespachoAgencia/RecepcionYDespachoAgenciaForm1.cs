@@ -17,10 +17,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
             // Fix visual
             try { ConfirmarButton.BringToFront(); CancelarButton.BringToFront(); } catch { }
 
-                                                                                                    // VERIFICAR SI QUITARLO
-                                                                                                    // Labels superiores fijos
-                                                                                                    NombreUsuarioLabel.Text = "Juan Perez";
-                                                                                                    NombreAgenciaLabel.Text = "Agencia Posadas";
+            // Encabezado dinámico
+            NombreUsuarioLabel.Text = "Juan Perez"; // usuario mock
+            var agenciaNombre = AgenciaAlmacen.AgenciaActual?.Nombre
+                                 ?? AgenciaAlmacen.agencias.FirstOrDefault(a => a.CodigoPostalCD == CentroDeDistribucionAlmacen.CentroDistribucionActual?.CodigoPostal)?.Nombre
+                                 ?? "Agencia N/A";
+            NombreAgenciaLabel.Text = agenciaNombre; // nombre de agencia, no del CD
 
             // Inicializar labels de búsqueda como vacíos
             NombreResultLabel.Text = "";
@@ -28,16 +30,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 
             LimpiarFormulario();
         }
-
-                                                                                                    //ESTÁ BIEN? Es por lo del log in
-                                                                                                    public RecepcionYDespachoAgenciaForm1(AgenciaEntidad? selectedAgencia) : this()
-                                                                                                    {
-                                                                                                        NombreAgenciaLabel.Text = selectedAgencia?.Nombre ?? "Agencia Posadas";
-                                                                                                    }
-
-
-
-        //  BUSCAR 
         private void BuscarxDNIFleteroButton_Click(object? sender, EventArgs e)
         {
             var dniTexto = DNIFleteroTextBox.Text.Trim();

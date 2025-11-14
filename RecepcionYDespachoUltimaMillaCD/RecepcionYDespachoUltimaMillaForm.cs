@@ -14,7 +14,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
         {
             InitializeComponent();
 
-            // -
+            // Eventos ya registrados
             Load -= RecepcionYDespachoUltimaMillaForm_Load;
             Load += RecepcionYDespachoUltimaMillaForm_Load;
 
@@ -27,9 +27,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             CancelarButton.Click -= CancelarButton_Click;
             CancelarButton.Click += CancelarButton_Click;
 
-                                                                    // SE USA EN EL LOG IN
-                                                                    UsuarioResult.Text = "Juan Perez";
-                                                                    CDResult.Text = "Buenos Aires";
+            // Encabezado dinámico (reemplaza hardcode anterior)
+            UsuarioResult.Text = "Juan Perez"; // Usuario mock hasta tener global
+            CDResult.Text = _modelo.GetNombreCDActual();
 
             try
             {
@@ -41,33 +41,10 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
 
         }
-
-                                                                    // ESTÁ BIEN? Es para el log in
-                                                                    public RecepcionYDespachoUltimaMillaForm(CentroDeDistribucionEntidad? selectedCd, AgenciaEntidad? selectedAg) : this()
-                                                                    {
-                                                                        if (selectedCd != null)
-                                                                        {
-                                                                            CDResult.Text = selectedCd.Nombre ?? "N/A";
-                                                                            _modelo.CDActual = selectedCd;
-                                                                        }
-                                                                        else if (selectedAg != null)
-                                                                        {
-                                                                            var cd = CentroDeDistribucionAlmacen.centrosDeDistribucion.FirstOrDefault(c => c.CodigoPostal == selectedAg.CodigoPostalCD);
-                                                                            CDResult.Text = cd?.Nombre ?? "N/A";
-                                                                            _modelo.CDActual = cd;
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            CDResult.Text = "N/A";
-                                                                        }
-                                                                    }
-
+                                                             
         private bool _enRevision = false;
         private int? _dniEnRevision = null;
 
-
-
-        // LOAD
         private void RecepcionYDespachoUltimaMillaForm_Load(object sender, EventArgs e)
         {
             _enRevision = false;

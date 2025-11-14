@@ -47,7 +47,7 @@
 	6. Botón Aceptar en el pop-up 
 	7. Cancelar
  
-05: Recepción y despacho (Centro de Distribucion)
+05: Recepción y despacho de encomiendas de Ultima Milla
 	1. DNI fletero: 29811223
 	2. Botón Buscar
 	3. Marcar guía 200000003 como cumplida en las HDR de retiro asignadas
@@ -64,8 +64,7 @@
     5. Botón aceptar en el pop-up
 	6. Cancelar
  
-07: Salir al Login 
-	1. Cerrar el menú principal
+07: Cerrar el menú principal
  
 08: Inicio de Sesión (Login) – cambio de sede
 	1. Email: jperez@gmail.com
@@ -75,7 +74,7 @@
 	5. Botón Aceptar en el pop-up
  
 09: Recepción y Despacho Larga Distancia
-	1. Numero de ervicio: 3003345
+	1. Numero de servicio: 3003345
     2. Botón Buscar
 	3. Verificar en guías a recibir: 200000003 (XL)
 	4. Botón Confirmar

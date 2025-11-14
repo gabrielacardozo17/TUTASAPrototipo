@@ -18,6 +18,15 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
         // Propiedad pública para guardar el CD seleccionado
         public CentroDeDistribucionEntidad? CDActual { get; set; }
 
+        // NUEVO: constructor que inicializa CDActual desde selección global
+        public RecepcionYDespachoUltimaMillaCDModelo()
+        {
+            CDActual = CentroDeDistribucionAlmacen.CentroDistribucionActual;
+        }
+
+        // NUEVO: helper para encabezado
+        public string GetNombreCDActual() => CDActual?.Nombre ?? CentroDeDistribucionAlmacen.CentroDistribucionActual?.Nombre ?? string.Empty;
+
         public Fletero? BuscarFleteroPorDni(int dni) => FleteroAlmacen.fleteros.Select(f => new Fletero{Dni = f.DNI, Nombre = f.Nombre + " " + f.Apellido}).FirstOrDefault(f => f.Dni == dni);
 
         //obtengo las guias asignadas al fletero en el CD actual
@@ -152,9 +161,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 // Grabar cambios
                 if (guiasDistribucion.Any() || guiasRetiro.Any())
                 {
-                                                                                            //Aca Grabamos
-                                                                                            GuiaAlmacen.Grabar();
-                
+                    //Aca Grabamos
+                    GuiaAlmacen.Grabar();
                 }
             }
         }
@@ -203,7 +211,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                     resultadoDistribucion.Add(new Guia
                     {
                         Numero = g.NumeroGuia.ToString(),
-                        NroHDR = idHdr,
+                        NroHDR = g.NumeroGuia.ToString(), // se reemplaza luego
                         Tamaño = g.Tamano.ToString(),
                         Destino = ObtenerDestinoParaDistribucion(g.NumeroGuia),
                     });
@@ -227,7 +235,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                     resultadoRetiro.Add(new Guia
                     {
                         Numero = g.NumeroGuia.ToString(),
-                        NroHDR = idHdr,
+                        NroHDR = g.NumeroGuia.ToString(), // se reemplaza luego
                         Tamaño = g.Tamano.ToString(),
                         Destino = ObtenerDestinoParaRetiro(g.NumeroGuia),
                     });
@@ -394,9 +402,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
             if (guiasReales.Any())
             {
-                                                                                                            //Aca Grabamos
-                                                                                                            GuiaAlmacen.Grabar();
-                                                                                                            HDRAlmacen.Grabar();
+                //Aca Grabamos
+                GuiaAlmacen.Grabar();
+                HDRAlmacen.Grabar();
             }
         }
 

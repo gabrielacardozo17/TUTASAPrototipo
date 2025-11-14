@@ -9,33 +9,23 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
     public partial class EntregarEncomiendaCDForm : Form
     {
 
-                                            // ESTÁ BIEN INICIALIZAR ASÍ EL MODELO? Porque está diferente a otros forms.
+        private EntregarEncomiendaCDModelo modelo;
 
-                                            private EntregarEncomiendaCDModelo modelo;
+        public EntregarEncomiendaCDForm()
+        {
+            InitializeComponent();
+            modelo = new EntregarEncomiendaCDModelo();
+        }
 
-                                            public EntregarEncomiendaCDForm()
-                                            {
-                                                InitializeComponent();
-                                                modelo = new EntregarEncomiendaCDModelo();
-                                            }
+        // REVISAR SI FUNCIONA CON EL LOG IN
+        private void EntregarEncomiendaCDForm_Load(object sender, EventArgs e)
+        {
+            UsuarioResult.Text = "Juan Perez"; // mock
+            CDResult.Text = modelo.GetNombreCDActual(); // dinámico
 
-                                            // ESTÁ BIEN? Se usó para el log in. 
-                                            public EntregarEncomiendaCDForm(CentroDeDistribucionEntidad? selectedCd) : this()
-                                            {
-                                                CDResult.Text = selectedCd?.Nombre ?? "N/A";
-                                            }
-
-                                            // REVISAR SI FUNCIONA CON EL LOG IN
-                                            private void EntregarEncomiendaCDForm_Load(object sender, EventArgs e)
-                                            {
-                                                UsuarioResult.Text = "Juan Perez";
-
-                                                // Asegurar que CDResult tenga valor por defecto si nadie lo pasó
-                                                if (string.IsNullOrWhiteSpace(CDResult.Text)) CDResult.Text = "N/A";
-                                                NombreResultLabel.Text = "";
-                                                ApellidoResultLabel.Text = "";
-                                            }
-
+                NombreResultLabel.Text = "";
+                ApellidoResultLabel.Text = "";
+        }
 
         // EVENTOS
 

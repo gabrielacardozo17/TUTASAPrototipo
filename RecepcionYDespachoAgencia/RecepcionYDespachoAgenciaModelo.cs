@@ -10,6 +10,10 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
 {
     public class RecepcionYDespachoAgenciaModelo
     {
+        // Nuevo: CD actual tomado desde la selección global del login
+        public CentroDeDistribucionEntidad? CDActual { get; set; } = CentroDeDistribucionAlmacen.CentroDistribucionActual;
+        public string GetNombreCDActual() => CDActual?.Nombre ?? CentroDeDistribucionAlmacen.CentroDistribucionActual?.Nombre ?? string.Empty;
+
         private FleteroEntidad? BuscarFleteroPorDni(int dni) => FleteroAlmacen.fleteros.FirstOrDefault(f => f.DNI == dni);
 
         public (bool existe, string nombre, string apellido) ObtenerDatosFletero(int dni)

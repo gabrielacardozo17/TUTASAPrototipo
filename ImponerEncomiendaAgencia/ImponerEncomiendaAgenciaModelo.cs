@@ -198,7 +198,10 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             return cliente;
         }
 
-        public List<KeyValuePair<int, string>> GetProvincias() => _provincias.ToList();
+        public List<KeyValuePair<int, string>> GetProvincias() =>
+            _provincias
+                .OrderBy(kv => kv.Value, StringComparer.CurrentCulture)
+                .ToList();
 
         public List<(int id, string nombre, bool tieneAgencia)> GetLocalidades(int provinciaId)
         {

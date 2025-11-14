@@ -19,6 +19,9 @@ namespace TUTASAPrototipo.LoginUsuario
         public LoginUsuarioForm()
         {
             InitializeComponent();
+            // Conectar eventos que no están cableados en el diseñador
+            CdActualCombo.SelectedIndexChanged += CdActualCombo_SelectedIndexChanged;
+            this.FormClosing += LoginUsuarioForm_FormClosing;
         }
 
         private void IngresarButton_Click(object sender, EventArgs e)
@@ -83,38 +86,18 @@ namespace TUTASAPrototipo.LoginUsuario
                 return;
             }
 
-            // Validar selección: debe haber AL MENOS un item seleccionado explícitamente en uno de los combos.
-            // Aceptamos que el usuario seleccione "N/A" en uno de ellos; no persistimos nada.
-            var selectedCd = CdActualCombo.SelectedItem as CentroDeDistribucionEntidad;
-            var selectedAg = AgenciaActualCombo.SelectedItem as AgenciaEntidad;
-
-            bool cdSelected = selectedCd != null;
-            bool agSelected = selectedAg != null;
-
-            if (!cdSelected && !agSelected)
-            {
-                MessageBox.Show("Debe seleccionar al menos un Centro de Distribución o una Agencia (o marcar N/A en uno de ellos).",
-                               "Selección requerida",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Setear globals solo si hay selección; si no, no se setea
-            if (selectedCd != null && !string.Equals(selectedCd.Nombre, "N/A", StringComparison.OrdinalIgnoreCase))
-                CentroDeDistribucionAlmacen.CentroDistribucionActual = selectedCd;
-            if (selectedAg != null && !string.Equals(selectedAg.Nombre, "N/A", StringComparison.OrdinalIgnoreCase))
-                AgenciaAlmacen.AgenciaActual = selectedAg;
-
             LimpiarFormulario();
             MessageBox.Show("Usuario autenticado correctamente.",
                            "Acceso concedido",
                            MessageBoxButtons.OK,
                            MessageBoxIcon.Information);
 
-            // Abrir menú principal pasando la selección (sin persistir en ningún almacen)
-            using var menu = new MenuPrincipalForm(selectedCd, selectedAg);
-            menu.ShowDialog();
+            AgenciaAlmacen.AgenciaActual = AgenciaActualCombo.SelectedItem as AgenciaEntidad;
+            CentroDeDistribucionAlmacen.CentroDistribucionActual = CdActualCombo.SelectedItem as CentroDeDistribucionEntidad;
+
+            // Abrir el formulario del menú principal sin ocultar el login
+            MenuPrincipalForm menuPrincipal = new MenuPrincipalForm();
+            menuPrincipal.Show();
         }
 
         private void LimpiarFormulario()
@@ -129,22 +112,12 @@ namespace TUTASAPrototipo.LoginUsuario
             CdActualCombo.DisplayMember = "Nombre";
             AgenciaActualCombo.DisplayMember = "Nombre";
 
-            // Agregar N/A como opción - sin tocar almacenes ni guardar nada
-            var cds = new List<object> { new CentroDeDistribucionEntidad { CodigoPostal = 0, Nombre = "N/A", Direccion = string.Empty } };
-            cds.AddRange(CentroDeDistribucionAlmacen.centrosDeDistribucion.OrderBy(c => c.Nombre));
-            CdActualCombo.Items.AddRange(cds.ToArray());
-
-            // Inicialmente mostrar todas las agencias + N/A
-            var ags = new List<object> { new AgenciaEntidad { ID = "N/A", Nombre = "N/A", Direccion = string.Empty, CodigoPostal = 0, CodigoPostalCD = 0 } };
-            ags.AddRange(AgenciaAlmacen.agencias.OrderBy(a => a.Nombre));
-            AgenciaActualCombo.Items.AddRange(ags.ToArray());
-
-            // Por defecto dejar sin selección (el usuario elegirá)
-            CdActualCombo.SelectedIndex = -1;
-            AgenciaActualCombo.SelectedIndex = -1;
-
-            // Wire up event to filter agencies when a CD is selected
-            CdActualCombo.SelectedIndexChanged += CdActualCombo_SelectedIndexChanged;
+            // Cargar los Centros de Distribución
+            var cds = Modelo.ObtenerCentrosDeDistribucion();
+            var cdItems = new List<object> { new CentroDeDistribucionEntidad { Nombre = "N/A" } };
+            cdItems.AddRange(cds.OrderBy(c => c.Nombre).ToArray());
+            CdActualCombo.Items.Clear();
+            CdActualCombo.Items.AddRange(cdItems.ToArray());
         }
 
         private void CdActualCombo_SelectedIndexChanged(object? sender, EventArgs e)
@@ -152,39 +125,28 @@ namespace TUTASAPrototipo.LoginUsuario
             // Obtener CD seleccionado (puede ser null o la opción N/A)
             var selectedCd = CdActualCombo.SelectedItem as CentroDeDistribucionEntidad;
 
-            // Preparar lista inicial con la opción N/A
-            var agenciasItems = new List<object> { new AgenciaEntidad { ID = "N/A", Nombre = "N/A", Direccion = string.Empty, CodigoPostal = 0, CodigoPostalCD = 0 } };
+            // Limpiar y preparar el combo de agencias
+            AgenciaActualCombo.Items.Clear();
+            var agenciasItems = new List<object> { new AgenciaEntidad { ID = "N/A", Nombre = "N/A" } };
 
-            if (selectedCd == null)
+            if (selectedCd != null && selectedCd.Nombre != "N/A")
             {
-                // No hay CD seleccionado -> mostrar todas las agencias
-                agenciasItems.AddRange(AgenciaAlmacen.agencias.OrderBy(a => a.Nombre));
-            }
-            else if (selectedCd.Nombre == "N/A")
-            {
-                // Si seleccionó N/A en CD, dejamos solo N/A en agencias
-                // (si prefieres mostrar todas, cambia esta rama para agregar todas).
-            }
-            else
-            {
-                // Filtrar agencias por CodigoPostalCD == CodigoPostal del CD seleccionado
-                var filtradas = AgenciaAlmacen.agencias
-                    .Where(a => a.CodigoPostalCD == selectedCd.CodigoPostal)
-                    .OrderBy(a => a.Nombre)
-                    .Cast<object>()
-                    .ToList();
-
+                // Filtrar agencias por el CD seleccionado usando el modelo
+                var filtradas = Modelo.ObtenerAgenciasPorCD(selectedCd.CodigoPostal);
                 if (filtradas.Any())
                 {
-                    agenciasItems.AddRange(filtradas);
+                    agenciasItems.AddRange(filtradas.OrderBy(a => a.Nombre).Cast<object>().ToArray());
                 }
-                // Si no hay agencias para ese CD, dejamos solo N/A (puedes cambiar a mostrar todas si lo prefieres)
             }
 
-            // Replegar el combo con las agencias filtradas
-            AgenciaActualCombo.Items.Clear();
+            // Replegar el combo con las agencias filtradas (o solo N/A)
             AgenciaActualCombo.Items.AddRange(agenciasItems.ToArray());
-            AgenciaActualCombo.SelectedIndex = -1;
+            AgenciaActualCombo.SelectedIndex = -1; // permitir seleccionar
+        }
+
+        private void LoginUsuarioForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

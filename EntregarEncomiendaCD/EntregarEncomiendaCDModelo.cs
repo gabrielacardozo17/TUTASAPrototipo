@@ -1,5 +1,4 @@
-﻿
-// EntregarEncomiendaCDModelo.cs
+﻿// EntregarEncomiendaCDModelo.cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +13,10 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
 
         // Mantener estado local de guías entregadas
         private readonly HashSet<string> _guiasEntregadasLocalmente = new();
+
+        // NUEVO: CD actual inicializado desde login
+        public CentroDeDistribucionEntidad? CDActual { get; set; } = CentroDeDistribucionAlmacen.CentroDistribucionActual;
+        public string GetNombreCDActual() => CDActual?.Nombre ?? CentroDeDistribucionAlmacen.CentroDistribucionActual?.Nombre ?? string.Empty;
 
         // BUSCAR DESTINATARIO POR DNI
         public Destinatario? BuscarDestinatarioPorDNI(string dni)

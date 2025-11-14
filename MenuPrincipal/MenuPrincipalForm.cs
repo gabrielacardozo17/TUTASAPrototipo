@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using TUTASAPrototipo.Almacenes;
 using TUTASAPrototipo.ConsultarEstado;
 using TUTASAPrototipo.EmitirFactura;
 using TUTASAPrototipo.EntregarEncomiendaCD;
@@ -19,21 +11,15 @@ using TUTASAPrototipo.MonitoreoResultados;
 using TUTASAPrototipo.RecepcionYDespachoAgencia;
 using TUTASAPrototipo.RecepcionYDespachoLargaDistancia;
 using TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD;
-using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.MenuPrincipal
 {
     public partial class MenuPrincipalForm : Form
     {
-        private readonly CentroDeDistribucionEntidad? _selectedCd;
-        private readonly AgenciaEntidad? _selectedAg;
-
         // Accept selections from Login (nullable, represents user's choice or N/A)
         public MenuPrincipalForm(CentroDeDistribucionEntidad? selectedCd = null, AgenciaEntidad? selectedAg = null)
         {
             InitializeComponent();
-            _selectedCd = selectedCd;
-            _selectedAg = selectedAg;
         }
 
         private void MenuPrincipalForm_Load(object sender, EventArgs e)
@@ -71,7 +57,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void ImposicionAgenciaButton_Click(object sender, EventArgs e)
         {
-            using (var ImposicionAgencia = new ImponerEncomiendaAgenciaForm(_selectedAg))
+            using (var ImposicionAgencia = new ImponerEncomiendaAgenciaForm())
             {
                 ImposicionAgencia.ShowDialog();
             }
@@ -79,7 +65,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void RecepcionAgenciaButton_Click(object sender, EventArgs e)
         {
-            using (var RecepcionAgencia = new RecepcionYDespachoAgenciaForm1(_selectedAg))
+            using (var RecepcionAgencia = new RecepcionYDespachoAgenciaForm1())
             {
                 RecepcionAgencia.ShowDialog();
             }
@@ -87,7 +73,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void EntregarEncomiendaAgenciaButton_Click(object sender, EventArgs e)
         {
-            using (var EntregaAgencia = new EntregarEncomiendaEnAgenciaForm(_selectedAg))
+            using (var EntregaAgencia = new EntregarEncomiendaEnAgenciaForm())
             {
                 EntregaAgencia.ShowDialog();
             }
@@ -95,7 +81,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void ImposicionEncomiendasCDButton_Click(object sender, EventArgs e)
         {
-            using (var ImposicionCD = new ImponerEncomiendaCentroDistribucionForm(_selectedCd))
+            using (var ImposicionCD = new ImponerEncomiendaCentroDistribucionForm())
             {
                 ImposicionCD.ShowDialog();
             }
@@ -103,7 +89,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void RecepcionYDespachoUMButton_Click(object sender, EventArgs e)
         {
-            using (var RecepcionDespachoUM = new RecepcionYDespachoUltimaMillaForm(_selectedCd, _selectedAg))
+            using (var RecepcionDespachoUM = new RecepcionYDespachoUltimaMillaForm())
             {
                 RecepcionDespachoUM.ShowDialog();
             }
@@ -112,7 +98,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void RecepcionYDespachoLargaDistanciaButton_Click(object sender, EventArgs e)
         {
-            using (var RecepcionDespachoLargaDistancia = new RecepcionYDespachoLargaDistanciaForm(_selectedCd, _selectedAg))
+            using (var RecepcionDespachoLargaDistancia = new RecepcionYDespachoLargaDistanciaForm())
             {
                 RecepcionDespachoLargaDistancia.ShowDialog();
             }
@@ -120,7 +106,7 @@ namespace TUTASAPrototipo.MenuPrincipal
 
         private void EntregaEncomiendasCDButton_Click(object sender, EventArgs e)
         {
-            using (var EntregaEncomiendasCD = new EntregarEncomiendaCDForm(_selectedCd))
+            using (var EntregaEncomiendasCD = new EntregarEncomiendaCDForm())
             {
                 EntregaEncomiendasCD.ShowDialog();
             }

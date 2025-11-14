@@ -15,6 +15,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
         public RecepcionYDespachoLargaDistanciaModelo()
         {
             CargarDatosDePrueba();
+            CDActual = CentroDeDistribucionAlmacen.CentroDistribucionActual; // nuevo: inicializar desde login
             MapearDesdeAlmacenes();
         }
 
@@ -24,6 +25,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             CDActual = cd ?? CentroDeDistribucionAlmacen.CentroDistribucionActual;
             MapearDesdeAlmacenes();
         }
+
+        // Helper para encabezado
+        public string GetNombreCDActual() => CDActual?.Nombre ?? CentroDeDistribucionAlmacen.CentroDistribucionActual?.Nombre ?? string.Empty;
 
         // =================== NUEVAS VALIDACIONES (solo modelo) ===================
         // Indica si el servicio existe y tiene al menos una guía (recibir o despachar)

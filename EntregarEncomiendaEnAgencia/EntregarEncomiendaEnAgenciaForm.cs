@@ -28,18 +28,6 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
             CancelarButton.Click -= CancelarButton_Click;
             CancelarButton.Click += CancelarButton_Click;
         }
-
-        // Sobrecarga usada desde el Menú/LogIn: mantiene consistencia con otros forms
-        public EntregarEncomiendaEnAgenciaForm(AgenciaEntidad? agenciaSeleccionada) : this()
-        {
-            // Mostrar nombre en label y sincronizar el almacen global (fuente de verdad)
-            AgenciaResult.Text = agenciaSeleccionada?.Nombre ?? "N/A";
-            if (agenciaSeleccionada != null && !string.Equals(agenciaSeleccionada.Nombre, "N/A", StringComparison.OrdinalIgnoreCase))
-            {
-                AgenciaAlmacen.AgenciaActual = agenciaSeleccionada;
-            }
-        }
-
         private void EntregarEncomiendaEnAgenciaForm_Load(object sender, EventArgs e)
         {
             // Seguir patrón: mostrar usuario de prototipo y tomar agencia desde el almacen global si existe
