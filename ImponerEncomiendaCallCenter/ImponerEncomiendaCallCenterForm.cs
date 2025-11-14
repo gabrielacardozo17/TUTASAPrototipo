@@ -369,7 +369,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                 var cuerpo = string.Join(Environment.NewLine, lineas);
 
                 MessageBox.Show(
-                    $"Imposición confirmada. Se generaron {guias.Count} guías (Estado: Pendiente Retiro a Domicilio):{Environment.NewLine}{cuerpo}",
+                    $"Imposición confirmada. Se generaron {guias.Count} guías (Estado: A Retirar Por Domicilio Del Cliente):{Environment.NewLine}{cuerpo}",
                     "Operación Exitosa",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
