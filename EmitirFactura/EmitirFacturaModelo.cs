@@ -208,8 +208,8 @@ namespace TUTASAPrototipo.EmitirFactura
         public void ActualizarArchivosFacturaYCuentaCorriente()
         {
                                                                     //Aca Grabamos
-                                                                    FacturaAlmacen.Grabar();
-                                                                    CuentaCorrienteAlmacen.Grabar();
+                                                                    // FacturaAlmacen.Grabar();
+                                                                    // CuentaCorrienteAlmacen.Grabar();
         }
 
         // Registra nueva deuda en la cuenta corriente del cliente
