@@ -1,10 +1,9 @@
-﻿// ===============================
+﻿
 // EntregarEncomiendaCDModelo.cs
-// ===============================
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TUTASAPrototipo.Almacenes; // <- USAMOS SOLO LECTURA DE LOS ALMACENES Y ENTIDADES
+using TUTASAPrototipo.Almacenes;
 
 namespace TUTASAPrototipo.EntregarEncomiendaCD
 {
@@ -15,11 +14,6 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
 
         // Mantener estado local de guías entregadas
         private readonly HashSet<string> _guiasEntregadasLocalmente = new();
-
-        public EntregarEncomiendaCDModelo()
-        {
-
-        }
 
         // BUSCAR DESTINATARIO POR DNI
         public Destinatario? BuscarDestinatarioPorDNI(string dni)
@@ -135,24 +129,23 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
                 }
                 else if (entidad.Estado == EstadoGuiaEnum.Entregada)
                 {
-                    // Ya figuraba como entregada: actualizar fecha del último movimiento "Entregada" en lugar de duplicarlo
-                    var lastEnt = entidad.Historial.LastOrDefault(h => h.Estado == EstadoGuiaEnum.Entregada);
-                    var nuevaFecha = DateTime.Now;
-                    if (lastEnt != null)
+                // Ya figuraba como entregada: actualizar fecha del último movimiento "Entregada" en lugar de duplicarlo
+                var lastEnt = entidad.Historial.LastOrDefault(h => h.Estado == EstadoGuiaEnum.Entregada);
+                var nuevaFecha = DateTime.Now;
+                if (lastEnt != null)
+                {
+                    lastEnt.FechaActualizacionEstado = nuevaFecha;
+                    lastEnt.UbicacionGuia = string.Empty;
+                }
+                else
+                {
+                    entidad.Historial.Add(new RegistroEstadoAux
                     {
-                        lastEnt.FechaActualizacionEstado = nuevaFecha;
-                        lastEnt.UbicacionGuia = string.Empty;
-                    }
-                    else
-                    {
-                        entidad.Historial.Add(new RegistroEstadoAux
-                        {
-                            Estado = EstadoGuiaEnum.Entregada,
-                            UbicacionGuia = string.Empty,
-                            FechaActualizacionEstado = nuevaFecha
-                        });
-                    }
-                    huboCambios = true;
+                        Estado = EstadoGuiaEnum.Entregada,
+                        UbicacionGuia = string.Empty,
+                        FechaActualizacionEstado = nuevaFecha
+                    });
+                }
                 }
 
                 // Marcar como entregada en esta sesión para que no reaparezca hasta nueva búsqueda
@@ -165,12 +158,6 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
                     guiaLocal.Estado = "Entregada";
                     guiaLocal.Ubicacion = string.Empty;
                 }
-            }
-
-            if (huboCambios)
-            {
-                                                        //Aca Grabamos
-                                                        GuiaAlmacen.Grabar();
             }
 
             return true;

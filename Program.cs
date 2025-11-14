@@ -29,8 +29,8 @@ namespace TUTASAPrototipo
             Application.Run(new LoginUsuario.LoginUsuarioForm());
 
 
-            //Aca Grabamos
             GuiaAlmacen.Grabar();
+            FacturaAlmacen.Grabar();
         }
     }
 }

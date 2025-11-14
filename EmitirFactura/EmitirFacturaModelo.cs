@@ -146,7 +146,7 @@ namespace TUTASAPrototipo.EmitirFactura
             };
             FacturaAlmacen.facturas.Add(facEntidad);
                                                                  //Aca Grabamos
-                                                                 FacturaAlmacen.Grabar();
+                                                                //  FacturaAlmacen.Grabar();
 
             // 5) Registrar movimiento en Cuenta Corriente
             var cc = CuentaCorrienteAlmacen.cuentasCorrientes

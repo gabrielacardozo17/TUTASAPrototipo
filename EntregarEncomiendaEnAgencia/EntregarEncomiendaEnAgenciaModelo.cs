@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,16 +14,6 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
 
         // Estado local: números de guía entregados en esta sesión 
         private readonly HashSet<string> _guiasEntregadasLocalmente = new();
-
-        public EntregarEncomiendaEnAgenciaModelo()
-        {
-            InicializarDatos();
-        }
-
-        private void InicializarDatos()
-        {
-
-        }
 
         public Destinatario? BuscarDestinatarioPorDNI(string dni)
         {
@@ -192,11 +181,6 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
                 }
             }
 
-            if (huboCambios)
-            {
-                                                            //Aca Grabamos
-                                                            GuiaAlmacen.Grabar();
-            }
 
             return true;
         }
