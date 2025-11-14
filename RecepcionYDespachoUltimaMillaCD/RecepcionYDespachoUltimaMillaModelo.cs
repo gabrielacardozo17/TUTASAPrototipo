@@ -41,7 +41,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                                             (x, guia) => new Guia
                                             {
                                                Numero = x.numGuia.ToString(),
-                                               NroHDR = x.hdrId,  // ← Usar directamente el ID que ya tienes
+                                               NroHDR = x.hdrId, 
                                             })
                                           .Where(g => GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnRutaAlDomicilioDeEntrega ||
                                                    GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnRutaAlaAgenciaDestino)
@@ -51,17 +51,18 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
             // guías de retiro
             var retiro = hdrsFletero.Where(h => h.TipoHDR == TipoHDREnum.Retiro)
-                                    .SelectMany(h => h.Guias.Select(numGuia => new { numGuia, hdrId = h.ID }))  // ← Llevar el ID de la HDR
+                                    .SelectMany(h => h.Guias.Select(numGuia => new { numGuia, hdrId = h.ID }))  
                                     .Join(GuiaAlmacen.guias,
                                     x => x.numGuia,
                                     guia => guia.NumeroGuia,
                                     (x, guia) => new Guia
                                     {
                                         Numero = x.numGuia.ToString(),
-                                        NroHDR = x.hdrId,  // ← Usar directamente el ID que ya tienes
+                                        NroHDR = x.hdrId,  
                                     })
                                     .Where(g => GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnRutaACDDeOrigenDesdeAgencia ||
-                                            GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnCaminoARetirarPorDomicilio)
+                                            GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnCaminoARetirarPorDomicilio ||
+                                            GuiaAlmacen.guias.First(gu => gu.NumeroGuia.ToString() == g.Numero).Estado == EstadoGuiaEnum.EnCaminoARetirarPorAgencia)
                                     .OrderBy(g => g.Numero)
                                     .ToList();
 
@@ -409,18 +410,19 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
             EstadoGuiaEnum nuevoEstado = guia.Estado;
             string Ubicacion = "";
-            var AgenciaUbicacion = AgenciaAlmacen.agencias.FirstOrDefault(a => a.ID.Substring(1) == guia.IDAgenciaOrigen);
+
+
 
             switch (guia.Estado)
             {
                 case EstadoGuiaEnum.ARetirarPorDomicilioDelCliente:
                     nuevoEstado = EstadoGuiaEnum.EnCaminoARetirarPorDomicilio;
-                    Ubicacion = "En domicilio cliente"; 
+                    Ubicacion = "En domicilio Cliente"; 
                     break;
 
                 case EstadoGuiaEnum.ARetirarEnAgenciaDeOrigen:
                     nuevoEstado = EstadoGuiaEnum.EnCaminoARetirarPorAgencia;
-                    Ubicacion = AgenciaUbicacion.Nombre;
+                    Ubicacion = "En agencia de origen";
                     break;
 
                 case EstadoGuiaEnum.Admitida when guia.TipoEntrega == EntregaEnum.Domicilio:
