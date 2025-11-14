@@ -178,7 +178,7 @@ namespace TUTASAPrototipo.EmitirFactura
             };
             cc.Movimientos.Add(mov);
                                                                             // Aca Grabamos
-                                                                            CuentaCorrienteAlmacen.Grabar();
+                                                                            // CuentaCorrienteAlmacen.Grabar();
 
             // 6) Marcar las guías como Facturadas EN MEMORIA 
             foreach (var p in pendientes)
