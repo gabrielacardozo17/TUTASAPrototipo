@@ -236,6 +236,16 @@
           "L": 3400,
           "XL": 4200
         }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 1888,
+        "PreciosXTamano": {
+          "S": 2200,
+          "M": 3000,
+          "L": 3800,
+          "XL": 4600
+        }
       }
     ]
   },

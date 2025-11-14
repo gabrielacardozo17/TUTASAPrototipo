@@ -1,7 +1,7 @@
 01: Login
     1. Email: jperez@gmail.com 
     2. Contraseña: juanAgostoen 
-    3. CD: San Luis y Agencia: N/A > AL FINAL QUE ONDA EL N/A
+    3. CD: San Luis y Agencia: San Luis
     4. Botón Ingresar
     5. Botón Aceptar en el pop-up
 

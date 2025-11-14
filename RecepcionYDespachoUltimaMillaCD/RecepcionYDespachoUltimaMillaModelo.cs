@@ -155,7 +155,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                         FechaActualizacionEstado = DateTime.Now
                     });
 
-
                 }
 
                 // Grabar cambios
@@ -211,7 +210,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                     resultadoDistribucion.Add(new Guia
                     {
                         Numero = g.NumeroGuia.ToString(),
-                        NroHDR = g.NumeroGuia.ToString(), // se reemplaza luego
+                        NroHDR = idHdr, // Mostrar el número real de HDR que se asignará
                         Tamaño = g.Tamano.ToString(),
                         Destino = ObtenerDestinoParaDistribucion(g.NumeroGuia),
                     });
@@ -235,7 +234,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                     resultadoRetiro.Add(new Guia
                     {
                         Numero = g.NumeroGuia.ToString(),
-                        NroHDR = g.NumeroGuia.ToString(), // se reemplaza luego
+                        NroHDR = idHdr, // Mostrar el número real de HDR que se asignará
                         Tamaño = g.Tamano.ToString(),
                         Destino = ObtenerDestinoParaRetiro(g.NumeroGuia),
                     });
@@ -417,8 +416,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
             EstadoGuiaEnum nuevoEstado = guia.Estado;
             string Ubicacion = "";
-
-
 
             switch (guia.Estado)
             {
