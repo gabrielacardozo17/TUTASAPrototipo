@@ -10,64 +10,58 @@
 02: Imposición de encomiendas (Agencia)
 	1. CUIT: 30-94715263-9
 	2. Botón Buscar
-	3. Verificar: Cliente encontrado. Se completan su Razón social, Teléfono y Dirección.
+	3. Verificar: Cliente encontrado. Nombre: Universo Santa Fe SA, Teléfono: 0342-450-9000, Dirección: San Jeronimo 1500, Santa Fe.
 	4. Nombre destinatario: Juan
 	5. Apellido destinatario: Castro
 	6. DNI destinatario: 19568232
-	7. Verificar al clickear desplegable Provincia: Trae las 24 provincias.
+	7. Verificar desplegable Provincia: Trae las 24 provincias.
 	8. Provincia: Mendoza
-	9. Verificar: Trae las localidades de mendoza.
+	9. Verificar desplegable localidades: Mendoza, San Rafael, Otras.
 	10. Localidad: San Rafael, Mendoza
-	11. Verificar: Tipo de entrega disponible figura A domicilio, En Agencia y En CD
+	11. Verificar desplegable Tipo de entrega: A domicilio, En Agencia y En CD
 	12. Tipo de entrega disponible: CD
 	13. CD: CD Mendoza
 	14. Detalle de encomiendas:
 		XL: 1
  
 	15. Botón Confirmar
-	16. Verificar guía impuesta correctamente con nro: 200000003 (Tamaño XL) | Guía creada con estado “A retirar por agencia de origen” (nro: 0)
+	16. Verificar guía impuesta correctamente con nro: 0200000003 (Tamaño XL) | Guía creada con estado “A retirar por agencia de origen” (nro: 0)
 	17. Botón Aceptar en el pop‑up
-	18. Botón Cancelar
+	18. Cancelar
  
-03: Recepción y despacho (Última Milla CD – Retiro)
+03: Recepción y despacho Última Milla (Centro de Distribucion)
 	1. DNI fletero: 29811223
 	2. Botón Buscar
-	3. Verificar que la guía 200000003 se asigna a una nueva HDR de Retiro
+	3. Verificar que la guía 200000003 se asigna a la nueva HDR de Retiro R 02000 000011 02000
 	4. Botón Confirmar
 	5. Verificar: Nro HDR de retiro asignado (R 02000 000011 02000)
-	6. Botón Aceptar
+	6. Botón Aceptar en el pop-up
+	7. Cancelar
  
-	8. DNI fletero: 29811223
-	9. Botón Buscar
-	10. Verificar: la guía 200000003 aparece en el detalle de HDR de Retiro (R 02000 000012 02000)
-	11. Marcar guía 200000003
-	12. Botón Confirmar
-	13. Verificar: Nro HDR R 02000 000012 02000 de retiro quedó recibida
-	14. Aceptar
-             15. Cancelar
- 
-04: Recepción y despacho (Agencia) MATETE
+04: Recepción y despacho (Agencia)
 	1. DNI fletero: 29811223
 	2. Botón Buscar
 	3. Verificar: la guía 200000003 figura en “Guías a entregar al fletero”
 	4. Botón Confirmar
-	5. Aceptar y Verificar: estado actualizado a “En ruta a CD de origen (desde agencia)” VER ARCHIVO
-	6. Cancelar
+	5. Verificar: Mensaje “Operacion confirmada. Estados Actualizados”
+	6. Botón Aceptar en el pop-up 
+	7. Cancelar
  
-05: Recepción y despacho (Última Milla CD – Rendición Retiro)
+05: Recepción y despacho (Centro de Distribucion)
 	1. DNI fletero: 29811223
 	2. Botón Buscar
-	3. Marcar guía 200000003
-	4. Botón Confirmar rendición
-	5. Verificar: estado “Admitida” en CD Rosario
-	6. Cancelar
+	3. Marcar guía 200000003 como cumplida en las HDR de retiro asignadas
+	4. Botón Confirmar
+	5. Verificar: HDR Recibida R 02000 000011 02000
+    6. Botón aceptar en el pop-up
+	7. Cancelar
  
 06: Recepción y despacho de encomiendas de larga distancia
 	1. Numero de servicio: 3003345
-             2. Botón Buscar
+    2. Botón Buscar
 	3. Verificar en guías a despachar: 200000003 (XL, Destino: CD Mendoza)
-            4. Botón aceptar en el pop-up
-	5. Botón Confirmar
+	4. Botón Confirmar
+    5. Botón aceptar en el pop-up
 	6. Cancelar
  
 07: Salir al Login 
@@ -80,20 +74,21 @@
 	4. Botón Ingresar
 	5. Botón Aceptar en el pop-up
  
-09: Recepción y despacho (Larga Distancia – Destino)
+09: Recepción y Despacho Larga Distancia
 	1. Numero de ervicio: 3003345
-             2. Botón Buscar
-	3. Verificar en guías a recibir: 200000003 (XL, Destino: CD Mendoza)
+    2. Botón Buscar
+	3. Verificar en guías a recibir: 200000003 (XL)
 	4. Botón Confirmar
-	5. Aceptar
-	6. Botón Cancelar
+	5. Botón aceptar en el pop-up
+	6. Cancelar
+
 10: Entrega de encomiendas (Centro de Distribución)
-	1. DNI destinatario:19568232
+	1. DNI destinatario: 19568232
 	2. Botón Buscar
 	3. Verificar nombre del destinatario: Juan 
-             4. Verificar apellido del destinatario: Castro
+    4. Verificar apellido del destinatario: Castro
 	5. Botón Buscar
-	6.  Verificar guias en Encomiendas en piso a a entregar: 200000003 (XL)
+	6. Verificar guias en Encomiendas en piso a a entregar: 200000003 (XL)
 	7. Botón Confirmar
 	8. Botón Aceptar en el pop-up
 	9. Cancelar
@@ -101,17 +96,17 @@
 11: Emitir Factura
 	1. CUIT : 30-94715263-9
 	2. Botón Buscar
-	3. Verificar: figura la guía 200000003 en estado Entregada e importe COMPLETAR
+	3. Verificar: guía 200000003 (Origen: CD Santa Fe, Destino: CD Menoza, Tamaño: XL, Importe: $4,400)
 	4. Botón Emitir Factura
-	5. Aceptar
-	6. Cancelar
+	5. Verificar: Factura: FA-202511-0001
+	6. Botón Aceptar en el pop-up
+	7. Cancelar
  
 12: Consulta de estado de cuenta corriente
- 
 	1. CUIT : 30-94715263-9
 	2. Período: Noviembre 2025
 	3. Botón Buscar
-	4. Verificar Importe: COMPLETAR en Debe/Haber
+	4. Verificar: Conceto: FA-202511-0001, Debe: $9800 
 	5. Cancelar
  
 13: Consulta de Estado de Encomienda
@@ -123,22 +118,22 @@
 		Fecha de actualización  | A retirar en agencia de origen          | Agencia Rosario
 		Fecha de actualización  | En camino a retirar por agencia         | Agencia Rosario
 		Fecha de actualización  | En ruta a CD de origen (desde agencia)  | En transporte con Fletero DNI: 29811223
-		Fecha de actualización  | Admitida                                | CD Rosario
+		Fecha de actualización  | Admitida                                | CD Santa Fe
 		Fecha de actualización  | En tránsito al CD destino               | En Servicio Nº3003345
 		Fecha de actualización  | Pendiente de entrega                    | CD Mendoza
 		Fecha de actualización  | Entregada                               | -
 		Fecha de actualización  | Facturada                               | -
- 
 	4. Botón Cancelar
-	5. Cerrar todas las pantallas
- 
-14: Verificar archivos
 
+14: Cerrar Sistema
+	1. Cerrar el menú principal
+	2. Cerrar Login
+
+15: Verificar archivos
 	- Guías:
-
 		{
 		  "NumeroGuia": 200000003,
-		  "Estado": 11,
+		  "Estado": 14,
 		  "TipoEntrega": 0,
 		  "CodigoPostalCDOrigen": 2000,
 		  "CodigoPostalCDDestino": 5500,
@@ -146,41 +141,44 @@
 		  "IDAgenciaDestino": "",
 		  "CUITCliente": "30-94715263-9",
 		  "Tamano": 3,
-		  "Destinatario": {"DNI": 19568232, "Nombre": "Juan", "Apellido": "Castro", "Direccion": "", "CodigoPostal": 5500},
-		  "IDConvenio": 1,
-		  "ImporteAFacturar": (valor calculado),
+		  "Destinatario": {"DNI": 19568232, "Nombre": "Juan", "Apellido": "Castro", "Direccion": "", "CodigoPostal": 5600},
+		  "IDConvenio": 200002,
+		  "ImporteAFacturar": 4400,
 		  "ComisionAgenciaOrigen": 0,
 		  "ComisionAgenciaDestino": 0,
 		  "ComisionFleteroOrigen": 0,
 		  "ComisionFleteroDestino": 0,
 		  "Historial": [
-		    {"Estado": 0,  "UbicacionGuia": ""},    
-		    {"Estado": 3,  "UbicacionGuia": ""},      
-		    {"Estado": 4,  "UbicacionGuia": ""},              
-		    {"Estado": 5,  "UbicacionGuia": "CD Rosario"},    
-		    {"Estado": 6,  "UbicacionGuia": "Servicio:3003345"},
-		    {"Estado": 10, "UbicacionGuia": "CD Mendoza"},    
-		    {"Estado": 11, "UbicacionGuia": ""}               
-		    {"Estado": 14, "UbicacionGuia": ""}            
-		  ]
+					{"Estado": 0, "UbicacionGuia": "Agencia Rosario"},
+					{"Estado": 3, "UbicacionGuia": "En agencia de origen"},
+					{"Estado": 4, "UbicacionGuia": "En transporte con Fletero DNI: 29811223"},
+					{"Estado": 5, "UbicacionGuia": "CD Santa Fe"},
+					{"Estado": 6, "UbicacionGuia": "Servicio:3003345"},
+					{"Estado": 10, "UbicacionGuia": "CD Mendoza"},
+					{"Estado": 11, "UbicacionGuia": ""}
+				]
 		}
 
 	- HDRs:
-
-		1 de retiro (busca en agencia de origen)
-		1 de transporte (CD origen a CD destino)
+		1 de retiro
  
 		{
-		  "ID": "R 02000 000012 02000",
-		  "TipoHDR": 1,
-		  "DNIFletero": 29811223,
-		  "IDServicioTransporte": 0,
-		  "Guias": [200000003],
-		  "CodigoPostalOrigen": 2000,
-		  "CodigoPostalDestino": 2000
-		},
+			"ID": "R 02000 000011 02000",
+			"TipoHDR": 1,
+			"DNIFletero": 29811223,
+			"IDServicioTransporte": 0,
+			"Guias": [
+			  200000001,
+			  200000003
+			],
+			"CodigoPostalOrigen": 2000,
+			"CodigoPostalDestino": 2000
+		}
+		
+		1 de transporte
+
 		{
-		  "ID": "T 02000 0000XX 05500",
+		  "ID": "T 02000 00001 05500",
 		  "TipoHDR": 2,
 		  "DNIFletero": 0,
 		  "IDServicioTransporte": 3003345,
