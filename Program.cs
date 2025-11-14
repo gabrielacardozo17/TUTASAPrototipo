@@ -31,6 +31,7 @@ namespace TUTASAPrototipo
 
             GuiaAlmacen.Grabar();
             FacturaAlmacen.Grabar();
+            CuentaCorrienteAlmacen.Grabar();
         }
     }
 }
