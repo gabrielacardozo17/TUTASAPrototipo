@@ -408,7 +408,8 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             var guia = GuiaAlmacen.guias.First(g => g.NumeroGuia == NroGuia);
 
             EstadoGuiaEnum nuevoEstado = guia.Estado;
-            string Ubicacion = ""; //resolver mañana
+            string Ubicacion = "";
+            var AgenciaUbicacion = AgenciaAlmacen.agencias.FirstOrDefault(a => a.ID.Substring(1) == guia.IDAgenciaOrigen);
 
             switch (guia.Estado)
             {
@@ -419,7 +420,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
                 case EstadoGuiaEnum.ARetirarEnAgenciaDeOrigen:
                     nuevoEstado = EstadoGuiaEnum.EnCaminoARetirarPorAgencia;
-                    Ubicacion = "En agencia de origen";
+                    Ubicacion = AgenciaUbicacion.Nombre;
                     break;
 
                 case EstadoGuiaEnum.Admitida when guia.TipoEntrega == EntregaEnum.Domicilio:
@@ -553,20 +554,3 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

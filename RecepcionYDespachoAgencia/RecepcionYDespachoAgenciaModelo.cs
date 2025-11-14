@@ -150,7 +150,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
                         g.Historial.Add(new RegistroEstadoAux
                         {
                             Estado = g.Estado,
-                            UbicacionGuia = string.Empty, // sin ubicación en tránsito
+                            UbicacionGuia = $"En transporte con Fletero DNI: {dni}",
                             FechaActualizacionEstado = ahora
                         });
                     }
@@ -180,7 +180,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoAgencia
                         g.Historial.Add(new RegistroEstadoAux
                         {
                             Estado = g.Estado,
-                            UbicacionGuia = string.Empty,
+                            UbicacionGuia = $"En transporte con Fletero DNI: {dni}",
                             FechaActualizacionEstado = ahora
                         });
                     }

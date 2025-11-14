@@ -386,7 +386,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                         new RegistroEstadoAux
                         {
                             Estado = EstadoGuiaEnum.ARetirarEnAgenciaDeOrigen,
-                            UbicacionGuia = string.Empty,
+                            UbicacionGuia = agenciaActual.Nombre,
                             FechaActualizacionEstado = DateTime.Now
                         }
                     }

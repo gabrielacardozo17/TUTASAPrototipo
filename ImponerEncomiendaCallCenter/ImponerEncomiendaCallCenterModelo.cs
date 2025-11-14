@@ -392,7 +392,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCallCenter
                         new RegistroEstadoAux
                         {
                             Estado = EstadoGuiaEnum.ARetirarPorDomicilioDelCliente,
-                            UbicacionGuia = string.Empty,
+                            UbicacionGuia = "En domicilio Cliente",
                             FechaActualizacionEstado = DateTime.Now
                         }
                     }
