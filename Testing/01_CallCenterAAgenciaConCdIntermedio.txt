@@ -1,10 +1,12 @@
-﻿01: Login 
+﻿01_CallCenterAAgenciaConCdIntermedio
+ 
+01: Login 
 	1. Email: jperez@gmail.com 
 	2. Contraseña: juanAgosto
 	3. CD: Cordoba y Agencia: Villa Carlos Paz
 	4. Botón Ingresar
 	5. Botón Aceptar en el pop-up
-
+ 
 02: Imposición de encomiendas (Call Center)
 	1. CUIT: 30-87419362-4
 	2. Botón Buscar
@@ -12,39 +14,38 @@
 	4. Nombre destinatario: Matias
 	5. Apellido destinatario: Gomez
 	6. DNI destinatario: 43200618
-	7. Verificar: Trae las 24 provincias.
+	7. Verificar al clickear desplegable Provincia: Trae las 24 provincias.
 	8. Provincia: Mendoza
-	9. Verificar: Trae las localidades de mendoza.
+	9. Verificar: Figura las localidades Mendoza, San Rafael y Otro
 	10. Localidad: San Rafael, Mendoza
-	11. Verificar: Trae los tres tipos de entrega
+	11. Verificar: Tipo de entrega disponible figura A domicilio, En Agencia y En CD
 	12. Tipo de entrega disponible: En Agencia
 	13. Agencia: Agencia San Rafael
 	14. Detalle de encomiendas: 
 		S: 1
 		L: 1 
 	15. Botón confirmar
-	16. Verificar guías impuestas correctamente con nros: 500000006 (Tamaño S) 500000007 (Tamaño L) | Guía creada con estado “A retirar por domicilio del cliente” (nro: X)
+	16. Verificar guías impuestas correctamente con nros: 500000006 (Tamaño S) 500000007 (Tamaño L) | Guía creada con estado “A retirar por domicilio del cliente” (nro: 1)
 	17. Botón aceptar en el pop-up
-	18. Botón Cancelar 
-
+	18. Botón Cancelar
+ 
 03: Recepción y despacho ultima milla
-	
 	1. DNI fletero: 30987654
 	2. Boton Buscar
 	3. Verificar que las guias 500000006 (S) y 500000007 (L)  se asignen a una nueva HDR de retiro.
 	4. Boton Confirmar
-	5. Verificar que las guias  pertenezcan a la HDR "R 05000 000012 05000"
+	5. Verificar que las guias pertenezcan a la HDR de retiro "R 05000 000011 05000"
 	6. Boton Aceptar
-
+ 
 	7. DNI fletero: 30987654
 	8. Boton buscar
 	9. Verificar que las guias 500000006 y 500000007 aparezcan en el detalle de HDR de retiro asignadas.
 	10. Marcar guias impuestas (500000006 y 500000007) con un check
 	11. Boton Confirmar 
-	12. Verificar que la HDR "R 05000 000012 05000" haya sido recibida. 
+	12. Verificar que la HDR "R 05000 000011 05000" haya sido recibida. 
 	13. Boton Aceptar
-	14. Boton Cancelar 
-
+	14. Boton Cancelar
+ 
 04: Recepción y despacho de servicios de larga distancia
 	1. Numero de servicio: 4004123
 	2. Boton Buscar
@@ -52,82 +53,80 @@
 	4. Boton confirmar
 	5. Boton Aceptar en pop-up
 	6. Boton Cancelar
-
-05: Cerrar menú principal 
-
+ 
+05: Cerrar menú principal
+ 
 06: Login 
-	1. Email: jperez@gmail.com 
+	1. Email: jperez@gmail.com
 	2. Contraseña: juanAgosto
 	3. CD: Santa Fe y Agencia: Rosario
 	4. Botón Ingresar
 	5. Botón Aceptar en el pop-up
-	
 07: Recepción y despacho de encomiendas de larga distancia
-	1. Numero de servicio: 4004123 
+	1. Numero de servicio: 4004123
 	2. Boton Buscar
 	2. Verificar en guias a recibir: 500000006 (S) y 500000007 (L)
 	3. Boton Confirmar
 	4. Boton Aceptar en el pop-up
-
-	5. Numero de servicio: 5005789 
+ 
+	5. Numero de servicio: 5005789
 	6. Boton Buscar
 	7. Verificar en guias a despachar: 500000006 (S, CD Mendoza) y 500000007 (L, CD Mendoza)
-	8. Boton confirmar
+	8. Boton Confirmar
 	9. Boton Aceptar en pop-up 
 	10.Boton Cancelar
-
+ 
 08: Cerrar menú principal
-
+ 
 09: Login 
-	1. Email: jperez@gmail.com 
+	1. Email: jperez@gmail.com
 	2. Contraseña: juanAgosto
 	3. CD: Mendoza y Agencia: San Rafael
 	4. Botón Ingresar
 	5. Botón Aceptar en el pop-up
-
+ 
 10: Recepción y despacho de encomiendas de larga distancia
-	1. Numero de servicio: 5005789 
+	1. Numero de servicio: 5005789
 	2. Boton Buscar
 	3. Verificar en guias a recibir: 500000006 (S) y 500000007 (L)
-	4. Boton confirmar
-	5. Boton Aceptar en popup
+	4. Boton Confirmar
+	5. Boton Aceptar en pop-up
 	6. Boton Cancelar
-
+ 
 11: Recepción y despacho ultima milla
-
+ 
 	1. DNI fletero: 30123456
 	2. Boton Buscar
 	3. Verificar que las guias 500000006 (S) y 500000007 (L) se asignen a una nueva HDR de distribución.
 	4. Boton Confirmar
-	5. Verificar que las guias  pertenezcan a la HDR "D 05500 000015 05500"
+	5. Verificar que las guias  pertenezcan a la HDR "D 05500 000013 05500"
 	6. Boton Aceptar
-
+ 
 	8. DNI fletero: 30123456
 	9. Boton buscar
 	10. Verificar que las guias 500000006 y 500000007 aparezcan en el detalle de HDR de distribución asignadas.
 	11. Marcar guias 500000006 y 500000007 con un check
 	12. Boton Confirmar 
-	13. Verificar que la HDR "D 05500 000015 05500" haya sido recibida. 
+	13. Verificar que la HDR "D 05500 000013 05500" haya sido recibida. 
 	14. Boton Aceptar
-	15. Boton Cancelar 
-
+	15. Boton Cancelar
+ 
 12: Entrega de Encomiendas (Agencia) 
-	1. Verificar estar en Agencia San Rafael
+	1. Verificar label Agencia estar en Agencia San Rafael
 	2. DNI destinatario: 43200618
 	3. Boton Buscar
 	4. Verificar Nombre del destinatario: Matias
 	5. Verificar Apellido del destinatario: Gomez
-	6. Verificar guias a entregar: 500000006 (S) y 500000007 (L)
+	6. Verificar guias en Encomiendas en piso a a entregar: 500000006 (S) y 500000007 (L)
 	7. Boton Confirmar
 	8. Boton Aceptar en el pop-up
 	9. Boton Cancelar
-
-13: Consulta de estado de encomiendas 
-
+ 
+13: Consulta de estado de encomiendas
+ 
 	1. Número de guía: 500000006
 	2. Botón Buscar
 	3. Verificar resultado de la búsqueda:
-		
 		Fecha					| Estado								| Ubicación
 		Fecha de actualización 	| A retirar por domicilio del cliente 	| En domicilio Cliente
 		Fecha de actualización 	| En camino a retirar por domicilio		| En domicilio Cliente
@@ -138,15 +137,15 @@
 		Fecha de actualización 	| En CD destino							| CD Mendoza
 		Fecha de actualización 	| En ruta a la agencia destino			| En transporte con fletero dni: 30123456
 		Fecha de actualización 	| Pendiente de entrega					| Agencia San Rafael
-		Fecha de actualización 	| Entregada								| - 
-
+		Fecha de actualización 	| Entregada								| -
+ 
 	4. Boton Cancelar
-
+ 
 14: Consulta de estado de encomiendas
 	1. Número de guía: 500000007
 	2. Botón Buscar
 	3. Verificar resultado de la búsqueda:
-
+ 
 		Fecha					| Estado								| Ubicación
 		Fecha de actualización 	| A retirar por domicilio del cliente 	| En domicilio Cliente
 		Fecha de actualización 	| En camino a retirar por domicilio		| En domicilio Cliente
@@ -158,9 +157,9 @@
 		Fecha de actualización 	| En ruta a la agencia destino			| En transporte con fletero dni: 30123456
 		Fecha de actualización 	| Pendiente de entrega					| Agencia San Rafael
 		Fecha de actualización 	| Entregada								| - 
-	
-15: Verificar archivos: 
-	
+
+15: Cerrar todas las pantallas
+16: Verificar archivos: 
 	- Guías:
 			 {"NumeroGuia":500000006,
 			 "Estado":11,
@@ -189,7 +188,6 @@
 			 {"Estado":9,"UbicacionGuia":""},
 			 {"Estado":10,"UbicacionGuia":""},
 			 {"Estado":11,"UbicacionGuia":""}]},
-			 
 			 {"NumeroGuia":500000007,
 			 "Estado":11,
 			 "TipoEntrega":1,
@@ -217,16 +215,15 @@
 			 {"Estado":9,"UbicacionGuia":""},
 			 {"Estado":10,"UbicacionGuia":""},
 			 {"Estado":11,"UbicacionGuia":""}]}]
- 
 	 - HDRs:
-
+ 
 		1 de retiro (busca en casa del cliente)
 		1 de distribucion (cuando la llevas a la agencia destino))
-
+ 
 		2 de transporte (una de CD Cordoba a CD Santa Fe 
 						otra de CD Santa Fe a CD Mendoza))
-
-
+ 
+ 
 		{"ID":"R 05000 000012 05000",
 		"TipoHDR":1,
 		"DNIFletero":30987654,
@@ -234,21 +231,21 @@
 		"Guias":[500000004,500000005,500000006,500000007],
 		"CodigoPostalOrigen":5000,
 		"CodigoPostalDestino":5000},
-
+ 
 		{"ID":"T 05000 0000XX 02000",
 		"TipoHDR":2,"DNIFletero":0,
 		"IDServicioTransporte":4004123,
 		"Guias":[500000006,500000007],
 		"CodigoPostalOrigen":5000,
 		"CodigoPostalDestino":2000},
-
+ 
 		{"ID":"T 02000 000013 05500",
 		"TipoHDR":2,"DNIFletero":0,
 		"IDServicioTransporte":5005789,
 		"Guias":[500000006,500000007],
 		"CodigoPostalOrigen":2000,
 		"CodigoPostalDestino":5500},
-
+ 
 		{"ID":"D 05500 000015 05500",
 		"TipoHDR":0,
 		"DNIFletero":30123456,
@@ -256,6 +253,3 @@
 		"Guias":[500000006,500000007],
 		"CodigoPostalOrigen":5500,
 		"CodigoPostalDestino":5500}]
-
-
-			
