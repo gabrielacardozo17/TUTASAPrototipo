@@ -99,7 +99,7 @@
 	2. Boton Buscar
 	3. Verificar que las guias 500000006 (S) y 500000007 (L) se asignen a una nueva HDR de distribución.
 	4. Boton Confirmar
-	5. Verificar que las guias  pertenezcan a la HDR "D 05500 000013 05500"
+	5. Verificar que las guias  pertenezcan a la HDR "D 05500 000015 05500"
 	6. Boton Aceptar
  
 	8. DNI fletero: 30123456
@@ -107,7 +107,7 @@
 	10. Verificar que las guias 500000006 y 500000007 aparezcan en el detalle de HDR de distribución asignadas.
 	11. Marcar guias 500000006 y 500000007 con un check
 	12. Boton Confirmar 
-	13. Verificar que la HDR "D 05500 000013 05500" haya sido recibida. 
+	13. Verificar que la HDR "D 05500 000015 05500" haya sido recibida. 
 	14. Boton Aceptar
 	15. Boton Cancelar
  
@@ -222,8 +222,8 @@
  
 		2 de transporte (una de CD Cordoba a CD Santa Fe 
 						otra de CD Santa Fe a CD Mendoza))
- 
- 
+
+
 		{"ID":"R 05000 000012 05000",
 		"TipoHDR":1,
 		"DNIFletero":30987654,
@@ -231,21 +231,21 @@
 		"Guias":[500000004,500000005,500000006,500000007],
 		"CodigoPostalOrigen":5000,
 		"CodigoPostalDestino":5000},
- 
+
 		{"ID":"T 05000 0000XX 02000",
 		"TipoHDR":2,"DNIFletero":0,
 		"IDServicioTransporte":4004123,
 		"Guias":[500000006,500000007],
 		"CodigoPostalOrigen":5000,
 		"CodigoPostalDestino":2000},
- 
+
 		{"ID":"T 02000 000013 05500",
 		"TipoHDR":2,"DNIFletero":0,
 		"IDServicioTransporte":5005789,
 		"Guias":[500000006,500000007],
 		"CodigoPostalOrigen":2000,
 		"CodigoPostalDestino":5500},
- 
+
 		{"ID":"D 05500 000015 05500",
 		"TipoHDR":0,
 		"DNIFletero":30123456,
