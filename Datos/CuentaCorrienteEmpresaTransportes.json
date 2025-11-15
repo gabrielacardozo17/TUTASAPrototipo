@@ -1,28 +1,5 @@
 ﻿[
   {
-    "ID": "CET-100",
-    "IDEmpresaTransporte": 100,
-    "Movimientos": [
-      { "NumeroFactura": "ET-202509-10001", "Fecha": "2025-09-05T00:00:00", "Concepto": "Arrendamiento septiembre", "Debe": 300000, "Haber": 0, "SaldoActual": 300000 },
-      { "NumeroFactura": "ET-202509-10002", "Fecha": "2025-09-12T00:00:00", "Concepto": "Ajuste combustible", "Debe": 15000, "Haber": 0, "SaldoActual": 315000 },
-      { "NumeroFactura": "REC-202509-10003", "Fecha": "2025-09-25T00:00:00", "Concepto": "Pago parcial", "Debe": 0, "Haber": 200000, "SaldoActual": 115000 },
-      { "NumeroFactura": "ET-202510-10004", "Fecha": "2025-10-05T00:00:00", "Concepto": "Arrendamiento octubre", "Debe": 320000, "Haber": 0, "SaldoActual": 435000 },
-      { "NumeroFactura": "ET-202510-10005", "Fecha": "2025-10-18T00:00:00", "Concepto": "Ajuste ruta", "Debe": 12000, "Haber": 0, "SaldoActual": 447000 },
-      { "NumeroFactura": "REC-202510-10006", "Fecha": "2025-10-28T00:00:00", "Concepto": "Pago octubre", "Debe": 0, "Haber": 300000, "SaldoActual": 147000 }
-    ]
-  },
-  {
-    "ID": "CET-200",
-    "IDEmpresaTransporte": 200,
-    "Movimientos": [
-      { "NumeroFactura": "ET-202509-20001", "Fecha": "2025-09-06T00:00:00", "Concepto": "Arrendamiento septiembre", "Debe": 260000, "Haber": 0, "SaldoActual": 260000 },
-      { "NumeroFactura": "ET-202509-20002", "Fecha": "2025-09-15T00:00:00", "Concepto": "Cargo estacional", "Debe": 10000, "Haber": 0, "SaldoActual": 270000 },
-      { "NumeroFactura": "REC-202509-20003", "Fecha": "2025-09-26T00:00:00", "Concepto": "Pago parcial", "Debe": 0, "Haber": 150000, "SaldoActual": 120000 },
-      { "NumeroFactura": "ET-202510-20004", "Fecha": "2025-10-06T00:00:00", "Concepto": "Arrendamiento octubre", "Debe": 280000, "Haber": 0, "SaldoActual": 400000 },
-      { "NumeroFactura": "REC-202510-20005", "Fecha": "2025-10-27T00:00:00", "Concepto": "Pago octubre", "Debe": 0, "Haber": 200000, "SaldoActual": 200000 }
-    ]
-  },
-  {
     "ID": "CET-300",
     "IDEmpresaTransporte": 300,
     "Movimientos": [
@@ -52,16 +29,6 @@
       { "NumeroFactura": "ET-202510-00006", "Fecha": "2025-10-01T00:00:00", "Concepto": "Arrendamiento bodegas octubre", "Debe": 3000000, "Haber": 0, "SaldoActual": 4900000 },
       { "NumeroFactura": "NC-202510-00023", "Fecha": "2025-10-09T00:00:00", "Concepto": "Bonificación estacional", "Debe": 0, "Haber": 100000, "SaldoActual": 4800000 },
       { "NumeroFactura": "REC-202510-00071", "Fecha": "2025-10-27T00:00:00", "Concepto": "Pago parcial octubre", "Debe": 0, "Haber": 1600000, "SaldoActual": 3200000 }
-    ]
-  },
-  {
-    "ID": "CET-600",
-    "IDEmpresaTransporte": 600,
-    "Movimientos": [
-      { "NumeroFactura": "ET-202509-00006", "Fecha": "2025-09-01T00:00:00", "Concepto": "Arrendamiento bodegas septiembre", "Debe": 2700000, "Haber": 0, "SaldoActual": 2700000 },
-      { "NumeroFactura": "REC-202509-00065", "Fecha": "2025-09-29T00:00:00", "Concepto": "Pago parcial septiembre", "Debe": 0, "Haber": 800000, "SaldoActual": 1900000 },
-      { "NumeroFactura": "ET-202510-00007", "Fecha": "2025-10-01T00:00:00", "Concepto": "Arrendamiento bodegas octubre", "Debe": 2700000, "Haber": 0, "SaldoActual": 4600000 },
-      { "NumeroFactura": "REC-202510-00080", "Fecha": "2025-10-29T00:00:00", "Concepto": "Pago parcial octubre", "Debe": 0, "Haber": 1200000, "SaldoActual": 3400000 }
     ]
   }
 ]

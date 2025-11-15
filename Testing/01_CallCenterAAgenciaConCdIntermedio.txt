@@ -32,19 +32,20 @@
 03: Recepción y despacho ultima milla (Centro de Distribución))
 	1. DNI fletero: 30987654
 	2. Boton Buscar
-	3. Verificar que las guias 500000006 (S) y 500000007 (L)  se asignen a una nueva HDR de retiro.
-	4. Boton Confirmar
-	5. Verificar que las guias pertenezcan a la HDR de retiro "R 05000 000011 05000"
-	6. Boton Aceptar
+	3. Verificar que se llame Carlos Maidana 
+	4. Verificar las guias 500000006 (S) y 500000007 (L)  se asignen a una nueva HDR de retiro.
+	5. Boton Confirmar
+	6. Verificar que las guias pertenezcan a la HDR de retiro "R 05000 000011 05000"
+	7. Boton Aceptar
  
-	7. DNI fletero: 30987654
-	8. Boton buscar
-	9. Verificar que las guias 500000006 y 500000007 aparezcan en el detalle de HDR de retiro asignadas.
-	10. Marcar guias impuestas (500000006 y 500000007) con un check
-	11. Boton Confirmar 
-	12. Verificar que la HDR "R 05000 000011 05000" haya sido recibida. 
-	13. Boton Aceptar
-	14. Boton Cancelar
+	8. DNI fletero: 30987654
+	9. Boton buscar
+	10. Verificar que las guias 500000006 y 500000007 aparezcan en el detalle de HDR de retiro asignadas.
+	11. Marcar guias impuestas (500000006 y 500000007) con un check
+	12. Boton Confirmar 
+	13. Verificar que la HDR "R 05000 000011 05000" haya sido recibida. 
+	14. Boton Aceptar
+	15. Boton Cancelar
  
 04: Recepción y despacho de servicios de larga distancia
 	1. Numero de servicio: 4004123
@@ -102,15 +103,17 @@
 	4. Boton Confirmar
 	5. Verificar que las guias  pertenezcan a la HDR "D 05500 000014 05500"
 	6. Boton Confirmar
- ---------------------------------------------------------------------------------------------------------------------------> recep y despahco agencia ---> se cambia a pendiente de entrega
-	8. DNI fletero: 30123456
-	9. Boton buscar
-	10. Verificar que las guias 500000006 y 500000007 aparezcan en el detalle de HDR de distribución asignadas.
-	11. Marcar guias 500000006 y 500000007 con un check
-	12. Boton Confirmar 
-	13. Verificar que la HDR "D 05500 000014 05500" haya sido recibida. 
-	14. Boton Confirmar
-	15. Boton Cancelar
+
+	----*----------------------------*
+
+	7. DNI fletero: 30123456
+	8. Boton buscar
+	9. Verificar que las guias 500000006 y 500000007 aparezcan en el detalle de HDR de distribución asignadas.
+	10. Marcar guias 500000006 y 500000007 con un check
+	11. Boton Confirmar 
+	12. Verificar que la HDR "D 05500 000014 05500" haya sido recibida. 
+	13. Boton Confirmar
+	14. Boton Cancelar
  
 12: Entrega de Encomiendas (Agencia) 
 	1. Verificar label Agencia estar en Agencia San Rafael
@@ -173,22 +176,24 @@
 			 "Tamano":0,
 			 "Destinatario":{"DNI":43200618,"Nombre":"Matias","Apellido":"Gomez","Direccion":"","CodigoPostal":5600},
 			 "IDConvenio":100007,
-			 "ImporteAFacturar":2400,
+			 "ImporteAFacturar":5500,
 			 "ComisionAgenciaOrigen":0,
-			 "ComisionAgenciaDestino":0,
-			 "ComisionFleteroOrigen":0,
-			 "ComisionFleteroDestino":0,
+			 "ComisionAgenciaDestino":2125,
+			 "ComisionFleteroOrigen":1250,
+			 "ComisionFleteroDestino":1200,
 			 "Historial":
-			 [{"Estado":1,"UbicacionGuia":""},
-			 {"Estado":2,"UbicacionGuia":""},
+			 [{"Estado":1,"UbicacionGuia":"En domicilio Cliente"},
+			 {"Estado":2,"UbicacionGuia":"En domicilio Cliente"},
 			 {"Estado":5,"UbicacionGuia":"CD Cordoba"},
 			 {"Estado":6,"UbicacionGuia":"Servicio:4004123"},
 			 {"Estado":6,"UbicacionGuia":"CD Santa Fe"},
 			 {"Estado":6,"UbicacionGuia":"Servicio:5005789"},
 			 {"Estado":7,"UbicacionGuia":"CD Mendoza"},
-			 {"Estado":9,"UbicacionGuia":""},
-			 {"Estado":10,"UbicacionGuia":""},
-			 {"Estado":11,"UbicacionGuia":""}]},
+			 {"Estado":9,"UbicacionGuia":"En transporte con Fletero DNI: 30123456"},
+			 {"Estado":10,"UbicacionGuia":"Agencia San Rafael"},
+			 {"Estado":11,"UbicacionGuia":""}]}]
+
+
 			 {"NumeroGuia":500000007,
 			 "Estado":11,
 			 "TipoEntrega":1,
@@ -200,22 +205,23 @@
 			 "Tamano":2,
 			 "Destinatario":{"DNI":43200618,"Nombre":"Matias","Apellido":"Gomez","Direccion":"","CodigoPostal":5600},
 			 "IDConvenio":100007,
-			 "ImporteAFacturar":4100,
+			 "ImporteAFacturar":7200,
 			 "ComisionAgenciaOrigen":0,
-			 "ComisionAgenciaDestino":0,
-			 "ComisionFleteroOrigen":0,
-			 "ComisionFleteroDestino":0,
+			 "ComisionAgenciaDestino":3225,
+			 "ComisionFleteroOrigen":2650,
+			 "ComisionFleteroDestino":2500,
 			 "Historial":
-			 [{"Estado":1,"UbicacionGuia":""},
-			 {"Estado":2,"UbicacionGuia":""},
+			 [{"Estado":1,"UbicacionGuia":"En domicilio Cliente"},
+			 {"Estado":2,"UbicacionGuia":"En domicilio Cliente"},
 			 {"Estado":5,"UbicacionGuia":"CD Cordoba"},
 			 {"Estado":6,"UbicacionGuia":"Servicio:4004123"},
 			 {"Estado":6,"UbicacionGuia":"CD Santa Fe"},
 			 {"Estado":6,"UbicacionGuia":"Servicio:5005789"},
 			 {"Estado":7,"UbicacionGuia":"CD Mendoza"},
-			 {"Estado":9,"UbicacionGuia":""},
-			 {"Estado":10,"UbicacionGuia":""},
+			 {"Estado":9,"UbicacionGuia":"En transporte con Fletero DNI: 30123456"},
+			 {"Estado":10,"UbicacionGuia":"Agencia San Rafael"},
 			 {"Estado":11,"UbicacionGuia":""}]}]
+
 	
 	- HDRs:
 			{"ID":"R 05000 000011 05000",

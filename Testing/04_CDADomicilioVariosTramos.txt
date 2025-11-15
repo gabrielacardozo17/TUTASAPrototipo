@@ -1,143 +1,174 @@
+04_CDADomicilioVariosTramos
+ 
 01: Login
-    1. Email: jperez@gmail.com 
-    2. Contraseña: juanAgostoen 
-    3. CD: San Luis y Agencia: San Luis
-    4. Botón Ingresar
-    5. Botón Aceptar en el pop-up
+	1. Email: jperez@gmail.com
+	2. Contraseña: juanAgosto
+	3. CD: San Luis y Agencia: San Luis
+	4. Botón Ingresar
+	5. Botón Aceptar en el pop-up
 
 02: Imposición de encomiendas (Centro de Distribución)
-    1. CUIT: 30-55667788-1
-    2. Botón Buscar
-    3. Verificar: Cliente encontrado. Se completan su Razón social, Teléfono y Dirección.
-    4. Nombre destinatario: Pedro
-    5. Apellido destinatario: Suarez
-    6. DNI destinatario: 31165199
-    7. Provincia: Buenos Aires
-    8. Localidad: Florencio Varela, Buenos Aires
-    9. Tipo de entrega disponible: A domicilio
-    10. Dirección: Laprida 1122
-    11. Detalle de encomiendas:
-        S: 1
-    12. Botón confirmar
-    13. Verificar encomiendas impuestas con guías nro: 570010006 (Tamaño S)
-    14.Aceptar el mensaje
-    15. Cancelar
  
-03: Ingresar en Recepción y despacho de encomiendas larga distancia
-    1. Número de servicio: "4004123"
-    2. Botón Buscar
-    3. Verificar que la guía 570010006 se asigne en Guias a despachar en este servicio
-    4. Boton en confirmar
-    5. Aceptar el mensaje "Recepción y despacho confirmado con éxito"
+	1. CUIT: 30-55667788-1
+	2. Botón Buscar
+	3. Verificar: Cliente encontrado. Se completan su Nombre (San Luis Tech SA), Teléfono (0266 442 1100) y Dirección (Av. Illia 350, San Luis)
+	4. Nombre destinatario: Pedro
+	5. Apellido destinatario: Suarez
+	6. DNI destinatario: 31165199
+	7. Verificar al clickear desplegable Provincia: Trae las 24 provincias
+	8. Provincia: Buenos Aires
+	9. Verificar desplegable localidades: Florencio Varela, Buenos Aires | La Plata Buenos Aires | Otras
+	10. Localidad: Otras
+	11. Verificar tipos de entrega a disponible: solo "A domicilio" 
+	12. Tipo de entrega disponible: A domicilio
+	13. Dirección: Laprida 1122
+	14. Detalle de encomiendas:
+		S: 1
+	15. Botón confirmar
+	16. Verificar encomiendas impuestas con guías nro: 570010006 (Tamaño S) | Guía creada con estado "Admitida" (nro: 5)
+	17. Botón Aceptar en el pop-up
+	18. Botón Cancelar
  
-04: Consultar estado de encomiendas
-    1. Número de guía: 570010006
-    2. Botón Buscar
-    3. Verificar que figure dos filas con la fecha del dia, estado "Admitida" en CD San Luis y luego "En tránsito al CD destino" con ubicación "En servicio N° 4004123"
-    4. Cancelar
-    5. Cerrar el menú principal
+03: Recepción y despacho de encomiendas larga distancia
  
-05: Recepción y despacho de encomiendas larga distancia Tramo 1
-    1. Email: jperez@gmail.com 
-    2. Contraseña: juanAgostoen
-    3: CD: Córdoba y Agencia Actual: N/A 
-    4. Número de servicio: "4004123"
-    5. Botón Buscar
-    6. Verificar que la guía 570010006 se asigne en Guías a recibir de este servicio
-    7. Confirmar
-    8. Aceptar
-    9. Número de servicio: 4004123
-    10. Botón Buscar
-    11. Verificar que la guía 570010006 se asigne en Guías a despachar en este servicio
-    12. Confirmar
-    13. Aceptar
-    14. Cancelar
-    15. Cerrar el menú principal
+	1. Número de servicio: 4004123
+	2. Botón Buscar
+	3. Verificar que la guía 570010006 se asigne en Guías a despachar en este servicio (Destino: CD Buenos Aires)
+	4. Botón Confirmar
+	5. Verificar mensaje: "Recepción y despacho confirmado con éxito"
+	6. Botón Aceptar en el pop-up
+	7. Botón Cancelar
  
-05: Recepción y despacho de encomiendas larga distancia Tramo 2
-    1. Email: jperez@gmail.com 
-    2. Contraseña: juanAgostoen
-    3. CD: Santa Fe y Agencia Actual: N/A 
-    4. 4004123
-    5. Botón Buscar
-    6. Verificar que la guía 570010006 se asigne en Guías a recibir de este servicio
-    7. Confirmar
-    8. Aceptar
-    9. Número de servicio: 4004123
-    10. Botón Buscar
-    11. Verificar que la guía 570010006 se asigne en Guías a despachar en este servicio
-    12. Confirmar
-    13. Aceptar
-    14. Cancelar
-    15. Cerrar el menú principal
+04: Login
+	1. Email: jperez@gmail.com 
+	2. Contraseña: juanAgosto
+	3. CD: Buenos Aires y Agencia Actual: Florencio Varela
  
-05: Recepción y despacho de encomiendas larga distancia Tramo 3
-    1. Email: jperez@gmail.com 
-    2. Contraseña: juanAgostoen
-    3. CD: CABA y Agencia Actual: N/A 
-    4. Número de servicio: 4004123
-    5. Botón Buscar
-    6. Verificar que la guía 570010006 se asigne en Guías a recibir de este servicio
-    7. Confirmar
-    8. Aceptar
-    9. Número de servicio: "4004123" 
-    10. Botón Buscar
-    11. Verificar que la guía 570010006 se asigne en Guías a despachar en este servicio
-    12. Confirmar
-    13. Aceptar
-    14. Cancelar
-    15. Cerrar el menú principal
- 
-05: Recepción y despacho de encomiendas larga distancia Tramo 3
-    1. Email: jperez@gmail.com 
-    2. Contraseña: juanAgostoen
-    3. CD: Buenos Aires y Agencia Actual: N/A 
-    4. Número de servicio: 4004123
-    5. Botón Buscar
-    6. Verificar que la guía 570010006 se asigne en Guías a recibir de este servicio
-    7. Confirmar
-    8. Aceptar
-    9. Cancelar
+05: Recepción y despacho de encomiendas larga distancia 
+	1. Número de servicio: 4004123
+	2. Botón Buscar
+	3. Verificar que la guía 570010006 se asigne en Guías a recibir de este servicio
+	4. Botón Confirmar
+	5. Botón Aceptar en el pop-up
+	6. Botón Cancelar
  
 06: Recepción y despacho de encomiendas última milla
-    1. DNI: 30456789
-    2. Botón Buscar
-    3. Verificar que la guía 570010006 se asigne en "La nueva hoja de ruta de distribución asignada a este fletero contiene las siguientes guías"
-    4. Confirmar
-    5. Verificar que figure un mensaje de Operación exitosa, con la generación de la HDR y figure el nro de guía en "HDR de distribución asignadas" > AJUSTAR CON HDR
-    6. Aceptar
-    7. DNI: 30456789
-    8. Botón Buscar
-    9. Tildar la guia 570010006 de "Detalle de guias de HDR de distribución asignadas"
-    10. Confirmar
-    11.  Verificar que figure un mensaje de Operación exitosa, con la HDR de distribución recibidas y figure el nro de guía > AJUSTAR CON HDR
-    12. Aceptar
-    13. DNI: "0456789
-    14. Botón Buscar
-    15. Verificar que la guía 570010006 no quede asignada en ningún lado
-    16. Cancelar
+	1. DNI: 30456789
+	2. Botón Buscar
+	3. Verificar que la guía 570010006 se asigne a la HDR de distribución asignada "HDR D 01888 000012 01888"
+	4. Botón Confirmar
+	5. Verificar que figure un mensaje de Operación exitosa, con la generación de la HDR y figure el nro de guía en "HDR de distribución asignadas"
+	6. Botón Aceptar en el pop-up
+
+	7. DNI: 30456789
+	8. Botón Buscar
+	9. Marcar la guía 570010006 de "Detalle de guías de HDR de distribución asignadas"
+	10. Botón Confirmar
+	11. Verificar que figure un mensaje de Operación exitosa, con la HDR de distribución recibidas "HDR D 01888 000012 01888" y figure el nro de guía
+	12. Botón Aceptar en el pop-up
+	13. Botón Cancelar
  
-06: Emitir Factura
-    1. Cuit: 30-55667788-1
-    2. Botón Buscar
-    3. Verificar que figure la guia 570010006 con importe $3.400,00
-    4. Botón Emitir Factura
-    5. Aceptar
-    6. Cuit: 30-55667788-1
-    7. Botón Buscar
-    8. Verificar que figure un mensaje "No se encontraron ítems pendientes de facturar"
-    9. Aceptar
-    10. Cancelar
+07: Emitir Factura
  
-07: Consulta de estado de cuenta corriente 
-    1. Cuit: 30-55667788-1 y período: noviembre 2025
-    2. Botón Buscar
-    3. Verificar Importe: $3.400,00 en Debe. 
-    4. Verificar Saldo al cierre del periodo: $3.400,00
-    5. Cancelar
+	1. CUIT: 30-55667788-1
+	2. Botón Buscar
+	3. Verificar que figure la guía 570010006 (Origen: CD San Luis, Destino: CD Buenos Aires, Tamaño: S, Importe: $2.200,00)
+	4. Verificar Total: $3.400,00
+	5. Botón Emitir Factura
+	6. Verificar: Factura emitida correctamente
+	7. Botón Aceptar en el pop-up
+	8. Botón Cancelar
  
-08: Monitoreo de resultados
-    1. Noviembre 2025
-    2. Botón Buscar
-    3. Verificar Via Bariloche Cargo-Ventas mensuales:$3.400,00
-    4. AGREGAR TOTAL Verificar Via Bariloche Resultados: AGREGAR
+08: Consulta de estado de cuenta corriente
+	1. CUIT: 30-55667788-1
+	2. Período: Noviembre 2025
+	3. Botón Buscar
+	4. Verificar Concepto: Factura FA-202511-00001
+	5. Verificar Importe Debe: $3.400,00
+	6. Verificar saldo: $4.650,00
+	6. Botón Cancelar
+ 
+09: Consulta de Estado de Encomienda
+	1. Número de guía: 570010006
+	2. Botón Buscar
+	3. Verificar resultado de la búsqueda:
+ 
+		Fecha					| Estado								| Ubicación
+		Fecha de actualización	| Admitida								| CD San Luis
+		Fecha de actualización	| En tránsito al CD destino				| En servicio N° 4004123
+		Fecha de actualización	| En CD destino							| CD Buenos Aires
+		Fecha de actualización	| En ruta al domicilio de entrega		| En transporte con Fletero DNI: 30456789
+		Fecha de actualización	| Entregada								| -
+		Fecha de actualización	| Facturada								| -
+ 
+	4. Botón Cancelar
+
+10: Cerrar Sistema
+	1. Cerrar el menú principal
+	2. Cerrar Login
+ 
+11: Verificar archivos
+
+	- Guías:
+
+		{"NumeroGuia":570010006,
+		"Estado":14,
+		"TipoEntrega":2,
+		"CodigoPostalCDOrigen":5700,
+		"CodigoPostalCDDestino":1888,
+		"IDAgenciaOrigen":"",
+		"IDAgenciaDestino":"",
+		"CUITCliente":"30-55667788-1",
+		"Tamano":0,
+		"Destinatario":{"DNI":31165199,"Nombre":"Pedro","Apellido":"Suarez","Direccion":"Laprida 1122","CodigoPostal":1888},
+		"IDConvenio":200005,
+		"ImporteAFacturar":3400,
+		"ComisionAgenciaOrigen":0,
+		"ComisionAgenciaDestino":0,
+		"ComisionFleteroOrigen":0,
+		"ComisionFleteroDestino":1100,
+		"Historial":
+			[{"Estado":5,"UbicacionGuia":"CD San Luis"},
+			{"Estado":6,"UbicacionGuia":"Servicio:4004123"},
+			{"Estado":7,"UbicacionGuia":"CD Buenos Aires"},
+			{"Estado":8,"UbicacionGuia":"En transporte con Fletero DNI: 30456789"},
+			{"Estado":11,"UbicacionGuia":""}]}]
+
+	- HDRs:
+ 
+		{"ID":"T 05700 000304 01888",
+		"TipoHDR":2,
+		"DNIFletero":0,
+		"IDServicioTransporte":4004123,
+		"Guias":[570010004,570010005,570010006],
+		"CodigoPostalOrigen":5700,"CodigoPostalDestino":1888},
+
+		{"ID":"D 01888 000012 01888",
+		"TipoHDR":0,
+		"DNIFletero":30456789,
+		"IDServicioTransporte":0,
+		"Guias":[570010004,570010005,570010006],
+		"CodigoPostalOrigen":1888,"CodigoPostalDestino":1888},
+
+
+	- Facturas:
+
+		{"ID":"FA-202511-00001","CUITCliente":"30-55667788-1","Total":3400,"GuiasFacturadas":["570010006"]}]
+
+		
+	- Estado de Cuenta Corriente:	
+		
+		
+			{"ID":"CC-30-55667788-1","CUITCliente":"30-55667788-1","Movimientos":
+			
+			[{"IDFactura":101,"Fecha":"2025-08-05T00:00:00","Concepto":"Factura FA-202508-0002","Debe":1200,"Haber":0,"SaldoActual":1200},
+			{"IDFactura":102,"Fecha":"2025-08-15T00:00:00","Concepto":"Factura FA-202508-0002","Debe":900,"Haber":0,"SaldoActual":2100},
+			{"IDFactura":0,"Fecha":"2025-08-25T00:00:00","Concepto":"Pago Agosto","Debe":0,"Haber":1500,"SaldoActual":600},
+			{"IDFactura":103,"Fecha":"2025-09-05T00:00:00","Concepto":"Factura FA-202509-0003","Debe":1300,"Haber":0,"SaldoActual":1900},
+			{"IDFactura":104,"Fecha":"2025-09-15T00:00:00","Concepto":"Factura FA-202509-0004","Debe":700,"Haber":0,"SaldoActual":2600},
+			{"IDFactura":0,"Fecha":"2025-09-25T00:00:00","Concepto":"Pago Septiembre","Debe":0,"Haber":2000,"SaldoActual":600},
+			{"IDFactura":105,"Fecha":"2025-10-05T00:00:00","Concepto":"Factura FA-202510-0003","Debe":1400,"Haber":0,"SaldoActual":2000},
+			{"IDFactura":106,"Fecha":"2025-10-15T00:00:00","Concepto":"Factura FA-202510-0004","Debe":1600,"Haber":0,"SaldoActual":3600},
+			{"IDFactura":0,"Fecha":"2025-10-25T00:00:00","Concepto":"Pago Octubre","Debe":0,"Haber":3000,"SaldoActual":600},
+			{"IDFactura":107,"Fecha":"2025-11-05T00:00:00","Concepto":"Factura FA-202511-0002","Debe":1250,"Haber":0,"SaldoActual":1850},
+			{"IDFactura":1035662155,"Fecha":"2025-11-15T15:44:46","Concepto":"Factura FA-202511-00001","Debe":3400,"Haber":0,"SaldoActual":5250}]}

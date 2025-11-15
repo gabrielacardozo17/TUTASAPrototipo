@@ -143,9 +143,9 @@
 		  "Destinatario": {"DNI": 19568232, "Nombre": "Juan", "Apellido": "Castro", "Direccion": "", "CodigoPostal": 5600},
 		  "IDConvenio": 200002,
 		  "ImporteAFacturar": 4400,
-		  "ComisionAgenciaOrigen": 0,
+		  "ComisionAgenciaOrigen": 2750,
 		  "ComisionAgenciaDestino": 0,
-		  "ComisionFleteroOrigen": 0,
+		  "ComisionFleteroOrigen": 3150,
 		  "ComisionFleteroDestino": 0,
 		  "Historial": [
 					{"Estado": 0, "UbicacionGuia": "Agencia Rosario"},
@@ -177,7 +177,7 @@
 		1 de transporte
 
 		{
-		  "ID": "T 02000 00001 05500",
+		  "ID": "T 02000 000304 05500",
 		  "TipoHDR": 2,
 		  "DNIFletero": 0,
 		  "IDServicioTransporte": 3003345,
@@ -186,3 +186,15 @@
 		  "CodigoPostalDestino": 5500
 		}
  
+
+	- Factura:
+
+		{
+		   "ID":"FA-202511-00001",
+		   "CUITCliente":"30-94715263-9",
+		   "Total":9800.00,
+		   "GuiasFacturadas":[
+			  "300000001",
+			  "200000003"
+		   ]
+		}

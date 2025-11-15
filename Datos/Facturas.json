@@ -1,33 +1,5 @@
 ﻿[
   {
-    "ID": "FA-202508-0001",
-    "FechaEmisionFactura": "2025-08-10T10:00:00",
-    "CUITCliente": "33-99274898-8",
-    "Total": 9000,
-    "GuiasFacturadas": [ "202508001" ]
-  },
-  {
-    "ID": "FA-202508-0002",
-    "FechaEmisionFactura": "2025-08-15T11:30:00",
-    "CUITCliente": "30-55667788-1",
-    "Total": 8000,
-    "GuiasFacturadas": [ "202508002" ]
-  },
-  {
-    "ID": "FA-202509-0001",
-    "FechaEmisionFactura": "2025-09-06T12:00:00",
-    "CUITCliente": "30-98656280-6",
-    "Total": 12000,
-    "GuiasFacturadas": [ "202509001" ]
-  },
-  {
-    "ID": "FA-202509-0002",
-    "FechaEmisionFactura": "2025-09-07T15:00:00",
-    "CUITCliente": "33-63184527-6",
-    "Total": 10000,
-    "GuiasFacturadas": [ "202509101" ]
-  },
-  {
     "ID": "FA-202510-0001",
     "FechaEmisionFactura": "2025-10-05T16:30:00",
     "CUITCliente": "30-87419362-4",
@@ -35,17 +7,10 @@
     "GuiasFacturadas": [ "202510101" ]
   },
   {
-    "ID": "FA-202510-0002",
-    "FechaEmisionFactura": "2025-10-18T10:00:00",
-    "CUITCliente": "30-52143679-0",
-    "Total": 17500,
-    "GuiasFacturadas": [ "202510102" ]
-  },
-  {
-    "ID": "FA-202511-0001",
-    "FechaEmisionFactura": "2025-11-10T10:15:00",
-    "CUITCliente": "30-68274139-2",
-    "Total": 10000,
-    "GuiasFacturadas": [ "202511001" ]
+    "ID": "FA-202508-0002",
+    "FechaEmisionFactura": "2025-08-15T11:30:00",
+    "CUITCliente": "30-55667788-1",
+    "Total": 8000,
+    "GuiasFacturadas": [ "202508002" ]
   }
 ]

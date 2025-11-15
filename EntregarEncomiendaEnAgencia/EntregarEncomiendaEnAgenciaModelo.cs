@@ -139,7 +139,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
                         FechaActualizacionEstado = fechaEntregada
                     });
 
-                    // Si quedara algún 'Pendiente de entrega' con fecha posterior, lo ajustamos
+                    // Si quedara algún 'Pendiente de entrega' con fecha posterior, lo ajustamos VER
                     foreach (var pend in entidad.Historial.Where(h => h.Estado == EstadoGuiaEnum.PendienteDeEntrega && h.FechaActualizacionEstado > fechaEntregada))
                     {
                         pend.FechaActualizacionEstado = fechaEntregada.AddSeconds(-1);
@@ -149,7 +149,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaEnAgencia
                 }
                 else if (entidad.Estado == EstadoGuiaEnum.Entregada)
                 {
-                    // Ya entregada: refrescamos la marca temporal del último registro Entregada
+                    // Ya entregada: refrescamos la marca temporal del último registro Entregada VER
                     var lastEnt = entidad.Historial.LastOrDefault(h => h.Estado == EstadoGuiaEnum.Entregada);
                     var nuevaFecha = DateTime.Now;
                     if (lastEnt != null)

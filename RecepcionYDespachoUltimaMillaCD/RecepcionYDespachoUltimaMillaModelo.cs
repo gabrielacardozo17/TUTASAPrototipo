@@ -101,6 +101,13 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             {
                 var hdrAnterior = HDRAlmacen.HDR.FirstOrDefault(h => h.Guias.Contains(guia.NumeroGuia));
 
+                guia.ComisionFleteroDestino = FleteroAlmacen.fleteros.FirstOrDefault(f => f.DNI == dni).PreciosXTamano.GetValueOrDefault(guia.Tamano); //obtengo comision del fletero
+
+                if (!string.IsNullOrEmpty(guia.IDAgenciaDestino))
+                {
+                    guia.ComisionAgenciaDestino = ConvenioAgenciaAlmacen.convenioAgencias.FirstOrDefault(a => a.IDConvenioAgencia.ToString() == guia.IDAgenciaDestino).PreciosXTamano.GetValueOrDefault(guia.Tamano);
+                }
+
                 // Cambiar estado según el tipo de entrega
                 if (guia.TipoEntrega == EntregaEnum.Agencia)
                 {
@@ -133,6 +140,13 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
                 // Cambiar estado a Admitida
                 guia.Estado = EstadoGuiaEnum.Admitida;
                 guia.ImporteAFacturar = CalcularImporte(guia.NumeroGuia);
+               
+                guia.ComisionFleteroOrigen = FleteroAlmacen.fleteros.FirstOrDefault(f => f.DNI == dni).PreciosXTamano.GetValueOrDefault(guia.Tamano); //obtengo comision del fletero
+                
+                if(!string.IsNullOrEmpty(guia.IDAgenciaOrigen))
+                {
+                    guia.ComisionAgenciaOrigen = ConvenioAgenciaAlmacen.convenioAgencias.FirstOrDefault(a => a.IDConvenioAgencia.ToString() == guia.IDAgenciaOrigen.Substring(1)).PreciosXTamano.GetValueOrDefault(guia.Tamano);
+                }
 
                 // Guardar historial , primero en admitida
                 guia.Historial.Add(new RegistroEstadoAux
@@ -157,12 +171,12 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
                 }
 
-                // Grabar cambios
-                if (guiasDistribucion.Any() || guiasRetiro.Any())
-                {
-                    //Aca Grabamos
-                    GuiaAlmacen.Grabar();
-                }
+            }
+            // Grabar cambios
+            if (guiasDistribucion.Any() || guiasRetiro.Any())
+            {
+                //Aca Grabamos
+                GuiaAlmacen.Grabar();
             }
         }
         
@@ -497,22 +511,20 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             bool TuvoRetiroDomicilio = guia.Historial.Any(x => x.Estado == EstadoGuiaEnum.ARetirarPorDomicilioDelCliente);
 
 
-            if (guia.TipoEntrega == EntregaEnum.Domicilio &&
-                Convenio.Extras.TryGetValue(ExtrasEnum.ExtraEntregaDomicilio, out decimal EntregaDomicilio))
+            if (guia.TipoEntrega == EntregaEnum.Domicilio)
             {
-                Extras += EntregaDomicilio;
+                Extras += Convenio.Extras.GetValueOrDefault(ExtrasEnum.ExtraEntregaDomicilio, 0);
             }
 
-            if (guia.TipoEntrega == EntregaEnum.Domicilio &&
-              Convenio.Extras.TryGetValue(ExtrasEnum.ExtraEntregaAgencia, out decimal EntregaAgencia))
+            if (guia.TipoEntrega == EntregaEnum.Agencia)
             {
-                Extras += EntregaAgencia;
+                Extras += Convenio.Extras.GetValueOrDefault(ExtrasEnum.ExtraEntregaAgencia, 0);
             }
 
-            if (TuvoRetiroDomicilio && Convenio.Extras.TryGetValue(ExtrasEnum.ExtraEntregaAgencia, out decimal RetiroDomicilio))
+            if (TuvoRetiroDomicilio)
             {
 
-                Extras += RetiroDomicilio;
+                Extras += Convenio.Extras.GetValueOrDefault(ExtrasEnum.ExtraRetiroDomicilio, 0);
             }
 
             return PrecioBase + Extras;
@@ -557,6 +569,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
             }
 
         }
+
+
+        
     }
 
 }

@@ -53,10 +53,13 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
 
         private static int CalcularCapacidadUsadaPorServicio(int idServicio, IEnumerable<HDREntidad> hdrs, IEnumerable<GuiaEntidad> guias)
         {
+            // Contabilizamos solo las guías que actualmente están en tránsito y cuya última ubicación está asignada al servicio indicado.
             var guiasEnHDR = hdrs
                 .Where(h => h.IDServicioTransporte == idServicio)
                 .SelectMany(h => h.Guias)
-                .Join(guias, num => num, g => g.NumeroGuia, (num, g) => g);
+                .Join(guias, num => num, g => g.NumeroGuia, (num, g) => g)
+                .Where(g => g.Estado == EstadoGuiaEnum.EnTransitoAlCDDestino &&
+                            (g.Historial?.LastOrDefault()?.UbicacionGuia == $"Servicio:{idServicio}"));
             return guiasEnHDR.Sum(g => CapacidadPorTamano(g.Tamano));
         }
 
@@ -387,15 +390,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                     {
                         entidad.Estado = EstadoGuiaEnum.EnTransitoAlCDDestino;
                         if (_indiceCdIntermedioActual.ContainsKey(entidad.NumeroGuia)) AvanzarCdIntermedio(entidad.NumeroGuia);
-                        var hdrsDestinoActual = HDRAlmacen.HDR.Where(h => h.CodigoPostalDestino == codigoPostalCDActual.Value && h.Guias.Contains(n)).ToList();
-                        foreach (var hdr in hdrsDestinoActual)
-                        {
-                            hdr.Guias.Remove(n);
-                            if (hdr.Guias.Count == 0)
-                            {
-                                hdr.Guias = hdr.Guias ?? new List<int>();
-                            }
-                        }
+                        // No eliminar guías de HDR: mantener HDR como histórico del tramo realizado.
                     }
                     entidad.Historial.Add(new RegistroEstadoAux
                     {
