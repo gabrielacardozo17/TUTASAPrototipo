@@ -6,7 +6,7 @@
       {
         "IDFactura": 101,
         "Fecha": "2025-08-05T00:00:00",
-        "Concepto": "Factura Agosto A",
+        "Concepto": "Factura FA-202508-0001",
         "Debe": 1200,
         "Haber": 0,
         "SaldoActual": 1200
@@ -14,7 +14,7 @@
       {
         "IDFactura": 102,
         "Fecha": "2025-08-15T00:00:00",
-        "Concepto": "Factura Agosto B",
+        "Concepto": "Factura FA-202508-0002",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 2100
@@ -30,7 +30,7 @@
       {
         "IDFactura": 103,
         "Fecha": "2025-09-05T00:00:00",
-        "Concepto": "Factura Sept A",
+        "Concepto": "Factura FA-202509-0003",
         "Debe": 1300,
         "Haber": 0,
         "SaldoActual": 1900
@@ -38,7 +38,7 @@
       {
         "IDFactura": 104,
         "Fecha": "2025-09-15T00:00:00",
-        "Concepto": "Factura Sept B",
+        "Concepto": "Factura FA-202509-0004",
         "Debe": 700,
         "Haber": 0,
         "SaldoActual": 2600
@@ -54,7 +54,7 @@
       {
         "IDFactura": 105,
         "Fecha": "2025-10-05T00:00:00",
-        "Concepto": "Factura Oct A",
+        "Concepto": "Factura FA-202510-0003",
         "Debe": 1400,
         "Haber": 0,
         "SaldoActual": 2000
@@ -62,7 +62,7 @@
       {
         "IDFactura": 106,
         "Fecha": "2025-10-15T00:00:00",
-        "Concepto": "Factura Oct B",
+        "Concepto": "Factura FA-202510-0004",
         "Debe": 1600,
         "Haber": 0,
         "SaldoActual": 3600
@@ -78,7 +78,7 @@
       {
         "IDFactura": 107,
         "Fecha": "2025-11-05T00:00:00",
-        "Concepto": "Factura Nov A",
+        "Concepto": "Factura FA-202511-0002",
         "Debe": 1250,
         "Haber": 0,
         "SaldoActual": 1850
@@ -92,7 +92,7 @@
       {
         "IDFactura": 101,
         "Fecha": "2025-08-05T00:00:00",
-        "Concepto": "Factura Agosto A",
+        "Concepto": "Factura FA-202508-0001",
         "Debe": 1200,
         "Haber": 0,
         "SaldoActual": 1200
@@ -100,7 +100,7 @@
       {
         "IDFactura": 102,
         "Fecha": "2025-08-15T00:00:00",
-        "Concepto": "Factura Agosto B",
+        "Concepto": "Factura FA-202508-0002",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 2100
@@ -116,7 +116,7 @@
       {
         "IDFactura": 103,
         "Fecha": "2025-09-05T00:00:00",
-        "Concepto": "Factura Sept A",
+        "Concepto": "Factura FA-202509-0003",
         "Debe": 1300,
         "Haber": 0,
         "SaldoActual": 1900
@@ -124,7 +124,7 @@
       {
         "IDFactura": 104,
         "Fecha": "2025-09-15T00:00:00",
-        "Concepto": "Factura Sept B",
+        "Concepto": "Factura FA-202509-0004",
         "Debe": 700,
         "Haber": 0,
         "SaldoActual": 2600
@@ -140,7 +140,7 @@
       {
         "IDFactura": 105,
         "Fecha": "2025-10-05T00:00:00",
-        "Concepto": "Factura Oct A",
+        "Concepto": "Factura FA-202510-0003",
         "Debe": 1400,
         "Haber": 0,
         "SaldoActual": 2000
@@ -148,7 +148,7 @@
       {
         "IDFactura": 106,
         "Fecha": "2025-10-15T00:00:00",
-        "Concepto": "Factura Oct B",
+        "Concepto": "Factura FA-202510-0004",
         "Debe": 1600,
         "Haber": 0,
         "SaldoActual": 3600
@@ -164,7 +164,7 @@
       {
         "IDFactura": 107,
         "Fecha": "2025-11-05T00:00:00",
-        "Concepto": "Factura Nov A",
+        "Concepto": "Factura FA-202511-0002",
         "Debe": 1250,
         "Haber": 0,
         "SaldoActual": 1850
@@ -178,7 +178,7 @@
       {
         "IDFactura": 101,
         "Fecha": "2025-08-05T00:00:00",
-        "Concepto": "Factura Agosto A",
+        "Concepto": "Factura FA-202508-0001",
         "Debe": 1200,
         "Haber": 0,
         "SaldoActual": 1200
@@ -186,7 +186,7 @@
       {
         "IDFactura": 102,
         "Fecha": "2025-08-15T00:00:00",
-        "Concepto": "Factura Agosto B",
+        "Concepto": "Factura FA-202508-0002",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 2100
@@ -202,7 +202,7 @@
       {
         "IDFactura": 103,
         "Fecha": "2025-09-05T00:00:00",
-        "Concepto": "Factura Sept A",
+        "Concepto": "Factura FA-202509-0001",
         "Debe": 1300,
         "Haber": 0,
         "SaldoActual": 1900
@@ -210,7 +210,7 @@
       {
         "IDFactura": 104,
         "Fecha": "2025-09-15T00:00:00",
-        "Concepto": "Factura Sept B",
+        "Concepto": "Factura FA-202509-0002",
         "Debe": 700,
         "Haber": 0,
         "SaldoActual": 2600
@@ -226,7 +226,7 @@
       {
         "IDFactura": 105,
         "Fecha": "2025-10-05T00:00:00",
-        "Concepto": "Factura Oct A",
+        "Concepto": "Factura FA-202510-0003",
         "Debe": 1400,
         "Haber": 0,
         "SaldoActual": 2000
@@ -234,7 +234,7 @@
       {
         "IDFactura": 106,
         "Fecha": "2025-10-15T00:00:00",
-        "Concepto": "Factura Oct B",
+        "Concepto": "Factura FA-202510-0004",
         "Debe": 1600,
         "Haber": 0,
         "SaldoActual": 3600
@@ -250,7 +250,7 @@
       {
         "IDFactura": 107,
         "Fecha": "2025-11-05T00:00:00",
-        "Concepto": "Factura Nov A",
+        "Concepto": "Factura FA-202511-0002",
         "Debe": 1250,
         "Haber": 0,
         "SaldoActual": 1850
@@ -264,7 +264,7 @@
       {
         "IDFactura": 101,
         "Fecha": "2025-08-05T00:00:00",
-        "Concepto": "Factura Agosto A",
+        "Concepto": "Factura FA-202508-0001",
         "Debe": 1200,
         "Haber": 0,
         "SaldoActual": 1200
@@ -272,7 +272,7 @@
       {
         "IDFactura": 102,
         "Fecha": "2025-08-15T00:00:00",
-        "Concepto": "Factura Agosto B",
+        "Concepto": "Factura FA-202508-0002",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 2100
@@ -288,7 +288,7 @@
       {
         "IDFactura": 103,
         "Fecha": "2025-09-05T00:00:00",
-        "Concepto": "Factura Sept A",
+        "Concepto": "Factura FA-202509-0003",
         "Debe": 1300,
         "Haber": 0,
         "SaldoActual": 1900
@@ -296,7 +296,7 @@
       {
         "IDFactura": 104,
         "Fecha": "2025-09-15T00:00:00",
-        "Concepto": "Factura Sept B",
+        "Concepto": "Factura FA-202509-0004",
         "Debe": 700,
         "Haber": 0,
         "SaldoActual": 2600
@@ -312,7 +312,7 @@
       {
         "IDFactura": 105,
         "Fecha": "2025-10-05T00:00:00",
-        "Concepto": "Factura Oct A",
+        "Concepto": "Factura FA-202510-0003",
         "Debe": 1400,
         "Haber": 0,
         "SaldoActual": 2000
@@ -320,7 +320,7 @@
       {
         "IDFactura": 106,
         "Fecha": "2025-10-15T00:00:00",
-        "Concepto": "Factura Oct B",
+        "Concepto": "Factura FA-202510-0004",
         "Debe": 1600,
         "Haber": 0,
         "SaldoActual": 3600
@@ -336,7 +336,7 @@
       {
         "IDFactura": 107,
         "Fecha": "2025-11-05T00:00:00",
-        "Concepto": "Factura Nov A",
+        "Concepto": "Factura FA-202511-0002",
         "Debe": 1250,
         "Haber": 0,
         "SaldoActual": 1850
@@ -350,7 +350,7 @@
       {
         "IDFactura": 101,
         "Fecha": "2025-08-05T00:00:00",
-        "Concepto": "Factura Agosto A",
+        "Concepto": "Factura FA-202508-0002",
         "Debe": 1200,
         "Haber": 0,
         "SaldoActual": 1200
@@ -358,7 +358,7 @@
       {
         "IDFactura": 102,
         "Fecha": "2025-08-15T00:00:00",
-        "Concepto": "Factura Agosto B",
+        "Concepto": "Factura FA-202508-0002",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 2100
@@ -374,7 +374,7 @@
       {
         "IDFactura": 103,
         "Fecha": "2025-09-05T00:00:00",
-        "Concepto": "Factura Sept A",
+        "Concepto": "Factura FA-202509-0003",
         "Debe": 1300,
         "Haber": 0,
         "SaldoActual": 1900
@@ -382,7 +382,7 @@
       {
         "IDFactura": 104,
         "Fecha": "2025-09-15T00:00:00",
-        "Concepto": "Factura Sept B",
+        "Concepto": "Factura FA-202509-0004",
         "Debe": 700,
         "Haber": 0,
         "SaldoActual": 2600
@@ -398,7 +398,7 @@
       {
         "IDFactura": 105,
         "Fecha": "2025-10-05T00:00:00",
-        "Concepto": "Factura Oct A",
+        "Concepto": "Factura FA-202510-0003",
         "Debe": 1400,
         "Haber": 0,
         "SaldoActual": 2000
@@ -406,7 +406,7 @@
       {
         "IDFactura": 106,
         "Fecha": "2025-10-15T00:00:00",
-        "Concepto": "Factura Oct B",
+        "Concepto": "Factura FA-202510-0004",
         "Debe": 1600,
         "Haber": 0,
         "SaldoActual": 3600
@@ -422,7 +422,7 @@
       {
         "IDFactura": 107,
         "Fecha": "2025-11-05T00:00:00",
-        "Concepto": "Factura Nov A",
+        "Concepto": "Factura FA-202511-0002",
         "Debe": 1250,
         "Haber": 0,
         "SaldoActual": 1850
@@ -436,7 +436,7 @@
       {
         "IDFactura": 101,
         "Fecha": "2025-08-05T00:00:00",
-        "Concepto": "Factura Agosto A",
+        "Concepto": "Factura FA-202508-0001",
         "Debe": 1200,
         "Haber": 0,
         "SaldoActual": 1200
@@ -444,7 +444,7 @@
       {
         "IDFactura": 102,
         "Fecha": "2025-08-15T00:00:00",
-        "Concepto": "Factura Agosto B",
+        "Concepto": "Factura FA-202508-0002",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 2100
@@ -460,7 +460,7 @@
       {
         "IDFactura": 103,
         "Fecha": "2025-09-05T00:00:00",
-        "Concepto": "Factura Sept A",
+        "Concepto": "Factura FA-202509-0003",
         "Debe": 1300,
         "Haber": 0,
         "SaldoActual": 1900
@@ -468,7 +468,7 @@
       {
         "IDFactura": 104,
         "Fecha": "2025-09-15T00:00:00",
-        "Concepto": "Factura Sept B",
+        "Concepto": "Factura FA-202509-0004",
         "Debe": 700,
         "Haber": 0,
         "SaldoActual": 2600
@@ -484,7 +484,7 @@
       {
         "IDFactura": 105,
         "Fecha": "2025-10-05T00:00:00",
-        "Concepto": "Factura Oct A",
+        "Concepto": "Factura FA-202510-0003",
         "Debe": 1400,
         "Haber": 0,
         "SaldoActual": 2000
@@ -492,7 +492,7 @@
       {
         "IDFactura": 106,
         "Fecha": "2025-10-15T00:00:00",
-        "Concepto": "Factura Oct B",
+        "Concepto": "Factura FA-202510-0004",
         "Debe": 1600,
         "Haber": 0,
         "SaldoActual": 3600
@@ -508,7 +508,7 @@
       {
         "IDFactura": 107,
         "Fecha": "2025-11-05T00:00:00",
-        "Concepto": "Factura Nov A",
+        "Concepto": "Factura FA-202511-0002",
         "Debe": 1250,
         "Haber": 0,
         "SaldoActual": 1850
@@ -522,7 +522,7 @@
       {
         "IDFactura": 101,
         "Fecha": "2025-08-05T00:00:00",
-        "Concepto": "Factura Agosto A",
+        "Concepto": "Factura FA-202508-0001",
         "Debe": 1200,
         "Haber": 0,
         "SaldoActual": 1200
@@ -530,7 +530,7 @@
       {
         "IDFactura": 102,
         "Fecha": "2025-08-15T00:00:00",
-        "Concepto": "Factura Agosto B",
+        "Concepto": "Factura FA-202508-0002",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 2100
@@ -546,7 +546,7 @@
       {
         "IDFactura": 103,
         "Fecha": "2025-09-05T00:00:00",
-        "Concepto": "Factura Sept A",
+        "Concepto": "Factura FA-202509-0003",
         "Debe": 1300,
         "Haber": 0,
         "SaldoActual": 1900
@@ -554,7 +554,7 @@
       {
         "IDFactura": 104,
         "Fecha": "2025-09-15T00:00:00",
-        "Concepto": "Factura Sept B",
+        "Concepto": "Factura FA-202509-0004",
         "Debe": 700,
         "Haber": 0,
         "SaldoActual": 2600
@@ -570,7 +570,7 @@
       {
         "IDFactura": 105,
         "Fecha": "2025-10-05T00:00:00",
-        "Concepto": "Factura Oct A",
+        "Concepto": "Factura FA-202510-0003",
         "Debe": 1400,
         "Haber": 0,
         "SaldoActual": 2000
@@ -578,7 +578,7 @@
       {
         "IDFactura": 106,
         "Fecha": "2025-10-15T00:00:00",
-        "Concepto": "Factura Oct B",
+        "Concepto": "Factura FA-202510-0004",
         "Debe": 1600,
         "Haber": 0,
         "SaldoActual": 3600
@@ -594,7 +594,7 @@
       {
         "IDFactura": 107,
         "Fecha": "2025-11-05T00:00:00",
-        "Concepto": "Factura Nov A",
+        "Concepto": "Factura FA-202511-0001",
         "Debe": 1250,
         "Haber": 0,
         "SaldoActual": 1850
@@ -608,7 +608,7 @@
       {
         "IDFactura": 101,
         "Fecha": "2025-08-05T00:00:00",
-        "Concepto": "Factura Agosto A",
+        "Concepto": "Factura FA-202508-0001",
         "Debe": 1200,
         "Haber": 0,
         "SaldoActual": 1200
@@ -616,7 +616,7 @@
       {
         "IDFactura": 102,
         "Fecha": "2025-08-15T00:00:00",
-        "Concepto": "Factura Agosto B",
+        "Concepto": "Factura FA-202508-0002",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 2100
@@ -632,7 +632,7 @@
       {
         "IDFactura": 103,
         "Fecha": "2025-09-05T00:00:00",
-        "Concepto": "Factura Sept A",
+        "Concepto": "Factura FA-202509-0003",
         "Debe": 1300,
         "Haber": 0,
         "SaldoActual": 1900
@@ -640,7 +640,7 @@
       {
         "IDFactura": 104,
         "Fecha": "2025-09-15T00:00:00",
-        "Concepto": "Factura Sept B",
+        "Concepto": "Factura FA-202509-0004",
         "Debe": 700,
         "Haber": 0,
         "SaldoActual": 2600
@@ -656,7 +656,7 @@
       {
         "IDFactura": 105,
         "Fecha": "2025-10-05T00:00:00",
-        "Concepto": "Factura Oct A",
+        "Concepto": "Factura FA-202510-0003",
         "Debe": 1400,
         "Haber": 0,
         "SaldoActual": 2000
@@ -664,7 +664,7 @@
       {
         "IDFactura": 106,
         "Fecha": "2025-10-15T00:00:00",
-        "Concepto": "Factura Oct B",
+        "Concepto": "Factura FA-202510-0002",
         "Debe": 1600,
         "Haber": 0,
         "SaldoActual": 3600
@@ -680,7 +680,7 @@
       {
         "IDFactura": 107,
         "Fecha": "2025-11-05T00:00:00",
-        "Concepto": "Factura Nov A",
+        "Concepto": "Factura FA-202511-0002",
         "Debe": 1250,
         "Haber": 0,
         "SaldoActual": 1850
@@ -694,7 +694,7 @@
       {
         "IDFactura": 201,
         "Fecha": "2025-08-05T00:00:00",
-        "Concepto": "Factura Agosto A",
+        "Concepto": "Factura FA-202508-0001",
         "Debe": 2100,
         "Haber": 0,
         "SaldoActual": 2100
@@ -702,7 +702,7 @@
       {
         "IDFactura": 202,
         "Fecha": "2025-08-15T00:00:00",
-        "Concepto": "Factura Agosto B",
+        "Concepto": "Factura FA-202508-0002",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 3000
@@ -718,7 +718,7 @@
       {
         "IDFactura": 203,
         "Fecha": "2025-09-05T00:00:00",
-        "Concepto": "Factura Sept A",
+        "Concepto": "Factura FA-202509-0005",
         "Debe": 2000,
         "Haber": 0,
         "SaldoActual": 2500
@@ -726,7 +726,7 @@
       {
         "IDFactura": 204,
         "Fecha": "2025-09-15T00:00:00",
-        "Concepto": "Factura Sept B",
+        "Concepto": "Factura FA-202509-0006",
         "Debe": 1500,
         "Haber": 0,
         "SaldoActual": 4000
@@ -742,7 +742,7 @@
       {
         "IDFactura": 205,
         "Fecha": "2025-10-05T00:00:00",
-        "Concepto": "Factura Oct A",
+        "Concepto": "Factura FA-202510-0005",
         "Debe": 1200,
         "Haber": 0,
         "SaldoActual": 2200
@@ -750,7 +750,7 @@
       {
         "IDFactura": 206,
         "Fecha": "2025-10-15T00:00:00",
-        "Concepto": "Factura Oct B",
+        "Concepto": "Factura FA-202510-0006",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 3100
@@ -766,7 +766,7 @@
       {
         "IDFactura": 207,
         "Fecha": "2025-11-05T00:00:00",
-        "Concepto": "Factura Nov A",
+        "Concepto": "Factura FA-202511-0003",
         "Debe": 1800,
         "Haber": 0,
         "SaldoActual": 1900
@@ -780,7 +780,7 @@
       {
         "IDFactura": 201,
         "Fecha": "2025-08-05T00:00:00",
-        "Concepto": "Factura Agosto A",
+        "Concepto": "Factura FA-202508-0001",
         "Debe": 2100,
         "Haber": 0,
         "SaldoActual": 2100
@@ -788,7 +788,7 @@
       {
         "IDFactura": 202,
         "Fecha": "2025-08-15T00:00:00",
-        "Concepto": "Factura Agosto B",
+        "Concepto": "Factura FA-202508-0002",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 3000
@@ -804,7 +804,7 @@
       {
         "IDFactura": 203,
         "Fecha": "2025-09-05T00:00:00",
-        "Concepto": "Factura Sept A",
+        "Concepto": "Factura FA-202509-0005",
         "Debe": 2000,
         "Haber": 0,
         "SaldoActual": 2500
@@ -812,7 +812,7 @@
       {
         "IDFactura": 204,
         "Fecha": "2025-09-15T00:00:00",
-        "Concepto": "Factura Sept B",
+        "Concepto": "Factura FA-202509-0006",
         "Debe": 1500,
         "Haber": 0,
         "SaldoActual": 4000
@@ -828,7 +828,7 @@
       {
         "IDFactura": 205,
         "Fecha": "2025-10-05T00:00:00",
-        "Concepto": "Factura Oct A",
+        "Concepto": "Factura FA-202510-0001",
         "Debe": 1200,
         "Haber": 0,
         "SaldoActual": 2200
@@ -836,7 +836,7 @@
       {
         "IDFactura": 206,
         "Fecha": "2025-10-15T00:00:00",
-        "Concepto": "Factura Oct B",
+        "Concepto": "Factura FA-202510-0006",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 3100
@@ -852,7 +852,7 @@
       {
         "IDFactura": 207,
         "Fecha": "2025-11-05T00:00:00",
-        "Concepto": "Factura Nov A",
+        "Concepto": "Factura FA-202511-0003",
         "Debe": 1800,
         "Haber": 0,
         "SaldoActual": 1900
@@ -866,7 +866,7 @@
       {
         "IDFactura": 301,
         "Fecha": "2025-08-05T00:00:00",
-        "Concepto": "Factura Agosto A",
+        "Concepto": "Factura FA-202508-0001",
         "Debe": 2000,
         "Haber": 0,
         "SaldoActual": 2000
@@ -874,7 +874,7 @@
       {
         "IDFactura": 302,
         "Fecha": "2025-08-15T00:00:00",
-        "Concepto": "Factura Agosto B",
+        "Concepto": "Factura FA-202508-0002",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 2900
@@ -890,7 +890,7 @@
       {
         "IDFactura": 303,
         "Fecha": "2025-09-05T00:00:00",
-        "Concepto": "Factura Sept A",
+        "Concepto": "Factura FA-202509-0001",
         "Debe": 1800,
         "Haber": 0,
         "SaldoActual": 2200
@@ -898,7 +898,7 @@
       {
         "IDFactura": 304,
         "Fecha": "2025-09-15T00:00:00",
-        "Concepto": "Factura Sept B",
+        "Concepto": "Factura FA-202509-0007",
         "Debe": 700,
         "Haber": 0,
         "SaldoActual": 2900
@@ -914,7 +914,7 @@
       {
         "IDFactura": 305,
         "Fecha": "2025-10-05T00:00:00",
-        "Concepto": "Factura Oct A",
+        "Concepto": "Factura FA-202510-0007",
         "Debe": 1400,
         "Haber": 0,
         "SaldoActual": 2800
@@ -922,7 +922,7 @@
       {
         "IDFactura": 306,
         "Fecha": "2025-10-15T00:00:00",
-        "Concepto": "Factura Oct B",
+        "Concepto": "Factura FA-202510-0008",
         "Debe": 900,
         "Haber": 0,
         "SaldoActual": 3700
@@ -938,7 +938,7 @@
       {
         "IDFactura": 307,
         "Fecha": "2025-11-05T00:00:00",
-        "Concepto": "Factura Nov A",
+        "Concepto": "Factura FA-202511-0004",
         "Debe": 1100,
         "Haber": 0,
         "SaldoActual": 1800

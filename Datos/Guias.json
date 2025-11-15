@@ -345,7 +345,7 @@
     "FechaAdmision": "2025-10-27T13:00:00-03:00",
     "TipoEntrega": 1,
     "CodigoPostalCDOrigen": 1000,
-    "CodigoPostalCDDestino": 3000,
+    "CodigoPostalCDDestino": 4200,
     "IDAgenciaOrigen": "01000",
     "IDAgenciaDestino": "03000",
     "CUITCliente": "30-98656280-6",
@@ -391,7 +391,7 @@
       },
       {
         "Estado": 7,
-        "UbicacionGuia": "CD 3000",
+        "UbicacionGuia": "CD 4200",
         "FechaActualizacionEstado": "2025-10-28T09:40:00-03:00"
       },
       {
@@ -479,7 +479,7 @@
     "FechaAdmision": "2025-10-25T18:00:00-03:00",
     "TipoEntrega": 1,
     "CodigoPostalCDOrigen": 5000,
-    "CodigoPostalCDDestino": 3000,
+    "CodigoPostalCDDestino": 8500,
     "IDAgenciaOrigen": "05000",
     "IDAgenciaDestino": "03000",
     "CUITCliente": "33-76251483-5",
@@ -551,7 +551,7 @@
     "FechaAdmision": "2025-11-08T08:20:00-03:00",
     "TipoEntrega": 0,
     "CodigoPostalCDOrigen": 1000,
-    "CodigoPostalCDDestino": 3000,
+    "CodigoPostalCDDestino": 4000,
     "IDAgenciaOrigen": "01000",
     "IDAgenciaDestino": "",
     "CUITCliente": "30-11112222-3",
@@ -597,7 +597,7 @@
       },
       {
         "Estado": 7,
-        "UbicacionGuia": "CD 3000",
+        "UbicacionGuia": "CD 4000",
         "FechaActualizacionEstado": "2025-11-09T09:20:00-03:00"
       },
       {
@@ -617,7 +617,7 @@
     "Estado": 11,
     "FechaAdmision": "2025-10-24T11:10:00-03:00",
     "TipoEntrega": 1,
-    "CodigoPostalCDOrigen": 3000,
+    "CodigoPostalCDOrigen": 3100,
     "CodigoPostalCDDestino": 1000,
     "IDAgenciaOrigen": "03000",
     "IDAgenciaDestino": "01000",
@@ -654,7 +654,7 @@
       },
       {
         "Estado": 5,
-        "UbicacionGuia": "CD 3000",
+        "UbicacionGuia": "CD 3100",
         "FechaActualizacionEstado": "2025-10-24T11:10:00-03:00"
       },
       {
@@ -901,7 +901,7 @@
     "FechaAdmision": "2025-10-29T16:40:00-03:00",
     "TipoEntrega": 2,
     "CodigoPostalCDOrigen": 5000,
-    "CodigoPostalCDDestino": 3000,
+    "CodigoPostalCDDestino": 3300,
     "IDAgenciaOrigen": "",
     "IDAgenciaDestino": "03000",
     "CUITCliente": "30-87419362-4",
@@ -932,12 +932,12 @@
       },
       {
         "Estado": 7,
-        "UbicacionGuia": "CD 3000",
+        "UbicacionGuia": "CD 3300",
         "FechaActualizacionEstado": "2025-10-30T09:30:00-03:00"
       },
       {
         "Estado": 10,
-        "UbicacionGuia": "CD 3000",
+        "UbicacionGuia": "CD 3300",
         "FechaActualizacionEstado": "2025-10-30T10:30:00-03:00"
       }
     ]
@@ -948,7 +948,7 @@
     "FechaAdmision": "2025-10-27T10:00:00-03:00",
     "TipoEntrega": 1,
     "CodigoPostalCDOrigen": 5000,
-    "CodigoPostalCDDestino": 3000,
+    "CodigoPostalCDDestino": 4200,
     "IDAgenciaOrigen": "05000",
     "IDAgenciaDestino": "03000",
     "CUITCliente": "33-76251483-5",
@@ -999,7 +999,7 @@
     "Estado": 5,
     "FechaAdmision": "2025-10-26T18:30:00-03:00",
     "TipoEntrega": 2,
-    "CodigoPostalCDOrigen": 3000,
+    "CodigoPostalCDOrigen": 5300,
     "CodigoPostalCDDestino": 5500,
     "IDAgenciaOrigen": "03000",
     "IDAgenciaDestino": "05500",
@@ -1036,7 +1036,7 @@
       },
       {
         "Estado": 5,
-        "UbicacionGuia": "CD 3000",
+        "UbicacionGuia": "CD 5300",
         "FechaActualizacionEstado": "2025-10-26T18:30:00-03:00"
       }
     ]
@@ -1202,7 +1202,7 @@
     "Estado": 11,
     "FechaAdmision": "2025-11-01T13:20:00-03:00",
     "TipoEntrega": 0,
-    "CodigoPostalCDOrigen": 3000,
+    "CodigoPostalCDOrigen": 3400,
     "CodigoPostalCDDestino": 5500,
     "IDAgenciaOrigen": "",
     "IDAgenciaDestino": "",
@@ -1224,7 +1224,7 @@
     "Historial": [
       {
         "Estado": 5,
-        "UbicacionGuia": "CD 3000",
+        "UbicacionGuia": "CD 3400",
         "FechaActualizacionEstado": "2025-11-01T13:20:00-03:00"
       },
       {
