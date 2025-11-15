@@ -268,8 +268,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             return TamanoEnum.XL;
         }
 
-        // Inicializa correlativo por Código Postal (CP) leyendo TODAS las guías persistidas
-        // Esto permite compartir numeración entre CD y Agencias cuando tienen el mismo CP
+    
         private static void EnsureSeqForCP(int codigoPostal)
         {
             if (_seqPorCP.ContainsKey(codigoPostal)) return;

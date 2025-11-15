@@ -57,7 +57,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
                 return Guias;
             }
 
-            // 2) Obtenemos los pares (guía, cd) relevantes
+            // 2) Obtenemos los pares (guía, cd) relevantes --> CHEQUEAR 
             var pares = GuiaAlmacen.guias
                 .Join(
                     CentroDeDistribucionAlmacen.centrosDeDistribucion,
@@ -75,7 +75,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
                 .ToList();
 
 
-            // 3) Proyección a la clase consumida por la pantalla
+            // 3) Proyección a la clase consumida por la pantalla --> CHEQUEAR
             var resultados = pares
                 .Select(x => new Guia
                 {
@@ -122,7 +122,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
                     });
 
                     // Si por alguna operación anterior se insertó un 'Pendiente de entrega' con
-                    // fecha posterior a la entrega, retrotraemos esa fecha para mantener el orden cronológico.
+                    // fecha posterior a la entrega, retrotraemos esa fecha para mantener el orden cronológico. ---> SIRVE??
                     foreach (var pend in entidad.Historial.Where(h => h.Estado == EstadoGuiaEnum.PendienteDeEntrega && h.FechaActualizacionEstado > fechaEntregada))
                     {
                         pend.FechaActualizacionEstado = fechaEntregada.AddSeconds(-1);
@@ -132,7 +132,7 @@ namespace TUTASAPrototipo.EntregarEncomiendaCD
                 }
                 else if (entidad.Estado == EstadoGuiaEnum.Entregada)
                 {
-                // Ya figuraba como entregada: actualizar fecha del último movimiento "Entregada" en lugar de duplicarlo
+                // Ya figuraba como entregada: actualizar fecha del último movimiento "Entregada" en lugar de duplicarlo ---> ???????
                 var lastEnt = entidad.Historial.LastOrDefault(h => h.Estado == EstadoGuiaEnum.Entregada);
                 var nuevaFecha = DateTime.Now;
                 if (lastEnt != null)

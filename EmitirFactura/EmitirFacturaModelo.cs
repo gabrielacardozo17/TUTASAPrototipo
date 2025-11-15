@@ -16,43 +16,7 @@ namespace TUTASAPrototipo.EmitirFactura
             return new string((s ?? "").Where(char.IsDigit).ToArray());
         }
 
-        // Formato legible del estado
-        private static string EstadoDisplay(EstadoGuiaEnum estado)
-        {
-            return estado switch
-            {
-                EstadoGuiaEnum.ARetirarEnAgenciaDeOrigen => "A retirar en agencia de origen",
-                EstadoGuiaEnum.ARetirarPorDomicilioDelCliente => "A retirar por domicilio del cliente",
-                EstadoGuiaEnum.EnCaminoARetirarPorDomicilio => "En camino a retirar por domicilio",
-                EstadoGuiaEnum.EnCaminoARetirarPorAgencia => "En camino a retirar por agencia",
-                EstadoGuiaEnum.EnRutaACDDeOrigenDesdeAgencia => "En ruta a CD de origen (desde agencia)",
-                EstadoGuiaEnum.Admitida => "Admitida",
-                EstadoGuiaEnum.EnTransitoAlCDDestino => "En tránsito al CD destino",
-                EstadoGuiaEnum.EnCDDestino => "En CD destino",
-                EstadoGuiaEnum.EnRutaAlDomicilioDeEntrega => "En ruta al domicilio de entrega",
-                EstadoGuiaEnum.EnRutaAlaAgenciaDestino => "En ruta a la agencia destino",
-                EstadoGuiaEnum.PendienteDeEntrega => "Pendiente de entrega",
-                EstadoGuiaEnum.Entregada => "Entregada",
-                EstadoGuiaEnum.Cancelada => "Cancelada",
-                EstadoGuiaEnum.NoEntregada => "No entregada",
-                EstadoGuiaEnum.Facturada => "Facturada",
-                _ => InsertarEspaciosEnPascalCase(estado.ToString())
-            };
-        }
-
-        private static string InsertarEspaciosEnPascalCase(string name)
-        {
-            if (string.IsNullOrEmpty(name)) return name;
-            var sb = new System.Text.StringBuilder(name.Length * 2);
-            for (int i = 0; i < name.Length; i++)
-            {
-                var c = name[i];
-                if (i > 0 && char.IsUpper(c) && char.IsLower(name[i - 1]))
-                    sb.Append(' ');
-                sb.Append(c);
-            }
-            return sb.ToString();
-        }
+       
 
         //MÉTODOS
         public (Cliente cliente, List<Guia> guias) BuscarPorCuit(string cuitDigits)
@@ -68,7 +32,7 @@ namespace TUTASAPrototipo.EmitirFactura
                 throw new InvalidOperationException("No existe el cliente seleccionado. Vuelva a intentarlo.");
 
             // 2) Guías pendientes del cliente para facturar en estado Entregada
-            var estadosFacturables = new HashSet<EstadoGuiaEnum>
+            var estadosFacturables = new HashSet<EstadoGuiaEnum>  //Revisar si podemos simplificar esto si ya sabemos que las guias a facturar son las Entregadas
             {
                 EstadoGuiaEnum.Entregada
             };
@@ -85,7 +49,7 @@ namespace TUTASAPrototipo.EmitirFactura
 
             // 3) Mapear entidades → clases de pantalla
             // Origen/Destino: resolvemos nombre de CD o Agencia según datos presentes
-            var guiasPantalla = pendientesEntidad
+            var guiasPantalla = pendientesEntidad 
             .Select(g => new Guia
             {
                 Numero = g.NumeroGuia.ToString("D9"),
@@ -106,7 +70,6 @@ namespace TUTASAPrototipo.EmitirFactura
          : "")),
                 Tamano = g.Tamano.ToString(),
                 Importe = g.ImporteAFacturar,
-                Estado = EstadoDisplay(g.Estado),
                 CuitCliente = cliEntidad.CUIT
             })
                     .ToList();
@@ -116,7 +79,7 @@ namespace TUTASAPrototipo.EmitirFactura
             {
                 Cuit = cliEntidad.CUIT,
                 RazonSocial = cliEntidad.RazonSocial,
-                Convenio = "General" // sin mapeo de convenios en este modelo
+                Convenio = "General" // sin mapeo de convenios en este modelo ¿PARA QUEEEEE???
             };
 
             return (clientePantalla, guiasPantalla);
@@ -204,114 +167,8 @@ namespace TUTASAPrototipo.EmitirFactura
         }
 
 
-        // Actualiza los archivos de "Factura" y "Cuenta Corriente"
-        public void ActualizarArchivosFacturaYCuentaCorriente()
-        {
-                                                                    //Aca Grabamos
-                                                                    // FacturaAlmacen.Grabar();
-                                                                    // CuentaCorrienteAlmacen.Grabar();
-        }
-
-        // Registra nueva deuda en la cuenta corriente del cliente
-        public MovimientoClienteAux ObtenerUltimoMovimientoCuenta(string cuitDigits)
-        {
-            var digits = Digits(cuitDigits);
-            var cc = CuentaCorrienteAlmacen.cuentasCorrientes
-                .FirstOrDefault(c => Digits(c.CUITCliente) == digits);
-
-            if (cc?.Movimientos == null || !cc.Movimientos.Any())
-                throw new InvalidOperationException("No se encontraron movimientos en la cuenta corriente.");
-
-            return cc.Movimientos.Last();
-        }
-
-
-        // Retorna los datos de la factura emitida en formato accesible.
-        public Factura ObtenerFacturaEmitida(string numeroFactura)
-        {
-            var facEntidad = FacturaAlmacen.facturas
-                .FirstOrDefault(f => f.ID == numeroFactura);
-
-            if (facEntidad is null)
-                throw new InvalidOperationException($"No se encontró la factura {numeroFactura}.");
-
-            var cliente = ClienteAlmacen.clientes
-                .FirstOrDefault(c => Digits(c.CUIT) == Digits(facEntidad.CUITCliente));
-
-            if (cliente is null)
-                throw new InvalidOperationException("No se encontró el cliente asociado a la factura.");
-
-            var guiasFacturadas = facEntidad.GuiasFacturadas
-                .Select(numGuia =>
-                {
-                    var guiaNum = int.Parse(numGuia);
-                    var guia = GuiaAlmacen.guias.FirstOrDefault(g => g.NumeroGuia == guiaNum);
-                    return new Guia
-                    {
-                        Numero = numGuia,
-                        FechaAdmision = guia?.FechaAdmision ?? DateTime.Now,
-                        Importe = guia?.ImporteAFacturar ?? 0m,
-                        Estado = "Facturada"
-                    };
-                })
-                .ToList();
-
-            return new Factura
-            {
-                Numero = facEntidad.ID,
-                Fecha = facEntidad.FechaEmisionFactura,
-                Cliente = new Cliente
-                {
-                    Cuit = cliente.CUIT,
-                    RazonSocial = cliente.RazonSocial
-                },
-                GuiasFacturadas = guiasFacturadas
-            };
-        }
-
-        // Retorna todas las facturas para reportes internos.
-        public List<Factura> ObtenerReporteFacturasEmitidas()
-        {
-            return FacturaAlmacen.facturas
-                .Select(f =>
-                {
-                    var cliente = ClienteAlmacen.clientes
-                        .FirstOrDefault(c => Digits(c.CUIT) == Digits(f.CUITCliente));
-
-                    return new Factura
-                    {
-                        Numero = f.ID,
-                        Fecha = f.FechaEmisionFactura,
-                        Cliente = new Cliente
-                        {
-                            Cuit = f.CUITCliente,
-                            RazonSocial = cliente?.RazonSocial ?? "Cliente desconocido"
-                        },
-                        GuiasFacturadas = f.GuiasFacturadas
-                            .Select(g => new Guia { Numero = g })
-                            .ToList()
-                    };
-                })
-                .OrderByDescending(f => f.Fecha)
-                .ToList();
-        }
-
-        // Retorna los datos necesarios para resetear el formulario.
-        public void LimpiarFormularioFactura()
-        {
-            // Este método es principalmente informativo para la vista.
-            // La lógica de limpieza real ocurre en la pantalla (vaciar textboxes, listas, etc.)
-            // No requiere persistencia aquí.
-        }
-
-        // Retorna un objeto vacío para resetear la pantalla después de la emisión.
-        public (Cliente cliente, List<Guia> guias) ObtenerFormularioVacio()
-        {
-            return (
-                new Cliente { Cuit = string.Empty, RazonSocial = string.Empty, Convenio = string.Empty },
-                new List<Guia>()
-            );
-        }
+        
+       
     }
 }
 
