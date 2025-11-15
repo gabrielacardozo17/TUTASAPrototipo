@@ -5,7 +5,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 1200,
       "ExtraEntregaDomicilio": 1500,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1300
     },
     "TarifasPorOrigenDestino": [
       {
@@ -67,7 +67,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1500
     },
     "TarifasPorOrigenDestino": [
       {
@@ -98,7 +98,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 1100,
       "ExtraEntregaDomicilio": 1400,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 2000
     },
     "TarifasPorOrigenDestino": [
       {
@@ -119,7 +119,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 950,
       "ExtraEntregaDomicilio": 1250,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1000
     },
     "TarifasPorOrigenDestino": [
       {
@@ -140,7 +140,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 1200,
       "ExtraEntregaDomicilio": 1500,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 950
     },
     "TarifasPorOrigenDestino": [
       {
@@ -182,7 +182,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1500
     },
     "TarifasPorOrigenDestino": [
       {
@@ -203,7 +203,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 950,
       "ExtraEntregaDomicilio": 1250,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1400
     },
     "TarifasPorOrigenDestino": [
       {
@@ -224,7 +224,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1300
     },
     "TarifasPorOrigenDestino": [
       {
@@ -245,7 +245,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 950,
       "ExtraEntregaDomicilio": 1250,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1000
     },
     "TarifasPorOrigenDestino": [
       {
@@ -266,7 +266,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1500
     },
     "TarifasPorOrigenDestino": [
       {
@@ -287,7 +287,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1300
     },
     "TarifasPorOrigenDestino": [
       {
@@ -308,7 +308,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 950,
       "ExtraEntregaDomicilio": 1250,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1400
     },
     "TarifasPorOrigenDestino": [
       {
@@ -329,7 +329,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1200
     },
     "TarifasPorOrigenDestino": [
       {
@@ -350,7 +350,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1500
     },
     "TarifasPorOrigenDestino": [
       {
@@ -371,7 +371,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1300
     },
     "TarifasPorOrigenDestino": [
       {
@@ -392,7 +392,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1400
     },
     "TarifasPorOrigenDestino": [
       {
@@ -413,7 +413,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1400
     },
     "TarifasPorOrigenDestino": [
       {
@@ -434,7 +434,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1500
     },
     "TarifasPorOrigenDestino": [
       {
@@ -455,7 +455,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1300
     },
     "TarifasPorOrigenDestino": [
       {
@@ -476,7 +476,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1400
     },
     "TarifasPorOrigenDestino": [
       {
@@ -497,7 +497,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1300
     },
     "TarifasPorOrigenDestino": [
       {
@@ -518,7 +518,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1300
     },
     "TarifasPorOrigenDestino": [
       {
@@ -539,7 +539,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1450
     },
     "TarifasPorOrigenDestino": [
       {
@@ -560,7 +560,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 900,
       "ExtraEntregaDomicilio": 1200,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1300
     },
     "TarifasPorOrigenDestino": [
       {
@@ -581,7 +581,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 950,
       "ExtraEntregaDomicilio": 1250,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1400
     },
     "TarifasPorOrigenDestino": [
       {
@@ -602,7 +602,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 950,
       "ExtraEntregaDomicilio": 1250,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1200
     },
     "TarifasPorOrigenDestino": [
       {
