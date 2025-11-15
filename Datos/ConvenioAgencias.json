@@ -1,68 +1,263 @@
 [
-  { "IDConvenioAgencia": 1000, "PreciosXTamano": { "S": 1000, "M": 1550, "L": 2100, "XL": 2650 } },
-  { "IDConvenioAgencia": 1420, "PreciosXTamano": { "S": 1025, "M": 1575, "L": 2125, "XL": 2675 } },
-  { "IDConvenioAgencia": 1888, "PreciosXTamano": { "S": 1050, "M": 1600, "L": 2150, "XL": 2700 } },
-  { "IDConvenioAgencia": 1900, "PreciosXTamano": { "S": 1075, "M": 1625, "L": 2175, "XL": 2725 } },
-  { "IDConvenioAgencia": 2000, "PreciosXTamano": { "S": 1100, "M": 1650, "L": 2200, "XL": 2750 } },
-  { "IDConvenioAgencia": 2010, "PreciosXTamano": { "S": 1125, "M": 1675, "L": 2225, "XL": 2775 } },
-  { "IDConvenioAgencia": 2820, "PreciosXTamano": { "S": 1150, "M": 1700, "L": 2250, "XL": 2800 } },
-  { "IDConvenioAgencia": 3100, "PreciosXTamano": { "S": 1175, "M": 1725, "L": 2275, "XL": 2825 } },
-  { "IDConvenioAgencia": 3200, "PreciosXTamano": { "S": 1200, "M": 1750, "L": 2300, "XL": 2850 } },
-  { "IDConvenioAgencia": 3300, "PreciosXTamano": { "S": 1225, "M": 1775, "L": 2325, "XL": 2875 } },
-  { "IDConvenioAgencia": 3360, "PreciosXTamano": { "S": 1250, "M": 1800, "L": 2350, "XL": 2900 } },
-  { "IDConvenioAgencia": 3380, "PreciosXTamano": { "S": 1275, "M": 1825, "L": 2375, "XL": 2925 } },
-  { "IDConvenioAgencia": 3400, "PreciosXTamano": { "S": 1300, "M": 1850, "L": 2400, "XL": 2950 } },
-  { "IDConvenioAgencia": 3450, "PreciosXTamano": { "S": 1325, "M": 1875, "L": 2425, "XL": 2975 } },
-  { "IDConvenioAgencia": 3470, "PreciosXTamano": { "S": 1350, "M": 1900, "L": 2450, "XL": 3000 } },
-  { "IDConvenioAgencia": 3500, "PreciosXTamano": { "S": 1375, "M": 1925, "L": 2475, "XL": 3025 } },
-  { "IDConvenioAgencia": 3600, "PreciosXTamano": { "S": 1400, "M": 1950, "L": 2500, "XL": 3050 } },
-  { "IDConvenioAgencia": 3606, "PreciosXTamano": { "S": 1425, "M": 1975, "L": 2525, "XL": 3075 } },
-  { "IDConvenioAgencia": 3610, "PreciosXTamano": { "S": 1450, "M": 2000, "L": 2550, "XL": 3100 } },
-  { "IDConvenioAgencia": 3700, "PreciosXTamano": { "S": 1475, "M": 2025, "L": 2575, "XL": 3125 } },
-  { "IDConvenioAgencia": 3730, "PreciosXTamano": { "S": 1500, "M": 2050, "L": 2600, "XL": 3150 } },
-  { "IDConvenioAgencia": 4000, "PreciosXTamano": { "S": 1525, "M": 2075, "L": 2625, "XL": 3175 } },
-  { "IDConvenioAgencia": 4103, "PreciosXTamano": { "S": 1550, "M": 2100, "L": 2650, "XL": 3200 } },
-  { "IDConvenioAgencia": 4146, "PreciosXTamano": { "S": 1575, "M": 2125, "L": 2675, "XL": 3225 } },
-  { "IDConvenioAgencia": 4200, "PreciosXTamano": { "S": 1600, "M": 2150, "L": 2700, "XL": 3250 } },
-  { "IDConvenioAgencia": 4220, "PreciosXTamano": { "S": 1625, "M": 2175, "L": 2725, "XL": 3275 } },
-  { "IDConvenioAgencia": 4300, "PreciosXTamano": { "S": 1650, "M": 2200, "L": 2750, "XL": 3300 } },
-  { "IDConvenioAgencia": 4400, "PreciosXTamano": { "S": 1675, "M": 2225, "L": 2775, "XL": 3325 } },
-  { "IDConvenioAgencia": 4512, "PreciosXTamano": { "S": 1700, "M": 2250, "L": 2800, "XL": 3350 } },
-  { "IDConvenioAgencia": 4530, "PreciosXTamano": { "S": 1725, "M": 2275, "L": 2825, "XL": 3375 } },
-  { "IDConvenioAgencia": 4560, "PreciosXTamano": { "S": 1750, "M": 2300, "L": 2850, "XL": 3400 } },
-  { "IDConvenioAgencia": 4600, "PreciosXTamano": { "S": 1775, "M": 2325, "L": 2875, "XL": 3425 } },
-  { "IDConvenioAgencia": 4612, "PreciosXTamano": { "S": 1800, "M": 2350, "L": 2900, "XL": 3450 } },
-  { "IDConvenioAgencia": 4700, "PreciosXTamano": { "S": 1825, "M": 2375, "L": 2925, "XL": 3475 } },
-  { "IDConvenioAgencia": 4740, "PreciosXTamano": { "S": 1850, "M": 2400, "L": 2950, "XL": 3500 } },
-  { "IDConvenioAgencia": 4750, "PreciosXTamano": { "S": 1875, "M": 2425, "L": 2975, "XL": 3525 } },
-  { "IDConvenioAgencia": 5000, "PreciosXTamano": { "S": 1900, "M": 2450, "L": 3000, "XL": 3550 } },
-  { "IDConvenioAgencia": 5152, "PreciosXTamano": { "S": 1925, "M": 2475, "L": 3025, "XL": 3575 } },
-  { "IDConvenioAgencia": 5300, "PreciosXTamano": { "S": 1950, "M": 2500, "L": 3050, "XL": 3600 } },
-  { "IDConvenioAgencia": 5310, "PreciosXTamano": { "S": 1975, "M": 2525, "L": 3075, "XL": 3625 } },
-  { "IDConvenioAgencia": 5360, "PreciosXTamano": { "S": 2000, "M": 2550, "L": 3100, "XL": 3650 } },
-  { "IDConvenioAgencia": 5400, "PreciosXTamano": { "S": 2025, "M": 2575, "L": 3125, "XL": 3675 } },
-  { "IDConvenioAgencia": 5442, "PreciosXTamano": { "S": 2050, "M": 2600, "L": 3150, "XL": 3700 } },
-  { "IDConvenioAgencia": 5460, "PreciosXTamano": { "S": 2075, "M": 2625, "L": 3175, "XL": 3725 } },
-  { "IDConvenioAgencia": 5500, "PreciosXTamano": { "S": 2100, "M": 2650, "L": 3200, "XL": 3750 } },
-  { "IDConvenioAgencia": 5600, "PreciosXTamano": { "S": 2125, "M": 2675, "L": 3225, "XL": 3775 } },
-  { "IDConvenioAgencia": 5700, "PreciosXTamano": { "S": 2150, "M": 2700, "L": 3250, "XL": 3800 } },
-  { "IDConvenioAgencia": 5730, "PreciosXTamano": { "S": 2175, "M": 2725, "L": 3275, "XL": 3825 } },
-  { "IDConvenioAgencia": 6300, "PreciosXTamano": { "S": 2200, "M": 2750, "L": 3300, "XL": 3850 } },
-  { "IDConvenioAgencia": 6303, "PreciosXTamano": { "S": 2225, "M": 2775, "L": 3325, "XL": 3875 } },
-  { "IDConvenioAgencia": 6360, "PreciosXTamano": { "S": 2250, "M": 2800, "L": 3350, "XL": 3900 } },
-  { "IDConvenioAgencia": 8300, "PreciosXTamano": { "S": 2275, "M": 2825, "L": 3375, "XL": 3925 } },
-  { "IDConvenioAgencia": 8322, "PreciosXTamano": { "S": 2300, "M": 2850, "L": 3400, "XL": 3950 } },
-  { "IDConvenioAgencia": 8324, "PreciosXTamano": { "S": 2325, "M": 2875, "L": 3425, "XL": 3975 } },
-  { "IDConvenioAgencia": 8370, "PreciosXTamano": { "S": 2350, "M": 2900, "L": 3450, "XL": 4000 } },
-  { "IDConvenioAgencia": 8400, "PreciosXTamano": { "S": 2375, "M": 2925, "L": 3475, "XL": 4025 } },
-  { "IDConvenioAgencia": 8500, "PreciosXTamano": { "S": 2400, "M": 2950, "L": 3500, "XL": 4050 } },
-  { "IDConvenioAgencia": 9000, "PreciosXTamano": { "S": 2425, "M": 2975, "L": 3525, "XL": 4075 } },
-  { "IDConvenioAgencia": 9011, "PreciosXTamano": { "S": 2450, "M": 3000, "L": 3550, "XL": 4100 } },
-  { "IDConvenioAgencia": 9100, "PreciosXTamano": { "S": 2475, "M": 3025, "L": 3575, "XL": 4125 } },
-  { "IDConvenioAgencia": 9120, "PreciosXTamano": { "S": 2500, "M": 3050, "L": 3600, "XL": 4150 } },
-  { "IDConvenioAgencia": 9400, "PreciosXTamano": { "S": 2525, "M": 3075, "L": 3625, "XL": 4175 } },
-  { "IDConvenioAgencia": 9405, "PreciosXTamano": { "S": 2550, "M": 3100, "L": 3650, "XL": 4200 } },
-  { "IDConvenioAgencia": 9410, "PreciosXTamano": { "S": 2575, "M": 3125, "L": 3675, "XL": 4225 } },
-  { "IDConvenioAgencia": 9412, "PreciosXTamano": { "S": 2600, "M": 3150, "L": 3700, "XL": 4250 } },
-  { "IDConvenioAgencia": 9420, "PreciosXTamano": { "S": 2625, "M": 3175, "L": 3725, "XL": 4275 } }
+  {
+    "IDConvenioAgencia": 1000,
+    "PreciosXTamano": {
+      "S": 1000,
+      "M": 1550,
+      "L": 2100,
+      "XL": 2650
+    }
+  },
+  {
+    "IDConvenioAgencia": 1888,
+    "PreciosXTamano": {
+      "S": 1050,
+      "M": 1600,
+      "L": 2150,
+      "XL": 2700
+    }
+  },
+  {
+    "IDConvenioAgencia": 1900,
+    "PreciosXTamano": {
+      "S": 1075,
+      "M": 1625,
+      "L": 2175,
+      "XL": 2725
+    }
+  },
+  {
+    "IDConvenioAgencia": 2000,
+    "PreciosXTamano": {
+      "S": 1100,
+      "M": 1650,
+      "L": 2200,
+      "XL": 2750
+    }
+  },
+  {
+    "IDConvenioAgencia": 3000,
+    "PreciosXTamano": {
+      "S": 1185,
+      "M": 1745,
+      "L": 2280,
+      "XL": 2835
+    }
+  },
+  {
+    "IDConvenioAgencia": 3100,
+    "PreciosXTamano": {
+      "S": 1175,
+      "M": 1725,
+      "L": 2275,
+      "XL": 2825
+    }
+  },
+  {
+    "IDConvenioAgencia": 3300,
+    "PreciosXTamano": {
+      "S": 1225,
+      "M": 1775,
+      "L": 2325,
+      "XL": 2875
+    }
+  },
+  {
+    "IDConvenioAgencia": 3400,
+    "PreciosXTamano": {
+      "S": 1300,
+      "M": 1850,
+      "L": 2400,
+      "XL": 2950
+    }
+  },
+  {
+    "IDConvenioAgencia": 3500,
+    "PreciosXTamano": {
+      "S": 1375,
+      "M": 1925,
+      "L": 2475,
+      "XL": 3025
+    }
+  },
+  {
+    "IDConvenioAgencia": 3600,
+    "PreciosXTamano": {
+      "S": 1400,
+      "M": 1950,
+      "L": 2500,
+      "XL": 3050
+    }
+  },
+  {
+    "IDConvenioAgencia": 4000,
+    "PreciosXTamano": {
+      "S": 1525,
+      "M": 2075,
+      "L": 2625,
+      "XL": 3175
+    }
+  },
+  {
+    "IDConvenioAgencia": 4200,
+    "PreciosXTamano": {
+      "S": 1600,
+      "M": 2150,
+      "L": 2700,
+      "XL": 3250
+    }
+  },
+  {
+    "IDConvenioAgencia": 4400,
+    "PreciosXTamano": {
+      "S": 1675,
+      "M": 2225,
+      "L": 2775,
+      "XL": 3325
+    }
+  },
+  {
+    "IDConvenioAgencia": 4600,
+    "PreciosXTamano": {
+      "S": 1775,
+      "M": 2325,
+      "L": 2875,
+      "XL": 3425
+    }
+  },
+  {
+    "IDConvenioAgencia": 4700,
+    "PreciosXTamano": {
+      "S": 1825,
+      "M": 2375,
+      "L": 2925,
+      "XL": 3475
+    }
+  },
+  {
+    "IDConvenioAgencia": 5000,
+    "PreciosXTamano": {
+      "S": 1900,
+      "M": 2450,
+      "L": 3000,
+      "XL": 3550
+    }
+  },
+  {
+    "IDConvenioAgencia": 5152,
+    "PreciosXTamano": {
+      "S": 1925,
+      "M": 2475,
+      "L": 3025,
+      "XL": 3575
+    }
+  },
+  {
+    "IDConvenioAgencia": 5300,
+    "PreciosXTamano": {
+      "S": 1950,
+      "M": 2500,
+      "L": 3050,
+      "XL": 3600
+    }
+  },
+  {
+    "IDConvenioAgencia": 5400,
+    "PreciosXTamano": {
+      "S": 2025,
+      "M": 2575,
+      "L": 3125,
+      "XL": 3675
+    }
+  },
+  {
+    "IDConvenioAgencia": 5500,
+    "PreciosXTamano": {
+      "S": 2100,
+      "M": 2650,
+      "L": 3200,
+      "XL": 3750
+    }
+  },
+  {
+    "IDConvenioAgencia": 5600,
+    "PreciosXTamano": {
+      "S": 2125,
+      "M": 2675,
+      "L": 3225,
+      "XL": 3775
+    }
+  },
+  {
+    "IDConvenioAgencia": 5700,
+    "PreciosXTamano": {
+      "S": 2150,
+      "M": 2700,
+      "L": 3250,
+      "XL": 3800
+    }
+  },
+  {
+    "IDConvenioAgencia": 5730,
+    "PreciosXTamano": {
+      "S": 2175,
+      "M": 2725,
+      "L": 3275,
+      "XL": 3825
+    }
+  },
+  {
+    "IDConvenioAgencia": 6300,
+    "PreciosXTamano": {
+      "S": 2200,
+      "M": 2750,
+      "L": 3300,
+      "XL": 3850
+    }
+  },
+  {
+    "IDConvenioAgencia": 8300,
+    "PreciosXTamano": {
+      "S": 2275,
+      "M": 2825,
+      "L": 3375,
+      "XL": 3925
+    }
+  },
+  {
+    "IDConvenioAgencia": 8500,
+    "PreciosXTamano": {
+      "S": 2400,
+      "M": 2950,
+      "L": 3500,
+      "XL": 4050
+    }
+  },
+  {
+    "IDConvenioAgencia": 9100,
+    "PreciosXTamano": {
+      "S": 2475,
+      "M": 3025,
+      "L": 3575,
+      "XL": 4125
+    }
+  },
+  {
+    "IDConvenioAgencia": 9400,
+    "PreciosXTamano": {
+      "S": 2525,
+      "M": 3075,
+      "L": 3625,
+      "XL": 4175
+    }
+  },
+  {
+    "IDConvenioAgencia": 9410,
+    "PreciosXTamano": {
+      "S": 2575,
+      "M": 3125,
+      "L": 3675,
+      "XL": 4225
+    }
+  }
 ]
