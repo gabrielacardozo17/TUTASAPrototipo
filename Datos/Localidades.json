@@ -1,95 +1,55 @@
 [
  { "CodigoPostal":1000, "Provincia":4, "Nombre": "Ciudad Autonoma de Buenos Aires" },
+ 
  { "CodigoPostal":1888, "Provincia":0, "Nombre": "Florencio Varela, Buenos Aires" },
  { "CodigoPostal":1900, "Provincia":0, "Nombre": "La Plata, Buenos Aires" },
- { "CodigoPostal":7600, "Provincia":0, "Nombre": "Mar del Plata, Buenos Aires" },
- { "CodigoPostal":8000, "Provincia":0, "Nombre": "Bahia Blanca, Buenos Aires" },
 
  { "CodigoPostal":4700, "Provincia":1, "Nombre": "San Fernando del Valle de Catamarca, Catamarca" },
- { "CodigoPostal":4740, "Provincia":1, "Nombre": "Andalgala, Catamarca" },
- { "CodigoPostal":4750, "Provincia":1, "Nombre": "Belen, Catamarca" },
 
  { "CodigoPostal":3500, "Provincia":2, "Nombre": "Resistencia, Chaco" },
- { "CodigoPostal":3700, "Provincia":2, "Nombre": "Presidencia R. Saenz Pena, Chaco" },
- { "CodigoPostal":3730, "Provincia":2, "Nombre": "Charata, Chaco" },
 
  { "CodigoPostal":9100, "Provincia":3, "Nombre": "Trelew, Chubut" },
- { "CodigoPostal":9000, "Provincia":3, "Nombre": "Comodoro Rivadavia, Chubut" },
- { "CodigoPostal":9120, "Provincia":3, "Nombre": "Puerto Madryn, Chubut" },
 
  { "CodigoPostal":5000, "Provincia":5, "Nombre": "Cordoba, Cordoba" },
  { "CodigoPostal":5152, "Provincia":5, "Nombre": "Villa Carlos Paz, Cordoba" },
- { "CodigoPostal":5800, "Provincia":5, "Nombre": "Rio Cuarto, Cordoba" },
 
  { "CodigoPostal":3400, "Provincia":6, "Nombre": "Corrientes, Corrientes" },
- { "CodigoPostal":3450, "Provincia":6, "Nombre": "Goya, Corrientes" },
- { "CodigoPostal":3470, "Provincia":6, "Nombre": "Mercedes, Corrientes" },
 
  { "CodigoPostal":3100, "Provincia":7, "Nombre": "Parana, Entre Rios" },
- { "CodigoPostal":3200, "Provincia":7, "Nombre": "Concordia, Entre Rios" },
- { "CodigoPostal":2820, "Provincia":7, "Nombre": "Gualeguaychu, Entre Rios" },
 
  { "CodigoPostal":3600, "Provincia":8, "Nombre": "Formosa, Formosa" },
- { "CodigoPostal":3610, "Provincia":8, "Nombre": "Clorinda, Formosa" },
- { "CodigoPostal":3606, "Provincia":8, "Nombre": "Pirane, Formosa" },
 
  { "CodigoPostal":4600, "Provincia":9, "Nombre": "San Salvador de Jujuy, Jujuy" },
- { "CodigoPostal":4612, "Provincia":9, "Nombre": "Palpala, Jujuy" },
- { "CodigoPostal":4512, "Provincia":9, "Nombre": "Ledesma, Jujuy" },
 
  { "CodigoPostal":6300, "Provincia":10, "Nombre": "Santa Rosa, La Pampa" },
- { "CodigoPostal":6360, "Provincia":10, "Nombre": "General Pico, La Pampa" },
- { "CodigoPostal":6303, "Provincia":10, "Nombre": "Toay, La Pampa" },
 
  { "CodigoPostal":5300, "Provincia":11, "Nombre": "La Rioja, La Rioja" },
- { "CodigoPostal":5360, "Provincia":11, "Nombre": "Chilecito, La Rioja" },
- { "CodigoPostal":5310, "Provincia":11, "Nombre": "Aimogasta, La Rioja" },
 
  { "CodigoPostal":5500, "Provincia":12, "Nombre": "Mendoza, Mendoza" },
  { "CodigoPostal":5600, "Provincia":12, "Nombre": "San Rafael, Mendoza" },
- { "CodigoPostal":5501, "Provincia":12, "Nombre": "Godoy Cruz, Mendoza" },
 
  { "CodigoPostal":3300, "Provincia":13, "Nombre": "Posadas, Misiones" },
- { "CodigoPostal":3360, "Provincia":13, "Nombre": "Obera, Misiones" },
- { "CodigoPostal":3380, "Provincia":13, "Nombre": "Eldorado, Misiones" },
 
  { "CodigoPostal":8300, "Provincia":14, "Nombre": "Neuquen, Neuquen" },
- { "CodigoPostal":8370, "Provincia":14, "Nombre": "San Martin de los Andes, Neuquen" },
- { "CodigoPostal":8322, "Provincia":14, "Nombre": "Cutral Co, Neuquen" },
 
  { "CodigoPostal":8500, "Provincia":15, "Nombre": "Viedma, Rio Negro" },
- { "CodigoPostal":8400, "Provincia":15, "Nombre": "San Carlos de Bariloche, Rio Negro" },
- { "CodigoPostal":8324, "Provincia":15, "Nombre": "Cipolletti, Rio Negro" },
 
  { "CodigoPostal":4400, "Provincia":16, "Nombre": "Salta, Salta" },
- { "CodigoPostal":4560, "Provincia":16, "Nombre": "Tartagal, Salta" },
- { "CodigoPostal":4530, "Provincia":16, "Nombre": "Oran, Salta" },
 
  { "CodigoPostal":5400, "Provincia":17, "Nombre": "San Juan, San Juan" },
- { "CodigoPostal":5460, "Provincia":17, "Nombre": "Jachal, San Juan" },
- { "CodigoPostal":5442, "Provincia":17, "Nombre": "Caucete, San Juan" },
 
  { "CodigoPostal":5700, "Provincia":18, "Nombre": "San Luis, San Luis" },
  { "CodigoPostal":5730, "Provincia":18, "Nombre": "Villa Mercedes, San Luis" },
- { "CodigoPostal":5881, "Provincia":18, "Nombre": "Merlo, San Luis" },
 
  { "CodigoPostal":9400, "Provincia":19, "Nombre": "Rio Gallegos, Santa Cruz" },
- { "CodigoPostal":9011, "Provincia":19, "Nombre": "Caleta Olivia, Santa Cruz" },
- { "CodigoPostal":9405, "Provincia":19, "Nombre": "El Calafate, Santa Cruz" },
 
+ { "CodigoPostal":2000, "Provincia":20, "Nombre": "Rosario, Santa Fe" }, 
  { "CodigoPostal":3000, "Provincia":20, "Nombre": "Santa Fe, Santa Fe" },
- { "CodigoPostal":2000, "Provincia":20, "Nombre": "Rosario, Santa Fe" },
- { "CodigoPostal":2300, "Provincia":20, "Nombre": "Rafaela, Santa Fe" },
 
  { "CodigoPostal":4200, "Provincia":21, "Nombre": "Santiago del Estero, Santiago del Estero" },
- { "CodigoPostal":4300, "Provincia":21, "Nombre": "La Banda, Santiago del Estero" },
- { "CodigoPostal":4220, "Provincia":21, "Nombre": "Termas de Rio Hondo, Santiago del Estero" },
 
  { "CodigoPostal":9410, "Provincia":22, "Nombre": "Ushuaia, Tierra del Fuego" },
- { "CodigoPostal":9420, "Provincia":22, "Nombre": "Rio Grande, Tierra del Fuego" },
- { "CodigoPostal":9412, "Provincia":22, "Nombre": "Tolhuin, Tierra del Fuego" },
 
  { "CodigoPostal":4000, "Provincia":23, "Nombre": "San Miguel de Tucuman, Tucuman" },
- { "CodigoPostal":4103, "Provincia":23, "Nombre": "Tafi Viejo, Tucuman" },
- { "CodigoPostal":4146, "Provincia":23, "Nombre": "Concepcion, Tucuman" }
+
 ]
