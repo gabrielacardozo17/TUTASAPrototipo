@@ -64,7 +64,7 @@
     1. CUIT cliente: 30-40762117-0
     2. Botón Buscar
     3. Verificar: guía 188810007 (Origen: CD Buenos Aires, Destino: CD Buenos Aires, Tamaño: L, Importe: $4,500)
-    4. Verificar Total: $13,600,00
+    4. Verificar Total: $14,600,00
     5. Botón Emitir Factura
     6. Verificar: Factura FA-202511-00001 emitida y registrada con éxito
     7. Botón Aceptar en pop‑up
@@ -74,8 +74,8 @@
     1. CUIT Cliente: 30-40762117-0
     2. Período: Noviembre 2025
     3. Botón Buscar
-	4. Verificar: Concepto: FA-202511-00001, Debe: $13600,00
-    5. Verificar Saldo al Cierre del Periodo: $15400,00
+	4. Verificar: Concepto: FA-202511-00001, Debe: $14600,00
+    5. Verificar Saldo al Cierre del Periodo: $16400,00
     6. Boton Cancelar
  
 07: Consulta de Estado de Encomienda
@@ -206,4 +206,4 @@
            
                {"IDFactura":1476474962,  < fecha actual>
                 "Concepto":"Factura FA-202511-00001",
-                "Debe":13600.00,"Haber":0,"SaldoActual":15500.00}]}
+                "Debe":13600.00,"Haber":0,"SaldoActual":16500.00}]}
