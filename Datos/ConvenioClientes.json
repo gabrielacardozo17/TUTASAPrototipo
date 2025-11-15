@@ -58,6 +58,286 @@
           "L": 3700,
           "XL": 4500
         }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 1000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 1900,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 7600,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 8000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 4700,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 4740,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 4750,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 3500,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 3700,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 3730,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 9100,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 9000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 9120,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 5000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 5152,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 5800,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 3400,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 3450,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 3470,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 3100,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 3200,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 2820,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 3600,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 3610,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 3606,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 4600,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 4612,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 1888,
+        "CodigoPostalDestino": 4512,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
       }
     ]
   },
@@ -109,6 +389,286 @@
           "M": 3200,
           "L": 4100,
           "XL": 5000
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 1000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 1888,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 1900,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 7600,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 8000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 4700,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 4740,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 4750,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 3500,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 3700,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 3730,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 9100,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 9000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 9120,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 5000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 5152,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 5800,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 3400,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 3450,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 3470,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 3100,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 3200,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 2820,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 3600,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 3610,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 3606,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 4600,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5000,
+        "CodigoPostalDestino": 4612,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
         }
       }
     ]
@@ -173,6 +733,286 @@
           "L": 3600,
           "XL": 4400
         }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 1000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 1888,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 1900,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 7600,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 8000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 4700,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 4740,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 4750,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 3500,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 3700,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 3730,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 9100,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 9000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 9120,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 5000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 5152,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 5800,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 3400,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 3450,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 3470,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 3100,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 3200,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 2820,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 3600,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 3610,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 3606,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 4600,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 2000,
+        "CodigoPostalDestino": 4612,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
       }
     ]
   },
@@ -235,6 +1075,286 @@
           "M": 3000,
           "L": 3800,
           "XL": 4600
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 1000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 1900,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 7600,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 8000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 4700,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 4740,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 4750,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 3500,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 3700,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 3730,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 9100,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 9000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 9120,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 5000,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 5152,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 5800,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 3400,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 3450,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 3470,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 3100,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 3200,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 2820,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 3600,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 3610,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 3606,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 4600,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 4612,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
+        }
+      },
+      {
+        "CodigoPostalOrigen": 5700,
+        "CodigoPostalDestino": 4512,
+        "PreciosXTamano": {
+          "S": 2500,
+          "M": 3500,
+          "L": 4500,
+          "XL": 5500
         }
       }
     ]
