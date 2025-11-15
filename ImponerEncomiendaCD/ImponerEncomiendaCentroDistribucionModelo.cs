@@ -173,16 +173,27 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
             return TamanoEnum.XL;
         }
 
-        // Calcular importe de la guia según convenio del cliente
-        private static decimal CalcularImporteDesdeConvenio(string cuitCliente, TamanoEnum tamano)
+        // Importe = base por tamaño (tarifa exacta origen/destino) + extra según tipo de entrega
+        private static decimal CalcularImporteDesdeConvenio(string cuitCliente, TamanoEnum tamano, EntregaEnum entrega, int cpOrigen, int cpDestino)
         {
-            var digits = new string((cuitCliente ?? string.Empty).Where(char.IsDigit).ToArray());
+            string Dig(string s) => new string((s ?? string.Empty).Where(char.IsDigit).ToArray());
             var convenio = ConvenioClienteAlmacen.convenioClientes
-                .FirstOrDefault(c => new string((c.CUITCliente ?? string.Empty).Where(char.IsDigit).ToArray()) == digits);
+                .FirstOrDefault(c => Dig(c.CUITCliente) == Dig(cuitCliente));
 
-            var tarifa = convenio?.TarifasPorOrigenDestino?.FirstOrDefault();
-            if (tarifa?.PreciosXTamano == null) return 0m;
-            return tarifa.PreciosXTamano.TryGetValue(tamano, out var precio) ? precio : 0m;
+            var tarifa = convenio?.TarifasPorOrigenDestino?
+                .FirstOrDefault(t => t.CodigoPostalOrigen == cpOrigen && t.CodigoPostalDestino == cpDestino);
+
+            decimal basePrecio = 0m;
+            if (tarifa?.PreciosXTamano != null)
+                tarifa.PreciosXTamano.TryGetValue(tamano, out basePrecio);
+
+            decimal extra = 0m;
+            if (convenio?.Extras != null)
+            {
+                if (entrega == EntregaEnum.Domicilio && convenio.Extras.TryGetValue(ExtrasEnum.ExtraEntregaDomicilio, out var exDom)) extra = exDom;
+                else if (entrega == EntregaEnum.Agencia && convenio.Extras.TryGetValue(ExtrasEnum.ExtraEntregaAgencia, out var exAge)) extra = exAge;
+            }
+            return basePrecio + extra;
         }
 
         // Inicializa correlativo desde almacén
@@ -279,15 +290,15 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 var numeroStr = NextNumero();
                 var numeroInt = int.Parse(numeroStr);
                 var tam = MapTamanoEnum(s, m, l, xl);
-
-                tarifaOrigenDestino.PreciosXTamano.TryGetValue(tam, out var importe);
+                var entrega = MapEntregaEnum(tipoEntrega);
+                var importe = CalcularImporteDesdeConvenio(cuitParaGuia, tam, entrega, cpOrigen, CodigoPostalDestino());
 
                 var ge = new GuiaEntidad
                 {
                     NumeroGuia = numeroInt,
                     Estado = EstadoGuiaEnum.Admitida,
                     FechaAdmision = DateTime.Now,
-                    TipoEntrega = MapEntregaEnum(tipoEntrega),
+                    TipoEntrega = entrega,
                     CodigoPostalCDOrigen = cpOrigen,
                     CodigoPostalCDDestino = CodigoPostalDestino(),
                     IDAgenciaOrigen = string.Empty,
@@ -300,9 +311,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                         Nombre = destNombre,
                         Apellido = destApellido,
                         Direccion = direccion ?? string.Empty,
-                        CodigoPostal = int.TryParse(codigoPostal, out var cpInt)
-                                        ? cpInt
-                                        : (localidadId ?? CodigoPostalDestino())
+                        CodigoPostal = int.TryParse(codigoPostal, out var cpInt) ? cpInt : (localidadId ?? CodigoPostalDestino())
                     },
                     IDConvenio = idConvenio,
                     ImporteAFacturar = importe,

@@ -36,7 +36,7 @@
     "Extras": {
       "ExtraRetiroDomicilio": 1000,
       "ExtraEntregaDomicilio": 1300,
-      "ExtraEntregaAgencia": 0
+      "ExtraEntregaAgencia": 1000
     },
     "TarifasPorOrigenDestino": [
       {
