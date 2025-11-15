@@ -12,18 +12,6 @@
     }
   },
   {
-    "DNI": 32198765,
-    "Nombre": "Maria",
-    "Apellido": "Ledesma",
-    "CodigoPostalCD": 1000,
-    "PreciosXTamano": {
-      "S": 1200,
-      "M": 1850,
-      "L": 2600,
-      "XL": 3300
-    }
-  },
-  {
     "DNI": 30456789,
     "Nombre": "Luis",
     "Apellido": "Ferreyra",
@@ -105,18 +93,6 @@
       "M": 1800,
       "L": 2500,
       "XL": 3200
-    }
-  },
-  {
-    "DNI": 28456712,
-    "Nombre": "Carla",
-    "Apellido": "Mansilla",
-    "CodigoPostalCD": 5500,
-    "PreciosXTamano": {
-      "S": 1100,
-      "M": 1700,
-      "L": 2400,
-      "XL": 3100
     }
   },
   {

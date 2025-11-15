@@ -1,22 +1,4 @@
-﻿[
-  {
-    "ID": 1000744,
-    "CapacidadBodega": 120,
-    "IDEmpresaTransporte": 100,
-    "Tramos": [
-      { "ID": 1, "CodigoPostalOrigen": 1000, "Salida": "2025-10-10T08:00:00", "CodigoPostalDestino": 5000, "Llegada": "2025-10-10T18:00:00" },
-      { "ID": 2, "CodigoPostalOrigen": 5000, "Salida": "2025-10-11T07:30:00", "CodigoPostalDestino": 2000, "Llegada": "2025-10-11T15:30:00" }
-    ]
-  },
-  {
-    "ID": 2000521,
-    "CapacidadBodega": 90,
-    "IDEmpresaTransporte": 200,
-    "Tramos": [
-      { "ID": 3, "CodigoPostalOrigen": 1888, "Salida": "2025-10-10T06:00:00", "CodigoPostalDestino": 5000, "Llegada": "2025-10-10T12:30:00" },
-      { "ID": 4, "CodigoPostalOrigen": 5000, "Salida": "2025-10-10T14:00:00", "CodigoPostalDestino": 5700, "Llegada": "2025-10-10T20:30:00" }
-    ]
-  },
+﻿[ 
   {
     "ID": 3003345,
     "CapacidadBodega": 140,
@@ -43,15 +25,6 @@
     "Tramos": [
       { "ID": 10,  "CodigoPostalOrigen": 5500, "Salida": "2025-10-10T07:00:00", "CodigoPostalDestino": 2000, "Llegada": "2025-10-10T15:30:00" },
       { "ID": 11,  "CodigoPostalOrigen": 2000, "Salida": "2025-10-10T17:00:00", "CodigoPostalDestino": 5500, "Llegada": "2025-10-10T23:50:00" }
-    ]
-  },
-  {
-    "ID": 6006789,
-    "CapacidadBodega": 160,
-    "IDEmpresaTransporte": 600,
-    "Tramos": [
-      { "ID": 12, "CodigoPostalOrigen": 1888, "Salida": "2025-10-11T08:00:00", "CodigoPostalDestino": 1000, "Llegada": "2025-10-11T09:30:00" },
-      { "ID": 13, "CodigoPostalOrigen": 1000, "Salida": "2025-10-11T11:00:00", "CodigoPostalDestino": 2000, "Llegada": "2025-10-11T15:20:00" }
     ]
   }
 ]
