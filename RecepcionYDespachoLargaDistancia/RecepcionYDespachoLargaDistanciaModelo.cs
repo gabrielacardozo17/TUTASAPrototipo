@@ -15,7 +15,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
         public RecepcionYDespachoLargaDistanciaModelo()
         {
             CargarDatosDePrueba();
-            CDActual = CentroDeDistribucionAlmacen.CentroDistribucionActual; // nuevo: inicializar desde login
+            CDActual = CentroDeDistribucionAlmacen.CentroDistribucionActual;
             MapearDesdeAlmacenes();
         }
 
@@ -26,21 +26,16 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             MapearDesdeAlmacenes();
         }
 
-        // Helper para encabezado
         public string GetNombreCDActual() => CDActual?.Nombre ?? CentroDeDistribucionAlmacen.CentroDistribucionActual?.Nombre ?? string.Empty;
 
-        // =================== NUEVAS VALIDACIONES (solo modelo) ===================
-        // Indica si el servicio existe y tiene al menos una guía (recibir o despachar)
         public bool ServicioTieneGuias(string numeroServicio)
         {
             var s = BuscarServicio(numeroServicio);
             return s != null && ((s.GuiasARecibir?.Count ?? 0) > 0 || (s.GuiasADespachar?.Count ?? 0) > 0);
         }
 
-        // Indica si el servicio no tiene guías (recibir ni despachar)
         public bool ServicioSinGuias(string numeroServicio) => !ServicioTieneGuias(numeroServicio);
 
-        // Indica si después de confirmar el servicio quedó sin guías pendientes
         public bool ServicioSinGuiasPostConfirmacion(string numeroServicio)
         {
             var s = BuscarServicio(numeroServicio);
@@ -122,7 +117,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             return ruta;
         }
 
-        // Método privado: planifica la ruta y guarda la lista de "CDs intermedios" por guía
         private void PlanificarRutaSiNecesaria(GuiaEntidad guia, IEnumerable<ServicioTransporteEntidad> serviciosEnt, int cdActual)
         {
             if (_planesRuta.ContainsKey(guia.NumeroGuia)) return;
@@ -140,7 +134,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             {
                 var orig = rutaCds[i];
                 var dest = rutaCds[i + 1];
-                // tramoServicios tiene clave (orig,dest)
                 if (!tramoServicios.TryGetValue((orig, dest), out var svcs) || svcs == null || svcs.Count == 0)
                 {
                     cdsIntermedios.Add((dest, 0));
@@ -148,7 +141,6 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                 else
                 {
                     int servicioAsignado = svcs.First();
-                    // usar forma simple de tupla literal para evitar ambigüedad de tipos
                     cdsIntermedios.Add((dest, servicioAsignado));
                 }
             }
@@ -170,9 +162,39 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             if (_indiceCdIntermedioActual.ContainsKey(numeroGuia)) _indiceCdIntermedioActual[numeroGuia]++;
         }
 
+        // NUEVO: Verifica si un servicio tiene un tramo directo desde origen hasta destino final (sin intermedios)
+        private bool ServicioTieneTramoDirecto(ServicioTransporteEntidad servicio, int origen, int destinoFinal)
+        {
+            if (servicio.Tramos == null) return false;
+            
+            // Verificar si existe un camino directo en el servicio
+            // El servicio puede tener múltiples tramos, pero debe poder ir de origen a destino sin bajarse
+            var tramosPorOrigen = servicio.Tramos.ToLookup(t => t.CodigoPostalOrigen);
+            
+            var visitados = new HashSet<int>();
+            var cola = new Queue<int>();
+            cola.Enqueue(origen);
+            visitados.Add(origen);
+            
+            while (cola.Count > 0)
+            {
+                var actual = cola.Dequeue();
+                if (actual == destinoFinal) return true;
+                
+                foreach (var tramo in tramosPorOrigen[actual])
+                {
+                    if (visitados.Add(tramo.CodigoPostalDestino))
+                    {
+                        cola.Enqueue(tramo.CodigoPostalDestino);
+                    }
+                }
+            }
+            
+            return false;
+        }
+
         private void MapearDesdeAlmacenes()
         {
-                     // forzar tipo explícito para evitar colisión con RecepcionYDespachoLargaDistancia.ServicioTransporte
             List<ServicioTransporteEntidad> serviciosEnt = ServicioTransporteAlmacen.serviciosTransporte ?? new List<ServicioTransporteEntidad>();
             var hdrs = HDRAlmacen.HDR ?? new List<HDREntidad>();
             var guiasAlmacen = GuiaAlmacen.guias ?? new List<GuiaEntidad>();
@@ -181,16 +203,16 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             var cdNombreActual = cds.FirstOrDefault(cd => cd.CodigoPostal == codigoPostalCDActual)?.Nombre ?? string.Empty;
 
             this.servicios = serviciosEnt
-                // anotar el tipo del parámetro lambda para evitar confusión de nombres (s puede ser ServicioTransporteEntidad)
                 .GroupJoin(hdrs, (ServicioTransporteEntidad s) => s.ID, h => h.IDServicioTransporte, (s, hdrGroup) => new { s, hdrGroup })
                 .Select(x =>
                 {
-                    var sEntidad = x.s;           // ServicioTransporteEntidad
+                    var sEntidad = x.s;
                     var hdrGroup = x.hdrGroup;
                     int capacidadUsada = CalcularCapacidadUsadaPorServicio(sEntidad.ID, hdrs, guiasAlmacen);
                     int capacidadTotal = Math.Max(0, sEntidad.CapacidadBodega);
                     int capacidadRestante = Math.Max(0, capacidadTotal - capacidadUsada);
 
+                    // Guías a recibir: solo si el destino de la HDR es este CD Y el destino final de la guía es este CD
                     var guiasARecibir = hdrGroup
                         .Where(h => codigoPostalCDActual.HasValue && h.CodigoPostalDestino == codigoPostalCDActual.Value)
                         .SelectMany(h => h.Guias.Select(num => guiasAlmacen.FirstOrDefault(g => g.NumeroGuia == num)))
@@ -222,26 +244,50 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                             if (!_planesRuta.ContainsKey(ga.NumeroGuia))
                                 PlanificarRutaSiNecesaria(ga, serviciosEnt, codigoPostalCDActual.Value);
 
-                            int proximoCd = ObtenerProximoCdIntermedio(ga.NumeroGuia);
-                            if (proximoCd == 0) continue;
-
-                            bool servicioPuedeRealizar = sEntidad.Tramos != null && sEntidad.Tramos.Any(t => t.CodigoPostalOrigen == codigoPostalCDActual.Value && t.CodigoPostalDestino == proximoCd);
-                            if (!servicioPuedeRealizar) continue;
-
-                            int costo = CapacidadPorTamano(ga.Tamano);
-                            if (carga + costo > capacidadRestante) continue;
-                            carga += costo;
-
-                            var nombreFinal = cds.FirstOrDefault(cd => cd.CodigoPostal == ga.CodigoPostalCDDestino)?.Nombre ?? ga.CodigoPostalCDDestino.ToString();
-                            var nombreIntermedio = cds.FirstOrDefault(cd => cd.CodigoPostal == proximoCd)?.Nombre ?? proximoCd.ToString();
-                            var destinoMostrar = proximoCd == ga.CodigoPostalCDDestino ? nombreFinal : $"CD Intermedio: {nombreIntermedio}";
-
-                            guiasADespachar.Add(new Guia
+                            // Verificar si este servicio puede llevar la guía directo al destino final
+                            bool esTramoDirecto = ServicioTieneTramoDirecto(sEntidad, codigoPostalCDActual.Value, ga.CodigoPostalCDDestino);
+                            
+                            if (esTramoDirecto)
                             {
-                                NroGuia = ga.NumeroGuia.ToString(),
-                                Tamanio = ga.Tamano.ToString(),
-                                Destino = destinoMostrar
-                            });
+                                // Caso directo: mostrar destino final
+                                int costo = CapacidadPorTamano(ga.Tamano);
+                                if (carga + costo > capacidadRestante) continue;
+                                carga += costo;
+
+                                var nombreFinal = cds.FirstOrDefault(cd => cd.CodigoPostal == ga.CodigoPostalCDDestino)?.Nombre ?? ga.CodigoPostalCDDestino.ToString();
+
+                                guiasADespachar.Add(new Guia
+                                {
+                                    NroGuia = ga.NumeroGuia.ToString(),
+                                    Tamanio = ga.Tamano.ToString(),
+                                    Destino = nombreFinal
+                                });
+                            }
+                            else
+                            {
+                                // Caso con intermedios: mostrar próximo CD intermedio
+                                int proximoCd = ObtenerProximoCdIntermedio(ga.NumeroGuia);
+                                if (proximoCd == 0) continue;
+
+                                bool servicioPuedeRealizar = sEntidad.Tramos != null && sEntidad.Tramos.Any(t => t.CodigoPostalOrigen == codigoPostalCDActual.Value && t.CodigoPostalDestino == proximoCd);
+                                if (!servicioPuedeRealizar) continue;
+
+                                int costo = CapacidadPorTamano(ga.Tamano);
+                                if (carga + costo > capacidadRestante) continue;
+                                carga += costo;
+
+                                var nombreFinal = cds.FirstOrDefault(cd => cd.CodigoPostal == ga.CodigoPostalCDDestino)?.Nombre ?? ga.CodigoPostalCDDestino.ToString();
+                                var nombreIntermedio = cds.FirstOrDefault(cd => cd.CodigoPostal == proximoCd)?.Nombre ?? proximoCd.ToString();
+                                var destinoMostrar = proximoCd == ga.CodigoPostalCDDestino ? nombreFinal : $"CD Intermedio: {nombreIntermedio}";
+
+                                guiasADespachar.Add(new Guia
+                                {
+                                    NroGuia = ga.NumeroGuia.ToString(),
+                                    Tamanio = ga.Tamano.ToString(),
+                                    Destino = destinoMostrar
+                                });
+                            }
+                            
                             if (carga >= capacidadRestante) break;
                         }
                     }
@@ -285,20 +331,16 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
 
             var servicio = servicios.FirstOrDefault(s => s.NumeroServicio == numeroServicio);
             if (servicio == null)
-                return null; // solo null si NO existe el servicio
+                return null;
 
-            // Filtrar guías ya procesadas
             servicio.GuiasARecibir = servicio.GuiasARecibir.Where(g => !g.Procesada).ToList();
             servicio.GuiasADespachar = servicio.GuiasADespachar.Where(g => !g.Procesada).ToList();
 
-            // Si no hay guías, devolver igualmente el servicio (para que el form no muestre 'no existe').
-            // Las pantallas pueden usar ServicioTieneGuias/ServicioSinGuias si necesitan diferenciar.
             return servicio;
         }
 
         public void MarcarGuiasProcesadas(string numeroServicio, List<string> guiasRecibidas, List<string> guiasDespachadas)
         {
-            
             var servicio = servicios.FirstOrDefault(s => s.NumeroServicio == numeroServicio);
             if (servicio == null) return;
             foreach (var guia in servicio.GuiasARecibir)
@@ -317,6 +359,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
             foreach (var g in guiasAAsignar) guiasPendientesDeAsignacion.Remove(g);
             return true;
         }
+        
         public int ObtenerCantidadGuiasPendientes() => guiasPendientesDeAsignacion?.Count ?? 0;
 
         public void ConfirmarRecepcionYDespacho(string numeroServicio, List<string> guiasRecibidas, List<string> guiasDespachadas)
@@ -347,13 +390,10 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                         var hdrsDestinoActual = HDRAlmacen.HDR.Where(h => h.CodigoPostalDestino == codigoPostalCDActual.Value && h.Guias.Contains(n)).ToList();
                         foreach (var hdr in hdrsDestinoActual)
                         {
-                            // quitar referencia de la guía en HDRs cuyo destino sea ESTE CD (estamos recibiendo)
                             hdr.Guias.Remove(n);
-                            // NO eliminar la HDR completa si queda vacía: mantener la entrada para trazabilidad
                             if (hdr.Guias.Count == 0)
                             {
                                 hdr.Guias = hdr.Guias ?? new List<int>();
-                                // se mantiene hdr en HDRAlmacen.HDR (no se elimina)
                             }
                         }
                     }
@@ -378,8 +418,7 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                     entidad.Historial ??= new List<RegistroEstadoAux>();
                     if (!_planesRuta.ContainsKey(entidad.NumeroGuia))
                         PlanificarRutaSiNecesaria(entidad, serviciosEnt, codigoPostalCDActual.Value);
-                    int proximoCd = ObtenerProximoCdIntermedio(entidad.NumeroGuia);
-                    if (proximoCd == 0) continue;
+                    
                     entidad.Estado = EstadoGuiaEnum.EnTransitoAlCDDestino;
                     entidad.Historial.Add(new RegistroEstadoAux
                     {
@@ -404,45 +443,100 @@ namespace TUTASAPrototipo.RecepcionYDespachoLargaDistancia
                 int secuencia = ultimoIdTransporte + 1;
 
                 var servicioActual = ServicioTransporteAlmacen.serviciosTransporte.FirstOrDefault(s => s.ID == idServicio);
-                var gruposPorCdIntermedio = guiasDespachadasEntidades
-                    .Select(g => new { Guia = g, CdIntermedio = ObtenerProximoCdIntermedio(g.NumeroGuia) })
-                    .Where(x => x.CdIntermedio != 0 && servicioActual?.Tramos?.Any(t => t.CodigoPostalOrigen == codigoPostalCDActual.Value && t.CodigoPostalDestino == x.CdIntermedio) == true)
-                    .GroupBy(x => x.CdIntermedio);
-                foreach (var grupo in gruposPorCdIntermedio)
+                
+                // Separar guías en dos grupos: directas e intermedias
+                var guiasDirectas = new List<GuiaEntidad>();
+                var guiasConIntermedios = new List<GuiaEntidad>();
+                
+                foreach (var guia in guiasDespachadasEntidades)
                 {
-                    var destinoHop = grupo.Key;
+                    bool esDirecta = servicioActual != null && ServicioTieneTramoDirecto(servicioActual, codigoPostalCDActual.Value, guia.CodigoPostalCDDestino);
+                    if (esDirecta)
+                        guiasDirectas.Add(guia);
+                    else
+                        guiasConIntermedios.Add(guia);
+                }
 
-                    // Solo evitar duplicados dentro del MISMO servicio (IDServicioTransporte).
-                    var guiasNums = grupo.Select(x => x.Guia.NumeroGuia).ToList();
-                    var existentesEnMismoServicio = HDRAlmacen.HDR
-                        .Where(h => h.TipoHDR == TipoHDREnum.Transporte
-                                    && h.CodigoPostalOrigen == codigoPostalCDActual.Value
-                                    && h.CodigoPostalDestino == destinoHop
-                                    && h.IDServicioTransporte == idServicio) // misma ID de servicio -> evitar duplicados
-                        .SelectMany(h => h.Guias)
-                        .ToHashSet();
-
-                    var nuevos = guiasNums.Where(n => !existentesEnMismoServicio.Contains(n)).ToList();
-                    if (nuevos.Count == 0) continue;
-
-                    var idHdr = $"T {codigoPostalCDActual.Value:00000} {secuencia:000000} {destinoHop:00000}";
-                    var hdr = new HDREntidad
+                // Caso 1: Guías directas - crear HDR con destino final
+                if (guiasDirectas.Any())
+                {
+                    var gruposPorDestinoFinal = guiasDirectas.GroupBy(g => g.CodigoPostalCDDestino);
+                    
+                    foreach (var grupo in gruposPorDestinoFinal)
                     {
-                        ID = idHdr,
-                        TipoHDR = TipoHDREnum.Transporte,
-                        DNIFletero = 0,
-                        IDServicioTransporte = idServicio,
-                        CodigoPostalOrigen = codigoPostalCDActual.Value,
-                        CodigoPostalDestino = destinoHop,
-                        Guias = nuevos
-                    };
+                        var destinoFinal = grupo.Key;
+                        var guiasNums = grupo.Select(g => g.NumeroGuia).ToList();
 
-                    HDRAlmacen.HDR.Add(hdr);
-                    secuencia++;
+                        var existentesEnMismoServicio = HDRAlmacen.HDR
+                            .Where(h => h.TipoHDR == TipoHDREnum.Transporte
+                                        && h.CodigoPostalOrigen == codigoPostalCDActual.Value
+                                        && h.CodigoPostalDestino == destinoFinal
+                                        && h.IDServicioTransporte == idServicio)
+                            .SelectMany(h => h.Guias)
+                            .ToHashSet();
+
+                        var nuevos = guiasNums.Where(n => !existentesEnMismoServicio.Contains(n)).ToList();
+                        if (nuevos.Count == 0) continue;
+
+                        var idHdr = $"T {codigoPostalCDActual.Value:00000} {secuencia:000000} {destinoFinal:00000}";
+                        var hdr = new HDREntidad
+                        {
+                            ID = idHdr,
+                            TipoHDR = TipoHDREnum.Transporte,
+                            DNIFletero = 0,
+                            IDServicioTransporte = idServicio,
+                            CodigoPostalOrigen = codigoPostalCDActual.Value,
+                            CodigoPostalDestino = destinoFinal,
+                            Guias = nuevos
+                        };
+
+                        HDRAlmacen.HDR.Add(hdr);
+                        secuencia++;
+                    }
+                }
+
+                // Caso 2: Guías con intermedios - crear HDR por tramo intermedio
+                if (guiasConIntermedios.Any())
+                {
+                    var gruposPorCdIntermedio = guiasConIntermedios
+                        .Select(g => new { Guia = g, CdIntermedio = ObtenerProximoCdIntermedio(g.NumeroGuia) })
+                        .Where(x => x.CdIntermedio != 0 && servicioActual?.Tramos?.Any(t => t.CodigoPostalOrigen == codigoPostalCDActual.Value && t.CodigoPostalDestino == x.CdIntermedio) == true)
+                        .GroupBy(x => x.CdIntermedio);
+                    
+                    foreach (var grupo in gruposPorCdIntermedio)
+                    {
+                        var destinoHop = grupo.Key;
+                        var guiasNums = grupo.Select(x => x.Guia.NumeroGuia).ToList();
+                        
+                        var existentesEnMismoServicio = HDRAlmacen.HDR
+                            .Where(h => h.TipoHDR == TipoHDREnum.Transporte
+                                        && h.CodigoPostalOrigen == codigoPostalCDActual.Value
+                                        && h.CodigoPostalDestino == destinoHop
+                                        && h.IDServicioTransporte == idServicio)
+                            .SelectMany(h => h.Guias)
+                            .ToHashSet();
+
+                        var nuevos = guiasNums.Where(n => !existentesEnMismoServicio.Contains(n)).ToList();
+                        if (nuevos.Count == 0) continue;
+
+                        var idHdr = $"T {codigoPostalCDActual.Value:00000} {secuencia:000000} {destinoHop:00000}";
+                        var hdr = new HDREntidad
+                        {
+                            ID = idHdr,
+                            TipoHDR = TipoHDREnum.Transporte,
+                            DNIFletero = 0,
+                            IDServicioTransporte = idServicio,
+                            CodigoPostalOrigen = codigoPostalCDActual.Value,
+                            CodigoPostalDestino = destinoHop,
+                            Guias = nuevos
+                        };
+
+                        HDRAlmacen.HDR.Add(hdr);
+                        secuencia++;
+                    }
                 }
             }
 
-            // persistir cambios en almacenes
             HDRAlmacen.Grabar();
             GuiaAlmacen.Grabar();
         }
