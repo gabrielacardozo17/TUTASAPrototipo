@@ -245,7 +245,6 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
 
             var creadas = new List<(string, TamanoEnum)>();
 
-
             int cpOrigen = 0;
             var cdActual = CentroDeDistribucionAlmacen.CentroDistribucionActual;
             var nombreCd = cdActual?.Nombre ?? string.Empty;
@@ -293,6 +292,16 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                 var entrega = MapEntregaEnum(tipoEntrega);
                 var importe = CalcularImporteDesdeConvenio(cuitParaGuia, tam, entrega, cpOrigen, CodigoPostalDestino());
 
+                // Comision destino solo si se entrega en agencia: buscar convenio de agencia por CP (agenciaId sin el 0 inicial)
+                decimal comisionAgenciaDestino = 0m;
+                if (entrega == EntregaEnum.Agencia && agenciaId.HasValue)
+                {
+                    var convAg = ConvenioAgenciaAlmacen.convenioAgencias
+                        .FirstOrDefault(ca => ca.IDConvenioAgencia == agenciaId.Value);
+                    if (convAg?.PreciosXTamano != null && convAg.PreciosXTamano.TryGetValue(tam, out var com))
+                        comisionAgenciaDestino = com;
+                }
+
                 var ge = new GuiaEntidad
                 {
                     NumeroGuia = numeroInt,
@@ -316,7 +325,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaCD
                     IDConvenio = idConvenio,
                     ImporteAFacturar = importe,
                     ComisionAgenciaOrigen = 0,
-                    ComisionAgenciaDestino = 0,
+                    ComisionAgenciaDestino = comisionAgenciaDestino,
                     ComisionFleteroOrigen = 0,
                     ComisionFleteroDestino = 0,
                     Historial = new List<RegistroEstadoAux>
