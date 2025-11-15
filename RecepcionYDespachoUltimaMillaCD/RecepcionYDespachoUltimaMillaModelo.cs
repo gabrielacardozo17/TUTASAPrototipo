@@ -103,9 +103,9 @@ namespace TUTASAPrototipo.RecepcionYDespachoUltimaMillaCD
 
                 guia.ComisionFleteroDestino = FleteroAlmacen.fleteros.FirstOrDefault(f => f.DNI == dni).PreciosXTamano.GetValueOrDefault(guia.Tamano); //obtengo comision del fletero
 
-                if (!string.IsNullOrEmpty(guia.IDAgenciaOrigen))
+                if (!string.IsNullOrEmpty(guia.IDAgenciaDestino))
                 {
-                    guia.ComisionAgenciaDestino = ConvenioAgenciaAlmacen.convenioAgencias.FirstOrDefault(a => a.IDConvenioAgencia.ToString() == guia.IDAgenciaDestino.Substring(1)).PreciosXTamano.GetValueOrDefault(guia.Tamano);
+                    guia.ComisionAgenciaDestino = ConvenioAgenciaAlmacen.convenioAgencias.FirstOrDefault(a => a.IDConvenioAgencia.ToString() == guia.IDAgenciaDestino).PreciosXTamano.GetValueOrDefault(guia.Tamano);
                 }
 
                 // Cambiar estado según el tipo de entrega
