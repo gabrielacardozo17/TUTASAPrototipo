@@ -126,7 +126,7 @@
 		"ComisionAgenciaOrigen":0,
 		"ComisionAgenciaDestino":0,
 		"ComisionFleteroOrigen":0,
-		"ComisionFleteroDestino":0,
+		"ComisionFleteroDestino":1100,
 		"Historial":
 			[{"Estado":5,"UbicacionGuia":"CD San Luis"},
 			{"Estado":6,"UbicacionGuia":"Servicio:4004123"},
@@ -158,8 +158,9 @@
 		
 	- Estado de Cuenta Corriente:	
 		
-		{"ID":"CC-30-55667788-1","CUITCliente":"30-55667788-1","Movimientos":
-
+		
+			{"ID":"CC-30-55667788-1","CUITCliente":"30-55667788-1","Movimientos":
+			
 			[{"IDFactura":101,"Fecha":"2025-08-05T00:00:00","Concepto":"Factura FA-202508-0002","Debe":1200,"Haber":0,"SaldoActual":1200},
 			{"IDFactura":102,"Fecha":"2025-08-15T00:00:00","Concepto":"Factura FA-202508-0002","Debe":900,"Haber":0,"SaldoActual":2100},
 			{"IDFactura":0,"Fecha":"2025-08-25T00:00:00","Concepto":"Pago Agosto","Debe":0,"Haber":1500,"SaldoActual":600},
@@ -170,5 +171,4 @@
 			{"IDFactura":106,"Fecha":"2025-10-15T00:00:00","Concepto":"Factura FA-202510-0004","Debe":1600,"Haber":0,"SaldoActual":3600},
 			{"IDFactura":0,"Fecha":"2025-10-25T00:00:00","Concepto":"Pago Octubre","Debe":0,"Haber":3000,"SaldoActual":600},
 			{"IDFactura":107,"Fecha":"2025-11-05T00:00:00","Concepto":"Factura FA-202511-0002","Debe":1250,"Haber":0,"SaldoActual":1850},
-
-			{"IDFactura":1560728604,"Fecha":"2025-11-15T02:58:10.8149735-03:00","Concepto":"Factura FA-202511-00001","Debe":3400,"Haber":0,"SaldoActual":5250}]}
+			{"IDFactura":1035662155,"Fecha":"2025-11-15T15:44:46","Concepto":"Factura FA-202511-00001","Debe":3400,"Haber":0,"SaldoActual":5250}]}
