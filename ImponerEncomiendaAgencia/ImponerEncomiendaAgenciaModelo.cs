@@ -125,8 +125,8 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
         // CDs por provincia
         private readonly Dictionary<int, List<(int id, string nombre, string direccion)>> _cdsPorProv;
 
-        // correlativo por origen (solo para Agencia) clave = IDAgenciaOrigen
-        private static readonly Dictionary<string, int> _seqPorAgenciaOrigen = new();
+        // correlativo por prefijo (Código Postal). Se comparte entre CD y Agencias con el mismo CP
+        private static readonly Dictionary<int, int> _seqPorCP = new();
 
         public ImponerEncomiendaAgenciaModelo()
         {
@@ -268,27 +268,30 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
             return TamanoEnum.XL;
         }
 
-        // Inicializa correlativo de Agencia leyendo guías persistidas 
-        private static void EnsureSeqForAgencia(string idAgenciaOrigen)
+        // Inicializa correlativo por Código Postal (CP) leyendo TODAS las guías persistidas
+        // Esto permite compartir numeración entre CD y Agencias cuando tienen el mismo CP
+        private static void EnsureSeqForCP(int codigoPostal)
         {
-            if (_seqPorAgenciaOrigen.ContainsKey(idAgenciaOrigen)) return;
+            if (_seqPorCP.ContainsKey(codigoPostal)) return;
             int maxSeq = 0;
+            string prefijo = codigoPostal.ToString("D4");
             foreach (var g in GuiaAlmacen.guias)
             {
-                if (!string.Equals(g.IDAgenciaOrigen, idAgenciaOrigen, StringComparison.Ordinal)) continue;
-                // tomar los últimos 5 dígitos del número como secuencia
-                var seq = g.NumeroGuia % 100000;
-                if (seq > maxSeq) maxSeq = seq;
+                var numStr = g.NumeroGuia.ToString("D9"); // siempre 9 dígitos
+                if (!numStr.StartsWith(prefijo)) continue;
+                // Tomamos los últimos 5 dígitos como correlativo
+                if (int.TryParse(numStr.Substring(4, 5), out var seq) && seq > maxSeq)
+                    maxSeq = seq;
             }
-            _seqPorAgenciaOrigen[idAgenciaOrigen] = maxSeq;
+            _seqPorCP[codigoPostal] = maxSeq;
         }
 
-        // Numeración: XXXXX + correlativo de 5 dígitos
-        private static string NextGuiaCodeAgencia(string idAgenciaOrigen)
+        // Numeración: CP (4 dígitos) + correlativo (5 dígitos)
+        private static string NextGuiaCodeCP(int codigoPostal)
         {
-            EnsureSeqForAgencia(idAgenciaOrigen);
-            _seqPorAgenciaOrigen[idAgenciaOrigen] = _seqPorAgenciaOrigen[idAgenciaOrigen] + 1;
-            return $"{idAgenciaOrigen}{_seqPorAgenciaOrigen[idAgenciaOrigen]:D5}";
+            EnsureSeqForCP(codigoPostal);
+            _seqPorCP[codigoPostal] = _seqPorCP[codigoPostal] + 1;
+            return $"{codigoPostal:D4}{_seqPorCP[codigoPostal]:D5}";
         }
 
         // Crea GuiaEntidad, devuelve número y tamaño, y persiste
@@ -328,8 +331,13 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
 
             // Origen desde agencia actual
             var agenciaActual = AgenciaAlmacen.AgenciaActual;
+            if (agenciaActual == null)
+            { MessageBox.Show("Agencia actual no definida.", "Validación"); return creadas; }
 
-            // CP del CD de la misma provincia que la agencia 
+            // Prefijo de la guía = Código Postal de la Agencia (4 dígitos). Comparte secuencia con CD si coincide el CP
+            int cpAgencia = agenciaActual.CodigoPostal;
+
+            // CP del CD de la misma provincia que la agencia (para el campo de origen)
             int cpOrigen = CentroDeDistribucionAlmacen.centrosDeDistribucion
                 .Where(cd => LocalidadAlmacen.localidades.Any(lcd => lcd.CodigoPostal == cd.CodigoPostal &&
                             LocalidadAlmacen.localidades.FirstOrDefault(l => l.CodigoPostal == agenciaActual.CodigoPostal)?.Provincia.Equals(lcd.Provincia) == true))
@@ -344,11 +352,11 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                 return agenciaId.Value.ToString("D4");
             }
 
-            // ID de agencia origen (5 dígitos) sin validaciones
-            var idAgenciaOrigenDigits = new string((agenciaActual.ID ?? string.Empty).Where(char.IsDigit).ToArray());
-            var idAgenciaOrigenStr = idAgenciaOrigenDigits.PadLeft(5, '0');
+            // ID de agencia origen (guardamos el ID normal, no lo usamos para la numeración)
+            var idAgenciaOrigen = agenciaActual.ID ?? string.Empty;
 
-            string NextNumero() => NextGuiaCodeAgencia(idAgenciaOrigenStr);
+            // Siguiente número con prefijo CP de la Agencia
+            string NextNumero() => NextGuiaCodeCP(cpAgencia);
 
             void CrearYAgregar(int s, int m, int l, int xl)
             {
@@ -364,7 +372,7 @@ namespace TUTASAPrototipo.ImponerEncomiendaAgencia
                     TipoEntrega = MapEntregaEnum(tipoEntrega),
                     CodigoPostalCDOrigen = cpOrigen,
                     CodigoPostalCDDestino = CodigoPostalDestino(),
-                    IDAgenciaOrigen = idAgenciaOrigenStr,
+                    IDAgenciaOrigen = idAgenciaOrigen,
                     IDAgenciaDestino = IdAgenciaDestinoStr(),
                     CUITCliente = cuitParaGuia,
                     Tamano = tam,
