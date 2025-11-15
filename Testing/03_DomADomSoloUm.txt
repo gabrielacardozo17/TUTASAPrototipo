@@ -1,7 +1,7 @@
 ﻿01: Login 
     1. Mail: jperez@gmail.com
     2. Contraseña: juanAgosto
-    3. CD y Agencia: CD Buenos Aires / Florencio Varela
+    3. CD y Agencia: CD Buenos Aires / Agencia Florencio Varela
     4. Botón Ingresar
 	5. Botón Aceptar en el pop-up
  
@@ -24,7 +24,7 @@
     15. Botón Aceptar en pop‑up
     16. Boton Cancelar
  
-03: Recepción y despacho (Centro de Distribucion)
+03: Recepción y despacho de encomiendas ultima milla (Centro de Distribucion)
     1. DNI Fletero: 30456789
     2. Botón Buscar
     3. Verificar: guia 188810007 se asigna a una nueva HDR de Retiro (R 01888 000011 01888)
@@ -38,11 +38,11 @@
     10. Verificar: la guía 188810007 aparece en el detalle de HDR de Retiro asignadas ("R 01888 000011 018888")
     11. Marcar guía en HDR retiro asignadas: 188810007
     12. Botón Confirmar
-    13. Verificar: la HDR "R 018888 000012 18888" quedó recibida
+    13. Verificar: la HDR "R 018888 000011 01888" quedó recibida
     14. Botón Aceptar en pop‑up
     15. Boton Cancelar
  
-04: Recepción y despacho (Centro de Distribucion)
+04: Recepción y despacho de encomiendas ultima milla (Centro de Distribucion)
     1. DNI Fletero: 29876543
     2. Botón Buscar
     3. Verificar: guia 188810007 se asigna a una nueva HDR de Distribución "D 01888 000012 01888"
@@ -81,7 +81,7 @@
 07: Consulta de Estado de Encomienda
     1. Guía: 188810007
     2. Botón Buscar
-    3. Verificar resultado:
+    3. Verificar resultado: 
  
         Fecha                   | Estado                                 | Ubicación
         Fecha de actualización  | A retirar por domicilio del cliente    | En domicilio Cliente
@@ -91,7 +91,8 @@
         Fecha de actualización  | En ruta al domicilio de entrega        | En transporte con Fletero DNI: 29876543
         Fecha de actualización  | Entregada                              | -
         Fecha de actualización  | Facturada                              | -
-    6. Boton Cancelar
+
+    4. Boton Cancelar
 
 08: Cerrar Sistema
 	1. Cerrar el menú principal
@@ -99,7 +100,36 @@
  
 09: Verificar archivos
  
-    - HDRs:
+        - Guías:
+
+            {
+            "NumeroGuia":188810007,
+            "Estado":14,
+            "TipoEntrega":2,
+            "CodigoPostalCDOrigen":1888,
+            "CodigoPostalCDDestino":1888,
+            "IDAgenciaOrigen":"",
+            "IDAgenciaDestino":"",
+            "CUITCliente":"30-40762117-0",
+            "Tamano":2,
+            "Destinatario":{"DNI":13131163,"Nombre":"Carlos","Apellido":"Mises","Direccion":"Tinogasta 2620","CodigoPostal":1888},
+            "IDConvenio":100002,
+            "ImporteAFacturar":4500,
+            "ComisionAgenciaOrigen":0,
+            "ComisionAgenciaDestino":0,
+            "ComisionFleteroOrigen":0,
+            "ComisionFleteroDestino":0,
+            "Historial":[
+                {"Estado":1,"UbicacionGuia":"En domicilio Cliente"},
+                {"Estado":2,"UbicacionGuia":"En domicilio Cliente"},
+                {"Estado":5,"UbicacionGuia":"CD Buenos Aires"},
+                {"Estado":7,"UbicacionGuia":"CD Buenos Aires"},
+                {"Estado":8,"UbicacionGuia":"En transporte con Fletero DNI: 29876543"},
+                {"Estado":11,"UbicacionGuia":""}]
+            }
+            
+            
+        - HDRs:
  
             {
             "ID":"R 01888 000011 01888",
@@ -121,30 +151,59 @@
             "CodigoPostalDestino":1888
             }
 
-    - Guías:
+        - Facturas:
+            {"ID":"FA-202511-00001",
+            "CUITCliente":"30-40762117-0"}
 
-            {
-            "NumeroGuia":188810007,
-            "Estado":14,
-            "TipoEntrega":2,
-            "CodigoPostalCDOrigen":1888,
-            "CodigoPostalCDDestino":1888,
-            "IDAgenciaOrigen":"",
-            "IDAgenciaDestino":"",
+
+
+        - Estado de Cuenta Corriente:
+
+            {"ID":"CC-30-40762117-0",
             "CUITCliente":"30-40762117-0",
-            "Tamano":2,
-            "Destinatario":{"DNI":13131163,"Nombre":"Carlos","Apellido":"Mises","Direccion":"Tinogasta 2620","CodigoPostal":1888},
-            "IDConvenio":100002,
-            "ImporteAFacturar":4500,
-            "ComisionAgenciaOrigen":0,
-            "ComisionAgenciaDestino":0,
-            "ComisionFleteroOrigen":0,
-            "ComisionFleteroDestino":0,
-            "Historial":[
-                {"Estado":1,"UbicacionGuia":"En domicilio Cliente","FechaActualizacionEstado":"2025-11-14T00:18:43.0303365-03:00"},
-                {"Estado":2,"UbicacionGuia":"En domicilio Cliente","FechaActualizacionEstado":"2025-11-14T00:29:35.4445292-03:00"},
-                {"Estado":5,"UbicacionGuia":"CD Buenos Aires","FechaActualizacionEstado":"2025-11-14T00:34:23.7131991-03:00"},
-                {"Estado":7,"UbicacionGuia":"CD Buenos Aires","FechaActualizacionEstado":"2025-11-14T00:34:23.713203-03:00"},
-                {"Estado":8,"UbicacionGuia":"En transporte con Fletero DNI: 29876543","FechaActualizacionEstado":"2025-11-14T00:43:53.9283843-03:00"},
-                {"Estado":11,"UbicacionGuia":"","FechaActualizacionEstado":"2025-11-14T00:53:26.4748065-03:00"}]
-            }
+            
+            "Movimientos":
+
+                [{"IDFactura":201,"Fecha":"2025-08-05T00:00:00",
+                "Concepto":"Factura Agosto A",
+                "Debe":2100,"Haber":0,"SaldoActual":2100},
+
+                {"IDFactura":202,"Fecha":"2025-08-15T00:00:00",
+                "Concepto":"Factura Agosto B",
+                "Debe":900,"Haber":0,"SaldoActual":3000},
+
+                {"IDFactura":0,"Fecha":"2025-08-25T00:00:00",
+                "Concepto":"Pago Agosto",
+                "Debe":0,"Haber":2500,"SaldoActual":500},
+
+                {"IDFactura":203,"Fecha":"2025-09-05T00:00:00",
+                "Concepto":"Factura Sept A",
+                "Debe":2000,"Haber":0,"SaldoActual":2500},
+
+                {"IDFactura":204,"Fecha":"2025-09-15T00:00:00",
+                "Concepto":"Factura Sept B",
+                "Debe":1500,"Haber":0,"SaldoActual":4000},
+
+                {"IDFactura":0,"Fecha":"2025-09-25T00:00:00",
+                "Concepto":"Pago Septiembre",
+                "Debe":0,"Haber":3000,"SaldoActual":1000},
+
+                {"IDFactura":205,"Fecha":"2025-10-05T00:00:00",
+                "Concepto":"Factura Oct A",
+                "Debe":1200,"Haber":0,"SaldoActual":2200},
+
+                {"IDFactura":206, "Fecha":"2025-10-15T00:00:00",
+                "Concepto":"Factura Oct B","Debe":900,
+                "Haber":0,"SaldoActual":3100},
+
+                {"IDFactura":0,"Fecha":"2025-10-25T00:00:00",
+                "Concepto":"Pago Octubre",
+                "Debe":0,"Haber":3000,"SaldoActual":100},
+
+                {"IDFactura":207, "Fecha":"2025-11-05T00:00:00",
+                "Concepto":"Factura Nov A",
+                "Debe":1800,"Haber":0,"SaldoActual":1900},
+           
+               {"IDFactura":1476474962,  < fecha actual>
+                "Concepto":"Factura FA-202511-00001",
+                "Debe":13600.00,"Haber":0,"SaldoActual":15500.00}]}

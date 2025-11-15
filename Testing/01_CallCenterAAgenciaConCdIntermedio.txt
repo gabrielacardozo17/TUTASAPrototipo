@@ -29,7 +29,7 @@
 	17. Botón aceptar en el pop-up
 	18. Botón Cancelar
  
-03: Recepción y despacho ultima milla
+03: Recepción y despacho ultima milla (Centro de Distribución))
 	1. DNI fletero: 30987654
 	2. Boton Buscar
 	3. Verificar que las guias 500000006 (S) y 500000007 (L)  se asignen a una nueva HDR de retiro.
@@ -62,6 +62,7 @@
 	3. CD: Santa Fe y Agencia: Rosario
 	4. Botón Ingresar
 	5. Botón Aceptar en el pop-up
+
 07: Recepción y despacho de encomiendas de larga distancia
 	1. Numero de servicio: 4004123
 	2. Boton Buscar
@@ -93,7 +94,7 @@
 	5. Boton Aceptar en pop-up
 	6. Boton Cancelar
  
-11: Recepción y despacho ultima milla
+11: Recepción y despacho ultima milla (Centro de Distribución)
  
 	1. DNI fletero: 30123456
 	2. Boton Buscar
@@ -101,7 +102,7 @@
 	4. Boton Confirmar
 	5. Verificar que las guias  pertenezcan a la HDR "D 05500 000014 05500"
 	6. Boton Confirmar
- 
+ ---------------------------------------------------------------------------------------------------------------------------> recep y despahco agencia ---> se cambia a pendiente de entrega
 	8. DNI fletero: 30123456
 	9. Boton buscar
 	10. Verificar que las guias 500000006 y 500000007 aparezcan en el detalle de HDR de distribución asignadas.
@@ -216,34 +217,33 @@
 			 {"Estado":10,"UbicacionGuia":""},
 			 {"Estado":11,"UbicacionGuia":""}]}]
 	
+	- HDRs:
+			{"ID":"R 05000 000011 05000",
+			"TipoHDR":1,
+			"DNIFletero":30987654,
+			"IDServicioTransporte":0,
+			"Guias":[500000004,500000005,500000006,500000007],
+			"CodigoPostalOrigen":5000,
+			"CodigoPostalDestino":5000},
 
+			{"ID":"T 05000 000304 02000",
+			"TipoHDR":2,"DNIFletero":0,
+			"IDServicioTransporte":4004123,
+			"Guias":[500000006,500000007],
+			"CodigoPostalOrigen":5000,
+			"CodigoPostalDestino":2000},
 
-		{"ID":"R 05000 000011 05000",
-		"TipoHDR":1,
-		"DNIFletero":30987654,
-		"IDServicioTransporte":0,
-		"Guias":[500000004,500000005,500000006,500000007],
-		"CodigoPostalOrigen":5000,
-		"CodigoPostalDestino":5000},
+			{"ID":"T 02000 000305 05500",
+			"TipoHDR":2,"DNIFletero":0,
+			"IDServicioTransporte":5005789,
+			"Guias":[500000006,500000007],
+			"CodigoPostalOrigen":2000,
+			"CodigoPostalDestino":5500},
 
-		{"ID":"T 05000 000304 02000",
-		"TipoHDR":2,"DNIFletero":0,
-		"IDServicioTransporte":4004123,
-		"Guias":[500000006,500000007],
-		"CodigoPostalOrigen":5000,
-		"CodigoPostalDestino":2000},
-
-		{"ID":"T 02000 000305 05500",
-		"TipoHDR":2,"DNIFletero":0,
-		"IDServicioTransporte":5005789,
-		"Guias":[500000006,500000007],
-		"CodigoPostalOrigen":2000,
-		"CodigoPostalDestino":5500},
-
-		{"ID":"D 05500 000014 05500",
-		"TipoHDR":0,
-		"DNIFletero":30123456,
-		"IDServicioTransporte":0,
-		"Guias":[500000006,500000007],
-		"CodigoPostalOrigen":5500,
-		"CodigoPostalDestino":5500}]
+			{"ID":"D 05500 000014 05500",
+			"TipoHDR":0,
+			"DNIFletero":30123456,
+			"IDServicioTransporte":0,
+			"Guias":[500000006,500000007],
+			"CodigoPostalOrigen":5500,
+			"CodigoPostalDestino":5500}]
