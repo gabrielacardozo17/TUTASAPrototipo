@@ -228,16 +228,6 @@
     },
     "TarifasPorOrigenDestino": [
       {
-        "CodigoPostalOrigen": 1888,
-        "CodigoPostalDestino": 1888,
-        "PreciosXTamano": {
-          "S": 1800,
-          "M": 2600,
-          "L": 3400,
-          "XL": 4200
-        }
-      },
-      {
         "CodigoPostalOrigen": 5700,
         "CodigoPostalDestino": 1888,
         "PreciosXTamano": {

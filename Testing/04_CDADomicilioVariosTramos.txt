@@ -28,7 +28,7 @@
     2. Botón Buscar
     3. Verificar que la guía 570010006 se asigne en Guias a despachar en este servicio
     4. Boton en confirmar
-    5. Aceptar el mensaje "Recepción y despacho confirmado con éxito" > VER SI AJUSTAR ESTO EN PRUEBA
+    5. Aceptar el mensaje "Recepción y despacho confirmado con éxito"
  
 04: Consultar estado de encomiendas
     1. Número de guía: 570010006
@@ -120,7 +120,7 @@
 06: Emitir Factura
     1. Cuit: 30-55667788-1
     2. Botón Buscar
-    3. Verificar que figure la guia 570010006 con importe $1.800,00
+    3. Verificar que figure la guia 570010006 con importe $3.400,00
     4. Botón Emitir Factura
     5. Aceptar
     6. Cuit: 30-55667788-1
@@ -132,12 +132,12 @@
 07: Consulta de estado de cuenta corriente 
     1. Cuit: 30-55667788-1 y período: noviembre 2025
     2. Botón Buscar
-    3. Verificar Importe: $1.800,00 en Debe. 
-    4. Verificar Saldo al cierre del periodo: $3.600,00
+    3. Verificar Importe: $3.400,00 en Debe. 
+    4. Verificar Saldo al cierre del periodo: $3.400,00
     5. Cancelar
  
 08: Monitoreo de resultados
     1. Noviembre 2025
     2. Botón Buscar
-    3. Verificar Via Bariloche Cargo-Ventas mensuales:$3.600,00
+    3. Verificar Via Bariloche Cargo-Ventas mensuales:$3.400,00
     4. AGREGAR TOTAL Verificar Via Bariloche Resultados: AGREGAR
