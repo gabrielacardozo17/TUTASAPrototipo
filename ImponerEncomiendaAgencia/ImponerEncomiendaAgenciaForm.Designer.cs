@@ -76,7 +76,7 @@
             // 
             // CancelarButton
             // 
-            CancelarButton.Location = new Point(570, 730);
+            CancelarButton.Location = new Point(539, 694);
             CancelarButton.Name = "CancelarButton";
             CancelarButton.Size = new Size(84, 29);
             CancelarButton.TabIndex = 21;
@@ -85,7 +85,7 @@
             // 
             // ConfirmarImposicionButton
             // 
-            ConfirmarImposicionButton.Location = new Point(663, 730);
+            ConfirmarImposicionButton.Location = new Point(628, 694);
             ConfirmarImposicionButton.Name = "ConfirmarImposicionButton";
             ConfirmarImposicionButton.Size = new Size(87, 29);
             ConfirmarImposicionButton.TabIndex = 20;
@@ -103,7 +103,7 @@
             EncomiendasGroupBox.Controls.Add(tipoSNumericUpDown);
             EncomiendasGroupBox.Controls.Add(TipoSLabel);
             EncomiendasGroupBox.Controls.Add(EncomiendasLabel);
-            EncomiendasGroupBox.Location = new Point(63, 598);
+            EncomiendasGroupBox.Location = new Point(63, 552);
             EncomiendasGroupBox.Name = "EncomiendasGroupBox";
             EncomiendasGroupBox.Size = new Size(642, 126);
             EncomiendasGroupBox.TabIndex = 19;
@@ -214,9 +214,9 @@
             DestinatarioGroupBox.Controls.Add(ApellidoDestinatarioLabel);
             DestinatarioGroupBox.Controls.Add(NombreDestinatarioTextBox);
             DestinatarioGroupBox.Controls.Add(NombreDestinatarioLabel);
-            DestinatarioGroupBox.Location = new Point(63, 227);
+            DestinatarioGroupBox.Location = new Point(63, 194);
             DestinatarioGroupBox.Name = "DestinatarioGroupBox";
-            DestinatarioGroupBox.Size = new Size(642, 365);
+            DestinatarioGroupBox.Size = new Size(642, 343);
             DestinatarioGroupBox.TabIndex = 18;
             DestinatarioGroupBox.TabStop = false;
             DestinatarioGroupBox.Text = "Datos del destinatario";
@@ -225,7 +225,7 @@
             // 
             CentroDistribucionComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             CentroDistribucionComboBox.FormattingEnabled = true;
-            CentroDistribucionComboBox.Location = new Point(367, 322);
+            CentroDistribucionComboBox.Location = new Point(356, 294);
             CentroDistribucionComboBox.Name = "CentroDistribucionComboBox";
             CentroDistribucionComboBox.Size = new Size(204, 23);
             CentroDistribucionComboBox.TabIndex = 51;
@@ -233,7 +233,7 @@
             // CentroLabel
             // 
             CentroLabel.AutoSize = true;
-            CentroLabel.Location = new Point(335, 325);
+            CentroLabel.Location = new Point(323, 294);
             CentroLabel.Name = "CentroLabel";
             CentroLabel.Size = new Size(26, 15);
             CentroLabel.TabIndex = 50;
@@ -243,7 +243,7 @@
             // 
             AgenciaComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             AgenciaComboBox.FormattingEnabled = true;
-            AgenciaComboBox.Location = new Point(86, 322);
+            AgenciaComboBox.Location = new Point(78, 294);
             AgenciaComboBox.Name = "AgenciaComboBox";
             AgenciaComboBox.Size = new Size(192, 23);
             AgenciaComboBox.TabIndex = 49;
@@ -251,7 +251,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(15, 325);
+            label1.Location = new Point(15, 294);
             label1.Name = "label1";
             label1.Size = new Size(53, 15);
             label1.TabIndex = 48;
@@ -271,7 +271,7 @@
             TipoEntregaLabel.AutoSize = true;
             TipoEntregaLabel.Location = new Point(6, 204);
             TipoEntregaLabel.Name = "TipoEntregaLabel";
-            TipoEntregaLabel.Size = new Size(151, 15);
+            TipoEntregaLabel.Size = new Size(150, 15);
             TipoEntregaLabel.TabIndex = 6;
             TipoEntregaLabel.Text = "Tipo de entrega disponible:";
             // 
@@ -288,7 +288,7 @@
             TipoEntregaComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             TipoEntregaComboBox.FormattingEnabled = true;
             TipoEntregaComboBox.Items.AddRange(new object[] { "A domicilio", "En agencia", "En centro de distribución" });
-            TipoEntregaComboBox.Location = new Point(167, 201);
+            TipoEntregaComboBox.Location = new Point(179, 202);
             TipoEntregaComboBox.Name = "TipoEntregaComboBox";
             TipoEntregaComboBox.Size = new Size(172, 23);
             TipoEntregaComboBox.TabIndex = 7;
@@ -307,7 +307,7 @@
             // DireccionDestinatarioTextBox
             // 
             DireccionDestinatarioTextBox.BackColor = SystemColors.ScrollBar;
-            DireccionDestinatarioTextBox.Location = new Point(107, 239);
+            DireccionDestinatarioTextBox.Location = new Point(81, 240);
             DireccionDestinatarioTextBox.Name = "DireccionDestinatarioTextBox";
             DireccionDestinatarioTextBox.Size = new Size(184, 23);
             DireccionDestinatarioTextBox.TabIndex = 12;
@@ -407,7 +407,7 @@
             RemitenteGroupBox.Controls.Add(BuscarCuitButton);
             RemitenteGroupBox.Controls.Add(CUITRemitenteMaskedText);
             RemitenteGroupBox.Controls.Add(CuitLabel);
-            RemitenteGroupBox.Location = new Point(63, 72);
+            RemitenteGroupBox.Location = new Point(63, 56);
             RemitenteGroupBox.Name = "RemitenteGroupBox";
             RemitenteGroupBox.Size = new Size(642, 133);
             RemitenteGroupBox.TabIndex = 17;
@@ -455,7 +455,7 @@
             TelefonoClienteLabel.AutoSize = true;
             TelefonoClienteLabel.Location = new Point(133, 85);
             TelefonoClienteLabel.Name = "TelefonoClienteLabel";
-            TelefonoClienteLabel.Size = new Size(56, 15);
+            TelefonoClienteLabel.Size = new Size(55, 15);
             TelefonoClienteLabel.TabIndex = 4;
             TelefonoClienteLabel.Text = "Teléfono:";
             // 
@@ -491,7 +491,7 @@
             CuitLabel.AutoSize = true;
             CuitLabel.Location = new Point(133, 30);
             CuitLabel.Name = "CuitLabel";
-            CuitLabel.Size = new Size(36, 15);
+            CuitLabel.Size = new Size(35, 15);
             CuitLabel.TabIndex = 0;
             CuitLabel.Text = "CUIT:";
             // 
@@ -499,7 +499,7 @@
             // 
             ImposicionAgenciaLabel.AutoSize = true;
             ImposicionAgenciaLabel.Font = new Font("Segoe UI", 14F);
-            ImposicionAgenciaLabel.Location = new Point(230, 44);
+            ImposicionAgenciaLabel.Location = new Point(238, 28);
             ImposicionAgenciaLabel.Name = "ImposicionAgenciaLabel";
             ImposicionAgenciaLabel.Size = new Size(282, 25);
             ImposicionAgenciaLabel.TabIndex = 16;
@@ -544,7 +544,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(781, 771);
+            ClientSize = new Size(781, 728);
             Controls.Add(AgenciaResult);
             Controls.Add(UsuarioResult);
             Controls.Add(AgenciaLabel);

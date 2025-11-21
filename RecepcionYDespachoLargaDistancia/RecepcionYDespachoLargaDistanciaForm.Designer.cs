@@ -57,9 +57,11 @@
             BusquedaGroupBox.Controls.Add(BuscarServicioButton);
             BusquedaGroupBox.Controls.Add(NumServicioTextBox);
             BusquedaGroupBox.Controls.Add(ServicioLabel);
-            BusquedaGroupBox.Location = new Point(47, 37);
+            BusquedaGroupBox.Location = new Point(54, 49);
+            BusquedaGroupBox.Margin = new Padding(3, 4, 3, 4);
             BusquedaGroupBox.Name = "BusquedaGroupBox";
-            BusquedaGroupBox.Size = new Size(609, 100);
+            BusquedaGroupBox.Padding = new Padding(3, 4, 3, 4);
+            BusquedaGroupBox.Size = new Size(718, 133);
             BusquedaGroupBox.TabIndex = 1;
             BusquedaGroupBox.TabStop = false;
             BusquedaGroupBox.Text = "Búsqueda";
@@ -67,9 +69,10 @@
             // 
             // BuscarServicioButton
             // 
-            BuscarServicioButton.Location = new Point(501, 44);
+            BuscarServicioButton.Location = new Point(591, 59);
+            BuscarServicioButton.Margin = new Padding(3, 4, 3, 4);
             BuscarServicioButton.Name = "BuscarServicioButton";
-            BuscarServicioButton.Size = new Size(75, 23);
+            BuscarServicioButton.Size = new Size(86, 31);
             BuscarServicioButton.TabIndex = 2;
             BuscarServicioButton.Text = "Buscar";
             BuscarServicioButton.UseVisualStyleBackColor = true;
@@ -77,27 +80,30 @@
             // 
             // NumServicioTextBox
             // 
-            NumServicioTextBox.Location = new Point(267, 44);
+            NumServicioTextBox.Location = new Point(325, 61);
+            NumServicioTextBox.Margin = new Padding(3, 4, 3, 4);
             NumServicioTextBox.Name = "NumServicioTextBox";
-            NumServicioTextBox.Size = new Size(228, 23);
+            NumServicioTextBox.Size = new Size(260, 27);
             NumServicioTextBox.TabIndex = 1;
             NumServicioTextBox.TextChanged += NumServicioTextBox_TextChanged;
             // 
             // ServicioLabel
             // 
             ServicioLabel.AutoSize = true;
-            ServicioLabel.Location = new Point(21, 47);
+            ServicioLabel.Location = new Point(24, 63);
             ServicioLabel.Name = "ServicioLabel";
-            ServicioLabel.Size = new Size(240, 15);
+            ServicioLabel.Size = new Size(303, 20);
             ServicioLabel.TabIndex = 0;
             ServicioLabel.Text = "Ingrese el número de servicio del transporte:";
             // 
             // GuiasGroupBox
             // 
             GuiasGroupBox.Controls.Add(GuiaxServicioRecibidaListView);
-            GuiasGroupBox.Location = new Point(49, 153);
+            GuiasGroupBox.Location = new Point(56, 204);
+            GuiasGroupBox.Margin = new Padding(3, 4, 3, 4);
             GuiasGroupBox.Name = "GuiasGroupBox";
-            GuiasGroupBox.Size = new Size(607, 140);
+            GuiasGroupBox.Padding = new Padding(3, 4, 3, 4);
+            GuiasGroupBox.Size = new Size(716, 187);
             GuiasGroupBox.TabIndex = 2;
             GuiasGroupBox.TabStop = false;
             GuiasGroupBox.Text = "Guías a recibir de este servicio:";
@@ -106,9 +112,10 @@
             // 
             GuiaxServicioRecibidaListView.CheckBoxes = true;
             GuiaxServicioRecibidaListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
-            GuiaxServicioRecibidaListView.Location = new Point(96, 22);
+            GuiaxServicioRecibidaListView.Location = new Point(129, 28);
+            GuiaxServicioRecibidaListView.Margin = new Padding(3, 4, 3, 4);
             GuiaxServicioRecibidaListView.Name = "GuiaxServicioRecibidaListView";
-            GuiaxServicioRecibidaListView.Size = new Size(407, 97);
+            GuiaxServicioRecibidaListView.Size = new Size(465, 128);
             GuiaxServicioRecibidaListView.TabIndex = 8;
             GuiaxServicioRecibidaListView.UseCompatibleStateImageBehavior = false;
             GuiaxServicioRecibidaListView.View = View.Details;
@@ -127,9 +134,10 @@
             // 
             GuiasADespacharxServicioListView.CheckBoxes = true;
             GuiasADespacharxServicioListView.Columns.AddRange(new ColumnHeader[] { NroGuiaColumn, TamanioColumn, DestinoColumn });
-            GuiasADespacharxServicioListView.Location = new Point(42, 39);
+            GuiasADespacharxServicioListView.Location = new Point(63, 53);
+            GuiasADespacharxServicioListView.Margin = new Padding(3, 4, 3, 4);
             GuiasADespacharxServicioListView.Name = "GuiasADespacharxServicioListView";
-            GuiasADespacharxServicioListView.Size = new Size(513, 97);
+            GuiasADespacharxServicioListView.Size = new Size(586, 128);
             GuiasADespacharxServicioListView.TabIndex = 7;
             GuiasADespacharxServicioListView.UseCompatibleStateImageBehavior = false;
             GuiasADespacharxServicioListView.View = View.Details;
@@ -152,18 +160,21 @@
             // GuiasADespacharServicioListView
             // 
             GuiasADespacharServicioListView.Controls.Add(GuiasADespacharxServicioListView);
-            GuiasADespacharServicioListView.Location = new Point(49, 318);
+            GuiasADespacharServicioListView.Location = new Point(56, 424);
+            GuiasADespacharServicioListView.Margin = new Padding(3, 4, 3, 4);
             GuiasADespacharServicioListView.Name = "GuiasADespacharServicioListView";
-            GuiasADespacharServicioListView.Size = new Size(607, 179);
+            GuiasADespacharServicioListView.Padding = new Padding(3, 4, 3, 4);
+            GuiasADespacharServicioListView.Size = new Size(716, 239);
             GuiasADespacharServicioListView.TabIndex = 3;
             GuiasADespacharServicioListView.TabStop = false;
             GuiasADespacharServicioListView.Text = "Guías a despachar en este servicio";
             // 
             // ConfirmarRecepcionYDespachoButton
             // 
-            ConfirmarRecepcionYDespachoButton.Location = new Point(608, 534);
+            ConfirmarRecepcionYDespachoButton.Location = new Point(680, 690);
+            ConfirmarRecepcionYDespachoButton.Margin = new Padding(3, 4, 3, 4);
             ConfirmarRecepcionYDespachoButton.Name = "ConfirmarRecepcionYDespachoButton";
-            ConfirmarRecepcionYDespachoButton.Size = new Size(83, 26);
+            ConfirmarRecepcionYDespachoButton.Size = new Size(92, 33);
             ConfirmarRecepcionYDespachoButton.TabIndex = 4;
             ConfirmarRecepcionYDespachoButton.Text = "Confirmar";
             ConfirmarRecepcionYDespachoButton.UseVisualStyleBackColor = true;
@@ -171,9 +182,10 @@
             // 
             // CancelarButton
             // 
-            CancelarButton.Location = new Point(518, 534);
+            CancelarButton.Location = new Point(578, 690);
+            CancelarButton.Margin = new Padding(3, 4, 3, 4);
             CancelarButton.Name = "CancelarButton";
-            CancelarButton.Size = new Size(84, 25);
+            CancelarButton.Size = new Size(96, 33);
             CancelarButton.TabIndex = 5;
             CancelarButton.Text = "Cancelar";
             CancelarButton.UseVisualStyleBackColor = true;
@@ -182,44 +194,44 @@
             // CDLabel
             // 
             CDLabel.AutoSize = true;
-            CDLabel.Location = new Point(506, 9);
+            CDLabel.Location = new Point(578, 12);
             CDLabel.Name = "CDLabel";
-            CDLabel.Size = new Size(26, 15);
+            CDLabel.Size = new Size(32, 20);
             CDLabel.TabIndex = 16;
             CDLabel.Text = "CD:";
             // 
             // UsuarioLabel
             // 
             UsuarioLabel.AutoSize = true;
-            UsuarioLabel.Location = new Point(55, 9);
+            UsuarioLabel.Location = new Point(63, 12);
             UsuarioLabel.Name = "UsuarioLabel";
-            UsuarioLabel.Size = new Size(50, 15);
+            UsuarioLabel.Size = new Size(62, 20);
             UsuarioLabel.TabIndex = 15;
             UsuarioLabel.Text = "Usuario:";
             // 
             // UsuarioResult
             // 
             UsuarioResult.AutoSize = true;
-            UsuarioResult.Location = new Point(111, 9);
+            UsuarioResult.Location = new Point(127, 12);
             UsuarioResult.Name = "UsuarioResult";
-            UsuarioResult.Size = new Size(62, 15);
+            UsuarioResult.Size = new Size(77, 20);
             UsuarioResult.TabIndex = 17;
             UsuarioResult.Text = "Juan Perez";
             // 
             // CDResult
             // 
             CDResult.AutoSize = true;
-            CDResult.Location = new Point(538, 9);
+            CDResult.Location = new Point(615, 12);
             CDResult.Name = "CDResult";
-            CDResult.Size = new Size(73, 15);
+            CDResult.Size = new Size(90, 20);
             CDResult.TabIndex = 18;
             CDResult.Text = "Loren Ipsum";
             // 
             // RecepcionYDespachoLargaDistanciaForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(740, 578);
+            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(890, 728);
             Controls.Add(CDResult);
             Controls.Add(UsuarioResult);
             Controls.Add(CDLabel);
@@ -229,6 +241,7 @@
             Controls.Add(GuiasADespacharServicioListView);
             Controls.Add(GuiasGroupBox);
             Controls.Add(BusquedaGroupBox);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "RecepcionYDespachoLargaDistanciaForm";
             Text = "Recepcion y despacho de servicios de larga distancia";
             BusquedaGroupBox.ResumeLayout(false);
